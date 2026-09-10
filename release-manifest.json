@@ -22,14 +22,15 @@
     "Public package and all three pre-existing public commits reviewed for personal data and secrets; no confirmed leak found, with explicit ownership and provenance limits",
     "All ten public operational-role associations matched official publisher registry text; not account ownership or on-chain verification",
     "MIT LICENSE and directly linked assets/LICENSE.txt are byte-identical; README contains no em dashes and topic commands follow example questions",
-    "Current version remains 0.1.0; historical reviews/scans/probes and externally reported observations remain separately scoped"
+    "Current version remains 0.1.0; historical reviews/scans/probes and externally reported observations remain separately scoped",
+    "README includes the documented OpenClaw integration path and scoped OpenClaw/Hermes testing note; all 23 README relative links resolve"
   ],
   "fresh_cisco_scan": false,
   "host_installation_or_activation": false,
   "host_runtime_testing": false,
   "manifest_sha256": {
     "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
-    "README.md": "baa4f8983228df8a385180baad332c6b5c675e73e45c77854a8b5f6da9662675",
+    "README.md": "71a54c5ee76025299830db137596ce24f35e94062082612e2c45c279c6263d51",
     "SKILL.md": "3b24fee265a924ddefa7cb8f93f0e4762cfc57ea3c5657c91cfc06d980ec69ee",
     "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "assets/addresses.json": "afe9edc63efdabb96452ed4216ae6ca8244d58edee019c310cb2aa24ad3186fc",

@@ -34,7 +34,7 @@ Use one skill with six plural topics:
 
 Add a question to narrow the answer, for example `Use netstack: contracts NetNetGear` or `Use netstack: games how does WinNET fund its prizes?`. `Use netstack` or `netstack` alone shows the menu. Also accepted: `netstack <topic> [question]`.
 
-These are **portable Markdown routing instructions**, not six separately installed slash commands. Optional `/netstack <topic> [question]` works only when a host registers the installed skill command or forwards slash text to the model. Current [Hermes documentation](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills/) describes installed skills as `/skill-name` commands; this package has not been runtime-tested there. Bare `/dashboards` or `/nfts` commands are not registered by this repository.
+These are **portable Markdown routing instructions**, not six separately installed slash commands. Optional `/netstack <topic> [question]` works only when a host registers the installed skill command or forwards slash text to the model. Current [Hermes documentation](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills/) describes installed skills as `/skill-name` commands. Testing scope is summarized below. Bare `/dashboards` or `/nfts` commands are not registered by this repository.
 
 Directory requests use packaged links without fetching live data or loading every reference. All routes remain read-only.
 
@@ -66,9 +66,12 @@ The same knowledge and safety policy apply across hosts. Frontmatter uses the co
 | Codex | Complete folder under `.agents/skills/netstack/` or the corresponding personal location |
 | Hermes Agent | Skills Hub import or complete folder under its configured skills directory |
 | Oh My Pi | Complete folder in its configured skill-search path |
+| [OpenClaw](https://docs.openclaw.ai/tools/skills) | Complete folder under `<workspace>/skills/netstack/` or the configured state's skills directory, normally `~/.openclaw/skills/netstack/` |
 | Other agents and coding harnesses | Their Agent Skills importer, or explicit reading of SKILL.md and selected references |
 
-See [installation guidance](references/installation.md) for host-specific details, including optional Hermes commands. **These are documented integration paths, not a claim that every host has been runtime-tested.** Nothing was installed or activated locally during authoring or review.
+**Tested with OpenClaw and Hermes tooling for package compatibility and read-only inspection.** The OpenClaw skill-creator validator passed on the revised package. Hermes skill inspection, reference-bundle checks and a simulated security scan were reported by the user. These checks do not establish live host/tool enforcement or wallet isolation.
+
+See [installation guidance](references/installation.md) for host-specific details, including optional Hermes commands. Testing covers the checks described above, not every host or configuration. Maintainer validation did not install or activate a local skill.
 
 An offline first trial is recommended, not a prerequisite to later live research. For that profile, omit wallet access, shell, privileged browsers, network tools, private context and external actions; restrict on-demand file reads to the package or attach the necessary references before disabling tools. Ordinary public read-only web, dashboard, explorer, API and bounded RPC research is also supported with existing host-permitted tools. No custom broker or per-source administrator setup is required. A host's skills toolset is not automatically read-only, and this repository does not configure host permissions.
 
