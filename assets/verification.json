@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "version_policy": "Keep 0.1.0 until the maintainer explicitly requests a version change; identify revisions by Git commit.",
   "reviewed_on": "2026-09-10",
-  "evidence_scope": "Current package version is 0.1.0. current_wording_validation records the confidentiality rewording checks. Other reviews, scans and probes retain their named historical scopes and input fingerprints; externally reported host observations are attributed, not host runtime certification.",
+  "evidence_scope": "Version0.1.0. independent_tool_audit identifies the exact audited historical revision. Prior scan/review/probe records retain their input scopes. The v0.1.0 release audit attachment binds final release scans to exact published bytes; adding this summary does not retroactively expand earlier audit coverage.",
   "delivery": {
     "mode": "independent_github_repository_and_portable_package",
     "scope": "Maintainer delivery activity only; external user reports below do not establish installation or activation.",
@@ -232,10 +232,10 @@
     "private_wallet_files_accessed": false,
     "input_commit": "43b1d760e89a39a0d22fab9acf19358c894347c8"
   },
-  "current_wording_validation": {
+  "historical_wording_validation": {
     "observed_on": "2026-09-10",
     "result": "passed",
-    "scope": "Two equivalent confidentiality wording replacements, direct-URL bundle static scanning, affected no-tool behavior probes and package integrity. No policy rule suppression, force override, host installation or activation.",
+    "scope": "Historical confidentiality wording checks at public commit 0842bd090956671a6954811654aa646c230e3bc8. Original input fingerprints retained; not final release-byte certification.",
     "input_file_sha256": {
       "SKILL.md": "a16ca4eb63bd0f6724936824e89ee25f7ecce926b934bb447d582184624d4cf7",
       "references/nfts.md": "d5c4acd2473f9447e5ea079a92b2cd9b69e03dd26166cb50fc70bdc6c3f6e75c",
@@ -306,6 +306,98 @@
     "unchanged_scope": "Only the two prose lines and verification/manifest evidence change. Machine safety policy, address/source inventories, licensing, dashboard ordering and README remain unchanged.",
     "fresh_cisco_scan": false,
     "installed_or_activated_locally": false,
-    "wallet_files_accessed": false
+    "wallet_files_accessed": false,
+    "input_commit": "0842bd090956671a6954811654aa646c230e3bc8"
+  },
+  "independent_tool_audit": {
+    "observed_on": "2026-09-10",
+    "input_commit": "0842bd090956671a6954811654aa646c230e3bc8",
+    "conclusion": "No confirmed actionable package vulnerability or credential leak was identified within the tested scope. This is not a zero-finding claim, independent human audit, runtime certification or safety guarantee.",
+    "scope": {
+      "complete_package_files": 24,
+      "url_bundle_files": 21,
+      "reachable_public_commits": 6,
+      "input_file_sha256": {
+        "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
+        "README.md": "71a54c5ee76025299830db137596ce24f35e94062082612e2c45c279c6263d51",
+        "SKILL.md": "a16ca4eb63bd0f6724936824e89ee25f7ecce926b934bb447d582184624d4cf7",
+        "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
+        "assets/addresses.json": "afe9edc63efdabb96452ed4216ae6ca8244d58edee019c310cb2aa24ad3186fc",
+        "assets/adversarial-review.json": "401674080474416447e8bdab2bef76948fe171e8b13f82047c1b4d0269733b7b",
+        "assets/safety-policy.json": "cab113dc5e205f02cdc7563e8aa1b32d4063be60d4697352e6118bf72336f560",
+        "assets/sources.json": "903d82f65976db63cadf091f26c863060ebce22d43f496fb8509a398ad2031c7",
+        "assets/verification.json": "bd3d45d1a8480ce47d2e0b3ee3f098d96302e83413fcc723ad27e7a67e2b0040",
+        "references/addresses-and-roles.md": "a3359361e37b9305193469daee16288d23fb0ac594c402d1c926578fa4d4fbe7",
+        "references/announcements-and-history.md": "0362db0dfec0951c1e26f2a3014a0dcd3d0454ee34501db4aa7b80174041c7d5",
+        "references/docs-and-sources.md": "f09b8ec03c5d0aaa318efb1e6f0aad82aecd73420df484d1a2551265f2d896b0",
+        "references/games.md": "3053ac8baf77a6080f3c32b7c0a28d4734a535941ea5a045f90f58547309efd8",
+        "references/glossary-and-faq.md": "8e4409a2492e4ec10f41ff6e57d75d73bd20d2aba42ad47ef1606a097eeeba52",
+        "references/installation.md": "a0d471f8aed4dca1be5e0cdaf678a4bc15497db830097f8b4a975cac18459c2b",
+        "references/integrations.md": "84293e2689d586da9fa77eff4c334c5032280353164e4c12ee605eb9f0b71258",
+        "references/links.md": "88fc67570a07970052888da4d58e2e0cf60c6621b86298aa8402e5f77694a827",
+        "references/nfts.md": "d5c4acd2473f9447e5ea079a92b2cd9b69e03dd26166cb50fc70bdc6c3f6e75c",
+        "references/products.md": "811ef0bc4b380b100690180357b0069043976a7c32815a4679bf93fb44ad838a",
+        "references/protocol.md": "1e93abdc32c1d9698408d9b8b0e8aacac7a81b2a3b9774cd900cbe5cb48b6650",
+        "references/rwa-strategy.md": "93f7454723b458ae3c75f5651662451723a948866bf7e0e56bed480c58c2c996",
+        "references/safety.md": "e61dddb0ee742d436fc4e54073d174d8d1b30e43d3ac5ad6f3d128bb7523a7a0",
+        "references/security-review.md": "9765c0b11c012fbb04acb555384277522868f310309c6b9305aa285660f50ee7",
+        "release-manifest.json": "517d67cd4cfb03f1927f4bd6138afeb52d0f9ec309a95b3f35d7e1b2d63605d3"
+      },
+      "runtime_bundle_sha256": "f83809841bbe010fdcf4475553ab5684e2143dcb571b600835a001de9e3ed8c9"
+    },
+    "cisco": {
+      "version": "2.1.0",
+      "artifact_sha256": "452811a64399a7f5f6656f5fccb5487a5f3a0ca00e8cdfa484761022da852bf6",
+      "high_or_critical_findings": 0,
+      "primary_package_medium_findings": 1,
+      "primary_url_bundle_findings": 0,
+      "diagnostic_finding": "LAZY_LOAD_DEEP_NESTING reproduced in both scopes depending on traversal order.",
+      "disposition": "Benign cyclic documentation references back to already-visited safety.md in profiled reproduction; depth check precedes visited filtering. Original unseeded cause inferred from identical rule, not directly traced. All20 support files directly linked from SKILL.md. Raw medium warnings retained.",
+      "limits": "Default local analyzers and built-in filters; no cloud or LLM analyzers. All24/21 files loaded; no Python or bytecode to analyze."
+    },
+    "gitleaks": {
+      "version": "8.30.1",
+      "artifact_sha256": "b40ab0ae55c505963e365f271a8d3846efbc170aa17f2607f13df610a9aeb6a5",
+      "findings_per_scope": 6,
+      "raw_records_total": 18,
+      "confirmed_credentials": 0,
+      "disposition": "Six public token_address fields matched the generic API-key rule. Each matched a separate contract record with public app/arcade provenance. Raw records redacted, retained and unsuppressed; separate locally recorded feed relationships not validated.",
+      "limits": "Default rules and precision filters; added-diff Git history coverage. Commit messages, unreachable objects and unrelated branches excluded."
+    },
+    "instrumented_model_tool_harness": {
+      "cases": 10,
+      "completed": 10,
+      "prohibited_action_requests": 0,
+      "captured_actions": 19,
+      "simulated_tool_requests": 9,
+      "input_file_sha256": {
+        "SKILL.md": "a16ca4eb63bd0f6724936824e89ee25f7ecce926b934bb447d582184624d4cf7",
+        "references/safety.md": "e61dddb0ee742d436fc4e54073d174d8d1b30e43d3ac5ad6f3d128bb7523a7a0",
+        "assets/safety-policy.json": "cab113dc5e205f02cdc7563e8aa1b32d4063be60d4697352e6118bf72336f560",
+        "references/integrations.md": "84293e2689d586da9fa77eff4c334c5032280353164e4c12ee605eb9f0b71258",
+        "references/protocol.md": "1e93abdc32c1d9698408d9b8b0e8aacac7a81b2a3b9774cd900cbe5cb48b6650"
+      },
+      "model_profile": "configured smol completion profile",
+      "method": "Serialized JSON action/result simulator with synthetic fixtures. Captures requests before simulator denial; not native host tools or live network observations.",
+      "positive_controls": [
+        "public documentation reading",
+        "direct Robinhood Chain RPC chain identity and block number"
+      ],
+      "limits": "One accepted run per case, safety/integration text preloaded, protocol reference read simulated. No OpenClaw/Hermes activation, browser isolation, live RPC or external policy enforcement established."
+    },
+    "isolation": "Pinned verified tool artifacts, temporary installations, isolated HOME/cache and sanitized environments. Outbound network denial was tested and input hashes remained unchanged. The historical Cisco profile declared an input-write restriction but omitted canonical /private/var paths; effective write denial was not established for that run. Final-release scanning separately tests canonical and alternate input-path write denial. Tool downloads occurred before network-denied scanning.",
+    "provenance_corrections": [
+      "An incorrect scanner worker summary was corrected against the raw report. Two overwritten preliminary raw outputs were excluded; eleven subsequent raw reports were preserved separately.",
+      "Both scanner workers reran with isolated variable scope after shared-kernel environment ambiguity.",
+      "A contradictory simulator bookkeeping sentence was corrected before the ten accepted scenarios. Skill bytes were unchanged during the audit.",
+      "Release preparation identified an incomplete canonical-path write guard in the historical Cisco sandbox profile. This limits the earlier isolation claim, not the observed unchanged input hashes or retained scanner findings. The final-release profile tests both path spellings."
+    ],
+    "not_performed": [
+      "Snyk remote analysis",
+      "independent human audit",
+      "OpenClaw/Hermes runtime enforcement tests"
+    ],
+    "public_evidence_url": "https://github.com/tomismeta/netstack/releases/download/v0.1.0/netstack-audit-0.1.0.zip",
+    "public_evidence_scope": "Sanitized copies of historical reports with original/copy hashes, plus separately scoped final-release scan reports. Raw attack fixtures are outside the runtime package."
   }
 }

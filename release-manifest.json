@@ -1,7 +1,7 @@
 {
   "version": "0.1.0",
   "version_policy": "Keep 0.1.0 until explicitly changed by the maintainer; revisions use Git commits.",
-  "result": "passed",
+  "result": "package_integrity_passed",
   "files": 23,
   "total_distributable_files": 24,
   "local_reference_links": 125,
@@ -13,27 +13,25 @@
   "public_role_registry_matches": 10,
   "text_only_topic_probe_cases": 7,
   "checks": [
-    "Exactly two approved confidentiality prose replacements; machine safety policy, source/address inventories, licensing, README and dashboard ordering unchanged",
-    "Unmodified upstream Hermes Skills Guard scanned all 21 reconstructed direct-URL bundle files with community trust: SAFE, allowed without force, zero high/critical findings",
-    "One medium fake_policy finding retained with a documented benign disposition; no scanner pattern, severity, ignore file or install policy was modified",
-    "Seven affected no-tool behavior probes preserved allowed public research and wallet/private-context prohibitions; prior broader probes remain historical evidence",
-    "JSON and safe YAML parsing, 56-character description, relative-reference resolution and absence of escaping links, hidden files, symlinks or executable package files verified",
-    "Final-tree redacted secret-pattern and canonical address-inventory checks passed; no personal wallet data added or private wallet files accessed",
-    "Current version remains 0.1.0; full repository hashes and the separately attested direct-URL bundle digest identify different distributable scopes"
+    "Published scoped independent-tool findings; no claim of zero scanner findings, independent human audit or runtime certification",
+    "Preserved SKILL.md, safety policy, source/address inventories, licensing and dashboard ordering byte-for-byte",
+    "Unmodified pinned Hermes Skills Guard scanned the final21-file URL bundle: SAFE, allowed without force, one retained medium fake_policy finding",
+    "JSON,125 relative links, version0.1.0,56-character description, package paths and absence of hidden/executable/symlink files checked",
+    "Historical model and independent-tool audit records retain their original commit/input fingerprints; final release scanner reports are separate release assets",
+    "All23 content hashes regenerated; final release external audit attestation covers all24 package files including this manifest"
   ],
-  "fresh_cisco_scan": false,
   "host_installation_or_activation": false,
   "host_runtime_testing": false,
   "manifest_sha256": {
     "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
-    "README.md": "71a54c5ee76025299830db137596ce24f35e94062082612e2c45c279c6263d51",
+    "README.md": "f26b30461c84d3ae2b1451532183a67f894513a1d768f1f979da2526d2b1587e",
     "SKILL.md": "a16ca4eb63bd0f6724936824e89ee25f7ecce926b934bb447d582184624d4cf7",
     "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "assets/addresses.json": "afe9edc63efdabb96452ed4216ae6ca8244d58edee019c310cb2aa24ad3186fc",
     "assets/adversarial-review.json": "401674080474416447e8bdab2bef76948fe171e8b13f82047c1b4d0269733b7b",
     "assets/safety-policy.json": "cab113dc5e205f02cdc7563e8aa1b32d4063be60d4697352e6118bf72336f560",
     "assets/sources.json": "903d82f65976db63cadf091f26c863060ebce22d43f496fb8509a398ad2031c7",
-    "assets/verification.json": "bd3d45d1a8480ce47d2e0b3ee3f098d96302e83413fcc723ad27e7a67e2b0040",
+    "assets/verification.json": "7e14e13df64b2386ae5943837a3b72a7902fb45df7eeded2612cdf6db206ac24",
     "references/addresses-and-roles.md": "a3359361e37b9305193469daee16288d23fb0ac594c402d1c926578fa4d4fbe7",
     "references/announcements-and-history.md": "0362db0dfec0951c1e26f2a3014a0dcd3d0454ee34501db4aa7b80174041c7d5",
     "references/docs-and-sources.md": "f09b8ec03c5d0aaa318efb1e6f0aad82aecd73420df484d1a2551265f2d896b0",
@@ -47,18 +45,18 @@
     "references/protocol.md": "1e93abdc32c1d9698408d9b8b0e8aacac7a81b2a3b9774cd900cbe5cb48b6650",
     "references/rwa-strategy.md": "93f7454723b458ae3c75f5651662451723a948866bf7e0e56bed480c58c2c996",
     "references/safety.md": "e61dddb0ee742d436fc4e54073d174d8d1b30e43d3ac5ad6f3d128bb7523a7a0",
-    "references/security-review.md": "9765c0b11c012fbb04acb555384277522868f310309c6b9305aa285660f50ee7"
+    "references/security-review.md": "d32a2ecd7533e3b325ec521ea29670b4458424be2e65609a6b3338d3b001e846"
   },
   "manifest_scope": "All listed distributable content files. This generated manifest and Git metadata are excluded from their own manifest. Detailed executed checks and limitations are in assets/verification.json.",
   "hermes_direct_url_scan": {
     "scanner_version": "skills-guard-v2",
     "scanner_commit": "67764dc0863349a384c16425e73ee8571f3a94b7",
     "scanner_source_sha256": "007846383d775bbda8ac6ed9f6d9fedef4f4cebf052ad059e0cfcb15c9d3fb27",
-    "bundle_sha256": "f83809841bbe010fdcf4475553ab5684e2143dcb571b600835a001de9e3ed8c9",
+    "bundle_sha256": "eafbc5dcc08e08369cee2ff98698c17d5d42de2af4e6bcb9a6ce353099da21da",
     "bundle_files": 21,
     "verdict": "safe",
     "allowed_without_force": true,
-    "scanned_at": "2026-09-10T14:25:11.105211+00:00",
+    "scanned_at": "2026-09-10T15:40:14.350483+00:00",
     "findings": [
       {
         "pattern_id": "fake_policy",
@@ -72,5 +70,14 @@
     ],
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by a NUL byte and the corresponding file bytes; upstream skills_guard._content_digest",
     "scope": "SKILL.md plus 20 explicitly linked support files. Root README.md, LICENSE and this manifest are absent from the URL bundle. Static scanner functions only; no Hermes installation or runtime test."
+  },
+  "text_only_topic_probe_scope": "Historical seven-case wording probes, not rerun for this evidence-publication revision; separate ten-case simulator audit also remains tied to0842bd0.",
+  "independent_security_audit": {
+    "baseline_input_commit": "0842bd090956671a6954811654aa646c230e3bc8",
+    "conclusion": "No confirmed actionable package vulnerability or credential leak identified within the tested scope; retained warnings are not a zero-finding claim.",
+    "cisco_version": "2.1.0",
+    "gitleaks_version": "8.30.1",
+    "final_release_evidence_url": "https://github.com/tomismeta/netstack/releases/download/v0.1.0/netstack-audit-0.1.0.zip",
+    "evidence_scope": "Embedded details cover the explicitly named historical audit. The external release audit binds final release scans to all24 exact file hashes, including this manifest, without self-reference."
   }
 }

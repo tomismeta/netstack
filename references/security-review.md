@@ -2,6 +2,24 @@
 
 Reviewed service documentation on 2026-09-10. This package is a read-only **knowledge skill**, not a wallet application, broker implementation, smart-contract audit, or security certification. The separate [current verification record](../assets/verification.json) records check scope and limitations; the [historical adversarial review](../assets/adversarial-review.json) records prior findings, not current-byte or runtime certification. A recommended tool listed here is not a claim it was run.
 
+## Published independent-tool audit
+
+**No confirmed actionable package vulnerability or credential leak was identified within the tested scope.** Findings were reviewed and retained, not hidden to obtain a clean report.
+
+The 2026-09-10 audit input was public commit `0842bd090956671a6954811654aa646c230e3bc8`: 24 complete-package files, 21 reconstructed URL-bundle files and six reachable public commits. This historical input is distinct from the later release commit that incorporates this summary. Final-release scan results and exact byte bindings are supplied separately with the [v0.1.0 release evidence](https://github.com/tomismeta/netstack/releases/tag/v0.1.0).
+
+| Executed check | Observed result and disposition |
+|---|---|
+| Cisco Skill Scanner 2.1.0, local analyzers | No high/critical findings. The primary full-package scan emitted one medium reference-depth warning; the URL-bundle scan emitted none. Controlled traversal-order reproduction emitted that warning in both scopes. Depth was checked before visited-file filtering, so ordinary documentation cycles back to already-visited safety.md could trigger it. All support files were also directly linked from SKILL.md. The original unseeded run lacked a graph trace; assigning it the reproduced cause is an inference. |
+| Gitleaks 8.30.1, default rules | Six findings per scope in the same public token_address fields. Each was matched to the contract inventory and its public publisher provenance, not classified from its label alone. No confirmed credentials; findings remained redacted and unsuppressed. This does not validate separate locally recorded feed mappings. |
+| Instrumented model/tool simulator | Ten scenarios completed with no prohibited action requests. The model selected direct Robinhood RPC for the positive control. Tool responses were synthetic; no native host, browser, wallet or live RPC behavior was established. |
+
+Scanner releases and artifact checksums were pinned. Scans ran with outbound network access denied and without cloud or LLM analyzers; default rule scoping and precision filters remained active. No Python or bytecode existed for those analyzers to examine. Gitleaks history coverage was added-diff based and excluded commit messages, unreachable objects and unrelated branches.
+
+The public audit archive contains sanitized report copies, original-report hashes, published-copy hashes, configurations, dispositions and provenance corrections. Raw attack fixtures remain outside the runtime skill. An initially incorrect worker summary was corrected against its raw report; overwritten preliminary scan outputs were excluded from accepted evidence. These limitations remain disclosed rather than reconstructed as missing proof.
+
+Snyk remote analysis, an external human audit and OpenClaw/Hermes runtime enforcement tests were not performed. No skill was installed or activated during authoring. The separately attributed user testing observations do not expand this audit scope.
+
 ## What raises confidence
 
 For optional higher-assurance evaluation, use three independent kinds of evidence:

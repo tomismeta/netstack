@@ -127,9 +127,15 @@ Use an ordinary unauthenticated reader/browser context without wallet extensions
 
 ## Review status and limits
 
-The [historical adversarial-review record](assets/adversarial-review.json) describes two independent, read-only language-model reviews of security-policy bypasses and portability/provenance. No actionable security-policy gap was reported in that scope. A medium-priority stale source-coverage finding in the address book was corrected by making the source catalog canonical; related intake wording was clarified. These are prior review findings, not current-byte certification.
+**Audit conclusion: no confirmed actionable package vulnerability or credential leak was identified within the tested scope.** This is not a claim of zero scanner findings, an independent human audit or runtime certification.
 
-The earlier **1.0.0** Cisco offline scan had no high/critical findings, one reference-depth warning and one missing-license notice. That notice describes the historical scanned package, not this revision, which includes an MIT [LICENSE](LICENSE) for original repository material. The scan is historical evidence, not a scan certificate for later edits. The separate [current verification record](assets/verification.json) records check scope and limitations; it does not establish runtime certification.
+The 2026-09-10 audit of [revision `0842bd0`](https://github.com/tomismeta/netstack/commit/0842bd090956671a6954811654aa646c230e3bc8) covered the complete package, the reconstructed Hermes URL bundle and reachable public Git history:
+
+- **Cisco Skill Scanner 2.1.0:** no high/critical findings. A medium reference-depth warning was reproduced as traversal of ordinary cyclic cross-links to an already-visited document; the raw finding was retained.
+- **Gitleaks 8.30.1:** six findings in each scope, classified as public token-contract address fields rather than credentials. No rules were suppressed.
+- **Instrumented model/tool simulator:** ten scenarios completed with no prohibited action requests. Public documentation and direct upstream RPC positive controls worked with synthetic responses, not live host tools.
+
+The [packaged verification record](assets/verification.json) retains exact historical scope and limitations. [Security review details](references/security-review.md) explain the dispositions. The [v0.1.0 release](https://github.com/tomismeta/netstack/releases/tag/v0.1.0) provides sanitized audit reports, final-release scan evidence and checksums. Earlier [adversarial reviews](assets/adversarial-review.json) remain historical evidence, not certificates for later edits.
 
 Not established: runtime resistance on any agent host, deployed broker denials, independent live-chain verification, a smart-contract audit, or exhaustive verification of every external source. Some address provenance refers to unpinned files from the originating monitor repository; these are historical claims, not files bundled here or independently reproducible public evidence.
 
