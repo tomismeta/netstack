@@ -17,13 +17,14 @@
     "All indexed document, interview, dashboard and NFT links retained in observed directory answers",
     "Menu, unknown-topic, focused NFT answer, wallet/payload refusal and source-override probes passed",
     "Exact chain/address collection identity associations and source IDs validated",
-    "Current version pinned at 0.1.0; requested README footer removed"
+    "Current version pinned at 0.1.0; requested README footer removed",
+    "README contains no em dashes; topic commands immediately follow example questions; all 20 README relative links resolve"
   ],
   "fresh_cisco_scan": false,
   "host_installation_or_activation": false,
   "host_runtime_testing": false,
   "manifest_sha256": {
-    "README.md": "474c25230f260ef06f27ccbd0d28cb46571c83ed6c50c547ee504c3cf0bc4083",
+    "README.md": "d3b21c54cf286623e7f597e330910bed1649e13f214760d8caf2311812c18f57",
     "SKILL.md": "a44527543e9b4d3f6fbc24048b2ee874f9751e3bf21aed6051c8e82ae7d8d8c8",
     "assets/addresses.json": "afe9edc63efdabb96452ed4216ae6ca8244d58edee019c310cb2aa24ad3186fc",
     "assets/adversarial-review.json": "3587e8604030e1281c6f4292d1402ba5b7e93013ea07066adc0f7819f05139d0",
