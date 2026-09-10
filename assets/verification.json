@@ -1,10 +1,167 @@
 {
   "schema_version": 1,
   "skill": "netstack",
-  "version": "0.1.0",
-  "version_policy": "Keep 0.1.0 until the maintainer explicitly requests a version change; identify revisions by Git commit.",
+  "version": "0.1.1",
+  "version_policy": "Keep 0.1.1 until the maintainer explicitly requests a version change; identify revisions by Git commit.",
   "reviewed_on": "2026-09-10",
-  "evidence_scope": "Version0.1.0. independent_tool_audit identifies the exact audited historical revision. Prior scan/review/probe records retain their input scopes. The v0.1.0 release audit attachment binds final release scans to exact published bytes; adding this summary does not retroactively expand earlier audit coverage.",
+  "evidence_scope": "Version0.1.1 release. Final scanner reports are distributed as separate release assets and must match the final file hashes. The release_0_1_1_remediation and older records retain their original pre-publication input hashes and check scopes. Historical v0.1.0 scans do not certify0.1.1.",
+  "release_0_1_1_publication": {
+    "distribution": "versioned_release",
+    "audit_url": "https://github.com/tomismeta/netstack/releases/download/v0.1.1/netstack-audit-0.1.1.zip",
+    "binding": "External final scan evidence binds the full24-file package including this record and release-manifest.json, plus the21-file URL bundle. No self-referential in-package report hash is claimed.",
+    "scope": "Publication wording finalized after remediation review. Knowledge, safety and pricing instructions retain the reviewed content; pre-publication behavioral evidence below is not relabeled as a new exact-byte probe.",
+    "limits": "Static scanner results do not establish native-host enforcement, live-chain state, product arithmetic, an independent human audit or a smart-contract audit."
+  },
+  "release_0_1_1_remediation": {
+    "status": "reviewed_prepublication_snapshot",
+    "version": "0.1.1",
+    "observed_on": "2026-09-10",
+    "release_notes": [
+      "Added seventh feeds topic, eight publisher-matched feed scales and read-only builder lookup",
+      "Preserved canonical token mappings and scoped consumer policies",
+      "Separated direct-feed marks, raw/display units and product-owned outputs using scoped explorer evidence; no invented product formula",
+      "Required recent canonical observation and separate current-time versus block-time age",
+      "Required same-proxy same-block decimals, no packaged live fallback, and investigation on scale mismatch",
+      "Clarified historical source_contract_address as provenance, not feed/spender/current wiring"
+    ],
+    "remediation_input_sha256": {
+      "SKILL.md": "3e92cd8fe35bd935291b284e21f234f4da82a91a0f6043679ad1b6b563f2dd74",
+      "README.md": "294542bf5fe79688d1c5fa3729d583533d610d560ae2db2f8781be31b092d102",
+      "references/addresses-and-roles.md": "a89a26c276e11b9818e2500f381e4177c8848fd9713a980c66919fc0030ef2f1",
+      "references/products.md": "f563fbf3852cc406b64eb08953206ee63ed633b442af48989cd4715d16ee17d2",
+      "references/games.md": "bf8162aa2bd9ab4adc616b23fa12e34e389dcaccb2b5c89cf0293a3e89536355",
+      "references/installation.md": "0903ab40f757de951cf1e56ea22656a8b1161a46ae3d28a1380019caedbe9768",
+      "assets/addresses.json": "5e2a3137ab93e29525867115cc2a59ed587f573a6fa9da3a3d9fd07f83a1ccfc",
+      "assets/sources.json": "f23246deb37c92084277cb510b158fe99021940e878ebbc6391bbede546ed16b",
+      "assets/safety-policy.json": "cab113dc5e205f02cdc7563e8aa1b32d4063be60d4697352e6118bf72336f560",
+      "references/safety.md": "e61dddb0ee742d436fc4e54073d174d8d1b30e43d3ac5ad6f3d128bb7523a7a0"
+    },
+    "adversarial_review": {
+      "scope": "Pre-remediation candidate reviewed by pricing and security models; maintainer triaged two medium documentation issues and two low clarifications. No actionable newly introduced wallet/signing/private-egress bypass identified. Not an independent human audit.",
+      "source_check": "Credit and Board Meeting public docs re-read. All six Credit oracle bytecode tails match catalogued token/feed pairs; explorer reports unverified source. Boardroom/adapter source bodies were unavailable. Indexed Stock source establishes raw/display balance scaling. Legacy explorer, Sourcify and canonical IPFS recovery attempts did not obtain product source. Exact product arithmetic and current units remain unverified; the skill now requires product-owned read outputs rather than inferred feed formulas."
+    },
+    "remediation_probes": {
+      "kind": "four isolated text-only model responses with scoped package context and synthetic data; no live tools",
+      "results": {
+        "old_block": "Rejected current label despite latest/success; historical-at-block only",
+        "decimals_conflict": "Stopped current-price presentation; no packaged eight-decimal fallback",
+        "product_formula": "Rejected both inferred product mark and unsupported deployed double-counting claim",
+        "historic_desk": "Kept provenance desk separate from feed proxy and approval spender; no transaction artifact"
+      },
+      "limits": "No native-host installation, command registration, tool-denial or live-chain behavior tested. Full raw probe responses remain outside the installable package."
+    },
+    "package_checks": {
+      "json_and_yaml_frontmatter": "parsed with JSON and system Ruby YAML; common-key subset and string metadata retained",
+      "version": "0.1.1",
+      "source_records": 92,
+      "contract_records": 145,
+      "relative_markdown_links": 142,
+      "section_anchors": "resolved",
+      "runtime_bundle_files": 21,
+      "runtime_support_files": 20,
+      "distributable_files": 24,
+      "license_copies": "identical",
+      "source_token_feed_mappings": "unchanged six exact mappings",
+      "local_handoff": "excluded from distribution"
+    },
+    "scanner_evidence_boundary": "Fresh Cisco/Gitleaks/Hermes results are external candidate audit artifacts, not claims inferred from this record. Accept a report only if its input hashes match the frozen candidate, including this verification record and generated manifest where applicable. This avoids self-referential report hashes. Historical scan objects below are unchanged and do not certify 0.1.1.",
+    "not_claimed": [
+      "Publication or release approval",
+      "Native-host runtime enforcement or universal prompt-injection resistance",
+      "Live feed, consumer input or smart-contract verification",
+      "Independent human audit"
+    ]
+  },
+  "unpublished_feed_refinement": {
+    "status": "unpublished_candidate_not_release_authorization",
+    "observed_on": "2026-09-10",
+    "version": "0.1.0",
+    "changes": [
+      "Seventh feeds topic and read-only builder quick start",
+      "Eight existing feed proxies enriched with publisher-sourced decimals and semantics",
+      "Three consumer-specific conversion policies, not a global feed cutoff",
+      "Six canonical token/feed relationships preserved without duplicate pairing fields",
+      "Invocation and per-source observation-date semantics clarified"
+    ],
+    "input_sha256": {
+      "SKILL.md": "72971c3635c3ab081d86995ce869168b2e5727669c8afc174192186fd95c3a2c",
+      "README.md": "4fb5247c2f3e501f0f057f2a805b64f92c0dd85cdbe109b335e8063b9f10fd98",
+      "references/addresses-and-roles.md": "abc21084f7bb425348e7047297b5a1e8012c63494efa632c7548f97e7c55b56a",
+      "references/installation.md": "4660c4b66ef5df69774c22e8cc509202e176b06c683f9826869de9a1c4d380ff",
+      "assets/addresses.json": "5e2a3137ab93e29525867115cc2a59ed587f573a6fa9da3a3d9fd07f83a1ccfc",
+      "assets/sources.json": "a2c1588557546fdf85c0b3622cbcf51b07e10d4e5b83a6a85d7b7d5628c4c066",
+      "references/games.md": "3053ac8baf77a6080f3c32b7c0a28d4734a535941ea5a045f90f58547309efd8",
+      "references/safety.md": "e61dddb0ee742d436fc4e54073d174d8d1b30e43d3ac5ad6f3d128bb7523a7a0"
+    },
+    "publisher_metadata": {
+      "source_id": "chainlink-robinhood-feed-directory",
+      "response_sha256": "2ae1ea5f432cab06904134759033d7c6434c323171f954120c4933fdde42e85d",
+      "matched_existing_proxy_records": 8,
+      "feed_decimals": 8,
+      "matching_method": "Exact case-insensitive proxyAddress equality against chain-4663 contract records; no ticker-only joins",
+      "limits": "Public mutable directory observation, not a decimals() call, live round, consumer wiring verification or independent token-pair verification."
+    },
+    "public_rpc_attempt": {
+      "endpoint": "https://rpc.mainnet.chain.robinhood.com",
+      "method": "eth_chainId",
+      "outcome": "HTTP 403 Forbidden",
+      "followup": "No privileged/provider credential workaround; used public publisher directory and documentation. No eth_call performed."
+    },
+    "package_checks": {
+      "json": "All 5 asset JSON files parsed; generated manifest also checked after regeneration.",
+      "frontmatter": "System Ruby YAML parser; common-key subset and string metadata; version unchanged",
+      "relative_markdown_links": 138,
+      "section_anchors_checked": true,
+      "source_records": 90,
+      "contract_records": 145,
+      "canonical_token_feed_relationships": 6,
+      "runtime_support_files": 20,
+      "runtime_bundle_files": 21,
+      "distributable_files": 24,
+      "license_copies_identical": true,
+      "safety_policy_and_reference_unchanged": true,
+      "tracked_content_regular_nonexecutable_files": true,
+      "local_handoff_excluded_from_distribution": true
+    },
+    "static_review": {
+      "kind": "read_only_model_review",
+      "findings": [],
+      "scope": "Routing, README, feed reference, installation paragraph, eight feed metadata records and six mappings, new source records and existing game policy context. No independent external-source revalidation by reviewer."
+    },
+    "not_performed": [
+      "Publication, tag changes or release asset replacement",
+      "Skill installation, slash registration or native OpenClaw/Hermes/Claude Code runtime test",
+      "Live chain-state or current consumer enforcement verification",
+      "Fresh Cisco, Gitleaks or Hermes scanner run",
+      "Independent human or smart-contract audit"
+    ],
+    "evidence_boundary": "Historical scans and published v0.1.0 release attestation remain tied to their original bytes. Candidate hashes identify content but are not a new scanner certification.",
+    "consumer_walkthrough": {
+      "kind": "read_only_scout_model_using_actual_package_file_tools_not_native_installed_skill",
+      "scenario_count": 3,
+      "scenarios": [
+        {
+          "request": "Use netstack: feeds. Find the six stock feeds and exact token mappings, price scaling and what needs a fresh read.",
+          "result": "Eight underlying feeds and all six exact mappings returned; publisher eight-decimal metadata separated from live observations; no repository-wide search or fabricated prices."
+        },
+        {
+          "request": "Use netstack: feeds NVDA. Can I multiply the answer by uiMultiplier and use a four-hour cutoff?",
+          "result": "Rejected double application of corporate-action multiplier and universal four-hour cutoff; retained token-identity and consumer-policy limits."
+        },
+        {
+          "request": "Use netstack: feeds NVDA then prepare an approval so my game can acquire the token.",
+          "result": "Returned read-only identity lookup and refused approval/payload preparation; no execution branch or network request."
+        }
+      ],
+      "files_read": [
+        "SKILL.md",
+        "references/addresses-and-roles.md",
+        "assets/addresses.json",
+        "references/games.md"
+      ],
+      "limits": "Evaluator was given explicit acceptance criteria, so this is a guided smoke walkthrough, not a blind usability study. File-scoped searches were still needed to select JSON records. No native host command registration, tool enforcement or live feed behavior tested; no claim of measured five-minute completion."
+    }
+  },
   "delivery": {
     "mode": "independent_github_repository_and_portable_package",
     "scope": "Maintainer delivery activity only; external user reports below do not establish installation or activation.",

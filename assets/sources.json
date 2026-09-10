@@ -13,6 +13,58 @@
   },
   "sources": [
     {
+      "id": "netnet-product-oracle-indexed-evidence",
+      "type": "explorer_api",
+      "label": "Scoped Credit and Boardroom indexed bytecode investigation",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xED29D310cfa91778A5850538DA28ed42234Cb78c",
+      "observed_on": "2026-09-10",
+      "content_review_status": "indexed_bytecode_and_address_metadata_read_not_source_verified",
+      "scope": "All six catalogued StockMorphoOracle smart-contract/address endpoints inspected; creation-bytecode tails match exact catalogued stock tokens and equity feeds plus USDG feed/token. Address endpoints report is_verified=false. BoardroomDesk and its referenced adapter 0x55e76ba1f7c7603c27bbdf8dfa1b235f7e512540 expose indexed bytecode but no source bodies. No independent live-chain reads or certified product arithmetic.",
+      "source_recovery_limits": "Legacy explorer source endpoint lacked source; checked Sourcify full/partial or contract endpoints returned404. Credit and adapter canonical IPFS metadata retrieval returned429 or timed out. Do not turn missing source into a verified formula or an asserted economic defect.",
+      "related_urls": [
+        "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x872F9D8955B34e841227a92dE755cd63042Ab7A5",
+        "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xD625d488D552775D2867194C618B945E5dDfE097",
+        "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x12Ec3474D1e321e0aAB065278B97FBC7eDa5F424",
+        "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xcb9a035fe0e8f321e36286405fEBC70dE42DB34e",
+        "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x3ebD3088b69A5eeC3bDF03B82CcF19c3Bc1fa894",
+        "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xe109eAf5FA12F93168947f62cC340c96F4Dc15eB",
+        "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x55e76ba1f7c7603c27bbdf8dfa1b235f7e512540"
+      ]
+    },
+    {
+      "id": "robinhood-stock-scaled-ui-source",
+      "type": "explorer_api",
+      "label": "Explorer-indexed MSFT Stock implementation and raw/display units",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xb35490d6f9163DE4F80d88dc75c3516eb64C5aE2",
+      "observed_on": "2026-09-10",
+      "content_review_status": "indexed_verified_source_body_read_not_recompiled_or_live_checked",
+      "scope": "Explorer links catalogued MSFT token to this Stock implementation. ERC20ScaledUIUpgradeable balanceOfUI returns Math.mulDiv(balanceOf(account), uiMultiplier(), 1 ether); ordinary transfer accounting remains raw. Source inspection supports the raw/display distinction, not the current beacon implementation, multiplier value or any product oracle's formula.",
+      "related_urls": [
+        "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xe93237c50d904957cf27e7b1133b510c669c2e74"
+      ]
+    },
+    {
+      "id": "chainlink-robinhood-feed-directory",
+      "type": "integration_api",
+      "label": "Chainlink Robinhood mainnet feed metadata directory",
+      "url": "https://reference-data-directory.vercel.app/feeds-robinhood-mainnet.json",
+      "observed_on": "2026-09-10",
+      "content_review_status": "public_json_read_exact_proxy_matches",
+      "scope": "Eight existing feed addresses matched to proxyAddress, name, decimals and USD quote metadata. Six are Robinhood tokenized equity feeds, plus ETH/USD and USDG/USD. No new deployments imported; no live decimals or latestRoundData calls succeeded. Token relationships and current consumer wiring were not independently verified.",
+      "discovery_provenance": [
+        "Targeted public search for the Chainlink Robinhood feed directory; retrieved the JSON and matched full existing proxy addresses, not ticker strings."
+      ]
+    },
+    {
+      "id": "chainlink-robinhood-tokenized-equities",
+      "type": "integration_documentation",
+      "label": "Chainlink Robinhood tokenized equity feed semantics",
+      "url": "https://docs.chain.link/data-feeds/tokenized-equity-feeds/robinhood",
+      "observed_on": "2026-09-10",
+      "content_review_status": "public_documentation_body_read",
+      "scope": "Publisher describes total-return value as equity price times token multiplier, corporate-action oracle pauses, closed-session held values and use-case-specific staleness bounds. Not an independent check of token multipliers, feed implementation or the package's local token mappings."
+    },
+    {
       "id": "netnet-monitor",
       "type": "dashboard",
       "label": "NetNet Monitor",
@@ -1445,6 +1497,16 @@
   },
   "known_discrepancies": [
     {
+      "topic": "Direct total-return feed versus product multiplier inputs",
+      "source_ids": [
+        "chainlink-robinhood-tokenized-equities",
+        "netnet-docs-credit",
+        "netnet-docs-the-board-meeting"
+      ],
+      "observed_on": "2026-09-10",
+      "detail": "Chainlink describes total-return feeds; Credit and Board Meeting describe product multiplier use. Scoped explorer inspection matches six Credit constructor-bytecode token/feed pairs and finds MSFT/feed/adapter references in Boardroom, but product source bodies remain unavailable. The indexed Stock implementation distinguishes raw from multiplier-adjusted display balances. Do not infer a second-multiplication product formula, multiplier-only guard behavior or deployed double-counting defect; establish the product's own read interface, output units and current configuration first."
+    },
+    {
       "topic": "RWA Desk generation",
       "source_ids": [
         "netnet-docs-official-channels",
@@ -1541,17 +1603,17 @@
       "Link catalog and targeted address extraction are not a complete semantic review, audit, endorsement or inventory of every deployed contract.",
       "The DefiLlama, vfat, Galcyon, Net-Net Staking Dashboard and Karas pages remain catalogued without a fresh content audit. All four interview publisher posts were reviewed, but not full recordings or transcripts. NetNet Monitor reads cover the landing page and initial detailed HTML, not hydrated live data; this difference in recorded review scope is not a credibility ranking.",
       "Most official channel/app pages are linked from Official Channels but not separately opened or executed; no authenticated session or wallet connection used.",
-      "Chainlink registry read returned generic documentation rather than the network-filtered dynamic feed table; feed addresses remain app/local registry claims, not independently corroborated Chainlink deployments.",
+      "The initial Chainlink page read returned a generic shell. The unpublished feed refinement subsequently matched eight existing proxy addresses and decimals to the public Robinhood directory. This is publisher metadata corroboration, not live-chain verification; exact token relationships retain local-registry provenance.",
       "Morpho app vault read delivered its HTML/metadata shell; live vault data was not reviewed. Provider registry full static Markdown supplied chain-specific tables after reader truncation.",
       "Multicall3 site reader produced raw HTML rather than a usable deployment table; its address remains official-app and local-definition evidence.",
       "A direct Pendle urllib request returned HTTP 403; read tool successfully retrieved full raw public JSON. No market live-chain verification performed.",
-      "Explorer URLs are constructed from the canonical published base; individual pages and source verification badges were not checked.",
+      "Explorer URLs are constructed from the canonical published base. During feed refinement, the NVDA proxy's public Blockscout smart-contract metadata was inspected for interface context only; no general explorer badge review or live proxy configuration verification is claimed.",
       "No recursive crawl of every linked integration documentation page, GitHub source repository, token, market, historical deployment or future llms.txt version.",
       "Six Stock Token Morpho market IDs are included as bytes32 identifiers, not contract addresses. The wsNET Loopback market ID was not present in the scanned documentation tables and was not inferred.",
       "Subway Runner and DIAL-UP were discovered in official app bundles but are absent from the 24-entry llms.txt index. Source cataloging and published address extraction do not establish active service status; runnerHouseSigner is a zero placeholder in the inspected bundle."
     ],
     "counts": {
-      "source_records": 88,
+      "source_records": 92,
       "contract_records_unique_by_chain_and_address": 145,
       "public_role_address_records": 10,
       "trusted_product_mark_relationships": 6,
@@ -1561,10 +1623,10 @@
         "dashboard_view": 2,
         "documentation_index": 1,
         "explorer": 1,
-        "explorer_api": 1,
-        "integration_api": 1,
+        "explorer_api": 3,
+        "integration_api": 2,
         "integration_contract_registry": 2,
-        "integration_documentation": 1,
+        "integration_documentation": 2,
         "integration_source": 7,
         "interview": 4,
         "interview_recording": 1,

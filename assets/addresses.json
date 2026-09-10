@@ -2034,6 +2034,21 @@
       "chain_id": 4663,
       "address": "0x61B7e5650328764B076A108EFF5fa7282a1B9aD2",
       "role": "usdgUsdFeed",
+      "decimals": 8,
+      "price_feed": {
+        "name": "USDG / USD",
+        "quote_asset": "USD",
+        "value_kind": "asset_usd_reference_price",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "provenance": {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x61B7e5650328764B076A108EFF5fa7282a1B9aD2 / name, decimals, docs.quoteAssetEntityId",
+          "observed_on": "2026-09-10",
+          "evidence_kind": "publisher_directory_metadata",
+          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
+        },
+        "consumer_policies": []
+      },
       "aliases": [],
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
@@ -2170,6 +2185,21 @@
       "chain_id": 4663,
       "address": "0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9",
       "role": "chainlinkEthUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "ETH / USD",
+        "quote_asset": "USD",
+        "value_kind": "asset_usd_reference_price",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "provenance": {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9 / name, decimals, docs.quoteAssetEntityId",
+          "observed_on": "2026-09-10",
+          "evidence_kind": "publisher_directory_metadata",
+          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
+        },
+        "consumer_policies": []
+      },
       "aliases": [],
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
@@ -2257,6 +2287,33 @@
       "chain_id": 4663,
       "address": "0xB265810950ba6c5C0Ff821c9963014a56fD8Bffb",
       "role": "chainlinkSpcxUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood SPCX / USD",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "provenance": {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xB265810950ba6c5C0Ff821c9963014a56fD8Bffb / name, decimals, docs.quoteAssetEntityId",
+          "observed_on": "2026-09-10",
+          "evidence_kind": "publisher_directory_metadata",
+          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
+        },
+        "consumer_policies": [
+          {
+            "product": "SPACEX INVADERS",
+            "scope": "direct USDG-to-equity entry conversion only",
+            "max_age_seconds": 14400,
+            "requires_open_equity_session": true,
+            "source_id": "netnet-docs-spacex-invaders",
+            "observed_on": "2026-09-10",
+            "evidence_kind": "publisher_documentation_not_deployed_enforcement_verification",
+            "relationship_basis": "Documented asset-specific product use plus locally recorded exact-token mark mapping; current adapter call path not verified."
+          }
+        ],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
       "aliases": [
         "SPCX/USD trusted product feed"
       ],
@@ -3027,6 +3084,22 @@
       "chain_id": 4663,
       "address": "0x379EC4f7C378F34a1B47E4F3cbeBCbAC3E8E9F15",
       "role": "chainlinkNvdaUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood NVDA / USD",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "provenance": {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x379EC4f7C378F34a1B47E4F3cbeBCbAC3E8E9F15 / name, decimals, docs.quoteAssetEntityId",
+          "observed_on": "2026-09-10",
+          "evidence_kind": "publisher_directory_metadata",
+          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
       "aliases": [
         "NVDA/USD trusted product feed"
       ],
@@ -3063,6 +3136,22 @@
       "chain_id": 4663,
       "address": "0x6B22A786bAa607d76728168703a39Ea9C99f2cD0",
       "role": "chainlinkAaplUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood AAPL / USD",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "provenance": {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x6B22A786bAa607d76728168703a39Ea9C99f2cD0 / name, decimals, docs.quoteAssetEntityId",
+          "observed_on": "2026-09-10",
+          "evidence_kind": "publisher_directory_metadata",
+          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
       "aliases": [
         "AAPL/USD trusted product feed"
       ],
@@ -3099,6 +3188,33 @@
       "chain_id": 4663,
       "address": "0x45C3C877C15E6BA2EBB19eA114Ea508d14C1Af2E",
       "role": "chainlinkMsftUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood MSFT / USD",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "provenance": {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x45C3C877C15E6BA2EBB19eA114Ea508d14C1Af2E / name, decimals, docs.quoteAssetEntityId",
+          "observed_on": "2026-09-10",
+          "evidence_kind": "publisher_directory_metadata",
+          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
+        },
+        "consumer_policies": [
+          {
+            "product": "MSFT FLIGHT SIMULATOR",
+            "scope": "direct USDG-to-equity entry conversion only",
+            "max_age_seconds": 14400,
+            "requires_open_equity_session": true,
+            "source_id": "netnet-docs-flight-simulator",
+            "observed_on": "2026-09-10",
+            "evidence_kind": "publisher_documentation_not_deployed_enforcement_verification",
+            "relationship_basis": "Documented asset-specific product use plus locally recorded exact-token mark mapping; current adapter call path not verified."
+          }
+        ],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
       "aliases": [
         "MSFT/USD trusted product feed"
       ],
@@ -3135,6 +3251,22 @@
       "chain_id": 4663,
       "address": "0xF6f373a037c30F0e5010d854385cA89185AE638b",
       "role": "chainlinkGooglUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood GOOGL / USD",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "provenance": {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xF6f373a037c30F0e5010d854385cA89185AE638b / name, decimals, docs.quoteAssetEntityId",
+          "observed_on": "2026-09-10",
+          "evidence_kind": "publisher_directory_metadata",
+          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
       "aliases": [
         "GOOGL/USD trusted product feed"
       ],
@@ -3207,6 +3339,33 @@
       "chain_id": 4663,
       "address": "0xA3a468A452940B7D6b69991207B508c609a98Ef2",
       "role": "chainlinkCoinUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood COIN / USD",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "provenance": {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xA3a468A452940B7D6b69991207B508c609a98Ef2 / name, decimals, docs.quoteAssetEntityId",
+          "observed_on": "2026-09-10",
+          "evidence_kind": "publisher_directory_metadata",
+          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
+        },
+        "consumer_policies": [
+          {
+            "product": "COINflip",
+            "scope": "direct USDG-to-equity entry conversion only",
+            "max_age_seconds": 14400,
+            "requires_open_equity_session": true,
+            "source_id": "netnet-docs-coinflip",
+            "observed_on": "2026-09-10",
+            "evidence_kind": "publisher_documentation_not_deployed_enforcement_verification",
+            "relationship_basis": "Documented asset-specific product use plus locally recorded exact-token mark mapping; current adapter call path not verified."
+          }
+        ],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
       "aliases": [
         "COIN/USD trusted product feed"
       ],

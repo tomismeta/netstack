@@ -21,7 +21,9 @@ Answers should identify their sources, dates, accounting boundaries and missing 
 
 ## Topic commands
 
-Use one skill with six plural topics:
+netstack is a **reference package, not executable software or a runtime SDK**. Topic requests are portable Markdown routing instructions for an agent, not seven separately installed slash commands.
+
+Use one skill with seven plural topics:
 
 | Request | Returns |
 |---|---|
@@ -31,10 +33,11 @@ Use one skill with six plural topics:
 | `Use netstack: documents` | Official documentation, grouped by topic |
 | `Use netstack: interviews` | Four interview sources and available publisher chapter notes |
 | `Use netstack: contracts` | Contract families; add a name for exact addresses and provenance |
+| `Use netstack: feeds` | Token/feed relationships, USD reference marks and freshness limits; start at [Price feeds and token relationships](references/addresses-and-roles.md#price-feeds-and-token-relationships) |
 
-Add a question to narrow the answer, for example `Use netstack: contracts NetNetGear` or `Use netstack: games how does WinNET fund its prizes?`. `Use netstack` or `netstack` alone shows the menu. Also accepted: `netstack <topic> [question]`.
+Add a question to narrow the answer, for example `Use netstack: contracts NetNetGear`, `Use netstack: feeds NVDA`, or `Use netstack: games how does WinNET fund its prizes?`. `Use netstack` or `netstack` alone shows the menu. Also accepted: `netstack <topic> [question]`.
 
-These are **portable Markdown routing instructions**, not six separately installed slash commands. Optional `/netstack <topic> [question]` works only when a host registers the installed skill command or forwards slash text to the model. Current [Hermes documentation](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills/) describes installed skills as `/skill-name` commands. Testing scope is summarized below. Bare `/dashboards` or `/nfts` commands are not registered by this repository.
+Optional `/netstack <topic> [question]` works only when a host registers the installed skill command or forwards slash text to the model. Current [Hermes documentation](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills/) describes installed skills as `/skill-name` commands. Testing scope is summarized below. Bare `/dashboards`, `/nfts` or `/feeds` commands are not registered by this repository.
 
 Directory requests use packaged links without fetching live data or loading every reference. All routes remain read-only.
 
@@ -69,13 +72,22 @@ The same knowledge and safety policy apply across hosts. Frontmatter uses the co
 | [OpenClaw](https://docs.openclaw.ai/tools/skills) | Complete folder under `<workspace>/skills/netstack/` or the configured state's skills directory, normally `~/.openclaw/skills/netstack/` |
 | Other agents and coding harnesses | Their Agent Skills importer, or explicit reading of SKILL.md and selected references |
 
-**Tested with OpenClaw and Hermes tooling for package compatibility and read-only inspection.** The OpenClaw skill-creator validator passed on the revised package. Hermes skill inspection, reference-bundle checks and a simulated security scan were reported by the user. These checks do not establish live host/tool enforcement or wallet isolation.
+**Historical compatibility checks included OpenClaw and Hermes tooling.** The OpenClaw skill-creator validator passed on an earlier revised package. Hermes skill inspection, reference-bundle checks and a simulated security scan were reported by the user without an exact input revision. These checks do not certify version 0.1.1 or establish live host/tool enforcement or wallet isolation.
 
 See [installation guidance](references/installation.md) for host-specific details, including optional Hermes commands. Testing covers the checks described above, not every host or configuration. Maintainer validation did not install or activate a local skill.
 
 An offline first trial is recommended, not a prerequisite to later live research. For that profile, omit wallet access, shell, privileged browsers, network tools, private context and external actions; restrict on-demand file reads to the package or attach the necessary references before disabling tools. Ordinary public read-only web, dashboard, explorer, API and bounded RPC research is also supported with existing host-permitted tools. No custom broker or per-source administrator setup is required. A host's skills toolset is not automatically read-only, and this repository does not configure host permissions.
 
 For reproducible use, pin a reviewed commit SHA rather than the moving `main` branch. Review changes before explicitly updating an installed copy.
+
+### Read-only builder quick start: display an NVDA USD reference price
+
+1. Read [Price feeds and token relationships](references/addresses-and-roles.md#price-feeds-and-token-relationships). In [addresses.json](assets/addresses.json), use `trusted_product_marks` to identify the exact NVDA token on chain `4663` and its mapped feed. A ticker alone is not identity; match the requested full token address. The packaged mapping has local-registry provenance, not independent live verification.
+2. With existing host-permitted public read-only tools, establish a recent canonical head observation on the correct chain, with block number/hash/time, retrieval time and an explicit acceptable observation-lag bound. Read that exact feed's `decimals()` and `latestRoundData()` at the same block. Do not assume token decimals are feed decimals, use packaged decimals as a live fallback, or treat an old block's then-fresh round as current. If access, recency or a scale discrepancy cannot be resolved, report that limit instead of displaying a current price.
+3. For a valid response, divide `answer` by `10 ** feed_decimals`, where `feed_decimals` is the same-block live result, using exact decimal arithmetic. Label it a **USD oracle reference mark**, with exact token/feed, block, retrieval time and returned `updatedAt`. Check observation lag and round age now as well as the consuming product's block-time policy and market calendar. Chainlink describes these equity marks as **tokenized total-return value**, including the corporate-action/dividend multiplier, not raw stock price; do not apply that multiplier again to the direct feed mark. Raw token balances and scaled display balances are distinct. Credit and Board Meeting prices require their own identified read interfaces and output units, not reconstruction from this feed formula. No universal freshness cutoff applies.
+4. Keep the display separate from an executable token quote and from evidence of token backing, redemption rights or issuer solvency. [Integrations](references/integrations.md) and [Games](references/games.md) explain Rialto execution context and product-specific marks; a feed value does not establish an available execution price, liquidity or proceeds after fees.
+
+This is a read-only research path using the host's existing tools, not an SDK setup or transaction walkthrough. It requires no wallet connection, transaction preparation, signing or broadcasting.
 
 ## How it stays lightweight
 
@@ -88,10 +100,10 @@ No full documentation mirror, copied article archive, full interview transcripts
 
 ## What's covered
 
-The knowledge snapshot was reviewed on **2026-09-10**:
+The packaged research snapshot records review on **2026-09-10**; these inventory totals are not a security audit or live-chain verification:
 
 - **24 indexed official documentation pages** represented through original summaries and source references.
-- **88 source records**, including official applications, NFT collections, integrations, articles, interviews and dashboards.
+- **92 source records**, including official applications, NFT collections, integrations, articles, interviews, dashboards, Chainlink feed metadata and scoped explorer evidence.
 - **145 distinct contract-address records**, plus separately identified public roles, product marks and Morpho market IDs.
 - Both strategy articles and all four interview source posts. Interview descriptions and available chapter notes were reviewed; full recordings/transcripts were not.
 
@@ -104,7 +116,7 @@ The knowledge snapshot was reviewed on **2026-09-10**:
 | [Integrations](references/integrations.md) | Morpho, Pendle and public/paid/archive RPC access |
 | [RWA strategy](references/rwa-strategy.md) | Sleeve ownership, capital flows, debt and strategy scenarios |
 | [Announcements and interviews](references/announcements-and-history.md) | Dated claims, links and review-depth boundaries |
-| [Addresses and roles](references/addresses-and-roles.md) | Identity, provenance and historical/current deployment distinctions |
+| [Addresses and roles](references/addresses-and-roles.md) | Identity, provenance, deployment distinctions and canonical token/feed relationships |
 | [Direct links](references/links.md) | Applications, price charts, official reports and dashboards |
 | [Docs and sources](references/docs-and-sources.md) | Complete indexed-docs coverage and claim-specific evidence selection |
 | [Glossary and FAQ](references/glossary-and-faq.md) | Definitions and common interpretation traps |
@@ -127,7 +139,9 @@ Use an ordinary unauthenticated reader/browser context without wallet extensions
 
 ## Review status and limits
 
-**Audit conclusion: no confirmed actionable package vulnerability or credential leak was identified within the tested scope.** This is not a claim of zero scanner findings, an independent human audit or runtime certification.
+**Version 0.1.1: feed discovery and safer pricing guidance.** Final scanner reports are supplied separately with the [v0.1.1 release evidence](https://github.com/tomismeta/netstack/releases/tag/v0.1.1) and apply only to the exact file hashes they identify. Historical audits below retain their original scopes; neither a version number nor a content hash alone establishes a scanner pass.
+
+**Historical audit conclusion: no confirmed actionable package vulnerability or credential leak was identified within the tested scope.** This is not a claim of zero scanner findings, an independent human audit or runtime certification.
 
 The 2026-09-10 audit of [revision `0842bd0`](https://github.com/tomismeta/netstack/commit/0842bd090956671a6954811654aa646c230e3bc8) covered the complete package, the reconstructed Hermes URL bundle and reachable public Git history:
 
@@ -158,7 +172,7 @@ When reporting results, include the agent/harness version, model, package commit
 
 ## Maintaining the knowledge
 
-**Version: 0.1.0.** Keep this version unchanged unless the maintainer explicitly requests a version change. Use Git commit SHAs to identify revisions.
+**Version: 0.1.1.** Keep this version unchanged unless the maintainer explicitly requests a version change. Use Git commit SHAs to identify revisions. The published v0.1.0 release and its evidence remain unchanged.
 
 Keep summaries and original links together. Date mutable claims, distinguish publisher assertions from direct observations, and preserve unresolved conflicts. Source inventory/review status belongs in [sources.json](assets/sources.json); exact address records belong in [addresses.json](assets/addresses.json). Do not duplicate release-wide coverage into both files.
 
