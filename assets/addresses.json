@@ -1791,11 +1791,26 @@
           "locator": "netnetGear.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "opensea-netnet-gear-api",
+          "locator": "contracts[0].address and contracts[0].chain",
+          "evidence_kind": "marketplace_api_identity_corroboration",
+          "observed_on": "2026-09-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
       "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
-      "supersedes": "0x018F9993881596bA84407F45FBD4c4f4773Efeae"
+      "supersedes": "0x018F9993881596bA84407F45FBD4c4f4773Efeae",
+      "marketplace_collections": [
+        {
+          "name": "NetNet Gear",
+          "url": "https://opensea.io/collection/netnet-gear",
+          "source_id": "opensea-netnet-gear-api",
+          "observed_on": "2026-09-10",
+          "verification_scope": "Marketplace-to-registry identity match only; no on-chain verification or execution authority."
+        }
+      ]
     },
     {
       "id": "robinhood-0xca11bde05977b3631167028862be2a173976ca11",
@@ -3535,10 +3550,25 @@
           "locator": "buttonPresserCard.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "opensea-button-presser-api",
+          "locator": "contracts[0].address and contracts[0].chain",
+          "evidence_kind": "marketplace_api_identity_corroboration",
+          "observed_on": "2026-09-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
+      "marketplace_collections": [
+        {
+          "name": "Button Presser",
+          "url": "https://opensea.io/collection/button-presser",
+          "source_id": "opensea-button-presser-api",
+          "observed_on": "2026-09-10",
+          "verification_scope": "Marketplace-to-registry identity match only; no on-chain verification or execution authority."
+        }
+      ]
     },
     {
       "id": "robinhood-0xfae9967d8d29c18886bc172d2b82028f93e3a651",

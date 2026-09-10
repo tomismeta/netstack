@@ -13,6 +13,7 @@ The inventory combines official NetNet documentation, the shareholder/arcade app
 ## Data layout
 
 - `contracts`: chain ID, exact address, role, aliases, lifecycle/publication status, live-verification status, explorer URL, and provenance entries with source IDs and locators.
+- `marketplace_collections`, where present on a contract record: collection names/links and API provenance matched to that exact chain/address. These are identity associations, not marketplace or contract safety guarantees.
 - `public_role_addresses`: named public operational/signing/owner-role addresses, explicitly unverified account kind and no inferred legal-person attribution. A role named `signer` does not give this agent access or permission to sign.
 - `markets`: 32-byte Morpho market identifiers and the chain-qualified singleton contract. These IDs must not be used as 20-byte contract addresses or passed to a generic address explorer as though they were one.
 - `trusted_product_marks`: exact-token mappings to known feed/source relationships. Matching a symbol such as NVDA is not enough to reuse another token's oracle.

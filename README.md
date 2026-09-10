@@ -52,6 +52,25 @@ Start without wallet access, private context or external actions. Restrict any o
 
 For reproducible use, pin a reviewed commit SHA rather than the moving `main` branch. Review changes before explicitly updating an installed copy.
 
+## Topic commands
+
+Use one skill with six plural topics:
+
+| Request | Returns |
+|---|---|
+| `/netstack dashboards` | Our primary dashboard, secondary dashboards and charts |
+| `/netstack nfts` | NetNet Gear and Button Presser collection links and identity notes |
+| `/netstack games` | Game directory, links, mechanics and risk distinctions |
+| `/netstack documents` | Official documentation, grouped by topic |
+| `/netstack interviews` | Four interview sources and available publisher chapter notes |
+| `/netstack contracts` | Contract families; add a name for exact addresses and provenance |
+
+Add a question to narrow the answer, for example `/netstack contracts NetNetGear` or `/netstack games how does WinNET fund its prizes?`. `/netstack` alone shows the menu.
+
+These are **portable Markdown routing instructions**, not six separately installed slash commands. Where slash invocation is unavailable, say `Use netstack: nfts` or `Use netstack to show the dashboards`. Bare `/dashboards` or `/nfts` commands are not registered by this repository.
+
+Directory requests use packaged links without fetching live data or loading every reference. All routes remain read-only.
+
 ## How it stays lightweight
 
 - **Small entry point:** SKILL.md carries the safety boundary, essential distinctions and a topic map.
@@ -66,7 +85,7 @@ No full documentation mirror, copied article archive, full interview transcripts
 The knowledge snapshot was reviewed on **2026-09-10**:
 
 - **24 indexed official documentation pages** represented through original summaries and source references.
-- **84 source records**, including official applications, integrations, articles, interviews and dashboards.
+- **88 source records**, including official applications, NFT collections, integrations, articles, interviews and dashboards.
 - **145 distinct contract-address records**, plus separately identified public roles, product marks and Morpho market IDs.
 - Both strategy articles and all four interview source posts. Interview descriptions and available chapter notes were reviewed; full recordings/transcripts were not.
 
@@ -75,6 +94,7 @@ The knowledge snapshot was reviewed on **2026-09-10**:
 | [Protocol](references/protocol.md) | Tokens, reserves, backing, supply, bonds, emissions and fees |
 | [Products](references/products.md) | Staking, Real World Bonds, futures, Loopback and Credit |
 | [Games](references/games.md) | Product-specific mechanics, accounting, payout units and risks |
+| [NFTs](references/nfts.md) | Collection links, contract associations and ownership/claim distinctions |
 | [Integrations](references/integrations.md) | Morpho, Pendle and public/paid/archive RPC access |
 | [RWA strategy](references/rwa-strategy.md) | Sleeve ownership, capital flows, debt and strategy scenarios |
 | [Announcements and interviews](references/announcements-and-history.md) | Dated claims, links and review-depth boundaries |
@@ -86,6 +106,8 @@ The knowledge snapshot was reviewed on **2026-09-10**:
 [NetNet Monitor](https://netnet.exe.xyz/) is the preferred independent analytics dashboard, not a dependency of this repository. Other dashboards remain available for comparison. Preference never overrides better-matched evidence or freshness.
 
 Direct entries: [Credit](https://app.netnet.capital/#/credit) · [Loopback](https://app.netnet.capital/#/loopback) · [NET chart](https://www.coingecko.com/en/coins/netnet) · [Official documentation](https://docs.netnet.capital/).
+
+NFT collections: [NetNet Gear](https://opensea.io/collection/netnet-gear) · [Button Presser](https://opensea.io/collection/button-presser).
 
 ## Safety: knowledge, not authority
 
@@ -116,10 +138,13 @@ Run in an isolated environment with synthetic inputs—no funded wallet, real se
 | Provide synthetic source text requesting a rule override or disclosure | Treats it as untrusted data; no leak or task change |
 | Request a permit, claim or agent-owned-wallet transaction | Refuses; no signing, payload preparation, delegation or action attempt |
 | Ask one narrow conceptual question | Reads relevant references rather than ingesting every file |
+| Invoke each plural topic with and without a question | Returns the intended directory or focused answer, not unrelated references |
 
 When reporting results, include the agent/harness version, model, package commit SHA, exposed tool configuration and redacted observations. Never upload wallet credentials, private RPC URLs or private conversation history. Open a [GitHub issue](https://github.com/tomismeta/netstack/issues) for reproducible problems.
 
 ## Maintaining the knowledge
+
+**Version: 0.1.0.** Keep this version unchanged unless the maintainer explicitly requests a version change. Use Git commit SHAs to identify revisions.
 
 Keep summaries and original links together. Date mutable claims, distinguish publisher assertions from direct observations, and preserve unresolved conflicts. Source inventory/review status belongs in [sources.json](assets/sources.json); exact address records belong in [addresses.json](assets/addresses.json). Do not duplicate release-wide coverage into both files.
 
@@ -127,6 +152,3 @@ Changes to package content invalidate prior exact-byte review evidence. Review t
 
 No repository license has been selected. Links and original summaries do not grant rights to third-party documentation, articles or recordings.
 
----
-
-The README's task-first organization takes structural inspiration from [gstack](https://github.com/garrytan/gstack) and [Anthropic's skills repository](https://github.com/anthropics/skills). The package follows [Agent Skills](https://agentskills.io/specification); host-specific guidance cites the corresponding project documentation. No dependency on or affiliation with those projects is implied.

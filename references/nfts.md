@@ -1,0 +1,31 @@
+# NFTs: collections, links and identity
+
+Use this reference for `nfts`. With no further question, return the two collection links below, identify Robinhood Chain, and keep the verification caveat short. Do not retrieve prices or load the complete address inventory merely to provide these links.
+
+## Collections
+
+| Collection | Marketplace | Published contract role | Identity evidence |
+|---|---|---|---|
+| NetNet Gear | [OpenSea: NetNet Gear](https://opensea.io/collection/netnet-gear) | Current NetNetGear shared loot collection | [OpenSea collection API](https://api.opensea.io/api/v2/collections/netnet-gear) |
+| Button Presser | [OpenSea: Button Presser](https://opensea.io/collection/button-presser) | buttonPresserCard | [OpenSea collection API](https://api.opensea.io/api/v2/collections/button-presser) |
+
+Both collection URLs were supplied by the user. On **2026-09-10**, each OpenSea API response reported the corresponding collection slug/name, `NetNetCap` social account, and a `contracts` entry on `robinhood`. Those full addresses matched the existing records in [addresses.json](../assets/addresses.json) for **Robinhood Chain, chain ID 4663**. The address book retains the exact values, API provenance and collection associations; [sources.json](../assets/sources.json) retains the source/review records.
+
+This is **marketplace-to-registry identity corroboration**, not a new live-chain verification, proof of contract safety, or independent validation of OpenSea's badge. Current prices, supply, owners, royalties, listings and transfer conditions are mutable and are not frozen into this reference.
+
+## Keep the identities separate
+
+- **NetNetGear** is the published shared loot collection. Its retired original deployment is a separate address, and **BoardroomLoot** is a separate library—not another name for the current collection.
+- **Button Presser** maps to `buttonPresserCard`, not automatically to `presserCharacter` or `presserFaction`. Do not attach this marketplace link to every related contract.
+- **ShareCertificate** is the separately documented nontransferable founding-cohort certificate. It is not either OpenSea collection. No marketplace link or future reward right is inferred for it.
+- A collection page being available does not establish that a related game is accepting entries. THE BUTTON's indexed nondeployment wording and later application/collection evidence remain distinct observations.
+
+## Mechanics and ownership claims
+
+For how shared loot is earned and how Button/card eligibility differs, consult the relevant sections of [Games](games.md). For the founding certificate, use [Products](products.md) and [Glossary and FAQ](glossary-and-faq.md). Use [Addresses and roles](addresses-and-roles.md) when an exact contract or historical generation is requested.
+
+An NFT's artwork, name, trait, collection badge or marketplace listing does not by itself establish a claim on Treasury reserves, RWA assets, staking distributions, game prizes, redemption proceeds, intellectual-property rights or future rewards. Tie each claim to the particular documented product and token; state missing evidence rather than generalizing across collections.
+
+## Read-only boundary
+
+Collection links are for reference. Never connect a wallet, mint, buy, sell, list, bid, accept an offer, approve a marketplace, sign a listing/permit, or submit a transaction—including through an agent-owned wallet or delegated service. A request for a floor price is an evidence question, not permission to trade. Apply [Safety](safety.md) before any permitted fresh retrieval.

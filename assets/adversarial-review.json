@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "skill": "netstack",
-  "published_package_version": "1.0.1",
+  "reviewed_publication_version": "1.0.1",
   "reviewed_on": "2026-09-10",
   "method": "Two independent read-only language-model reviews of the 1.0.0 package, followed by maintainer remediation and package validation. Not a human audit or dynamic host/model test.",
   "reviewed_input": {

@@ -45,6 +45,13 @@ The following exact destinations were published by the shareholder app or offici
 
 For rules, expected-value denominators, collateral and payout units, use [Games](games.md). The shareholder app's Dial-Up tile says wsNET while the inspected arcade rules describe sNET; verify the actual current contract/display conversion rather than resolving that difference from a label.
 
+## NFT collections
+
+- [NetNet Gear on OpenSea](https://opensea.io/collection/netnet-gear)
+- [Button Presser on OpenSea](https://opensea.io/collection/button-presser)
+
+Both links were supplied by the user. On 2026-09-10, OpenSea's collection API associated them with the matching recorded Robinhood Chain contracts. This corroborates marketplace identity, not contract safety, current floor prices or holder rights. [NFTs](nfts.md) records the distinction and links the evidence.
+
 ## Documentation and secondary dashboards
 
 [Documentation and sources](docs-and-sources.md) includes all 24 indexed documentation pages and the five original secondary dashboards. [Announcements and history](announcements-and-history.md) retains all four interviews and both substantive strategy articles. [sources.json](../assets/sources.json) records the links and evidence/status distinctions.

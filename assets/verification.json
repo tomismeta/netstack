@@ -1,7 +1,8 @@
 {
   "schema_version": 1,
   "skill": "netstack",
-  "version": "1.0.1",
+  "version": "0.1.0",
+  "version_policy": "Keep 0.1.0 until the maintainer explicitly requests a version change; identify revisions by Git commit.",
   "reviewed_on": "2026-09-10",
   "delivery": {
     "mode": "independent_github_repository_and_portable_package",
@@ -12,7 +13,7 @@
   },
   "source_evidence": {
     "official_llms_index_pages_retrieved_and_used": 24,
-    "source_records": 84,
+    "source_records": 88,
     "unique_chain_qualified_contract_records": 145,
     "public_role_address_records": 10,
     "morpho_bytes32_market_ids": 6,
@@ -22,7 +23,9 @@
     "credit_direct_route": "Public Supply/Borrow view opened without connecting an account.",
     "loopback_direct_route": "Exact link observed in the official shareholder app product menu.",
     "price_chart_identity": "CoinGecko and CoinMarketCap listing website/explorer links match the published NET address on Robinhood Chain.",
-    "live_chain_verification_performed": false
+    "live_chain_verification_performed": false,
+    "nft_collection_identity_matches": 2,
+    "nft_collection_identity_scope": "OpenSea collection APIs matched the published current NetNetGear and buttonPresserCard records on Robinhood Chain; not an independent on-chain verification."
   },
   "independent_policy_review": {
     "type": "read_only_language_model_security_review_not_human_audit",
@@ -39,7 +42,7 @@
     "configuration": "strict policy; static, bytecode, pipeline, correlation and behavioral dataflow analyzers; no LLM/cloud/VirusTotal/OSV analyzers",
     "isolation": "Temporary virtual environment; cleared process environment; OS-denied network access and home-directory writes; home-directory file contents restricted to this public package.",
     "scan_timestamp": "2026-09-10T12:50:53.767627+00:00",
-    "scope": "Historical 1.0.0 package scan before addition of its verification record. Not a scan result for the publication edits in 1.0.1; no fresh scanner run is claimed.",
+    "scope": "Historical 1.0.0 package scan before addition of its verification record. Not a scan result for later publication or topic-routing edits; no fresh scanner run is claimed.",
     "critical": 0,
     "high": 0,
     "medium": 1,
@@ -60,16 +63,38 @@
   },
   "publication_adversarial_review": "adversarial-review.json",
   "publication_validation": {
-    "scope": "Package-only integrity and corrected source-coverage behavior; no host installation or activation.",
+    "scope": "Package-only integrity, plural topic instructions, collection identity provenance and canonical source coverage; no host installation or activation.",
     "exact_tree_evidence": "The repository commit identifies the published bytes. A separate release manifest records the package hashes."
   },
   "not_performed": [
     "Agent host installation, registration, activation or runtime smoke invocation, per the create-only instruction.",
-    "Live broker permission-denial tests or dynamic adversarial model/tool scenarios.",
+    "Live broker permission-denial tests or dynamic agent-host/tool scenarios. Isolated text-only topic probes, if recorded below, are not those tests.",
     "Wallet access, connection, message or transaction signing, transaction preparation or broadcast.",
     "Snyk service, Promptfoo red-team execution, Microsoft Prompt Shields or other paid/cloud security service uploads.",
     "Independent live deployment, contract bytecode, audit-badge, custody or proxy verification.",
     "Full interview playback/transcription, hydrated dashboard data audit, or every external destination's functional test."
   ],
-  "security_boundary": "The package supplies instructions and host-control requirements, not an enforced sandbox. A host with unrestricted wallet or network tools remains unsafe merely by loading it. Use offline knowledge when adequate isolation is unavailable."
+  "security_boundary": "The package supplies instructions and host-control requirements, not an enforced sandbox. A host with unrestricted wallet or network tools remains unsafe merely by loading it. Use offline knowledge when adequate isolation is unavailable.",
+  "topic_prompt_probes": {
+    "observed_on": "2026-09-10",
+    "result": "passed",
+    "cases": 11,
+    "model_profile": "configured smol completion profile",
+    "method": "Isolated stateless completions given SKILL.md and scoped reference text; returned selected topic, requested reference paths and user-facing answers. No tools were available.",
+    "coverage": [
+      "dashboards",
+      "nfts",
+      "games",
+      "documents",
+      "interviews",
+      "contracts",
+      "focused_nfts",
+      "menu",
+      "unknown",
+      "wallet_refusal",
+      "source_injection"
+    ],
+    "observed": "All six topics selected expected reference sets; directories retained all 24 documentation links, four interview posts, six dashboard links and both NFT collection links. Menu/unknown-topic handling, a focused NFT question, transaction/payload refusal and a retrieved-source route/signing override behaved as instructed.",
+    "limits": "Preloaded reference text and reported reference paths do not prove real host lazy loading or tool enforcement. No installed skill host or dynamic broker was exercised; finite model probes do not guarantee future behavior."
+  }
 }
