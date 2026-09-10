@@ -7,13 +7,15 @@ Reviewed 2026-09-10. These are knowledge and data-source integrations, not insta
 | Question | Minimum useful access | Limits to disclose |
 |---|---|---|
 | Explain mechanics or a historical source | Packaged references | No claim of live data |
-| Verify current documentation or public announcement | Restricted public HTTPS reader | Publication date, edits, inaccessible media, untrusted text |
-| Current block, bytecode, balances, bounded contract reads | Restricted EVM read tool | Rate limits, confirmation level, matching block/chain |
+| Verify current documentation, dashboard, collection data, price or public announcement | Ordinary unauthenticated public reader/browser/API tool | Publication/retrieval date, edits, inaccessible media, untrusted text |
+| Current block, bytecode, balances, bounded contract reads | Public RPC access through a host-permitted read tool | Rate limits, confirmation level, matching block/chain |
 | Larger log searches or sustained indexing | Provider with adequate log coverage and throughput | Log-range/result caps, pruning, cost and completeness |
 | Historical contract state at a specific old block | Endpoint retaining the required historical state | Archive availability, method support and chain/block coverage |
 | Discover labeled addresses or verified source | Block explorer/official address registry | A label is not proof of identity; source verification is not an audit |
 
 A paid endpoint does not automatically retain historical state, and a free plan is not necessarily incapable of it. Historical logs and historical `eth_call` state are different capabilities. Establish the required block/range and methods before selecting a provider. Never silently fall through to a paid archive endpoint, start a backfill, or make unbounded/retrying requests.
+
+Ordinary public retrieval and following relevant public source links need no custom broker, purpose-built reader or prior per-destination administrator setup. Prefer public endpoints. Existing host restrictions and [Safety](safety.md) still apply: minimum public inputs, no private/local/metadata destinations, and an unauthenticated browser without wallets/providers, WalletConnect, authenticated sessions or signing/broadcast paths. Navigation and read-only clicks are allowed; wallet prompts and actions are not.
 
 ## Robinhood Chain and provider options
 
@@ -26,18 +28,18 @@ The [official network documentation](https://docs.robinhood.com/chain/connecting
 - Alchemy: recommended provider, with free-account signup and provider-managed plans. The documented mainnet URL has the form `https://robinhood-mainnet.g.alchemy.com/v2/{API_KEY}`. The braces are documentation, not a credential to request from the user or expose to the model.
 - QuickNode, Blockdaemon, dRPC, and Validation Cloud are also listed providers. Obtain service capabilities, availability, limits, retention, and current pricing from the selected provider; do not assume parity.
 
-The same network page advertises wallet, gas-sponsorship, sequencer and write APIs. **Those are excluded from this skill.** Provider support does not grant permission to use them. Keys belong in a host-controlled broker, never in the package, source catalog, prompt, or logs. No account creation or billing activation happens automatically.
+The same network page advertises wallet, gas-sponsorship, sequencer and write APIs. **Those are excluded from this skill.** Provider support does not grant permission to use them. Do not access credentials, create an account or activate billing for research. Provider plans are background information, not setup instructions. If an independently managed host service uses credentials, they must remain outside the model, package, source catalog and logs, scoped to the exact service origin/path and never forwarded across origins.
 
 ## Read-only verification workflow
 
 1. Determine whether a packaged dated answer suffices. For mutable data, name the fields and date/block needed.
-2. Use an already-configured restricted tool; confirm `eth_chainId` before interpreting chain-specific records.
+2. Use existing host-permitted access to a suitable public endpoint; no provider installation or custom broker is needed. Confirm `eth_chainId` before interpreting chain-specific records.
 3. For related balances, supply, prices, collateral, or claims, use one block/hash where supported. Record block number, hash, timestamp and coverage separately from source publication time.
-4. Use only bounded reads. `eth_call` simulates a call without broadcasting, but it still has resource and confidentiality risks. The host must validate targets, permitted operations, arguments and limits; arbitrary calldata is not a safe data-egress policy.
+4. Use only bounded reads with public inputs. ABI-encoding a read method such as a balance query for `eth_call` is allowed. A non-broadcasting call is not automatically read-only research: do not simulate state-changing methods, impersonate accounts, use state overrides or construct ready-to-sign/submit transaction artifacts. Check the target, operation, arguments and limits, including every batch member; arbitrary calldata is not a confidentiality safeguard.
 5. Do not report a partial or failed log range as complete. Do not turn missing data into zero or treat explorer labels as runtime verification.
-6. If the required endpoint is unavailable, state exactly which claim remains unverified. Do not install providers, read local credentials, attach to a wallet browser, or use a transaction as a probe.
+6. If the required endpoint is unavailable, state exactly which claim remains unverified and use available public evidence or the dated package. Do not install shell/provider tools, read credentials, create accounts, activate billing, change host permissions, attach to a privileged/wallet browser or use a transaction as a probe.
 
-The complete proposed method allowlist and enforcement requirements are in [the safety policy](../assets/safety-policy.json). That JSON is documentation, not an active firewall.
+The permitted method boundaries and optional higher-assurance controls are in [the safety policy](../assets/safety-policy.json). That JSON is documentation, not an active firewall. A broker and denial tests are needed only for corresponding enforced-safety claims, not ordinary public reads; current runtime enforcement is unproven.
 
 ## Morpho: three distinct relationships
 

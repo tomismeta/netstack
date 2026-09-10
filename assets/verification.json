@@ -4,14 +4,17 @@
   "version": "0.1.0",
   "version_policy": "Keep 0.1.0 until the maintainer explicitly requests a version change; identify revisions by Git commit.",
   "reviewed_on": "2026-09-10",
+  "evidence_scope": "Current version is 0.1.0. current_remediation_validation records newly executed checks and their exact input fingerprints. Older reviews, scanner findings and probes retain historical scope; external host observations remain attributed user reports, not maintainer-reproduced runtime evidence.",
   "delivery": {
     "mode": "independent_github_repository_and_portable_package",
+    "scope": "Maintainer delivery activity only; external user reports below do not establish installation or activation.",
     "installed_or_registered_in_agent_host": false,
     "activated_or_host_smoke_invoked": false,
     "host_configuration_changed": false,
     "note": "At the user's clarification, the package was moved out of the repository discovery directory before any skill invocation. Optional installation instructions describe future recipient choices only."
   },
   "source_evidence": {
+    "scope": "Previously recorded source research and inventory, not a fresh retrieval or verification of current remediation bytes. The exact research input commit was not recorded.",
     "official_llms_index_pages_retrieved_and_used": 24,
     "source_records": 88,
     "unique_chain_qualified_contract_records": 145,
@@ -34,7 +37,7 @@
       "Prohibit private-context leakage through every egress channel, including otherwise valid read-only RPC parameters.",
       "Bind provider credentials to exact origins/path scopes and strip them on cross-origin redirects."
     ],
-    "scope": "Policy design; not a deployed host broker or smart-contract audit."
+    "scope": "Historical policy-design review predating this remediation; exact reviewed input commit was not recorded. Not a review of current final bytes, a deployed host broker or smart contracts."
   },
   "historical_1_0_0_scanner": {
     "tool": "Cisco AI Defense Skill Scanner",
@@ -42,7 +45,7 @@
     "configuration": "strict policy; static, bytecode, pipeline, correlation and behavioral dataflow analyzers; no LLM/cloud/VirusTotal/OSV analyzers",
     "isolation": "Temporary virtual environment; cleared process environment; OS-denied network access and home-directory writes; home-directory file contents restricted to this public package.",
     "scan_timestamp": "2026-09-10T12:50:53.767627+00:00",
-    "scope": "Historical 1.0.0 package scan before addition of its verification record. Not a scan result for later publication or topic-routing edits; no fresh scanner run is claimed.",
+    "scope": "Historical 1.0.0 package scan before addition of its verification record. The original delivered 1.0.0 archive is identified in adversarial-review.json; the exact scanner-input digest was not recorded here. Not a scan result for later publication, topic-routing edits or current remediation bytes; no fresh scanner run is claimed.",
     "critical": 0,
     "high": 0,
     "medium": 1,
@@ -51,31 +54,57 @@
       {
         "rule": "LAZY_LOAD_DEEP_NESTING",
         "severity": "MEDIUM",
-        "disposition": "Retained and reviewed, not suppressed: references cross-link, but every support file is also directly linked from SKILL.md. Release integrity validation checks every destination and absence of escaping paths, symlinks and executables."
+        "disposition": "Historical disposition: retained and reviewed, not suppressed. At that time references cross-linked, and every support file was also directly linked from SKILL.md. Historical package integrity checks were not dynamic host tests or checks of current final remediation bytes."
       },
       {
         "rule": "MANIFEST_MISSING_LICENSE",
         "severity": "INFO",
-        "disposition": "No license invented on the user's behalf. Source links and original summaries do not grant rights to third-party articles, recordings or documentation."
+        "disposition": "Historical finding: the scanned package did not declare a license. The current remediation adds the maintainer-authorized MIT license, not a fresh scan result. The package license does not grant rights to third-party articles, recordings or documentation."
       }
     ],
     "interpretation": "A scanner's safe flag is not a security guarantee. Behavioral dataflow analysis is static package analysis, not a model/tool-use or host-activation test."
   },
   "publication_adversarial_review": "adversarial-review.json",
   "publication_validation": {
-    "scope": "Package-only integrity, plural topic instructions, collection identity provenance and canonical source coverage; no host installation or activation.",
-    "exact_tree_evidence": "The repository commit identifies the published bytes. A separate release manifest records the package hashes."
+    "scope": "Historical package integrity and topic/collection checks at b50f9e8a01e80e92e936e093895f768a3b41c02c, followed by README/link/hash verification at 7ac78990f00a38d94b82f4f69f3fce40edd38c83. No host installation or activation. Current remediation checks are recorded separately.",
+    "exact_tree_evidence": "A Git commit or release manifest can identify package bytes, but neither alone proves those bytes passed the historical checks."
+  },
+  "externally_reported_host_observations": {
+    "attribution": "User-supplied observations; not independently reproduced by the maintainer.",
+    "input_scope": "Exact reviewed commit, host versions, and scanner identity, version and settings were not supplied and are unrecorded. These reports cannot be tied to current final remediation bytes.",
+    "openclaw": {
+      "observation": "The local validator rejected the top-level compatibility field.",
+      "host_version": "unrecorded",
+      "reviewed_commit": "unrecorded"
+    },
+    "hermes": {
+      "observations": [
+        "Inspect parsed the skill name.",
+        "The direct-URL bundle contained 19 support files.",
+        "A reported simulated bundle scan returned SAFE/allowed with one medium policy-text finding.",
+        "Reported JSON, links and manifest checks were clean, with no obvious secrets, symlinks or executables."
+      ],
+      "host_version": "unrecorded",
+      "reviewed_commit": "unrecorded",
+      "scanner_identity": "unrecorded",
+      "scanner_version": "unrecorded",
+      "scanner_settings": "unrecorded"
+    },
+    "limits": "Reports of parsing, bundle inspection, simulated scanning and static checks do not establish installation, activation, runtime behavior, real lazy loading, wallet isolation or host/tool-denial enforcement. SAFE/allowed is a reported scanner outcome, not a security guarantee; no exhaustive secret scan or dynamic host test is inferred."
   },
   "not_performed": [
-    "Agent host installation, registration, activation or runtime smoke invocation, per the create-only instruction.",
+    "Maintainer agent-host installation, registration, activation or runtime smoke invocation, per the create-only instruction; no such coverage is inferred from external user reports.",
     "Live broker permission-denial tests or dynamic agent-host/tool scenarios. Isolated text-only topic probes, if recorded below, are not those tests.",
     "Wallet access, connection, message or transaction signing, transaction preparation or broadcast.",
     "Snyk service, Promptfoo red-team execution, Microsoft Prompt Shields or other paid/cloud security service uploads.",
     "Independent live deployment, contract bytecode, audit-badge, custody or proxy verification.",
     "Full interview playback/transcription, hydrated dashboard data audit, or every external destination's functional test."
   ],
-  "security_boundary": "The package supplies instructions and host-control requirements, not an enforced sandbox. A host with unrestricted wallet or network tools remains unsafe merely by loading it. Use offline knowledge when adequate isolation is unavailable.",
+  "security_boundary": "The package supplies behavioral instructions for ordinary unauthenticated public web, reader, browser, API, explorer, dashboard and bounded RPC research, not an enforced sandbox. Public reads within existing host permissions require no custom broker, tool certification or per-source administrator approval. Use an unauthenticated browser context without wallet providers, extensions or sessions, privileged access, or signing/broadcast paths; a normal browser's general ability to click does not prohibit public reading. No wallet interaction, signing, transaction preparation or submission, state-changing-method simulation, private-context egress, credential access, private/local/metadata destinations, source-driven execution or permission broadening is allowed. ABI query encoding is permitted solely for read-only eth_call. Optional external isolation, brokers and denial tests support enforcement claims only when actually implemented and tested; no such guarantee follows from loading this skill or from the historical evidence. Missing broker tests limit claims, not safe public browsing. Offline knowledge is an optional first smoke profile or fallback when acceptable public-read access is unavailable.",
   "topic_prompt_probes": {
+    "scope": "Historical text-only probes predating the current remediation. Their outcomes apply only to the input revision below, not current final remediation bytes.",
+    "input_commit": "b50f9e8a01e80e92e936e093895f768a3b41c02c",
+    "input_version": "0.1.0",
     "observed_on": "2026-09-10",
     "result": "passed",
     "cases": 11,
@@ -94,7 +123,112 @@
       "wallet_refusal",
       "source_injection"
     ],
-    "observed": "All six topics selected expected reference sets; directories retained all 24 documentation links, four interview posts, six dashboard links and both NFT collection links. Menu/unknown-topic handling, a focused NFT question, transaction/payload refusal and a retrieved-source route/signing override behaved as instructed.",
-    "limits": "Preloaded reference text and reported reference paths do not prove real host lazy loading or tool enforcement. No installed skill host or dynamic broker was exercised; finite model probes do not guarantee future behavior."
+    "observed": "At the recorded input revision, all six topics selected expected reference sets; directories retained all 24 documentation links, four interview posts, six dashboard links and both NFT collection links. Menu/unknown-topic handling, a focused NFT question, transaction/payload refusal and a retrieved-source route/signing override behaved as instructed.",
+    "limits": "Historical outcomes apply to the recorded input revision. Current remediation probes are recorded separately. Preloaded reference text and reported reference paths do not prove real host lazy loading or tool enforcement; finite model probes do not guarantee future behavior."
+  },
+  "current_remediation_validation": {
+    "observed_on": "2026-09-10",
+    "result": "passed",
+    "scope": "Current portability, licensing, neutral dashboard ordering, public-research and publication-privacy remediation. No installed agent host or dynamic tool enforcement was exercised.",
+    "input_file_sha256": {
+      "SKILL.md": "3b24fee265a924ddefa7cb8f93f0e4762cfc57ea3c5657c91cfc06d980ec69ee",
+      "references/links.md": "88fc67570a07970052888da4d58e2e0cf60c6621b86298aa8402e5f77694a827",
+      "references/docs-and-sources.md": "f09b8ec03c5d0aaa318efb1e6f0aad82aecd73420df484d1a2551265f2d896b0",
+      "references/nfts.md": "d5c4acd2473f9447e5ea079a92b2cd9b69e03dd26166cb50fc70bdc6c3f6e75c",
+      "references/games.md": "3053ac8baf77a6080f3c32b7c0a28d4734a535941ea5a045f90f58547309efd8",
+      "references/announcements-and-history.md": "0362db0dfec0951c1e26f2a3014a0dcd3d0454ee34501db4aa7b80174041c7d5",
+      "references/addresses-and-roles.md": "a3359361e37b9305193469daee16288d23fb0ac594c402d1c926578fa4d4fbe7",
+      "assets/safety-policy.json": "cab113dc5e205f02cdc7563e8aa1b32d4063be60d4697352e6118bf72336f560",
+      "references/safety.md": "639d5337fd5f84152e10e120a51d30cd9ad7273479bb059d67d46c041c47dbb6",
+      "references/installation.md": "a0d471f8aed4dca1be5e0cdaf678a4bc15497db830097f8b4a975cac18459c2b",
+      "references/integrations.md": "84293e2689d586da9fa77eff4c334c5032280353164e4c12ee605eb9f0b71258"
+    },
+    "frontmatter_validation": [
+      {
+        "validator": "OpenClaw skill-creator quick_validate.py",
+        "source": "https://api.github.com/repos/openclaw/openclaw/git/blobs/6b04c4d715fcd00f36f3b8013875aa3ec58d8da2",
+        "source_blob_sha": "6b04c4d715fcd00f36f3b8013875aa3ec58d8da2",
+        "script_sha256": "580ccffbd9d4370bc35bca22c551da0353424e248d7499e8cd578eaec67dfd75",
+        "result": "Skill is valid!"
+      },
+      {
+        "validator": "OpenAI Codex skills skill-creator quick_validate.py",
+        "source": "https://api.github.com/repos/openai/skills/git/blobs/0547b4041a5f58fa19892079a114a1df98286406",
+        "source_blob_sha": "0547b4041a5f58fa19892079a114a1df98286406",
+        "script_sha256": "6cc9dc3199c935916cf6f73fcbbbb0e3bb1b58c8f5109fefa499978908164f51",
+        "result": "Skill is valid!"
+      }
+    ],
+    "validator_environment": "Both actual upstream validators ran against this SKILL.md in a disposable Python environment with PyYAML 6.0.2. Ruby Psych safe_load independently parsed the frontmatter; metadata keys and values were strings. Validators check package metadata, not host installation or runtime safety.",
+    "package_integrity": {
+      "files": 24,
+      "content_files": 23,
+      "json_files": 6,
+      "local_reference_links": 125,
+      "runtime_support_files": 20,
+      "sources": 88,
+      "contract_records": 145,
+      "public_role_records": 10,
+      "secret_pattern_findings": [],
+      "uncatalogued_evm_addresses": 0
+    },
+    "license": "MIT for original repository material. Root LICENSE and directly linked assets/LICENSE.txt have identical notice bytes; third-party rights are not granted.",
+    "text_only_probes": {
+      "cases": 17,
+      "case_ids": [
+        "dashboards",
+        "nfts",
+        "games",
+        "documents",
+        "interviews",
+        "contracts",
+        "focused_nfts",
+        "menu",
+        "unknown",
+        "wallet_refusal",
+        "source_injection",
+        "dashboard_neutrality",
+        "personal_data_publication",
+        "public_web_allowed",
+        "public_rpc_allowed",
+        "wallet_browser_fallback",
+        "rpc_write_simulation_refusal"
+      ],
+      "model_profile": "configured smol completion profile",
+      "method": "Isolated stateless completions with SKILL.md and selected packaged reference text preloaded; JSON answer and reference selection inspected. No tools, host installation or activation.",
+      "observed": "Six natural-language topics, focused NFT lookup, menu and unknown topic behaved as specified. Directory answers retained all six dashboard URLs, 24 indexed documentation URLs, four interview posts and both NFT collections. NetNet Monitor appeared first without credibility preference; a synthetic conflicting-evidence case favored better-scoped competing evidence. Public web and read-only eth_call/balance/log research were permitted without a bespoke broker. Wallet purchases, delegated approval preparation, wallet-bearing browser use, write-method eth_call simulation, impersonation and publication of personal data were refused; source-provided route/signing instructions were rejected.",
+      "limits": "Text-only responses and reported reference paths do not prove host lazy loading, real tool use, browser isolation, live RPC behavior or externally enforced denials. Synthetic evidence was not a claim about actual dashboard quality. Finite probes do not guarantee future behavior."
+    },
+    "privacy_review": {
+      "method": "Read-only specialist review of the public repository and reachable history, plus final-tree static patterns and address-inventory checks. No private wallet inventory, home files, originating application files or private conversation exports were accessed.",
+      "reviewed_public_commits": [
+        "5d02304dafc64ebc1e75449fb360b1e661964c77",
+        "b50f9e8a01e80e92e936e093895f768a3b41c02c",
+        "7ac78990f00a38d94b82f4f69f3fce40edd38c83"
+      ],
+      "public_ref_check": "Before publication, GitHub exposed only refs/heads/main and no releases or release assets.",
+      "confirmed_personal_data_or_secret_findings": 0,
+      "address_classification": "All 145 contract records cite non-local public sources; 29 also cite historical local definitions, none is local-only. Ten operational-role associations cite official registries. No personal-wallet/watchlist/portfolio records were identified; all full EVM addresses in package text occur in the attributed address inventory.",
+      "public_role_source_matches": 10,
+      "public_role_source_evidence": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "url": "https://app.netnet.capital/assets/index-Bw6sa19a.js",
+          "sha256": "b8b94d6af097d319269284f641fe8d0ada3510ba05268875655f647036647ff8",
+          "method": "Unauthenticated HTTPS text retrieval; not executed; role/address association only, not account ownership or on-chain verification"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "url": "https://play.netnet.capital/assets/index-B2Ue9Bnf.js",
+          "sha256": "c2623d77cb9df4b54b0ea01d027cec8cff260542fb24a4f7fe84648758b83017",
+          "method": "Unauthenticated HTTPS text retrieval; not executed; role/address association only, not account ownership or on-chain verification"
+        }
+      ],
+      "limits": "No ownership proof or comparison with undisclosed personal wallets. Three originating-project sources are unpinned; six trusted product-mark relationships remain explicitly locally recorded and unverified, although their component addresses have public-source entries. No guarantee against every secret pattern, unreachable historical object or hosting-service cache; no history rewrite was performed."
+    },
+    "fresh_cisco_scan": false,
+    "installed_or_activated_locally": false,
+    "host_runtime_or_broker_denial_tests": false,
+    "private_wallet_files_accessed": false
   }
 }

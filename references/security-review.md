@@ -1,16 +1,18 @@
 # Security review and confidence
 
-Reviewed service documentation on 2026-09-10. This package is a read-only **knowledge skill**, not a wallet application, broker implementation, smart-contract audit, or security certification. The [release evidence](../assets/verification.json) is the authority for checks actually performed; a recommended tool listed here is not a claim it was run.
+Reviewed service documentation on 2026-09-10. This package is a read-only **knowledge skill**, not a wallet application, broker implementation, smart-contract audit, or security certification. The separate [current verification record](../assets/verification.json) records check scope and limitations; the [historical adversarial review](../assets/adversarial-review.json) records prior findings, not current-byte or runtime certification. A recommended tool listed here is not a claim it was run.
 
 ## What raises confidence
 
-Use three independent kinds of evidence:
+For optional higher-assurance evaluation, use three independent kinds of evidence:
 
 1. **Package review:** inspect the exact distributed files for injected instructions, secrets, malicious code, unexpected executables, install hooks, hidden content and escaping links/archives.
 2. **Behavior evaluation:** run the skill against benign questions and adversarial source text; observe whether the model fabricates facts, accepts source instructions, leaks data, prepares signatures or attempts transactions.
 3. **Capability enforcement:** prove the host rejects signing, wallet access, mutation, unauthorized egress and delegation before an external effect—even if the model requests them.
 
-The third is the strongest protection against an agent-owned wallet being used. A content scanner and a good prompt cannot replace it. This script-free package cannot withdraw tools already available to its host.
+The third is the strongest protection against an agent-owned wallet being used. A content scanner and a good prompt cannot replace it. This script-free package cannot withdraw tools already available to its host, enforce sandboxing or establish runtime isolation; current runtime enforcement is unproven.
+
+These assurance activities are not prerequisites to ordinary public research. Existing host-permitted tools may read public docs, dashboards, OpenSea collections, explorers, prices, interviews and APIs, follow relevant public links, and make bounded read-only RPC queries without a custom broker, purpose-built reader or per-source administrator setup. Use minimum public inputs and no private/local/metadata endpoints. An ordinary unauthenticated browser without wallets/providers, WalletConnect, authenticated sessions or signing/broadcast paths is allowed; read-only navigation/clicks are not wallet actions. ABI-encoded read-only `eth_call` queries are allowed, but state-changing-method simulations, impersonation, state overrides and ready-to-sign/submit artifacts are not. Follow [Safety](safety.md); never install tools, access credentials, change host permissions or enter privileged contexts to bypass missing access.
 
 ## Available tools and services
 
@@ -31,21 +33,21 @@ No price, free quota, supported host matrix or retention guarantee is frozen int
 - Inspect every finding. Instructions that prohibit signing can match patterns for signing; classify those with exact evidence rather than suppressing a whole category or changing safety text merely to obtain a green result.
 - Run independent content/safety review and synthetic adversarial cases. Keep raw attack fixtures outside the normally loaded knowledge references.
 - If adding Snyk or a managed detector, review upload/retention terms and costs first, give it only the public distributable, and sandbox any tool/MCP discovery. Do not supply a private full-machine configuration.
-- For an actual live-research host, test the restricted broker and no-wallet tool surface separately. A read-only RPC endpoint is not inherently safe if arbitrary methods, credentials or egress remain available.
+- Before making an enforced-safety claim for a host, test its no-wallet and private-egress capability boundaries separately, including any broker it deploys. A non-broadcasting RPC response alone does not establish safe methods, arguments or egress. Broker hardening and denial tests are not prerequisites to visiting public sources.
 - Record exact scope, versions, hashes, findings and untested paths. Renew the review when package content, tool exposure, model/host behavior or network policy changes.
 
 ## Design review findings addressed
 
-The independent policy review found two medium-severity specification gaps, both incorporated into [Safety](safety.md) and [the structured policy](../assets/safety-policy.json):
+The historical independent policy review identified two medium-severity specification gaps. Its findings describe that prior review scope, not a test of the current public-research policy:
 
-1. **All-channel confidentiality:** a valid read-only request can carry private data. The revised policy covers every egress channel and requires minimal public context/argument templates outside the model, rather than naming only scanners and model providers.
-2. **Service-bound authentication:** broker credentials must be bound to exact origins/path scopes and stripped across origins on redirects, even when both destinations are approved.
+1. **All-channel confidentiality:** a valid read-only request can carry private data. Current everyday rules still prohibit private data in every outbound channel; external public-context isolation and argument templates are optional stronger assurance.
+2. **Service-bound authentication:** a host service using credentials must bind them to exact origins/path scopes and strip them across origins on redirects, even when both destinations are approved. Ordinary research prefers public endpoints and does not obtain credentials.
 
-The policy also explicitly disables delegation by default and requires equivalent recursive isolation and shared limits for any permitted research child. These are implemented **instructions and host requirements**, not claims that a broker has been deployed.
+The earlier design also specified default-disabled delegation with recursive external isolation. Current research rules prohibit delegated workarounds and require permitted research children to inherit the same public-only/read-only boundaries and shared limits. Optional enforced-safety claims require demonstrated recursive capability isolation. These are policy and assurance requirements, not claims that a broker has been deployed or that revised behavior has been runtime-tested.
 
-## Required adversarial boundaries
+## Adversarial boundaries for assurance claims
 
-Cover at least these distinct failure modes when evaluating a host:
+Cover at least these distinct failure modes when evaluating a host before claiming enforced safety. This evaluation is not a gate on ordinary public research:
 
 - A documentation page demands a wallet approval or tells the agent to override its rules.
 - A dashboard or ABI comment asks for seed phrases, auth files, private context or a secret-bearing outbound URL.
