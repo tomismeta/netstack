@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "skill": "netstack",
+  "version": "1.0.1",
+  "reviewed_on": "2026-09-10",
+  "delivery": {
+    "mode": "independent_github_repository_and_portable_package",
+    "installed_or_registered_in_agent_host": false,
+    "activated_or_host_smoke_invoked": false,
+    "host_configuration_changed": false,
+    "note": "At the user's clarification, the package was moved out of the repository discovery directory before any skill invocation. Optional installation instructions describe future recipient choices only."
+  },
+  "source_evidence": {
+    "official_llms_index_pages_retrieved_and_used": 24,
+    "source_records": 84,
+    "unique_chain_qualified_contract_records": 145,
+    "public_role_address_records": 10,
+    "morpho_bytes32_market_ids": 6,
+    "interview_posts_reviewed": 4,
+    "full_interviews_or_transcripts_reviewed": 0,
+    "strategy_article_bodies_reviewed": 2,
+    "credit_direct_route": "Public Supply/Borrow view opened without connecting an account.",
+    "loopback_direct_route": "Exact link observed in the official shareholder app product menu.",
+    "price_chart_identity": "CoinGecko and CoinMarketCap listing website/explorer links match the published NET address on Robinhood Chain.",
+    "live_chain_verification_performed": false
+  },
+  "independent_policy_review": {
+    "type": "read_only_language_model_security_review_not_human_audit",
+    "high_or_critical_findings": 0,
+    "medium_findings_addressed": [
+      "Prohibit private-context leakage through every egress channel, including otherwise valid read-only RPC parameters.",
+      "Bind provider credentials to exact origins/path scopes and strip them on cross-origin redirects."
+    ],
+    "scope": "Policy design; not a deployed host broker or smart-contract audit."
+  },
+  "historical_1_0_0_scanner": {
+    "tool": "Cisco AI Defense Skill Scanner",
+    "version": "2.1.0",
+    "configuration": "strict policy; static, bytecode, pipeline, correlation and behavioral dataflow analyzers; no LLM/cloud/VirusTotal/OSV analyzers",
+    "isolation": "Temporary virtual environment; cleared process environment; OS-denied network access and home-directory writes; home-directory file contents restricted to this public package.",
+    "scan_timestamp": "2026-09-10T12:50:53.767627+00:00",
+    "scope": "Historical 1.0.0 package scan before addition of its verification record. Not a scan result for the publication edits in 1.0.1; no fresh scanner run is claimed.",
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "info": 1,
+    "findings": [
+      {
+        "rule": "LAZY_LOAD_DEEP_NESTING",
+        "severity": "MEDIUM",
+        "disposition": "Retained and reviewed, not suppressed: references cross-link, but every support file is also directly linked from SKILL.md. Release integrity validation checks every destination and absence of escaping paths, symlinks and executables."
+      },
+      {
+        "rule": "MANIFEST_MISSING_LICENSE",
+        "severity": "INFO",
+        "disposition": "No license invented on the user's behalf. Source links and original summaries do not grant rights to third-party articles, recordings or documentation."
+      }
+    ],
+    "interpretation": "A scanner's safe flag is not a security guarantee. Behavioral dataflow analysis is static package analysis, not a model/tool-use or host-activation test."
+  },
+  "publication_adversarial_review": "adversarial-review.json",
+  "publication_validation": {
+    "scope": "Package-only integrity and corrected source-coverage behavior; no host installation or activation.",
+    "exact_tree_evidence": "The repository commit identifies the published bytes. A separate release manifest records the package hashes."
+  },
+  "not_performed": [
+    "Agent host installation, registration, activation or runtime smoke invocation, per the create-only instruction.",
+    "Live broker permission-denial tests or dynamic adversarial model/tool scenarios.",
+    "Wallet access, connection, message or transaction signing, transaction preparation or broadcast.",
+    "Snyk service, Promptfoo red-team execution, Microsoft Prompt Shields or other paid/cloud security service uploads.",
+    "Independent live deployment, contract bytecode, audit-badge, custody or proxy verification.",
+    "Full interview playback/transcription, hydrated dashboard data audit, or every external destination's functional test."
+  ],
+  "security_boundary": "The package supplies instructions and host-control requirements, not an enforced sandbox. A host with unrestricted wallet or network tools remains unsafe merely by loading it. Use offline knowledge when adequate isolation is unavailable."
+}

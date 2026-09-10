@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "skill": "netstack",
+  "published_package_version": "1.0.1",
+  "reviewed_on": "2026-09-10",
+  "method": "Two independent read-only language-model reviews of the 1.0.0 package, followed by maintainer remediation and package validation. Not a human audit or dynamic host/model test.",
+  "reviewed_input": {
+    "version": "1.0.0",
+    "delivered_archive_sha256": "83db1f43036b168158f130b76d7478643981ae7ae16c9ee33d92b780356b3a4f",
+    "scope": "The skill contents from this archive were reviewed before the publication edits. The README and expanded Hermes quick start were added afterward using official host documentation; they are not claimed as independently runtime-tested."
+  },
+  "security_review": {
+    "actionable_findings": [],
+    "coverage": [
+      "Authority spoofing in official documents and tool responses",
+      "User-requested operations from an agent-owned wallet",
+      "Signatures, permits, session keys and gasless operations",
+      "Relayers, bundlers, smart accounts and alternate action routes",
+      "Mixed or disguised RPC batches",
+      "Read-only exfiltration, encoded arguments and outbound links",
+      "Source-authorized installation, updates or memory/policy changes",
+      "Delegation privilege escalation and private-context leakage",
+      "Offline fallback when restricted tools are not established",
+      "Targeted searches for exposed credentials and private absolute paths"
+    ],
+    "conclusion": "The examined bypasses conflict with explicit prohibitions rather than exploiting a policy exception. This does not establish that a host or model will enforce those prohibitions.",
+    "limits": "Source/address assets were spot-checked as input surfaces. Financial correctness, exhaustive source verification and live enforcement were outside this review."
+  },
+  "portability_review": {
+    "findings": [
+      {
+        "id": "NS-001",
+        "severity": "MEDIUM",
+        "title": "Stale duplicated source coverage in the address book",
+        "location_at_review": "assets/addresses.json:4802-4905",
+        "evidence": "The address book reported 72 sources and unreviewed interview posts while the canonical release source catalog reported 84 sources and publisher-post review.",
+        "impact": "Selective loading could produce contradictory inventory and review-completeness answers.",
+        "status": "fixed",
+        "resolution": "Removed duplicated release-wide source coverage, registry boundaries and review gaps from the address book. It retains address-specific counts and points to sources.json#/coverage and sources.json#/release_reviews."
+      }
+    ],
+    "other_observations": [
+      "All runtime support files were directly linked by SKILL.md; no full-document mirror or recursive full loading was required.",
+      "Local-definition sources are identified as historical originating-repository provenance, not runtime dependencies. Their unpinned original revisions remain independently unreproducible from this package.",
+      "Generation, article-scenario, interview-depth, market-maturity and live-verification qualifications were preserved."
+    ],
+    "limits": "No external-source checks, exhaustive contract audit or host activation was performed."
+  },
+  "maintainer_changes": [
+    "Fixed NS-001 by using one canonical source-coverage record instead of synchronizing duplicate metadata.",
+    "Clarified source-intake preservation as retention of original URLs, not unchanged metadata after later content review.",
+    "Qualified the primary dashboard's originating-repository paths so they are not mistaken for files in this independent repository.",
+    "Added the user-requested task-first README and documentation-grounded optional Hermes installation and acceptance checks.",
+    "Bumped the package version to 1.0.1 without changing the dated knowledge snapshot or installing the skill."
+  ],
+  "runtime_status": {
+    "installed_or_activated_locally": false,
+    "hermes_runtime_tested": false,
+    "dynamic_adversarial_model_or_tool_tested": false,
+    "host_broker_denial_tested": false,
+    "wallet_actions_or_broadcasts": false
+  },
+  "residual_risk": "A script-free skill cannot revoke host tools, guarantee model compliance, prevent every prompt injection or certify contract safety. Enforce capability restrictions outside the model and use the offline knowledge profile when isolation is unknown."
+}
