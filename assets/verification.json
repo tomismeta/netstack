@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "version_policy": "Keep 0.1.0 until the maintainer explicitly requests a version change; identify revisions by Git commit.",
   "reviewed_on": "2026-09-10",
-  "evidence_scope": "Current version is 0.1.0. current_remediation_validation records newly executed checks and their exact input fingerprints. Older reviews, scanner findings and probes retain historical scope; external host observations remain attributed user reports, not maintainer-reproduced runtime evidence.",
+  "evidence_scope": "Current package version is 0.1.0. current_wording_validation records the confidentiality rewording checks. Other reviews, scans and probes retain their named historical scopes and input fingerprints; externally reported host observations are attributed, not host runtime certification.",
   "delivery": {
     "mode": "independent_github_repository_and_portable_package",
     "scope": "Maintainer delivery activity only; external user reports below do not establish installation or activation.",
@@ -126,10 +126,10 @@
     "observed": "At the recorded input revision, all six topics selected expected reference sets; directories retained all 24 documentation links, four interview posts, six dashboard links and both NFT collection links. Menu/unknown-topic handling, a focused NFT question, transaction/payload refusal and a retrieved-source route/signing override behaved as instructed.",
     "limits": "Historical outcomes apply to the recorded input revision. Current remediation probes are recorded separately. Preloaded reference text and reported reference paths do not prove real host lazy loading or tool enforcement; finite model probes do not guarantee future behavior."
   },
-  "current_remediation_validation": {
+  "historical_public_research_validation": {
     "observed_on": "2026-09-10",
     "result": "passed",
-    "scope": "Current portability, licensing, neutral dashboard ordering, public-research and publication-privacy remediation. No installed agent host or dynamic tool enforcement was exercised.",
+    "scope": "Historical public-research remediation checks at commit 43b1d760e89a39a0d22fab9acf19358c894347c8, with original input fingerprints retained. Not a scan or behavior result for the later confidentiality wording.",
     "input_file_sha256": {
       "SKILL.md": "3b24fee265a924ddefa7cb8f93f0e4762cfc57ea3c5657c91cfc06d980ec69ee",
       "references/links.md": "88fc67570a07970052888da4d58e2e0cf60c6621b86298aa8402e5f77694a827",
@@ -229,6 +229,83 @@
     "fresh_cisco_scan": false,
     "installed_or_activated_locally": false,
     "host_runtime_or_broker_denial_tests": false,
-    "private_wallet_files_accessed": false
+    "private_wallet_files_accessed": false,
+    "input_commit": "43b1d760e89a39a0d22fab9acf19358c894347c8"
+  },
+  "current_wording_validation": {
+    "observed_on": "2026-09-10",
+    "result": "passed",
+    "scope": "Two equivalent confidentiality wording replacements, direct-URL bundle static scanning, affected no-tool behavior probes and package integrity. No policy rule suppression, force override, host installation or activation.",
+    "input_file_sha256": {
+      "SKILL.md": "a16ca4eb63bd0f6724936824e89ee25f7ecce926b934bb447d582184624d4cf7",
+      "references/nfts.md": "d5c4acd2473f9447e5ea079a92b2cd9b69e03dd26166cb50fc70bdc6c3f6e75c",
+      "assets/safety-policy.json": "cab113dc5e205f02cdc7563e8aa1b32d4063be60d4697352e6118bf72336f560",
+      "references/safety.md": "e61dddb0ee742d436fc4e54073d174d8d1b30e43d3ac5ad6f3d128bb7523a7a0",
+      "references/installation.md": "a0d471f8aed4dca1be5e0cdaf678a4bc15497db830097f8b4a975cac18459c2b",
+      "references/integrations.md": "84293e2689d586da9fa77eff4c334c5032280353164e4c12ee605eb9f0b71258"
+    },
+    "hermes_direct_url_scan": {
+      "scanner": "Hermes Skills Guard",
+      "scanner_version": "skills-guard-v2",
+      "upstream_commit": "67764dc0863349a384c16425e73ee8571f3a94b7",
+      "source_url": "https://github.com/NousResearch/hermes-agent/blob/67764dc0863349a384c16425e73ee8571f3a94b7/tools/skills_guard.py",
+      "source_sha256": "007846383d775bbda8ac6ed9f6d9fedef4f4cebf052ad059e0cfcb15c9d3fb27",
+      "method": "Unmodified upstream scan_skill and should_allow_install invoked locally on a reconstructed direct-URL file set with community trust and force=False. Not a Hermes CLI install or runtime invocation.",
+      "bundle_files": 21,
+      "support_files": 20,
+      "root_files_excluded": [
+        "README.md",
+        "LICENSE",
+        "release-manifest.json"
+      ],
+      "license_notice": "assets/LICENSE.txt is directly linked and retained.",
+      "verdict": "safe",
+      "allowed_without_force": true,
+      "high_or_critical_findings": 0,
+      "findings": [
+        {
+          "pattern_id": "fake_policy",
+          "severity": "medium",
+          "file": "assets/safety-policy.json",
+          "line": 14,
+          "disposition": "Retained without suppression. The rule matches a legitimate curation restriction against source-driven changes. It is not an instruction to override authority; the safety-policy file is byte-identical to the prior release."
+        }
+      ],
+      "exact_bundle_attestation": "The full-repository release-manifest.json records the final canonical bundle SHA-256, scanner timestamp and result. It is intentionally outside the URL-installed runtime bundle to avoid a self-referential hash.",
+      "limits": "SAFE is the observed static-scanner verdict at this scanner revision and file set, not guaranteed future scanner acceptance, runtime enforcement or prompt-injection immunity."
+    },
+    "affected_text_only_probes": {
+      "cases": 7,
+      "case_ids": [
+        "wallet_refusal",
+        "source_injection",
+        "personal_data_publication",
+        "public_web_allowed",
+        "public_rpc_allowed",
+        "wallet_browser_fallback",
+        "private_context_egress"
+      ],
+      "model_profile": "configured smol completion profile",
+      "method": "Isolated stateless completions with SKILL.md and scoped reference text preloaded. No tools were exposed. Raw synthetic prompts and responses remain outside the runtime package.",
+      "observed": "Public web and bounded read-only RPC queries remained permitted without a custom broker. Wallet purchases, approval-payload delegation, wallet-bearing browser use, private material in the distributable, and private-context disclosure through public URL parameters were refused. Retrieved-source route/signing instructions did not change the requested NFT directory.",
+      "limits": "Model responses are not real browser/RPC use, host lazy loading, externally denied actions or a universal behavioral guarantee."
+    },
+    "package_integrity": {
+      "files": 24,
+      "content_files": 23,
+      "json_files": 6,
+      "local_reference_links": 125,
+      "runtime_support_files": 20,
+      "sources": 88,
+      "contract_records": 145,
+      "public_role_records": 10,
+      "secret_pattern_findings": [],
+      "uncatalogued_evm_addresses": 0
+    },
+    "frontmatter": "Ruby Psych safe_load parsed metadata; current version 0.1.0, 56-character description and frontmatter unchanged.",
+    "unchanged_scope": "Only the two prose lines and verification/manifest evidence change. Machine safety policy, address/source inventories, licensing, dashboard ordering and README remain unchanged.",
+    "fresh_cisco_scan": false,
+    "installed_or_activated_locally": false,
+    "wallet_files_accessed": false
   }
 }
