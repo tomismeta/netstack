@@ -1,28 +1,29 @@
 # Contracts, public addresses and roles
 
-Snapshot: 2026-09-10, Robinhood Chain mainnet **4663**. Exact values live in [addresses.json](../assets/addresses.json), not parallel copies in these references. Sources and their review status live in [sources.json](../assets/sources.json).
+Working snapshot: 2026-09-12, **unpublished local changes**; package version remains **0.1.1**. Robinhood Chain mainnet **4663**. Exact values live in [addresses.json](../assets/addresses.json), not parallel copies in these references. Sources and their review status live in [sources.json](../assets/sources.json).
 
 ## Inventory and its boundaries
 
-The snapshot contains **145 distinct contract-address records**, **10 separately published public-role records**, **six trusted product mark mappings**, and **six Stock Token Morpho market IDs**. Some public-role addresses may also occur in the contract set; section counts must not be added and described as unique wallets.
+The working inventory contains **174 distinct contract-address records**, **10 separately published public-role records**, **six trusted product mark mappings**, and **six Stock Token Morpho market IDs**. Its **37 underlying price-feed records** comprise **35 Robinhood-labelled RWA candidates** (33 explicitly classified `Equity`, two with incomplete classification) plus ETH/USD and USDG/USD. These are not 35 verified token mappings or 35 NetNet-used markets. Some public-role addresses may also occur in the contract set; section counts must not be added and described as unique wallets.
 
-The inventory combines official NetNet documentation, the shareholder/arcade app registries, exact local registry provenance, and published Morpho, Uniswap, Rialto and Pendle deployment references. It is not a complete discovery of every deployment or token. A registry's inclusion of a named address is not an independent check of its bytecode, current permissions, ownership, activation, security or available liquidity.
-
-**No record in this release has an independently performed live-chain verification.** Registry/status observations are dated publisher or repository evidence. Generated explorer links make verification accessible; they are not verification results. Any future chain checks must explicitly record their block/hash and limited scope rather than silently turning "published" into "audited."
+Sources combine official NetNet docs, shareholder/arcade app registries, exact local-registry provenance and published Morpho, Uniswap, Rialto and Pendle deployments—not exhaustive discovery. **No inventory record has independently performed live-chain verification.** Inclusion and generated explorer links do not verify bytecode, permissions, ownership, activation, security or liquidity. Future chain checks must record block/hash and scope; “published” must not silently become “audited.”
 
 ## Data layout
 
-- `contracts`: chain ID, exact address, role, aliases, lifecycle/publication status, live-verification status, explorer URL, and provenance entries with source IDs and locators.
+- Read `explorers` and `record_notes` once alongside selected records. `explorers["4663"]` supplies RHScan address and transaction URL templates plus navigation scope; `record_notes` supplies the shared publisher-label, feed-metadata, NetNet-use-evidence and public-role qualifications. These explanations do not replace per-record facts or supply missing defaults.
+- `contracts`: chain ID, exact address, role, aliases, lifecycle/publication status, live-verification status, and parent `provenance` entries with source IDs, observation dates and locators. Parent provenance owns publisher-directory feed metadata, with each locator identifying the fields it supports.
+- `publisher_linked_provenance_urls`: original publisher links retained for evidence, not response navigation. Return RHScan links for referenced Robinhood objects; do not copy an old provider's API path or query-tab syntax.
 - `marketplace_collections`, where present on a contract record: collection names/links and API provenance matched to that exact chain/address. These are identity associations, not marketplace or contract safety guarantees.
 - `public_role_addresses`: named public operational/signing/owner-role addresses, explicitly unverified account kind and no inferred legal-person attribution. A role named `signer` does not give this agent access or permission to sign.
 - `markets`: 32-byte Morpho market identifiers and the chain-qualified singleton contract. These IDs must not be used as 20-byte contract addresses or passed to a generic address explorer as though they were one.
 - `trusted_product_marks`: exact-token mappings to known feed/source relationships. Matching a symbol such as NVDA is not enough to reuse another token's oracle.
-- `price_feed`, where present on a contract record: publisher-sourced name, quote asset, value semantics and metadata provenance; the adjacent `decimals` is the feed answer scale, not token decimals. `consumer_policies` records only specifically documented uses, not an exhaustive deployed call graph.
+- `price_feed`, where present on a contract record: publisher name, directory group, publisher-sourced feed name, quote asset, value semantics, metadata status, classification gaps and token/NetNet-use evidence. Read its publisher metadata evidence in the parent contract's `provenance`; the adjacent `decimals` is the feed answer scale, not token decimals. Preserve `netnet_use_evidence.status` and separately attributed `consumer_policies`, which record only specifically documented uses, not an exhaustive deployed call graph.
+- `price_source`, on the canonical NET/USDG pool, PairOracle, Treasury and LoopbackOracle: typed source kind, purpose, base/quote units and dated documentation provenance. These are market, derived-TWAP, reserve-accounting or collateral sources—not extra underlying Chainlink feeds.
 - `known_discrepancies` and `coverage`: generation conflicts, source boundaries, omitted zero placeholders, inaccessible material and missing verification.
 
-A `local_definition` source in the catalog is a historical repository-provenance path, not a skill-relative dependency or web URL. The extracted facts are bundled. Prefer public corroboration for consumers without the originating repository.
+**Provenance dates and scope:** parent contract `provenance[].observed_on` dates each source observation, including feed metadata; distinct dates, sources and scopes remain distinct. The file date labels only the snapshot. None certifies current configuration. A `local_definition` is a historical repository path, not a skill dependency or URL; extracted facts are bundled, but public corroboration is preferable for consumers without that repository. The six `trusted_product_marks` retain their original local-registry scope; directory matches do not independently verify them. Unknown classification, unrecorded consumer use and live-verification limits remain explicit, not filled by shared notes.
 
-Each contract's `provenance[].observed_on` dates the individual source observation. The file-level date is a snapshot label, not a replacement for those dates. Feed metadata has its own observation date. The six `trusted_product_marks` relationships retain their original local-registry scope; a new feed-directory match does not independently verify those token relationships. None of these dates certifies current deployment configuration.
+**Explorer navigation:** return RHScan links for every Robinhood Chain object, current or historical. Validate the exact chain ID **4663** and a full 20-byte hexadecimal address or 32-byte transaction hash before substituting into `explorers["4663"].address_url_template` or `transaction_url_template`. Contract and public-role addresses, market singleton addresses and deployment transaction hashes retain their own identities; a Morpho market ID is not an address or transaction hash. Do not guess a chain or object from a ticker, alias or missing field. A derived link is navigation, not a new observation, and RHScan UI routes do not establish API endpoints.
 
 ## Useful families to look up
 
@@ -39,30 +40,74 @@ Each contract's `provenance[].observed_on` dates the individual source observati
 
 ## Price feeds and token relationships
 
-Use `Use netstack: feeds` for this directory, or `Use netstack: feeds NVDA` for one exact-token lookup. `Use netstack: contracts feeds` reaches the same section. This is a reference lookup, not a tool invocation or an instruction to fetch live prices.
+`Use netstack: feeds` requests this directory; `Use netstack: feeds NVDA` focuses on a feed/token relationship; `Use netstack: feeds NET` selects the distinct NET sources. `Use netstack: contracts feeds` reaches the same section. These are reference lookups, not tool invocations or live-price requests. Use the index to select a JSON `role`, then read only that record and its exact `trusted_product_marks` relationship, if present.
 
-The eight underlying price feeds currently catalogued are below. Resolve full addresses and provenance from the named `contracts` records in [addresses.json](../assets/addresses.json). For the six equity rows, join the exact `trusted_product_marks` entry by chain and `feed_address` to obtain `token_address`; resolve that token to its contract record. Do not join arbitrary assets by ticker or create a second pairing inventory. The separate `source_contract_address` is local-registry provenance, not the Chainlink aggregator, the proxy to read, a spender recommendation or proof of current consumer wiring. In particular, NVDA's mapping cites superseded RWA Desk V1, while AAPL's cites V2. Read prices from `feed_address`, not from those desks.
+### Full Robinhood-labelled RWA feed index
 
-| Requested asset | Feed contract role | Canonical token relationship | Quote / feed decimals |
+All **35 candidates** retain exact primary `proxyAddress` and chain. Publisher metadata observed **2026-09-12** lists **USD quote / 8 feed decimals** for all. Full addresses/evidence live in the named [JSON](../assets/addresses.json) contract records. `Equity` includes tokenized ETFs; do not recategorize by ticker.
+
+| Requested name | Feed contract role | Publisher asset class | Exact token relationship |
 |---|---|---|---|
-| AAPL | `chainlinkAaplUsd` | `trusted_product_marks` AAPL, exact addresses only | USD / 8 |
-| MSFT | `chainlinkMsftUsd` | `trusted_product_marks` MSFT, exact addresses only | USD / 8 |
-| GOOGL | `chainlinkGooglUsd` | `trusted_product_marks` GOOGL, exact addresses only | USD / 8 |
-| NVDA | `chainlinkNvdaUsd` | `trusted_product_marks` NVDA, exact addresses only | USD / 8 |
-| COIN | `chainlinkCoinUsd` | `trusted_product_marks` COIN, exact addresses only | USD / 8 |
-| SPCX | `chainlinkSpcxUsd` | `trusted_product_marks` SPCX, exact addresses only | USD / 8 |
+| AAPL | `chainlinkAaplUsd` | Equity | Existing exact mapping |
+| AMD | `chainlinkAmdUsd` | Equity | Unverified / not recorded |
+| AMZN | `chainlinkAmznUsd` | Equity | Unverified / not recorded |
+| ASML | `chainlinkAsmlUsd` | Equity | Unverified / not recorded |
+| BABA | `chainlinkBabaUsd` | Equity | Unverified / not recorded |
+| CLSK | `chainlinkClskUsd` | Equity | Unverified / not recorded |
+| COIN | `chainlinkCoinUsd` | Equity | Existing exact mapping |
+| CRCL | `chainlinkCrclUsd` | Equity | Unverified / not recorded |
+| CRWV | `chainlinkCrwvUsd` | Equity | Unverified / not recorded |
+| DELL | `chainlinkDellUsd` | Equity | Unverified / not recorded |
+| EWY | `chainlinkEwyUsd` | Equity | Unverified / not recorded |
+| GME | `chainlinkGmeUsd` | Equity | Unverified / not recorded |
+| GOOGL | `chainlinkGooglUsd` | Equity | Existing exact mapping |
+| INTC | `chainlinkIntcUsd` | Equity | Unverified / not recorded |
+| IONQ | `chainlinkIonqUsd` | Equity | Unverified / not recorded |
+| META | `chainlinkMetaUsd` | Equity | Unverified / not recorded |
+| MSFT | `chainlinkMsftUsd` | Equity | Existing exact mapping |
+| MSTR | `chainlinkMstrUsd` | Equity | Unverified / not recorded |
+| MU | `chainlinkMuUsd` | Equity | Unverified / not recorded |
+| NBIS | `chainlinkNbisUsd` | Equity | Unverified / not recorded |
+| NVDA | `chainlinkNvdaUsd` | Equity | Existing exact mapping |
+| ORCL | `chainlinkOrclUsd` | Equity | Unverified / not recorded |
+| PLTR | `chainlinkPltrUsd` | Equity | Unverified / not recorded |
+| QQQ | `chainlinkQqqUsd` | Equity | Unverified / not recorded |
+| RGTI | `chainlinkRgtiUsd` | Equity | Unverified / not recorded |
+| RKLB | `chainlinkRklbUsd` | Equity | Unverified / not recorded |
+| SGOV | `chainlinkSgovUsd` | Incomplete | Unverified / not recorded |
+| SLV | `chainlinkSlvUsd` | Equity | Unverified / not recorded |
+| SNDK | `chainlinkSndkUsd` | Equity | Unverified / not recorded |
+| SPCX | `chainlinkSpcxUsd` | Equity | Existing exact mapping |
+| SPY | `chainlinkSpyUsd` | Equity | Unverified / not recorded |
+| TSLA | `chainlinkTslaUsd` | Equity | Unverified / not recorded |
+| TSM | `chainlinkTsmUsd` | Equity | Unverified / not recorded |
+| USAR | `chainlinkUsarUsd` | Incomplete | Unverified / not recorded |
+| USO | `chainlinkUsoUsd` | Equity | Unverified / not recorded |
+
+**Two metadata gaps:** SGOV and USAR have empty `assetName` and absent `docs.assetClass`, `docs.baseAsset` and `docs.productTypeCode`. Their names and eight-decimal scales are explicit; `docs.quoteAssetEntityId` supports USD quote. Do not infer classification or total-return semantics. The other 33 explicitly say `Equity`.
+
+**Six mappings; 29 unmapped:** join “Existing exact mapping” to `trusted_product_marks` by chain and full `feed_address`, then resolve `token_address`. These are historical local-registry relationships, not independently verified current pairings. The other **29 have no exact token relationship or NetNet-use evidence recorded**; bounded public directory/documentation lookup established no additional pairs. Ticker matching cannot fill the gap.
+
+**Address types are not interchangeable:** directory `contractAddress` is an aggregator; neither it nor `secondaryProxyAddress` identifies a token. `trusted_product_marks.source_contract_address` is historical provenance—not a Chainlink proxy, recommended spender or current-wiring proof. NVDA cites superseded Desk V1; AAPL cites V2. Read feed answers from canonical `feed_address`, not those desks; do not create a parallel pairing inventory.
+
+### ETH/USD and USDG/USD
+
+| Requested asset | Feed contract role | Relationship boundary | Quote / feed decimals |
+|---|---|---|---|
 | ETH | `chainlinkEthUsd` | No stock-token mapping; do not infer a WETH relationship from the symbol | USD / 8 |
-| USDG | `usdgUsdFeed` | No `trusted_product_marks` entry; token role `USDG` is separately catalogued | USD / 8 |
+| USDG | `usdgUsdFeed` | No `trusted_product_marks` entry; the USDG token is separately catalogued | USD / 8 |
 
-Decimals and proxy identities were matched by full address against the [Chainlink Robinhood mainnet directory](https://reference-data-directory.vercel.app/feeds-robinhood-mainnet.json) on 2026-09-10. These are **publisher metadata**, not successful `decimals()` calls or live-chain verification. Per-feed metadata and evidence remain canonical in the JSON; this table is a navigation summary. No token decimals are inferred.
+These retain **2026-09-10** metadata observations and public app-registry provenance. The [Chainlink Robinhood mainnet directory](https://reference-data-directory.vercel.app/feeds-robinhood-mainnet.json) has **57 entries** in the audited snapshot; this inventory selects the 35 Robinhood-labelled candidates and these two feeds, not every crypto entry. JSON identity/scale is **publisher metadata**, not successful `decimals()` calls, token decimals or current prices. **USDG/USD is a conversion reference, not proof that one USDG equals one USD.**
 
-**What the equity number means:** [Chainlink's Robinhood feed documentation](https://docs.chain.link/data-feeds/tokenized-equity-feeds/robinhood) describes tokenized **total-return value**: underlying equity price multiplied by the token's corporate-action/dividend multiplier. It is not simply the raw listed-stock price. Do not multiply the feed answer by that multiplier again. The publisher describes corporate-action pauses and closed sessions that can leave the last value callable without a new update. This general feed description does not upgrade our locally recorded token mappings into independently checked relationships.
+### Equity value and unit boundaries
 
-**Product pricing is a separate read, not a second scaling step.** [Credit](https://docs.netnet.capital/credit) says its StockMorphoOracle adjusts equity/USDG feeds by the token multiplier; [THE BOARD MEETING](https://docs.netnet.capital/the-board-meeting) says its entry adapter applies the multiplier. A scoped public explorer inspection matched the six Credit oracle creation-bytecode tails to the catalogued token/feed pairs, and found the MSFT token/feed addresses in Boardroom's indexed bytecode. However, the six oracles and the Boardroom adapter have no source bodies in the inspected explorer responses; source recovery through Sourcify and public IPFS gateways did not obtain them. This is indexed-bytecode evidence, not source-verified product arithmetic or a live-state check. Do not describe the missing relationship merely as an unknown ticker, and do not declare a deployed double-multiplication bug.
+**Direct equity value:** [Chainlink's Robinhood documentation](https://docs.chain.link/data-feeds/tokenized-equity-feeds/robinhood) describes **total-return value**: underlying equity price × token corporate-action/dividend multiplier, not raw listed-stock price. Normalize the same-block feed answer; **do not apply the multiplier again**. Corporate-action pauses and closed sessions can leave an old value callable. This description does not verify local token mappings.
 
-**Raw balance versus display balance:** the [explorer-indexed Stock implementation](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xb35490d6f9163DE4F80d88dc75c3516eb64C5aE2), linked by the explorer to the catalogued MSFT token, defines `balanceOfUI = floor(balanceOf * uiMultiplier / 1e18)`. Both balances still require token-decimal interpretation. This display conversion does not itself prove which quantity a particular feed or product price is denominated in, and the token is upgradeable. As a dimensional example only, if display quantity `D = R * m`, a price per display unit must be multiplied by `D`, while a price per raw unit must be multiplied by `R`. Never apply both conventions to the same value. This is why seeing multiplication in a product is not sufficient evidence of double counting.
+**Product output is a separate read:** [Credit](https://docs.netnet.capital/credit) describes StockMorphoOracle multiplier adjustment of equity/USDG feeds; [THE BOARD MEETING](https://docs.netnet.capital/the-board-meeting) describes entry-adapter multiplication. Historical Blockscout API inspection matched six Credit creation-bytecode tails to catalogued token/feed pairs and found MSFT token/feed addresses in Boardroom indexed bytecode. The inspected responses contained no source bodies for those six oracles or Boardroom adapter; Sourcify/public IPFS recovery also failed. This is indexed-bytecode evidence, **not source-verified arithmetic or live state**, and was not retrieved from RHScan. The original retrieval URLs and dates remain under `netnet-product-oracle-indexed-evidence` in [sources.json](../assets/sources.json). The gap is not merely an unknown ticker, nor evidence of a deployed double-multiplication bug.
 
-For a **direct feed mark**, normalize only the same-block feed answer and report its documented total-return semantics. For a **Credit collateral or Board Meeting entry mark**, identify the exact product oracle/adapter, its read interface, output scale and raw/display unit basis, then read the product's own result at the same observation block. Do not reconstruct it from the directory's direct feed formula or silently substitute a feed mark when product evidence is unavailable. Exact source-verified product arithmetic and current input/output units remain missing prerequisites here; [Products](products.md#oracle-and-liquidation-risks) and [Games](games.md#the-board-meeting--counterparties-choose-reward-systems-differ) preserve the publisher claims and their limits.
+**Raw versus display balance:** the [Stock implementation on RHScan](https://rh-scan.com/address/0xb35490d6f9163DE4F80d88dc75c3516eb64C5aE2), linked to catalogued MSFT, defines `balanceOfUI = floor(balanceOf * uiMultiplier / 1e18)` according to the historical Blockscout API source-body reading recorded as `robinhood-stock-scaled-ui-source` in [sources.json](../assets/sources.json). That evidence is not RHScan verification. Both balances need token-decimal interpretation. The token is upgradeable; this conversion does not establish a feed/product price's unit basis. Dimensionally, if display quantity `D = R * m`, multiply a per-display-unit price by `D` or a per-raw-unit price by `R`—never both conventions. Multiplication alone does not prove double counting.
+
+For a **Credit collateral or Board Meeting entry mark**, identify the exact oracle/adapter, interface, output scale and raw/display unit basis; read **the product's own result** at the observation block. Never reconstruct it from the direct-feed formula or substitute a feed mark for missing product evidence. Source-verified arithmetic and current input/output units remain missing prerequisites. [Products](products.md#oracle-and-liquidation-risks) and [Games](games.md#the-board-meeting--counterparties-choose-reward-systems-differ) retain the product-specific claims.
 
 ### Consumers and freshness are separate from feed metadata
 
@@ -74,26 +119,40 @@ For a **direct feed mark**, normalize only the same-block feed answer and report
 | NVDA and AAPL / TURBO documented launch series | Fresh in-session Chainlink, then eligible pool TWAP, otherwise frozen close; new listings require a fresh in-session mark | [TURBO](https://docs.netnet.capital/turbo), summarized in [Games](games.md); not proof of current series or exact deployed feed call paths |
 | GOOGL, ETH, USDG; other consumers of any feed | No exhaustive consumer list or universal maximum age recorded here | Inspect the specific product/adapter and its evidence; missing policy is not permission to accept stale data |
 
-The three numeric conversion policies are also beside their feed records in `price_feed.consumer_policies`. An absent consumer entry means **not recorded**, not unused. Documentation evidence is not verification that a current contract enforces the described gate.
-
-Feed heartbeat, latest round timestamp and consumer maximum age are different facts. The publisher directory lists a heartbeat, but the Robinhood equity documentation says off-hours have no heartbeats. Neither establishes a universally safe age limit for a new game. Do not package `updatedAt` as a timeless field or treat four hours as a default.
+The three numeric conversion policies also appear in `price_feed.consumer_policies`; absence means **not recorded**, not unused. Documentation does not verify current enforcement. **Heartbeat, round timestamp and consumer maximum age differ:** the directory lists a heartbeat, but equity docs say off-hours have none. Neither establishes a universal age limit; `updatedAt` is not timeless and four hours is not a default.
 
 ### Adapters and derived oracles are not underlying feeds
 
 The inventory also names `TurboFeedAdapter` generations, `otcDeskFeedAdapter`, `rwaDeskFeedAdapter`, `coinflipFeedAdapter`, `flightsimFeedAdapter`, `spacexInvadersFeedAdapter` and `buttonFeedAdapter`. Credit's StockMorphoOracles and Loopback's oracle have separate collateral/loan units and semantics. The Morpho ChainlinkOracleV2 **factory** creates contracts; it is not itself an asset price feed. Do not assume these contracts expose the underlying feed's ABI, eight decimals or freshness rules. Resolve generations and consumer wiring separately.
 
+### NET price sources: pool, TWAP, NAV and collateral are distinct
+
+`Use netstack: feeds NET` should return this source-kind distinction, not invent a NET/USD Chainlink feed:
+
+| Requested quantity | Canonical contract role / source kind | Meaning and boundary |
+|---|---|---|
+| NET pool spot reference | `NET/USDG canonical pair (Uniswap v2)` / `market_pool` | Reserve-ratio reference in **USDG per NET**, after establishing exact token ordering and decimals. Not an executable quote, NAV or Core's TWAP. |
+| Core NET market mark | `PairOracle` / `derived_twap_oracle` | Documented cumulative-price TWAP from that canonical pool, in USDG terms; valid window 30 minutes–4 hours. Not instantaneous spot or an eight-decimal Chainlink answer. |
+| Core backing per NET | `Treasury` / `reserve_accounting` | Documented NAV = RFV / total supply, in USDG per NET; excludes the Manager Sleeve. Not market price, an automatic redemption right or a current holdings observation. |
+| Loopback credited wsNET collateral | `LoopbackOracle` / `collateral_valuation_oracle` | Documented `clamp(TWAP × 0.90, NAV, 5 × NAV) × index`; separate collateral/loan units and stale-TWAP/divergence guards. Not NET spot or unadjusted NAV. |
+| Manager's announced 2×NAV bid | [September 12 post](https://x.com/NetNetCap/status/2098803824282771690) / **policy announcement, not a feed** | Manager-funded bid; bought NET becomes Real World Bonds inventory. Venue, capacity, NAV definition, implementation and remittance remain unestablished. See [Products](products.md#september-12-manager-funded-bid-and-bought-net-inventory). |
+
+Sources: [Mechanism: price oracle](https://docs.netnet.capital/mechanism), [Treasury: RFV/NAV](https://docs.netnet.capital/treasury), [Loopback](https://docs.netnet.capital/lending). JSON `price_source` records documented purposes, not verified live implementations. The Manager announcement is **not Core's inverse-bond bid, a Treasury obligation or an oracle**.
+
+Current NET marks require the chain/head-recency checks below plus the exact interface, token ordering, same-block units/decimals, window and source state; packaged metadata supplies no live facts. **USDG is not USD:** conversion requires a separately acceptable same-block USDG/USD observation, scale and freshness. Report spot, TWAP, NAV, collateral and policy bid separately; never substitute for unavailable evidence. No checkpointing, trading, borrowing, approvals or wallet connection is authorized.
+
 ### Read-only pricing walkthrough
 
 For “display a USD reference price for this NVDA token”:
 
-1. Load the NVDA `trusted_product_marks` entry and require the requested **chain ID and full token address** to match. Resolve its `feed_address` to `chainlinkNvdaUsd`. If the token differs, stop: the ticker is not enough. Present the mapping's local-registry provenance.
-2. Explain that the packaged feed scale is eight decimals from publisher metadata, and the equity feed represents tokenized total-return value. A token balance has its own decimals and potentially display-unit conventions; do not assume either matches feed scaling.
-3. If current pricing is requested, follow [Safety](safety.md) and [public RPC guidance](integrations.md). Use bounded public reads to establish chain 4663 and a recent canonical head observation, recording block number/hash/time and retrieval time. Check head lag against current time under an explicit acceptable observation-lag bound for the use case; a provider's `latest` label alone does not prove recency. Then read `decimals()`, `description()` and `latestRoundData()` from the exact proxy at that same block. An old block with a then-fresh round is historical evidence, not a current price. If head recency cannot be established, label the result historical or recency-unverified. No wallet, impersonation, state override or state-changing simulation is needed; unavailable access never justifies inventing a price.
-4. Decode `answer` as a signed integer and retain exact integer/decimal arithmetic. For a USD price, a nonpositive answer, zero or future `updatedAt`, malformed result or failed read is unusable. Report both round age at the observation block and elapsed age at retrieval/current time; freshness at a historical block does not establish freshness now. Apply the identified consumer's block-time policy separately from current-display recency, market-session and corporate-action conditions. Successful RPC execution alone is not an acceptance check; no recorded policy or observation-lag bound means current suitability remains unresolved.
-5. Set `feed_decimals` to the successful `decimals()` result from the same proxy and observation block as `answer`, then divide by `10 ** feed_decimals`. Do not fall back to packaged eight-decimal metadata for a live answer. If the live scale conflicts with the package, stop current-price presentation and resolve the identity/configuration discrepancy before using it. **Synthetic arithmetic only:** if the answer were `12345678900` and the same-block decimals `8`, the reference mark would be `123.45678900 USD`. This is not an observed NVDA price. Show the round timestamp and block with any real observation; never apply a second corporate-action multiplier to the direct total-return feed mark.
-6. Keep an oracle reference mark separate from an executable token quote, liquidity, collateral backing or redemption rights. The `rialtoRouterRegistry` record and [Rialto registry documentation](https://docs.rialto.xyz/developers/router-registries.md) identify conversion infrastructure, not a current quote or permission to trade. Explain [game conversion limits](games.md) without connecting a wallet or preparing a transaction.
+1. **Match identity.** Require the requested chain ID and full token address to match NVDA's `trusted_product_marks`; resolve `feed_address` to `chainlinkNvdaUsd` and report local-registry provenance. A different token means stop, regardless of ticker.
+2. **Name units.** Packaged scale is eight decimals, publisher-sourced; equity value is tokenized total return. Token-balance decimals and raw/display conventions are separate.
+3. **Establish observation recency.** Under [Safety](safety.md) and [public RPC guidance](integrations.md#read-only-verification-workflow), use bounded public reads to confirm chain **4663** and a recent canonical head. Record block number/hash/time and retrieval time; check head lag against an explicit use-case bound. `latest` alone proves nothing. Read `decimals()`, `description()` and `latestRoundData()` from the exact proxy **at that same block**. An old block's then-fresh round is historical, not current. Unestablished head recency requires a historical/recency-unverified label; unavailable access never justifies an invented price, wallet, impersonation, state override or state-changing simulation.
+4. **Validate the round separately.** Decode signed `answer` with exact integer/decimal arithmetic. A nonpositive USD answer, zero/future `updatedAt`, malformed result or failed read is unusable. Report round age at the block **and** elapsed age at retrieval/current time. Apply the consumer's block-time policy separately from display recency, market sessions and corporate actions. RPC success is not acceptance; missing policy or observation-lag bound leaves current suitability unresolved.
+5. **Scale from the live read.** Divide `answer` by `10 ** feed_decimals`, using successful `decimals()` from the **same proxy and block**—never packaged eight-decimal fallback. A scale mismatch requires stopping current-price presentation until identity/configuration is resolved. **Synthetic only:** `12345678900` with same-block decimals `8` gives `123.45678900 USD`, not an observed NVDA price. Real observations need round timestamp and block; never add a second corporate-action multiplier.
+6. **Keep the mark's limits.** It is not an executable quote, liquidity, collateral backing or redemption right. `rialtoRouterRegistry` and [Rialto docs](https://docs.rialto.xyz/developers/router-registries.md) identify conversion infrastructure, not quotes or trading permission. Explain [game conversion limits](games.md) without wallet connection or transaction preparation.
 
-For a directory response, return the eight feed identities, exact stock-token relationships where recorded, quote/scale, provenance status and scoped consumer limits. For a focused request, return only the selected relationship and missing evidence. Never silently promote “not recorded” to “verified,” and never infer a current price from packaged metadata.
+**Answer scope:** a default directory response includes all 35 RWA roles, ETH/USD and USDG/USD, four NET source kinds, quote/scale, mapping/classification gaps and provenance boundaries. A focused response includes only the selected record, exact recorded relationship, consumer limits and missing evidence. Use targeted JSON lookups; neither “not recorded” nor packaged metadata establishes verification or a current price.
 
 ## Generation and activation traps
 
@@ -112,6 +171,6 @@ For a directory response, return the eight feed identities, exact stock-token re
 4. If permitted fresh read tools exist, check bytecode at a recorded block and inspect the relevant read-only state. Bytecode presence establishes only deployed code at that block—not ownership, intended function, activation or safety.
 5. For proxies, determine the relevant implementation and control roles at the same block; do not treat an implementation's verified source as proof of the proxy's current behavior.
 6. For claimed public ownership/control, use explicit source attribution or on-chain role evidence. Transfer history, funders and explorer labels alone do not prove a real person's identity.
-7. Link the exact public explorer record, explain what was checked and what was not, and preserve source/block dates. Never verify by connecting, approving, signing, deploying or transacting.
+7. Link the exact public record on RHScan using the validated chain and object identity, including for historical deployments or transactions. Explain what was checked and what was not, and preserve source/block dates and original evidence attribution. Never verify by connecting, approving, signing, deploying or transacting.
 
 The skill provides no keys, wallet connections, signing payloads, transaction execution or smart-contract safety warranty. See [Safety](safety.md).

@@ -1,6 +1,6 @@
 # Integrations and read-only data access
 
-Reviewed 2026-09-10. These are knowledge and data-source integrations, not installed connectors. The skill never connects a wallet, signs, prepares an executable transaction, or sends one. See [Safety](safety.md).
+Documentation/data reviewed 2026-09-10; dated announcement context added through 2026-09-12 (unpublished working update). These are knowledge and data-source integrations, not installed connectors. The skill never connects a wallet, signs, prepares an executable transaction, or sends one. See [Safety](safety.md).
 
 ## Capabilities, not subscription labels
 
@@ -24,11 +24,14 @@ The [official network documentation](https://docs.robinhood.com/chain/connecting
 - Mainnet chain ID **4663**; testnet **46630**. This address book is mainnet; do not cross-resolve the same address on testnet.
 - Native gas asset ETH. No gas or wallet is required for permitted RPC reads.
 - Public RPC: `https://rpc.mainnet.chain.robinhood.com`. Officially rate-limited and not recommended for production use.
-- Explorer: [Robinhood Chain Blockscout](https://robinhoodchain.blockscout.com/).
 - Alchemy: recommended provider, with free-account signup and provider-managed plans. The documented mainnet URL has the form `https://robinhood-mainnet.g.alchemy.com/v2/{API_KEY}`. The braces are documentation, not a credential to request from the user or expose to the model.
 - QuickNode, Blockdaemon, dRPC, and Validation Cloud are also listed providers. Obtain service capabilities, availability, limits, retention, and current pricing from the selected provider; do not assume parity.
 
 The same network page advertises wallet, gas-sponsorship, sequencer and write APIs. **Those are excluded from this skill.** Provider support does not grant permission to use them. Do not access credentials, create an account or activate billing for research. Provider plans are background information, not setup instructions. If an independently managed host service uses credentials, they must remain outside the model, package, source catalog and logs, scoped to the exact service origin/path and never forwarded across origins.
+
+For **all Robinhood Chain explorer navigation**, including historical addresses and transactions, return [RHScan](https://rh-scan.com/) links. This is the user-selected default, separate from the network documentation's historical Blockscout listing. Read `explorers["4663"]` in [addresses.json](../assets/addresses.json) and substitute only the exact validated chain-qualified address or transaction hash; a Morpho market ID is neither. Do not infer a chain or substitute an unrelated object when identity is missing.
+
+RHScan's public homepage and address/transaction UI shells and identity titles were observed on 2026-09-12, not dynamic balances, receipts or code. Its [API documentation](https://rh-scan.com/api-docs) says it is unfinished. Do not infer API endpoints, keys, limits or stability from UI routes, or move Blockscout API paths onto the RHScan hostname. Earlier Blockscout API readings remain explicitly historical source evidence with their actual URLs and dates in [sources.json](../assets/sources.json); they are not RHScan verification or default explorer guidance.
 
 ## Read-only verification workflow
 
@@ -63,7 +66,7 @@ The [Credit documentation](https://docs.netnet.capital/credit), read September 1
 - **Vault activity and CreditRouter activation are separate.** The page simultaneously reports live lending and says the router awaits the Safe's allocator grant. Preserve that distinction rather than declaring the entire product inactive or all app borrowing routes active.
 - Caps, rates, utilization, timelocks, oracle states and withdrawal liquidity need fresh verification. A weekend-stale equity feed can create gap risk; a fail-closed oracle can prevent liquidation as well as new borrowing.
 
-Use [Products](products.md) for more detail and [the address book](../assets/addresses.json) for exact contracts and market IDs. Morpho market IDs are 32-byte identifiers on a singleton, not standalone contract addresses.
+See [Credit's product terms](products.md#netnet-credit-a-curated-lender-not-a-replacement-loopback) and [router-status distinction](products.md#documented-market-operation-versus-interface-activation); exact contracts and market IDs live in [the address book](../assets/addresses.json). Morpho market IDs are 32-byte identifiers on a singleton, not standalone contract addresses.
 
 ## Pendle: the observed sNET market
 
@@ -84,11 +87,18 @@ The API's scaled accounting assets and original NET/sNET have different decimal 
 
 Separating principal and yield can broaden access to fixed token-unit exposure, variable rebase exposure, liquidity and yield price discovery. Those are mechanisms, not guaranteed incremental protocol cash revenue. Additional issuance, fee routing, market incentives, liquidity depth, rebase persistence, maturity and redemption risk determine outcomes. Pendle's existence does not prove a NetNet PT collateral market on Morpho or a new RWA strategy; verify any such integration separately.
 
+## Privy: historical WinNET onboarding
+
+The publisher [announced WinNET's Privy integration on July 27, 2026](https://x.com/NetNetCap/status/2081839101783974128); its [July 28 post](https://x.com/NetNetCap/status/2082190279764025712) described email-only onboarding, “completely gasless” play and crew-code referrals. This historical claim does not verify wallet architecture, sponsor, continuing subsidy, current configuration or availability. Sponsored gas removes a stated gas charge—not entry costs, NET taxes, market risk or authorization requirements. “Free money” does not establish cash: see [WinNET's draw-credit and grant-status conflict](games.md#winnet--pooled-staking-not-a-cash-preserving-lottery).
+
+**Research only:** no connector or permission to sign in, submit email, request an OTP, create an embedded wallet, use an authenticated session, claim referrals, invoke a sponsor/paymaster or play is added. Read public descriptions unauthenticated; do not test onboarding. Research needs no credentials, account setup or wallet action.
+
 ## Other material dependencies
 
 - [Rialto](https://rialto.xyz): equity execution described in the RWA Desk and games; an execution route is not a valuation guarantee.
 - [Chainlink](https://chain.link): documented equity/USDG oracle inputs, with market calendars, age limits and token corporate actions relevant to marks and liquidation.
 - [Uniswap](https://uniswap.org): the documented NET/USDG pool and protocol-owned liquidity; distinguish pool spot value from Core POL RFV.
 - Randomness and keeper/house services vary by game. Consult [Games](games.md); do not assume drand, VRF, a price-signing service and operator fairness are equivalent.
+- **NetNet RealTime Pricing Feed / Real Time Game Pricing Primitive:** historical names from the publisher's August 30/31, 2026 Runner posts. [Runner's source chronology and app rules](games.md#subway-runner) identify house-signed Hyperliquid-perpetual reports and report-selection/dispute limits—not Chainlink reference feeds, NET spot/TWAP or Loopback collateral marks. The name verifies no current signer, implementation, deployment or trustlessness.
 
 A named dependency is not an endorsement, independent audit, or a universally active deployment. Exact source and address evidence outranks branding.

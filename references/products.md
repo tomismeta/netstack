@@ -1,6 +1,6 @@
 # Products, claims and accounting boundaries
 
-**As of 2026-09-10:** the linked official documentation was actually read for this reference. “Documented live,” “deployed,” and “pending activation” below report publisher statements, **not independent live deployment or availability verification**. No current inventory, balances, interest rate, borrow health, market cap or permission was queried. Product names and historical opening dates do not prove today's interface can accept an order. Addresses and generation provenance belong in [addresses.json](../assets/addresses.json); [Official Channels](https://docs.netnet.capital/official-channels) is the direct official registry.
+**Evidence scope:** official documentation was read on **2026-09-10**, with Credit re-read and selected original announcements through **2026-09-12** incorporated in this unpublished working update. “Documented live,” “deployed,” and “pending activation” report publisher statements, **not independent live deployment or availability verification**. No current inventory, balances, interest rate, borrow health, market cap or permission was queried. Product names and historical opening dates do not prove today's interface can accept an order. Addresses and generation provenance belong in [addresses.json](../assets/addresses.json); [Official Channels](https://docs.netnet.capital/official-channels) is the direct official registry.
 
 **Questions answered:** What does a bond subscriber receive? Who owns the equities? Does the Treasury lend to Loopback or underwrite futures? Is nnUSDG cash? Why can an operating lending desk still have disabled borrowing controls? How are the two RWA Desk generations kept separate?
 
@@ -10,7 +10,7 @@
 |---|---|---|---|
 | Standard bonds | USDG or canonical NET/USDG v2 LP | Vesting NET claim | New NET issuance against reserve consideration, priced no lower than NAV. |
 | Staking / wrapper | NET → sNET; wrapped exposure in wsNET | Rebasing staked claim, or a fixed-unit wrapper of that claim | No new independent reserve pool; emissions enlarge staked NET claims subject to Core policy. |
-| Real World Bonds | USDG subscription | Vesting NET from pre-exercised Manager inventory, **not the purchased equity** | A specific USDG reserve remittance enters Treasury; equity proceeds go to the outside-Core Sleeve. |
+| Real World Bonds | USDG subscription | Vesting NET from Desk inventory, **not the purchased equity**; older docs use pre-exercised NET, September 12 announces bought NET | Documented reserve remittance and outside-Core equity purchase are separate; the new inventory path's remittance formula is unestablished. |
 | RWA Sleeve | Manager-custodied stocks and program receipts | Assets held by the Manager for stated protocol benefit | Not RFV, not NAV, and no automatic NET-holder redemption claim. |
 | Managed Futures test | tNET margin / tNET underwriting | Test trader balance or floating underwriting shares | No monetary value and no Core loss backstop. |
 | Loopback | wsNET collateral / USDG loans | Borrower debt and collateral; direct lenders' loan claims | Isolated Morpho credit, not Treasury-backed deposits. Taxed pool trades can separately generate Core fee flows. |
@@ -28,9 +28,9 @@ Staking converts NET into sNET; its balance grows with successful rebases. wsNET
 
 ## Real World Bonds and the RWA Sleeve
 
-### Economic flow
+### Historical documented economic flow
 
-The published Desk distributes NET that the Manager has already acquired through pTEAM exercise and deposited as Desk inventory. A subscription does **not itself create fresh NET supply** merely because it creates a vesting note. The earlier exercise and later distribution are separate accounting events. Subscriber USDG splits between:
+The older published Desk design distributes NET that the Manager has already acquired through pTEAM exercise and deposited as Desk inventory. This is a **generation-scoped description**, not proof of the September 12 bought-NET path's mechanics. A subscription does **not itself create fresh NET supply** merely because it creates a vesting note. The earlier exercise and later distribution are separate accounting events. In that documented design, subscriber USDG splits between:
 
 1. **Reserve remittance to Treasury**, described per NET as high-water backing minus the 1 USDG strike already contributed at exercise.
 2. **Rialto equity acquisition**, with the stock held in the team-custodied RWA Sleeve.
@@ -39,6 +39,8 @@ The published Desk distributes NET that the Manager has already acquired through
 The subscriber does not receive the purchased equity and has no documented proportional Sleeve redemption right. Do not book the whole USDG subscription as Core revenue, count an inventory transfer as a new mint, or count the earlier pTEAM strike twice. [RWA Desk](https://docs.netnet.capital/rwa-desk), [team](https://docs.netnet.capital/team), [Treasury §5](https://docs.netnet.capital/treasury).
 
 ### Prices, controls and inventory
+
+The following pricing, remittance and inventory controls describe the older published Desk design. Match them to a generation before treating them as present terms; the September 12 announcement does not restate or certify them for bought inventory.
 
 The documented Desk price is discounted TWAP. The launch discount is an historical configurable parameter; the published immutable upper bound is **7.5%**. A high-water-backing premium guard is documented at **1.20×**. The page alternates between saying subscriptions halt below the guard and saying the higher of price/floor binds; do not infer which deployed quoting/revert behavior resolves that wording without generation-specific evidence. A displayed launch “all-in advantage” is not a timeless return: vesting exposure, current discount, oracle state, inventory and the actual alternative trade's fee/slippage matter. [RWA Desk price and risk sections](https://docs.netnet.capital/rwa-desk).
 
@@ -52,11 +54,19 @@ The docs report the original Desk live since **2026-07-24**. The [official regis
 
 Consequently, keep inventory, menu, discounts, vesting-note IDs, purchase history, refill limits and high-water marks **generation-scoped**. The old Desk's state must not be substituted for the successor's state. V2's appearance in an application registry does not automatically establish that every older prose parameter is unchanged, nor does the official table's omission establish that V2 is nonexistent. Identify the conflict, retain historical V1 information and require matching generation evidence for a claim about present mechanics or availability.
 
+### September 12: Manager-funded bid and bought-NET inventory
+
+The [September 12 announcement](https://x.com/NetNetCap/status/2098803824282771690) says the **Manager's own balance sheet** will fund a standing NET bid at **2× NAV**, with purchased NET replacing newly minted Real World Bonds inventory. The publisher says later fills will fund Treasury and equity purchases without new supply, increasing backing per token. This is an **announcement**, not verified bid placement, purchases, Desk refills or NAV accretion.
+
+Buying and redistributing existing NET is neither a mint nor a burn. Funding capacity, venue, NAV definition/observation method, implementation and bought-inventory remittance formula remain unspecified. Do **not** carry forward `high-water backing − 1 USDG`: bought NET has no established pTEAM strike contribution. Preserve generation-scoped exercise, remittance and inventory records; require matched evidence for each new flow before calculating Core backing effects.
+
+The Manager bid is **not** the Core Treasury inverse bond (`0.985× NAV`, capacity-limited purchase and burn), PremiumSeller (bounded issuance/sale **above** a 2× NAV TWAP threshold), or Loopback's collateral mark. It establishes no unlimited floor, automatic redemption right or claim on Core funds: bought NET is announced as reusable inventory, not burned supply. See [Core mechanisms](protocol.md).
+
 ### Sleeve ownership, claims and risks
 
 The Sleeve is a dedicated, team-custodied Safe holding equities for the Manager's stated protocol-benefit mandate. Other programs can forward stocks not present on the Desk's purchase menu. No Sleeve asset counts in RFV or NAV; no Treasury reserve path is described as funding those equity purchases. Possible use to support backing or inverse bonds is **discretionary and social**, not automatic collateral or an enforceable cash redemption facility. [RWA Desk Sleeve](https://docs.netnet.capital/rwa-desk), [Treasury §§5–6](https://docs.netnet.capital/treasury).
 
-Credit adds a separate fact: the Sleeve is documented as the Credit vault's principal Stock Token borrower. Gross marked equity inventory is therefore not automatically unencumbered net value; distinguish custody, posted collateral, USDG debt, interest and withdrawability. A stock gain does not increase Core NAV unless a separately evidenced Core transfer occurs. Equity/issuer/redemption, feed, market-hours and team-custody risks remain even if Core backing is unchanged. [Credit](https://docs.netnet.capital/credit), [risks §12](https://docs.netnet.capital/risks). See [rwa-strategy.md](rwa-strategy.md) for portfolio interpretation.
+The Sleeve is also Credit's documented principal Stock Token borrower: gross marked equity is not necessarily unencumbered net value. Distinguish custody, collateral, USDG debt, interest and withdrawability; a stock gain affects Core NAV only through a separately evidenced Core transfer. Equity/issuer/redemption, feed, market-hours and team-custody risks remain. [Credit](https://docs.netnet.capital/credit), [risks §12](https://docs.netnet.capital/risks). See Strategy for [full Sleeve/social-support accounting](rwa-strategy.md#the-non-negotiable-accounting-boundary) and the [combined-assets forecast](rwa-strategy.md#september-11-forecast-treasury-plus-manager-sleeve-not-core-rfv).
 
 ## Managed Futures: real transactions, test economics
 
@@ -98,6 +108,10 @@ The read page reports a Morpho Vault V2 opening on **2026-09-09**, with its firs
 
 nnUSDG tracks the loan portfolio's assets: interest can increase its share value; uncovered loan losses can decrease it. A depositor owns shares, not an immediately redeemable unit of USDG or a claim on Core Treasury. Deposits are initially allocated to the Loopback liquidity adapter, and allocations can move to stock markets within caps. Withdrawal requests depend on available liquidity and repayments/reallocation; “withdraw at any time” does not mean instantly withdraw any amount. Zero utilization or an accrual ceiling can also make deposit returns differ from headline borrower rates. [Credit supply and risk sections](https://docs.netnet.capital/credit).
 
+**Promotional rates do not amend vault terms.** The [September 10 launch post](https://x.com/NetNetCap/status/2098062869686563068) advertises over 100% APR; the [Credit page](https://docs.netnet.capital/credit) specifies a **20%-per-year depositor accrual ceiling at deployment**, changeable by the allocator. No increase is established, and borrower rates differ from depositor accrual. Later posts claim [$800,000 deposited in under an hour](https://x.com/NetNetCap/status/2098076612864671941) and [over $1.1 million deposited “as collateral” in three hours](https://x.com/NetNetCap/status/2098122637511950522). Those differently labelled, timed claims prove neither current USDG supply/net assets nor earned income, cap changes or router activation.
+
+Published **USDG lending exposure caps**, not gross-collateral caps: wsNET $1 million; NVDA/SPCX $800,000 each; AAPL $600,000; GOOGL $400,000; MSFT/COIN $200,000 each. These dated parameters were not queried on chain or overridden by the deposit announcements.
+
 ### Claims, roles and conflicts of interest
 
 - The **team Safe** is owner and curator, with powers over roles, adapters, caps, fees and timelocks under the documented safeguards.
@@ -109,9 +123,9 @@ Sources: [Credit roles, fees and risks](https://docs.netnet.capital/credit). Cap
 
 ### Documented market operation versus interface activation
 
-The same page says the **CreditRouter is deployed but pending the Safe's allocator grant**. It reports Stock Token borrow buttons disabled until activation, while wsNET borrows directly on Morpho. Thus “the Credit desk is operating,” “a Stock Token loan has occurred” and “the retail Stock Token router is not activated” are compatible statements about different routes. Do not infer that the reported first Sleeve loan used the unactivated router, or that stock collateral is unavailable everywhere merely because the published app route is disabled. [Credit borrow section](https://docs.netnet.capital/credit), [official registry](https://docs.netnet.capital/official-channels).
+The [Credit page](https://docs.netnet.capital/credit) says the **CreditRouter is deployed but awaiting the Safe's allocator grant**, with Stock Token borrow buttons disabled until activation; wsNET borrows directly on Morpho. Operating lending and a reported first Sleeve loan therefore do not establish retail-router activation, while disabled app controls do not establish that stock borrowing is unavailable by every route. The first loan's use of the pending router is not established. [Official registry](https://docs.netnet.capital/official-channels).
 
-The router is described as holding no independent funds or position, posting collateral for a borrower and moving vault liquidity from Loopback to a listed stock market within fixed bounds. That description does not establish the missing allocator permission. Current availability requires independent evidence of grants, liquidity, caps and oracle state; it is not resolved by the existence of an address.
+The router is described as holding no independent funds or position, posting borrower collateral and moving vault liquidity from Loopback to a listed stock market within fixed bounds. An address and this design do not establish permission; current availability needs evidence of allocator grants, liquidity, caps and oracle state.
 
 ### Oracle and liquidation risks
 

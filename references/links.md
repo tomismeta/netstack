@@ -1,6 +1,10 @@
 # Direct application, dashboard and chart links
 
-Verified as public source/navigation destinations on 2026-09-10. These are **reference links**, not instructions or authorization for the agent to use their wallet controls. No wallet was connected and no transaction/signature was attempted while collecting them.
+Baseline public source/navigation destinations reviewed on 2026-09-10; RHScan navigation observations are dated 2026-09-12 below. These are **reference links**, not instructions or authorization for the agent to use their wallet controls. No wallet was connected and no transaction/signature was attempted while collecting them.
+
+## Robinhood Chain explorer
+
+Use **[RHScan](https://rh-scan.com/)** for all returned Robinhood Chain explorer links, including current and historical contracts, public-role addresses, implementations and transactions. Resolve the exact validated chain **4663** plus address or transaction hash through `explorers["4663"]` in [addresses.json](../assets/addresses.json); never use a Morpho market ID as an address. The public homepage and address/transaction UI shells and identity titles were observed on **2026-09-12**, not live balances, receipts or code. [API documentation](https://rh-scan.com/api-docs) is unfinished; UI routes are not an API contract. Historical Blockscout retrieval origins remain attributed in [sources.json](../assets/sources.json), not recommended navigation or RHScan evidence.
 
 ## Analytics and charts
 

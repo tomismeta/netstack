@@ -1,5 +1,9 @@
 # RWA / RW-Play strategy
 
+## August 4: Why NET Will Win
+
+The [August4 original article](https://x.com/NetNetCap/status/2084731956076466616), text reviewed September12, argues for combining attention-driven token distribution with reserve accumulation and a separately disclosed RWA Sleeve. It discusses trading fees, bonds, buybacks, Manager incentives and historical founding/holding figures. Those mechanics are explained with their actual qualifications in [Protocol](protocol.md) and [Products](products.md); the essay's broad claims about unbacked assets, one-way backing and permanent floors are publisher opinions, not new invariants or verified current financial statements.
+
 ## August 8: RW-Play thesis
 
 **NetNet Capital, "RW-Play is the Next Meta," published and updated August 8, 2026.** Full article read through the public X page on September 10, 2026.
@@ -11,9 +15,50 @@ This is the substantive long-form RW-Play source, not the [September 6 game-laun
 
 The following is an original summary of the article, not an endorsement or an independently verified market forecast. Do not redistribute the full article or interview recordings merely because they are publicly accessible.
 
+### Thesis: use tokenized stocks, do not merely store them
+
+The author argues that earlier crypto cycles rewarded venues that made a new asset primitive useful, rather than merely holding it. The proposed new primitive is programmable tokenized equity; RW-Play means using those assets as functional components of games, desks, escrow, prizes and player books.
+
+The article contrasts that with passive vaults/wrappers and custody businesses. It cites earlier ICO, DeFi, NFT, play-to-earn and memecoin cycles as analogies, and frames the opportunity as an activity venue that captures economic value. Its historical market-size statistics and growth forecasts are the author's dated claims; they were not independently re-audited for this package and are not needed to explain the mechanism.
+
+The author's comparison with Axie and pump.fun is a strategic analogy, not proof that tokenized stocks remove economic fragility. Real collateral can still lose value, become illiquid, face issuer restrictions, or support a negative-expected-value game.
+
+### The four products discussed in August
+
+| Article example | Mechanism it uses to illustrate the thesis | Important qualification |
+|---|---|---|
+| Superstore | A stock-themed box buys equity into escrow; a public randomness round determines an outcome involving NET or the stock | Payout tables, fees, inventory, refund policy and current implementations require the product documentation |
+| CLIMB, INC. | A player's corporate-career book combines NET purchases and tokenized-equity exposure; outcomes redistribute the book and jackpot | Escrow, player claims, failure payouts and reserve flows are not all owned Treasury assets |
+| WinNET | Prize draws provide recurring activity backed by disclosed randomness | Draw prizes are not equivalent to venue profit or positive player expected value |
+| Real World Bonds | Subscriber USDG obtains discounted vested NET while funding equity purchases and a reserve remittance | The sleeve holding equities is outside Core RFV; backing-neutral issuance is not automatic equity backing |
+
+The article supplies cumulative boxes, careers, prizes, subscriptions, Rialto fills and sleeve-value figures as of August 8. Those are historical author-reported observations, not current totals. Do not reuse them in a live answer without rechecking the underlying records.
+
+For current documented mechanics use [Games](games.md), [Products](products.md), [RWA Desk](https://docs.netnet.capital/rwa-desk), and [Treasury](https://docs.netnet.capital/treasury).
+
+### Claimed value path—and what must actually be measured
+
+The article connects product activity with NET demand, trading-fee inflows, product remittances, staked player books and tokenized-equity accumulation in the sleeve. It suggests these can grow reserves or reduce immediately tradable float.
+
+Treat that as a set of separable claims, not one "flywheel" metric:
+
+1. **User expenditure and execution:** identify the actual input asset and route for each product. Later games need not share the August catalog's NET-purchase path.
+2. **Core revenue:** identify cash/value that reaches the Treasury and its fees versus principal or other inflows. Gross volume is not revenue.
+3. **Sleeve accumulation:** identify equities or fees actually owned by the Manager's sleeve. Player escrow, collateral posted elsewhere, debt proceeds and unclaimed liabilities require separate accounting.
+4. **NET supply and float:** token purchases, temporary staking, permanent burns and newly issued rewards affect different quantities. Reduced liquid float does not guarantee a higher price or long-run return.
+5. **NET-holder outcome:** evaluate backing per token, dilution, price paid, liquidity, custody, costs and risks rather than assuming any venue activity mechanically benefits every holder.
+
+The article's "every product feeds the fund" language is a strategic description of its then-current catalog. It is not a substitute for per-program routing, source code or same-block accounting. A fee to the RWA Sleeve is not automatically a fee to the Core Treasury.
+
+### Endorsement and strategy caveats
+
+The article describes conversations with Robinhood as the author's **characterization, not a quotation**. Do not turn that into an official endorsement, partnership announcement, guarantee, or independent validation. The [Robinhood Chain ecosystem page](https://docs.robinhood.com/chain/) separately disclaims endorsement of listed third-party protocols.
+
+The thesis depends on adoption, repeat demand, sustainable venue economics, tokenized-asset availability, issuer/custody terms, execution depth, trustworthy settlement and transparent value routing. Games also have player-loss, randomness/house-service and regulatory risks. Present these alongside the strategic argument, not as a generic disclaimer after a guaranteed-profit claim.
+
 ## September 8: The NetNet FY-HI Addendum
 
-The user also supplied [this September 8 post](https://x.com/NetNetCap/status/2097408605486244249), containing **\"The NetNet FY-HI Addendum.\"** Its full visible text was read September 10. It is a separate, later capital-deployment proposal, not a replacement for the August thesis.
+NetNet Capital's [September 8 post](https://x.com/NetNetCap/status/2097408605486244249), **"The NetNet FY-HI Addendum,"** was read in full visible text September 10. It is a separate, later capital-deployment proposal, not a replacement for the August 8 thesis.
 
 The addendum proposes an income-producing sleeve book rather than relying solely on new bond subscriptions:
 
@@ -42,40 +87,16 @@ The following are research checks, not instructions to operate the proposed book
 
 The [September 10 Credit documentation](https://docs.netnet.capital/credit) provides later evidence of a live vault and initial Stock Token borrowing, while still marking the auxiliary CreditRouter pending activation. That does not prove the full September 8 LP/maker/wrapper/buyback program has been implemented.
 
-## Thesis: use tokenized stocks, do not merely store them
+## September 11 forecast: Treasury plus Manager Sleeve, not Core RFV
 
-The author argues that earlier crypto cycles rewarded venues that made a new asset primitive useful, rather than merely holding it. The proposed new primitive is programmable tokenized equity; RW-Play means using those assets as functional components of games, desks, escrow, prizes and player books.
+The [September 11 post and chart](https://x.com/NetNetCap/status/2098506509508579787) present the publisher's conditional path to **$100 million in total assets around October 17**. The chart explicitly combines **Treasury + Manager Sleeve**, starts from a reported **$17.7 million** snapshot, and assumes a sustained **4× premium and bond demand**. Its caption excludes projected RW-Play expansion and FY-HI increases. This is a separate model from the September 8 FY-HI income proposal above, not an observed reserve balance, guaranteed timetable, independently reconciled net portfolio value or Core NAV forecast.
 
-The article contrasts that with passive vaults/wrappers and custody businesses. It cites earlier ICO, DeFi, NFT, play-to-earn and memecoin cycles as analogies, and frames the opportunity as an activity venue that captures economic value. Its historical market-size statistics and growth forecasts are the author's dated claims; they were not independently re-audited for this package and are not needed to explain the mechanism.
+When a social post says “Treasury” or “NetNet Capital Management Treasury,” identify its perimeter. Core RFV, gross Manager/Sleeve assets, net assets after debt, loan collateral, game escrow and market capitalization are different quantities.
 
-The author's comparison with Axie and pump.fun is a strategic analogy, not proof that tokenized stocks remove economic fragility. Real collateral can still lose value, become illiquid, face issuer restrictions, or support a negative-expected-value game.
+- The [August 23 Quarterly Earnings Report](https://x.com/NetNetCap/status/2091525781000434080) reports **$2,623,048 total assets**: **$1,731,516 floor-valued on-chain reserves + $891,532 RWA Sleeve**, with **$34.85 on-chain versus $52.79 sleeve-inclusive NAV per share**. Sleeve-inclusive NAV is the author's presentation, not Core backing. Its chain-measured, historical fairness, no-bad-debt and backing-growth assertions remain attributed claims, not independent audits or future invariants. Full article text was reviewed; images and linked media were not separately reviewed.
+- The [September 5 $12.5 million](https://x.com/NetNetCap/status/2096384932318982345) and [September 12 over-$16-million](https://x.com/NetNetCap/status/2098759779816440250) Treasury valuations have unresolved Core/Sleeve scope and no reconciliation to the September 11 combined chart. Do not infer gains, losses or Core reserve changes by subtracting differently scoped headlines.
 
-## The four products discussed in August
-
-| Article example | Mechanism it uses to illustrate the thesis | Important qualification |
-|---|---|---|
-| Superstore | A stock-themed box buys equity into escrow; a public randomness round determines an outcome involving NET or the stock | Payout tables, fees, inventory, refund policy and current implementations require the product documentation |
-| CLIMB, INC. | A player's corporate-career book combines NET purchases and tokenized-equity exposure; outcomes redistribute the book and jackpot | Escrow, player claims, failure payouts and reserve flows are not all owned Treasury assets |
-| WinNET | Prize draws provide recurring activity backed by disclosed randomness | Draw prizes are not equivalent to venue profit or positive player expected value |
-| Real World Bonds | Subscriber USDG obtains discounted vested NET while funding equity purchases and a reserve remittance | The sleeve holding equities is outside Core RFV; backing-neutral issuance is not automatic equity backing |
-
-The article supplies cumulative boxes, careers, prizes, subscriptions, Rialto fills and sleeve-value figures as of August 8. Those are historical author-reported observations, not current totals. Do not reuse them in a live answer without rechecking the underlying records.
-
-For current documented mechanics use [Games](games.md), [Products](products.md), [RWA Desk](https://docs.netnet.capital/rwa-desk), and [Treasury](https://docs.netnet.capital/treasury).
-
-## Claimed value path—and what must actually be measured
-
-The article connects product activity with NET demand, trading-fee inflows, product remittances, staked player books and tokenized-equity accumulation in the sleeve. It suggests these can grow reserves or reduce immediately tradable float.
-
-Treat that as a set of separable claims, not one "flywheel" metric:
-
-1. **User expenditure and execution:** identify the actual input asset and route for each product. Later games need not share the August catalog's NET-purchase path.
-2. **Core revenue:** identify cash/value that reaches the Treasury and its fees versus principal or other inflows. Gross volume is not revenue.
-3. **Sleeve accumulation:** identify equities or fees actually owned by the Manager's sleeve. Player escrow, collateral posted elsewhere, debt proceeds and unclaimed liabilities require separate accounting.
-4. **NET supply and float:** token purchases, temporary staking, permanent burns and newly issued rewards affect different quantities. Reduced liquid float does not guarantee a higher price or long-run return.
-5. **NET-holder outcome:** evaluate backing per token, dilution, price paid, liquidity, custody, costs and risks rather than assuming any venue activity mechanically benefits every holder.
-
-The article's "every product feeds the fund" language is a strategic description of its then-current catalog. It is not a substitute for per-program routing, source code or same-block accounting. A fee to the RWA Sleeve is not automatically a fee to the Core Treasury.
+**Historical attribution conflict:** the [September 3 post](https://x.com/NetNetCap/status/2095583929910919241) forecasts over $100,000 that day in MSFT equity for the “NetNet Capital Management Treasury.” Its reviewed caption says “this game” without naming it; do not invent attribution from unseen quoted material. The [September 4 post](https://x.com/NetNetCap/status/2095765186158436698) separately claims $185,000 of “Treasury” fees from Button, Subway Runner and Board Meeting; it does not prove the preceding forecast was realized. Both remain publisher claims, not verified Core earnings. [Board Meeting](https://docs.netnet.capital/the-board-meeting) routes house fees to **Manager/Sleeve**, [Button](https://docs.netnet.capital/the-button) routes its non-pot leg to **Sleeve**, and Runner's complete deployed routing remains unresolved in [Games](games.md). Do not resolve broad social terminology into a Core transfer or reconciled fee total.
 
 ## The non-negotiable accounting boundary
 
@@ -87,7 +108,15 @@ The [RWA Desk disclosure](https://docs.netnet.capital/rwa-desk) and [Treasury re
 - Gross tokenized stock value is not net sleeve equity. Borrow debt, cash, owned LP assets, posted collateral and claims must be scoped without double counting.
 - A reserve floor, contract invariant or standing bid is not an insurance policy against custody, code, stablecoin, market or liquidity losses.
 
-Do not add tokenized equities to Core NAV because the article calls the strategy an RWA accumulation fund.
+Do not add tokenized equities to Core NAV because the August 8 article calls the strategy an RWA accumulation fund.
+
+## September 12 Manager bid: a new announced inventory path
+
+The [September 12 announcement](https://x.com/NetNetCap/status/2098803824282771690) describes a **Manager-funded 2× NAV bid** supplying bought NET to the Real World Bonds Desk. This is inventory for redistribution, not FY-HI's conditional weekly repurchase-and-burn proposal or a Core support mechanism. Execution and the claimed backing benefit are unverified; no unlimited floor or automatic redemption follows. See [Products: Manager bid and bought inventory](products.md#september-12-manager-funded-bid-and-bought-net-inventory) for unresolved funding/NAV/remittance terms and the historical pTEAM distinction.
+
+## Builder direction and the abandoned launchpad proposal
+
+The **August 7 launchpad proposal was rejected on August 18**; it is not a current roadmap commitment or a change to Core issuance/rebasing. The August 15 Developer Portal and August 23 Cabinet Kit disclosures describe distinct builder stages, not proof of a generally available SDK or deployed roadmap products. See [Builders: availability](builders.md#where-is-cabinet-kit) and [proposed concepts](builders.md#keep-the-announced-concepts-separate) for evidence and economics; [History](announcements-and-history.md) retains the dated launchpad sources.
 
 ## Morpho and Pendle in the broader strategy
 
@@ -95,15 +124,9 @@ The [September Credit disclosure](https://docs.netnet.capital/credit) adds a dis
 
 Pendle's observed sNET market separates token-denominated principal and future yield. It provides another way to express NET yield exposure but is not proof that the RW-Play article promised Pendle, or that PT-sNET is currently accepted as collateral in a NetNet lending market. See [Integrations](integrations.md) for evidence and maturity.
 
-## Endorsement and strategy caveats
-
-The article describes conversations with Robinhood as the author's **characterization, not a quotation**. Do not turn that into an official endorsement, partnership announcement, guarantee, or independent validation. The [Robinhood Chain ecosystem page](https://docs.robinhood.com/chain/) separately disclaims endorsement of listed third-party protocols.
-
-The thesis depends on adoption, repeat demand, sustainable venue economics, tokenized-asset availability, issuer/custody terms, execution depth, trustworthy settlement and transparent value routing. Games also have player-loss, randomness/house-service and regulatory risks. Present these alongside the strategic argument, not as a generic disclaimer after a guaranteed-profit claim.
-
 ## How to answer strategy questions
 
-- State whether the question concerns the August 8 RW-Play thesis, September 8 FY-HI deployment proposal, or current observed operations.
+- State whether the question concerns the August 8 RW-Play thesis, September 8 FY-HI proposal, September 11 combined-assets forecast, September 12 Manager-bid announcement, or current observed operations.
 - Explain the relevant programmable-equity, venue-economics or sleeve-income argument without merging their publication dates.
 - Connect each concrete mechanism to the matching current product source.
 - Separate author-reported historical figures, subsequently documented developments and your own interpretation.

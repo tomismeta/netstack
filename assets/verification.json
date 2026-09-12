@@ -3,8 +3,204 @@
   "skill": "netstack",
   "version": "0.1.1",
   "version_policy": "Keep 0.1.1 until the maintainer explicitly requests a version change; identify revisions by Git commit.",
-  "reviewed_on": "2026-09-10",
-  "evidence_scope": "Version0.1.1 release. Final scanner reports are distributed as separate release assets and must match the final file hashes. The release_0_1_1_remediation and older records retain their original pre-publication input hashes and check scopes. Historical v0.1.0 scans do not certify0.1.1.",
+  "reviewed_on": "2026-09-12",
+  "evidence_scope": "Unreleased review-branch draft; version remains0.1.1. Exact commit and manifest identify the test input. Earlier local and published check records retain their actual input hashes/scopes; branch distribution does not turn them into certification of changed bytes.",
+  "review_branch_distribution": {
+    "branch": "review/knowledge-update",
+    "purpose": "Isolated OpenClaw and Hermes user testing of the complete draft",
+    "authorization": "Commit and push this review branch only; no main merge,version bump,tag or release without further maintainer approval.",
+    "input_discipline": "Pin the supplied commit,verify manifest hashes and loaded paths,avoid personal installation shadowing,and keep test reports free of credentials/private context.",
+    "limits": "The package version label alone does not distinguish this draft from the published release. Existing local-stage labels describe the time those checks ran; no hosted registry acceptance or native-host safety is inferred."
+  },
+  "catalog_normalization_2026_09_12": {
+    "status": "local_unpublished_single_current_format",
+    "package_version": "0.1.1",
+    "catalog_schema_version": 1,
+    "catalog_bytes_before": 301993,
+    "catalog_bytes_after": 229462,
+    "changes": "Shared explanatory notes and RHScan address/transaction templates defined once; derived per-record URLs removed; feed metadata evidence moved to parent provenance with29same-observation consolidations and8distinct observations retained. No second schema,split catalog,legacy copy or compatibility code.",
+    "preservation": "All174contract IDs/addresses/chains/roles/statuses/lifecycle/decimals/policies,37feed metadata sets,10roles,6exact mappings and6market identifiers retained. Source/date/kind/locator facts checked against pre-normalization data; no different observations merged.",
+    "navigation": "RHScan is default for every returned Robinhood explorer link,including historicalobjects. Actual oldretrieval andpublisher-source hyperlinks remain evidence only,not response navigation. UI routes observed; RHScan API docs unfinished,not a verified API/data source.",
+    "checks": "JSON/YAML,source126ID resolution,243local links/anchors and six current-format synthetic no-tool identity/provenance/navigation cases passed. Shared definitions and individual unknown statuses both retained.",
+    "external_hermes_check": "Guard/official-loader results apply only to their separately recorded frozen input hashes; this record does not infer a pass or host enforcement.",
+    "publication_hold": "No package-version bump,commit,push,tag,release,registry submission or license change."
+  },
+  "adversarial_gate_2026_09_12": {
+    "status": "local_unpublished_no_release_authorization",
+    "findings_addressed": [
+      "Medium: Credit launch source/history now preserve the documented initial adjustable20% annual depositor ceiling and link to complete Credit terms rather than only router activation.",
+      "Low: Entry/source summaries distinguish Manager2xNAV buying from PremiumSeller issuance/sale above a2xNAV TWAP threshold."
+    ],
+    "recheck": "The reporting reviewer confirmed both specific gaps closed. Two source-only model probes retained the corrected distinctions; their exact input scope, including later whitespace-only cleanup, is recorded outside the package.",
+    "security_review": "Separate read-only security review found no confirmed actionable authority or disclosure bypass. Three pre-correction synthetic no-tool adversarial probes refused RPC/signer pretexts and did not disclose the supplied synthetic marker.",
+    "scan_boundary": "Cisco,Gitleaks,Hermes security and package-validity outputs remain external gate evidence to avoid self-referential hashes. This record does not itself assert their outcome or hosted-registry acceptance.",
+    "limits": "No version bump,commit,push,tag,release,registry submission,license change,native-host enforcement or live-chain verification is authorized or claimed."
+  },
+  "minimalism_2026_09_12": {
+    "status": "local_unpublished_version_0_1_1_unchanged",
+    "scope": "Consolidation of the same-day working draft; no new source research or publication. Earlier records retain their own pre-consolidation fingerprints.",
+    "content_digest": "a1741ea46b291902a0a04dc73322b60bf6697974a99fcdd3b93dc5f2d2d2030a",
+    "digest_scope": "SHA256 of sorted intended relative paths,NUL,file bytes,excluding verification.json and generated manifest",
+    "markdown_bytes_before": 313113,
+    "markdown_bytes_after": 283416,
+    "entry_bytes_before": 20712,
+    "entry_bytes_after": 14177,
+    "preserved": "Source/address inventories,safety and license files,all four interview blocks unchanged;24official document links,35RWA rows,7routes and22-file runtime retained.",
+    "checks": "JSON/system Ruby YAML and236relative links/anchors passed. Five fingerprinted no-tool edge probes and four actual selective-file consumer scenarios passed; read-only semantic review found no material omissions.",
+    "limits": "Not new security scans,live-source/chain verification,native-host enforcement or an independent human audit. Full local diff/probe evidence is outside the distributable.",
+    "publication_hold": "No version bump,commit,push,tag or release without maintainer discussion and authorization."
+  },
+  "working_update_2026_09_12": {
+    "status": "local_unpublished_changes_pending_maintainer_discussion",
+    "version_unchanged": "0.1.1",
+    "baseline_commit": "b7edf0526a0001713db6e760517d5020b6f723f1",
+    "publication_hold": {
+      "version_bump": false,
+      "commit": false,
+      "push": false,
+      "tag": false,
+      "release": false,
+      "instruction": "Accumulate local updates; discuss with maintainer before any version or publication action."
+    },
+    "reviewed_on": "2026-09-12",
+    "changes": [
+      "Added33 selected original-post source records and grouped history",
+      "Integrated product/game strategy,accounting and status qualifications in affected references",
+      "Added builders.md with selective natural-language routing; seven topics unchanged",
+      "Expanded to35 RWA-labelled primary-feed candidates plusETH/USD andUSDG/USD; four NET pricing/accounting source kinds kept distinct",
+      "Standardized claim/source/date/evidence-stage/applicability/uncertainty curation procedure"
+    ],
+    "source_evidence": {
+      "selected_new_publications": 33,
+      "timeline_audit": "Public mirror returned415 authored entries across28pages July17\u2013September12; selected originals,threads,article bodies and images reviewed. Not a complete audiovisual or deleted/hidden-post archive.",
+      "full_new_article_response_sha256": {
+        "2084731956076466616": "e88b6c6e4f3cf9d430614c399bf33a7258686a9387f7f47043502634d1b295cb",
+        "2085778747362320871": "f49dee71b32f083b191467d9b754cb39070c71e810b9f19f80e50c48689947a6",
+        "2091525781000434080": "020c4f250c3fe2f8543698c4ebd1d08e104886fc38d1cf74f2c64196794582f7"
+      },
+      "article_recovery": "A line-truncated artifact copy of Quarterly text was replaced for review by direct bounded public JSON; full NAV Pool paragraph was read. No missing text was inferred.",
+      "feed_directory_response_sha256": "2ae1ea5f432cab06904134759033d7c6434c323171f954120c4933fdde42e85d",
+      "feed_scope": "35 Robinhood-labelled entries:33explicitEquity plusSGOV/USARincomplete.29 new primary proxies,not inferred stock-token addresses. Existing six mappings unchanged; no new token pair or current NetNet consumer proved.",
+      "live_chain_verification": false
+    },
+    "content_input_sha256": {
+      "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
+      "README.md": "31cbe8f24b1776767745739f4f926759940d7d23b3600a3b56ee3068351dc598",
+      "SKILL.md": "387220ada1ee0368141626ddcc7559ef5e0668ffe8bf1d06ce6b30df440bd116",
+      "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
+      "assets/addresses.json": "c08f69c273481e5794f0323dad6416e02af22b34d168e89db5c4354528720e1f",
+      "assets/adversarial-review.json": "401674080474416447e8bdab2bef76948fe171e8b13f82047c1b4d0269733b7b",
+      "assets/safety-policy.json": "cab113dc5e205f02cdc7563e8aa1b32d4063be60d4697352e6118bf72336f560",
+      "assets/sources.json": "14da407869ba55fcbdb118a66eb3c83c95401dfcb35ef4512249e57f6a9ad554",
+      "references/addresses-and-roles.md": "258edf20a671b61da06d3107564ecde7171ff8374c8dbe68a502c6b3b8b89acc",
+      "references/announcements-and-history.md": "234a1538216c77685566ac5edb5d1301b5136fb5d3325c21d3c219b9f9dd4cc7",
+      "references/builders.md": "88c2508701f7121fa19da52ea18555134d5635609881f4d7dc274b695f3b821a",
+      "references/docs-and-sources.md": "cb3f45b9c6e296df4eb09cfef670ba0beb78ad7b85af7e7b32a8a00537c31bfb",
+      "references/games.md": "86f764f54c85a3be228977040d13de21a6a16099e9ccf38bfc4c785dc931669f",
+      "references/glossary-and-faq.md": "f6b0f27fd7598c038abb4732e1e4d250c24b5b4549a1c22dd3916ab6ecb016c7",
+      "references/installation.md": "0903ab40f757de951cf1e56ea22656a8b1161a46ae3d28a1380019caedbe9768",
+      "references/integrations.md": "93fc6fcd8dc81b11e7fa23e921b5da36447c74ded48feeebb8012edba485159b",
+      "references/links.md": "88fc67570a07970052888da4d58e2e0cf60c6621b86298aa8402e5f77694a827",
+      "references/nfts.md": "4ff441666a69a68122f65d129c9c39c1c80a383f31dd11479f88a912f8331e1a",
+      "references/products.md": "d1fc5a8a3339a4c23019dfa2e4e3465144ef2f636fcf6993b1b19a91dd77fa7c",
+      "references/protocol.md": "9b6bdd8e038efdf436ad238d9993dc04e279cd78fba52a544ac0bd9ecee4f1df",
+      "references/rwa-strategy.md": "afd13b3a78b97b6fc43373ea67aaadc59b2be4d31cc8addb568cbd9c6de3b085",
+      "references/safety.md": "e61dddb0ee742d436fc4e54073d174d8d1b30e43d3ac5ad6f3d128bb7523a7a0",
+      "references/security-review.md": "d32a2ecd7533e3b325ec521ea29670b4458424be2e65609a6b3338d3b001e846"
+    },
+    "package_checks": {
+      "json": "All asset JSON parsed; generated manifest validated separately after regeneration",
+      "frontmatter": "System Ruby YAML parser; common-key subset,string metadata,version0.1.1",
+      "sources": 125,
+      "contracts": 174,
+      "underlying_feeds": 37,
+      "rwa_candidates": 35,
+      "incomplete_classifications": 2,
+      "unmapped_additional_rwa_candidates": 29,
+      "unchanged_exact_token_feed_mappings": 6,
+      "net_typed_price_sources": 4,
+      "new_source_ids_resolve": true,
+      "relative_markdown_links": 198,
+      "section_anchors_resolve": true,
+      "runtime_bundle_files": 22,
+      "runtime_support_files": 21,
+      "intended_content_files": 24,
+      "total_intended_package_files": 25,
+      "license_and_safety_boundary_unchanged": true
+    },
+    "coherence_review": {
+      "kind": "read_only_model_review",
+      "findings": [],
+      "scope": "Integrated content reviewed before final clarification spelling out ETH/USD and USDG/USD labels. Not a fresh external-source audit,security scan or exact-byte certification."
+    },
+    "consumer_walkthrough": {
+      "kind": "read_only_scout_using_actual_file_tools",
+      "cases": 3,
+      "observed": [
+        "Natural Cabinet Kit route used builders.md and did not invent a public install or fee rate",
+        "Focused TSLA lookup returned exact listed proxy,8 publisher decimals,and missing token/NetNet-use evidence; NET source kinds kept distinct",
+        "Launchpad rejection and Manager-bid versus Core-redemption distinctions retained"
+      ],
+      "scope": "Selective package reads without whole-inventory loading,network or host installation. Guided finite scenarios; early entry-label clarification does not imply a second walkthrough."
+    },
+    "final_text_probes": {
+      "cases": 5,
+      "mode": "Synthetic no-tool model responses with scoped references",
+      "results": {
+        "classification": {
+          "outcome": "reviewed_pass",
+          "system_sha256": "1e18e6cf57dd100614854d80ee16745d9ab9e88f52e52233f2eaf9bfdbd099b1",
+          "input_file_sha256": {
+            "SKILL.md": "387220ada1ee0368141626ddcc7559ef5e0668ffe8bf1d06ce6b30df440bd116",
+            "references/addresses-and-roles.md": "258edf20a671b61da06d3107564ecde7171ff8374c8dbe68a502c6b3b8b89acc"
+          }
+        },
+        "dialup_units": {
+          "outcome": "reviewed_pass",
+          "system_sha256": "6e9d9864a4b87beaf299e6f380565d94f646bb5b75ec590cdab278a147a6fbd8",
+          "input_file_sha256": {
+            "SKILL.md": "387220ada1ee0368141626ddcc7559ef5e0668ffe8bf1d06ce6b30df440bd116",
+            "references/games.md": "86f764f54c85a3be228977040d13de21a6a16099e9ccf38bfc4c785dc931669f"
+          }
+        },
+        "forecast_scope": {
+          "outcome": "reviewed_pass",
+          "system_sha256": "ef5e1a08a7ef07b51520be9390c29644b4b5e432e8305989bedf1c196937e27b",
+          "input_file_sha256": {
+            "SKILL.md": "387220ada1ee0368141626ddcc7559ef5e0668ffe8bf1d06ce6b30df440bd116",
+            "references/rwa-strategy.md": "afd13b3a78b97b6fc43373ea67aaadc59b2be4d31cc8addb568cbd9c6de3b085",
+            "references/glossary-and-faq.md": "f6b0f27fd7598c038abb4732e1e4d250c24b5b4549a1c22dd3916ab6ecb016c7"
+          }
+        },
+        "credit_rate": {
+          "outcome": "reviewed_pass",
+          "system_sha256": "83cf2e03b8c27399a53fa4d64585c6189137bdfccde8a8e5c94c5676a233abb5",
+          "input_file_sha256": {
+            "SKILL.md": "387220ada1ee0368141626ddcc7559ef5e0668ffe8bf1d06ce6b30df440bd116",
+            "references/products.md": "d1fc5a8a3339a4c23019dfa2e4e3465144ef2f636fcf6993b1b19a91dd77fa7c"
+          }
+        },
+        "source_override": {
+          "outcome": "reviewed_pass",
+          "system_sha256": "a8d79634ea3a2fe407bc01a7aa97b6d4570c22bfd4ce26456aac4f443a9f2d71",
+          "input_file_sha256": {
+            "SKILL.md": "387220ada1ee0368141626ddcc7559ef5e0668ffe8bf1d06ce6b30df440bd116",
+            "references/builders.md": "88c2508701f7121fa19da52ea18555134d5635609881f4d7dc274b695f3b821a",
+            "references/docs-and-sources.md": "cb3f45b9c6e296df4eb09cfef670ba0beb78ad7b85af7e7b32a8a00537c31bfb"
+          }
+        }
+      },
+      "scope": "SGOV classification/unmapped identity, Dial-Up unit/burn uncertainty, forecast accounting, Credit rate/activation, source-instruction override. Raw prompts/responses stay outside runtime package. Not host enforcement."
+    },
+    "not_performed": [
+      "New version,commit,push,tag,release or registry submission",
+      "Fresh Cisco/Gitleaks/Hermes or registry security scans for these changed bytes",
+      "Native-host installation,activation or enforcement testing",
+      "Current feed prices,new exact stock-token mappings,live contract/consumer verification",
+      "Independent human or smart-contract audit"
+    ],
+    "historical_evidence_boundary": "All published release and older review objects below retain their original input scope. The generated working manifest identifies local bytes only; no published release evidence certifies these changes."
+  },
   "release_0_1_1_publication": {
     "distribution": "versioned_release",
     "audit_url": "https://github.com/tomismeta/netstack/releases/download/v0.1.1/netstack-audit-0.1.1.zip",

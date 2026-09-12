@@ -1,10 +1,26 @@
 {
   "schema_version": 1,
   "skill": "netstack",
-  "observed_on": "2026-09-10",
+  "observed_on": "2026-09-12",
   "chain_id": 4663,
   "scope": "Published contracts and separately attributed public role addresses; not an audit or independently verified live deployment inventory.",
   "source_catalog": "sources.json",
+  "explorers": {
+    "4663": {
+      "name": "RHScan",
+      "address_url_template": "https://rh-scan.com/address/{address}",
+      "transaction_url_template": "https://rh-scan.com/tx/{tx_hash}",
+      "source_id": "robinhood-rhscan",
+      "scope": "Use RHScan for all Robinhood Chain explorer navigation, including historical objects. Navigation links are not verification; API routes are not inferred from these UI templates."
+    }
+  },
+  "record_notes": {
+    "publisher_verification_claim": "An attributed publisher label, not independent live-chain verification by this package. Preserve live_chain_verification_status and lifecycle limits.",
+    "publisher_linked_provenance_urls": "Original publisher hyperlinks retained as source evidence, not default explorer destinations. Return RHScan links for any referenced Robinhood address or transaction using its exact identity; do not transplant provider-specific API paths or query tabs.",
+    "price_feed_metadata": "Publisher-directory provenance is in the parent contract provenance array and covers only the proxy and metadata fields named by its locator, including adjacent feed decimals. It does not establish a token pairing, current round, deployed behavior or NetNet use. Consumer policies and semantics sources remain separately attributed.",
+    "netnet_use_evidence": "Directory inclusion alone does not establish NetNet use. Preserve recorded registry/local provenance and status; an empty consumer_policies list means not recorded, not unused. No exhaustive consumer list or exact-token relationship is inferred.",
+    "public_role_addresses": "Published role attribution only, not proof of control, beneficial ownership, account kind or authority. No private key or personal portfolio information is included."
+  },
   "contracts": [
     {
       "id": "robinhood-0xcef73866b088766ded46ba71d9bd7591b5e931d2",
@@ -17,8 +33,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xCeF73866b088766DeD46Ba71d9Bd7591B5e931d2",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-futures",
@@ -43,8 +57,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xc8a11E8793F8714a159061369173dc86A0A5E23F",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-futures",
@@ -69,8 +81,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xf6ec124ca62C841384ABD0e128552cF9Eb446205",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-futures",
@@ -95,8 +105,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x3a7Dce19447f9028C360592fDfdb3f27c50daE29",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-futures",
@@ -121,8 +129,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x8d8A68884134b49EC8549f6F5D7b43b8Ca327814",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-futures",
@@ -147,8 +153,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x82d04c79424FA36BD252Aa0D031de512f5F7aeFa",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-futures",
@@ -173,8 +177,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x63C12667638f2Ae6fC6ae09B43D98Ec84a8586eA",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-futures",
@@ -199,8 +201,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xA1ee052EC32532304a7522bd9A4b594eC28fF1b1",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-futures",
@@ -227,8 +227,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x99347d5F70D3838763f6Bddcf80304C8aa953B57",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -255,8 +253,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xf0eef247585b184836915e80f984246d981c55c4",
@@ -270,8 +267,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xf0eeF247585b184836915e80f984246d981c55C4",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -298,8 +293,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xaff662814aa7cc80ac1577e03e123358cacc6a97",
@@ -312,8 +306,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "documented_pending_activation",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xaff662814Aa7cC80AC1577E03E123358CAcc6a97",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -341,7 +333,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "supersedes": "0xF657Ac993A24dd71dB1d0f4c0B4Aa82e5EC78A83"
     },
     {
@@ -355,8 +346,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xED29D310cfa91778A5850538DA28ed42234Cb78c",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -383,8 +372,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x872f9d8955b34e841227a92de755cd63042ab7a5",
@@ -397,8 +385,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x872F9D8955B34e841227a92dE755cd63042Ab7A5",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -425,8 +411,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xd625d488d552775d2867194c618b945e5ddfe097",
@@ -439,8 +424,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xD625d488D552775D2867194C618B945E5dDfE097",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -467,8 +450,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x12ec3474d1e321e0aab065278b97fbc7eda5f424",
@@ -481,8 +463,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x12Ec3474D1e321e0aAB065278B97FBC7eDa5F424",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -509,8 +489,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xcb9a035fe0e8f321e36286405febc70de42db34e",
@@ -523,8 +502,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xcb9a035fe0e8f321e36286405fEBC70dE42DB34e",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -551,8 +528,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x3ebd3088b69a5eec3bdf03b82ccf19c3bc1fa894",
@@ -565,8 +541,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x3ebD3088b69A5eeC3bDF03B82CcF19c3Bc1fa894",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -593,8 +567,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x3bb7a23316f82c0e984fa2e784846d8928a35f42",
@@ -608,8 +581,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x3Bb7A23316f82C0e984fA2E784846d8928a35f42",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -637,7 +608,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://robinhoodchain.blockscout.com/tx/0x3a2e592373aa7ac00d6430800c40659442042d9603a3233826984aaab21a26e1"
       ]
@@ -653,8 +623,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -688,8 +656,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xb773ec2C326B7f98a5a83fc098825492F020a4c7",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -721,8 +687,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x575b7B7c97Ef3E21C82DAeB427899d583e1E913f",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -741,8 +705,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xfB8058769063519f26FB114631919c0E5254068e",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -761,8 +723,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xB078cc304A0B264C5F3680DC0488954ACcd02E87",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -781,8 +741,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x04822Ea321A0DEE6F40656172F29312104855d66",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -790,7 +748,22 @@
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
         }
-      ]
+      ],
+      "price_source": {
+        "source_kind": "reserve_accounting",
+        "purpose": "core_net_nav",
+        "base_asset": "NET",
+        "quote_asset": "USDG",
+        "value_kind": "risk_free_value_per_total_supply_not_market_price",
+        "scope": "Documented NAV = RFV / totalSupply; Treasury reserve accounting excludes the Manager Sleeve. Neither executable redemption value nor Manager standing-bid policy. Current accounting state, read interface and output scale not verified.",
+        "metadata_status": "publisher_documented_purpose_not_live_implementation_verification",
+        "provenance": {
+          "source_id": "netnet-docs-treasury",
+          "locator": "RFV and NAV; The RWA acquisition mandate",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_documentation"
+        }
+      }
     },
     {
       "id": "robinhood-0x79e71f8a8a2912e40687a8820b2dc0fdd2f686b3",
@@ -801,8 +774,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x79e71F8a8a2912E40687a8820b2dC0fdd2f686b3",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -821,8 +792,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xff32a969A0c567129eECD926D04657728E1980C1",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -841,8 +810,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x92166e94Eea5B7799b761653881692f881dFC4C9",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -861,8 +828,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x346e1a31171A0f7aC73909010b5435768d3B5462",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -881,8 +846,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x929631b33F4070D6f54477fba3FD27566567dAca",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -890,7 +853,22 @@
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
         }
-      ]
+      ],
+      "price_source": {
+        "source_kind": "derived_twap_oracle",
+        "purpose": "core_net_market_price",
+        "base_asset": "NET",
+        "quote_asset": "USDG",
+        "value_kind": "time_weighted_market_reference_not_nav",
+        "scope": "Documented canonical NET/USDG cumulative-price TWAP; valid observation window 30 minutes to 4 hours. Not pool spot, Treasury NAV or an eight-decimal Chainlink feed. Current oracle state, read interface and output scale not verified.",
+        "metadata_status": "publisher_documented_purpose_not_live_implementation_verification",
+        "provenance": {
+          "source_id": "netnet-docs-mechanism",
+          "locator": "The price oracle: fail-closed by design",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_documentation"
+        }
+      }
     },
     {
       "id": "robinhood-0x086c58400b8708ef993f256e12e752dcf0ac918e",
@@ -901,8 +879,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x086C58400b8708Ef993f256E12e752dcF0AC918e",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -921,8 +897,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x650F58079dAa17ee28928c2F92d22291d038B2B0",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -941,8 +915,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x59F95461E68e0c77605299791E1449f175165B54",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -950,7 +922,22 @@
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
         }
-      ]
+      ],
+      "price_source": {
+        "source_kind": "market_pool",
+        "purpose": "spot_reserve_ratio_and_cumulative_price_input",
+        "base_asset": "NET",
+        "quote_asset": "USDG",
+        "value_kind": "market_reference_not_nav",
+        "scope": "Canonical pool reserves can inform a spot reference after exact token ordering and units are established; PairOracle uses cumulative-price observations for TWAP. Neither is an executable quote or USD price.",
+        "metadata_status": "publisher_documented_purpose_not_live_implementation_verification",
+        "provenance": {
+          "source_id": "netnet-docs-mechanism",
+          "locator": "The price oracle: fail-closed by design",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_documentation"
+        }
+      }
     },
     {
       "id": "robinhood-0x5fc5360d0400a0fd4f2af552add042d716f1d168",
@@ -963,8 +950,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -986,7 +971,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://robinhoodchain.blockscout.com/address/0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168?tab=contract"
       ]
@@ -1000,8 +984,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xD1604dcAdB949A28C7cfA8Cd044641b8C520Ef3f",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1020,8 +1002,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x38f620aeC20B116ad19629e8F91842d0D4Ed8c39",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1040,8 +1020,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x23237bBE20beCACEcA5C853840d0984e4bDea759",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1060,8 +1038,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x2E1d4033A3b98b74135Ba4FbeE245eF0d97a71F4",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1080,8 +1056,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x8FB5A00413063C220785D556BFdf891f3f30f14e",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1100,8 +1074,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x3ef6878bDA20925C2B8f4cF2341696B2d2ad82E1",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1125,8 +1097,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "locally_and_publisher_reported_historical",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x99B6eE6eDe47d9a8a9bfd03F728a99B789df1961",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1172,13 +1142,11 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "generation": "v1",
       "superseded_by": "0xa84efC3136BF1Bb89ade9E5BE6Ab32cb1A04f08D",
       "local_recorded_current": false,
       "local_recorded_deployment_block": 17982451,
       "local_recorded_deployment_transaction": "0xfb393d9dacac9b6dcdfff5b0daea202a0d82e0fbae82de83d2ab7c51823036773",
-      "local_recorded_deployment_transaction_url": "https://robinhoodchain.blockscout.com/tx/0xfb393d9dacac9b6dcdfff5b0daea202a0d82e0fbae82de83d2ab7c51823036773",
       "local_recorded_lifecycle": "legacy"
     },
     {
@@ -1190,8 +1158,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1199,7 +1165,22 @@
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
         }
-      ]
+      ],
+      "price_source": {
+        "source_kind": "collateral_valuation_oracle",
+        "purpose": "loopback_wsnet_credited_collateral_value",
+        "base_asset": "wsNET",
+        "quote_asset": "USDG",
+        "value_kind": "credited_collateral_value_not_net_spot_or_nav",
+        "scope": "Documented credited value = clamp(TWAP × 0.90, NAV, 5 × NAV) × dividend index. Separate wsNET collateral/loan units, stale-TWAP and pool-divergence guards apply. Current oracle implementation, read interface and output scale not verified.",
+        "metadata_status": "publisher_documented_purpose_not_live_implementation_verification",
+        "provenance": {
+          "source_id": "netnet-docs-lending",
+          "locator": "The advance rate, and why credit shrinks in euphoria; Terms",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_documentation"
+        }
+      }
     },
     {
       "id": "robinhood-0x4638617808e3f1cf237c0d33ae818126d5c77e17",
@@ -1212,8 +1193,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x4638617808e3f1Cf237c0d33Ae818126D5C77E17",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1238,8 +1217,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x7332B329860986e596B2fd71e9c53786c0242ce5",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1258,8 +1235,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x823b016b546178C4C47a830B92333aD44E655d06",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1278,8 +1253,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xcC4A7C03A2d4D248B8dA0E35C178944799feac70",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1300,8 +1273,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x7cf28D61D42352Eb2FD68167e9B08f73CBbF21eB",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1326,8 +1297,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xd4D34ecfbc9c0000a7915A5F48bb0dEf484ff802",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1348,8 +1317,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x21089CFCDbf47902A2F3950200cE9ea66bF79ee4",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1370,8 +1337,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xf125ad8abde2591609a982e0b6a51309fdf7db37",
@@ -1384,8 +1350,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xF125Ad8ABdE2591609a982e0b6a51309fdF7Db37",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1406,8 +1370,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xa99d15dace9aede816600a31c3e4158926000f3c",
@@ -1421,8 +1384,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xA99D15dACe9aeDE816600A31C3e4158926000f3c",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1449,8 +1410,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x75edfe49d9ec8c23a9931c5ef32ec56b2444a141",
@@ -1464,8 +1424,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x75EdFE49d9ec8c23A9931C5EF32eC56b2444A141",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1492,8 +1450,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xf56e517652bb18e519871abb13a382d205f6e375",
@@ -1508,8 +1465,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xF56e517652bb18E519871ABb13A382D205f6e375",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1543,7 +1498,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "local_recorded_lifecycle": "current"
     },
     {
@@ -1558,8 +1512,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "publisher_reported_successor_not_live_verified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x757122439420900ca44A80c390d586011FD72C8a",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1587,7 +1539,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "supersedes": "0x2431be44044FA1a2062777910348c24DCfb3e620",
       "generation": "v1.1",
       "local_recorded_deployment_block": 40019315
@@ -1604,8 +1555,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "publisher_reported_successor_not_live_verified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x115E5779Ce2f7BC265EAAbcAcaf7b06f01d5D471",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1639,7 +1588,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "supersedes": "0x2882bc606Cf74Fd52D09d4A1aE8Ea05fF3B56f1e",
       "local_recorded_lifecycle": "support",
       "generation": "v1.1"
@@ -1656,8 +1604,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x712F52Fd42D7b89fd444e0cc4430020fAA9cfb26",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1685,7 +1631,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "local_recorded_lifecycle": "current"
     },
     {
@@ -1699,8 +1644,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xf2D7268D753BB48d784c93D944Ce1279957d8510",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1721,8 +1664,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xe109eaf5fa12f93168947f62cc340c96f4dc15eb",
@@ -1735,8 +1677,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xe109eAf5FA12F93168947f62cC340c96F4Dc15eB",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1757,8 +1697,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x621342f15f86fd5620c5141d0cc1a6cefdae28ee",
@@ -1771,8 +1710,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "publisher_reported_successor_not_live_verified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x621342F15f86fd5620c5141D0cc1A6ceFDaE28eE",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1800,7 +1737,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "supersedes": "0x018F9993881596bA84407F45FBD4c4f4773Efeae",
       "marketplace_collections": [
         {
@@ -1823,8 +1759,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xcA11bde05977b3631167028862bE2a173976CA11",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -1846,7 +1780,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://www.multicall3.com"
       ]
@@ -1860,8 +1793,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x8bcEaA40B9AcdfAedF85AdF4FF01F5Ad6517937f",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -1877,7 +1808,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://robinhoodchain.blockscout.com/address/0x8bcEaA40B9AcdfAedF85AdF4FF01F5Ad6517937f?tab=contract"
       ]
@@ -1891,8 +1821,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x89e5DB8B5aA49aA85AC63f691524311AEB649eba",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -1908,7 +1836,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://robinhoodchain.blockscout.com/address/0x89e5DB8B5aA49aA85AC63f691524311AEB649eba?tab=contract"
       ]
@@ -1922,8 +1849,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xBeEff033F34C046626B8D0A041844C5d1A5409dd",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -1939,7 +1864,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://app.morpho.org/robinhood-chain/vault/0xBeEff033F34C046626B8D0A041844C5d1A5409dd/steakhouse-usdg"
       ]
@@ -1956,8 +1880,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -1985,7 +1907,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://docs.morpho.org/get-started/resources/addresses/"
       ]
@@ -2001,8 +1922,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x2BD3d5965B26B51814AC95127B2b80dD6CcC0fa1",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2024,7 +1943,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://docs.morpho.org/get-started/resources/addresses/"
       ]
@@ -2040,21 +1958,18 @@
         "quote_asset": "USD",
         "value_kind": "asset_usd_reference_price",
         "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
-        "provenance": {
-          "source_id": "chainlink-robinhood-feed-directory",
-          "locator": "proxyAddress=0x61B7e5650328764B076A108EFF5fa7282a1B9aD2 / name, decimals, docs.quoteAssetEntityId",
-          "observed_on": "2026-09-10",
-          "evidence_kind": "publisher_directory_metadata",
-          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
-        },
-        "consumer_policies": []
+        "consumer_policies": [],
+        "publisher_name": "Chainlink",
+        "directory_group": "existing_non_rwa_underlying_feed",
+        "token_relationship_status": "no_trusted_product_marks_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "publisher_app_registry_inclusion_not_current_consumer_verification"
+        }
       },
       "aliases": [],
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x61B7e5650328764B076A108EFF5fa7282a1B9aD2",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2067,10 +1982,15 @@
           "locator": "usdgUsdFeed.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x61B7e5650328764B076A108EFF5fa7282a1B9aD2 / name, decimals, docs.quoteAssetEntityId",
+          "observed_on": "2026-09-10",
+          "evidence_kind": "publisher_directory_metadata"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x0fbad98595b0186da120e41f77c102beb49f803c",
@@ -2083,8 +2003,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x0FBad98595b0186dA120E41f77C102beb49f803c",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2105,8 +2023,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x79370ed003ce325c088e530d5e8655c99c2993e1",
@@ -2119,8 +2036,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x79370Ed003CE325C088E530d5e8655c99c2993e1",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2141,8 +2056,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xe785a2efd384ba7b95baed3851bc76aed67c676f",
@@ -2155,8 +2069,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xe785a2eFD384BA7B95BaEd3851BC76aeD67C676f",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2177,8 +2089,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9",
@@ -2191,21 +2102,18 @@
         "quote_asset": "USD",
         "value_kind": "asset_usd_reference_price",
         "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
-        "provenance": {
-          "source_id": "chainlink-robinhood-feed-directory",
-          "locator": "proxyAddress=0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9 / name, decimals, docs.quoteAssetEntityId",
-          "observed_on": "2026-09-10",
-          "evidence_kind": "publisher_directory_metadata",
-          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
-        },
-        "consumer_policies": []
+        "consumer_policies": [],
+        "publisher_name": "Chainlink",
+        "directory_group": "existing_non_rwa_underlying_feed",
+        "token_relationship_status": "no_trusted_product_marks_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "publisher_app_registry_inclusion_not_current_consumer_verification"
+        }
       },
       "aliases": [],
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2218,10 +2126,15 @@
           "locator": "chainlinkEthUsd.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9 / name, decimals, docs.quoteAssetEntityId",
+          "observed_on": "2026-09-10",
+          "evidence_kind": "publisher_directory_metadata"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://docs.chain.link/data-feeds/price-feeds/addresses?network=robinhood"
       ]
@@ -2235,8 +2148,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x020bfC650A365f8BB26819deAAbF3E21291018b4",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2251,8 +2162,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xa70fc67c9f69da90b63a0e4c05d229954574e313",
@@ -2263,8 +2173,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xA70fc67C9F69da90B63a0e4C05D229954574E313",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2279,8 +2187,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xb265810950ba6c5c0ff821c9963014a56fd8bffb",
@@ -2293,13 +2200,6 @@
         "quote_asset": "USD",
         "value_kind": "robinhood_tokenized_equity_total_return_value",
         "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
-        "provenance": {
-          "source_id": "chainlink-robinhood-feed-directory",
-          "locator": "proxyAddress=0xB265810950ba6c5C0Ff821c9963014a56fD8Bffb / name, decimals, docs.quoteAssetEntityId",
-          "observed_on": "2026-09-10",
-          "evidence_kind": "publisher_directory_metadata",
-          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
-        },
         "consumer_policies": [
           {
             "product": "SPACEX INVADERS",
@@ -2312,7 +2212,18 @@
             "relationship_basis": "Documented asset-specific product use plus locally recorded exact-token mark mapping; current adapter call path not verified."
           }
         ],
-        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "publisher_asset_name": "Space Exploration Technologies Corp. (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "locally_recorded_exact_address_mapping_see_trusted_product_marks",
+        "netnet_use_evidence": {
+          "status": "historical_exact_token_mark_mapping_and_registry_inclusion_not_current_consumer_verification"
+        }
       },
       "aliases": [
         "SPCX/USD trusted product feed"
@@ -2320,8 +2231,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xB265810950ba6c5C0Ff821c9963014a56fD8Bffb",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2340,10 +2249,15 @@
           "locator": "chainlinkSpcxUsd.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xB265810950ba6c5C0Ff821c9963014a56fD8Bffb / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://docs.chain.link/data-feeds/price-feeds/addresses?network=robinhood"
       ]
@@ -2357,8 +2271,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2374,7 +2286,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://robinhoodchain.blockscout.com/address/0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73?tab=contract"
       ]
@@ -2390,8 +2301,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x1f7d7550B1b028f7571E69A784071F0205FD2EfA",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2413,7 +2322,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://robinhoodchain.blockscout.com/address/0x1f7d7550B1b028f7571E69A784071F0205FD2EfA?tab=contract"
       ]
@@ -2429,8 +2337,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x73991a25c818bf1f1128deaab1492d45638de0d3",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2452,7 +2358,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://developers.uniswap.org/docs/protocols/v3/deployments/v3-robinhood-chain-deployments"
       ]
@@ -2466,8 +2371,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x8366a39CC670B4001A1121B8F6A443A643e40951",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2483,7 +2386,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://robinhoodchain.blockscout.com/address/0x8366a39CC670B4001A1121B8F6A443A643e40951?tab=contract"
       ]
@@ -2500,8 +2402,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "locally_and_publisher_reported_current_not_live_verified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xa84efC3136BF1Bb89ade9E5BE6Ab32cb1A04f08D",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2535,13 +2435,11 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "supersedes": "0x99B6eE6eDe47d9a8a9bfd03F728a99B789df1961",
       "generation": "v2",
       "local_recorded_current": true,
       "local_recorded_deployment_block": 47600318,
       "local_recorded_deployment_transaction": "0x1bedd09f8a6606e387f366e319450bc00ba80c1f56ea97f28d09d4a37bad8c97",
-      "local_recorded_deployment_transaction_url": "https://robinhoodchain.blockscout.com/tx/0x1bedd09f8a6606e387f366e319450bc00ba80c1f56ea97f28d09d4a37bad8c97",
       "local_recorded_lifecycle": "current"
     },
     {
@@ -2555,8 +2453,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x70eaeEc20c39dF48509F1F3faB01f7dDe207947b",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2578,7 +2474,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "local_recorded_lifecycle": "current"
     },
     {
@@ -2590,8 +2485,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xC79C0FA204F42a66985AB2eDE7646567D4DB5DbB",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2606,8 +2499,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x169beae602a6441cb581ef75947621cae4d1d496",
@@ -2618,8 +2510,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x169BeaE602a6441Cb581eF75947621CAE4d1D496",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2634,8 +2524,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x9ca38c9c144ff411231c82da03c7d30286a7dbf6",
@@ -2648,8 +2537,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x9ca38C9c144fF411231C82Da03c7D30286A7dBf6",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2671,7 +2558,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "local_recorded_lifecycle": "support"
     },
     {
@@ -2685,8 +2571,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x55E76ba1F7C7603C27BBDf8dFA1b235F7e512540",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2708,7 +2592,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "local_recorded_lifecycle": "support"
     },
     {
@@ -2722,8 +2605,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x498752D5fa0600CBd613074C151Abe15B3FeC7CB",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2745,7 +2626,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "local_recorded_lifecycle": "current"
     },
     {
@@ -2759,8 +2639,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x71a120CbBf3Ce7cD910a3c50fF77aFc62735687E",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2782,7 +2660,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "publisher_linked_provenance_urls": [
         "https://docs.rialto.xyz/developers/router-registries.md"
       ]
@@ -2798,8 +2675,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xd0601ce157db5bdc3162bbac2a2c8af5320d9eec",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2820,8 +2695,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x4a0e65a3eccec6dbe60ae065f2e7bb85fae35eea",
@@ -2834,8 +2708,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x4a0e65a3eccec6dbe60ae065f2e7bb85fae35eea",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2856,8 +2728,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xaf3d76f1834a1d425780943c99ea8a608f8a93f9",
@@ -2870,8 +2741,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xaf3d76f1834a1d425780943c99ea8a608f8a93f9",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2892,8 +2761,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xd4eb21209c4d6093f80b5b84f5c45cc093ea14a3",
@@ -2904,8 +2772,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xd4EB21209C4D6093f80B5b84f5C45cc093EA14a3",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2920,8 +2786,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xaae0d815ee56e4092a5e5c2911e676fea50b2d6d",
@@ -2932,8 +2797,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xAae0d815EE56e4092a5E5C2911E676Fea50B2d6D",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2948,8 +2811,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xc61284332117c3fb23a2a56cceffd07f7af60029",
@@ -2960,8 +2822,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xc61284332117c3FB23A2A56cceFFD07F7aF60029",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -2976,8 +2836,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x34d0dc122cf9a8eb296fc5e0d3a233625d7d19b7",
@@ -2988,8 +2847,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x34d0dc122cf9a8eb296fc5e0d3a233625d7d19b7",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3004,8 +2861,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xe93237c50d904957cf27e7b1133b510c669c2e74",
@@ -3018,8 +2874,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xe93237c50d904957cf27e7b1133b510c669c2e74",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3040,8 +2894,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x2e0847e8910a9732eb3fb1bb4b70a580adad4fe3",
@@ -3054,8 +2907,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x2e0847e8910a9732eb3fb1bb4b70a580adad4fe3",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3076,8 +2927,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x379ec4f7c378f34a1b47e4f3cbebcbac3e8e9f15",
@@ -3090,15 +2940,19 @@
         "quote_asset": "USD",
         "value_kind": "robinhood_tokenized_equity_total_return_value",
         "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
-        "provenance": {
-          "source_id": "chainlink-robinhood-feed-directory",
-          "locator": "proxyAddress=0x379EC4f7C378F34a1B47E4F3cbeBCbAC3E8E9F15 / name, decimals, docs.quoteAssetEntityId",
-          "observed_on": "2026-09-10",
-          "evidence_kind": "publisher_directory_metadata",
-          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
-        },
         "consumer_policies": [],
-        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "publisher_asset_name": "Nvidia (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "locally_recorded_exact_address_mapping_see_trusted_product_marks",
+        "netnet_use_evidence": {
+          "status": "historical_exact_token_mark_mapping_and_registry_inclusion_not_current_consumer_verification"
+        }
       },
       "aliases": [
         "NVDA/USD trusted product feed"
@@ -3106,8 +2960,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x379EC4f7C378F34a1B47E4F3cbeBCbAC3E8E9F15",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3126,10 +2978,15 @@
           "locator": "chainlinkNvdaUsd.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x379EC4f7C378F34a1B47E4F3cbeBCbAC3E8E9F15 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x6b22a786baa607d76728168703a39ea9c99f2cd0",
@@ -3142,15 +2999,19 @@
         "quote_asset": "USD",
         "value_kind": "robinhood_tokenized_equity_total_return_value",
         "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
-        "provenance": {
-          "source_id": "chainlink-robinhood-feed-directory",
-          "locator": "proxyAddress=0x6B22A786bAa607d76728168703a39Ea9C99f2cD0 / name, decimals, docs.quoteAssetEntityId",
-          "observed_on": "2026-09-10",
-          "evidence_kind": "publisher_directory_metadata",
-          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
-        },
         "consumer_policies": [],
-        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "publisher_asset_name": "Apple (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "locally_recorded_exact_address_mapping_see_trusted_product_marks",
+        "netnet_use_evidence": {
+          "status": "historical_exact_token_mark_mapping_and_registry_inclusion_not_current_consumer_verification"
+        }
       },
       "aliases": [
         "AAPL/USD trusted product feed"
@@ -3158,8 +3019,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x6B22A786bAa607d76728168703a39Ea9C99f2cD0",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3178,10 +3037,15 @@
           "locator": "chainlinkAaplUsd.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x6B22A786bAa607d76728168703a39Ea9C99f2cD0 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x45c3c877c15e6ba2ebb19ea114ea508d14c1af2e",
@@ -3194,13 +3058,6 @@
         "quote_asset": "USD",
         "value_kind": "robinhood_tokenized_equity_total_return_value",
         "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
-        "provenance": {
-          "source_id": "chainlink-robinhood-feed-directory",
-          "locator": "proxyAddress=0x45C3C877C15E6BA2EBB19eA114Ea508d14C1Af2E / name, decimals, docs.quoteAssetEntityId",
-          "observed_on": "2026-09-10",
-          "evidence_kind": "publisher_directory_metadata",
-          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
-        },
         "consumer_policies": [
           {
             "product": "MSFT FLIGHT SIMULATOR",
@@ -3213,7 +3070,18 @@
             "relationship_basis": "Documented asset-specific product use plus locally recorded exact-token mark mapping; current adapter call path not verified."
           }
         ],
-        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "publisher_asset_name": "Microsoft (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "locally_recorded_exact_address_mapping_see_trusted_product_marks",
+        "netnet_use_evidence": {
+          "status": "historical_exact_token_mark_mapping_and_registry_inclusion_not_current_consumer_verification"
+        }
       },
       "aliases": [
         "MSFT/USD trusted product feed"
@@ -3221,8 +3089,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x45C3C877C15E6BA2EBB19eA114Ea508d14C1Af2E",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3241,10 +3107,15 @@
           "locator": "chainlinkMsftUsd.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x45C3C877C15E6BA2EBB19eA114Ea508d14C1Af2E / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xf6f373a037c30f0e5010d854385ca89185ae638b",
@@ -3257,15 +3128,19 @@
         "quote_asset": "USD",
         "value_kind": "robinhood_tokenized_equity_total_return_value",
         "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
-        "provenance": {
-          "source_id": "chainlink-robinhood-feed-directory",
-          "locator": "proxyAddress=0xF6f373a037c30F0e5010d854385cA89185AE638b / name, decimals, docs.quoteAssetEntityId",
-          "observed_on": "2026-09-10",
-          "evidence_kind": "publisher_directory_metadata",
-          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
-        },
         "consumer_policies": [],
-        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "publisher_asset_name": "Alphabet (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "locally_recorded_exact_address_mapping_see_trusted_product_marks",
+        "netnet_use_evidence": {
+          "status": "historical_exact_token_mark_mapping_and_registry_inclusion_not_current_consumer_verification"
+        }
       },
       "aliases": [
         "GOOGL/USD trusted product feed"
@@ -3273,8 +3148,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xF6f373a037c30F0e5010d854385cA89185AE638b",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3293,10 +3166,15 @@
           "locator": "chainlinkGooglUsd.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xF6f373a037c30F0e5010d854385cA89185AE638b / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x6330d8c3178a418788df01a47479c0ce7ccf450b",
@@ -3309,8 +3187,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x6330d8c3178a418788df01a47479c0ce7ccf450b",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3331,8 +3207,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xa3a468a452940b7d6b69991207b508c609a98ef2",
@@ -3345,13 +3220,6 @@
         "quote_asset": "USD",
         "value_kind": "robinhood_tokenized_equity_total_return_value",
         "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
-        "provenance": {
-          "source_id": "chainlink-robinhood-feed-directory",
-          "locator": "proxyAddress=0xA3a468A452940B7D6b69991207B508c609a98Ef2 / name, decimals, docs.quoteAssetEntityId",
-          "observed_on": "2026-09-10",
-          "evidence_kind": "publisher_directory_metadata",
-          "scope": "Exact proxy identity, feed name, adjacent decimals field and USD quote; not a current round or token pairing verification."
-        },
         "consumer_policies": [
           {
             "product": "COINflip",
@@ -3364,7 +3232,18 @@
             "relationship_basis": "Documented asset-specific product use plus locally recorded exact-token mark mapping; current adapter call path not verified."
           }
         ],
-        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "publisher_asset_name": "Coinbase (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "locally_recorded_exact_address_mapping_see_trusted_product_marks",
+        "netnet_use_evidence": {
+          "status": "historical_exact_token_mark_mapping_and_registry_inclusion_not_current_consumer_verification"
+        }
       },
       "aliases": [
         "COIN/USD trusted product feed"
@@ -3372,8 +3251,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xA3a468A452940B7D6b69991207B508c609a98Ef2",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3392,10 +3269,15 @@
           "locator": "chainlinkCoinUsd.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xA3a468A452940B7D6b69991207B508c609a98Ef2 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x6c2b1e062da09d18389cc563d75b1e1899f2a02f",
@@ -3406,8 +3288,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x6C2B1e062DA09d18389cC563D75B1e1899F2a02f",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3422,8 +3302,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xd6c8b97245b8c080d8615e8caf5f3ca9a3820728",
@@ -3434,8 +3313,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xD6C8b97245b8C080d8615E8CAF5F3Ca9A3820728",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3450,8 +3327,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x07b8e5977adedf539a528f0704be07cc289b97b4",
@@ -3462,8 +3338,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x07b8E5977aDeDF539a528F0704Be07CC289B97b4",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3478,8 +3352,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x27efaa6ff13314a143ea3bf2891f12aea4902773",
@@ -3490,8 +3363,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x27EfAA6fF13314A143eA3Bf2891F12aeA4902773",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3506,8 +3377,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x3f52d9ce80d5dc2ec30002a26b6d3ed70e8dba41",
@@ -3518,8 +3388,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x3f52D9ce80D5DC2EC30002a26B6D3ED70E8dBA41",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3534,8 +3402,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xb763ddb485314af686745f74ebba68e56c0bedfa",
@@ -3546,8 +3413,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xB763Ddb485314af686745f74EbBa68e56c0bEDFa",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3562,8 +3427,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x35aa4383a7d4bc63be49a1f58a7e9667ed05887c",
@@ -3574,8 +3438,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x35aA4383a7D4BC63Be49a1F58A7E9667ED05887c",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3590,8 +3452,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xfd46af62cf6e9306008a13bee045c542ec3daef6",
@@ -3604,8 +3465,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xFd46AF62CF6E9306008a13beE045c542Ec3DAef6",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3627,7 +3486,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "local_recorded_lifecycle": "current"
     },
     {
@@ -3639,8 +3497,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x96DdaB1e3fBD974dbA0fDfaF3bF867F679eC2d29",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3655,8 +3511,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xede5ee1d473e5e5b6049e045866d7557a174f44b",
@@ -3667,8 +3522,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xEdE5eE1D473E5E5B6049E045866D7557a174f44b",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3683,8 +3536,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xe5143de9d3ccbc31ffb4e7fc66d8320e0e2693d2",
@@ -3695,8 +3547,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xE5143de9D3CcBc31Ffb4e7Fc66d8320e0E2693D2",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3718,7 +3568,6 @@
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake.",
       "marketplace_collections": [
         {
           "name": "Button Presser",
@@ -3738,8 +3587,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xFae9967D8D29C18886BC172d2B82028F93E3a651",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3754,8 +3601,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x117074c7b7b6acd290f7a031efe76dbfb0383e80",
@@ -3766,8 +3612,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x117074C7B7B6ACd290F7a031efE76dBfB0383e80",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3782,8 +3626,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x212dbb2af8f150c6d66bc78910775fa8f52d5785",
@@ -3794,8 +3637,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x212DbB2aF8F150c6D66bC78910775fa8F52D5785",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3810,8 +3651,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x9cc4e5fc9149eeae154273c52292f3bb350233fb",
@@ -3822,8 +3662,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x9Cc4E5FC9149eEae154273C52292F3bb350233fb",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3838,8 +3676,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x9353766a5ffea84d15ba431928596f613f533a89",
@@ -3850,8 +3687,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x9353766a5ffEA84D15BA431928596f613F533A89",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3866,8 +3701,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x2431be44044fa1a2062777910348c24dcfb3e620",
@@ -3878,8 +3712,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "publisher_reported_historical",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x2431be44044FA1a2062777910348c24DCfb3e620",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3900,8 +3732,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "publisher_reported_historical",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x2882bc606Cf74Fd52D09d4A1aE8Ea05fF3B56f1e",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3922,8 +3752,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "publisher_reported_historical",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xF657Ac993A24dd71dB1d0f4c0B4Aa82e5EC78A83",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3944,8 +3772,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "publisher_reported_historical",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x018F9993881596bA84407F45FBD4c4f4773Efeae",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -3966,8 +3792,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x282a3c4d320cc7f0d5eaf56b8029e4b88338f0a3",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "uniswap-robinhood-v3",
@@ -3986,8 +3810,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x7dfd4f31be6814d2906bde155c3e1b146eac1468",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "uniswap-robinhood-v3",
@@ -4006,8 +3828,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x33e885ed0ec9bf04ecfb19341582aadcb4c8a9e7",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "uniswap-robinhood-v3",
@@ -4026,8 +3846,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x6f84dae9c064ff453e5c8af51efb819f8f610225",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "uniswap-robinhood-v3",
@@ -4046,8 +3864,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x2e9d45bb7b30549f5216813ada9a6b7982c5b3ed",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "uniswap-robinhood-v3",
@@ -4066,8 +3882,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xcaf681a66d020601342297493863e78c959e5cb2",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "uniswap-robinhood-v3",
@@ -4086,8 +3900,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x000000000022D473030F116dDEE9F6B43aC78BA3",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "uniswap-robinhood-v3",
@@ -4106,8 +3918,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x8876789976decbfcbbbe364623c63652db8c0904",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "uniswap-robinhood-v3",
@@ -4126,8 +3936,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xB7c16F6F8cF531447Bf27Ca7220f981E79C9cdF2",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "morpho-address-registry-current",
@@ -4146,8 +3954,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x7a91222F3f7B927bB8fb624593Ca86e111C2F85e",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "morpho-address-registry-current",
@@ -4166,8 +3972,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xCe5c1aFa115fF8b1D6913509bfc79D9AE08CC857",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "morpho-address-registry-current",
@@ -4186,8 +3990,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xcC108538f36242D6E0d6B9255f6D9Ccd137D70Fe",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "morpho-address-registry-current",
@@ -4206,8 +4008,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xCE29862924756584BBD0D75CA1249d22007E2813",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "morpho-address-registry-current",
@@ -4226,8 +4026,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x53A1eB6589861F686af7c531211E35Aefe30210f",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "morpho-address-registry-current",
@@ -4246,8 +4044,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x6478e9393d4C5bB4d53ee881d1DE78786A0344a6",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "morpho-address-registry-current",
@@ -4266,8 +4062,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xc5E188541D107e8B79e43478bDE365F1406665D6",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "morpho-address-registry-current",
@@ -4288,8 +4082,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "pendle-snet-market-17sep2026",
@@ -4311,8 +4103,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x5d446a2be952f4f9ba241b382a73ad3b1819aaf5",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "pendle-snet-market-17sep2026",
@@ -4334,8 +4124,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x72b8e8c226848ceb35ba51d193f4f962dee957c1",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "pendle-snet-market-17sep2026",
@@ -4357,8 +4145,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xfb2d72fc9c378a73b4e03abac48194367447fa5a",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "pendle-snet-market-17sep2026",
@@ -4380,8 +4166,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xba46fc84409589f369c107e869c06809df3d9727",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "pendle-snet-market-17sep2026",
@@ -4403,8 +4187,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x53176cadd446700fa6b89f840357ac586d7e33db",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "pendle-snet-market-17sep2026",
@@ -4426,8 +4208,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x5e49e1f85813f2b65858860a3fa231b4186f2e0e",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "pendle-snet-market-17sep2026",
@@ -4447,8 +4227,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x8154e35166f21305AdAc82f95B54De8acD44d23A",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-play-registry-asset",
@@ -4457,8 +4235,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0x1ed09929b960f22b2ed71102e4d7fe281ecc5ebb",
@@ -4469,8 +4246,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x1ed09929B960f22B2ed71102e4d7fE281Ecc5EBB",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-play-registry-asset",
@@ -4479,8 +4254,7 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
     },
     {
       "id": "robinhood-0xce73c8ad08cbdeaca6078bf0627c8fe0a9a536e7",
@@ -4491,8 +4265,6 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xcE73c8ad08CBDEaCa6078BF0627C8fe0a9a536E7",
-      "explorer_url_basis": "Canonical address URL pattern published in official-channels; link is not a verification result.",
       "provenance": [
         {
           "source_id": "netnet-play-registry-asset",
@@ -4501,8 +4273,1117 @@
           "observed_on": "2026-09-10"
         }
       ],
-      "publisher_verification_claim": "HUMAN-VERIFIED",
-      "publisher_verification_disclaimer": "Publisher status is not live chain verification by this intake."
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xa0df4ee0fff975306345875e3548fcc519577a11",
+      "chain_id": 4663,
+      "address": "0xa0DF4ee0fFf975306345875E3548Fcc519577A11",
+      "role": "chainlinkSgovUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood SGOV-USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_labelled_usd_reference_value_semantics_unconfirmed",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": null,
+        "publisher_asset_class": null,
+        "publisher_product_type_code": null,
+        "classification_status": "incomplete_publisher_metadata",
+        "metadata_gaps": [
+          "assetName empty",
+          "docs.assetClass absent",
+          "docs.baseAsset absent",
+          "docs.productTypeCode absent"
+        ],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": []
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xa0DF4ee0fFf975306345875E3548Fcc519577A11 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xefdf54610b62a7753ec30bdc380847c12d32e1d1",
+      "chain_id": 4663,
+      "address": "0xEFdf54610B62A7753Ec30bDc380847c12D32e1D1",
+      "role": "chainlinkEwyUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood EWY / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "ISHARES MSCI SOUTH KOREA ETF (Robinhood Tokenized ETF)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xEFdf54610B62A7753Ec30bDc380847c12D32e1D1 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x80901d846d5d7b030f26b480776ee3b29374c2ae",
+      "chain_id": 4663,
+      "address": "0x80901d846d5D7B030F26B480776EE3b29374C2ae",
+      "role": "chainlinkQqqUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood QQQ / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Invesco QQQ (Robinhood Tokenized ETF)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x80901d846d5D7B030F26B480776EE3b29374C2ae / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x874cf94aa8ec88fd9560094dd065f2fb3e41fc2f",
+      "chain_id": 4663,
+      "address": "0x874cF94aa8eC88Fd9560094dD065f2fB3E41Fc2F",
+      "role": "chainlinkTsmUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood TSM / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Taiwan Semiconductor (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x874cF94aa8eC88Fd9560094dD065f2fB3E41Fc2F / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x820abedff239034956b7a9d2f0a331f9f075eb4c",
+      "chain_id": 4663,
+      "address": "0x820ABedFF239034956B7A9d2F0a331f9F075eB4c",
+      "role": "chainlinkPltrUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood PLTR / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Palantir Technologies Inc (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x820ABedFF239034956B7A9d2F0a331f9F075eB4c / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x2a045cf1c49c61c166c036d2f06fa2d2d984f765",
+      "chain_id": 4663,
+      "address": "0x2A045cF1C49c61c166C036d2f06FA2D2d984f765",
+      "role": "chainlinkRgtiUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood RGTI / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Rigetti Computing Inc (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x2A045cF1C49c61c166C036d2f06FA2D2d984f765 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x0e6a64a2b58a6693a531e6c555f3a5d042eea844",
+      "chain_id": 4663,
+      "address": "0x0e6a64a2B58A6693a531E6c555f3A5d042eEA844",
+      "role": "chainlinkOrclUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood ORCL / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Oracle Corp (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x0e6a64a2B58A6693a531E6c555f3A5d042eEA844 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x396118bdfb181e6240e74d243f266b061c0edc3d",
+      "chain_id": 4663,
+      "address": "0x396118bdFB181e6240E74D243F266B061c0edc3D",
+      "role": "chainlinkMstrUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood MSTR / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Microstrategy Inc Class A (Robinhood Tokenized Equity",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x396118bdFB181e6240E74D243F266B061c0edc3D / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x045477bf65aef6f4f2386ad0164579e48381cc74",
+      "chain_id": 4663,
+      "address": "0x045477BF65Aef6f4F2386ad0164579e48381CC74",
+      "role": "chainlinkRklbUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood RKLB / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Rocket Lab Corp (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x045477BF65Aef6f4F2386ad0164579e48381CC74 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xa994d3684e8400a6c8078226925779fdee682dd9",
+      "chain_id": 4663,
+      "address": "0xA994d3684e8400A6c8078226925779FdeE682DD9",
+      "role": "chainlinkUsarUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood USAR-USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_labelled_usd_reference_value_semantics_unconfirmed",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": null,
+        "publisher_asset_class": null,
+        "publisher_product_type_code": null,
+        "classification_status": "incomplete_publisher_metadata",
+        "metadata_gaps": [
+          "assetName empty",
+          "docs.assetClass absent",
+          "docs.baseAsset absent",
+          "docs.productTypeCode absent"
+        ],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": []
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xA994d3684e8400A6c8078226925779FdeE682DD9 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x319724394d3a0e3669269846abe664cd621f9f6a",
+      "chain_id": 4663,
+      "address": "0x319724394D3A0e3669269846abE664Cd621f9f6A",
+      "role": "chainlinkSpyUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood SPY / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "State Street SPDR S&P 500 ETF Trust (Robinhood Tokenized ETF)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x319724394D3A0e3669269846abE664Cd621f9f6A / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x4a1166a659a55625345e9515b32adecea5547c38",
+      "chain_id": 4663,
+      "address": "0x4A1166a659A55625345e9515b32adECea5547C38",
+      "role": "chainlinkTslaUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood TSLA / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Tesla (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x4A1166a659A55625345e9515b32adECea5547C38 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xfb133fa4b7b385802b693a293606682df47109a3",
+      "chain_id": 4663,
+      "address": "0xfb133Fa4B7b385802B693a293606682Df47109A3",
+      "role": "chainlinkSndkUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood SNDK / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "SanDisk Corp (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xfb133Fa4B7b385802B693a293606682Df47109A3 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x22efec4919baf55f360e0edee4abeb26de4971eb",
+      "chain_id": 4663,
+      "address": "0x22EfeC4919baf55F360E0EDee4AbEB26DE4971eb",
+      "role": "chainlinkIonqUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood IONQ / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "IonQ, Inc. (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x22EfeC4919baf55F360E0EDee4AbEB26DE4971eb / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x6652edf64ba3731c4f2d3ce821a0fb1f1f6b482a",
+      "chain_id": 4663,
+      "address": "0x6652eDf64bA3731C4F2D3ce821A0Fb1f1f6b482a",
+      "role": "chainlinkCrclUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood CRCL / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Circle Internet Group Inc (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x6652eDf64bA3731C4F2D3ce821A0Fb1f1f6b482a / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xd5a1508ced74c084ebf3cbe853e2c968fb2a651c",
+      "chain_id": 4663,
+      "address": "0xD5a1508ceD74c084eBf3cBe853e2C968fB2a651C",
+      "role": "chainlinkAmznUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood AMZN / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Amazon (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xD5a1508ceD74c084eBf3cBe853e2C968fB2a651C / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x3f390c5c24628ac7c489515402235fead71d1913",
+      "chain_id": 4663,
+      "address": "0x3f390C5C24628Ac7C489515402235FeAD71D1913",
+      "role": "chainlinkIntcUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood INTC / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Intel Corp (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x3f390C5C24628Ac7C489515402235FeAD71D1913 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x425eefdcf05ed6526c3ce61af99429a228a6d596",
+      "chain_id": 4663,
+      "address": "0x425EEFdCf05ed6526C3cE61Af99429A228a6d596",
+      "role": "chainlinkMuUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood MU / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Micron Technology Inc (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x425EEFdCf05ed6526C3cE61Af99429A228a6d596 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x1c6c8cadbe02e19129c39ddb92281ce4c0bf206b",
+      "chain_id": 4663,
+      "address": "0x1C6c8cADBe02E19129c39dDB92281cE4c0bf206b",
+      "role": "chainlinkDellUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood DELL-USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Dell Technologies Inc",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x1C6c8cADBe02E19129c39dDB92281cE4c0bf206b / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xe1d87b116ba0fe898998f1d140339d1fa1e09705",
+      "chain_id": 4663,
+      "address": "0xE1D87B116Ba0fe898998f1D140339D1fA1E09705",
+      "role": "chainlinkNbisUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood NBIS / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Nebius Group (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xE1D87B116Ba0fe898998f1D140339D1fA1E09705 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x810c12d3a554bc47fd39597fe3b3aac4941f50ef",
+      "chain_id": 4663,
+      "address": "0x810c12D3a554Bc47fd39597Fe3b3AAC4941F50eF",
+      "role": "chainlinkClskUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood CLSK / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "CleanSpark Inc (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x810c12D3a554Bc47fd39597Fe3b3AAC4941F50eF / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xb4106147e8cce40b7d46124090d373a71b70f87d",
+      "chain_id": 4663,
+      "address": "0xB4106147E8cce40b7d46124090d373A71b70f87D",
+      "role": "chainlinkAsmlUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood ASML / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "ASML Holding NV (Nasdaq) (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xB4106147E8cce40b7d46124090d373A71b70f87D / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x62cc8f9b5f56a33c9c8a60c8b92779f523c4e984",
+      "chain_id": 4663,
+      "address": "0x62Cc8F9b5f56a33c9C8A60c8B92779f523c4E984",
+      "role": "chainlinkBabaUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood BABA / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Alibaba Group Holding Ltd (ADRs) (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x62Cc8F9b5f56a33c9C8A60c8B92779f523c4E984 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x75a9c76ef439e2c7c2e5a34ab105ecfe3766431c",
+      "chain_id": 4663,
+      "address": "0x75a9c76Ef439e2C7c2E5a34Ab105EcFe3766431c",
+      "role": "chainlinkUsoUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood USO / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "United States Oil Fund LP ETF (Robinhood Tokenized ETF)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x75a9c76Ef439e2C7c2E5a34Ab105EcFe3766431c / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x7c38c00c30bee9378381e7b6135d7283356d71b1",
+      "chain_id": 4663,
+      "address": "0x7C38C00C30BEe9378381E7B6135d7283356D71b1",
+      "role": "chainlinkMetaUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood META / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Meta (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x7C38C00C30BEe9378381E7B6135d7283356D71b1 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x209b73908e92ae021826ed79609845451ecba2ce",
+      "chain_id": 4663,
+      "address": "0x209b73908e92Ae021826eD79609845451Ecba2ce",
+      "role": "chainlinkSlvUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood SLV / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "iShares Silver Trust ETF (Robinhood Tokenized ETF)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x209b73908e92Ae021826eD79609845451Ecba2ce / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xe1b3aabcafad1c94708dc1367dcff8aa4407487c",
+      "chain_id": 4663,
+      "address": "0xe1b3aABCAFAd1c94708dc1367dcfF8Aa4407487C",
+      "role": "chainlinkCrwvUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood CRWV / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "CoreWeave Inc (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xe1b3aABCAFAd1c94708dc1367dcfF8Aa4407487C / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x943a29e7ae51a4798823ca9eed2ed533b2a22c72",
+      "chain_id": 4663,
+      "address": "0x943A29E7ae51A4798823ca9eEd2ed533B2A22C72",
+      "role": "chainlinkAmdUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood AMD / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Advanced Micro Devices / AMD (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x943A29E7ae51A4798823ca9eEd2ed533B2A22C72 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x27c71df6a64fb476468edf256cf72c038bab5b67",
+      "chain_id": 4663,
+      "address": "0x27C71df6A64fB476468EdF256CF72c038baB5B67",
+      "role": "chainlinkGmeUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood GME / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Gamestop (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x27C71df6A64fB476468EdF256CF72c038baB5B67 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
     }
   ],
   "public_role_addresses": [
@@ -4515,7 +5396,6 @@
       "account_kind": "unverified",
       "ownership_status": "not_verified_no_legal_person_attribution",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xe7e867518C5B3d929CA63622f314FF9Dc60E96f6",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -4529,8 +5409,7 @@
           "evidence_kind": "public_publisher_role_registry",
           "observed_on": "2026-09-10"
         }
-      ],
-      "note": "Published role attribution only, not proof of control, beneficial ownership or authority. No private key or user portfolio information is included."
+      ]
     },
     {
       "id": "robinhood-role-superstoreexecutesigner",
@@ -4541,7 +5420,6 @@
       "account_kind": "unverified",
       "ownership_status": "not_verified_no_legal_person_attribution",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x1b53F8fc54951A9FB94B6194D6B53Ff4bE873E7e",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -4555,8 +5433,7 @@
           "evidence_kind": "public_publisher_role_registry",
           "observed_on": "2026-09-10"
         }
-      ],
-      "note": "Published role attribution only, not proof of control, beneficial ownership or authority. No private key or user portfolio information is included."
+      ]
     },
     {
       "id": "robinhood-role-boardroomhousesigner",
@@ -4567,7 +5444,6 @@
       "account_kind": "unverified",
       "ownership_status": "not_verified_no_legal_person_attribution",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xD417e653d37652eCa1E93C6e5642E1A3C3e4505b",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -4581,8 +5457,7 @@
           "evidence_kind": "public_publisher_role_registry",
           "observed_on": "2026-09-10"
         }
-      ],
-      "note": "Published role attribution only, not proof of control, beneficial ownership or authority. No private key or user portfolio information is included."
+      ]
     },
     {
       "id": "robinhood-role-boardroomrelayer",
@@ -4593,7 +5468,6 @@
       "account_kind": "unverified",
       "ownership_status": "not_verified_no_legal_person_attribution",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x1c17D9298a6516140429f719218A5fCF9F36dfcf",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -4607,8 +5481,7 @@
           "evidence_kind": "public_publisher_role_registry",
           "observed_on": "2026-09-10"
         }
-      ],
-      "note": "Published role attribution only, not proof of control, beneficial ownership or authority. No private key or user portfolio information is included."
+      ]
     },
     {
       "id": "robinhood-role-dialupprintsigner",
@@ -4619,7 +5492,6 @@
       "account_kind": "unverified",
       "ownership_status": "not_verified_no_legal_person_attribution",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x7C1783533Af716001aDd90DCaeB64c953913A83f",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -4633,8 +5505,7 @@
           "evidence_kind": "public_publisher_role_registry",
           "observed_on": "2026-09-10"
         }
-      ],
-      "note": "Published role attribution only, not proof of control, beneficial ownership or authority. No private key or user portfolio information is included."
+      ]
     },
     {
       "id": "robinhood-role-dialupticketsigner",
@@ -4645,7 +5516,6 @@
       "account_kind": "unverified",
       "ownership_status": "not_verified_no_legal_person_attribution",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x3d7ee9C31D81bcbf55536221FD7292097AFF4FCD",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -4659,8 +5529,7 @@
           "evidence_kind": "public_publisher_role_registry",
           "observed_on": "2026-09-10"
         }
-      ],
-      "note": "Published role attribution only, not proof of control, beneficial ownership or authority. No private key or user portfolio information is included."
+      ]
     },
     {
       "id": "robinhood-role-dialupconductorrole",
@@ -4671,7 +5540,6 @@
       "account_kind": "unverified",
       "ownership_status": "not_verified_no_legal_person_attribution",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x74f04B592E725DD0199B06015Fed1f8617c76DCd",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -4685,8 +5553,7 @@
           "evidence_kind": "public_publisher_role_registry",
           "observed_on": "2026-09-10"
         }
-      ],
-      "note": "Published role attribution only, not proof of control, beneficial ownership or authority. No private key or user portfolio information is included."
+      ]
     },
     {
       "id": "robinhood-role-dialuprelayer",
@@ -4697,7 +5564,6 @@
       "account_kind": "unverified",
       "ownership_status": "not_verified_no_legal_person_attribution",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xD0933CDa7170559046Bd0efAd35E8b0f655d9eCB",
       "provenance": [
         {
           "source_id": "netnet-app-registry-asset",
@@ -4711,8 +5577,7 @@
           "evidence_kind": "public_publisher_role_registry",
           "observed_on": "2026-09-10"
         }
-      ],
-      "note": "Published role attribution only, not proof of control, beneficial ownership or authority. No private key or user portfolio information is included."
+      ]
     },
     {
       "id": "robinhood-role-keeper",
@@ -4723,7 +5588,6 @@
       "account_kind": "unverified",
       "ownership_status": "not_verified_no_legal_person_attribution",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0xc73177390Fb65f733F9c7B286C29fb9FAa358213",
       "provenance": [
         {
           "source_id": "netnet-play-registry-asset",
@@ -4731,8 +5595,7 @@
           "evidence_kind": "public_publisher_role_registry",
           "observed_on": "2026-09-10"
         }
-      ],
-      "note": "Published role attribution only; no private key or user portfolio information included."
+      ]
     },
     {
       "id": "robinhood-role-climboperator",
@@ -4743,7 +5606,6 @@
       "account_kind": "unverified",
       "ownership_status": "not_verified_no_legal_person_attribution",
       "live_chain_verification_status": "not_performed",
-      "explorer_url": "https://robinhoodchain.blockscout.com/address/0x1BFd4368FA819C163ec62B7DFCC711931929E4Fa",
       "provenance": [
         {
           "source_id": "netnet-play-registry-asset",
@@ -4751,8 +5613,7 @@
           "evidence_kind": "public_publisher_role_registry",
           "observed_on": "2026-09-10"
         }
-      ],
-      "note": "Published role attribution only; no private key or user portfolio information included."
+      ]
     }
   ],
   "trusted_product_marks": [
@@ -4841,7 +5702,6 @@
       "role": "NVDA / USDG",
       "market_id": "0x8b16891f032a93b771347c9cb470a780e6699dd701553d3402aa3cdba6189c3e",
       "singleton_contract_address": "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
-      "singleton_explorer_url": "https://robinhoodchain.blockscout.com/address/0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -4860,7 +5720,6 @@
       "role": "SPCX / USDG",
       "market_id": "0x9b4b47cdf7e295341c6c6cdfd3efb9805c4a5b3d580dba0c0c39d3a4232b297b",
       "singleton_contract_address": "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
-      "singleton_explorer_url": "https://robinhoodchain.blockscout.com/address/0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -4879,7 +5738,6 @@
       "role": "AAPL / USDG",
       "market_id": "0xdeb4782d012d5fd3b24962538c2f6559049d70bda4dabd2e4212dacb96c28d45",
       "singleton_contract_address": "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
-      "singleton_explorer_url": "https://robinhoodchain.blockscout.com/address/0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -4898,7 +5756,6 @@
       "role": "GOOGL / USDG",
       "market_id": "0x7fa81b10e5d21b2e4c571f862442bc11aff2ed14f02335868d0ff933fd40d0ba",
       "singleton_contract_address": "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
-      "singleton_explorer_url": "https://robinhoodchain.blockscout.com/address/0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -4917,7 +5774,6 @@
       "role": "MSFT / USDG",
       "market_id": "0x2e1859aa8f143b7220088f80562c6dfe0bf8e52b87d9cedf8da8805f231994ce",
       "singleton_contract_address": "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
-      "singleton_explorer_url": "https://robinhoodchain.blockscout.com/address/0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -4936,7 +5792,6 @@
       "role": "COIN / USDG",
       "market_id": "0x3ebd43d91c3960a9fac32bedd5c60428e0e414de5bdd67fda770207afb0eb615",
       "singleton_contract_address": "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
-      "singleton_explorer_url": "https://robinhoodchain.blockscout.com/address/0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
       "provenance": [
         {
           "source_id": "netnet-docs-credit",
@@ -4993,10 +5848,15 @@
     "release_content_reviews": "sources.json#/release_reviews",
     "scope": "Address-specific counts only. Source inventory, extraction boundaries, gaps and content-review status are maintained in the linked source catalog, not duplicated here.",
     "counts": {
-      "contract_records_unique_by_chain_and_address": 145,
+      "contract_records_unique_by_chain_and_address": 174,
       "public_role_address_records": 10,
       "trusted_product_mark_relationships": 6,
-      "morpho_market_identifiers": 6
+      "morpho_market_identifiers": 6,
+      "underlying_price_feed_records": 37,
+      "robinhood_labelled_rwa_feed_candidates": 35,
+      "publisher_explicit_equity_feed_candidates": 33,
+      "incomplete_classification_feed_candidates": 2,
+      "rwa_feed_candidates_without_exact_token_relationship": 29
     },
     "live_chain_verified_contracts": 0
   }

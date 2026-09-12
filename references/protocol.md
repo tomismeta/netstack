@@ -2,6 +2,8 @@
 
 **Source snapshot:** official pages linked below were read on **2026-09-10**. This is an offline explanation of published mechanics, not a contract audit or a fresh chain-state report. Parameters described as immutable are the documentation's claims about that deployment; several pages also label values as pre-deployment defaults. No balances, current rates, oracle health, permissions or available capacity were independently verified here. Resolve identities through [the packaged address registry](../assets/addresses.json) and [Official Channels](https://docs.netnet.capital/official-channels), not token symbols alone.
 
+This unpublished working update also incorporates separately dated original announcements through **2026-09-12**. They do not amend the documented Core formulas or independently establish deployed changes.
+
 **Questions answered:** What does NET represent? Why do staked balances grow? What belongs in backing? How can reserves rise while backing per token falls? What do bonds, buybacks, fees and management options do? What does “no governance” actually cover?
 
 ## Purpose, chain and token forms
@@ -54,6 +56,8 @@ The documented Morpho deployment cap is **70% of Treasury USDG**, with the remai
 
 **Exclude from Core RFV:** team-custodied RWA Sleeve assets, direct Loopback lender principal, nnUSDG/Credit loan assets, futures test margin and underwriting capital, and other outside-Core product pots. A separately attributed USDG remittance that actually reaches Treasury can enter Core; product branding, a discretionary support promise or an unrealized stock gain cannot. Do not add Morpho gross and net values together, or add Treasury LP look-through assets on top of POL RFV. [Treasury §§1,5–6](https://docs.netnet.capital/treasury), [RWA Desk](https://docs.netnet.capital/rwa-desk), [Loopback](https://docs.netnet.capital/lending), [Credit](https://docs.netnet.capital/credit), [futures](https://docs.netnet.capital/futures).
 
+**Social “Treasury” is not a reserve-accounting definition.** Combined Treasury/Sleeve forecasts and game-income headlines do not establish Core RFV or earnings without a separately evidenced Core transfer. See [RWA strategy: forecast perimeter and social accounting](rwa-strategy.md#september-11-forecast-treasury-plus-manager-sleeve-not-core-rfv) for the dated claims and unresolved routing.
+
 ### Supply, premium and return are different denominators
 
 - **RFV** is the reserve numerator; **NAV** divides it by **total NET supply**, not only unstaked tokens or management-option float.
@@ -72,9 +76,11 @@ Sources: [Treasury §3](https://docs.netnet.capital/treasury), [mechanism §§2,
 | pTEAM exercise | Management pays 1 USDG for each new NET; this adds reserve principal but can dilute NAV when pre-exercise NAV exceeds the strike. |
 | Inverse bond / Buyback Program | Treasury pays USDG for NET that is burned, at documented `NAV × 0.985`. A below-NAV burn can raise NAV while reducing total RFV. Capacity is documented as 1% of liquid non-Morpho reserves per 8-hour epoch, with no rollover; valid oracle inputs are still required. |
 | PremiumSeller | Above the documented 2× NAV TWAP threshold, a bounded clip of newly minted NET is sold to the canonical pool and USDG swept to Treasury. Clip/slippage/interval bounds and a working oracle constrain availability; this is not an unrestricted Treasury ask. |
-| RWA subscription | Distributes previously exercised inventory rather than independently minting NET at purchase; a reserve remittance and a separate equity purchase must not be counted as the same Core inflow. See [products](products.md). |
+| RWA subscription | Transfers existing Desk inventory, not a new mint at purchase. Historical pTEAM-funded and September 12 announced bought-NET inventory have distinct provenance; do not carry the old remittance formula into the new path. See [Products](products.md#september-12-manager-funded-bid-and-bought-net-inventory). |
 
 Sources: [mechanism §§4–5](https://docs.netnet.capital/mechanism), [Treasury §4](https://docs.netnet.capital/treasury), [team](https://docs.netnet.capital/team), [RWA Desk](https://docs.netnet.capital/rwa-desk).
+
+**Manager policy is separate:** the September 12 **Manager-funded 2× NAV bid** announces purchases for Desk redistribution, not PremiumSeller issuance, inverse-bond burns or Loopback collateral valuation. It adds neither automatic redemption nor the Manager's balance sheet to RFV; execution and backing accretion remain unverified. See [Products: announcement, limits and inventory generations](products.md#september-12-manager-funded-bid-and-bought-net-inventory).
 
 The **1 USDG-per-NET reserve-floor invariant is not guaranteed cash redemption**, an exchange-price peg or unlimited exit liquidity. Inverse bonds have capacity, spread and oracle restrictions. USDG can depeg; reserve assets and contracts can fail; L2 outages can halt settlement. Read the documentation's “global accretion” claim as a reported contract/test invariant with two named NAV-diluting exceptions—epoch issuance and pTEAM exercise—not an independently audited guarantee of economic gains or protection from external loss. [Mechanism §4](https://docs.netnet.capital/mechanism), [risks §§1,5–6,9–11](https://docs.netnet.capital/risks).
 
