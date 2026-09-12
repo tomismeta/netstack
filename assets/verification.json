@@ -823,5 +823,21 @@
     },
     "scope": "Source-only supplied-file probes,not autonomous retrieval,native Hermes/OpenClaw execution or host enforcement. Prior scanner/native results retain their own input scopes. Fresh standalone scanner receipt remains external.",
     "native_retest": "Awaiting external host runs of every README matrix question,plus Morpho alone in a fresh conversation. No host environment or release changes authorized."
+  },
+  "catalog_filename_revision": {
+    "baseline_commit": "719c6b744b85390a60498082c16ea5c288b86e79",
+    "scope": "Rename-only catalog organization:38 contract data files,22 by-name indexes,4 public-role files. Existing groups,contract identities,publisher role names,aliases and provenance unchanged. No consolidation or file-count change.",
+    "naming": "Lowercase descriptive data names summarize actual mixed groups; by-name-<initial>.json explicitly denotes a lookup index. Follow literal pointers; filenames do not establish identity,currentness or shared deployment versions.",
+    "preservation": "All contract/public-role/feed data files byte-identical at their new paths; indexes,root routing and six singleton pointers differ only by exact path substitution. All174 contract IDs reachable once through indexes/feeds; all10 public roles and6 singleton references resolve.",
+    "reader_smoke": {
+      "upstream_commit": "d595e636c83aa0b9606d4e914e1140ae9c796897",
+      "mode": "Previously loaded unmodified _serve_skill_file functions and path_security helpers; not a native host run",
+      "resources": 104,
+      "largest_rendered_response_bytes": 6713,
+      "result": "Every catalog resource returned intact; literal route traversal succeeded for all entries."
+    },
+    "local_links": 300,
+    "evidence_policy": "Historical input hashes and filenames are retained as historical evidence,not migrated into invented past scan scopes. Current manifest owns current paths. Fresh standalone scan receipts remain external.",
+    "native_retest": "Not performed for renamed files; prior user-host results remain scoped to their input commits. Full-folder deployment and external native retest still required."
   }
 }

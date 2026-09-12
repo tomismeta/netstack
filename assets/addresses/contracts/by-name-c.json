@@ -3,19 +3,19 @@
     {
       "role": "cashcatToken",
       "aliases": [],
-      "file": "assets/addresses/contracts/c-01.json"
+      "file": "assets/addresses/contracts/cashcat-climb-and-coinflip.json"
     },
     {
       "role": "cashcatWethV3Pool",
       "aliases": [],
-      "file": "assets/addresses/contracts/c-01.json"
+      "file": "assets/addresses/contracts/cashcat-climb-and-coinflip.json"
     },
     {
       "role": "ClimbDesk",
       "aliases": [
         "climbDesk"
       ],
-      "file": "assets/addresses/contracts/c-01.json"
+      "file": "assets/addresses/contracts/cashcat-climb-and-coinflip.json"
     },
     {
       "role": "CoinFlipDesk",
@@ -23,36 +23,36 @@
         "coinFlipDesk",
         "COIN trusted mark source contract"
       ],
-      "file": "assets/addresses/contracts/c-01.json"
+      "file": "assets/addresses/contracts/cashcat-climb-and-coinflip.json"
     },
     {
       "role": "coinflipFeedAdapter",
       "aliases": [],
-      "file": "assets/addresses/contracts/c-01.json"
+      "file": "assets/addresses/contracts/cashcat-climb-and-coinflip.json"
     },
     {
       "role": "coinflipRouterSource",
       "aliases": [],
-      "file": "assets/addresses/contracts/c-02.json"
+      "file": "assets/addresses/contracts/coinflip-router-coin-token-and-credit-routers.json"
     },
     {
       "role": "coinStockToken",
       "aliases": [
         "COIN stock token"
       ],
-      "file": "assets/addresses/contracts/c-02.json"
+      "file": "assets/addresses/contracts/coinflip-router-coin-token-and-credit-routers.json"
     },
     {
       "role": "CreditRouter (pending activation)",
       "aliases": [
         "creditRouter"
       ],
-      "file": "assets/addresses/contracts/c-02.json"
+      "file": "assets/addresses/contracts/coinflip-router-coin-token-and-credit-routers.json"
     },
     {
       "role": "CreditRouter V1 (never granted according to app registry)",
       "aliases": [],
-      "file": "assets/addresses/contracts/c-02.json"
+      "file": "assets/addresses/contracts/coinflip-router-coin-token-and-credit-routers.json"
     }
   ]
 }

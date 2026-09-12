@@ -3,12 +3,12 @@
     {
       "role": "WETH",
       "aliases": [],
-      "file": "assets/addresses/contracts/w-01.json"
+      "file": "assets/addresses/contracts/weth-and-wsnet.json"
     },
     {
       "role": "WrappedStakedNET (wsNET)",
       "aliases": [],
-      "file": "assets/addresses/contracts/w-01.json"
+      "file": "assets/addresses/contracts/weth-and-wsnet.json"
     }
   ]
 }

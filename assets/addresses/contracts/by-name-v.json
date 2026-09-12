@@ -1,0 +1,31 @@
+{
+  "contracts": [
+    {
+      "role": "V3TwapAggregator (CASHCAT index)",
+      "aliases": [],
+      "file": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json"
+    },
+    {
+      "role": "VaultBundlesV1",
+      "aliases": [],
+      "file": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json"
+    },
+    {
+      "role": "VaultExitBundlesV1",
+      "aliases": [],
+      "file": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json"
+    },
+    {
+      "role": "vaultV2Factory",
+      "aliases": [
+        "VaultV2Factory"
+      ],
+      "file": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json"
+    },
+    {
+      "role": "verifierProxy",
+      "aliases": [],
+      "file": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json"
+    }
+  ]
+}

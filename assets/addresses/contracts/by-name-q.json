@@ -3,7 +3,7 @@
     {
       "role": "QuoterV2",
       "aliases": [],
-      "file": "assets/addresses/contracts/q-01.json"
+      "file": "assets/addresses/contracts/uniswap-quoter.json"
     }
   ]
 }

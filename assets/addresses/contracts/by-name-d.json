@@ -1,0 +1,34 @@
+{
+  "contracts": [
+    {
+      "role": "dialupDesk",
+      "aliases": [],
+      "file": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json"
+    },
+    {
+      "role": "dialupVerifier",
+      "aliases": [],
+      "file": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json"
+    },
+    {
+      "role": "dialupZap",
+      "aliases": [],
+      "file": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json"
+    },
+    {
+      "role": "Distributor",
+      "aliases": [],
+      "file": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json"
+    },
+    {
+      "role": "DrandSigRegistry",
+      "aliases": [],
+      "file": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json"
+    },
+    {
+      "role": "DrawController",
+      "aliases": [],
+      "file": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json"
+    }
+  ]
+}

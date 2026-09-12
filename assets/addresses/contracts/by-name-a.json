@@ -5,19 +5,19 @@
       "aliases": [
         "AAPL stock token"
       ],
-      "file": "assets/addresses/contracts/a-01.json"
+      "file": "assets/addresses/contracts/aapl-token-pool-and-interest-rate-model.json"
     },
     {
       "role": "aaplUsdgV3Pool",
       "aliases": [],
-      "file": "assets/addresses/contracts/a-01.json"
+      "file": "assets/addresses/contracts/aapl-token-pool-and-interest-rate-model.json"
     },
     {
       "role": "adaptiveCurveIrm",
       "aliases": [
         "Adaptive Curve Irm"
       ],
-      "file": "assets/addresses/contracts/a-01.json"
+      "file": "assets/addresses/contracts/aapl-token-pool-and-interest-rate-model.json"
     }
   ]
 }

@@ -3,7 +3,7 @@
     {
       "role": "LoopbackOracle",
       "aliases": [],
-      "file": "assets/addresses/contracts/l-01.json"
+      "file": "assets/addresses/contracts/loopback-oracle.json"
     }
   ]
 }

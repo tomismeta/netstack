@@ -5,17 +5,17 @@
       "aliases": [
         "OTC Desk"
       ],
-      "file": "assets/addresses/contracts/o-01.json"
+      "file": "assets/addresses/contracts/otc-desk-and-adapters.json"
     },
     {
       "role": "otcDeskFeedAdapter",
       "aliases": [],
-      "file": "assets/addresses/contracts/o-01.json"
+      "file": "assets/addresses/contracts/otc-desk-and-adapters.json"
     },
     {
       "role": "otcDeskRouterSource",
       "aliases": [],
-      "file": "assets/addresses/contracts/o-01.json"
+      "file": "assets/addresses/contracts/otc-desk-and-adapters.json"
     }
   ]
 }

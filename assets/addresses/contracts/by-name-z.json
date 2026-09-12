@@ -3,7 +3,7 @@
     {
       "role": "Zap",
       "aliases": [],
-      "file": "assets/addresses/contracts/z-01.json"
+      "file": "assets/addresses/contracts/zap.json"
     }
   ]
 }

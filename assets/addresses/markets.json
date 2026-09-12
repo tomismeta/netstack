@@ -17,7 +17,7 @@
       ],
       "status": "documented_identifier_not_live_verified",
       "note": "Bytes32 market ID on the Morpho singleton, not a contract address.",
-      "singleton_record": "assets/addresses/contracts/m-01.json",
+      "singleton_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
       "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
     },
     {
@@ -36,7 +36,7 @@
       ],
       "status": "documented_identifier_not_live_verified",
       "note": "Bytes32 market ID on the Morpho singleton, not a contract address.",
-      "singleton_record": "assets/addresses/contracts/m-01.json",
+      "singleton_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
       "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
     },
     {
@@ -55,7 +55,7 @@
       ],
       "status": "documented_identifier_not_live_verified",
       "note": "Bytes32 market ID on the Morpho singleton, not a contract address.",
-      "singleton_record": "assets/addresses/contracts/m-01.json",
+      "singleton_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
       "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
     },
     {
@@ -74,7 +74,7 @@
       ],
       "status": "documented_identifier_not_live_verified",
       "note": "Bytes32 market ID on the Morpho singleton, not a contract address.",
-      "singleton_record": "assets/addresses/contracts/m-01.json",
+      "singleton_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
       "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
     },
     {
@@ -93,7 +93,7 @@
       ],
       "status": "documented_identifier_not_live_verified",
       "note": "Bytes32 market ID on the Morpho singleton, not a contract address.",
-      "singleton_record": "assets/addresses/contracts/m-01.json",
+      "singleton_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
       "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
     },
     {
@@ -112,7 +112,7 @@
       ],
       "status": "documented_identifier_not_live_verified",
       "note": "Bytes32 market ID on the Morpho singleton, not a contract address.",
-      "singleton_record": "assets/addresses/contracts/m-01.json",
+      "singleton_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
       "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
     }
   ]

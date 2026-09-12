@@ -5,7 +5,7 @@
       "aliases": [
         "RWA Sleeve multisig"
       ],
-      "file": "assets/addresses/contracts/m-01.json"
+      "file": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json"
     },
     {
       "role": "Market adapter (the vault's one adapter, Loopback plus six markets)",
@@ -13,12 +13,12 @@
         "Market adapter",
         "marketAdapter"
       ],
-      "file": "assets/addresses/contracts/m-01.json"
+      "file": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json"
     },
     {
       "role": "Morpho ChainlinkOracleV2 Factory",
       "aliases": [],
-      "file": "assets/addresses/contracts/m-01.json"
+      "file": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json"
     },
     {
       "role": "morphoBlue",
@@ -26,45 +26,45 @@
         "Morpho",
         "Morpho Blue"
       ],
-      "file": "assets/addresses/contracts/m-01.json"
+      "file": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json"
     },
     {
       "role": "morphoMarketV1AdapterV2Factory",
       "aliases": [
         "MorphoMarketV1 AdapterV2Factory"
       ],
-      "file": "assets/addresses/contracts/m-02.json"
+      "file": "assets/addresses/contracts/morpho-vault-registry-factories-and-msft-token.json"
     },
     {
       "role": "morphoRegistry",
       "aliases": [
         "MorphoRegistry"
       ],
-      "file": "assets/addresses/contracts/m-02.json"
+      "file": "assets/addresses/contracts/morpho-vault-registry-factories-and-msft-token.json"
     },
     {
       "role": "morphoUsdgVault",
       "aliases": [],
-      "file": "assets/addresses/contracts/m-02.json"
+      "file": "assets/addresses/contracts/morpho-vault-registry-factories-and-msft-token.json"
     },
     {
       "role": "MorphoVaultV1 AdapterFactory",
       "aliases": [],
-      "file": "assets/addresses/contracts/m-02.json"
+      "file": "assets/addresses/contracts/morpho-vault-registry-factories-and-msft-token.json"
     },
     {
       "role": "msftStockToken",
       "aliases": [
         "MSFT stock token"
       ],
-      "file": "assets/addresses/contracts/m-02.json"
+      "file": "assets/addresses/contracts/morpho-vault-registry-factories-and-msft-token.json"
     },
     {
       "role": "multicall3",
       "aliases": [
         "Multicall3"
       ],
-      "file": "assets/addresses/contracts/m-03.json"
+      "file": "assets/addresses/contracts/multicall3.json"
     }
   ]
 }

@@ -5,17 +5,17 @@
       "aliases": [
         "Rialto Router Registry"
       ],
-      "file": "assets/addresses/contracts/r-01.json"
+      "file": "assets/addresses/contracts/rialto-runner-and-rwa-desk-v1.json"
     },
     {
       "role": "runnerDeskNvda",
       "aliases": [],
-      "file": "assets/addresses/contracts/r-01.json"
+      "file": "assets/addresses/contracts/rialto-runner-and-rwa-desk-v1.json"
     },
     {
       "role": "runnerPriceVerifier",
       "aliases": [],
-      "file": "assets/addresses/contracts/r-01.json"
+      "file": "assets/addresses/contracts/rialto-runner-and-rwa-desk-v1.json"
     },
     {
       "role": "RwaDesk",
@@ -25,7 +25,7 @@
         "RWA Desk V1 (legacy)",
         "NVDA trusted mark source contract"
       ],
-      "file": "assets/addresses/contracts/r-01.json"
+      "file": "assets/addresses/contracts/rialto-runner-and-rwa-desk-v1.json"
     },
     {
       "role": "rwaDesk",
@@ -33,21 +33,21 @@
         "RWA Desk V2",
         "AAPL trusted mark source contract"
       ],
-      "file": "assets/addresses/contracts/r-02.json"
+      "file": "assets/addresses/contracts/rwa-desk-v2-and-feed-router-adapters.json"
     },
     {
       "role": "rwaDeskFeedAdapter",
       "aliases": [
         "RWA Feed Adapter V3"
       ],
-      "file": "assets/addresses/contracts/r-02.json"
+      "file": "assets/addresses/contracts/rwa-desk-v2-and-feed-router-adapters.json"
     },
     {
       "role": "rwaDeskRouterSource",
       "aliases": [
         "RWA Desk V2 router source"
       ],
-      "file": "assets/addresses/contracts/r-02.json"
+      "file": "assets/addresses/contracts/rwa-desk-v2-and-feed-router-adapters.json"
     }
   ]
 }

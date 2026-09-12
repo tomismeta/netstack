@@ -3,7 +3,7 @@
     {
       "role": "TaxCollector",
       "aliases": [],
-      "file": "assets/addresses/contracts/t-01.json"
+      "file": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json"
     },
     {
       "role": "Team multisig (Safe), owner and curator",
@@ -11,34 +11,34 @@
         "Team multisig (Safe)",
         "teamMultisig"
       ],
-      "file": "assets/addresses/contracts/t-01.json"
+      "file": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json"
     },
     {
       "role": "TickLens",
       "aliases": [],
-      "file": "assets/addresses/contracts/t-01.json"
+      "file": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json"
     },
     {
       "role": "tNET",
       "aliases": [
         "tNET (test token, no value)"
       ],
-      "file": "assets/addresses/contracts/t-01.json"
+      "file": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json"
     },
     {
       "role": "Treasury",
       "aliases": [],
-      "file": "assets/addresses/contracts/t-01.json"
+      "file": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json"
     },
     {
       "role": "TURBO Desk v1.0",
       "aliases": [],
-      "file": "assets/addresses/contracts/t-02.json"
+      "file": "assets/addresses/contracts/turbo-deployments-and-adapters.json"
     },
     {
       "role": "TURBO Feed Adapter v1.0",
       "aliases": [],
-      "file": "assets/addresses/contracts/t-02.json"
+      "file": "assets/addresses/contracts/turbo-deployments-and-adapters.json"
     },
     {
       "role": "TurboDesk",
@@ -46,7 +46,7 @@
         "turboDesk",
         "TURBO Desk v1.1"
       ],
-      "file": "assets/addresses/contracts/t-02.json"
+      "file": "assets/addresses/contracts/turbo-deployments-and-adapters.json"
     },
     {
       "role": "TurboFeedAdapter",
@@ -54,14 +54,14 @@
         "turboFeedAdapter",
         "TURBO Feed Adapter v1.1"
       ],
-      "file": "assets/addresses/contracts/t-02.json"
+      "file": "assets/addresses/contracts/turbo-deployments-and-adapters.json"
     },
     {
       "role": "TurboRouter",
       "aliases": [
         "Loopback TurboRouter (not TURBO Desk)"
       ],
-      "file": "assets/addresses/contracts/t-02.json"
+      "file": "assets/addresses/contracts/turbo-deployments-and-adapters.json"
     }
   ]
 }

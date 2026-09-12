@@ -3,12 +3,12 @@
     {
       "role": "FeeSink",
       "aliases": [],
-      "file": "assets/addresses/contracts/f-01.json"
+      "file": "assets/addresses/contracts/fee-sinks-and-flightsim.json"
     },
     {
       "role": "FeeSink (CASHCAT)",
       "aliases": [],
-      "file": "assets/addresses/contracts/f-01.json"
+      "file": "assets/addresses/contracts/fee-sinks-and-flightsim.json"
     },
     {
       "role": "FlightSimDesk",
@@ -17,27 +17,27 @@
         "MSFT trusted mark source contract",
         "MSFT Flight Simulator"
       ],
-      "file": "assets/addresses/contracts/f-01.json"
+      "file": "assets/addresses/contracts/fee-sinks-and-flightsim.json"
     },
     {
       "role": "flightsimFeedAdapter",
       "aliases": [],
-      "file": "assets/addresses/contracts/f-01.json"
+      "file": "assets/addresses/contracts/fee-sinks-and-flightsim.json"
     },
     {
       "role": "flightsimRouterSource",
       "aliases": [],
-      "file": "assets/addresses/contracts/f-01.json"
+      "file": "assets/addresses/contracts/fee-sinks-and-flightsim.json"
     },
     {
       "role": "FuturesClearinghouse",
       "aliases": [],
-      "file": "assets/addresses/contracts/f-02.json"
+      "file": "assets/addresses/contracts/futures-clearinghouses.json"
     },
     {
       "role": "FuturesClearinghouse (CASHCAT)",
       "aliases": [],
-      "file": "assets/addresses/contracts/f-02.json"
+      "file": "assets/addresses/contracts/futures-clearinghouses.json"
     }
   ]
 }

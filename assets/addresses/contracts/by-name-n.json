@@ -5,58 +5,58 @@
       "aliases": [
         "NET"
       ],
-      "file": "assets/addresses/contracts/n-01.json"
+      "file": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json"
     },
     {
       "role": "NET-scaled18",
       "aliases": [],
-      "file": "assets/addresses/contracts/n-01.json"
+      "file": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json"
     },
     {
       "role": "NET/USDG canonical pair (Uniswap v2)",
       "aliases": [],
-      "file": "assets/addresses/contracts/n-01.json"
+      "file": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json"
     },
     {
       "role": "NetNet Credit vault (nnUSDG)",
       "aliases": [
         "usdgVault"
       ],
-      "file": "assets/addresses/contracts/n-01.json"
+      "file": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json"
     },
     {
       "role": "NetNetGear (the loot collection, shared by every cabinet)",
       "aliases": [
         "netnetGear"
       ],
-      "file": "assets/addresses/contracts/n-02.json"
+      "file": "assets/addresses/contracts/netnet-gear-nft-descriptors-and-nvda-token.json"
     },
     {
       "role": "NetNetGear retired original deployment",
       "aliases": [],
-      "file": "assets/addresses/contracts/n-02.json"
+      "file": "assets/addresses/contracts/netnet-gear-nft-descriptors-and-nvda-token.json"
     },
     {
       "role": "NFTDescriptor",
       "aliases": [],
-      "file": "assets/addresses/contracts/n-02.json"
+      "file": "assets/addresses/contracts/netnet-gear-nft-descriptors-and-nvda-token.json"
     },
     {
       "role": "NonfungibleTokenPositionDescriptor",
       "aliases": [],
-      "file": "assets/addresses/contracts/n-02.json"
+      "file": "assets/addresses/contracts/netnet-gear-nft-descriptors-and-nvda-token.json"
     },
     {
       "role": "nvdaStockToken",
       "aliases": [
         "NVDA stock token"
       ],
-      "file": "assets/addresses/contracts/n-02.json"
+      "file": "assets/addresses/contracts/netnet-gear-nft-descriptors-and-nvda-token.json"
     },
     {
       "role": "nvdaUsdgV3Pool",
       "aliases": [],
-      "file": "assets/addresses/contracts/n-03.json"
+      "file": "assets/addresses/contracts/nvda-usdg-pool.json"
     }
   ]
 }
