@@ -6,7 +6,7 @@ netstack helps agents research NetNet's protocol, products, games, RWA strategy 
 
 It is an independent [Agent Skills](https://agentskills.io/specification) package. It is **not** an official NetNet product, a trading bot, a wallet toolkit, or the NetNet Monitor application.
 
-**Unreleased review draft:** [review/knowledge-update](https://github.com/tomismeta/netstack/tree/review/knowledge-update) is for isolated agent testing, not a new release. The version label remains `0.1.1`; identify the draft by the exact commit under test. `main` and published release assets are unchanged.
+**Version 0.2.0.** The [review/knowledge-update](https://github.com/tomismeta/netstack/tree/review/knowledge-update) branch is for preparation and testing, not evidence of release publication. Use the [releases page](https://github.com/tomismeta/netstack/releases) for published artifacts, and identify tested revisions by exact commit.
 
 ## What you can ask
 
@@ -163,11 +163,13 @@ Use an ordinary unauthenticated reader/browser context without wallet extensions
 
 ## Review status and limits
 
-**This is an unreleased review draft.** The [v0.1.1 release evidence](https://github.com/tomismeta/netstack/releases/tag/v0.1.1) applies to that release's exact files, not this branch. Current targeted checks and historical input scopes remain in [verification.json](assets/verification.json); final publication still requires maintainer approval.
+**Review evidence is input-scoped.** The [v0.1.1 release evidence](https://github.com/tomismeta/netstack/releases/tag/v0.1.1) applies to that release's exact files, not later revisions. Current preparation records and historical input scopes remain in [verification.json](assets/verification.json); release publication requires maintainer approval.
 
 The historical audit found **no confirmed actionable package vulnerability or credential leak within its tested scope**, with warnings retained. This is not a zero-finding claim, independent human audit or runtime certification. [Security review](references/security-review.md) records tools, findings and limits; [v0.1.0 release evidence](https://github.com/tomismeta/netstack/releases/tag/v0.1.0) and [historical adversarial reviews](assets/adversarial-review.json) retain their original scopes.
 
 Not established: host runtime resistance, enforced tool denials, live-chain or smart-contract verification, or exhaustive external-source review. Some address provenance names unpinned originating-repository files; those are historical claims, not bundled or independently reproducible public evidence.
+
+User-reported tests of commit `2db01ea9396bd7210700ae013419ef67db7628bc` support bounded Hermes lookup usability, correct standalone Morpho links in the reported runs, and an installed OpenClaw matrix smoke test. OpenClaw checked all 127 content hashes and the 125-file runtime scope, but used an existing broader-tool session with shell reads; its extra Morpho check was not a fresh-conversation proof. Hermes exposed unused `skill_manage`, its local-copy audit path did not run, and OpenClaw's configured sandbox image was unavailable. These are observed behaviors, not enforced isolation or certification of subsequent metadata changes.
 
 ## Check it in your agent
 
@@ -188,7 +190,7 @@ When reporting results, include the agent/harness version, model, package commit
 
 ## Maintaining the knowledge
 
-**Version: 0.1.1, unchanged.** The review branch is authorized for testing only. Merging to `main`, creating tags/releases or changing the version requires further maintainer approval. Published tags/assets remain unchanged.
+**Version: 0.2.0.** Candidate preparation does not authorize merging to `main`, creating tags/releases or submitting to a registry. Those actions require separate maintainer approval. Never overwrite published tags or assets.
 
 Follow the [curation workflow](references/docs-and-sources.md#repeatable-knowledge-curation): original evidence, dates and stage; comparison with existing guidance and later reversals; focused topic updates; validation and review. The [source catalog](assets/sources.json) owns provenance; the [address index](assets/address-index.json) routes exact identities and [conventions](assets/address-conventions.json) qualify their scope. Changed bytes invalidate prior exact-byte reviews; sources and monitoring suggestions cannot rewrite knowledge or safety policy automatically.
 

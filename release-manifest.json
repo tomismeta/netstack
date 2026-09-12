@@ -1,7 +1,6 @@
 {
-  "version": "0.1.1",
-  "version_policy": "Version0.1.1 retained for review. Commit/push to review/knowledge-update authorized; main merge,version bump,tags and releases require further approval.",
-  "publication_status": "unreleased_review_branch",
+  "version": "0.2.0",
+  "version_policy": "Maintainer authorized preparation of proposed0.2.0. Merge,tag,release and registry submission remain subject to separate approval.",
   "result": "targeted_local_integrity_passed_not_security_certification",
   "files": 127,
   "total_distributable_files": 128,
@@ -27,22 +26,14 @@
     "feeds"
   ],
   "checks": [
-    "JSON/YAML and all local file links/anchors valid;126 source identities resolve",
-    "All174 complete contracts,37feeds,6mappings,10roles and6markets preserved across canonical bounded files",
-    "Pinned upstream full-file reader returned all104 catalog resources intact; maximum6638UTF-8 response bytes",
-    "At980d806: Nine source-only fresh-conversation behavior probes observed expected key boundaries; not native-host or autonomous routing certification",
-    "Complete tracked-folder distribution required; prior single-SKILL URL import is not a complete bounded-catalog deployment",
-    "At719c6b7: 104 catalog files unchanged from980d806; focused literal-template probes pass with normal,misleading and missing conventions contexts",
-    "Current retest instructions reference every matrix question; native retests of this output-rule revision are not claimed",
-    "64 descriptive file renames; exact data bytes preserved and all live path pointers migrated",
-    "All104 renamed catalog responses intact through pinned reader helper; maximum6713UTF-8 bytes; no current native runtime claim"
+    "JSON/YAML and local references valid; canonical catalog unchanged from2db01ea",
+    "Earlier reader/behavior checks retain historical input scopes in verification.json",
+    "Final approval uses external exact-input scanner and validator receipts; no outcome inferred from this manifest"
   ],
-  "host_installation_or_activation": false,
-  "host_runtime_testing": false,
   "manifest_sha256": {
     "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
-    "README.md": "00aba88f56e63ebf400bf7a7e1071d5ee3cd003d15db2211b1501611c9b88192",
-    "SKILL.md": "f48fa3ae01c990d81d06d636c29f04c9739ce6f10785fac4ae1e668b80c69cf1",
+    "README.md": "e5c2a26a996509b646a30eae9c7f20debdaee37cc8a4fc33b75f79364e9856ea",
+    "SKILL.md": "49378253ab94b22846701a14f0294216eaf1d118f9e061703d242135996e386c",
     "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "assets/address-conventions.json": "ff43541c19eac025ad66a56c5bd838361a6a8f6cbe4f3270a90f9ec2d00086cc",
     "assets/address-index.json": "efc8db342670333c1d3ab2d7c41e351031a46c04c0b4539b05c6bbecabb0aa9c",
@@ -151,14 +142,14 @@
     "assets/adversarial-review.json": "401674080474416447e8bdab2bef76948fe171e8b13f82047c1b4d0269733b7b",
     "assets/safety-policy.json": "cab113dc5e205f02cdc7563e8aa1b32d4063be60d4697352e6118bf72336f560",
     "assets/sources.json": "515e78b0d344abc5602aa52a9b8b00039a8975d599d104f1dea13299ad334130",
-    "assets/verification.json": "1fbf3d2acb1817cc5eeaa4d3da95e5123485559d9e54d3e2a5937804ace5ebb0",
-    "references/addresses-and-roles.md": "d1dd9e69e60a6b4e74d819df2ddcd13753e4c6415a688c63cde6de7df3720dcb",
+    "assets/verification.json": "5062717b467bcf5276f6558de6395a5d40dc6050d34195e4f7df54ee16579526",
+    "references/addresses-and-roles.md": "9116a738498e66952c52b33ef7f5542f4a65f03947667a2fea34ffa9ca6d1738",
     "references/announcements-and-history.md": "1ece3ee9043421c6218076cb9809a2c3c730b34c282a0f9c02d7d4deab75d39c",
     "references/builders.md": "210009c67b1c3aa11f7440bfad331b1d907b56bb262b4f28c9d3a349802240a3",
     "references/docs-and-sources.md": "6f9fa405c04de3ffecd51b8d9afb354c38b1aa5ee806384ffd0a3a521c6dc603",
     "references/games.md": "0f4eab0da9e23092163fff49c366fcf21850c267461e359d409f4cb81ad286d3",
     "references/glossary-and-faq.md": "602526e9949dd4e0f37e67289d411dbdc6033c10c7c966636626f876d782a5bf",
-    "references/installation.md": "838616c6f03dd05de49ceca17d99eda5d62dc6df62126026b0b7620d8d4de418",
+    "references/installation.md": "47d934b2f2196be2e7e3bbac93fcff5d5f9d630c69bd3db30de7ab6b9affd9d6",
     "references/integrations.md": "bd3b8788044dbaa828dfdb9694e098a34ac96dede17758e43c2bd5f53f675eab",
     "references/links.md": "e68a5a58f156b0127d3b1248b28edb96b9217d0aa00f21e89036c92842a9020a",
     "references/nfts.md": "03724ab7f071bddbc32e38b22f8070f98028ed87cc4aa3f0e38e2f959c419e19",
@@ -168,10 +159,10 @@
     "references/safety.md": "e61dddb0ee742d436fc4e54073d174d8d1b30e43d3ac5ad6f3d128bb7523a7a0",
     "references/security-review.md": "d32a2ecd7533e3b325ec521ea29670b4458424be2e65609a6b3338d3b001e846"
   },
-  "manifest_scope": "All intended content files, excluding this self-referential manifest; private handoff and verification tooling excluded. Unreleased review-branch draft, not a new release.",
+  "manifest_scope": "127 content fingerprints plus this manifest as the128th package file. Publication status is recorded at preparation time,not live release state. Private handoffs,audit receipts and tooling excluded.",
   "runtime_bundle": {
     "files": 125,
-    "sha256": "4b07274fa56c6a795e193565a67acf2486eb5248fcab761cb5dbd863a3b34f50",
+    "sha256": "41f4c49fea1a10343a71dbcbf02e52a6eadcddd86a7fc0788e6fdc4e80e424d9",
     "digest_algorithm": "SHA-256 over sorted POSIX relative paths, NUL, file bytes",
     "scope": "SKILL.md plus all references/assets in a complete folder export, not the old directly-linked URL installer subset. External standalone scanner receipt binds its own exact inputs."
   },
@@ -220,5 +211,8 @@
       "evidence_scope": "Embedded details cover the explicitly named historical audit. The external release audit binds final release scans to all24 exact file hashes, including this manifest, without self-reference."
     }
   },
-  "review_branch": "review/knowledge-update"
+  "review_branch": "review/knowledge-update",
+  "publication_status_at_preparation": "candidate_pending_maintainer_approval",
+  "candidate_native_host_testing": false,
+  "user_native_host_evidence": "assets/verification.json native_host_reports_2db01ea; exact earlier input,not current candidate runtime certification"
 }

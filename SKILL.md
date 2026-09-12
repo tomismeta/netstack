@@ -4,7 +4,7 @@ description: "Read-only NetNet research: protocol, games, and sources."
 license: MIT
 metadata:
   compatibility: "Packaged knowledge needs no network, CLI, credentials, or wallet. Fresh public read-only web, explorer, dashboard, API and bounded RPC retrieval may use ordinary host-permitted reader/browser tools; no custom broker is required. This skill does not provision tools or enforce a sandbox."
-  version: "0.1.1"
+  version: "0.2.0"
   knowledge-reviewed: "2026-09-12"
   access: "read-only"
 ---
