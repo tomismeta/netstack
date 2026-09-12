@@ -96,6 +96,8 @@ For exact lookups, read [address-index.json](assets/address-index.json), then on
 
 Shared `record_notes`, `explorers`, scope, coverage and discrepancies live in conventions; feed-metadata evidence lives in the parent contract's `provenance`. Return **RHScan** URLs for Robinhood Chain explorer navigation, including historical objects, using the templates and exact chain-qualified address or transaction hash. Historical retrieval URLs identify evidence origins, not explorer destinations.
 
+**Final explorer-link check:** use the literal hostname and path from the packaged `explorers` template, substituting only the recorded identifier. Do not reconstruct the hostname from memory. If conventions are not available in the current context, read them before returning the link; check the completed URL against that template.
+
 **Morpho identity answers must include the singleton:** load [markets.json](assets/addresses/markets.json), follow the selected market's literal `singleton_record`, and select `singleton_id` inside that file. Separately return the singleton's **recorded 20-byte address and RHScan address URL**; a market ID is neither an address nor a transaction hash. Do not stop at that distinction or invent an address if the record cannot be read.
 
 Maintenance evidence: [source map and curation](references/docs-and-sources.md), [machine-readable safety policy](assets/safety-policy.json), [verification record](assets/verification.json), [historical adversarial review](assets/adversarial-review.json). These describe evidence or policy, not executable enforcement or certification of later bytes.

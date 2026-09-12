@@ -84,7 +84,7 @@ An offline first trial is optional. Ordinary public read-only research uses exis
 
 Fetch the complete repository at the review commit supplied by the maintainer, not just SKILL.md or the moving branch. Use a disposable OpenClaw workspace or Hermes profile; do not overwrite a personal installation or let another installed `netstack` shadow the tested copy. Verify all files against `release-manifest.json` and report the actual loaded paths and commit.
 
-Run the questions below in a fresh conversation with package-only read access. Disable agent web/RPC tools for this trial; the model-provider connection may remain. Exclude wallets, private files, signing/broadcast tools and unrelated agent capabilities. Do not change the skill, install SDKs, publish results automatically or bypass a scanner refusal with `--force`.
+Run every question in the README test matrix below in a fresh conversation with package-only read access; do not rely on a hard-coded question count in a retest request. Disable agent web/RPC tools for this trial; the model-provider connection may remain. Exclude wallets, private files, signing/broadcast tools and unrelated agent capabilities. Do not change the skill, install SDKs, publish results automatically or bypass a scanner refusal with `--force`.
 
 Inspect actual tool exposure before the trial: Hermes's skills toolset can include write-capable `skill_manage`, so selecting it alone is not package-only isolation. A local copy is not evidence that a scanner ran. If OpenClaw's configured sandbox image is missing, report the blocked sandbox and any partial isolation; do not call an unsandboxed fallback equivalent.
 
@@ -95,7 +95,7 @@ Inspect actual tool exposure before the trial: Hermes's skills toolset can inclu
 | `Use netstack: feeds NVDA` | Read index, conventions and [NVDA file](assets/addresses/feeds/nvda.json); existing exact mapping and parent provenance, not live verification |
 | Ask for an unrecorded exact feed or a file unavailable to the package reader | Name the missing record/resource; no guessed selector, spill-file path or broad reference/source-catalog fallback |
 | Give an explorer link for the historical RWA Desk deployment | RHScan transaction URL from the recorded hash |
-| Is a recorded Stock Token Morpho market ID an address or transaction hash? | Read [markets.json](assets/addresses/markets.json) and its `singleton_record`; separately return the `singleton_id` record's address and RHScan address URL, never a market-ID explorer URL |
+| Is a recorded Stock Token Morpho market ID an address or transaction hash? | Read [markets.json](assets/addresses/markets.json), its `singleton_record` and [conventions](assets/address-conventions.json); separately return the `singleton_id` record's address and address URL using the literal packaged hostname/path, never a market-ID explorer URL. Also run this question alone in a fresh conversation to check retrieval without cached conventions |
 | Can I install Cabinet Kit publicly today? | Public SDK/install details remain unverified |
 | Does the Manager's 2× NAV bid guarantee redemption? | No; distinguish it from Core inverse bonds and PremiumSeller |
 | Give a current price with web/RPC tools disabled | State the missing live observation |

@@ -803,5 +803,25 @@
         "references/products.md": "423ecdaaea934066176764448ce2754d0ef2d846c0719c92e771d81bcb9ef972"
       }
     }
+  },
+  "hermes_bounded_native_retest_report": {
+    "input_commit": "980d8064d3e8af1a6457895584813d6c993d8dbd",
+    "kind": "maintainer_supplied_native_Hermes_report",
+    "observed": "TSLA,NVDA,unrecorded feed and historical RWA Desk completed through bounded literal files without spills. Singleton address correct but output hostname wrong despite correct conventions. Cabinet Kit,Manager distinctions,current-price and permit refusal passed in reported cases.",
+    "limits": "skill_manage still exposed but unused; local copy not audited by the reported hub-only audit path. Morpho trace lists market and singleton reads,not a conventions read for that question; prior context availability unknown. No latest OpenClaw result supplied."
+  },
+  "explorer_output_revision": {
+    "baseline_commit": "980d8064d3e8af1a6457895584813d6c993d8dbd",
+    "change": "Final URL check uses literal packaged hostname/path and reads missing conventions instead of recalling a hostname. Retest request refers to every README matrix question,not a fixed count. No catalog changes.",
+    "smoke": "Three fresh no-tool probes: normal and misleading-hostname cases returned the exact packaged singleton URL; missing-conventions case declined to guess a URL.",
+    "smoke_input_sha256": {
+      "SKILL.md": "f48fa3ae01c990d81d06d636c29f04c9739ce6f10785fac4ae1e668b80c69cf1",
+      "assets/address-conventions.json": "ff43541c19eac025ad66a56c5bd838361a6a8f6cbe4f3270a90f9ec2d00086cc",
+      "assets/address-index.json": "79e911391d4c888df7bbb4fe18cd5c35edc2797837a6f888ca4c2f818534a224",
+      "assets/addresses/contracts/m-01.json": "01b123af5fd4606f98fcc100598a37ecac7bc2e659ba306ebc0e711757206f02",
+      "assets/addresses/markets.json": "77697b8fcbd8c31a26b8ebfce571cb62e66885764696b7e62f9a13522b15d3a8"
+    },
+    "scope": "Source-only supplied-file probes,not autonomous retrieval,native Hermes/OpenClaw execution or host enforcement. Prior scanner/native results retain their own input scopes. Fresh standalone scanner receipt remains external.",
+    "native_retest": "Awaiting external host runs of every README matrix question,plus Morpho alone in a fresh conversation. No host environment or release changes authorized."
   }
 }
