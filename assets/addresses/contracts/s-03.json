@@ -1,0 +1,160 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x12ec3474d1e321e0aab065278b97fbc7eda5f424",
+      "chain_id": 4663,
+      "address": "0x12Ec3474D1e321e0aAB065278B97FBC7eDa5F424",
+      "role": "StockMorphoOracle (GOOGL)",
+      "aliases": [
+        "googlOracle"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Addresses / StockMorphoOracle (GOOGL)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Curated Credit Vault (NetNet Credit) / StockMorphoOracle (GOOGL)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "googlOracle.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "googlOracle.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xcb9a035fe0e8f321e36286405febc70de42db34e",
+      "chain_id": 4663,
+      "address": "0xcb9a035fe0e8f321e36286405fEBC70dE42DB34e",
+      "role": "StockMorphoOracle (MSFT)",
+      "aliases": [
+        "msftOracle"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Addresses / StockMorphoOracle (MSFT)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Curated Credit Vault (NetNet Credit) / StockMorphoOracle (MSFT)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "msftOracle.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "msftOracle.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xed29d310cfa91778a5850538da28ed42234cb78c",
+      "chain_id": 4663,
+      "address": "0xED29D310cfa91778A5850538DA28ed42234Cb78c",
+      "role": "StockMorphoOracle (NVDA)",
+      "aliases": [
+        "nvdaOracle"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Addresses / StockMorphoOracle (NVDA)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Curated Credit Vault (NetNet Credit) / StockMorphoOracle (NVDA)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "nvdaOracle.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "nvdaOracle.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x872f9d8955b34e841227a92de755cd63042ab7a5",
+      "chain_id": 4663,
+      "address": "0x872F9D8955B34e841227a92dE755cd63042Ab7A5",
+      "role": "StockMorphoOracle (SPCX)",
+      "aliases": [
+        "spcxOracle"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Addresses / StockMorphoOracle (SPCX)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Curated Credit Vault (NetNet Credit) / StockMorphoOracle (SPCX)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "spcxOracle.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "spcxOracle.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

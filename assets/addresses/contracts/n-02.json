@@ -1,0 +1,142 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x621342f15f86fd5620c5141d0cc1a6cefdae28ee",
+      "chain_id": 4663,
+      "address": "0x621342F15f86fd5620c5141D0cc1A6ceFDaE28eE",
+      "role": "NetNetGear (the loot collection, shared by every cabinet)",
+      "aliases": [
+        "netnetGear"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_successor_not_live_verified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "THE BOARD MEETING (18+) / NetNetGear (the loot collection, shared by every cabinet)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "netnetGear.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "netnetGear.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "opensea-netnet-gear-api",
+          "locator": "contracts[0].address and contracts[0].chain",
+          "evidence_kind": "marketplace_api_identity_corroboration",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "supersedes": "0x018F9993881596bA84407F45FBD4c4f4773Efeae",
+      "marketplace_collections": [
+        {
+          "name": "NetNet Gear",
+          "url": "https://opensea.io/collection/netnet-gear",
+          "source_id": "opensea-netnet-gear-api",
+          "observed_on": "2026-09-10",
+          "verification_scope": "Marketplace-to-registry identity match only; no on-chain verification or execution authority."
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x018f9993881596ba84407f45fbd4c4f4773efeae",
+      "chain_id": 4663,
+      "address": "0x018F9993881596bA84407F45FBD4c4f4773Efeae",
+      "role": "NetNetGear retired original deployment",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_historical",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "netnetGear.source supersession statement",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "generation": "original",
+      "superseded_by": "0x621342F15f86fd5620c5141D0cc1A6ceFDaE28eE"
+    },
+    {
+      "id": "robinhood-0x2e9d45bb7b30549f5216813ada9a6b7982c5b3ed",
+      "chain_id": 4663,
+      "address": "0x2e9d45bb7b30549f5216813ada9a6b7982c5b3ed",
+      "role": "NFTDescriptor",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "uniswap-robinhood-v3",
+          "locator": "Robinhood Chain Addresses table / NFTDescriptor",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x6f84dae9c064ff453e5c8af51efb819f8f610225",
+      "chain_id": 4663,
+      "address": "0x6f84dae9c064ff453e5c8af51efb819f8f610225",
+      "role": "NonfungibleTokenPositionDescriptor",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "uniswap-robinhood-v3",
+          "locator": "Robinhood Chain Addresses table / NonfungibleTokenPositionDescriptor",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xd0601ce157db5bdc3162bbac2a2c8af5320d9eec",
+      "chain_id": 4663,
+      "address": "0xd0601ce157db5bdc3162bbac2a2c8af5320d9eec",
+      "role": "nvdaStockToken",
+      "aliases": [
+        "NVDA stock token"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "nvdaStockToken.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "TRUSTED_PRODUCT_MARKS / NVDA / token",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "nvdaStockToken.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "public_role_addresses": [
+    {
+      "id": "robinhood-role-dialupconductorrole",
+      "chain_id": 4663,
+      "address": "0x74f04B592E725DD0199B06015Fed1f8617c76DCd",
+      "role": "dialupConductorRole",
+      "status": "publicly_published_role_only",
+      "account_kind": "unverified",
+      "ownership_status": "not_verified_no_legal_person_attribution",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "dialupConductorRole.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "dialupConductorRole.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-role-dialuprelayer",
+      "chain_id": 4663,
+      "address": "0xD0933CDa7170559046Bd0efAd35E8b0f655d9eCB",
+      "role": "dialupRelayer",
+      "status": "publicly_published_role_only",
+      "account_kind": "unverified",
+      "ownership_status": "not_verified_no_legal_person_attribution",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "dialupRelayer.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "dialupRelayer.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-role-keeper",
+      "chain_id": 4663,
+      "address": "0xc73177390Fb65f733F9c7B286C29fb9FAa358213",
+      "role": "keeper",
+      "status": "publicly_published_role_only",
+      "account_kind": "unverified",
+      "ownership_status": "not_verified_no_legal_person_attribution",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "keeper.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}

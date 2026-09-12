@@ -1,0 +1,133 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x212dbb2af8f150c6d66bc78910775fa8f52d5785",
+      "chain_id": 4663,
+      "address": "0x212DbB2aF8F150c6D66bC78910775fa8F52D5785",
+      "role": "dialupDesk",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "dialupDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "dialupDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x9cc4e5fc9149eeae154273c52292f3bb350233fb",
+      "chain_id": 4663,
+      "address": "0x9Cc4E5FC9149eEae154273C52292F3bb350233fb",
+      "role": "dialupVerifier",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "dialupVerifier.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "dialupVerifier.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x9353766a5ffea84d15ba431928596f613f533a89",
+      "chain_id": 4663,
+      "address": "0x9353766a5ffEA84D15BA431928596f613F533A89",
+      "role": "dialupZap",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "dialupZap.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "dialupZap.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x79e71f8a8a2912e40687a8820b2dc0fdd2f686b3",
+      "chain_id": 4663,
+      "address": "0x79e71F8a8a2912E40687a8820b2dC0fdd2f686b3",
+      "role": "Distributor",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / Distributor",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xd4d34ecfbc9c0000a7915a5f48bb0def484ff802",
+      "chain_id": 4663,
+      "address": "0xd4D34ecfbc9c0000a7915A5F48bb0dEf484ff802",
+      "role": "DrandSigRegistry",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Superstore (18+) / DrandSigRegistry",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xcc4a7c03a2d4d248b8da0e35c178944799feac70",
+      "chain_id": 4663,
+      "address": "0xcC4A7C03A2d4D248B8dA0E35C178944799feac70",
+      "role": "DrawController",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Prize Draw Program (WinNET) / DrawController",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "public_role_addresses": [
+    {
+      "id": "robinhood-role-rialtointegratorowner",
+      "chain_id": 4663,
+      "address": "0xe7e867518C5B3d929CA63622f314FF9Dc60E96f6",
+      "role": "rialtoIntegratorOwner",
+      "status": "publicly_published_role_only",
+      "account_kind": "unverified",
+      "ownership_status": "not_verified_no_legal_person_attribution",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "rialtoIntegratorOwner.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "rialtoIntegratorOwner.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-role-superstoreexecutesigner",
+      "chain_id": 4663,
+      "address": "0x1b53F8fc54951A9FB94B6194D6B53Ff4bE873E7e",
+      "role": "superstoreExecuteSigner",
+      "status": "publicly_published_role_only",
+      "account_kind": "unverified",
+      "ownership_status": "not_verified_no_legal_person_attribution",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "superstoreExecuteSigner.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "superstoreExecuteSigner.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-role-boardroomhousesigner",
+      "chain_id": 4663,
+      "address": "0xD417e653d37652eCa1E93C6e5642E1A3C3e4505b",
+      "role": "boardroomHouseSigner",
+      "status": "publicly_published_role_only",
+      "account_kind": "unverified",
+      "ownership_status": "not_verified_no_legal_person_attribution",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "boardroomHouseSigner.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "boardroomHouseSigner.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}

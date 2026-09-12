@@ -1,0 +1,76 @@
+{
+  "public_role_addresses": [
+    {
+      "id": "robinhood-role-boardroomrelayer",
+      "chain_id": 4663,
+      "address": "0x1c17D9298a6516140429f719218A5fCF9F36dfcf",
+      "role": "boardroomRelayer",
+      "status": "publicly_published_role_only",
+      "account_kind": "unverified",
+      "ownership_status": "not_verified_no_legal_person_attribution",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "boardroomRelayer.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "boardroomRelayer.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-role-dialupprintsigner",
+      "chain_id": 4663,
+      "address": "0x7C1783533Af716001aDd90DCaeB64c953913A83f",
+      "role": "dialupPrintSigner",
+      "status": "publicly_published_role_only",
+      "account_kind": "unverified",
+      "ownership_status": "not_verified_no_legal_person_attribution",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "dialupPrintSigner.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "dialupPrintSigner.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-role-dialupticketsigner",
+      "chain_id": 4663,
+      "address": "0x3d7ee9C31D81bcbf55536221FD7292097AFF4FCD",
+      "role": "dialupTicketSigner",
+      "status": "publicly_published_role_only",
+      "account_kind": "unverified",
+      "ownership_status": "not_verified_no_legal_person_attribution",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "dialupTicketSigner.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "dialupTicketSigner.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}

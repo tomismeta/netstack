@@ -1,0 +1,162 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x2431be44044fa1a2062777910348c24dcfb3e620",
+      "chain_id": 4663,
+      "address": "0x2431be44044FA1a2062777910348c24DCfb3e620",
+      "role": "TURBO Desk v1.0",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_historical",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "turboDesk.source supersession statement",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "generation": "v1.0",
+      "superseded_by": "0x757122439420900ca44A80c390d586011FD72C8a"
+    },
+    {
+      "id": "robinhood-0x2882bc606cf74fd52d09d4a1ae8ea05ff3b56f1e",
+      "chain_id": 4663,
+      "address": "0x2882bc606Cf74Fd52D09d4A1aE8Ea05fF3B56f1e",
+      "role": "TURBO Feed Adapter v1.0",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_historical",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "turboFeedAdapter.source supersession statement",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "generation": "v1.0",
+      "superseded_by": "0x115E5779Ce2f7BC265EAAbcAcaf7b06f01d5D471"
+    },
+    {
+      "id": "robinhood-0x757122439420900ca44a80c390d586011fd72c8a",
+      "chain_id": 4663,
+      "address": "0x757122439420900ca44A80c390d586011FD72C8a",
+      "role": "TurboDesk",
+      "aliases": [
+        "turboDesk",
+        "TURBO Desk v1.1"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_successor_not_live_verified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Long-Dated Desk (TURBO) (18+) / TurboDesk",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "turboDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-turbo-registry",
+          "locator": "ADDRESSES.desk and DEPLOYMENT_BLOCK",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "turboDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "supersedes": "0x2431be44044FA1a2062777910348c24DCfb3e620",
+      "generation": "v1.1",
+      "local_recorded_deployment_block": 40019315
+    },
+    {
+      "id": "robinhood-0x115e5779ce2f7bc265eaabcacaf7b06f01d5d471",
+      "chain_id": 4663,
+      "address": "0x115E5779Ce2f7BC265EAAbcAcaf7b06f01d5D471",
+      "role": "TurboFeedAdapter",
+      "aliases": [
+        "turboFeedAdapter",
+        "TURBO Feed Adapter v1.1"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_successor_not_live_verified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Long-Dated Desk (TURBO) (18+) / TurboFeedAdapter",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "turboFeedAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "PUBLISHED_PROGRAM_CONTRACTS / TURBO Feed Adapter v1.1",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-turbo-registry",
+          "locator": "ADDRESSES.feedAdapter",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "turboFeedAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "supersedes": "0x2882bc606Cf74Fd52D09d4A1aE8Ea05fF3B56f1e",
+      "local_recorded_lifecycle": "support",
+      "generation": "v1.1"
+    },
+    {
+      "id": "robinhood-0x4638617808e3f1cf237c0d33ae818126d5c77e17",
+      "chain_id": 4663,
+      "address": "0x4638617808e3f1Cf237c0d33Ae818126D5C77E17",
+      "role": "TurboRouter",
+      "aliases": [
+        "Loopback TurboRouter (not TURBO Desk)"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Lombard Credit Facility (Loopback) / TurboRouter",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-turbo-registry",
+          "locator": "LOOPBACK_TURBO_ROUTER",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x498752d5fa0600cbd613074c151abe15b3fec7cb",
+      "chain_id": 4663,
+      "address": "0x498752D5fa0600CBd613074C151Abe15B3FeC7CB",
+      "role": "managerSleeve",
+      "aliases": [
+        "RWA Sleeve multisig"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "managerSleeve.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "PUBLISHED_PROGRAM_CONTRACTS / RWA Sleeve multisig",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "managerSleeve.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "local_recorded_lifecycle": "current"
+    },
+    {
+      "id": "robinhood-0xf0eef247585b184836915e80f984246d981c55c4",
+      "chain_id": 4663,
+      "address": "0xf0eeF247585b184836915e80f984246d981c55C4",
+      "role": "Market adapter (the vault's one adapter, Loopback plus six markets)",
+      "aliases": [
+        "Market adapter",
+        "marketAdapter"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Addresses / Market adapter (the vault's one adapter, Loopback plus six markets)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Curated Credit Vault (NetNet Credit) / Market adapter",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "marketAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "marketAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xb7c16f6f8cf531447bf27ca7220f981e79c9cdf2",
+      "chain_id": 4663,
+      "address": "0xB7c16F6F8cF531447Bf27Ca7220f981E79C9cdF2",
+      "role": "Morpho ChainlinkOracleV2 Factory",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain tab 1 / Morpho ChainlinkOracleV2 Factory",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010",
+      "chain_id": 4663,
+      "address": "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+      "role": "morphoBlue",
+      "aliases": [
+        "Morpho",
+        "Morpho Blue"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "morphoBlue.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain tab 1 / Morpho",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-holder-registry",
+          "locator": "HOLDER_CLASSIFICATION_REGISTRY / Morpho Blue",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "morphoBlue.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "publisher_linked_provenance_urls": [
+        "https://docs.morpho.org/get-started/resources/addresses/"
+      ]
+    }
+  ]
+}

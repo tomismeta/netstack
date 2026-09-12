@@ -1,0 +1,56 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+      "chain_id": 4663,
+      "address": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+      "role": "WETH",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "WETH.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "WETH.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "publisher_linked_provenance_urls": [
+        "https://robinhoodchain.blockscout.com/address/0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73?tab=contract"
+      ]
+    },
+    {
+      "id": "robinhood-0x63c12667638f2ae6fc6ae09b43d98ec84a8586ea",
+      "chain_id": 4663,
+      "address": "0x63C12667638f2Ae6fC6ae09B43D98Ec84a8586eA",
+      "role": "WrappedStakedNET (wsNET)",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-futures",
+          "locator": "7. Contract addresses (Robinhood Chain mainnet) / WrappedStakedNET (wsNET)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / WrappedStakedNET (wsNET)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}

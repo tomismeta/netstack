@@ -1,0 +1,23 @@
+{
+  "contracts": [
+    {
+      "role": "aaplStockToken",
+      "aliases": [
+        "AAPL stock token"
+      ],
+      "file": "assets/addresses/contracts/a-01.json"
+    },
+    {
+      "role": "aaplUsdgV3Pool",
+      "aliases": [],
+      "file": "assets/addresses/contracts/a-01.json"
+    },
+    {
+      "role": "adaptiveCurveIrm",
+      "aliases": [
+        "Adaptive Curve Irm"
+      ],
+      "file": "assets/addresses/contracts/a-01.json"
+    }
+  ]
+}

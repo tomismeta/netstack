@@ -1,0 +1,67 @@
+{
+  "contracts": [
+    {
+      "role": "TaxCollector",
+      "aliases": [],
+      "file": "assets/addresses/contracts/t-01.json"
+    },
+    {
+      "role": "Team multisig (Safe), owner and curator",
+      "aliases": [
+        "Team multisig (Safe)",
+        "teamMultisig"
+      ],
+      "file": "assets/addresses/contracts/t-01.json"
+    },
+    {
+      "role": "TickLens",
+      "aliases": [],
+      "file": "assets/addresses/contracts/t-01.json"
+    },
+    {
+      "role": "tNET",
+      "aliases": [
+        "tNET (test token, no value)"
+      ],
+      "file": "assets/addresses/contracts/t-01.json"
+    },
+    {
+      "role": "Treasury",
+      "aliases": [],
+      "file": "assets/addresses/contracts/t-01.json"
+    },
+    {
+      "role": "TURBO Desk v1.0",
+      "aliases": [],
+      "file": "assets/addresses/contracts/t-02.json"
+    },
+    {
+      "role": "TURBO Feed Adapter v1.0",
+      "aliases": [],
+      "file": "assets/addresses/contracts/t-02.json"
+    },
+    {
+      "role": "TurboDesk",
+      "aliases": [
+        "turboDesk",
+        "TURBO Desk v1.1"
+      ],
+      "file": "assets/addresses/contracts/t-02.json"
+    },
+    {
+      "role": "TurboFeedAdapter",
+      "aliases": [
+        "turboFeedAdapter",
+        "TURBO Feed Adapter v1.1"
+      ],
+      "file": "assets/addresses/contracts/t-02.json"
+    },
+    {
+      "role": "TurboRouter",
+      "aliases": [
+        "Loopback TurboRouter (not TURBO Desk)"
+      ],
+      "file": "assets/addresses/contracts/t-02.json"
+    }
+  ]
+}

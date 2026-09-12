@@ -1,0 +1,14 @@
+{
+  "contracts": [
+    {
+      "role": "WETH",
+      "aliases": [],
+      "file": "assets/addresses/contracts/w-01.json"
+    },
+    {
+      "role": "WrappedStakedNET (wsNET)",
+      "aliases": [],
+      "file": "assets/addresses/contracts/w-01.json"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x2e1d4033a3b98b74135ba4fbee245ef0d97a71f4",
+      "chain_id": 4663,
+      "address": "0x2E1d4033A3b98b74135Ba4FbeE245eF0d97a71F4",
+      "role": "V3TwapAggregator (CASHCAT index)",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / V3TwapAggregator (CASHCAT index)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xcc108538f36242d6e0d6b9255f6d9ccd137d70fe",
+      "chain_id": 4663,
+      "address": "0xcC108538f36242D6E0d6B9255f6D9Ccd137D70Fe",
+      "role": "VaultBundlesV1",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain tab 3 / VaultBundlesV1",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xce29862924756584bbd0d75ca1249d22007e2813",
+      "chain_id": 4663,
+      "address": "0xCE29862924756584BBD0D75CA1249d22007E2813",
+      "role": "VaultExitBundlesV1",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain tab 3 / VaultExitBundlesV1",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x0fbad98595b0186da120e41f77c102beb49f803c",
+      "chain_id": 4663,
+      "address": "0x0FBad98595b0186dA120E41f77C102beb49f803c",
+      "role": "vaultV2Factory",
+      "aliases": [
+        "VaultV2Factory"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "vaultV2Factory.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain tab 2 / VaultV2Factory",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "vaultV2Factory.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xce73c8ad08cbdeaca6078bf0627c8fe0a9a536e7",
+      "chain_id": 4663,
+      "address": "0xcE73c8ad08CBDEaCa6078BF0627C8fe0a9a536E7",
+      "role": "verifierProxy",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "verifierProxy.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

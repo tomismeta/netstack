@@ -1,0 +1,119 @@
+{
+  "instruction": "A market ID is neither an address nor a transaction hash. Always load singleton_record, select singleton_id, and return its recorded address and RHScan address link separately.",
+  "markets": [
+    {
+      "chain_id": 4663,
+      "role": "NVDA / USDG",
+      "market_id": "0x8b16891f032a93b771347c9cb470a780e6699dd701553d3402aa3cdba6189c3e",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Morpho Blue market ids table"
+        },
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain / Morpho"
+        }
+      ],
+      "status": "documented_identifier_not_live_verified",
+      "note": "Bytes32 market ID on the Morpho singleton, not a contract address.",
+      "singleton_record": "assets/addresses/contracts/m-01.json",
+      "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
+    },
+    {
+      "chain_id": 4663,
+      "role": "SPCX / USDG",
+      "market_id": "0x9b4b47cdf7e295341c6c6cdfd3efb9805c4a5b3d580dba0c0c39d3a4232b297b",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Morpho Blue market ids table"
+        },
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain / Morpho"
+        }
+      ],
+      "status": "documented_identifier_not_live_verified",
+      "note": "Bytes32 market ID on the Morpho singleton, not a contract address.",
+      "singleton_record": "assets/addresses/contracts/m-01.json",
+      "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
+    },
+    {
+      "chain_id": 4663,
+      "role": "AAPL / USDG",
+      "market_id": "0xdeb4782d012d5fd3b24962538c2f6559049d70bda4dabd2e4212dacb96c28d45",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Morpho Blue market ids table"
+        },
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain / Morpho"
+        }
+      ],
+      "status": "documented_identifier_not_live_verified",
+      "note": "Bytes32 market ID on the Morpho singleton, not a contract address.",
+      "singleton_record": "assets/addresses/contracts/m-01.json",
+      "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
+    },
+    {
+      "chain_id": 4663,
+      "role": "GOOGL / USDG",
+      "market_id": "0x7fa81b10e5d21b2e4c571f862442bc11aff2ed14f02335868d0ff933fd40d0ba",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Morpho Blue market ids table"
+        },
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain / Morpho"
+        }
+      ],
+      "status": "documented_identifier_not_live_verified",
+      "note": "Bytes32 market ID on the Morpho singleton, not a contract address.",
+      "singleton_record": "assets/addresses/contracts/m-01.json",
+      "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
+    },
+    {
+      "chain_id": 4663,
+      "role": "MSFT / USDG",
+      "market_id": "0x2e1859aa8f143b7220088f80562c6dfe0bf8e52b87d9cedf8da8805f231994ce",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Morpho Blue market ids table"
+        },
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain / Morpho"
+        }
+      ],
+      "status": "documented_identifier_not_live_verified",
+      "note": "Bytes32 market ID on the Morpho singleton, not a contract address.",
+      "singleton_record": "assets/addresses/contracts/m-01.json",
+      "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
+    },
+    {
+      "chain_id": 4663,
+      "role": "COIN / USDG",
+      "market_id": "0x3ebd43d91c3960a9fac32bedd5c60428e0e414de5bdd67fda770207afb0eb615",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Morpho Blue market ids table"
+        },
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain / Morpho"
+        }
+      ],
+      "status": "documented_identifier_not_live_verified",
+      "note": "Bytes32 market ID on the Morpho singleton, not a contract address.",
+      "singleton_record": "assets/addresses/contracts/m-01.json",
+      "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
+    }
+  ]
+}

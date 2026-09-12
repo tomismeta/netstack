@@ -1,0 +1,166 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xfb8058769063519f26fb114631919c0e5254068e",
+      "chain_id": 4663,
+      "address": "0xfB8058769063519f26FB114631919c0E5254068e",
+      "role": "ShareCertificate",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / ShareCertificate",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xb773ec2c326b7f98a5a83fc098825492f020a4c7",
+      "chain_id": 4663,
+      "address": "0xb773ec2C326B7f98a5a83fc098825492F020a4c7",
+      "role": "sNET (staked NET)",
+      "aliases": [
+        "sNET"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / sNET (staked NET)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "pendle-snet-market-17sep2026",
+          "locator": "inputTokens[1].address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "pendle-snet-market-17sep2026",
+          "locator": "outputTokens[1].address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "decimals": 9
+    },
+    {
+      "id": "robinhood-0x53176cadd446700fa6b89f840357ac586d7e33db",
+      "chain_id": 4663,
+      "address": "0x53176cadd446700fa6b89f840357ac586d7e33db",
+      "role": "sNET-scaled18",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "pendle-snet-market-17sep2026",
+          "locator": "underlyingAsset.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "decimals": 18,
+      "integration_role": "underlyingAsset",
+      "expiry": null
+    },
+    {
+      "id": "robinhood-0x75edfe49d9ec8c23a9931c5ef32ec56b2444a141",
+      "chain_id": 4663,
+      "address": "0x75EdFE49d9ec8c23A9931C5EF32eC56b2444A141",
+      "role": "SpacexInvadersDesk",
+      "aliases": [
+        "spacexInvadersDesk",
+        "SPCX trusted mark source contract"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "SPACEX INVADERS (18+) / SpacexInvadersDesk",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "spacexInvadersDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "TRUSTED_PRODUCT_MARKS / SPCX / sourceContract",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "spacexInvadersDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x35aa4383a7d4bc63be49a1f58a7e9667ed05887c",
+      "chain_id": 4663,
+      "address": "0x35aA4383a7D4BC63Be49a1F58A7E9667ED05887c",
+      "role": "spacexInvadersFeedAdapter",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "spacexInvadersFeedAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "spacexInvadersFeedAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xb763ddb485314af686745f74ebba68e56c0bedfa",
+      "chain_id": 4663,
+      "address": "0xB763Ddb485314af686745f74EbBa68e56c0bEDFa",
+      "role": "spacexInvadersRouterSource",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "spacexInvadersRouterSource.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "spacexInvadersRouterSource.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

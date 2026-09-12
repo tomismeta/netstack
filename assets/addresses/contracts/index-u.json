@@ -1,0 +1,60 @@
+{
+  "contracts": [
+    {
+      "role": "UnderwritingVault",
+      "aliases": [],
+      "file": "assets/addresses/contracts/u-01.json"
+    },
+    {
+      "role": "UnderwritingVault (CASHCAT)",
+      "aliases": [],
+      "file": "assets/addresses/contracts/u-01.json"
+    },
+    {
+      "role": "UniswapInterfaceMulticall",
+      "aliases": [],
+      "file": "assets/addresses/contracts/u-01.json"
+    },
+    {
+      "role": "uniswapV2Factory",
+      "aliases": [],
+      "file": "assets/addresses/contracts/u-01.json"
+    },
+    {
+      "role": "uniswapV2Router",
+      "aliases": [],
+      "file": "assets/addresses/contracts/u-01.json"
+    },
+    {
+      "role": "uniswapV3Factory",
+      "aliases": [
+        "UniswapV3Factory"
+      ],
+      "file": "assets/addresses/contracts/u-01.json"
+    },
+    {
+      "role": "uniswapV3PositionManager",
+      "aliases": [
+        "NonfungiblePositionManager"
+      ],
+      "file": "assets/addresses/contracts/u-02.json"
+    },
+    {
+      "role": "uniswapV4PoolManager",
+      "aliases": [],
+      "file": "assets/addresses/contracts/u-02.json"
+    },
+    {
+      "role": "UniversalRouter",
+      "aliases": [],
+      "file": "assets/addresses/contracts/u-02.json"
+    },
+    {
+      "role": "USDG (reserve asset, not ours)",
+      "aliases": [
+        "USDG"
+      ],
+      "file": "assets/addresses/contracts/u-02.json"
+    }
+  ]
+}

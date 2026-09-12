@@ -1,0 +1,9 @@
+{
+  "contracts": [
+    {
+      "role": "InverseBond (buyback program)",
+      "aliases": [],
+      "file": "assets/addresses/contracts/i-01.json"
+    }
+  ]
+}

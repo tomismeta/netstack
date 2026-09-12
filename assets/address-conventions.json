@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "skill": "netstack",
+  "observed_on": "2026-09-12",
+  "chain_id": 4663,
+  "scope": "Published contracts and separately attributed public role addresses; not an audit or independently verified live deployment inventory.",
+  "source_catalog": "assets/sources.json",
+  "explorers": {
+    "4663": {
+      "name": "RHScan",
+      "address_url_template": "https://rh-scan.com/address/{address}",
+      "transaction_url_template": "https://rh-scan.com/tx/{tx_hash}",
+      "source_id": "robinhood-rhscan",
+      "scope": "Use RHScan for all Robinhood Chain explorer navigation, including historical objects. Navigation links are not verification; API routes are not inferred from these UI templates."
+    }
+  },
+  "record_notes": {
+    "publisher_verification_claim": "An attributed publisher label, not independent live-chain verification by this package. Preserve live_chain_verification_status and lifecycle limits.",
+    "publisher_linked_provenance_urls": "Original publisher hyperlinks retained as source evidence, not default explorer destinations. Return RHScan links for any referenced Robinhood address or transaction using its exact identity; do not transplant provider-specific API paths or query tabs.",
+    "price_feed_metadata": "Publisher-directory provenance is in the parent contract provenance array and covers only the proxy and metadata fields named by its locator, including adjacent feed decimals. It does not establish a token pairing, current round, deployed behavior or NetNet use. Consumer policies and semantics sources remain separately attributed.",
+    "netnet_use_evidence": "Directory inclusion alone does not establish NetNet use. Preserve recorded registry/local provenance and status; an empty consumer_policies list means not recorded, not unused. No exhaustive consumer list or exact-token relationship is inferred.",
+    "public_role_addresses": "Published role attribution only, not proof of control, beneficial ownership, account kind or authority. No private key or personal portfolio information is included."
+  },
+  "known_discrepancies": [
+    {
+      "topic": "RWA Desk generation",
+      "source_ids": [
+        "netnet-docs-official-channels",
+        "netnet-app-registry-asset",
+        "local-contract-registry"
+      ],
+      "detail": "Official Channels still lists 0x99B6eE6eDe47d9a8a9bfd03F728a99B789df1961 as RwaDesk. The public app registry and local definitions identify it as V1 superseded by V2 0xa84efC3136BF1Bb89ade9E5BE6Ab32cb1A04f08D on 2026-08-27. Both addresses are retained; current status is publisher/local-reported, not live verified."
+    },
+    {
+      "topic": "TURBO generations and deployment date",
+      "source_ids": [
+        "netnet-docs-official-channels",
+        "netnet-app-registry-asset",
+        "local-turbo-registry"
+      ],
+      "detail": "Official Channels says deployed 2026-08-19; app registry dates the listed v1.1 desk to 2026-08-18 at block 40019315 and explicitly supersedes v1.0. No date reconciliation or receipt verification was performed. Long-Dated TurboDesk is distinct from Loopback TurboRouter."
+    },
+    {
+      "topic": "Credit desk versus router activation",
+      "source_ids": [
+        "netnet-docs-credit",
+        "netnet-docs-official-channels",
+        "netnet-app-registry-asset"
+      ],
+      "detail": "Credit docs say vault mainnet since 2026-09-09 and first loan 2026-09-10 but explicitly keep CreditRouter pending the allocator grant. The app registry identifies the same router address as V2 and identifies a never-granted V1 predecessor. Do not equate vault operation or a public registry address with router activation."
+    },
+    {
+      "topic": "NetNet Gear versus BoardroomLoot library",
+      "source_ids": [
+        "netnet-docs-official-channels",
+        "netnet-app-registry-asset"
+      ],
+      "detail": "NetNetGear shared loot collection 0x621342F15f86fd5620c5141D0cc1A6ceFDaE28eE and boardroomLoot library 0x6C2B1e062DA09d18389cC563D75B1e1899F2a02f are separate named contracts, not address aliases. Retired initial NetNetGear deployment is also retained."
+    }
+  ],
+  "coverage": {
+    "canonical_source_coverage": "sources.json#/coverage",
+    "release_content_reviews": "sources.json#/release_reviews",
+    "scope": "Address-specific counts only. Source inventory, extraction boundaries, gaps and content-review status are maintained in the linked source catalog, not duplicated here.",
+    "counts": {
+      "contract_records_unique_by_chain_and_address": 174,
+      "public_role_address_records": 10,
+      "trusted_product_mark_relationships": 6,
+      "morpho_market_identifiers": 6,
+      "underlying_price_feed_records": 37,
+      "robinhood_labelled_rwa_feed_candidates": 35,
+      "publisher_explicit_equity_feed_candidates": 33,
+      "incomplete_classification_feed_candidates": 2,
+      "rwa_feed_candidates_without_exact_token_relationship": 29
+    },
+    "live_chain_verified_contracts": 0
+  }
+}

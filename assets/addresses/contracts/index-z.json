@@ -1,0 +1,9 @@
+{
+  "contracts": [
+    {
+      "role": "Zap",
+      "aliases": [],
+      "file": "assets/addresses/contracts/z-01.json"
+    }
+  ]
+}

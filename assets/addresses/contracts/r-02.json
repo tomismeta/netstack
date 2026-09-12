@@ -1,0 +1,124 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xa84efc3136bf1bb89ade9e5be6ab32cb1a04f08d",
+      "chain_id": 4663,
+      "address": "0xa84efC3136BF1Bb89ade9E5BE6Ab32cb1A04f08D",
+      "role": "rwaDesk",
+      "aliases": [
+        "RWA Desk V2",
+        "AAPL trusted mark source contract"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "locally_and_publisher_reported_current_not_live_verified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "rwaDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "RWA_DESK_GENERATIONS / v2",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "TRUSTED_PRODUCT_MARKS / AAPL / sourceContract",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "PUBLISHED_PROGRAM_CONTRACTS / RWA Desk V2",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "rwaDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "supersedes": "0x99B6eE6eDe47d9a8a9bfd03F728a99B789df1961",
+      "generation": "v2",
+      "local_recorded_current": true,
+      "local_recorded_deployment_block": 47600318,
+      "local_recorded_deployment_transaction": "0x1bedd09f8a6606e387f366e319450bc00ba80c1f56ea97f28d09d4a37bad8c97",
+      "local_recorded_lifecycle": "current"
+    },
+    {
+      "id": "robinhood-0x55e76ba1f7c7603c27bbdf8dfa1b235f7e512540",
+      "chain_id": 4663,
+      "address": "0x55E76ba1F7C7603C27BBDf8dFA1b235F7e512540",
+      "role": "rwaDeskFeedAdapter",
+      "aliases": [
+        "RWA Feed Adapter V3"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "rwaDeskFeedAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "PUBLISHED_PROGRAM_CONTRACTS / RWA Feed Adapter V3",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "rwaDeskFeedAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "local_recorded_lifecycle": "support"
+    },
+    {
+      "id": "robinhood-0x9ca38c9c144ff411231c82da03c7d30286a7dbf6",
+      "chain_id": 4663,
+      "address": "0x9ca38C9c144fF411231C82Da03c7D30286A7dBf6",
+      "role": "rwaDeskRouterSource",
+      "aliases": [
+        "RWA Desk V2 router source"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "rwaDeskRouterSource.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "PUBLISHED_PROGRAM_CONTRACTS / RWA Desk V2 router source",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "rwaDeskRouterSource.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "local_recorded_lifecycle": "support"
+    }
+  ]
+}

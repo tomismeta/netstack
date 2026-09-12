@@ -1,0 +1,43 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x72b8e8c226848ceb35ba51d193f4f962dee957c1",
+      "chain_id": 4663,
+      "address": "0x72b8e8c226848ceb35ba51d193f4f962dee957c1",
+      "role": "PT-sNET-17SEP2026",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "pendle-snet-market-17sep2026",
+          "locator": "pt.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "decimals": 18,
+      "integration_role": "pt",
+      "expiry": "2026-09-17T00:00:00.000Z"
+    },
+    {
+      "id": "robinhood-0x650f58079daa17ee28928c2f92d22291d038b2b0",
+      "chain_id": 4663,
+      "address": "0x650F58079dAa17ee28928c2F92d22291d038B2B0",
+      "role": "pTEAM",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / pTEAM",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}

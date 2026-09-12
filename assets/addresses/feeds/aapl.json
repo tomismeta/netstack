@@ -1,0 +1,78 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x6b22a786baa607d76728168703a39ea9c99f2cd0",
+      "chain_id": 4663,
+      "address": "0x6B22A786bAa607d76728168703a39Ea9C99f2cD0",
+      "role": "chainlinkAaplUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood AAPL / USD",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "publisher_asset_name": "Apple (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "locally_recorded_exact_address_mapping_see_trusted_product_marks",
+        "netnet_use_evidence": {
+          "status": "historical_exact_token_mark_mapping_and_registry_inclusion_not_current_consumer_verification"
+        }
+      },
+      "aliases": [
+        "AAPL/USD trusted product feed"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "chainlinkAaplUsd.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "TRUSTED_PRODUCT_MARKS / AAPL / feedAddress",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "chainlinkAaplUsd.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x6B22A786bAa607d76728168703a39Ea9C99f2cD0 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ],
+  "trusted_product_marks": [
+    {
+      "chain_id": 4663,
+      "symbol": "AAPL",
+      "token_address": "0xaf3d76f1834a1d425780943c99ea8a608f8a93f9",
+      "feed_address": "0x6B22A786bAa607d76728168703a39Ea9C99f2cD0",
+      "source_contract_address": "0xa84efC3136BF1Bb89ade9E5BE6Ab32cb1A04f08D",
+      "provenance": {
+        "source_id": "local-contract-registry",
+        "locator": "TRUSTED_PRODUCT_MARKS / AAPL"
+      },
+      "status": "locally_recorded_exact_address_mapping_not_live_feed_verification",
+      "note": "Symbol alone must not establish asset identity; local registry applies this mark only to the exact discovered token."
+    }
+  ]
+}

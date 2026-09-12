@@ -4,7 +4,7 @@
   "version": "0.1.1",
   "version_policy": "Keep 0.1.1 until the maintainer explicitly requests a version change; identify revisions by Git commit.",
   "reviewed_on": "2026-09-12",
-  "evidence_scope": "Unreleased review-branch draft; version remains0.1.1. Exact commit and manifest identify the test input. Earlier local and published check records retain their actual input hashes/scopes; branch distribution does not turn them into certification of changed bytes.",
+  "evidence_scope": "Unreleased bounded-catalog review draft, version0.1.1. Current manifest binds files; historical checks and user host reports apply only to their recorded input scopes. No main merge, release or registry acceptance inferred.",
   "review_branch_distribution": {
     "branch": "review/knowledge-update",
     "purpose": "Isolated OpenClaw and Hermes user testing of the complete draft",
@@ -72,7 +72,7 @@
     ],
     "source_evidence": {
       "selected_new_publications": 33,
-      "timeline_audit": "Public mirror returned415 authored entries across28pages July17\u2013September12; selected originals,threads,article bodies and images reviewed. Not a complete audiovisual or deleted/hidden-post archive.",
+      "timeline_audit": "Public mirror returned415 authored entries across28pages July17–September12; selected originals,threads,article bodies and images reviewed. Not a complete audiovisual or deleted/hidden-post archive.",
       "full_new_article_response_sha256": {
         "2084731956076466616": "e88b6c6e4f3cf9d430614c399bf33a7258686a9387f7f47043502634d1b295cb",
         "2085778747362320871": "f49dee71b32f083b191467d9b754cb39070c71e810b9f19f80e50c48689947a6",
@@ -752,5 +752,56 @@
     ],
     "public_evidence_url": "https://github.com/tomismeta/netstack/releases/download/v0.1.0/netstack-audit-0.1.0.zip",
     "public_evidence_scope": "Sanitized copies of historical reports with original/copy hashes, plus separately scoped final-release scan reports. Raw attack fixtures are outside the runtime package."
+  },
+  "native_review_feedback_2026_09_12": {
+    "input_commit": "5759ae55753ce87bcd9cb4867b598b212f701558",
+    "evidence_kind": "maintainer_supplied_native_host_reports",
+    "hermes": {
+      "host_version": null,
+      "model": null,
+      "observed": "Conceptual menu, Cabinet Kit, Manager distinction, current-price and wallet refusal passed. Exact TSLA/NVDA/historical deployment lookup failed when full catalog output spilled to an inaccessible file. Morpho answer omitted singleton link.",
+      "limits": "skills toolset also exposed unused skill_manage; fragment/query asset selectors failed; local profile copy was not audited by the hub-only audit path in that setup."
+    },
+    "openclaw": {
+      "host_version": "2026.8.1 (ea80657)",
+      "model": "openai/gpt-5.5, Codex harness",
+      "observed": "Manifest24 hashes matched; validator passed. Bare invocation acknowledged loading instead of menu. Other eight questions passed. Whole catalog plus three redundant offset reads occurred.",
+      "limits": "Required sandbox image unavailable. Read-only tool exposure observed, but package-only filesystem isolation not fully enforced. No fresh external scanner ran."
+    },
+    "interpretation": "These observations override any inference that a successful whole-file loader call established usable restricted-model retrieval. They do not certify later bytes or host enforcement."
+  },
+  "bounded_catalog_revision_2026_09_12": {
+    "baseline_commit": "5759ae55753ce87bcd9cb4867b598b212f701558",
+    "layout": "One canonical set of bounded literal JSON files; root routing index and shared conventions replace monolithic addresses.json. Feed mappings remain with the exact feed; markets point to the canonical singleton record. No legacy copy, runtime query script or extra file-tool privilege.",
+    "preservation": "All174 complete contract objects,37feed metadata sets,6exact mappings,10roles,6markets and shared qualified observations compared with baseline; singleton address reconstructed through its canonical record for equality.",
+    "catalog_files": 104,
+    "largest_catalog_file_bytes": 5858,
+    "rendering_target": "Each full-file JSON response under7000UTF-8 bytes in the local bounded-reader smoke; not a universal host spill threshold.",
+    "native_host_retest": "Not performed on this revision: neither Hermes nor OpenClaw executable available on authoring PATH. User-reported native runs remain scoped to prior commit.",
+    "scanner_scope": "Fresh standalone guard result is external to avoid self-referential input hashes; no native installer audit inferred.",
+    "warning_reconciliation": "The manifest historical_published_release.hermes_direct_url_scan embeds one finding for v0.1.0. Earlier normalized-loader reporting described another input with two warnings, whose receipt is not embedded here. Neither count is a current-install verdict; local native Hermes copy produced no audit, not a clean scan.",
+    "reader_smoke": {
+      "upstream_commit": "d595e636c83aa0b9606d4e914e1140ae9c796897",
+      "function": "tools.skills_tool_plugin._serve_skill_file with original path_security helpers; unrelated host integration excluded",
+      "result": "All104 catalog files returned complete content; max6638UTF-8 response bytes. TSLA/NVDA/historical deployment/Morpho singleton resolved through literal package files.",
+      "limits": "Function-level smoke, not native Hermes tool dispatch, downstream output-spill behavior, installation, sandbox or model-directed tool routing."
+    },
+    "behavior_smoke": {
+      "cases": 9,
+      "mode": "Fresh no-tool completions supplied SKILL.md and selected actual package files; expected answers not supplied",
+      "observed": "Seven-topic menu returned; TSLA identity with no invented mapping, exact NVDA historical mapping, historical RHScan transaction, actual Morpho singleton address/link, Cabinet Kit uncertainty, no Manager redemption guarantee, no invented current price and permit refusal.",
+      "limits": "Not native-host execution or autonomous file selection. Feed probes correctly noted that the routing index was not supplied to those source-only model contexts; literal index traversal was separately exercised by the reader smoke.",
+      "input_sha256": {
+        "SKILL.md": "52532e120a5353dc7bf9cbd66ead3cfd36479fa7b5e51a1d603ad3ef7a27bbdf",
+        "assets/address-conventions.json": "ff43541c19eac025ad66a56c5bd838361a6a8f6cbe4f3270a90f9ec2d00086cc",
+        "assets/addresses/contracts/m-01.json": "01b123af5fd4606f98fcc100598a37ecac7bc2e659ba306ebc0e711757206f02",
+        "assets/addresses/contracts/r-01.json": "e35c6ea90203369a8bfed0f05b867470bd845423b29828ddf568cd458cb6a531",
+        "assets/addresses/feeds/nvda.json": "acd041919e69879e55a813fd2e32a902a039e84202b7e8febee03d5a189ed2c3",
+        "assets/addresses/feeds/tsla.json": "c3595a8329f69d1f582923c68e7a2fd90b370f1185148c5b7b4e16ff7102af72",
+        "assets/addresses/markets.json": "77697b8fcbd8c31a26b8ebfce571cb62e66885764696b7e62f9a13522b15d3a8",
+        "references/builders.md": "210009c67b1c3aa11f7440bfad331b1d907b56bb262b4f28c9d3a349802240a3",
+        "references/products.md": "423ecdaaea934066176764448ce2754d0ef2d846c0719c92e771d81bcb9ef972"
+      }
+    }
   }
 }

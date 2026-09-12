@@ -1,0 +1,108 @@
+{
+  "contracts": [
+    {
+      "role": "ShareCertificate",
+      "aliases": [],
+      "file": "assets/addresses/contracts/s-01.json"
+    },
+    {
+      "role": "sNET (staked NET)",
+      "aliases": [
+        "sNET"
+      ],
+      "file": "assets/addresses/contracts/s-01.json"
+    },
+    {
+      "role": "sNET-scaled18",
+      "aliases": [],
+      "file": "assets/addresses/contracts/s-01.json"
+    },
+    {
+      "role": "SpacexInvadersDesk",
+      "aliases": [
+        "spacexInvadersDesk",
+        "SPCX trusted mark source contract"
+      ],
+      "file": "assets/addresses/contracts/s-01.json"
+    },
+    {
+      "role": "spacexInvadersFeedAdapter",
+      "aliases": [],
+      "file": "assets/addresses/contracts/s-01.json"
+    },
+    {
+      "role": "spacexInvadersRouterSource",
+      "aliases": [],
+      "file": "assets/addresses/contracts/s-01.json"
+    },
+    {
+      "role": "spcxStockToken",
+      "aliases": [
+        "SPCX stock token"
+      ],
+      "file": "assets/addresses/contracts/s-02.json"
+    },
+    {
+      "role": "spcxUsdgV3Pool",
+      "aliases": [],
+      "file": "assets/addresses/contracts/s-02.json"
+    },
+    {
+      "role": "Staking",
+      "aliases": [],
+      "file": "assets/addresses/contracts/s-02.json"
+    },
+    {
+      "role": "StockMorphoOracle (AAPL)",
+      "aliases": [
+        "aaplOracle"
+      ],
+      "file": "assets/addresses/contracts/s-02.json"
+    },
+    {
+      "role": "StockMorphoOracle (COIN)",
+      "aliases": [
+        "coinOracle"
+      ],
+      "file": "assets/addresses/contracts/s-02.json"
+    },
+    {
+      "role": "StockMorphoOracle (GOOGL)",
+      "aliases": [
+        "googlOracle"
+      ],
+      "file": "assets/addresses/contracts/s-03.json"
+    },
+    {
+      "role": "StockMorphoOracle (MSFT)",
+      "aliases": [
+        "msftOracle"
+      ],
+      "file": "assets/addresses/contracts/s-03.json"
+    },
+    {
+      "role": "StockMorphoOracle (NVDA)",
+      "aliases": [
+        "nvdaOracle"
+      ],
+      "file": "assets/addresses/contracts/s-03.json"
+    },
+    {
+      "role": "StockMorphoOracle (SPCX)",
+      "aliases": [
+        "spcxOracle"
+      ],
+      "file": "assets/addresses/contracts/s-03.json"
+    },
+    {
+      "role": "SwapRouter02",
+      "aliases": [],
+      "file": "assets/addresses/contracts/s-04.json"
+    },
+    {
+      "role": "SY-sNET",
+      "aliases": [],
+      "file": "assets/addresses/contracts/s-04.json"
+    }
+  ]
+}

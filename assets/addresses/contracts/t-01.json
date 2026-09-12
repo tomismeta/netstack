@@ -1,0 +1,142 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x086c58400b8708ef993f256e12e752dcf0ac918e",
+      "chain_id": 4663,
+      "address": "0x086C58400b8708Ef993f256E12e752dcF0AC918e",
+      "role": "TaxCollector",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / TaxCollector",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x3bb7a23316f82c0e984fa2e784846d8928a35f42",
+      "chain_id": 4663,
+      "address": "0x3Bb7A23316f82C0e984fA2E784846d8928a35f42",
+      "role": "Team multisig (Safe), owner and curator",
+      "aliases": [
+        "Team multisig (Safe)",
+        "teamMultisig"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Addresses / Team multisig (Safe), owner and curator",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / Team multisig (Safe)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "teamMultisig.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "teamMultisig.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "publisher_linked_provenance_urls": [
+        "https://robinhoodchain.blockscout.com/tx/0x3a2e592373aa7ac00d6430800c40659442042d9603a3233826984aaab21a26e1"
+      ]
+    },
+    {
+      "id": "robinhood-0x7dfd4f31be6814d2906bde155c3e1b146eac1468",
+      "chain_id": 4663,
+      "address": "0x7dfd4f31be6814d2906bde155c3e1b146eac1468",
+      "role": "TickLens",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "uniswap-robinhood-v3",
+          "locator": "Robinhood Chain Addresses table / TickLens",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xcef73866b088766ded46ba71d9bd7591b5e931d2",
+      "chain_id": 4663,
+      "address": "0xCeF73866b088766DeD46Ba71d9Bd7591B5e931d2",
+      "role": "tNET",
+      "aliases": [
+        "tNET (test token, no value)"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-futures",
+          "locator": "7. Contract addresses (Robinhood Chain mainnet) / tNET",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / tNET (test token, no value)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x04822ea321a0dee6f40656172f29312104855d66",
+      "chain_id": 4663,
+      "address": "0x04822Ea321A0DEE6F40656172F29312104855d66",
+      "role": "Treasury",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / Treasury",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "price_source": {
+        "source_kind": "reserve_accounting",
+        "purpose": "core_net_nav",
+        "base_asset": "NET",
+        "quote_asset": "USDG",
+        "value_kind": "risk_free_value_per_total_supply_not_market_price",
+        "scope": "Documented NAV = RFV / totalSupply; Treasury reserve accounting excludes the Manager Sleeve. Neither executable redemption value nor Manager standing-bid policy. Current accounting state, read interface and output scale not verified.",
+        "metadata_status": "publisher_documented_purpose_not_live_implementation_verification",
+        "provenance": {
+          "source_id": "netnet-docs-treasury",
+          "locator": "RFV and NAV; The RWA acquisition mandate",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_documentation"
+        }
+      }
+    }
+  ]
+}

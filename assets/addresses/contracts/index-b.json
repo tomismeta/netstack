@@ -1,0 +1,78 @@
+{
+  "contracts": [
+    {
+      "role": "BlackjackDesk",
+      "aliases": [
+        "blackjackDesk",
+        "TURBO BLACKJACK"
+      ],
+      "file": "assets/addresses/contracts/b-01.json"
+    },
+    {
+      "role": "BlackjackLogic",
+      "aliases": [
+        "blackjackLogic"
+      ],
+      "file": "assets/addresses/contracts/b-01.json"
+    },
+    {
+      "role": "Blue Public Allocator",
+      "aliases": [],
+      "file": "assets/addresses/contracts/b-01.json"
+    },
+    {
+      "role": "BlueBundlesV1",
+      "aliases": [],
+      "file": "assets/addresses/contracts/b-01.json"
+    },
+    {
+      "role": "BoardroomDesk",
+      "aliases": [
+        "boardroomDesk"
+      ],
+      "file": "assets/addresses/contracts/b-01.json"
+    },
+    {
+      "role": "boardroomLoot",
+      "aliases": [],
+      "file": "assets/addresses/contracts/b-02.json"
+    },
+    {
+      "role": "BondDepository (primary offerings)",
+      "aliases": [],
+      "file": "assets/addresses/contracts/b-02.json"
+    },
+    {
+      "role": "BonusBook",
+      "aliases": [],
+      "file": "assets/addresses/contracts/b-02.json"
+    },
+    {
+      "role": "Bundler3",
+      "aliases": [],
+      "file": "assets/addresses/contracts/b-02.json"
+    },
+    {
+      "role": "buttonDesk",
+      "aliases": [
+        "THE BUTTON"
+      ],
+      "file": "assets/addresses/contracts/b-02.json"
+    },
+    {
+      "role": "buttonFeedAdapter",
+      "aliases": [],
+      "file": "assets/addresses/contracts/b-02.json"
+    },
+    {
+      "role": "buttonPresserCard",
+      "aliases": [],
+      "file": "assets/addresses/contracts/b-03.json"
+    },
+    {
+      "role": "buttonRouterSource",
+      "aliases": [],
+      "file": "assets/addresses/contracts/b-03.json"
+    }
+  ]
+}

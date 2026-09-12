@@ -1,0 +1,37 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xcde9599059f8ae6d6b9f33a0af7877827ec75f16",
+      "chain_id": 4663,
+      "address": "0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16",
+      "role": "LoopbackOracle",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Lombard Credit Facility (Loopback) / LoopbackOracle",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "price_source": {
+        "source_kind": "collateral_valuation_oracle",
+        "purpose": "loopback_wsnet_credited_collateral_value",
+        "base_asset": "wsNET",
+        "quote_asset": "USDG",
+        "value_kind": "credited_collateral_value_not_net_spot_or_nav",
+        "scope": "Documented credited value = clamp(TWAP × 0.90, NAV, 5 × NAV) × dividend index. Separate wsNET collateral/loan units, stale-TWAP and pool-divergence guards apply. Current oracle implementation, read interface and output scale not verified.",
+        "metadata_status": "publisher_documented_purpose_not_live_implementation_verification",
+        "provenance": {
+          "source_id": "netnet-docs-lending",
+          "locator": "The advance rate, and why credit shrinks in euphoria; Terms",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_documentation"
+        }
+      }
+    }
+  ]
+}

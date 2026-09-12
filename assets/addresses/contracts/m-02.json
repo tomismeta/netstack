@@ -1,0 +1,149 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x79370ed003ce325c088e530d5e8655c99c2993e1",
+      "chain_id": 4663,
+      "address": "0x79370Ed003CE325C088E530d5e8655c99c2993e1",
+      "role": "morphoMarketV1AdapterV2Factory",
+      "aliases": [
+        "MorphoMarketV1 AdapterV2Factory"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "morphoMarketV1AdapterV2Factory.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain tab 2 / MorphoMarketV1 AdapterV2Factory",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "morphoMarketV1AdapterV2Factory.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xe785a2efd384ba7b95baed3851bc76aed67c676f",
+      "chain_id": 4663,
+      "address": "0xe785a2eFD384BA7B95BaEd3851BC76aeD67C676f",
+      "role": "morphoRegistry",
+      "aliases": [
+        "MorphoRegistry"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "morphoRegistry.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain tab 2 / MorphoRegistry",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "morphoRegistry.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xbeeff033f34c046626b8d0a041844c5d1a5409dd",
+      "chain_id": 4663,
+      "address": "0xBeEff033F34C046626B8D0A041844C5d1A5409dd",
+      "role": "morphoUsdgVault",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "morphoUsdgVault.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "morphoUsdgVault.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "publisher_linked_provenance_urls": [
+        "https://app.morpho.org/robinhood-chain/vault/0xBeEff033F34C046626B8D0A041844C5d1A5409dd/steakhouse-usdg"
+      ]
+    },
+    {
+      "id": "robinhood-0x7a91222f3f7b927bb8fb624593ca86e111c2f85e",
+      "chain_id": 4663,
+      "address": "0x7a91222F3f7B927bB8fb624593Ca86e111C2F85e",
+      "role": "MorphoVaultV1 AdapterFactory",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain tab 2 / MorphoVaultV1 AdapterFactory",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xe93237c50d904957cf27e7b1133b510c669c2e74",
+      "chain_id": 4663,
+      "address": "0xe93237c50d904957cf27e7b1133b510c669c2e74",
+      "role": "msftStockToken",
+      "aliases": [
+        "MSFT stock token"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "msftStockToken.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "TRUSTED_PRODUCT_MARKS / MSFT / token",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "msftStockToken.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

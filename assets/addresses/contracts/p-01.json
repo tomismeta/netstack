@@ -1,0 +1,142 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x7cf28d61d42352eb2fd68167e9b08f73cbbf21eb",
+      "chain_id": 4663,
+      "address": "0x7cf28D61D42352Eb2FD68167e9B08f73CBbF21eB",
+      "role": "PackDesk",
+      "aliases": [
+        "GOOGL trusted mark source contract"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Superstore (18+) / PackDesk",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "TRUSTED_PRODUCT_MARKS / GOOGL / sourceContract",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x929631b33f4070d6f54477fba3fd27566567daca",
+      "chain_id": 4663,
+      "address": "0x929631b33F4070D6f54477fba3FD27566567dAca",
+      "role": "PairOracle",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / PairOracle",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "price_source": {
+        "source_kind": "derived_twap_oracle",
+        "purpose": "core_net_market_price",
+        "base_asset": "NET",
+        "quote_asset": "USDG",
+        "value_kind": "time_weighted_market_reference_not_nav",
+        "scope": "Documented canonical NET/USDG cumulative-price TWAP; valid observation window 30 minutes to 4 hours. Not pool spot, Treasury NAV or an eight-decimal Chainlink feed. Current oracle state, read interface and output scale not verified.",
+        "metadata_status": "publisher_documented_purpose_not_live_implementation_verification",
+        "provenance": {
+          "source_id": "netnet-docs-mechanism",
+          "locator": "The price oracle: fail-closed by design",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_documentation"
+        }
+      }
+    },
+    {
+      "id": "robinhood-0x5e49e1f85813f2b65858860a3fa231b4186f2e0e",
+      "chain_id": 4663,
+      "address": "0x5e49e1f85813f2b65858860a3fa231b4186f2e0e",
+      "role": "PENDLE",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "pendle-snet-market-17sep2026",
+          "locator": "rewardTokens[0].address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "decimals": 18
+    },
+    {
+      "id": "robinhood-0x000000000022d473030f116ddee9f6b43ac78ba3",
+      "chain_id": 4663,
+      "address": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+      "role": "Permit2",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "uniswap-robinhood-v3",
+          "locator": "Robinhood Chain Addresses table / Permit2",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x8d8a68884134b49ec8549f6f5d7b43b8ca327814",
+      "chain_id": 4663,
+      "address": "0x8d8A68884134b49EC8549f6F5D7b43b8Ca327814",
+      "role": "PerpFeeRouter",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-futures",
+          "locator": "7. Contract addresses (Robinhood Chain mainnet) / PerpFeeRouter",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / PerpFeeRouter",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x8fb5a00413063c220785d556bfdf891f3f30f14e",
+      "chain_id": 4663,
+      "address": "0x8FB5A00413063C220785D556BFdf891f3f30f14e",
+      "role": "PerpFeeRouter (CASHCAT)",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / PerpFeeRouter (CASHCAT)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}

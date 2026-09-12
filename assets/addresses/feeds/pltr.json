@@ -1,0 +1,42 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x820abedff239034956b7a9d2f0a331f9f075eb4c",
+      "chain_id": 4663,
+      "address": "0x820ABedFF239034956B7A9d2F0a331f9F075eB4c",
+      "role": "chainlinkPltrUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood PLTR / USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": "Palantir Technologies Inc (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities"
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x820ABedFF239034956B7A9d2F0a331f9F075eB4c / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    }
+  ]
+}

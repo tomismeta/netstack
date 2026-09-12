@@ -1,0 +1,9 @@
+{
+  "contracts": [
+    {
+      "role": "LoopbackOracle",
+      "aliases": [],
+      "file": "assets/addresses/contracts/l-01.json"
+    }
+  ]
+}

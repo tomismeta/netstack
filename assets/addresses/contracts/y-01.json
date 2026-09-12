@@ -1,0 +1,25 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xfb2d72fc9c378a73b4e03abac48194367447fa5a",
+      "chain_id": 4663,
+      "address": "0xfb2d72fc9c378a73b4e03abac48194367447fa5a",
+      "role": "YT-sNET-17SEP2026",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "pendle-snet-market-17sep2026",
+          "locator": "yt.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "decimals": 18,
+      "integration_role": "yt",
+      "expiry": "2026-09-17T00:00:00.000Z"
+    }
+  ]
+}

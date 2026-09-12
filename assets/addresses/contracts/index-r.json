@@ -1,0 +1,53 @@
+{
+  "contracts": [
+    {
+      "role": "rialtoRouterRegistry",
+      "aliases": [
+        "Rialto Router Registry"
+      ],
+      "file": "assets/addresses/contracts/r-01.json"
+    },
+    {
+      "role": "runnerDeskNvda",
+      "aliases": [],
+      "file": "assets/addresses/contracts/r-01.json"
+    },
+    {
+      "role": "runnerPriceVerifier",
+      "aliases": [],
+      "file": "assets/addresses/contracts/r-01.json"
+    },
+    {
+      "role": "RwaDesk",
+      "aliases": [
+        "rwaDeskV1",
+        "RWA Desk V1",
+        "RWA Desk V1 (legacy)",
+        "NVDA trusted mark source contract"
+      ],
+      "file": "assets/addresses/contracts/r-01.json"
+    },
+    {
+      "role": "rwaDesk",
+      "aliases": [
+        "RWA Desk V2",
+        "AAPL trusted mark source contract"
+      ],
+      "file": "assets/addresses/contracts/r-02.json"
+    },
+    {
+      "role": "rwaDeskFeedAdapter",
+      "aliases": [
+        "RWA Feed Adapter V3"
+      ],
+      "file": "assets/addresses/contracts/r-02.json"
+    },
+    {
+      "role": "rwaDeskRouterSource",
+      "aliases": [
+        "RWA Desk V2 router source"
+      ],
+      "file": "assets/addresses/contracts/r-02.json"
+    }
+  ]
+}

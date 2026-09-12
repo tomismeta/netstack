@@ -1,0 +1,46 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xa994d3684e8400a6c8078226925779fdee682dd9",
+      "chain_id": 4663,
+      "address": "0xA994d3684e8400A6c8078226925779FdeE682DD9",
+      "role": "chainlinkUsarUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood USAR-USD",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_labelled_usd_reference_value_semantics_unconfirmed",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "publisher_asset_name": null,
+        "publisher_asset_class": null,
+        "publisher_product_type_code": null,
+        "classification_status": "incomplete_publisher_metadata",
+        "metadata_gaps": [
+          "assetName empty",
+          "docs.assetClass absent",
+          "docs.baseAsset absent",
+          "docs.productTypeCode absent"
+        ],
+        "token_relationship_status": "unverified_no_exact_token_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "not_recorded"
+        },
+        "consumer_policies": []
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xA994d3684e8400A6c8078226925779FdeE682DD9 / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ]
+    }
+  ]
+}

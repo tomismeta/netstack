@@ -1,0 +1,98 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xaf3d76f1834a1d425780943c99ea8a608f8a93f9",
+      "chain_id": 4663,
+      "address": "0xaf3d76f1834a1d425780943c99ea8a608f8a93f9",
+      "role": "aaplStockToken",
+      "aliases": [
+        "AAPL stock token"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "aaplStockToken.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "TRUSTED_PRODUCT_MARKS / AAPL / token",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "aaplStockToken.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xaae0d815ee56e4092a5e5c2911e676fea50b2d6d",
+      "chain_id": 4663,
+      "address": "0xAae0d815EE56e4092a5E5C2911E676Fea50B2d6D",
+      "role": "aaplUsdgV3Pool",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "aaplUsdgV3Pool.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "aaplUsdgV3Pool.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x2bd3d5965b26b51814ac95127b2b80dd6ccc0fa1",
+      "chain_id": 4663,
+      "address": "0x2BD3d5965B26B51814AC95127B2b80dD6CcC0fa1",
+      "role": "adaptiveCurveIrm",
+      "aliases": [
+        "Adaptive Curve Irm"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "adaptiveCurveIrm.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain tab 1 / Adaptive Curve Irm",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "adaptiveCurveIrm.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "publisher_linked_provenance_urls": [
+        "https://docs.morpho.org/get-started/resources/addresses/"
+      ]
+    }
+  ]
+}

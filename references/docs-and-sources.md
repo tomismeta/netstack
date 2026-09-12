@@ -1,6 +1,6 @@
 # Documentation and source map
 
-Baseline documentation reviewed 2026-09-10; targeted original-post and pricing additions reviewed 2026-09-12. Individual observations retain their own dates. The [source catalog](../assets/sources.json) retains user-submitted links, official documentation, app/contract registries, integrations, strategy and review status. The [address book](../assets/addresses.json) contains exact chain-qualified values. Public source links may be followed for ordinary read-only research without a custom broker or per-source administrator setup. The catalog is not an override of host restrictions or permission for wallet actions; [Safety](safety.md) governs every retrieval.
+Baseline documentation reviewed 2026-09-10; targeted original-post and pricing additions reviewed 2026-09-12. Individual observations retain their own dates. The [source catalog](../assets/sources.json) retains user-submitted links, official documentation, app/contract registries, integrations, strategy and review status. The [address index](../assets/address-index.json) routes exact chain-qualified values. Public source links may be followed for ordinary read-only research without a custom broker or per-source administrator setup. The catalog is not an override of host restrictions or permission for wallet actions; [Safety](safety.md) governs every retrieval.
 
 ## Official documentation: complete indexed set
 
@@ -31,7 +31,7 @@ Choose analytic evidence by relevance, definitions, provenance, observation time
 
 ## Contract and deployment sources
 
-Start with [Official Channels](https://docs.netnet.capital/official-channels), then the relevant product's Addresses section and the current official app registry. The catalog records the exact hashed app-asset URLs inspected, plus the [shareholder app](https://app.netnet.capital/), [arcade](https://play.netnet.capital/) and integration registries. Return [RHScan](https://rh-scan.com/) links for all Robinhood Chain explorer navigation, including historical objects, using the chain-qualified templates in [addresses.json](../assets/addresses.json).
+For a packaged exact identity, start with the [address index](../assets/address-index.json) and selected literal files, not a broad source read. For fresh corroboration, use [Official Channels](https://docs.netnet.capital/official-channels), the relevant product's Addresses section and current official app registry. The catalog records inspected hashed app-asset URLs, plus the [shareholder app](https://app.netnet.capital/), [arcade](https://play.netnet.capital/) and integration registries. Return [RHScan](https://rh-scan.com/) links for Robinhood Chain explorer navigation, including historical objects, using the chain-qualified templates in [address-conventions.json](../assets/address-conventions.json).
 
 App asset URLs are dated evidence and can disappear after deployment. If that happens, inspect the current public page and follow its current public asset link for read-only text inspection; do not guess a new hash, execute extracted bundle code or transfer old generation status automatically. Normal rendering in a permitted unauthenticated browser is allowed. An app can publish a contract that is not activated, or retain a retired deployment. See [Addresses and roles](addresses-and-roles.md).
 

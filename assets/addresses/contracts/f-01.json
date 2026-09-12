@@ -1,0 +1,144 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x82d04c79424fa36bd252aa0d031de512f5f7aefa",
+      "chain_id": 4663,
+      "address": "0x82d04c79424FA36BD252Aa0D031de512f5F7aeFa",
+      "role": "FeeSink",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-futures",
+          "locator": "7. Contract addresses (Robinhood Chain mainnet) / FeeSink",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / FeeSink",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x3ef6878bda20925c2b8f4cf2341696b2d2ad82e1",
+      "chain_id": 4663,
+      "address": "0x3ef6878bDA20925C2B8f4cF2341696B2d2ad82E1",
+      "role": "FeeSink (CASHCAT)",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / FeeSink (CASHCAT)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xf56e517652bb18e519871abb13a382d205f6e375",
+      "chain_id": 4663,
+      "address": "0xF56e517652bb18E519871ABb13A382D205f6e375",
+      "role": "FlightSimDesk",
+      "aliases": [
+        "flightSimDesk",
+        "MSFT trusted mark source contract",
+        "MSFT Flight Simulator"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "MSFT FLIGHT SIMULATOR (18+) / FlightSimDesk",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "flightSimDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "TRUSTED_PRODUCT_MARKS / MSFT / sourceContract",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "PUBLISHED_PROGRAM_CONTRACTS / MSFT Flight Simulator",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "flightSimDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "local_recorded_lifecycle": "current"
+    },
+    {
+      "id": "robinhood-0x3f52d9ce80d5dc2ec30002a26b6d3ed70e8dba41",
+      "chain_id": 4663,
+      "address": "0x3f52D9ce80D5DC2EC30002a26B6D3ED70E8dBA41",
+      "role": "flightsimFeedAdapter",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "flightsimFeedAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "flightsimFeedAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x27efaa6ff13314a143ea3bf2891f12aea4902773",
+      "chain_id": 4663,
+      "address": "0x27EfAA6fF13314A143eA3Bf2891F12aeA4902773",
+      "role": "flightsimRouterSource",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "flightsimRouterSource.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "flightsimRouterSource.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

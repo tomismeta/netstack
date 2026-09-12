@@ -1,0 +1,22 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x33e885ed0ec9bf04ecfb19341582aadcb4c8a9e7",
+      "chain_id": 4663,
+      "address": "0x33e885ed0ec9bf04ecfb19341582aadcb4c8a9e7",
+      "role": "QuoterV2",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "uniswap-robinhood-v3",
+          "locator": "Robinhood Chain Addresses table / QuoterV2",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}

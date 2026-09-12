@@ -1,0 +1,29 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xd4eb21209c4d6093f80b5b84f5c45cc093ea14a3",
+      "chain_id": 4663,
+      "address": "0xd4EB21209C4D6093f80B5b84f5C45cc093EA14a3",
+      "role": "nvdaUsdgV3Pool",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "nvdaUsdgV3Pool.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "nvdaUsdgV3Pool.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

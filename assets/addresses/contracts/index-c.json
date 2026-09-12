@@ -1,0 +1,58 @@
+{
+  "contracts": [
+    {
+      "role": "cashcatToken",
+      "aliases": [],
+      "file": "assets/addresses/contracts/c-01.json"
+    },
+    {
+      "role": "cashcatWethV3Pool",
+      "aliases": [],
+      "file": "assets/addresses/contracts/c-01.json"
+    },
+    {
+      "role": "ClimbDesk",
+      "aliases": [
+        "climbDesk"
+      ],
+      "file": "assets/addresses/contracts/c-01.json"
+    },
+    {
+      "role": "CoinFlipDesk",
+      "aliases": [
+        "coinFlipDesk",
+        "COIN trusted mark source contract"
+      ],
+      "file": "assets/addresses/contracts/c-01.json"
+    },
+    {
+      "role": "coinflipFeedAdapter",
+      "aliases": [],
+      "file": "assets/addresses/contracts/c-01.json"
+    },
+    {
+      "role": "coinflipRouterSource",
+      "aliases": [],
+      "file": "assets/addresses/contracts/c-02.json"
+    },
+    {
+      "role": "coinStockToken",
+      "aliases": [
+        "COIN stock token"
+      ],
+      "file": "assets/addresses/contracts/c-02.json"
+    },
+    {
+      "role": "CreditRouter (pending activation)",
+      "aliases": [
+        "creditRouter"
+      ],
+      "file": "assets/addresses/contracts/c-02.json"
+    },
+    {
+      "role": "CreditRouter V1 (never granted according to app registry)",
+      "aliases": [],
+      "file": "assets/addresses/contracts/c-02.json"
+    }
+  ]
+}

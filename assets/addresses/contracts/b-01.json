@@ -1,0 +1,147 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x712f52fd42d7b89fd444e0cc4430020faa9cfb26",
+      "chain_id": 4663,
+      "address": "0x712F52Fd42D7b89fd444e0cc4430020fAA9cfb26",
+      "role": "BlackjackDesk",
+      "aliases": [
+        "blackjackDesk",
+        "TURBO BLACKJACK"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "TURBO BLACKJACK (18+) / BlackjackDesk",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "blackjackDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "PUBLISHED_PROGRAM_CONTRACTS / TURBO BLACKJACK",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "blackjackDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "local_recorded_lifecycle": "current"
+    },
+    {
+      "id": "robinhood-0xf2d7268d753bb48d784c93d944ce1279957d8510",
+      "chain_id": 4663,
+      "address": "0xf2D7268D753BB48d784c93D944Ce1279957d8510",
+      "role": "BlackjackLogic",
+      "aliases": [
+        "blackjackLogic"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "TURBO BLACKJACK (18+) / BlackjackLogic",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "blackjackLogic.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "blackjackLogic.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xce5c1afa115ff8b1d6913509bfc79d9ae08cc857",
+      "chain_id": 4663,
+      "address": "0xCe5c1aFa115fF8b1D6913509bfc79D9AE08CC857",
+      "role": "Blue Public Allocator",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain tab 2 / Blue Public Allocator",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x53a1eb6589861f686af7c531211e35aefe30210f",
+      "chain_id": 4663,
+      "address": "0x53A1eB6589861F686af7c531211E35Aefe30210f",
+      "role": "BlueBundlesV1",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain tab 3 / BlueBundlesV1",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xe109eaf5fa12f93168947f62cc340c96f4dc15eb",
+      "chain_id": 4663,
+      "address": "0xe109eAf5FA12F93168947f62cC340c96F4Dc15eB",
+      "role": "BoardroomDesk",
+      "aliases": [
+        "boardroomDesk"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "THE BOARD MEETING (18+) / BoardroomDesk",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "boardroomDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "boardroomDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

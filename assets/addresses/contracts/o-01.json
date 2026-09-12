@@ -1,0 +1,88 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x70eaeec20c39df48509f1f3fab01f7dde207947b",
+      "chain_id": 4663,
+      "address": "0x70eaeEc20c39dF48509F1F3faB01f7dDe207947b",
+      "role": "otcDesk",
+      "aliases": [
+        "OTC Desk"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "otcDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "PUBLISHED_PROGRAM_CONTRACTS / OTC Desk",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "otcDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "local_recorded_lifecycle": "current"
+    },
+    {
+      "id": "robinhood-0x169beae602a6441cb581ef75947621cae4d1d496",
+      "chain_id": 4663,
+      "address": "0x169BeaE602a6441Cb581eF75947621CAE4d1D496",
+      "role": "otcDeskFeedAdapter",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "otcDeskFeedAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "otcDeskFeedAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xc79c0fa204f42a66985ab2ede7646567d4db5dbb",
+      "chain_id": 4663,
+      "address": "0xC79C0FA204F42a66985AB2eDE7646567D4DB5DbB",
+      "role": "otcDeskRouterSource",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "otcDeskRouterSource.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "otcDeskRouterSource.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

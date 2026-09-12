@@ -1,0 +1,21 @@
+{
+  "contracts": [
+    {
+      "role": "otcDesk",
+      "aliases": [
+        "OTC Desk"
+      ],
+      "file": "assets/addresses/contracts/o-01.json"
+    },
+    {
+      "role": "otcDeskFeedAdapter",
+      "aliases": [],
+      "file": "assets/addresses/contracts/o-01.json"
+    },
+    {
+      "role": "otcDeskRouterSource",
+      "aliases": [],
+      "file": "assets/addresses/contracts/o-01.json"
+    }
+  ]
+}

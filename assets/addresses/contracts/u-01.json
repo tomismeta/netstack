@@ -1,0 +1,156 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x3a7dce19447f9028c360592fdfdb3f27c50dae29",
+      "chain_id": 4663,
+      "address": "0x3a7Dce19447f9028C360592fDfdb3f27c50daE29",
+      "role": "UnderwritingVault",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-futures",
+          "locator": "7. Contract addresses (Robinhood Chain mainnet) / UnderwritingVault",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / UnderwritingVault",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x38f620aec20b116ad19629e8f91842d0d4ed8c39",
+      "chain_id": 4663,
+      "address": "0x38f620aeC20B116ad19629e8F91842d0D4Ed8c39",
+      "role": "UnderwritingVault (CASHCAT)",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / UnderwritingVault (CASHCAT)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x282a3c4d320cc7f0d5eaf56b8029e4b88338f0a3",
+      "chain_id": 4663,
+      "address": "0x282a3c4d320cc7f0d5eaf56b8029e4b88338f0a3",
+      "role": "UniswapInterfaceMulticall",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "uniswap-robinhood-v3",
+          "locator": "Robinhood Chain Addresses table / UniswapInterfaceMulticall",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f",
+      "chain_id": 4663,
+      "address": "0x8bcEaA40B9AcdfAedF85AdF4FF01F5Ad6517937f",
+      "role": "uniswapV2Factory",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "uniswapV2Factory.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "uniswapV2Factory.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "publisher_linked_provenance_urls": [
+        "https://robinhoodchain.blockscout.com/address/0x8bcEaA40B9AcdfAedF85AdF4FF01F5Ad6517937f?tab=contract"
+      ]
+    },
+    {
+      "id": "robinhood-0x89e5db8b5aa49aa85ac63f691524311aeb649eba",
+      "chain_id": 4663,
+      "address": "0x89e5DB8B5aA49aA85AC63f691524311AEB649eba",
+      "role": "uniswapV2Router",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "uniswapV2Router.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "uniswapV2Router.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "publisher_linked_provenance_urls": [
+        "https://robinhoodchain.blockscout.com/address/0x89e5DB8B5aA49aA85AC63f691524311AEB649eba?tab=contract"
+      ]
+    },
+    {
+      "id": "robinhood-0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
+      "chain_id": 4663,
+      "address": "0x1f7d7550B1b028f7571E69A784071F0205FD2EfA",
+      "role": "uniswapV3Factory",
+      "aliases": [
+        "UniswapV3Factory"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "uniswapV3Factory.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "uniswap-robinhood-v3",
+          "locator": "Robinhood Chain Addresses table / UniswapV3Factory",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "uniswapV3Factory.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "publisher_linked_provenance_urls": [
+        "https://robinhoodchain.blockscout.com/address/0x1f7d7550B1b028f7571E69A784071F0205FD2EfA?tab=contract"
+      ]
+    }
+  ]
+}

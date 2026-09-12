@@ -1,0 +1,130 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xca9c78dd337a67f6e0077f65f5e9218719d30edf",
+      "chain_id": 4663,
+      "address": "0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+      "role": "NET (the token)",
+      "aliases": [
+        "NET"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / NET (the token)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "pendle-snet-market-17sep2026",
+          "locator": "inputTokens[0].address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "pendle-snet-market-17sep2026",
+          "locator": "outputTokens[0].address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "decimals": 9
+    },
+    {
+      "id": "robinhood-0xba46fc84409589f369c107e869c06809df3d9727",
+      "chain_id": 4663,
+      "address": "0xba46fc84409589f369c107e869c06809df3d9727",
+      "role": "NET-scaled18",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "pendle-snet-market-17sep2026",
+          "locator": "accountingAsset.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "decimals": 18,
+      "integration_role": "accountingAsset",
+      "expiry": null
+    },
+    {
+      "id": "robinhood-0x59f95461e68e0c77605299791e1449f175165b54",
+      "chain_id": 4663,
+      "address": "0x59F95461E68e0c77605299791E1449f175165B54",
+      "role": "NET/USDG canonical pair (Uniswap v2)",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / NET/USDG canonical pair (Uniswap v2)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "price_source": {
+        "source_kind": "market_pool",
+        "purpose": "spot_reserve_ratio_and_cumulative_price_input",
+        "base_asset": "NET",
+        "quote_asset": "USDG",
+        "value_kind": "market_reference_not_nav",
+        "scope": "Canonical pool reserves can inform a spot reference after exact token ordering and units are established; PairOracle uses cumulative-price observations for TWAP. Neither is an executable quote or USD price.",
+        "metadata_status": "publisher_documented_purpose_not_live_implementation_verification",
+        "provenance": {
+          "source_id": "netnet-docs-mechanism",
+          "locator": "The price oracle: fail-closed by design",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_documentation"
+        }
+      }
+    },
+    {
+      "id": "robinhood-0x99347d5f70d3838763f6bddcf80304c8aa953b57",
+      "chain_id": 4663,
+      "address": "0x99347d5F70D3838763f6Bddcf80304C8aa953B57",
+      "role": "NetNet Credit vault (nnUSDG)",
+      "aliases": [
+        "usdgVault"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Addresses / NetNet Credit vault (nnUSDG)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Curated Credit Vault (NetNet Credit) / NetNet Credit vault (nnUSDG)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "usdgVault.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "usdgVault.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

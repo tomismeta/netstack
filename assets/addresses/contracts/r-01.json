@@ -1,0 +1,144 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x71a120cbbf3ce7cd910a3c50ff77afc62735687e",
+      "chain_id": 4663,
+      "address": "0x71a120CbBf3Ce7cD910a3c50fF77aFc62735687E",
+      "role": "rialtoRouterRegistry",
+      "aliases": [
+        "Rialto Router Registry"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "rialtoRouterRegistry.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "rialto-router-registry",
+          "locator": "Router registries table / RH Chain / chain id 4663",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "rialtoRouterRegistry.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "publisher_linked_provenance_urls": [
+        "https://docs.rialto.xyz/developers/router-registries.md"
+      ]
+    },
+    {
+      "id": "robinhood-0x8154e35166f21305adac82f95b54de8acd44d23a",
+      "chain_id": 4663,
+      "address": "0x8154e35166f21305AdAc82f95B54De8acD44d23A",
+      "role": "runnerDeskNvda",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "runnerDeskNvda.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x1ed09929b960f22b2ed71102e4d7fe281ecc5ebb",
+      "chain_id": 4663,
+      "address": "0x1ed09929B960f22B2ed71102e4d7fE281Ecc5EBB",
+      "role": "runnerPriceVerifier",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "runnerPriceVerifier.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x99b6ee6ede47d9a8a9bfd03f728a99b789df1961",
+      "chain_id": 4663,
+      "address": "0x99B6eE6eDe47d9a8a9bfd03F728a99B789df1961",
+      "role": "RwaDesk",
+      "aliases": [
+        "rwaDeskV1",
+        "RWA Desk V1",
+        "RWA Desk V1 (legacy)",
+        "NVDA trusted mark source contract"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "locally_and_publisher_reported_historical",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Real World Bonds (Equity Desk) / RwaDesk",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "rwaDeskV1.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "rwaDesk.source supersession statement",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "RWA_DESK_GENERATIONS / v1",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "TRUSTED_PRODUCT_MARKS / NVDA / sourceContract",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "PUBLISHED_PROGRAM_CONTRACTS / RWA Desk V1 (legacy)",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "rwaDeskV1.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "generation": "v1",
+      "superseded_by": "0xa84efC3136BF1Bb89ade9E5BE6Ab32cb1A04f08D",
+      "local_recorded_current": false,
+      "local_recorded_deployment_block": 17982451,
+      "local_recorded_deployment_transaction": "0xfb393d9dacac9b6dcdfff5b0daea202a0d82e0fbae82de83d2ab7c51823036773",
+      "local_recorded_lifecycle": "legacy"
+    }
+  ]
+}

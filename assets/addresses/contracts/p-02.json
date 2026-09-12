@@ -1,0 +1,155 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xc8a11e8793f8714a159061369173dc86a0a5e23f",
+      "chain_id": 4663,
+      "address": "0xc8a11E8793F8714a159061369173dc86A0A5E23F",
+      "role": "PerpOracle",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-futures",
+          "locator": "7. Contract addresses (Robinhood Chain mainnet) / PerpOracle",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / PerpOracle",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x23237bbe20becaceca5c853840d0984e4bdea759",
+      "chain_id": 4663,
+      "address": "0x23237bBE20beCACEcA5C853840d0984e4bDea759",
+      "role": "PerpOracle (CASHCAT)",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / PerpOracle (CASHCAT)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+      "chain_id": 4663,
+      "address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+      "role": "PLP-sNET-17SEP2026",
+      "aliases": [
+        "Pendle market / PENDLE-LPT"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "pendle-snet-market-17sep2026",
+          "locator": "lp.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "decimals": 18,
+      "integration_role": "lp",
+      "expiry": "2026-09-17T00:00:00.000Z"
+    },
+    {
+      "id": "robinhood-0x346e1a31171a0f7ac73909010b5435768d3b5462",
+      "chain_id": 4663,
+      "address": "0x346e1a31171A0f7aC73909010b5435768d3B5462",
+      "role": "PremiumSeller",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / PremiumSeller",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x117074c7b7b6acd290f7a031efe76dbfb0383e80",
+      "chain_id": 4663,
+      "address": "0x117074C7B7B6ACd290F7a031efE76dBfB0383e80",
+      "role": "presserCharacter",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "presserCharacter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "presserCharacter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xfae9967d8d29c18886bc172d2b82028f93e3a651",
+      "chain_id": 4663,
+      "address": "0xFae9967D8D29C18886BC172d2B82028F93E3a651",
+      "role": "presserFaction",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "presserFaction.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "presserFaction.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x7332b329860986e596b2fd71e9c53786c0242ce5",
+      "chain_id": 4663,
+      "address": "0x7332B329860986e596B2fd71e9c53786c0242ce5",
+      "role": "PrizeVault",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Prize Draw Program (WinNET) / PrizeVault",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}

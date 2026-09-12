@@ -1,0 +1,98 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xc5e188541d107e8b79e43478bde365f1406665d6",
+      "chain_id": 4663,
+      "address": "0xc5E188541D107e8B79e43478bDE365F1406665D6",
+      "role": "GeneralAdapter1",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain tab 4 / GeneralAdapter1",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x575b7b7c97ef3e21c82daeb427899d583e1e913f",
+      "chain_id": 4663,
+      "address": "0x575b7B7c97Ef3E21C82DAeB427899d583e1E913f",
+      "role": "GenesisBond (founding offering)",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / GenesisBond (founding offering)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x2e0847e8910a9732eb3fb1bb4b70a580adad4fe3",
+      "chain_id": 4663,
+      "address": "0x2e0847e8910a9732eb3fb1bb4b70a580adad4fe3",
+      "role": "googlStockToken",
+      "aliases": [
+        "GOOGL stock token"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "googlStockToken.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "TRUSTED_PRODUCT_MARKS / GOOGL / token",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "googlStockToken.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x34d0dc122cf9a8eb296fc5e0d3a233625d7d19b7",
+      "chain_id": 4663,
+      "address": "0x34d0dc122cf9a8eb296fc5e0d3a233625d7d19b7",
+      "role": "googlUsdgV3Pool",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "googlUsdgV3Pool.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "googlUsdgV3Pool.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

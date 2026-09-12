@@ -1,0 +1,78 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xf6f373a037c30f0e5010d854385ca89185ae638b",
+      "chain_id": 4663,
+      "address": "0xF6f373a037c30F0e5010d854385cA89185AE638b",
+      "role": "chainlinkGooglUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood GOOGL / USD",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "consumer_policies": [],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "publisher_asset_name": "Alphabet (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "locally_recorded_exact_address_mapping_see_trusted_product_marks",
+        "netnet_use_evidence": {
+          "status": "historical_exact_token_mark_mapping_and_registry_inclusion_not_current_consumer_verification"
+        }
+      },
+      "aliases": [
+        "GOOGL/USD trusted product feed"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "chainlinkGooglUsd.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "TRUSTED_PRODUCT_MARKS / GOOGL / feedAddress",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "chainlinkGooglUsd.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0xF6f373a037c30F0e5010d854385cA89185AE638b / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ],
+  "trusted_product_marks": [
+    {
+      "chain_id": 4663,
+      "symbol": "GOOGL",
+      "token_address": "0x2e0847e8910a9732eb3fb1bb4b70a580adad4fe3",
+      "feed_address": "0xF6f373a037c30F0e5010d854385cA89185AE638b",
+      "source_contract_address": "0x7cf28D61D42352Eb2FD68167e9B08f73CBbF21eB",
+      "provenance": {
+        "source_id": "local-contract-registry",
+        "locator": "TRUSTED_PRODUCT_MARKS / GOOGL"
+      },
+      "status": "locally_recorded_exact_address_mapping_not_live_feed_verification",
+      "note": "Symbol alone must not establish asset identity; local registry applies this mark only to the exact discovered token."
+    }
+  ]
+}

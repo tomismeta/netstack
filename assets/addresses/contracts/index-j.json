@@ -1,0 +1,11 @@
+{
+  "contracts": [
+    {
+      "role": "JackpotPool",
+      "aliases": [
+        "climbJackpotPool"
+      ],
+      "file": "assets/addresses/contracts/j-01.json"
+    }
+  ]
+}

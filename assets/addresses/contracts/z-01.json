@@ -1,0 +1,28 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xa1ee052ec32532304a7522bd9a4b594ec28ff1b1",
+      "chain_id": 4663,
+      "address": "0xA1ee052EC32532304a7522bd9A4b594eC28fF1b1",
+      "role": "Zap",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-futures",
+          "locator": "7. Contract addresses (Robinhood Chain mainnet) / Zap",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / Zap",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}

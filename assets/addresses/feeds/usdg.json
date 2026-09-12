@@ -1,0 +1,49 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x61b7e5650328764b076a108eff5fa7282a1b9ad2",
+      "chain_id": 4663,
+      "address": "0x61B7e5650328764B076A108EFF5fa7282a1B9aD2",
+      "role": "usdgUsdFeed",
+      "decimals": 8,
+      "price_feed": {
+        "name": "USDG / USD",
+        "quote_asset": "USD",
+        "value_kind": "asset_usd_reference_price",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "consumer_policies": [],
+        "publisher_name": "Chainlink",
+        "directory_group": "existing_non_rwa_underlying_feed",
+        "token_relationship_status": "no_trusted_product_marks_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "publisher_app_registry_inclusion_not_current_consumer_verification"
+        }
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "usdgUsdFeed.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "usdgUsdFeed.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x61B7e5650328764B076A108EFF5fa7282a1B9aD2 / name, decimals, docs.quoteAssetEntityId",
+          "observed_on": "2026-09-10",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

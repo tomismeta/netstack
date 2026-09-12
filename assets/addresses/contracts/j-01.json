@@ -1,0 +1,37 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xf125ad8abde2591609a982e0b6a51309fdf7db37",
+      "chain_id": 4663,
+      "address": "0xF125Ad8ABdE2591609a982e0b6a51309fdF7Db37",
+      "role": "JackpotPool",
+      "aliases": [
+        "climbJackpotPool"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "CLIMB, INC. (18+) / JackpotPool",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "climbJackpotPool.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "climbJackpotPool.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

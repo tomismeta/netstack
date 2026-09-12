@@ -1,6 +1,6 @@
 # Contracts, public addresses and roles
 
-Working snapshot: 2026-09-12, **unpublished local changes**; package version remains **0.1.1**. Robinhood Chain mainnet **4663**. Exact values live in [addresses.json](../assets/addresses.json), not parallel copies in these references. Sources and their review status live in [sources.json](../assets/sources.json).
+Working snapshot: 2026-09-12, **unpublished local changes**; package version remains **0.1.1**. Robinhood Chain mainnet **4663**. Exact values live in bounded JSON files routed by [address-index.json](../assets/address-index.json), not parallel copies in these references. Sources and their review status live in [sources.json](../assets/sources.json).
 
 ## Inventory and its boundaries
 
@@ -10,16 +10,17 @@ Sources combine official NetNet docs, shareholder/arcade app registries, exact l
 
 ## Data layout
 
-- Read `explorers` and `record_notes` once alongside selected records. `explorers["4663"]` supplies RHScan address and transaction URL templates plus navigation scope; `record_notes` supplies the shared publisher-label, feed-metadata, NetNet-use-evidence and public-role qualifications. These explanations do not replace per-record facts or supply missing defaults.
+- Start at [address-index.json](../assets/address-index.json). Its literal paths are relative to the package root: `feeds` selects a symbol file; `contracts` selects a canonical-role initial's role/alias index, then its `file`; `public_roles` lists bounded role files; `markets` points to [markets.json](../assets/addresses/markets.json). Read only the selected files. No directory listing, glob, fragment, line-range selector or record query is required. If an exact file is unavailable, name the gap instead of chasing inaccessible spill files or loading broad references/`sources.json`.
+- Read [address-conventions.json](../assets/address-conventions.json) once alongside selected records. Its `explorers["4663"]` supplies RHScan address and transaction URL templates; `record_notes` supplies shared publisher-label, feed-metadata, NetNet-use-evidence and public-role qualifications. Shared scope, coverage and discrepancies do not replace per-record facts or supply missing defaults.
 - `contracts`: chain ID, exact address, role, aliases, lifecycle/publication status, live-verification status, and parent `provenance` entries with source IDs, observation dates and locators. Parent provenance owns publisher-directory feed metadata, with each locator identifying the fields it supports.
 - `publisher_linked_provenance_urls`: original publisher links retained for evidence, not response navigation. Return RHScan links for referenced Robinhood objects; do not copy an old provider's API path or query-tab syntax.
 - `marketplace_collections`, where present on a contract record: collection names/links and API provenance matched to that exact chain/address. These are identity associations, not marketplace or contract safety guarantees.
 - `public_role_addresses`: named public operational/signing/owner-role addresses, explicitly unverified account kind and no inferred legal-person attribution. A role named `signer` does not give this agent access or permission to sign.
-- `markets`: 32-byte Morpho market identifiers and the chain-qualified singleton contract. These IDs must not be used as 20-byte contract addresses or passed to a generic address explorer as though they were one.
-- `trusted_product_marks`: exact-token mappings to known feed/source relationships. Matching a symbol such as NVDA is not enough to reuse another token's oracle.
+- `markets`: 32-byte Morpho identifiers, `singleton_record` and `singleton_id`. Load the literal singleton file, select its ID, and **return its recorded 20-byte address and RHScan address link separately** from the market ID. The canonical singleton address remains in that contract record, not copied into each market. A market ID is neither an address nor a transaction hash.
+- `trusted_product_marks`, in the corresponding feed-symbol file: exact-token mappings to known feed/source relationships. Matching a symbol such as NVDA is not enough to reuse another token's oracle.
 - `price_feed`, where present on a contract record: publisher name, directory group, publisher-sourced feed name, quote asset, value semantics, metadata status, classification gaps and token/NetNet-use evidence. Read its publisher metadata evidence in the parent contract's `provenance`; the adjacent `decimals` is the feed answer scale, not token decimals. Preserve `netnet_use_evidence.status` and separately attributed `consumer_policies`, which record only specifically documented uses, not an exhaustive deployed call graph.
 - `price_source`, on the canonical NET/USDG pool, PairOracle, Treasury and LoopbackOracle: typed source kind, purpose, base/quote units and dated documentation provenance. These are market, derived-TWAP, reserve-accounting or collateral sources—not extra underlying Chainlink feeds.
-- `known_discrepancies` and `coverage`: generation conflicts, source boundaries, omitted zero placeholders, inaccessible material and missing verification.
+- `known_discrepancies` and `coverage`, in conventions: generation conflicts, source boundaries, omitted zero placeholders, inaccessible material and missing verification.
 
 **Provenance dates and scope:** parent contract `provenance[].observed_on` dates each source observation, including feed metadata; distinct dates, sources and scopes remain distinct. The file date labels only the snapshot. None certifies current configuration. A `local_definition` is a historical repository path, not a skill dependency or URL; extracted facts are bundled, but public corroboration is preferable for consumers without that repository. The six `trusted_product_marks` retain their original local-registry scope; directory matches do not independently verify them. Unknown classification, unrecorded consumer use and live-verification limits remain explicit, not filled by shared notes.
 
@@ -40,49 +41,49 @@ Sources combine official NetNet docs, shareholder/arcade app registries, exact l
 
 ## Price feeds and token relationships
 
-`Use netstack: feeds` requests this directory; `Use netstack: feeds NVDA` focuses on a feed/token relationship; `Use netstack: feeds NET` selects the distinct NET sources. `Use netstack: contracts feeds` reaches the same section. These are reference lookups, not tool invocations or live-price requests. Use the index to select a JSON `role`, then read only that record and its exact `trusted_product_marks` relationship, if present.
+`Use netstack: feeds` requests this directory; `Use netstack: feeds NVDA` focuses on a feed/token relationship; `Use netstack: feeds NET` selects the distinct NET sources. `Use netstack: contracts feeds` reaches the same section. These are reference lookups, not tool invocations or live-price requests. For a symbol, follow the root index's literal feed-file path and read its `contracts` and any exact `trusted_product_marks`, plus conventions. NET instead uses the relevant contract-role indexes.
 
 ### Full Robinhood-labelled RWA feed index
 
-All **35 candidates** retain exact primary `proxyAddress` and chain. Publisher metadata observed **2026-09-12** lists **USD quote / 8 feed decimals** for all. Full addresses/evidence live in the named [JSON](../assets/addresses.json) contract records. `Equity` includes tokenized ETFs; do not recategorize by ticker.
+All **35 candidates** retain exact primary `proxyAddress` and chain. Publisher metadata observed **2026-09-12** lists **USD quote / 8 feed decimals** for all. Full addresses/evidence live in the symbol files linked below and routed by the [address index](../assets/address-index.json). `Equity` includes tokenized ETFs; do not recategorize by ticker.
 
 | Requested name | Feed contract role | Publisher asset class | Exact token relationship |
 |---|---|---|---|
-| AAPL | `chainlinkAaplUsd` | Equity | Existing exact mapping |
-| AMD | `chainlinkAmdUsd` | Equity | Unverified / not recorded |
-| AMZN | `chainlinkAmznUsd` | Equity | Unverified / not recorded |
-| ASML | `chainlinkAsmlUsd` | Equity | Unverified / not recorded |
-| BABA | `chainlinkBabaUsd` | Equity | Unverified / not recorded |
-| CLSK | `chainlinkClskUsd` | Equity | Unverified / not recorded |
-| COIN | `chainlinkCoinUsd` | Equity | Existing exact mapping |
-| CRCL | `chainlinkCrclUsd` | Equity | Unverified / not recorded |
-| CRWV | `chainlinkCrwvUsd` | Equity | Unverified / not recorded |
-| DELL | `chainlinkDellUsd` | Equity | Unverified / not recorded |
-| EWY | `chainlinkEwyUsd` | Equity | Unverified / not recorded |
-| GME | `chainlinkGmeUsd` | Equity | Unverified / not recorded |
-| GOOGL | `chainlinkGooglUsd` | Equity | Existing exact mapping |
-| INTC | `chainlinkIntcUsd` | Equity | Unverified / not recorded |
-| IONQ | `chainlinkIonqUsd` | Equity | Unverified / not recorded |
-| META | `chainlinkMetaUsd` | Equity | Unverified / not recorded |
-| MSFT | `chainlinkMsftUsd` | Equity | Existing exact mapping |
-| MSTR | `chainlinkMstrUsd` | Equity | Unverified / not recorded |
-| MU | `chainlinkMuUsd` | Equity | Unverified / not recorded |
-| NBIS | `chainlinkNbisUsd` | Equity | Unverified / not recorded |
-| NVDA | `chainlinkNvdaUsd` | Equity | Existing exact mapping |
-| ORCL | `chainlinkOrclUsd` | Equity | Unverified / not recorded |
-| PLTR | `chainlinkPltrUsd` | Equity | Unverified / not recorded |
-| QQQ | `chainlinkQqqUsd` | Equity | Unverified / not recorded |
-| RGTI | `chainlinkRgtiUsd` | Equity | Unverified / not recorded |
-| RKLB | `chainlinkRklbUsd` | Equity | Unverified / not recorded |
-| SGOV | `chainlinkSgovUsd` | Incomplete | Unverified / not recorded |
-| SLV | `chainlinkSlvUsd` | Equity | Unverified / not recorded |
-| SNDK | `chainlinkSndkUsd` | Equity | Unverified / not recorded |
-| SPCX | `chainlinkSpcxUsd` | Equity | Existing exact mapping |
-| SPY | `chainlinkSpyUsd` | Equity | Unverified / not recorded |
-| TSLA | `chainlinkTslaUsd` | Equity | Unverified / not recorded |
-| TSM | `chainlinkTsmUsd` | Equity | Unverified / not recorded |
-| USAR | `chainlinkUsarUsd` | Incomplete | Unverified / not recorded |
-| USO | `chainlinkUsoUsd` | Equity | Unverified / not recorded |
+| [AAPL](../assets/addresses/feeds/aapl.json) | `chainlinkAaplUsd` | Equity | Existing exact mapping |
+| [AMD](../assets/addresses/feeds/amd.json) | `chainlinkAmdUsd` | Equity | Unverified / not recorded |
+| [AMZN](../assets/addresses/feeds/amzn.json) | `chainlinkAmznUsd` | Equity | Unverified / not recorded |
+| [ASML](../assets/addresses/feeds/asml.json) | `chainlinkAsmlUsd` | Equity | Unverified / not recorded |
+| [BABA](../assets/addresses/feeds/baba.json) | `chainlinkBabaUsd` | Equity | Unverified / not recorded |
+| [CLSK](../assets/addresses/feeds/clsk.json) | `chainlinkClskUsd` | Equity | Unverified / not recorded |
+| [COIN](../assets/addresses/feeds/coin.json) | `chainlinkCoinUsd` | Equity | Existing exact mapping |
+| [CRCL](../assets/addresses/feeds/crcl.json) | `chainlinkCrclUsd` | Equity | Unverified / not recorded |
+| [CRWV](../assets/addresses/feeds/crwv.json) | `chainlinkCrwvUsd` | Equity | Unverified / not recorded |
+| [DELL](../assets/addresses/feeds/dell.json) | `chainlinkDellUsd` | Equity | Unverified / not recorded |
+| [EWY](../assets/addresses/feeds/ewy.json) | `chainlinkEwyUsd` | Equity | Unverified / not recorded |
+| [GME](../assets/addresses/feeds/gme.json) | `chainlinkGmeUsd` | Equity | Unverified / not recorded |
+| [GOOGL](../assets/addresses/feeds/googl.json) | `chainlinkGooglUsd` | Equity | Existing exact mapping |
+| [INTC](../assets/addresses/feeds/intc.json) | `chainlinkIntcUsd` | Equity | Unverified / not recorded |
+| [IONQ](../assets/addresses/feeds/ionq.json) | `chainlinkIonqUsd` | Equity | Unverified / not recorded |
+| [META](../assets/addresses/feeds/meta.json) | `chainlinkMetaUsd` | Equity | Unverified / not recorded |
+| [MSFT](../assets/addresses/feeds/msft.json) | `chainlinkMsftUsd` | Equity | Existing exact mapping |
+| [MSTR](../assets/addresses/feeds/mstr.json) | `chainlinkMstrUsd` | Equity | Unverified / not recorded |
+| [MU](../assets/addresses/feeds/mu.json) | `chainlinkMuUsd` | Equity | Unverified / not recorded |
+| [NBIS](../assets/addresses/feeds/nbis.json) | `chainlinkNbisUsd` | Equity | Unverified / not recorded |
+| [NVDA](../assets/addresses/feeds/nvda.json) | `chainlinkNvdaUsd` | Equity | Existing exact mapping |
+| [ORCL](../assets/addresses/feeds/orcl.json) | `chainlinkOrclUsd` | Equity | Unverified / not recorded |
+| [PLTR](../assets/addresses/feeds/pltr.json) | `chainlinkPltrUsd` | Equity | Unverified / not recorded |
+| [QQQ](../assets/addresses/feeds/qqq.json) | `chainlinkQqqUsd` | Equity | Unverified / not recorded |
+| [RGTI](../assets/addresses/feeds/rgti.json) | `chainlinkRgtiUsd` | Equity | Unverified / not recorded |
+| [RKLB](../assets/addresses/feeds/rklb.json) | `chainlinkRklbUsd` | Equity | Unverified / not recorded |
+| [SGOV](../assets/addresses/feeds/sgov.json) | `chainlinkSgovUsd` | Incomplete | Unverified / not recorded |
+| [SLV](../assets/addresses/feeds/slv.json) | `chainlinkSlvUsd` | Equity | Unverified / not recorded |
+| [SNDK](../assets/addresses/feeds/sndk.json) | `chainlinkSndkUsd` | Equity | Unverified / not recorded |
+| [SPCX](../assets/addresses/feeds/spcx.json) | `chainlinkSpcxUsd` | Equity | Existing exact mapping |
+| [SPY](../assets/addresses/feeds/spy.json) | `chainlinkSpyUsd` | Equity | Unverified / not recorded |
+| [TSLA](../assets/addresses/feeds/tsla.json) | `chainlinkTslaUsd` | Equity | Unverified / not recorded |
+| [TSM](../assets/addresses/feeds/tsm.json) | `chainlinkTsmUsd` | Equity | Unverified / not recorded |
+| [USAR](../assets/addresses/feeds/usar.json) | `chainlinkUsarUsd` | Incomplete | Unverified / not recorded |
+| [USO](../assets/addresses/feeds/uso.json) | `chainlinkUsoUsd` | Equity | Unverified / not recorded |
 
 **Two metadata gaps:** SGOV and USAR have empty `assetName` and absent `docs.assetClass`, `docs.baseAsset` and `docs.productTypeCode`. Their names and eight-decimal scales are explicit; `docs.quoteAssetEntityId` supports USD quote. Do not infer classification or total-return semantics. The other 33 explicitly say `Equity`.
 
@@ -94,8 +95,8 @@ All **35 candidates** retain exact primary `proxyAddress` and chain. Publisher m
 
 | Requested asset | Feed contract role | Relationship boundary | Quote / feed decimals |
 |---|---|---|---|
-| ETH | `chainlinkEthUsd` | No stock-token mapping; do not infer a WETH relationship from the symbol | USD / 8 |
-| USDG | `usdgUsdFeed` | No `trusted_product_marks` entry; the USDG token is separately catalogued | USD / 8 |
+| [ETH](../assets/addresses/feeds/eth.json) | `chainlinkEthUsd` | No stock-token mapping; do not infer a WETH relationship from the symbol | USD / 8 |
+| [USDG](../assets/addresses/feeds/usdg.json) | `usdgUsdFeed` | No `trusted_product_marks` entry; the USDG token is separately catalogued | USD / 8 |
 
 These retain **2026-09-10** metadata observations and public app-registry provenance. The [Chainlink Robinhood mainnet directory](https://reference-data-directory.vercel.app/feeds-robinhood-mainnet.json) has **57 entries** in the audited snapshot; this inventory selects the 35 Robinhood-labelled candidates and these two feeds, not every crypto entry. JSON identity/scale is **publisher metadata**, not successful `decimals()` calls, token decimals or current prices. **USDG/USD is a conversion reference, not proof that one USDG equals one USD.**
 
@@ -152,7 +153,7 @@ For “display a USD reference price for this NVDA token”:
 5. **Scale from the live read.** Divide `answer` by `10 ** feed_decimals`, using successful `decimals()` from the **same proxy and block**—never packaged eight-decimal fallback. A scale mismatch requires stopping current-price presentation until identity/configuration is resolved. **Synthetic only:** `12345678900` with same-block decimals `8` gives `123.45678900 USD`, not an observed NVDA price. Real observations need round timestamp and block; never add a second corporate-action multiplier.
 6. **Keep the mark's limits.** It is not an executable quote, liquidity, collateral backing or redemption right. `rialtoRouterRegistry` and [Rialto docs](https://docs.rialto.xyz/developers/router-registries.md) identify conversion infrastructure, not quotes or trading permission. Explain [game conversion limits](games.md) without wallet connection or transaction preparation.
 
-**Answer scope:** a default directory response includes all 35 RWA roles, ETH/USD and USDG/USD, four NET source kinds, quote/scale, mapping/classification gaps and provenance boundaries. A focused response includes only the selected record, exact recorded relationship, consumer limits and missing evidence. Use targeted JSON lookups; neither “not recorded” nor packaged metadata establishes verification or a current price.
+**Answer scope:** a default directory response includes all 35 RWA roles, ETH/USD and USDG/USD, four NET source kinds, quote/scale, mapping/classification gaps and provenance boundaries. A focused response includes only the selected record, exact recorded relationship, consumer limits and missing evidence. Follow literal bounded JSON files; neither “not recorded” nor packaged metadata establishes verification or a current price.
 
 ## Generation and activation traps
 
@@ -165,7 +166,7 @@ For “display a USD reference price for this NVDA token”:
 
 ## Read-only identity procedure
 
-1. Find the exact role and source, then match **chain ID plus full address**. Aliases help discovery but are not identifiers.
+1. Follow the root index to the exact role/source's bounded file, then match **chain ID plus full address**. Aliases help discovery but are not identifiers.
 2. Identify whether the record is a contract, a public role, a market ID, an oracle input, a proxy, an implementation or an NFT/market instance.
 3. Compare applicable official sources and generation dates. Explain conflicts rather than silently choosing the newest-looking string.
 4. If permitted fresh read tools exist, check bytecode at a recorded block and inspect the relevant read-only state. Bytecode presence establishes only deployed code at that block—not ownership, intended function, activation or safety.

@@ -1,0 +1,89 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x45c3c877c15e6ba2ebb19ea114ea508d14c1af2e",
+      "chain_id": 4663,
+      "address": "0x45C3C877C15E6BA2EBB19eA114Ea508d14C1Af2E",
+      "role": "chainlinkMsftUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "Robinhood MSFT / USD",
+        "quote_asset": "USD",
+        "value_kind": "robinhood_tokenized_equity_total_return_value",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "consumer_policies": [
+          {
+            "product": "MSFT FLIGHT SIMULATOR",
+            "scope": "direct USDG-to-equity entry conversion only",
+            "max_age_seconds": 14400,
+            "requires_open_equity_session": true,
+            "source_id": "netnet-docs-flight-simulator",
+            "observed_on": "2026-09-10",
+            "evidence_kind": "publisher_documentation_not_deployed_enforcement_verification",
+            "relationship_basis": "Documented asset-specific product use plus locally recorded exact-token mark mapping; current adapter call path not verified."
+          }
+        ],
+        "semantics_source_id": "chainlink-robinhood-tokenized-equities",
+        "publisher_name": "Chainlink",
+        "directory_group": "robinhood_labelled_rwa_candidate",
+        "publisher_asset_name": "Microsoft (Robinhood Tokenized Equity)",
+        "publisher_asset_class": "Equity",
+        "publisher_product_type_code": "primaryTokenizedPrice",
+        "classification_status": "publisher_explicit_equity",
+        "metadata_gaps": [],
+        "token_relationship_status": "locally_recorded_exact_address_mapping_see_trusted_product_marks",
+        "netnet_use_evidence": {
+          "status": "historical_exact_token_mark_mapping_and_registry_inclusion_not_current_consumer_verification"
+        }
+      },
+      "aliases": [
+        "MSFT/USD trusted product feed"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "chainlinkMsftUsd.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "TRUSTED_PRODUCT_MARKS / MSFT / feedAddress",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "chainlinkMsftUsd.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x45C3C877C15E6BA2EBB19eA114Ea508d14C1Af2E / name, decimals, docs.assetClass, docs.quoteAssetEntityId, docs.productTypeCode, assetName",
+          "observed_on": "2026-09-12",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ],
+  "trusted_product_marks": [
+    {
+      "chain_id": 4663,
+      "symbol": "MSFT",
+      "token_address": "0xe93237c50d904957cf27e7b1133b510c669c2e74",
+      "feed_address": "0x45C3C877C15E6BA2EBB19eA114Ea508d14C1Af2E",
+      "source_contract_address": "0xF56e517652bb18E519871ABb13A382D205f6e375",
+      "provenance": {
+        "source_id": "local-contract-registry",
+        "locator": "TRUSTED_PRODUCT_MARKS / MSFT"
+      },
+      "status": "locally_recorded_exact_address_mapping_not_live_feed_verification",
+      "note": "Symbol alone must not establish asset identity; local registry applies this mark only to the exact discovered token."
+    }
+  ]
+}

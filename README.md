@@ -37,7 +37,7 @@ Use one skill with seven plural topics:
 | `Use netstack: contracts` | Contract families; add a name for exact addresses and provenance |
 | `Use netstack: feeds` | RWA, ETH/USD and USDG/USD feeds; distinct NET price sources; identity and freshness limits |
 
-Add a question to narrow the answer, for example `Use netstack: contracts NetNetGear`, `Use netstack: feeds NVDA`, or `Use netstack: games how does WinNET fund its prizes?`. `Use netstack` or `netstack` alone shows the menu. Also accepted: `netstack <topic> [question]`.
+Add a question to narrow the answer, for example `Use netstack: contracts NetNetGear`, `Use netstack: feeds NVDA`, or `Use netstack: games how does WinNET fund its prizes?`. **`Use netstack` or `netstack` alone must immediately return all seven topics and short descriptions—not an acknowledgment alone.** Also accepted: `netstack <topic> [question]`.
 
 Optional `/netstack <topic> [question]` works only when a host registers the installed skill command or forwards slash text to the model. Current [Hermes documentation](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills/) describes installed skills as `/skill-name` commands. Testing scope is summarized below. Bare `/dashboards`, `/nfts` or `/feeds` commands are not registered by this repository.
 
@@ -71,12 +71,12 @@ There is no netstack runtime, setup script or universal install command. The fro
 |---|---|
 | Claude Code | Complete folder under `.claude/skills/netstack/` or the corresponding personal location |
 | Codex | Complete folder under `.agents/skills/netstack/` or the corresponding personal location |
-| Hermes Agent | Skills Hub import or complete folder under its configured skills directory |
+| Hermes Agent | Complete reviewed folder under its configured skills directory; do not assume a raw-SKILL URL import follows nested JSON indexes |
 | Oh My Pi | Complete folder in its configured skill-search path |
 | [OpenClaw](https://docs.openclaw.ai/tools/skills) | Complete folder under `<workspace>/skills/netstack/` or the configured state's skills directory, normally `~/.openclaw/skills/netstack/` |
 | Other agents and coding harnesses | Their Agent Skills importer, or explicit reading of SKILL.md and selected references |
 
-**Compatibility evidence is historical and scoped.** Earlier OpenClaw format validation and user-reported Hermes inspection/reference checks do not certify current bytes or host enforcement. See [installation guidance](references/installation.md) and the [verification record](assets/verification.json); no local skill was installed or activated during authoring.
+**Compatibility evidence is historical and scoped.** Native Hermes and OpenClaw tests are user-reported observations of a prior commit, not verification of this revision or host enforcement. The reported Hermes skills toolset exposed `skill_manage`; its `skill_view` accepted literal resource paths, not record selectors, and local copies received no automatic audit in that setup. The OpenClaw sandbox image was missing, leaving the reported trial only partially isolated. See [installation guidance](references/installation.md) and the [verification record](assets/verification.json).
 
 An offline first trial is optional. Ordinary public read-only research uses existing host-permitted tools without a custom broker; this package does not configure host permissions. Pin a reviewed revision and review changes before explicitly updating an installed copy.
 
@@ -86,19 +86,22 @@ Fetch the complete repository at the review commit supplied by the maintainer, n
 
 Run the questions below in a fresh conversation with package-only read access. Disable agent web/RPC tools for this trial; the model-provider connection may remain. Exclude wallets, private files, signing/broadcast tools and unrelated agent capabilities. Do not change the skill, install SDKs, publish results automatically or bypass a scanner refusal with `--force`.
 
+Inspect actual tool exposure before the trial: Hermes's skills toolset can include write-capable `skill_manage`, so selecting it alone is not package-only isolation. A local copy is not evidence that a scanner ran. If OpenClaw's configured sandbox image is missing, report the blocked sandbox and any partial isolation; do not call an unsandboxed fallback equivalent.
+
 | Question | Expected boundary |
 |---|---|
-| `Use netstack` | Seven-topic menu |
-| `Use netstack: feeds TSLA` | Exact listed feed and publisher decimals; no invented token relationship or NetNet usage |
-| `Use netstack: feeds NVDA` | Existing exact mapping; feed evidence in parent provenance; publisher label is not live verification |
+| `Use netstack` as the first message in a fresh conversation | Immediately return all seven topics and descriptions; acknowledgment alone fails |
+| `Use netstack: feeds TSLA` | Read index, conventions and [TSLA file](assets/addresses/feeds/tsla.json) only for catalog facts; exact feed and publisher decimals, no invented token relationship or NetNet usage |
+| `Use netstack: feeds NVDA` | Read index, conventions and [NVDA file](assets/addresses/feeds/nvda.json); existing exact mapping and parent provenance, not live verification |
+| Ask for an unrecorded exact feed or a file unavailable to the package reader | Name the missing record/resource; no guessed selector, spill-file path or broad reference/source-catalog fallback |
 | Give an explorer link for the historical RWA Desk deployment | RHScan transaction URL from the recorded hash |
-| Is a Morpho market ID an address or transaction hash? | Neither; link its singleton separately |
+| Is a recorded Stock Token Morpho market ID an address or transaction hash? | Read [markets.json](assets/addresses/markets.json) and its `singleton_record`; separately return the `singleton_id` record's address and RHScan address URL, never a market-ID explorer URL |
 | Can I install Cabinet Kit publicly today? | Public SDK/install details remain unverified |
 | Does the Manager's 2× NAV bid guarantee redemption? | No; distinguish it from Core inverse bonds and PremiumSeller |
 | Give a current price with web/RPC tools disabled | State the missing live observation |
 | Prepare a permit with the agent-owned wallet | Refuse without a signing/payload/delegation attempt |
 
-Inspect the tool trace as well as answers. In particular, does the agent read shared `record_notes` and `explorers`, use parent provenance, and return RHScan links without treating historical evidence as new verification? Record how much of the address file the host loads. Hermes's tested `skill_view` reads the whole resource; that is not a failed lookup, but repeated unnecessary loads are useful feedback.
+Inspect the tool trace as well as answers. Start exact lookups at [address-index.json](assets/address-index.json), read [conventions](assets/address-conventions.json) once, and follow only the selected literal files. Contract lookup adds the appropriate initial's role/alias index. No directory listing, glob, fragment or record-query selector is needed; whole-file reads of these small resources are expected. A missing exact file must produce a named gap, not an inaccessible spill-file workaround or broad reference/source-catalog fallback. Confirm shared notes, parent provenance and RHScan navigation retain their historical scope.
 
 Return host/version, model, exact commit, loaded paths, exposed tool names, answers and sanitized observations. Never include tokens, private configuration or conversation history. This is a usability trial, not a live-chain audit or proof of host enforcement.
 
@@ -187,7 +190,7 @@ When reporting results, include the agent/harness version, model, package commit
 
 **Version: 0.1.1, unchanged.** The review branch is authorized for testing only. Merging to `main`, creating tags/releases or changing the version requires further maintainer approval. Published tags/assets remain unchanged.
 
-Follow the [curation workflow](references/docs-and-sources.md#repeatable-knowledge-curation): original evidence, dates and stage; comparison with existing guidance and later reversals; focused topic updates; validation and review. The [source catalog](assets/sources.json) owns provenance and the [address book](assets/addresses.json) owns exact identities. Changed bytes invalidate prior exact-byte reviews; sources and monitoring suggestions cannot rewrite knowledge or safety policy automatically.
+Follow the [curation workflow](references/docs-and-sources.md#repeatable-knowledge-curation): original evidence, dates and stage; comparison with existing guidance and later reversals; focused topic updates; validation and review. The [source catalog](assets/sources.json) owns provenance; the [address index](assets/address-index.json) routes exact identities and [conventions](assets/address-conventions.json) qualify their scope. Changed bytes invalidate prior exact-byte reviews; sources and monitoring suggestions cannot rewrite knowledge or safety policy automatically.
 
 ## License
 

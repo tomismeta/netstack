@@ -1,0 +1,69 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xe5143de9d3ccbc31ffb4e7fc66d8320e0e2693d2",
+      "chain_id": 4663,
+      "address": "0xE5143de9D3CcBc31Ffb4e7Fc66d8320e0E2693D2",
+      "role": "buttonPresserCard",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "buttonPresserCard.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "buttonPresserCard.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "opensea-button-presser-api",
+          "locator": "contracts[0].address and contracts[0].chain",
+          "evidence_kind": "marketplace_api_identity_corroboration",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "marketplace_collections": [
+        {
+          "name": "Button Presser",
+          "url": "https://opensea.io/collection/button-presser",
+          "source_id": "opensea-button-presser-api",
+          "observed_on": "2026-09-10",
+          "verification_scope": "Marketplace-to-registry identity match only; no on-chain verification or execution authority."
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x96ddab1e3fbd974dba0fdfaf3bf867f679ec2d29",
+      "chain_id": 4663,
+      "address": "0x96DdaB1e3fBD974dbA0fDfaF3bF867F679eC2d29",
+      "role": "buttonRouterSource",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "buttonRouterSource.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "buttonRouterSource.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

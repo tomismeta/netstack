@@ -1,0 +1,22 @@
+{
+  "public_role_addresses": [
+    {
+      "id": "robinhood-role-climboperator",
+      "chain_id": 4663,
+      "address": "0x1BFd4368FA819C163ec62B7DFCC711931929E4Fa",
+      "role": "climbOperator",
+      "status": "publicly_published_role_only",
+      "account_kind": "unverified",
+      "ownership_status": "not_verified_no_legal_person_attribution",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "climbOperator.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}

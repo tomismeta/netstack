@@ -1,0 +1,142 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x6c2b1e062da09d18389cc563d75b1e1899f2a02f",
+      "chain_id": 4663,
+      "address": "0x6C2B1e062DA09d18389cC563D75B1e1899F2a02f",
+      "role": "boardroomLoot",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "boardroomLoot.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "boardroomLoot.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xff32a969a0c567129eecd926d04657728e1980c1",
+      "chain_id": 4663,
+      "address": "0xff32a969A0c567129eECD926D04657728E1980C1",
+      "role": "BondDepository (primary offerings)",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / BondDepository (primary offerings)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x823b016b546178c4c47a830b92333ad44e655d06",
+      "chain_id": 4663,
+      "address": "0x823b016b546178C4C47a830B92333aD44E655d06",
+      "role": "BonusBook",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Prize Draw Program (WinNET) / BonusBook",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x6478e9393d4c5bb4d53ee881d1de78786a0344a6",
+      "chain_id": 4663,
+      "address": "0x6478e9393d4C5bB4d53ee881d1DE78786A0344a6",
+      "role": "Bundler3",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "morpho-address-registry-current",
+          "locator": "Robinhood Chain tab 4 / Bundler3",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xfd46af62cf6e9306008a13bee045c542ec3daef6",
+      "chain_id": 4663,
+      "address": "0xFd46AF62CF6E9306008a13beE045c542Ec3DAef6",
+      "role": "buttonDesk",
+      "aliases": [
+        "THE BUTTON"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "buttonDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "PUBLISHED_PROGRAM_CONTRACTS / THE BUTTON",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "buttonDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "local_recorded_lifecycle": "current"
+    },
+    {
+      "id": "robinhood-0xede5ee1d473e5e5b6049e045866d7557a174f44b",
+      "chain_id": 4663,
+      "address": "0xEdE5eE1D473E5E5B6049E045866D7557a174f44b",
+      "role": "buttonFeedAdapter",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "buttonFeedAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "buttonFeedAdapter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    }
+  ]
+}

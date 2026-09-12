@@ -1,0 +1,122 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xd6c8b97245b8c080d8615e8caf5f3ca9a3820728",
+      "chain_id": 4663,
+      "address": "0xD6C8b97245b8C080d8615E8CAF5F3Ca9A3820728",
+      "role": "coinflipRouterSource",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "coinflipRouterSource.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "coinflipRouterSource.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x6330d8c3178a418788df01a47479c0ce7ccf450b",
+      "chain_id": 4663,
+      "address": "0x6330d8c3178a418788df01a47479c0ce7ccf450b",
+      "role": "coinStockToken",
+      "aliases": [
+        "COIN stock token"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "coinStockToken.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "local-contract-registry",
+          "locator": "TRUSTED_PRODUCT_MARKS / COIN / token",
+          "evidence_kind": "local_definition",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "coinStockToken.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xaff662814aa7cc80ac1577e03e123358cacc6a97",
+      "chain_id": 4663,
+      "address": "0xaff662814Aa7cC80AC1577E03E123358CAcc6a97",
+      "role": "CreditRouter (pending activation)",
+      "aliases": [
+        "creditRouter"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "documented_pending_activation",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-credit",
+          "locator": "Addresses / CreditRouter (pending activation)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Curated Credit Vault (NetNet Credit) / CreditRouter (pending activation)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "creditRouter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "creditRouter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "supersedes": "0xF657Ac993A24dd71dB1d0f4c0B4Aa82e5EC78A83"
+    },
+    {
+      "id": "robinhood-0xf657ac993a24dd71db1d0f4c0b4aa82e5ec78a83",
+      "chain_id": 4663,
+      "address": "0xF657Ac993A24dd71dB1d0f4c0B4Aa82e5EC78A83",
+      "role": "CreditRouter V1 (never granted according to app registry)",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_historical",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "creditRouter.source supersession statement",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "generation": "v1",
+      "superseded_by": "0xaff662814Aa7cC80AC1577E03E123358CAcc6a97"
+    }
+  ]
+}

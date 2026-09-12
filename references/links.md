@@ -4,7 +4,7 @@ Baseline public source/navigation destinations reviewed on 2026-09-10; RHScan na
 
 ## Robinhood Chain explorer
 
-Use **[RHScan](https://rh-scan.com/)** for all returned Robinhood Chain explorer links, including current and historical contracts, public-role addresses, implementations and transactions. Resolve the exact validated chain **4663** plus address or transaction hash through `explorers["4663"]` in [addresses.json](../assets/addresses.json); never use a Morpho market ID as an address. The public homepage and address/transaction UI shells and identity titles were observed on **2026-09-12**, not live balances, receipts or code. [API documentation](https://rh-scan.com/api-docs) is unfinished; UI routes are not an API contract. Historical Blockscout retrieval origins remain attributed in [sources.json](../assets/sources.json), not recommended navigation or RHScan evidence.
+Use **[RHScan](https://rh-scan.com/)** for all returned Robinhood Chain explorer links, including current and historical contracts, public-role addresses, implementations and transactions. Resolve the exact validated chain **4663** plus address or transaction hash through `explorers["4663"]` in [address-conventions.json](../assets/address-conventions.json); never use a Morpho market ID as an address. The public homepage and address/transaction UI shells and identity titles were observed on **2026-09-12**, not live balances, receipts or code. [API documentation](https://rh-scan.com/api-docs) is unfinished; UI routes are not an API contract. Historical Blockscout retrieval origins remain attributed in [sources.json](../assets/sources.json), not recommended navigation or RHScan evidence.
 
 ## Analytics and charts
 
@@ -28,7 +28,7 @@ NetNet Monitor's first position is presentation only, not analytic preference or
 - **[Official reports](https://app.netnet.capital/#/reports)** — observed reports, reserve composition and secondary-market information. Do not conflate its sleeve-inclusive presentation with Core RFV.
 - **[Programs](https://app.netnet.capital/#/programs)** and **[Buyback program](https://app.netnet.capital/#/buyback)** — destinations published by the app. A buyback link is not authority to submit one.
 
-[Integrations](integrations.md) explains the three Morpho relationships and the Pendle claims. Exact contracts and generations remain in [addresses.json](../assets/addresses.json).
+[Integrations](integrations.md) explains the three Morpho relationships and the Pendle claims. Exact contracts and generations are routed by [address-index.json](../assets/address-index.json).
 
 ## Games and product destinations
 

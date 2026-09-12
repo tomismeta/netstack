@@ -1,0 +1,43 @@
+{
+  "contracts": [
+    {
+      "role": "FeeSink",
+      "aliases": [],
+      "file": "assets/addresses/contracts/f-01.json"
+    },
+    {
+      "role": "FeeSink (CASHCAT)",
+      "aliases": [],
+      "file": "assets/addresses/contracts/f-01.json"
+    },
+    {
+      "role": "FlightSimDesk",
+      "aliases": [
+        "flightSimDesk",
+        "MSFT trusted mark source contract",
+        "MSFT Flight Simulator"
+      ],
+      "file": "assets/addresses/contracts/f-01.json"
+    },
+    {
+      "role": "flightsimFeedAdapter",
+      "aliases": [],
+      "file": "assets/addresses/contracts/f-01.json"
+    },
+    {
+      "role": "flightsimRouterSource",
+      "aliases": [],
+      "file": "assets/addresses/contracts/f-01.json"
+    },
+    {
+      "role": "FuturesClearinghouse",
+      "aliases": [],
+      "file": "assets/addresses/contracts/f-02.json"
+    },
+    {
+      "role": "FuturesClearinghouse (CASHCAT)",
+      "aliases": [],
+      "file": "assets/addresses/contracts/f-02.json"
+    }
+  ]
+}

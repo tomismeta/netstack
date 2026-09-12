@@ -1,0 +1,52 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9",
+      "chain_id": 4663,
+      "address": "0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9",
+      "role": "chainlinkEthUsd",
+      "decimals": 8,
+      "price_feed": {
+        "name": "ETH / USD",
+        "quote_asset": "USD",
+        "value_kind": "asset_usd_reference_price",
+        "metadata_status": "publisher_directory_matched_by_exact_proxy_address_not_live_read",
+        "consumer_policies": [],
+        "publisher_name": "Chainlink",
+        "directory_group": "existing_non_rwa_underlying_feed",
+        "token_relationship_status": "no_trusted_product_marks_relationship_recorded",
+        "netnet_use_evidence": {
+          "status": "publisher_app_registry_inclusion_not_current_consumer_verification"
+        }
+      },
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-asset",
+          "locator": "chainlinkEthUsd.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-play-registry-asset",
+          "locator": "chainlinkEthUsd.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "chainlink-robinhood-feed-directory",
+          "locator": "proxyAddress=0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9 / name, decimals, docs.quoteAssetEntityId",
+          "observed_on": "2026-09-10",
+          "evidence_kind": "publisher_directory_metadata"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "publisher_linked_provenance_urls": [
+        "https://docs.chain.link/data-feeds/price-feeds/addresses?network=robinhood"
+      ]
+    }
+  ]
+}

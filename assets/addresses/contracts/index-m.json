@@ -1,0 +1,70 @@
+{
+  "contracts": [
+    {
+      "role": "managerSleeve",
+      "aliases": [
+        "RWA Sleeve multisig"
+      ],
+      "file": "assets/addresses/contracts/m-01.json"
+    },
+    {
+      "role": "Market adapter (the vault's one adapter, Loopback plus six markets)",
+      "aliases": [
+        "Market adapter",
+        "marketAdapter"
+      ],
+      "file": "assets/addresses/contracts/m-01.json"
+    },
+    {
+      "role": "Morpho ChainlinkOracleV2 Factory",
+      "aliases": [],
+      "file": "assets/addresses/contracts/m-01.json"
+    },
+    {
+      "role": "morphoBlue",
+      "aliases": [
+        "Morpho",
+        "Morpho Blue"
+      ],
+      "file": "assets/addresses/contracts/m-01.json"
+    },
+    {
+      "role": "morphoMarketV1AdapterV2Factory",
+      "aliases": [
+        "MorphoMarketV1 AdapterV2Factory"
+      ],
+      "file": "assets/addresses/contracts/m-02.json"
+    },
+    {
+      "role": "morphoRegistry",
+      "aliases": [
+        "MorphoRegistry"
+      ],
+      "file": "assets/addresses/contracts/m-02.json"
+    },
+    {
+      "role": "morphoUsdgVault",
+      "aliases": [],
+      "file": "assets/addresses/contracts/m-02.json"
+    },
+    {
+      "role": "MorphoVaultV1 AdapterFactory",
+      "aliases": [],
+      "file": "assets/addresses/contracts/m-02.json"
+    },
+    {
+      "role": "msftStockToken",
+      "aliases": [
+        "MSFT stock token"
+      ],
+      "file": "assets/addresses/contracts/m-02.json"
+    },
+    {
+      "role": "multicall3",
+      "aliases": [
+        "Multicall3"
+      ],
+      "file": "assets/addresses/contracts/m-03.json"
+    }
+  ]
+}

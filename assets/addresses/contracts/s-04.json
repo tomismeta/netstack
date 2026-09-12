@@ -1,0 +1,43 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xcaf681a66d020601342297493863e78c959e5cb2",
+      "chain_id": 4663,
+      "address": "0xcaf681a66d020601342297493863e78c959e5cb2",
+      "role": "SwapRouter02",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "uniswap-robinhood-v3",
+          "locator": "Robinhood Chain Addresses table / SwapRouter02",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x5d446a2be952f4f9ba241b382a73ad3b1819aaf5",
+      "chain_id": 4663,
+      "address": "0x5d446a2be952f4f9ba241b382a73ad3b1819aaf5",
+      "role": "SY-sNET",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "pendle-snet-market-17sep2026",
+          "locator": "sy.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ],
+      "decimals": 18,
+      "integration_role": "sy",
+      "expiry": null
+    }
+  ]
+}

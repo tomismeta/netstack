@@ -1,0 +1,22 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x92166e94eea5b7799b761653881692f881dfc4c9",
+      "chain_id": 4663,
+      "address": "0x92166e94Eea5B7799b761653881692f881dFC4C9",
+      "role": "InverseBond (buyback program)",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Contract addresses / InverseBond (buyback program)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}

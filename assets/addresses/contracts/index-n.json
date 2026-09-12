@@ -1,0 +1,62 @@
+{
+  "contracts": [
+    {
+      "role": "NET (the token)",
+      "aliases": [
+        "NET"
+      ],
+      "file": "assets/addresses/contracts/n-01.json"
+    },
+    {
+      "role": "NET-scaled18",
+      "aliases": [],
+      "file": "assets/addresses/contracts/n-01.json"
+    },
+    {
+      "role": "NET/USDG canonical pair (Uniswap v2)",
+      "aliases": [],
+      "file": "assets/addresses/contracts/n-01.json"
+    },
+    {
+      "role": "NetNet Credit vault (nnUSDG)",
+      "aliases": [
+        "usdgVault"
+      ],
+      "file": "assets/addresses/contracts/n-01.json"
+    },
+    {
+      "role": "NetNetGear (the loot collection, shared by every cabinet)",
+      "aliases": [
+        "netnetGear"
+      ],
+      "file": "assets/addresses/contracts/n-02.json"
+    },
+    {
+      "role": "NetNetGear retired original deployment",
+      "aliases": [],
+      "file": "assets/addresses/contracts/n-02.json"
+    },
+    {
+      "role": "NFTDescriptor",
+      "aliases": [],
+      "file": "assets/addresses/contracts/n-02.json"
+    },
+    {
+      "role": "NonfungibleTokenPositionDescriptor",
+      "aliases": [],
+      "file": "assets/addresses/contracts/n-02.json"
+    },
+    {
+      "role": "nvdaStockToken",
+      "aliases": [
+        "NVDA stock token"
+      ],
+      "file": "assets/addresses/contracts/n-02.json"
+    },
+    {
+      "role": "nvdaUsdgV3Pool",
+      "aliases": [],
+      "file": "assets/addresses/contracts/n-03.json"
+    }
+  ]
+}

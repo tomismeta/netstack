@@ -1,0 +1,46 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xf6ec124ca62c841384abd0e128552cf9eb446205",
+      "chain_id": 4663,
+      "address": "0xf6ec124ca62C841384ABD0e128552cF9Eb446205",
+      "role": "FuturesClearinghouse",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-futures",
+          "locator": "7. Contract addresses (Robinhood Chain mainnet) / FuturesClearinghouse",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / FuturesClearinghouse",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xd1604dcadb949a28c7cfa8cd044641b8c520ef3f",
+      "chain_id": 4663,
+      "address": "0xD1604dcAdB949A28C7cfA8Cd044641b8C520Ef3f",
+      "role": "FuturesClearinghouse (CASHCAT)",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "unspecified",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Managed Futures Desk (test program) / FuturesClearinghouse (CASHCAT)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-10"
+        }
+      ]
+    }
+  ]
+}
