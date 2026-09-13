@@ -1,12 +1,12 @@
 {
   "skill": "netstack",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "files": 125,
   "total_distributable_files": 126,
   "manifest_sha256": {
     "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
-    "README.md": "46e39088006d34e801d3cd219acf3b238c77e3149144facf34b1d7faa6308db3",
-    "SKILL.md": "4c6fcf9faeae22f053988fc55d89e3587c74837325ec679288647e036df405f0",
+    "README.md": "1a351d13c6a03aac5603d042ceef5b177df84763da145b36aee8d46d8c0ddb03",
+    "SKILL.md": "3ef1d83312f6b3dfb9db254689a3bae066cedb54d80051a758451f9cedabc978",
     "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "assets/address-conventions.json": "ff43541c19eac025ad66a56c5bd838361a6a8f6cbe4f3270a90f9ec2d00086cc",
     "assets/address-index.json": "ca05dbfb520a46a8f1f7f5412d8206dabb54442daf850cd651db6a6ce7402955",
@@ -114,13 +114,13 @@
     "assets/addresses/public-roles-rialto-superstore-and-boardroom.json": "2d4749dd31be0d51aadeb7fec747c89c919246d7fc6ab812f89c632eefc5808d",
     "assets/safety-policy.json": "77f525b744d76c2000ae5d4b7badfd826cf1c67ba57aaf5d380e2706942963d3",
     "assets/sources.json": "e6862f345a6234048adbc9f95e7cdffca386bebbe5891e7f6e9bfdcb4b279b82",
-    "references/addresses-and-roles.md": "9116a738498e66952c52b33ef7f5542f4a65f03947667a2fea34ffa9ca6d1738",
+    "references/addresses-and-roles.md": "676556ee29ab912590b320004e5516a28c1ddd9a2d232473e4488ede2139c124",
     "references/announcements-and-history.md": "1ece3ee9043421c6218076cb9809a2c3c730b34c282a0f9c02d7d4deab75d39c",
     "references/builders.md": "210009c67b1c3aa11f7440bfad331b1d907b56bb262b4f28c9d3a349802240a3",
     "references/docs-and-sources.md": "85e2b991afce0cb55ab3a7bfbf7e6755e85fddc30f46f8d470438fe0643f1d5f",
     "references/games.md": "55bae1498aac3067b5ebe5fc5920bd1e86b1398a31e749066a95264ba208e868",
     "references/glossary-and-faq.md": "cdbe723546663c01bd79823e2f20580e765517629db34a436c0a579761eee10e",
-    "references/installation.md": "42b7418d2c3a873a94f7f09033b9304d4ff63e1e50edc35a7cedff0f4243122a",
+    "references/installation.md": "4d53d74a93b21a47770dbd3571afc98aa31e4f813c7bb5a80cf29fc9fb39a9f0",
     "references/integrations.md": "bd3b8788044dbaa828dfdb9694e098a34ac96dede17758e43c2bd5f53f675eab",
     "references/links.md": "2d4ba2b4e2f1c070d1782769cf69a801b125448b225fa12afed78524235974cb",
     "references/lp-fee-inspection.md": "1df9e89a3d0aface0f79522044a38399614707075afe6668de443d7fdc77040e",
@@ -132,7 +132,7 @@
   },
   "runtime_bundle": {
     "files": 123,
-    "sha256": "18c86b162b00321f90435e0d8c81a8fe9e873fb8dc34fef4fbb9e16584d0acbb",
+    "sha256": "39b3ac747f323aeef1a6db368ff4f7bba86ad2a1abe19a22e8421584ed2f391d",
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by NUL and file bytes",
     "scope": "SKILL.md plus all references and assets in the complete folder; excludes root README.md,LICENSE and this manifest."
   }

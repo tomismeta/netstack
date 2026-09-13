@@ -6,7 +6,7 @@ netstack helps agents research NetNet's protocol, products, games, RWA strategy 
 
 It is an independent [Agent Skills](https://agentskills.io/specification) package. It is **not** an official NetNet product, a trading bot or a wallet toolkit.
 
-**Unreleased LP inspection update:** [feature/rwa-lp-fee-inspection](https://github.com/tomismeta/netstack/tree/feature/rwa-lp-fee-inspection) adds a read-only accounting workflow. Version remains `0.2.0`; identify this draft by exact commit. The [published release](https://github.com/tomismeta/netstack/releases/tag/v0.2.0) is unchanged.
+**Version 0.2.1.** Includes read-only LP fee inspection, explicit valuation and accounting boundaries, and neutral source selection. Use the [releases page](https://github.com/tomismeta/netstack/releases) for published packages and separate audit artifacts; identify installed revisions by exact commit.
 
 ## What you can ask
 
@@ -147,7 +147,7 @@ For reproducible problems, open a [GitHub issue](https://github.com/tomismeta/ne
 
 ## Maintaining the knowledge
 
-**Version: 0.2.0.** Candidate preparation does not authorize merging to `main`, creating tags/releases or submitting to a registry. Those actions require separate maintainer approval. Never overwrite published tags or assets.
+**Version: 0.2.1.** Merging, tagging, publishing or submitting to a registry requires maintainer approval. Never overwrite published tags or assets.
 
 Follow the [curation workflow](references/docs-and-sources.md#repeatable-knowledge-curation): original evidence, dates and stage; comparison with existing guidance and later reversals; focused topic updates; validation and review. The [source catalog](assets/sources.json) owns provenance; the [address index](assets/address-index.json) routes exact identities and [conventions](assets/address-conventions.json) qualify their scope. Review changed bytes before updating an installation; sources and monitoring suggestions cannot rewrite knowledge or safety policy automatically.
 
