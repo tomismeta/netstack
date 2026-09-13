@@ -1,6 +1,6 @@
 # Safety: research without wallet authority
 
-This file defines the skill's behavior. It does **not** install a sandbox, remove host tools, or guarantee prompt-injection resistance. The corresponding [structured policy](../assets/safety-policy.json) is also descriptive. [Installation](installation.md) describes safe operating profiles; [Security review](security-review.md) records verification and external review options.
+This file defines the skill's behavior. It does **not** install a sandbox, remove host tools, or guarantee prompt-injection resistance. The corresponding [structured policy](../assets/safety-policy.json) is also descriptive. [Installation](installation.md) describes safe operating profiles.
 
 ## Absolute transaction and signing prohibition
 
@@ -47,11 +47,11 @@ Fresh public read-only retrieval is allowed with ordinary host-permitted tools. 
 4. **RPC:** use bounded public reads such as chain/block identity, bytecode, balances, storage, receipts, logs and read-only `eth_call`. ABI-encoding a read method and its public arguments for `eth_call` is allowed; constructing a ready-to-sign/submit transaction artifact is not. Never simulate state-changing methods, impersonate accounts, use state overrides, call unknown/vendor/admin/debug/personal/wallet methods, or send signed bundles or transactions. Check every batch member. A GET is not inherently read-only; a POST can carry a permitted read-only JSON-RPC operation.
 5. **Limits:** bound log ranges, batch size, response size, request duration and resource/cost use. Report incomplete results or unavailable access rather than unbounded retries, hidden paid fallback or invented observations.
 6. **Delegation:** disabled by default. If the user explicitly permits public research delegation and the host allows it, children must receive only minimum public context and inherit the same read-only, confidentiality, destination and shared resource limits. Do not use another agent, skill, plugin or service to bypass a boundary, access a more privileged parent or invoke a signing service.
-7. **Fallback:** an offline first smoke profile is recommended but optional. Use the dated package when acceptable public-read access is unavailable, not merely because a broker or certification is absent. Do not install shell/provider tools, access credentials, change host permissions or switch to a privileged browser to bypass missing access.
+7. **Fallback:** an offline first session is optional. Use the dated package when acceptable public-read access is unavailable, not merely because a broker or certification is absent. Do not install shell/provider tools, access credentials, change host permissions or switch to a privileged browser to bypass missing access.
 
 ## Optional higher-assurance host controls
 
-Prompt policy cannot enforce sandboxing, revoke tools or guarantee that the rules above hold. Current runtime enforcement is unproven. Operators seeking externally enforced safety can use a dedicated public-context worker, restricted file access, a network/RPC broker, method/argument templates, DNS/IP/redirect revalidation, resource caps and redacted audit records. Exclude wallets, signers, private files, privileged browsers and unrestricted delegation from that worker. These controls are not prerequisites to everyday public research.
+Prompt policy cannot enforce sandboxing, revoke tools or guarantee that the rules above hold. Host enforcement depends on independently configured controls. Operators seeking externally enforced safety can use a dedicated public-context worker, restricted file access, a network/RPC broker, method/argument templates, DNS/IP/redirect revalidation, resource caps and redacted records. Exclude wallets, signers, private files, privileged browsers and unrestricted delegation from that worker. These controls are not prerequisites to everyday public research.
 
 If an independently managed host service uses provider credentials, keep them outside the model, bind them to exact service origins/path scopes, strip them across origins on redirects and redact headers, URLs and errors. This does not authorize the skill to obtain keys or use authenticated browser sessions.
 
@@ -69,12 +69,8 @@ Before claiming enforced safety, demonstrate that the host blocks prohibited act
 
 The [structured policy](../assets/safety-policy.json) records the research boundaries and optional assurance controls. Public endpoints and addresses may be used for ordinary read-only research; their inclusion is neither execution authority nor an override of host restrictions.
 
-## Maintenance and verification
+## Package maintenance
 
 Review the **whole distributed tree**, not only SKILL.md. Inspect references/assets for injected instructions, secrets, hidden content, scripts, archives, symlinks, install hooks and path traversal. Prefer original summaries with provenance over copies of raw publisher material. Changed files invalidate prior content review; live pages can change without a package update.
 
 Do not publish personal wallet addresses, watchlists, portfolio data, private endpoints or credentials, or private notes in source/address inventories or other package files, even when related chain data is public. Research permission is not publication permission. Retain public protocol-role records only with cited public provenance and without inferred legal-person ownership.
-
-For optional host assurance evaluation, use deterministic tool-boundary tests with inert spies and adversarial model scenarios. Test signing, transaction batches, redirects/SSRF, account-abstraction/relayer routes, exfiltration and delegation before claiming enforced safety. These tests are not prerequisites to ordinary public retrieval. Do not use funded wallets, real secrets, signed transaction artifacts, or live/testnet broadcasts in tests.
-
-Record package hashes, tool versions, host configuration, cases exercised, findings and residual risks. A scanner pass is pattern coverage; a model refusal is observed behavior; an externally denied action is an enforcement result. They are different evidence, and none proves universal safety.

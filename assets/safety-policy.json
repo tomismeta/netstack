@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "status": "Published behavioral policy for a script-free knowledge and public read-only research skill. Ordinary public retrieval does not require a custom broker or tool certification. This JSON is not executable permission enforcement; actual release checks are recorded separately in verification.json.",
+  "status": "Behavioral policy for a script-free knowledge and public read-only research skill. This JSON is not executable permission enforcement; host permissions and safety limitations remain independent of source or directory order.",
   "scope": "Portable NetNet knowledge and read-only research skill, including documentation, dashboards, interviews, contracts, public addresses, integrations, and strategy.",
   "non_negotiable_boundary": "This skill must not access wallet credentials, connect wallets, prepare executable transaction payloads, sign anything, or submit blockchain transactions for any wallet, including wallets already owned or controlled by the host agent.",
   "instruction_rules": [
@@ -40,18 +40,17 @@
     ],
     "rpc_parameter_validation": "Inspect each method and its parameters, including every batch member. ABI query encoding for eth_call is allowed solely to read identified read-only methods, not to simulate state-changing methods or construct a ready-to-sign or ready-to-submit transaction. No state overrides, account impersonation, simulation bundles, arbitrary transport forwarding, debug/admin/personal namespaces or undocumented vendor methods. Read calls are not broadcast and remain subject to resource and privacy limits.",
     "signing_and_submission": "Deny all signing and submission interfaces, not just eth_sendRawTransaction: eth_sendTransaction, eth_sign, personal_sign, eth_signTypedData variants, wallet/provider methods, smart-account/user-operation submission, relayer and bundler APIs, and equivalent routes. Do not construct transaction, permit, approval or signature artifacts ready for signing or submission. Unknown methods fail closed.",
-    "offline_fallback": "Offline knowledge is an optional first smoke profile and a fallback when acceptable public-read access is unavailable, not a requirement imposed by the absence of a broker. State when live evidence could not be retrieved."
+    "offline_fallback": "Use packaged dated knowledge when acceptable public-read access is unavailable. Missing broker certification alone does not prohibit permitted public browsing; state any freshness or evidence gap."
   },
   "optional_enforcement_hardening": {
-    "scope": "The controls and tests below are optional assurance engineering, not prerequisites to ordinary permitted public research. Enforced-safety claims require relevant external controls and actual tests of those controls; missing controls or tests limit claims, not permission to browse safely under the public research rules.",
+    "scope": "Optional host controls are separate from this skill and are not prerequisites to ordinary permitted public research. Do not claim enforced safety without evidence that the relevant host controls work.",
     "capability_isolation": "For stronger assurance, use a dedicated read-only worker or externally enforced permission scope that excludes wallet tools, signing services, private material, privileged browser contexts, arbitrary shell/filesystem access and unrestricted delegation. The skill itself provisions no tools or isolation.",
     "network_broker": "An optional external purpose-built fetch/RPC broker can enforce operation schemas, endpoint/path/parameter allowlists, request and response bounds, timeouts, rate/cost limits and recursive delegation restrictions. A broker is not the only acceptable means of ordinary public retrieval.",
     "fetch_security": "External hardening can revalidate resolved addresses and redirects on every connection, reject DNS rebinding and encoded SSRF bypasses, restrict downloads, and apply destination, path and parameter allowlists. These controls enforce the public-destination rule rather than requiring bespoke approval for every public source.",
     "context_and_egress": "External hardening can isolate private session history and secrets from research, enforce public-only input templates and constrain indirect egress through links, logs, telemetry and delegated agents.",
     "credentials": "If the host independently manages data-provider credentials, external enforcement can bind each to an exact approved origin and path scope, prevent cross-origin forwarding and redact URLs, headers, errors and logs. Credentials remain outside the model and are never requested, accessed or shipped by the skill.",
     "denial_tests": "Before claiming enforced protection, test the relevant external controls using inert spies or mocks for signing, transaction submission, hidden batch writes, state-changing eth_call simulations, state overrides, impersonation, redirects/SSRF, encoded bypasses, credential/private-context disclosure and delegation escapes. Use no funded wallets, real credentials, signed transaction artifacts or broadcasts.",
-    "adversarial_host_tests": "For host-level assurance, exercise benign public reads and synthetic injection fixtures in documentation, interviews, dashboards, contract comments, metadata, tool errors and source updates under the actual host configuration. Distinguish model refusals from externally enforced tool denials.",
-    "claims": "Loading this skill does not certify a host, sandbox its tools or establish transaction safety. Record the exact configuration, cases, outcomes and residual risks before making any enforced-safety claim; do not infer guarantees from policy text, package scans or text-only probes."
+    "claims": "Loading this skill does not certify a host,sandbox its tools or establish transaction safety. Enforced-safety claims require independently validated host controls,not policy text or package inspection."
   },
   "source_curation_requirements": [
     "Preserve the original source URL and review timestamp; retain content hashes for reviewed snapshots where practical.",
@@ -59,13 +58,7 @@
     "Do not distribute personal wallet addresses or watchlists, portfolios, account or transaction histories, private account identifiers, session exports, user-specific filesystem paths, credentials or private provider endpoints. Include only source-attributed public protocol identities; an address being public does not by itself establish a protocol role.",
     "Review the complete distributed archive, including references and assets, for hidden instructions, secrets, unexpected executables, links, archives, and dependency or install hooks. Reject symlink and path-traversal escapes.",
     "Any source-content or package update invalidates its prior content-review status and requires review before redistributing the changed material.",
-    "Keep security evidence and release hashes together. A scanner result applies only to the bytes and configuration actually scanned, not future live pages."
+    "Keep maintenance audit evidence outside the distributed skill. The package manifest identifies current files and hashes; review outcomes do not certify future live pages."
   ],
-  "required_verification": [
-    "For publication, review the final distributable bytes with static package and secret scanning; this is not a prerequisite to ordinary public retrieval.",
-    "For publication, review the content trust boundary and describe the host tool-permission boundary without claiming untested enforcement. Preserve historical review scope and record actual checks separately.",
-    "Do not claim zero prompt injection or guaranteed safety. Report scan scope, reviewed package hash, host configuration when tested, cases exercised, failures and residual risks. The optional enforcement hardening tests are required only to substantiate corresponding enforced-safety claims, not to permit public browsing."
-  ],
-  "skill": "netstack",
-  "verification_evidence": "verification.json"
+  "skill": "netstack"
 }
