@@ -1,12 +1,12 @@
 {
   "version": "0.2.0",
-  "version_policy": "Maintainer authorized preparation of proposed0.2.0. Merge,tag,release and registry submission remain subject to separate approval.",
+  "version_policy": "Version0.2.0 retained during feature development; identify this update by branch commit. No main merge,version bump,tag or release authorized.",
   "result": "targeted_local_integrity_passed_not_security_certification",
-  "files": 127,
-  "total_distributable_files": 128,
-  "local_reference_links": 300,
-  "runtime_support_files": 124,
-  "sources": 126,
+  "files": 128,
+  "total_distributable_files": 129,
+  "local_reference_links": 313,
+  "runtime_support_files": 125,
+  "sources": 130,
   "official_documentation_pages": 24,
   "contract_records": 174,
   "public_role_addresses": 10,
@@ -26,17 +26,19 @@
     "feeds"
   ],
   "checks": [
-    "JSON/YAML and local references valid; canonical catalog unchanged from2db01ea",
-    "Earlier reader/behavior checks retain historical input scopes in verification.json",
-    "Final approval uses external exact-input scanner and validator receipts; no outcome inferred from this manifest"
+    "JSON/YAML and313local links/anchors valid;130source IDs;canonical address data unchanged",
+    "LP recipe tested with arithmetic edge cases and eight independently recomputed token sides across four public positions at pinned block61922793",
+    "Real collection receipt independently confirms1raw-unit event/cash difference;archive limitations and bounded history coverage retained",
+    "Six fresh source-only LP accounting/safety cases; not native host execution or a weekly USD budget",
+    "Existing source objects preserved;no Monitor dependency,SDK,wallet or state-changing simulation"
   ],
   "manifest_sha256": {
     "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
-    "README.md": "e5c2a26a996509b646a30eae9c7f20debdaee37cc8a4fc33b75f79364e9856ea",
-    "SKILL.md": "49378253ab94b22846701a14f0294216eaf1d118f9e061703d242135996e386c",
+    "README.md": "768d4f4a674703a169f11f27650a0382dfec8b6fde1936cfebf35c500a24495a",
+    "SKILL.md": "6bcdb065ee19784cccef86362e430464a5231b814134f89c752ff497b578af74",
     "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "assets/address-conventions.json": "ff43541c19eac025ad66a56c5bd838361a6a8f6cbe4f3270a90f9ec2d00086cc",
-    "assets/address-index.json": "efc8db342670333c1d3ab2d7c41e351031a46c04c0b4539b05c6bbecabb0aa9c",
+    "assets/address-index.json": "6cffffcaff1ba9f61845c61109afb27e52501f349efcbc9cc9e36f98426eb499",
     "assets/addresses/contracts/aapl-token-pool-and-interest-rate-model.json": "4a53d3d3284448bbc51f943daf45adaaba9ee08964d062f0c2a46d538c4d68be",
     "assets/addresses/contracts/blackjack-boardroom-and-morpho-bundles.json": "ce21b77b8a27e013504eaaf2fd46741dd25099d973ee22b764eb6554119fd2dc",
     "assets/addresses/contracts/boardroom-bonds-bonus-bundler-and-button.json": "10f32c336d4e490b184faec748d2eeeebef0f9b943c8a49324cfa5cd4d6ae152",
@@ -141,8 +143,8 @@
     "assets/addresses/public-roles-rialto-superstore-and-boardroom.json": "2d4749dd31be0d51aadeb7fec747c89c919246d7fc6ab812f89c632eefc5808d",
     "assets/adversarial-review.json": "401674080474416447e8bdab2bef76948fe171e8b13f82047c1b4d0269733b7b",
     "assets/safety-policy.json": "cab113dc5e205f02cdc7563e8aa1b32d4063be60d4697352e6118bf72336f560",
-    "assets/sources.json": "515e78b0d344abc5602aa52a9b8b00039a8975d599d104f1dea13299ad334130",
-    "assets/verification.json": "5062717b467bcf5276f6558de6395a5d40dc6050d34195e4f7df54ee16579526",
+    "assets/sources.json": "e229db5ef59da979adeae9dd990514714a8755f925c2026410fa164e9a10bac5",
+    "assets/verification.json": "32a177c8640412a67b2ccaca709f491af798f1937212403c08041e7af208d8a6",
     "references/addresses-and-roles.md": "9116a738498e66952c52b33ef7f5542f4a65f03947667a2fea34ffa9ca6d1738",
     "references/announcements-and-history.md": "1ece3ee9043421c6218076cb9809a2c3c730b34c282a0f9c02d7d4deab75d39c",
     "references/builders.md": "210009c67b1c3aa11f7440bfad331b1d907b56bb262b4f28c9d3a349802240a3",
@@ -152,26 +154,27 @@
     "references/installation.md": "47d934b2f2196be2e7e3bbac93fcff5d5f9d630c69bd3db30de7ab6b9affd9d6",
     "references/integrations.md": "bd3b8788044dbaa828dfdb9694e098a34ac96dede17758e43c2bd5f53f675eab",
     "references/links.md": "e68a5a58f156b0127d3b1248b28edb96b9217d0aa00f21e89036c92842a9020a",
+    "references/lp-fee-inspection.md": "e332c350c7a1b02f0e936b0285d45695a0c386f7b18f7ad65af0dbafd8145f89",
     "references/nfts.md": "03724ab7f071bddbc32e38b22f8070f98028ed87cc4aa3f0e38e2f959c419e19",
     "references/products.md": "423ecdaaea934066176764448ce2754d0ef2d846c0719c92e771d81bcb9ef972",
     "references/protocol.md": "655c2480b82306046976c93f7316fcbb22b6e48bc5a038b9357e295fdf6517ea",
-    "references/rwa-strategy.md": "0c3ddd8901375c7540dccbcdaa07c745b6e83d3c50c80f4ab838199e7dcfad1a",
+    "references/rwa-strategy.md": "217467f1318ce1ce596a58a92f4fc0a3ccd123082a060f09f1254135bb291d72",
     "references/safety.md": "e61dddb0ee742d436fc4e54073d174d8d1b30e43d3ac5ad6f3d128bb7523a7a0",
     "references/security-review.md": "d32a2ecd7533e3b325ec521ea29670b4458424be2e65609a6b3338d3b001e846"
   },
-  "manifest_scope": "127 content fingerprints plus this manifest as the128th package file. Publication status is recorded at preparation time,not live release state. Private handoffs,audit receipts and tooling excluded.",
+  "manifest_scope": "128 content fingerprints plus this manifest as the129th package file. Unreleased LP feature at version0.2.0; external receipts/scratch tooling/private handoff excluded. No new release approval.",
   "runtime_bundle": {
-    "files": 125,
-    "sha256": "41f4c49fea1a10343a71dbcbf02e52a6eadcddd86a7fc0788e6fdc4e80e424d9",
+    "files": 126,
+    "sha256": "0943a28f09eb605a01ecf6f65a0368d178a0feec261e1c02dac75ca90185d973",
     "digest_algorithm": "SHA-256 over sorted POSIX relative paths, NUL, file bytes",
     "scope": "SKILL.md plus all references/assets in a complete folder export, not the old directly-linked URL installer subset. External standalone scanner receipt binds its own exact inputs."
   },
   "published_release_baseline": {
-    "tag": "v0.1.1",
-    "commit": "b7edf0526a0001713db6e760517d5020b6f723f1",
-    "release_manifest_sha256": "fe8a06f4f59c03caf2480a019ff77a5a39cce7aef426181aa3d2d09f64a1dde3",
-    "evidence_url": "https://github.com/tomismeta/netstack/releases/download/v0.1.1/netstack-audit-0.1.1.zip",
-    "scope": "Published exact-byte evidence is historical and does not certify these local changes."
+    "tag": "v0.2.0",
+    "commit": "89a01ec7f5b425608b39e0cc6ddb9065d616d4fb",
+    "release_manifest_sha256": "2920032dc868e5c8e34c55de7a03966da341e0e541db5e25cdd10b94bbd38ad3",
+    "evidence_url": "https://github.com/tomismeta/netstack/releases/download/v0.2.0/netstack-audit-0.2.0.zip",
+    "scope": "Published exact-byte evidence is historical and does not cover this feature branch."
   },
   "historical_published_release": {
     "tag": "v0.1.0",
@@ -211,8 +214,15 @@
       "evidence_scope": "Embedded details cover the explicitly named historical audit. The external release audit binds final release scans to all24 exact file hashes, including this manifest, without self-reference."
     }
   },
-  "review_branch": "review/knowledge-update",
-  "publication_status_at_preparation": "candidate_pending_maintainer_approval",
+  "review_branch": "feature/rwa-lp-fee-inspection",
   "candidate_native_host_testing": false,
-  "user_native_host_evidence": "assets/verification.json native_host_reports_2db01ea; exact earlier input,not current candidate runtime certification"
+  "user_native_host_evidence": "assets/verification.json native_host_reports_2db01ea; exact earlier input,not current candidate runtime certification",
+  "historical_release_0_1_1": {
+    "tag": "v0.1.1",
+    "commit": "b7edf0526a0001713db6e760517d5020b6f723f1",
+    "release_manifest_sha256": "fe8a06f4f59c03caf2480a019ff77a5a39cce7aef426181aa3d2d09f64a1dde3",
+    "evidence_url": "https://github.com/tomismeta/netstack/releases/download/v0.1.1/netstack-audit-0.1.1.zip",
+    "scope": "Published exact-byte evidence is historical and does not certify these local changes."
+  },
+  "publication_status": "unreleased_feature_branch"
 }

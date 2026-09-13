@@ -72,5 +72,38 @@
     "assets/addresses/public-roles-dialup-and-keeper.json",
     "assets/addresses/public-roles-climb-operator.json"
   ],
-  "markets": "assets/addresses/markets.json"
+  "markets": "assets/addresses/markets.json",
+  "lp_inspection": {
+    "sleeve": {
+      "file": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+      "id": "robinhood-0x498752d5fa0600cbd613074c151abe15b3fec7cb"
+    },
+    "position_manager": {
+      "file": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+      "id": "robinhood-0x73991a25c818bf1f1128deaab1492d45638de0d3"
+    },
+    "factory": {
+      "file": "assets/addresses/contracts/underwriting-vaults-and-uniswap-infrastructure.json",
+      "id": "robinhood-0x1f7d7550b1b028f7571e69a784071f0205fd2efa"
+    },
+    "known_pools": [
+      {
+        "file": "assets/addresses/contracts/aapl-token-pool-and-interest-rate-model.json",
+        "id": "robinhood-0xaae0d815ee56e4092a5e5c2911e676fea50b2d6d"
+      },
+      {
+        "file": "assets/addresses/contracts/general-adapter-genesis-bond-and-googl.json",
+        "id": "robinhood-0x34d0dc122cf9a8eb296fc5e0d3a233625d7d19b7"
+      },
+      {
+        "file": "assets/addresses/contracts/nvda-usdg-pool.json",
+        "id": "robinhood-0xd4eb21209c4d6093f80b5b84f5c45cc093ea14a3"
+      },
+      {
+        "file": "assets/addresses/contracts/spcx-staking-and-aapl-coin-morpho-oracles.json",
+        "id": "robinhood-0xc61284332117c3fb23a2a56cceffd07f7af60029"
+      }
+    ],
+    "scope": "Pointers to canonical records only,not a complete position/pool inventory or proof of current ownership. Discover actual positions and read token order,fee tier and decimals at the observation block."
+  }
 }

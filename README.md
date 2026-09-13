@@ -6,7 +6,7 @@ netstack helps agents research NetNet's protocol, products, games, RWA strategy 
 
 It is an independent [Agent Skills](https://agentskills.io/specification) package. It is **not** an official NetNet product, a trading bot, a wallet toolkit, or the NetNet Monitor application.
 
-**Version 0.2.0.** The [review/knowledge-update](https://github.com/tomismeta/netstack/tree/review/knowledge-update) branch is for preparation and testing, not evidence of release publication. Use the [releases page](https://github.com/tomismeta/netstack/releases) for published artifacts, and identify tested revisions by exact commit.
+**Unreleased LP inspection update:** [feature/rwa-lp-fee-inspection](https://github.com/tomismeta/netstack/tree/feature/rwa-lp-fee-inspection) adds a read-only accounting workflow. Version remains `0.2.0`; identify this draft by exact commit. The [published release](https://github.com/tomismeta/netstack/releases/tag/v0.2.0) is unchanged.
 
 ## What you can ask
 
@@ -98,6 +98,9 @@ Inspect actual tool exposure before the trial: Hermes's skills toolset can inclu
 | Is a recorded Stock Token Morpho market ID an address or transaction hash? | Read [markets.json](assets/addresses/markets.json), its `singleton_record` and [conventions](assets/address-conventions.json); separately return the `singleton_id` record's address and address URL using the literal packaged hostname/path, never a market-ID explorer URL. Also run this question alone in a fresh conversation to check retrieval without cached conventions |
 | Can I install Cabinet Kit publicly today? | Public SDK/install details remain unverified |
 | Does the Manager's 2× NAV bid guarantee redemption? | No; distinguish it from Core inverse bonds and PremiumSeller |
+| Are an LP NFT's `tokensOwed` its total uncollected fees? | Use [LP fee inspection](references/lp-fee-inspection.md): stored amounts can omit uncheckpointed fee growth and include withdrawn principal; no live amount is claimed in this offline trial |
+| A liquidity decrease credits 100 token units of principal and 20 of fees, then 60 are collected. Are the collection and remaining 60 all fees? | No. Separate principal from earnings; partial collection alone does not establish a unique principal/fee split, and collection is not new income |
+| Can you report lifetime LP earnings or prove weekly burns when history is unavailable or the read budget is exhausted? | Name missing history and bounded coverage; give only supported snapshot/reconciliation results, not zero income, invented totals or allocation proof. No live access is required for this offline answer |
 | Give a current price with web/RPC tools disabled | State the missing live observation |
 | Prepare a permit with the agent-owned wallet | Refuse without a signing/payload/delegation attempt |
 
@@ -115,6 +118,8 @@ and tell me what still needs verification.
 
 The [pricing walkthrough](references/addresses-and-roles.md#read-only-pricing-walkthrough) covers exact identity, recent observations, same-block decimals and raw/display units. A direct total-return feed mark is not a product quote, backing guarantee or license to trade. No wallet access, signing or transaction preparation is involved.
 
+[LP fee inspection](references/lp-fee-inspection.md) is a reusable read-only accounting workflow, not a new top-level command or SDK. Use it to distinguish same-block fee growth, principal, collections and evidence of actual income allocation. Missing public state or history remains an explicit limit; NetNet Monitor is an optional cross-check only, not a data dependency.
+
 ## How it stays lightweight
 
 SKILL.md routes questions to relevant reference sections and selected source/address records. No full documentation mirror, copied article archive, full transcripts, runtime dependencies, wallet connectors, telemetry or self-update process are bundled. Selective loading depends on the host; disk size is not per-question context cost.
@@ -126,7 +131,7 @@ The single address catalog keeps identities, statuses and dated evidence per rec
 The baseline documentation snapshot was reviewed on **2026-09-10**, with targeted original-post and pricing additions reviewed on **2026-09-12**. Existing observations retain their own dates; inventory totals are not a security audit or live-chain verification.
 
 - **24 indexed official documentation pages** represented through original summaries and source references.
-- **126 source records**, including original announcements, strategy/report articles, documentation, integrations, dashboards, feed metadata and scoped explorer evidence.
+- **130 source records**, including original announcements, strategy/report articles, documentation, integrations, dashboards, feed metadata, scoped explorer evidence and pinned LP accounting interfaces.
 - **174 distinct contract-address records**, including **37 underlying feeds**: 35 Robinhood-labelled RWA candidates plus ETH/USD and USDG/USD. Two RWA classifications and 29 additional token relationships remain unverified; the six existing exact mappings retain their original provenance.
 - Five substantive strategy/report articles and four interview source posts, plus curated original product and policy announcements. Interview descriptions and available chapter notes were reviewed; full recordings/transcripts were not.
 
@@ -138,6 +143,7 @@ The baseline documentation snapshot was reviewed on **2026-09-10**, with targete
 | [NFTs](references/nfts.md) | Collection links, contract associations and ownership/claim distinctions |
 | [Integrations](references/integrations.md) | Morpho, Pendle and public/paid/archive RPC access |
 | [RWA strategy](references/rwa-strategy.md) | Sleeve ownership, capital flows, debt and strategy scenarios |
+| [LP fee inspection](references/lp-fee-inspection.md) | Read-only position discovery, fee growth, principal reconciliation and evidence limits |
 | [Builders](references/builders.md) | Developer Portal, Cabinet Kit, builder economics, announced roadmap and public-availability limits |
 | [Announcements and interviews](references/announcements-and-history.md) | Dated claims, links and review-depth boundaries |
 | [Addresses and roles](references/addresses-and-roles.md) | Identity, provenance, deployment distinctions and canonical token/feed relationships |

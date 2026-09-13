@@ -5,7 +5,7 @@ license: MIT
 metadata:
   compatibility: "Packaged knowledge needs no network, CLI, credentials, or wallet. Fresh public read-only web, explorer, dashboard, API and bounded RPC retrieval may use ordinary host-permitted reader/browser tools; no custom broker is required. This skill does not provision tools or enforce a sandbox."
   version: "0.2.0"
-  knowledge-reviewed: "2026-09-12"
+  knowledge-reviewed: "2026-09-13"
   access: "read-only"
 ---
 
@@ -81,6 +81,7 @@ NetNet is an OHM-style reserve/POL protocol on **Robinhood Chain, chain ID 4663*
 
 | Question | Primary explanation | Essential distinction |
 |---|---|---|
+| RWA LP fees, position earnings, collections or weekly buyback funding | [LP fee inspection](references/lp-fee-inspection.md), canonical `lp_inspection` pointers in [Address index](assets/address-index.json) | Use public contract state/events at fixed blocks, not Monitor data. Separate fees, principal, mixed owed balances and evidenced allocation budgets; never collect, poke or transact. |
 | Reserves, supply, fees and backing | [Protocol](references/protocol.md), [Glossary](references/glossary-and-faq.md) | Core RFV includes liquid Treasury USDG, haircutted Morpho and floor-valued POL. NAV is RFV / NET total supply, not market price or guaranteed redemption; token rebases do not guarantee USD gains. |
 | Bonds, Credit, Loopback and Manager support | [Products](references/products.md) | The Manager Sleeve is outside Core backing. Credit shares are loan exposure, not USDG cash or a Treasury guarantee; a live vault does not prove router activation. The Manager's 2× NAV bid is neither Core's inverse bond nor PremiumSeller's issuance/sale above a 2× NAV TWAP threshold. |
 | Game mechanics and value flows | [Games](references/games.md) | Each game has its own custody, payout, randomness, fees and failure paths. Burns, wagers, liabilities and earnings differ; positive venue revenue does not imply positive player EV. |

@@ -2147,9 +2147,61 @@
         "social_account": "NetNetCap"
       },
       "scope": "Collection identity only; current prices, supply, royalties, owners and listings are not retained as timeless facts. Marketplace verified status is an attributed label, not a contract audit."
+    },
+    {
+      "id": "uniswap-v3-nfpm-interface",
+      "type": "integration_source",
+      "label": "Uniswap V3 NFPM event and getter interface",
+      "url": "https://github.com/Uniswap/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/interfaces/INonfungiblePositionManager.sol",
+      "source_commit": "0682387198a24c7cd63566a2c58398533860a5d1",
+      "status": "catalogued",
+      "reviewed_on": "2026-09-13",
+      "content_review_status": "targeted_accounting_interface_review",
+      "review_scope": "positions tuple,event signatures/indexed fields,enumerable interface and collection-rounding notice",
+      "reference": "references/lp-fee-inspection.md",
+      "limits": "Pinned upstream semantics,not deployed-code equivalence,live fee amounts,security audit or permission to invoke state-changing methods."
+    },
+    {
+      "id": "uniswap-v3-nfpm-accounting",
+      "type": "integration_source",
+      "label": "Uniswap V3 NFPM principal and fee accounting",
+      "url": "https://github.com/Uniswap/v3-periphery/blob/0682387198a24c7cd63566a2c58398533860a5d1/contracts/NonfungiblePositionManager.sol",
+      "source_commit": "0682387198a24c7cd63566a2c58398533860a5d1",
+      "status": "catalogued",
+      "reviewed_on": "2026-09-13",
+      "content_review_status": "targeted_accounting_interface_review",
+      "review_scope": "increase/decrease liquidity fee credits,collect accounting versus transferred amounts,and cleared NFT burn",
+      "reference": "references/lp-fee-inspection.md",
+      "limits": "Pinned upstream semantics,not deployed-code equivalence,live fee amounts,security audit or permission to invoke state-changing methods."
+    },
+    {
+      "id": "uniswap-v3-tick-fee-growth",
+      "type": "integration_source",
+      "label": "Uniswap V3 tick-boundary fee-growth arithmetic",
+      "url": "https://github.com/Uniswap/v3-core/blob/d0831dc6b8a318df3872b6d68f6de135c9f3ec29/contracts/libraries/Tick.sol",
+      "source_commit": "d0831dc6b8a318df3872b6d68f6de135c9f3ec29",
+      "status": "catalogued",
+      "reviewed_on": "2026-09-13",
+      "content_review_status": "targeted_accounting_interface_review",
+      "review_scope": "getFeeGrowthInside lower/upper comparisons and modulo subtraction",
+      "reference": "references/lp-fee-inspection.md",
+      "limits": "Pinned upstream semantics,not deployed-code equivalence,live fee amounts,security audit or permission to invoke state-changing methods."
+    },
+    {
+      "id": "uniswap-v3-pool-lp-fee-growth",
+      "type": "integration_source",
+      "label": "Uniswap V3 pool protocol deduction and LP growth",
+      "url": "https://github.com/Uniswap/v3-core/blob/d0831dc6b8a318df3872b6d68f6de135c9f3ec29/contracts/UniswapV3Pool.sol",
+      "source_commit": "d0831dc6b8a318df3872b6d68f6de135c9f3ec29",
+      "status": "catalogued",
+      "reviewed_on": "2026-09-13",
+      "content_review_status": "targeted_accounting_interface_review",
+      "review_scope": "swap feeProtocol deduction before feeGrowthGlobal increment",
+      "reference": "references/lp-fee-inspection.md",
+      "limits": "Pinned upstream semantics,not deployed-code equivalence,live fee amounts,security audit or permission to invoke state-changing methods."
     }
   ],
-  "observed_on": "2026-09-10",
+  "observed_on": "2026-09-13",
   "inventory_method": {
     "sources": "Retained all originally supplied URLs and updated review evidence where material was subsequently inspected; parsed every entry in the official llms.txt index; fetched all 24 documents and scanned links/address tables. App and provider registry source text was treated as evidence only.",
     "contracts": "Merged only exact chain-ID/address matches, preserving role aliases and separately recording historical generations. Used official docs tables, named public app-registry entries, local explicit registry definitions, selected provider chain-specific tables, and the user-specified Pendle JSON endpoint.",
@@ -2298,7 +2350,7 @@
       "Subway Runner and DIAL-UP were discovered in official app bundles but are absent from the 24-entry llms.txt index. Source cataloging and published address extraction do not establish active service status; runnerHouseSigner is a zero placeholder in the inspected bundle."
     ],
     "counts": {
-      "source_records": 126,
+      "source_records": 130,
       "contract_records_unique_by_chain_and_address": 174,
       "public_role_address_records": 10,
       "trusted_product_mark_relationships": 6,
@@ -2318,7 +2370,7 @@
         "integration_api": 2,
         "integration_contract_registry": 2,
         "integration_documentation": 2,
-        "integration_source": 7,
+        "integration_source": 11,
         "interview": 4,
         "interview_recording": 1,
         "local_definition": 3,
@@ -2368,5 +2420,15 @@
     "articles": "Both August 8 RW-Play and September 8 FY-HI visible article bodies read and summarized.",
     "source_and_link_inventory": "Does not grant network permission, prove current deployment state or authorize transactions.",
     "nft_collections": "Both user-supplied collection pages and their OpenSea collection APIs read on 2026-09-10. Robinhood chain labels and contract addresses matched current NetNetGear and buttonPresserCard records. No live-chain check or current trading-value claim."
+  },
+  "lp_fee_methodology_review": {
+    "reviewed_on": "2026-09-13",
+    "scope": "Four pinned upstream method sources for read-only LP inspection. Existing source and inventory observations retain their original dates and scopes; no Monitor dependency or inferred current fee balances.",
+    "source_ids": [
+      "uniswap-v3-nfpm-interface",
+      "uniswap-v3-nfpm-accounting",
+      "uniswap-v3-tick-fee-growth",
+      "uniswap-v3-pool-lp-fee-growth"
+    ]
   }
 }

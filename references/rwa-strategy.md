@@ -62,6 +62,8 @@ NetNet Capital's [September 8 post](https://x.com/NetNetCap/status/2097408605486
 
 The addendum proposes an income-producing sleeve book rather than relying solely on new bond subscriptions:
 
+The September 8 [original post](https://x.com/NetNetCap/status/2097408605486244249), linking [article 2097407568654356480](https://x.com/NetNetCap/article/2097407568654356480), describes **NVDA/USDG, SPCX/USDG and AAPL/USDG at 0.05% (5 bps)**. This is a dated source claim, not a currently verified pool fee; match each deployed pool and read its fee at the selected block before applying it.
+
 | Proposed line | Strategy described | Author's daily base case, not observed income |
 |---|---|---|
 | Three-shift liquidity book | Session stock-sided Uniswap ranges; borrowed-USDG two-sided overnight/weekend ranges | $6,300 |
@@ -72,6 +74,8 @@ The addendum proposes an income-producing sleeve book rather than relying solely
 | External fund wrapper | Outside capital joins the strategy; management/performance fees | No base case before depositors |
 
 The stated total is approximately **$9,900/day**, about **98% simple annualized** on the article's $3.68 million sleeve snapshot; bear/bull cases are $2,300/$24,200 daily. These are assumptions-based scenarios, not earned yield or a compound APY. The proposal directs residual net USDG income to weekly NET repurchases and burns after operating funding needs; a no-income week has no purchase.
+
+Keep that residual-income proposal separate from the [September 12 Manager bid](#september-12-manager-bid-a-new-announced-inventory-path): buying NET for Desk inventory and redistribution is not burning NET, and neither announcement proves an actual allocation.
 
 ### Analysis and verification requirements
 
@@ -86,6 +90,8 @@ The following are research checks, not instructions to operate the proposed book
 - **Buybacks need separate proof.** Read actual purchase, fee, burn and accounting events. A stated weekly intention is not a transaction schedule, irreversible allocation rule, or realized per-holder return. Never execute any part of it.
 
 The [September 10 Credit documentation](https://docs.netnet.capital/credit) provides later evidence of a live vault and initial Stock Token borrowing, while still marking the auxiliary CreditRouter pending activation. That does not prove the full September 8 LP/maker/wrapper/buyback program has been implemented.
+
+For a reusable read-only LP accounting workflow, see [LP fee inspection](lp-fee-inspection.md), not a new top-level command or SDK. Separate LP earnings from active or withdrawn principal, collections and other revenue such as Credit fees, games or dividends. `tokensOwed` and collection events alone are not fee-income totals; reconcile fee growth and liquidity history, including partial collections, before claiming earnings. Do not deduct Credit interest again when it is already netted in the source model. Evidence that income was earned is distinct from evidence that it funded purchases, burns or inventory: trace actual allocation separately. NetNet Monitor is an optional cross-check only, not a data dependency.
 
 ## September 11 forecast: Treasury plus Manager Sleeve, not Core RFV
 

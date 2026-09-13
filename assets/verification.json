@@ -2,16 +2,9 @@
   "schema_version": 1,
   "skill": "netstack",
   "version": "0.2.0",
-  "version_policy": "Maintainer authorized preparation of proposed0.2.0. Merge,tag,release and registry submission remain subject to separate approval.",
-  "reviewed_on": "2026-09-12",
-  "evidence_scope": "Version0.2.0 candidate preparation. Current manifest binds current content; user native-host reports bind2db01ea,not subsequent version/evidence metadata edits. Final scanner receipts bind their exact external input snapshots. No publication or enforced isolation inferred.",
-  "review_branch_distribution": {
-    "branch": "review/knowledge-update",
-    "purpose": "Isolated OpenClaw and Hermes user testing of the complete draft",
-    "authorization": "Review-branch preparation of0.2.0 authorized; no main merge,tag,release or registry submission without further approval.",
-    "input_discipline": "Pin the supplied commit,verify manifest hashes and loaded paths,avoid personal installation shadowing,and keep test reports free of credentials/private context.",
-    "limits": "Use commit and manifest for exact identity. Earlier local-stage labels retain their historical scopes; no registry acceptance or native-host safety inferred."
-  },
+  "version_policy": "Version0.2.0 retained during feature development; identify this update by branch commit. No main merge,version bump,tag or release authorized.",
+  "reviewed_on": "2026-09-13",
+  "evidence_scope": "Unreleased LP fee inspection feature. Published release and earlier host/scanner evidence retain their exact input scopes. LP experiment records public read-only observations at fixed blocks,not a current USD budget or deployed-source audit.",
   "catalog_normalization_2026_09_12": {
     "status": "local_unpublished_single_current_format",
     "package_version": "0.1.1",
@@ -880,5 +873,67 @@
     "scope": "Version and evidence/documentation edits only. Contract/feed/role data and routing are frozen.",
     "final_gate": "Cisco,Gitleaks,Hermes guard,OpenClaw format/packaging and integrity receipts maintained outside scanned input to avoid circular attestation. Read external candidate approval record for actual results.",
     "publication_status_at_preparation": "not_approved_or_published"
+  },
+  "historical_review_branch_distribution": {
+    "branch": "review/knowledge-update",
+    "purpose": "Isolated OpenClaw and Hermes user testing of the complete draft",
+    "authorization": "Review-branch preparation of0.2.0 authorized; no main merge,tag,release or registry submission without further approval.",
+    "input_discipline": "Pin the supplied commit,verify manifest hashes and loaded paths,avoid personal installation shadowing,and keep test reports free of credentials/private context.",
+    "limits": "Use commit and manifest for exact identity. Earlier local-stage labels retain their historical scopes; no registry acceptance or native-host safety inferred."
+  },
+  "feature_branch": "feature/rwa-lp-fee-inspection",
+  "lp_fee_inspection": {
+    "method_sources": [
+      "uniswap-v3-nfpm-interface",
+      "uniswap-v3-nfpm-accounting",
+      "uniswap-v3-tick-fee-growth",
+      "uniswap-v3-pool-lp-fee-growth"
+    ],
+    "implementation": "One new read-only reference,existing seven-topic routing,canonical infrastructure pointers and source records. No copied address registry,Monitor dependency,SDK or executable connector.",
+    "arithmetic_smoke": {
+      "cases": [
+        "below/inside/above range",
+        "lower and upper exact boundaries",
+        "uint256 subtraction wrap",
+        "zero liquidity with owed balances",
+        "integer floor",
+        "uint128 overflow rejection",
+        "partial collection",
+        "full close",
+        "nonzero opening entitlement",
+        "transferred preexisting entitlement"
+      ],
+      "real_token_sides_independently_recomputed": 8,
+      "raw_position_decodes_verified": 4,
+      "limits": "Throwaway arithmetic implementation checked against pinned formulas and recorded RPC inputs; not a bundled runtime library."
+    },
+    "source_only_behavior_smoke": {
+      "cases": 6,
+      "result": "Correct stale-owed,mixed principal/fee,partial collection,incomplete-history/budget,Monitor-independence,zero-liquidity and prohibited collect/simulation boundaries in observed answers.",
+      "reference_sha256": "e332c350c7a1b02f0e936b0285d45695a0c386f7b18f7ad65af0dbafd8145f89",
+      "limits": "Fresh no-tool completions with supplied reference and feature entry. Run before knowledge-reviewed date-only metadata update; no native-host or autonomous-tool-routing certification."
+    },
+    "public_rpc_experiment": {
+      "endpoint": "https://rpc.mainnet.chain.robinhood.com",
+      "chain_id": 4663,
+      "block": 61922793,
+      "hash": "0x4c3f5ffb86944a5d5976f418ac215316f444d5707626b79d3dd77f252510936c",
+      "time_utc": "2026-09-13T11:30:35Z",
+      "current_owner_checked_positions": 4,
+      "requests": 114,
+      "methods": {
+        "eth_chainId": 3,
+        "eth_getBlockByNumber": 9,
+        "eth_getCode": 7,
+        "eth_call": 68,
+        "eth_getLogs": 26,
+        "eth_getTransactionReceipt": 1
+      },
+      "result": "NFPM factory and four pool/token/fee associations matched; stored owed0/1 zero for all four but positive uncheckpointed fee growth. Above-range and modulo-growth cases observed. Head hash rechecks and EIP1898 sample matched.",
+      "history_scope": "Blocks56922794..61922793:31incoming mints,27outgoing burns; reverse replay from current4 reconstructs empty opening set conditional on provider log completeness. Five contiguous chunks matched the wider transfer response. Pre-window lifetime history unknown.",
+      "collection_scope": "27Collect and27DecreaseLiquidity events in bounded history. Real transaction0xa8bb9170f4bf14e6da613c8eec5db96c2d7195ef22ac4125e9aa64b96b721014 at60337949 showed NFPM Collect1raw unit above pool/token transfer; independently checked raw receipt.",
+      "limits": "Older eth_call state failed on official public endpoint; tested credentialless alternatives did not provide required archive state. Logs remained accessible with bounded retries. No full-lifetime fees,weekly budget,USD valuation,contract-source equivalence or native-host enforcement inferred. No wallet,state-changing call/simulation,Monitor data or SDK used."
+    },
+    "evidence_retention": "Raw RPC receipts,arithmetic fixtures and source-only answers held outside the distributable; no moving fee balances copied into canonical address data."
   }
 }
