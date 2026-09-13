@@ -104,6 +104,6 @@
         "id": "robinhood-0xc61284332117c3fb23a2a56cceffd07f7af60029"
       }
     ],
-    "scope": "Pointers to canonical records only,not a complete position/pool inventory or proof of current ownership. Discover actual positions and read token order,fee tier and decimals at the observation block."
+    "scope": "Pointers to canonical records only,not a complete position/pool inventory or proof of current ownership. Rediscover owned NFT IDs at every observation block and re-read each position. known_pools is a navigation hint,not a filter: resolve newly discovered pools through the verified factory. Historical test IDs/counts are never a current inventory."
   }
 }

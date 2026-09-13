@@ -935,5 +935,62 @@
       "limits": "Older eth_call state failed on official public endpoint; tested credentialless alternatives did not provide required archive state. Logs remained accessible with bounded retries. No full-lifetime fees,weekly budget,USD valuation,contract-source equivalence or native-host enforcement inferred. No wallet,state-changing call/simulation,Monitor data or SDK used."
     },
     "evidence_retention": "Raw RPC receipts,arithmetic fixtures and source-only answers held outside the distributable; no moving fee balances copied into canonical address data."
+  },
+  "native_lp_feature_reports_9854dca": {
+    "input_commit": "9854dca75b396c514fdfbec101aee7afef19a0fb",
+    "attribution": "User-supplied OpenClaw and Hermes reports,not independently reproduced in authoring session",
+    "installed_identity": {
+      "package_files": 129,
+      "content_hashes_checked": 128,
+      "missing_or_mismatched": 0,
+      "runtime_files": 126,
+      "runtime_sha256": "0943a28f09eb605a01ecf6f65a0368d178a0feec261e1c02dac75ca90185d973"
+    },
+    "openclaw": {
+      "model_route": "openai/gpt-5.5",
+      "host_version": "not supplied in this report",
+      "behavior": "Fresh Gateway-backed README matrix and extra standalone Morpho passed; both managed/Codex-facing copies updated with no active workspace shadow.",
+      "snapshot_block": 61942979,
+      "snapshot_time_utc": "2026-09-13T12:04:42Z",
+      "snapshot_hash": "not supplied",
+      "observed_positions": 4,
+      "fee_observation": "Public RPC fee-growth calculation; stored owed0/1 all zero. Claimed valuation3170.95USDG requires denomination/freshness evidence and reconciliation: displayed token subtotals1528.28+1642.75 sum3171.03. No corrected live total inferred here.",
+      "limits": "Successful trace used bash in broader Gateway sessions; isolated embedded path failed before model execution with auth/provider401. No isolation proof or complete collection history; no lifetime fees or weekly-burn funding established."
+    },
+    "hermes": {
+      "model_route": "not supplied",
+      "host_version": "not supplied",
+      "behavior": "Fresh README matrix,extra bare menu and standalone Morpho passed; primary copy verified with no active-profile shadow.",
+      "snapshot_block": 61942034,
+      "snapshot_hash": "0x8c6fc0c134fa503b2093202ca2dc2c71c65aba57e8b7dc04f73bee0efad9b1b6",
+      "snapshot_time_utc": "2026-09-13T12:03:06Z",
+      "retrieved_at": "2026-09-13T12:03:32Z",
+      "observed_positions": 4,
+      "fee_observation": "Public RPC current-owner snapshot with zero stored owed and positive reconstructed pending growth; no Monitor used.",
+      "limits": "No interval ownership/collection history or archive state,USD budget or lifetime claim. Matrix subprocess exposed write-capable tools even though only read/search used; not enforced isolation."
+    },
+    "cross_report_scope": "Different observation blocks; do not combine the reported balances into one snapshot. Observed position counts are historical,not a current inventory."
+  },
+  "lp_reporting_refinement": {
+    "baseline_commit": "9854dca75b396c514fdfbec101aee7afef19a0fb",
+    "changes": [
+      "Indicative uncollected fee valuation is distinct from cash or available budget",
+      "Explicit USD/USDG denomination and positive suitable conversion rate;no silent parity",
+      "Same-block price inputs with separate round freshness checks",
+      "Common unrounded inputs and reconciled position/token totals;display residuals explicit",
+      "Rediscover NFT universe and re-read retained IDs at each block;known pools are hints,not a filter"
+    ],
+    "verification": {
+      "rational_cases": [
+        "200USD+50USDG at0.80USD/USDG =300USDG =240USD",
+        "1528.28+1642.75-3170.95 =0.08"
+      ],
+      "source_only_cases": 5,
+      "valuation_reference_sha256": "272250629290b257cfe2ed7e5ca5ad440636c1737d8565c428b192be4eadb7ea",
+      "dynamic_discovery_reference_sha256": "70767533c729e1df1ed8128c33c2784e24d2bf2a9f46cdfc77b698e8c110df90",
+      "entry_sha256": "6bcdb065ee19784cccef86362e430464a5231b814134f89c752ff497b578af74",
+      "scope": "Four valuation probes used the valuation-edited reference before the later discovery clarification; separate discovery probe used the full updated reference. No new live-chain/native-host run or full release gate."
+    },
+    "static_ids": "No NFT IDs in operational reference or infrastructure index. Historical external receipts may retain observed IDs; these are never a current discovery source."
   }
 }
