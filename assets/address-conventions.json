@@ -7,16 +7,16 @@
   "source_catalog": "assets/sources.json",
   "explorers": {
     "4663": {
-      "name": "RHScan",
-      "address_url_template": "https://rh-scan.com/address/{address}",
-      "transaction_url_template": "https://rh-scan.com/tx/{tx_hash}",
-      "source_id": "robinhood-rhscan",
-      "scope": "Use RHScan for all Robinhood Chain explorer navigation, including historical objects. Navigation links are not verification; API routes are not inferred from these UI templates."
+      "name": "Robinhood Etherscan",
+      "address_url_template": "https://robin.etherscan.io/address/{address}",
+      "transaction_url_template": "https://robin.etherscan.io/tx/{tx_hash}",
+      "source_id": "robinhood-etherscan",
+      "scope": "Use Robinhood Etherscan for all Robinhood Chain explorer navigation,including historical objects. Provider-listed for chain4663. Navigation links are not verification or proof of API access;retain original historical source URLs as provenance only."
     }
   },
   "record_notes": {
     "publisher_verification_claim": "An attributed publisher label, not independent live-chain verification by this package. Preserve live_chain_verification_status and lifecycle limits.",
-    "publisher_linked_provenance_urls": "Original publisher hyperlinks retained as source evidence, not default explorer destinations. Return RHScan links for any referenced Robinhood address or transaction using its exact identity; do not transplant provider-specific API paths or query tabs.",
+    "publisher_linked_provenance_urls": "Original publisher hyperlinks retained as source evidence,not default explorer destinations. Return Robinhood Etherscan links for any referenced Robinhood address or transaction using its exact identity;do not transplant provider-specific API paths or query tabs.",
     "price_feed_metadata": "Publisher-directory provenance is in the parent contract provenance array and covers only the proxy and metadata fields named by its locator, including adjacent feed decimals. It does not establish a token pairing, current round, deployed behavior or NetNet use. Consumer policies and semantics sources remain separately attributed.",
     "netnet_use_evidence": "Directory inclusion alone does not establish NetNet use. Preserve recorded registry/local provenance and status; an empty consumer_policies list means not recorded, not unused. No exhaustive consumer list or exact-token relationship is inferred.",
     "public_role_addresses": "Published role attribution only, not proof of control, beneficial ownership, account kind or authority. No private key or personal portfolio information is included."

@@ -5,7 +5,7 @@ license: MIT
 metadata:
   compatibility: "Packaged knowledge needs no network, CLI, credentials, or wallet. Fresh public read-only web, explorer, dashboard, API and bounded RPC retrieval may use ordinary host-permitted reader/browser tools; no custom broker is required. This skill does not provision tools or enforce a sandbox."
   version: "0.2.1"
-  knowledge-reviewed: "2026-09-13"
+  knowledge-reviewed: "2026-09-14"
   access: "read-only"
 ---
 
@@ -95,11 +95,11 @@ The address book's `trusted_product_marks` retains six historically qualified to
 
 For exact lookups, read [address-index.json](assets/address-index.json), then only its selected literal package-relative files and [address-conventions.json](assets/address-conventions.json) once. Feed symbols route to small files; contract initials route to role/alias indexes that name bounded record files. No directory listing, glob, fragment, line selector or record query is required. If the exact resource is unavailable, report it; do not invent selectors, chase inaccessible spill files, or load broad references/`sources.json` as a fallback.
 
-Shared `record_notes`, `explorers`, scope, coverage and discrepancies live in conventions; feed-metadata evidence lives in the parent contract's `provenance`. Return **RHScan** URLs for Robinhood Chain explorer navigation, including historical objects, using the templates and exact chain-qualified address or transaction hash. Historical retrieval URLs identify evidence origins, not explorer destinations.
+Shared `record_notes`, `explorers`, scope, coverage and discrepancies live in conventions; feed-metadata evidence lives in the parent contract's `provenance`. Return **Robinhood Etherscan** URLs for Robinhood Chain explorer navigation, including historical objects, using the templates and exact chain-qualified address or transaction hash. Historical retrieval URLs identify evidence origins, not explorer destinations.
 
 **Final explorer-link check:** use the literal hostname and path from the packaged `explorers` template, substituting only the recorded identifier. Do not reconstruct the hostname from memory. If conventions are not available in the current context, read them before returning the link; check the completed URL against that template.
 
-**Morpho identity answers must include the singleton:** load [markets.json](assets/addresses/markets.json), follow the selected market's literal `singleton_record`, and select `singleton_id` inside that file. Separately return the singleton's **recorded 20-byte address and RHScan address URL**; a market ID is neither an address nor a transaction hash. Do not stop at that distinction or invent an address if the record cannot be read.
+**Morpho identity answers must include the singleton:** load [markets.json](assets/addresses/markets.json), follow the selected market's literal `singleton_record`, and select `singleton_id` inside that file. Separately return the singleton's **recorded 20-byte address and Robinhood Etherscan address URL**; a market ID is neither an address nor a transaction hash. Do not stop at that distinction or invent an address if the record cannot be read.
 
 Source provenance and scope: [Docs and sources](references/docs-and-sources.md). The [machine-readable safety policy](assets/safety-policy.json) describes behavior, not executable enforcement.
 

@@ -8,6 +8,8 @@ It is an independent [Agent Skills](https://agentskills.io/specification) packag
 
 **Version 0.2.1.** Includes read-only LP fee inspection, explicit valuation and accounting boundaries, and neutral source selection. Use the [releases page](https://github.com/tomismeta/netstack/releases) for published packages and separate audit artifacts; identify installed revisions by exact commit.
 
+**Explorer migration draft:** [feature/robinhood-etherscan](https://github.com/tomismeta/netstack/tree/feature/robinhood-etherscan) changes navigation to Robinhood Etherscan. Version remains `0.2.1`; identify this draft by commit. Published releases and the broader knowledge-refresh hold are unchanged.
+
 ## What you can ask
 
 | Question | What netstack brings |
@@ -96,14 +98,14 @@ The [pricing walkthrough](references/addresses-and-roles.md#read-only-pricing-wa
 
 SKILL.md routes questions to relevant reference sections and selected source/address records. No full documentation mirror, copied article archive, full transcripts, runtime dependencies, wallet connectors, telemetry or self-update process are bundled. Selective loading depends on the host; disk size is not per-question context cost.
 
-The single address catalog keeps identities, statuses and dated evidence per record; shared explanations and RHScan URL templates are defined once. Read those definitions with selected records. Explorer links use [RHScan](https://rh-scan.com/), including for historical objects; navigation does not change the origin of older evidence.
+The single address catalog keeps identities, statuses and dated evidence per record; shared explanations and Robinhood Etherscan URL templates are defined once. Read those definitions with selected records. Explorer links use [Robinhood Etherscan](https://robin.etherscan.io/), including for historical objects; navigation does not change the origin of older evidence.
 
 ## What's covered
 
 The baseline documentation snapshot is dated **2026-09-10**, with targeted original-post and pricing additions dated **2026-09-12**. Existing observations retain their own dates; inventory totals do not establish current on-chain state.
 
 - **24 indexed official documentation pages** represented through original summaries and source references.
-- **128 source records**, including original announcements, strategy/report articles, documentation, integrations, dashboards, feed metadata, scoped explorer evidence and pinned LP accounting interfaces.
+- **130 source records**, including original announcements, strategy/report articles, documentation, integrations, dashboards, feed metadata, scoped explorer evidence and pinned LP accounting interfaces.
 - **174 distinct contract-address records**, including **37 underlying feeds**: 35 Robinhood-labelled RWA candidates plus ETH/USD and USDG/USD. Two RWA classifications and 29 additional token relationships remain unverified; the six existing exact mappings retain their original provenance.
 - Five substantive strategy/report articles and four interview source posts, plus curated original product and policy announcements. Interview descriptions and available chapter notes were reviewed; full recordings/transcripts were not.
 

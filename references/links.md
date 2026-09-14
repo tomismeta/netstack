@@ -1,10 +1,10 @@
 # Direct application, dashboard and chart links
 
-Baseline public source/navigation destinations reviewed on 2026-09-10; RHScan navigation observations are dated 2026-09-12 below. These are **reference links**, not instructions or authorization for the agent to use their wallet controls.
+Baseline public destinations retain their source dates. Robinhood Etherscan is the explorer default, identified in Etherscan's chain registry on 2026-09-14. These are **reference links**, not instructions or authorization for wallet controls.
 
 ## Robinhood Chain explorer
 
-Use **[RHScan](https://rh-scan.com/)** for all returned Robinhood Chain explorer links, including current and historical contracts, public-role addresses, implementations and transactions. Resolve the exact validated chain **4663** plus address or transaction hash through `explorers["4663"]` in [address-conventions.json](../assets/address-conventions.json); never use a Morpho market ID as an address. The public homepage and address/transaction UI shells and identity titles were observed on **2026-09-12**, not live balances, receipts or code. [API documentation](https://rh-scan.com/api-docs) is unfinished; UI routes are not an API contract. Historical Blockscout retrieval origins remain attributed in [sources.json](../assets/sources.json), not recommended navigation or RHScan evidence.
+Use **[Robinhood Etherscan](https://robin.etherscan.io/)** for all returned Robinhood Chain explorer links, including current and historical contracts, public-role addresses, implementations and transactions. Resolve the exact validated chain **4663** plus address or transaction hash through `explorers["4663"]` in [address-conventions.json](../assets/address-conventions.json); never use a Morpho market ID as an address. [Etherscan's chain registry](https://api.etherscan.io/v2/chainlist) identifies the service; it does not verify balances, receipts, code or API access. Historical retrieval origins remain attributed in [sources.json](../assets/sources.json), not default navigation.
 
 ## Dashboard directory
 
