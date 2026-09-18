@@ -4,7 +4,7 @@ description: "Read-only NetNet research: protocol, products, live analytics and 
 license: MIT
 metadata:
   compatibility: "Packaged knowledge needs no network, CLI, credentials, or wallet. Fresh public read-only web, explorer, dashboard, API and bounded RPC retrieval may use ordinary host-permitted reader/browser tools; no custom broker is required. This skill does not provision tools or enforce a sandbox."
-  version: "0.3.0-rc.3"
+  version: "0.3.0-rc.4"
   knowledge-reviewed: "2026-09-18"
   access: "read-only"
 ---
@@ -31,6 +31,7 @@ This is an independent research aid, not an official NetNet product, investment 
 - Prompt policy is not a sandbox. Claim enforced isolation only with independently demonstrated host controls; such certification is not a prerequisite for ordinary public research.
 
 Read [Safety](references/safety.md) before any live retrieval. [Installation](references/installation.md) distinguishes instruction-level behavior from host-enforced isolation.
+Before live LP, Predict or House analytics, read the shared [execution limits](references/integrations.md#live-analytics-execution-limits): one deadline, snapshot-first retrieval, bounded calls/recovery and an explicit partial answer before timeout. Host approval blocks are not permission to bypass checks.
 
 ## When to use
 

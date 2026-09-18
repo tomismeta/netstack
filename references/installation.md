@@ -61,6 +61,14 @@ Use existing host-permitted reader/browser/API tools for fresh public documentat
 
 Use an ordinary unauthenticated browser context without wallet extensions/providers, WalletConnect/session state, authenticated accounts or signing/broadcast paths. Read-only navigation and clicks are allowed; wallet prompts and actions are not. Prefer public endpoints. Do not access credentials, create accounts, activate billing, install shell/provider tools, change host permissions or open a privileged browser as a fallback. If acceptable public-read access is unavailable, state the missing observation and use the dated package.
 
+### Live analytics acceptance
+
+Test the exact installed commit and manifest in **fresh sessions with normal permissions**, not `--yolo`, auto-approve or disabled safety/scanner checks. Use the [README live prompts](../README.md#live-analytics-research) for LP/seven-day fees, Predict wagers and House ownership/returns, plus `Use netstack` and `Use netstack: feeds NVDA`. Follow the [shared execution limits](integrations.md#live-analytics-execution-limits); report an approval gate immediately when possible. A host suspension before tool execution is a separate approval stall, not a completed analytical run.
+
+Record host/model/version, loaded path/commit, wrapper timeout, elapsed time to first useful evidence and final answer, approval waits, RPC/retry counts, coverage and exact sanitized errors. Retain full exception type/status and failing method/range, not truncated tracebacks or private environment dumps.
+
+Grade separately: **complete accounting** (all requested metrics and required coverage/reconciliations), **graceful partial** (timely useful snapshot plus exact gaps), **access blocked**, or **failed/hung** (no usable answer before interruption). Graceful partial is not a completeness pass. Compare completion rates and elapsed times across reruns; do not claim reliability from one success or change the question to avoid its expensive part. Report approval-blocked runs without bypassing the gate. Installation success and instruction compliance do not certify runtime isolation.
+
 ### Optional higher-assurance isolation
 
 Operators seeking externally enforced safety can isolate a public-context research worker and provide a host-enforced network/RPC broker with destination, method and argument constraints, redirect/SSRF protection, resource caps and redacted records. Exclude wallets, signers, private files, privileged browser contexts and unrestricted delegation. Any service credentials must remain outside the model and be scoped to the exact origin/path, with no cross-origin forwarding.

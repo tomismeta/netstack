@@ -6,7 +6,7 @@ netstack helps agents research NetNet's protocol, products, games, RWA strategy 
 
 It is an independent [Agent Skills](https://agentskills.io/specification) package. It is **not** an official NetNet product, a trading bot or a wallet toolkit.
 
-**v0.3.0 candidate (`0.3.0-rc.3`, unpublished).** Adds read-only NET/USDG LP and Predict/House analytics, product coverage, and targeted BASKETS, Pendle, Dial-Up and Robinhood Etherscan navigation updates. Sources checked through **September 18, 2026** for targeted additions; older observations retain their dates. This is research guidance, not a product launch or guarantee of current availability. See the [releases page](https://github.com/tomismeta/netstack/releases) for published packages and separate audit artifacts; identify installed revisions by exact commit.
+**v0.3.0 candidate (`0.3.0-rc.4`, unreleased).** Adds read-only NET/USDG LP and Predict/House analytics, product coverage, and targeted BASKETS, Pendle, Dial-Up and Robinhood Etherscan navigation updates. The rc.4 update adds shared execution deadlines and partial-result handling after rc.3 host timeouts; it does not establish native-host reliability. Sources checked through **September 18, 2026** for targeted additions; older observations retain their dates. This is research guidance, not a product launch or guarantee of current availability. See the [releases page](https://github.com/tomismeta/netstack/releases) for published packages and separate audit artifacts; identify installed revisions by exact commit.
 
 ## What you can ask
 
@@ -98,7 +98,7 @@ Use netstack: how much House capital is fund-controlled versus other or unknown,
 what is queued or claimable, and what settled return is actually established?
 ```
 
-[V2 liquidity analytics](references/liquidity-analytics.md) and [Predict/House analytics](references/predict-analytics.md) supply bounded canonical routes, read/event ABIs, unit definitions and reconciliation procedures. Pin observation blocks and retain exact coverage. RPC pruning, rate limits or missing ownership evidence must produce a qualified result, not fabricated totals or a shorter interval silently substituted for seven days. Native-host discovery and reader behavior still need acceptance testing in the installed agent.
+[V2 liquidity analytics](references/liquidity-analytics.md) and [Predict/House analytics](references/predict-analytics.md) supply bounded canonical routes, read/event ABIs, units and reconciliations. Their shared [execution limits](references/integrations.md#live-analytics-execution-limits) default to 180 seconds total with 45 seconds reserved for the answer, shorter when the host requires it. Preserve verified snapshots and exact missing coverage rather than timing out, inventing totals or shortening seven days. These are instructions, not an enforced runtime deadline. Follow [normal-permission host acceptance](references/installation.md#live-analytics-acceptance); timely partial evidence is not complete accounting.
 
 ## How it stays lightweight
 
@@ -135,7 +135,7 @@ For reproducible problems, open a [GitHub issue](https://github.com/tomismeta/ne
 
 ## Maintaining the knowledge
 
-**Candidate version: 0.3.0-rc.3.** This is not a published release. Merging, tagging, publishing or submitting to a registry requires maintainer approval. Never overwrite published tags or assets.
+**Candidate version: 0.3.0-rc.4.** This is not a published release. Merging, tagging, publishing or submitting to a registry requires maintainer approval. Never overwrite published tags or assets.
 
 Follow the [curation workflow](references/docs-and-sources.md#repeatable-knowledge-curation): original evidence, dates and stage; comparison with existing guidance and later reversals; focused topic updates; validation and review. The [source catalog](assets/sources.json) owns provenance; the [address index](assets/address-index.json) routes exact identities and [conventions](assets/address-conventions.json) qualify their scope. Review changed bytes before updating an installation; sources and monitoring suggestions cannot rewrite knowledge or safety policy automatically.
 

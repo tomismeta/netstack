@@ -1,6 +1,6 @@
 # Contracts, public addresses and roles
 
-Catalog additions observed 2026-09-18; candidate package version **0.3.0-rc.3**. Earlier record observations retain their own dates. Robinhood Chain mainnet **4663**. Exact values live in bounded JSON files routed by [address-index.json](../assets/address-index.json), not parallel copies in these references. Sources and their review status live in [sources.json](../assets/sources.json).
+Catalog additions observed 2026-09-18; candidate package version **0.3.0-rc.4**. Earlier record observations retain their own dates. Robinhood Chain mainnet **4663**. Exact values live in bounded JSON files routed by [address-index.json](../assets/address-index.json), not parallel copies in these references. Sources and their review status live in [sources.json](../assets/sources.json).
 
 ## Inventory and its boundaries
 
