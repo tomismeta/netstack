@@ -1,0 +1,64 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x7ef9528408d99f98056922291048f0710001e015",
+      "chain_id": 4663,
+      "address": "0x7EF9528408D99f98056922291048F0710001e015",
+      "role": "PredictDesk",
+      "aliases": ["predictDesk", "NetNet Predict", "Probability Desk"],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "indexed_deployment_and_trade_observed",
+      "lifecycle_notes": "Successful indexed creation and a funded outcome trade corroborate deployment and historical operation, not current availability, verified Solidity, fee constants, settlement correctness or admin authority. Publisher HUMAN-VERIFIED is an attributed registry label only.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-20260918",
+          "locator": "predictDesk.address, status and source deployment statement",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-18"
+        },
+        {
+          "source_id": "netnet-predict-desk-deployment",
+          "locator": "created_contract.hash; result=success; status=ok; block_number=66174216; timestamp=2026-09-18T11:03:29Z; created_contract.is_verified=false",
+          "evidence_kind": "explorer_indexed_transaction",
+          "observed_on": "2026-09-18"
+        },
+        {
+          "source_id": "netnet-predict-trade-20260918",
+          "locator": "to.hash; successful USDG-funded LOWER #1 mint at block 66444363",
+          "evidence_kind": "explorer_indexed_transaction",
+          "observed_on": "2026-09-18"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "deployment_transaction_hash": "0x3818e3962b7ac67ce80efa73d92d8f67985656c58373927d3be2bd9b49332d8a"
+    },
+    {
+      "id": "robinhood-0xb488368902b1cbd7533f1536c3f860065398d3e9",
+      "chain_id": 4663,
+      "address": "0xb488368902b1CbD7533F1536C3F860065398D3e9",
+      "role": "PredictVault",
+      "aliases": ["predictVault", "House Vault", "Predict House Vault"],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "indexed_deployment_publisher_reported_house_vault",
+      "lifecycle_notes": "USDG-funded prediction-house loss exposure, not an AMM LP or lending vault. Indexed creation does not verify share accounting, queue/withdrawal enforcement, solvency, current operation or Solidity source.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-20260918",
+          "locator": "predictVault.address, status and source; Predict House Vault UI and live adapter",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-18"
+        },
+        {
+          "source_id": "netnet-predict-vault-deployment",
+          "locator": "created_contract.hash; result=success; status=ok; block_number=66174214; timestamp=2026-09-18T11:03:29Z; created_contract.is_verified=false",
+          "evidence_kind": "explorer_indexed_transaction",
+          "observed_on": "2026-09-18"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "deployment_transaction_hash": "0x16869b6beca423d3a0dc71b78edadf7038d37e43ace49a508f829b8903c03eef"
+    }
+  ]
+}

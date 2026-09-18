@@ -1,0 +1,32 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xa8d5c34aef923d73ae9161ea934eb27a2219e416",
+      "chain_id": 4663,
+      "address": "0xa8D5C34Aef923D73aE9161Ea934EB27A2219E416",
+      "role": "BasketsDesk",
+      "aliases": ["BASKETS", "Grab Desk"],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_operating_not_live_verified",
+      "lifecycle_notes": "Publisher reports deployed and publicly opened 2026-09-14. USDG match settlement is separate from the player's later stock conversion; the latter uses Rialto's then-current router registry, not a permanently pinned router. Permit2 entry spender and DrandSigRegistry are reused existing identities. Documentation is not independent verification of deployed rules, role permissions, payout liveness or safety.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "BASKETS (18+) / BasketsDesk; deployment/opening dates; Permit2 entry spender; reused DrandSigRegistry; unpinned rotating Rialto router",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-18"
+        },
+        {
+          "source_id": "netnet-docs-baskets",
+          "locator": "Status: operating; How you are paid; Parameters / Authorization",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-18"
+        }
+      ],
+      "publisher_linked_provenance_urls": [
+        "https://robinhoodchain.blockscout.com/address/0xa8D5C34Aef923D73aE9161Ea934EB27A2219E416"
+      ]
+    }
+  ]
+}

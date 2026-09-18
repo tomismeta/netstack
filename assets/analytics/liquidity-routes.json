@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "workflow": "references/liquidity-analytics.md",
+  "interface": "assets/analytics/v2-interface.json",
+  "pair": {"file":"assets/addresses/contracts/net-assets-pair-and-credit-vault.json","id":"robinhood-0x59f95461e68e0c77605299791e1449f175165b54"},
+  "net": {"file":"assets/addresses/contracts/net-assets-pair-and-credit-vault.json","id":"robinhood-0xca9c78dd337a67f6e0077f65f5e9218719d30edf"},
+  "usdg": {"file":"assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json","id":"robinhood-0x5fc5360d0400a0fd4f2af552add042d716f1d168"},
+  "treasury": {"file":"assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json","id":"robinhood-0x04822ea321a0dee6f40656172f29312104855d66"},
+  "sleeve": {"file":"assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json","id":"robinhood-0x498752d5fa0600cbd613074c151abe15b3fec7cb"},
+  "team_safe": {"file":"assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json","id":"robinhood-0x3bb7a23316f82c0e984fa2e784846d8928a35f42"},
+  "scope": "Pointers to canonical records, not current balances or exhaustive control/beneficial ownership. Discover all holders from complete evidence; unknown addresses are not automatically third parties. Resolve the v2 factory through pair.factory(), then verify getPair for these tokens. Do not substitute the v3 factory or LP Zap."
+}

@@ -1,6 +1,6 @@
 # Integrations and read-only data access
 
-Documentation/data reviewed 2026-09-10; dated announcement context added through 2026-09-12 (unpublished working update). These are knowledge and data-source integrations, not installed connectors. The skill never connects a wallet, signs, prepares an executable transaction, or sends one. See [Safety](safety.md).
+Documentation/data reviewed 2026-09-10; dated announcement context retained through September 12, with targeted **September 18** Pendle, Credit, Predict and retail-liquidity updates below. This is not a blanket refresh of every integration. These are knowledge and data-source integrations, not installed connectors; the [safety policy](safety.md) governs all access.
 
 ## Capabilities, not subscription labels
 
@@ -15,7 +15,7 @@ Documentation/data reviewed 2026-09-10; dated announcement context added through
 
 A paid endpoint does not automatically retain historical state, and a free plan is not necessarily incapable of it. Historical logs and historical `eth_call` state are different capabilities. Establish the required block/range and methods before selecting a provider. Never silently fall through to a paid archive endpoint, start a backfill, or make unbounded/retrying requests.
 
-Ordinary public retrieval and following relevant public source links need no custom broker, purpose-built reader or prior per-destination administrator setup. Prefer public endpoints. Existing host restrictions and [Safety](safety.md) still apply: minimum public inputs, no private/local/metadata destinations, and an unauthenticated browser without wallets/providers, WalletConnect, authenticated sessions or signing/broadcast paths. Navigation and read-only clicks are allowed; wallet prompts and actions are not.
+Use ordinary host-permitted public reads under [Safety's public-research rules](safety.md#everyday-public-research); no custom broker or per-destination setup is required.
 
 ## Robinhood Chain and provider options
 
@@ -27,22 +27,22 @@ The [official network documentation](https://docs.robinhood.com/chain/connecting
 - Alchemy: recommended provider, with free-account signup and provider-managed plans. The documented mainnet URL has the form `https://robinhood-mainnet.g.alchemy.com/v2/{API_KEY}`. The braces are documentation, not a credential to request from the user or expose to the model.
 - QuickNode, Blockdaemon, dRPC, and Validation Cloud are also listed providers. Obtain service capabilities, availability, limits, retention, and current pricing from the selected provider; do not assume parity.
 
-The same network page advertises wallet, gas-sponsorship, sequencer and write APIs. **Those are excluded from this skill.** Provider support does not grant permission to use them. Do not access credentials, create an account or activate billing for research. Provider plans are background information, not setup instructions. If an independently managed host service uses credentials, they must remain outside the model, package, source catalog and logs, scoped to the exact service origin/path and never forwarded across origins.
+The same network page advertises wallet, gas-sponsorship, sequencer and write APIs. **Those are excluded from this skill.** Provider plans are background information, not permission to obtain credentials, create accounts or activate billing. Any independently managed host-service credentials remain outside the model under [Safety's credential controls](safety.md#optional-higher-assurance-host-controls).
 
-For **all Robinhood Chain explorer navigation**, including historical addresses and transactions, return [RHScan](https://rh-scan.com/) links. This is the user-selected default, separate from the network documentation's historical Blockscout listing. Read `explorers["4663"]` in [address-conventions.json](../assets/address-conventions.json) and substitute only the exact validated chain-qualified address or transaction hash; a Morpho market ID is neither. Do not infer a chain or substitute an unrelated object when identity is missing.
+For **all Robinhood Chain explorer navigation**, including historical addresses and transactions, return [Robinhood Etherscan](https://robin.etherscan.io/) links. [Etherscan's chain registry](https://api.etherscan.io/v2/chainlist) identifies this explorer for chain **4663**. Read `explorers["4663"]` in [address-conventions.json](../assets/address-conventions.json) and substitute only the exact validated chain-qualified address or transaction hash; a Morpho market ID is neither. Do not infer a chain or substitute an unrelated object when identity is missing.
 
-RHScan's public homepage and address/transaction UI shells and identity titles were observed on 2026-09-12, not dynamic balances, receipts or code. Its [API documentation](https://rh-scan.com/api-docs) says it is unfinished. Do not infer API endpoints, keys, limits or stability from UI routes, or move Blockscout API paths onto the RHScan hostname. Earlier Blockscout API readings remain explicitly historical source evidence with their actual URLs and dates in [sources.json](../assets/sources.json); they are not RHScan verification or default explorer guidance.
+Etherscan's [supported-chain documentation](https://docs.etherscan.io/supported-chains) lists Robinhood Chain, including Free Tier availability. This does not provision API access or establish method quotas, archive coverage or anonymous availability. Web pages can restrict automated access: disclose missing observations and use suitable permitted public RPC for chain reads, not challenge bypasses or invented explorer APIs. Historical retrieval URLs in [sources.json](../assets/sources.json) preserve their original evidence origin. The explorer change does not change the public RPC endpoint or prove Etherscan verification of earlier source reads.
 
 ## Read-only verification workflow
 
 1. Determine whether a packaged dated answer suffices. For mutable data, name the fields and date/block needed.
-2. Use existing host-permitted access to a suitable public endpoint; no provider installation or custom broker is needed. Confirm `eth_chainId` before interpreting chain-specific records.
+2. Select suitable host-permitted public access and confirm `eth_chainId` before interpreting chain-specific records.
 3. For related balances, supply, prices, collateral, or claims, use one block/hash where supported. Record block number, hash, timestamp and coverage separately from source publication time.
-4. Use only bounded reads with public inputs. ABI-encoding a read method such as a balance query for `eth_call` is allowed. A non-broadcasting call is not automatically read-only research: do not simulate state-changing methods, impersonate accounts, use state overrides or construct ready-to-sign/submit transaction artifacts. Check the target, operation, arguments and limits, including every batch member; arbitrary calldata is not a confidentiality safeguard.
+4. Bound the target, read method, public arguments and resource limits, including every batch member, under [Safety's RPC rules](safety.md#everyday-public-research). Non-broadcasting state-changing simulations are not read-only research.
 5. Do not report a partial or failed log range as complete. Do not turn missing data into zero or treat explorer labels as runtime verification.
-6. If the required endpoint is unavailable, state exactly which claim remains unverified and use available public evidence or the dated package. Do not install shell/provider tools, read credentials, create accounts, activate billing, change host permissions, attach to a privileged/wallet browser or use a transaction as a probe.
+6. If access is unavailable, state exactly which claim remains unverified and use available public evidence or the dated package; do not bypass the access boundary.
 
-The permitted method boundaries and optional higher-assurance controls are in [the safety policy](../assets/safety-policy.json). That JSON is documentation, not an active firewall. A broker and denial tests are needed only for corresponding enforced-safety claims, not ordinary public reads; current runtime enforcement is unproven.
+The [structured safety policy](../assets/safety-policy.json) documents method boundaries; it is not an active firewall or evidence of runtime enforcement. See [host-control requirements](safety.md#optional-higher-assurance-host-controls) before making enforced-safety claims.
 
 ## Morpho: three distinct relationships
 
@@ -58,40 +58,57 @@ The [Lombard documentation](https://docs.netnet.capital/lending) describes the i
 
 ### NetNet Credit / nnUSDG
 
-The [Credit documentation](https://docs.netnet.capital/credit), read September 10, says the Morpho Vault V2 opened September 9 and the first loan was drawn September 10. It describes seven isolated markets: wsNET plus NVDA, SPCX, AAPL, GOOGL, MSFT and COIN, all borrowing USDG.
+The [Credit documentation](https://docs.netnet.capital/credit), re-read September 18, still says the Morpho Vault V2 opened September 9 and the first loan was drawn September 10. It describes seven isolated markets: wsNET plus NVDA, SPCX, AAPL, GOOGL, MSFT and COIN, all borrowing USDG.
 
 - nnUSDG is a share in a lending portfolio, **not USDG cash**, Core backing, or a Treasury-guaranteed claim.
 - The same page identifies the RWA Sleeve as the principal Stock Token borrower. That creates a disclosed related-party relationship; do not describe all lending as unrelated external demand.
 - Documented performance fee: 10% of interest to the Manager's RWA Sleeve. Distinguish borrower interest, depositor net yield, sleeve fee income and Core revenue.
-- **Vault activity and CreditRouter activation are separate.** The page simultaneously reports live lending and says the router awaits the Safe's allocator grant. Preserve that distinction rather than declaring the entire product inactive or all app borrowing routes active.
+- **Vault activity and CreditRouter activation are separate.** The page still reports live lending while saying the router awaits the Safe's allocator grant. Its documented authority is limited to internal Loopback/listed-stock reallocations, market caps, a minimum Loopback buffer and $250,000 per call. A liquidation-depth cap revision is only **in preparation**; neither a new cap nor router activation is established.
 - Caps, rates, utilization, timelocks, oracle states and withdrawal liquidity need fresh verification. A weekend-stale equity feed can create gap risk; a fail-closed oracle can prevent liquidation as well as new borrowing.
 
-See [Credit's product terms](products.md#netnet-credit-a-curated-lender-not-a-replacement-loopback) and [router-status distinction](products.md#documented-market-operation-versus-interface-activation). For an exact identity question, start at the [address index](../assets/address-index.json), load [markets.json](../assets/addresses/markets.json), then the selected market's literal `singleton_record` and match `singleton_id`. **Return that record's singleton address and RHScan address URL separately** from the 32-byte market ID. A market ID is neither a standalone contract address nor a transaction hash; merely explaining that distinction is incomplete when the singleton is recorded. If a file is unavailable, disclose it rather than fabricate the identity or load broad source/reference files as a fallback.
+See [Credit's product terms](products.md#netnet-credit-a-curated-lender-not-a-replacement-loopback) and [router-status distinction](products.md#documented-market-operation-versus-interface-activation). For an exact identity question, start at the [address index](../assets/address-index.json), load [markets.json](../assets/addresses/markets.json), then the selected market's literal `singleton_record` and match `singleton_id`. **Return that record's singleton address and Robinhood Etherscan address URL separately** from the 32-byte market ID. A market ID is neither a standalone contract address nor a transaction hash; merely explaining that distinction is incomplete when the singleton is recorded. If a file is unavailable, disclose it rather than fabricate the identity or load broad source/reference files as a fallback.
 
 ## Pendle: the observed sNET market
 
-[Pendle's official market API](https://api-v2.pendle.finance/core/v1/4663/markets/0x23c68474e3cd533a2f952a0fb998f1867e57d27f), read September 10, identifies a chain-4663 sNET market expiring **2026-09-17 00:00:00 UTC**. Its SY/PT/YT/LP records, accounting asset and supported input/output assets are catalogued. [Market page](https://app.pendle.finance/trade/markets/0x23c68474e3cd533a2f952a0fb998f1867e57d27f/swap?view=yt&chain=robinhood).
+[Pendle's official API](https://api-v2.pendle.finance/core/v1/4663/markets/0xab0093949fefa432bfb1a0ba8943ee4aebc898a8), read **September 18**, identifies the successor chain-4663 sNET market as **active**, expiring **2026-10-01 00:00:00 UTC**. The [September 17 market API](https://api-v2.pendle.finance/core/v1/4663/markets/0x23c68474e3cd533a2f952a0fb998f1867e57d27f) now reports **inactive** after its **2026-09-17 00:00:00 UTC** maturity. These are distinct markets, not a date change to the old contract.
 
-This establishes a listed market snapshot, not a fresh audit of its implementation, current liquidity, future markets, or a promise of continued trading. After expiry, describe it as a historical maturity unless a new active market is separately identified. Do not carry forward the earlier "Pendle soon" teaser as present status.
+| Maturity (UTC) | Exact market/LP identity | Principal token | Yield token | September 18 status |
+|---|---|---|---|---|
+| October 1, 2026, 00:00 | [PLP-sNET-1OCT2026](https://app.pendle.finance/trade/markets/0xab0093949fefa432bfb1a0ba8943ee4aebc898a8/swap?view=yt&chain=robinhood) | PT-sNET-1OCT2026 | YT-sNET-1OCT2026 | API active |
+| September 17, 2026, 00:00 | [PLP-sNET-17SEP2026](https://app.pendle.finance/trade/markets/0x23c68474e3cd533a2f952a0fb998f1867e57d27f/swap?view=yt&chain=robinhood) | PT-sNET-17SEP2026 | YT-sNET-17SEP2026 | Matured; API inactive |
+
+Resolve exact chain-qualified PT/YT/LP addresses through the [address index](../assets/address-index.json), preserving maturity-qualified identities. Both snapshots share SY-sNET and the scaled accounting/underlying assets; that does **not** make their PT, YT or LP tokens interchangeable. The old market remains relevant to historical holdings and redemption questions. Inactive does not prove all matured claims are worthless or that redemption is impossible.
+
+The active flag establishes a listed API snapshot, not guaranteed executable liquidity, adapter correctness or continued availability. API timestamps/whitelisting dates are not independently verified deployment dates. Do not preserve “Pendle soon” as present status, project volatile APY into promised returns, or read the API's `feeRate` field as a flat percentage of trade principal without establishing its fee basis.
 
 ### Claims and units
 
 - **SY:** a standardized wrapper/interface around the yield-bearing asset; verify the adapter's actual conversion and redemption mechanics rather than assuming all SY wrappers are 1:1. [SY documentation](https://docs.pendle.finance/pendle-v2/ProtocolMechanics/YieldTokenization/SY).
-- **PT:** the principal claim at maturity in the market's **accounting asset**, not necessarily one unit of SY or the wrapped yield-bearing asset. The observed sNET market identifies NET as its accounting unit. Fixed NET-denominated yield is not a guaranteed dollar return. [PT documentation](https://docs.pendle.finance/pendle-v2/ProtocolMechanics/YieldTokenization/PT).
+- **PT:** the principal claim at maturity in the market's **accounting asset**, not necessarily one unit of SY or the wrapped yield-bearing asset. Both sNET market APIs identify **NET** as that unit (`pyUnit=NET`, `ptEqualsPyUnit=true`). Fixed NET-denominated yield is **not fixed USD or USDG principal**, a guaranteed dollar return, or a Core Treasury guarantee. [PT documentation](https://docs.pendle.finance/pendle-v2/ProtocolMechanics/YieldTokenization/PT).
 - **YT:** entitlement to yield through maturity. Its future-yield entitlement expires; accrued claimable yield is a separate asset. Total collected yield must exceed acquisition cost and fees for a profitable hold-to-maturity trade. Purchase capital can be lost entirely. [YT documentation](https://docs.pendle.finance/pendle-v2/ProtocolMechanics/YieldTokenization/YT).
 - **LP:** liquidity exposure with fee income and a changing mix of claims. Launch-hour annualized fees, deep order-book totals and immediately executable AMM depth are not interchangeable.
 
-The API's scaled accounting assets and original NET/sNET have different decimal conventions; derive conversions from the exact record and adapter. Never substitute an address based on matching ticker text.
+The API identifies 18-decimal SY/PT/YT/LP and NET-scaled18/sNET-scaled18 accounting assets, while supported original NET/sNET inputs and outputs use 9 decimals. Derive conversions from the exact record and adapter; symbol matching or dividing every asset by the same scale is insufficient. Never substitute one maturity's address for another based on generic “PT sNET” or “YT sNET” display text.
 
 ### What it can mean for NET holders
 
 Separating principal and yield can broaden access to fixed token-unit exposure, variable rebase exposure, liquidity and yield price discovery. Those are mechanisms, not guaranteed incremental protocol cash revenue. Additional issuance, fee routing, market incentives, liquidity depth, rebase persistence, maturity and redemption risk determine outcomes. Pendle's existence does not prove a NetNet PT collateral market on Morpho or a new RWA strategy; verify any such integration separately.
 
+## Uniswap retail liquidity and Predict underwriting are different integrations
+
+The [Add liquidity panel](https://app.netnet.capital/#/invest) links to direct NET + USDG Uniswap v2 provision; the separate USDG-only LP Zap remained **app-gated pending exemption/promotion** in the September 18 registry and panel despite its September 16 creation. See [retail LP mechanics and risks](products.md#retail-netusdg-v2-liquidity-and-the-lp-zap). Keep this Zap separate from the older Managed Futures Zap, and v2 receipts separate from Sleeve v3 NFPM NFTs and [their fee-growth accounting](lp-fee-inspection.md).
+
+For [Predict and House product terms](products.md#netnet-predict-weekly-outcomes-and-house-vault), distinguish September 18 app/launch and explorer-indexed creation/trade evidence from verified implementation or complete settlement rules. Deployment and trading evidence do not certify application-model fees, schedules or marks.
+
+For either product, read exact identities through the bounded [address index](../assets/address-index.json). Keep **publisher registry labels**, **observed UI availability**, **creation/transaction evidence** and **verified implementation/current permissions** as separate fields in an answer. A publisher `HUMAN-VERIFIED` label is not an independent audit; `PLACEHOLDER` can coexist with successful contract creation. Preserve original source API origins in provenance, while returning Robinhood Etherscan links for user-facing explorer navigation.
+
+Live research procedures: [NET/USDG v2 holdings, flows and fees](liquidity-analytics.md) and [Predict activity and House accounting](predict-analytics.md). Their selected `analytics` entries in the address index lead to bounded route/interface files; no installed connector is added. Cache the complete required same-block snapshot before a long log scan. If that state is later pruned, do not mix replacement latest reads with the earlier block.
+
 ## Privy: historical WinNET onboarding
 
 The publisher [announced WinNET's Privy integration on July 27, 2026](https://x.com/NetNetCap/status/2081839101783974128); its [July 28 post](https://x.com/NetNetCap/status/2082190279764025712) described email-only onboarding, “completely gasless” play and crew-code referrals. This historical claim does not verify wallet architecture, sponsor, continuing subsidy, current configuration or availability. Sponsored gas removes a stated gas charge—not entry costs, NET taxes, market risk or authorization requirements. “Free money” does not establish cash: see [WinNET's draw-credit and grant-status conflict](games.md#winnet--pooled-staking-not-a-cash-preserving-lottery).
 
-**Research only:** no connector or permission to sign in, submit email, request an OTP, create an embedded wallet, use an authenticated session, claim referrals, invoke a sponsor/paymaster or play is added. Read public descriptions unauthenticated; do not test onboarding. Research needs no credentials, account setup or wallet action.
+**Research only:** do not test onboarding, submit email, request an OTP, create an embedded wallet, claim referrals, invoke a sponsor/paymaster or play. Public descriptions remain subject to [Safety](safety.md#everyday-public-research).
 
 ## Other material dependencies
 

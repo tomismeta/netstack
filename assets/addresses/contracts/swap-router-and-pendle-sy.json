@@ -33,6 +33,12 @@
           "locator": "sy.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "pendle-snet-market-1oct2026",
+          "locator": "sy.address/decimals; reused SY identity in the October 1 market",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-18"
         }
       ],
       "decimals": 18,

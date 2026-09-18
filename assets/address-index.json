@@ -2,7 +2,7 @@
   "schema_version": 1,
   "chain_id": 4663,
   "conventions": "assets/address-conventions.json",
-  "lookup": "Literal package-relative file paths only. Read conventions once, then the selected file. Contract indexes are grouped by initial of canonical role; entries include aliases. Never append fragments or query strings.",
+  "lookup": "Literal package-relative file paths only. Read conventions once, then the selected file. Contract indexes are grouped by initial of canonical role; entries include aliases. Before selecting an outcome record, bare HIGHER/LOWER require a series; never substitute #1. Alias routes: BASKETS or Grab Desk -> b (BasketsDesk); House Vault -> p (PredictVault); NetNet Predict or Probability Desk -> p (PredictDesk); HIGHER #1/HI-1 or LOWER #1/LO-1 -> p (Predict outcome roles); NET/USDG LP Zap or LP Zap -> l (LPZap); Managed Futures Zap -> z (Zap). Pendle LP/PT -> p and YT -> y: require a maturity and distinguish the retained September 17 and October 1 identities. The PENDLE role is a historically listed reward token, not an LP/PT/YT market; clarify an ambiguous Pendle request. RwaDesk/rwaDesk labels must be qualified by V1 or V2, never distinguished by letter case alone. Never append fragments or query strings.",
   "feeds": {
     "USDG": "assets/addresses/feeds/usdg.json",
     "ETH": "assets/addresses/feeds/eth.json",
@@ -72,6 +72,10 @@
     "assets/addresses/public-roles-dialup-and-keeper.json",
     "assets/addresses/public-roles-climb-operator.json"
   ],
+  "analytics": {
+    "net_usdg_v2": "assets/analytics/liquidity-routes.json",
+    "predict_house": "assets/analytics/predict-routes.json"
+  },
   "markets": "assets/addresses/markets.json",
   "lp_inspection": {
     "sleeve": {

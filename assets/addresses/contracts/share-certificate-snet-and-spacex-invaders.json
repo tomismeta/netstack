@@ -31,6 +31,12 @@
       "live_chain_verification_status": "not_performed",
       "provenance": [
         {
+          "source_id": "pendle-snet-market-1oct2026",
+          "locator": "inputTokens[1].address and outputTokens[1].address; original sNET, decimals=9",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-18"
+        },
+        {
           "source_id": "netnet-docs-official-channels",
           "locator": "Contract addresses / sNET (staked NET)",
           "evidence_kind": "publisher_registry_or_documentation",
@@ -61,6 +67,12 @@
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
       "provenance": [
+        {
+          "source_id": "pendle-snet-market-1oct2026",
+          "locator": "underlyingAsset.address/decimals; reused sNET-scaled18 underlying identity",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-18"
+        },
         {
           "source_id": "pendle-snet-market-17sep2026",
           "locator": "underlyingAsset.address",

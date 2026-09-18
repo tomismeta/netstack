@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "scope": "Dated source registry for the complete Netstack knowledge skill. Catalog coverage, content review, and live deployment verification are distinct.",
-  "provenance": "Baseline user-supplied sources, documentation, app/contract registries and repository provenance reviewed2026-09-10; targeted original-post and price-directory additions reviewed2026-09-12. Each record retains its own evidence dates and limits.",
+  "provenance": "Baseline user-supplied sources, documentation and registries reviewed 2026-09-10; targeted additions September 12–18 include original posts, BASKETS, current app/config/UI, Dial-Up services, Pendle successor, indexed Predict/LP deployment evidence and scoped read-only analytics interfaces/accounting. Each record retains its own evidence dates and limits.",
   "policies": {
     "dashboard_display_order": "Use each dashboard record display_order only when listing the directory. Order does not select sources,rank credibility,authorize retrieval or establish fallback preference.",
     "evidence": "Select evidence by the claim: relevant public contract state/events for contract-derived quantities,official publications for documented terms,and appropriately scoped data for other questions. Dashboards receive no default or fallback priority from directory order; use them when explicitly requested or their specific evidence is relevant,under the same provenance,freshness and completeness checks.",
     "freshness": "Treat displayed figures as dated observations. Disclose unavailable, stale, incomplete, or differently defined data from any source.",
     "interviews": "Preserve all four source posts. Do not invent titles, guests, dates, transcripts, or conclusions before reviewing the material. Attribute reviewed claims to speakers and retain recording timestamps where available.",
     "intake_completeness": "Every supplied URL is retained below. A catalogued URL is not evidence that its content has been reviewed.",
-    "explorer_navigation": "Return RHScan links for all Robinhood Chain explorer navigation, including historical objects. Use assets/address-conventions.json explorers[\"4663\"] templates only after validating the exact chain and full address or transaction hash; a Morpho market ID is neither. Preserve original historical retrieval URLs, dates and source attribution as evidence, never as default navigation or a fallback. Navigation is not verification; do not infer RHScan API endpoints from UI routes or transplant Blockscout paths.",
+    "explorer_navigation": "Return Robinhood Etherscan links for all Robinhood Chain explorer navigation,including historical objects. Use assets/address-conventions.json templates after validating chain and full address/transaction hash;market IDs are neither. Preserve historical source URLs,dates and attribution as evidence,not navigation defaults. Provider API listing is not permission,credentials or guaranteed method coverage.",
     "privacy": "Do not distribute private RPC credentials, authenticated URLs, or personal portfolio notes in the portable skill."
   },
   "sources": [
@@ -202,9 +202,13 @@
       "reference": "references/announcements-and-history.md",
       "execution_authority": false,
       "related_urls": [
-        "https://x.com/NetNetCap/article/2091525781000434080"
+        "https://x.com/NetNetCap/article/2091521719475585024"
       ],
-      "review_scope": "Original caption and full Quarterly Earnings Report text read, including builder-kit/fee-attribution sections and the complete NAV Pool paragraph describing an engagement product, not a hedge. Recovered from bounded unauthenticated public JSON; response SHA-256 020c4f250c3fe2f8543698c4ebd1d08e104886fc38d1cf74f2c64196794582f7. Images and linked media not separately reviewed; article/status URLs are one publication."
+      "review_scope": "Original caption and full Quarterly Earnings Report text read, including builder-kit/fee-attribution sections and the complete NAV Pool paragraph describing an engagement product, not a hedge. Recovered from bounded unauthenticated public JSON; response SHA-256 020c4f250c3fe2f8543698c4ebd1d08e104886fc38d1cf74f2c64196794582f7. Images and linked media not separately reviewed; article/status URLs are one publication.",
+      "previously_catalogued_url": "https://x.com/NetNetCap/article/2091525781000434080",
+      "article_id": "2091521719475585024",
+      "identity_reviewed_on": "2026-09-14",
+      "identity_note": "Status 2091525781000434080 announces article 2091521719475585024. The previously catalogued status-number /article/ URL is provenance only, not a verified canonical alias."
     },
     {
       "id": "netnet-post-2092135277187989630",
@@ -654,7 +658,7 @@
       "content_review_status": "indexed_bytecode_and_address_metadata_read_not_source_verified",
       "scope": "All six catalogued StockMorphoOracle smart-contract/address endpoints inspected; creation-bytecode tails match exact catalogued stock tokens and equity feeds plus USDG feed/token. Address endpoints report is_verified=false. BoardroomDesk and its referenced adapter 0x55e76ba1f7c7603c27bbdf8dfa1b235f7e512540 expose indexed bytecode but no source bodies. No independent live-chain reads or certified product arithmetic.",
       "source_recovery_limits": "Legacy explorer source endpoint lacked source; checked Sourcify full/partial or contract endpoints returned404. Credit and adapter canonical IPFS metadata retrieval returned429 or timed out. Do not turn missing source into a verified formula or an asserted economic defect.",
-      "navigation_scope": "These URLs identify historical Blockscout API retrieval evidence, not default explorer navigation or RHScan verification. Return RHScan links for the corresponding chain-qualified objects.",
+      "navigation_scope": "These URLs identify historical retrieval evidence,not current explorer navigation or Etherscan verification. Return Robinhood Etherscan links for the corresponding chain-qualified objects.",
       "related_urls": [
         "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x872F9D8955B34e841227a92dE755cd63042Ab7A5",
         "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xD625d488D552775D2867194C618B945E5dDfE097",
@@ -673,7 +677,7 @@
       "observed_on": "2026-09-10",
       "content_review_status": "indexed_verified_source_body_read_not_recompiled_or_live_checked",
       "scope": "Explorer links catalogued MSFT token to this Stock implementation. ERC20ScaledUIUpgradeable balanceOfUI returns Math.mulDiv(balanceOf(account), uiMultiplier(), 1 ether); ordinary transfer accounting remains raw. Source inspection supports the raw/display distinction, not the current beacon implementation, multiplier value or any product oracle's formula.",
-      "navigation_scope": "These URLs identify historical Blockscout API retrieval evidence, not default explorer navigation or RHScan verification. Return RHScan links for the corresponding chain-qualified objects.",
+      "navigation_scope": "These URLs identify historical retrieval evidence,not current explorer navigation or Etherscan verification. Return Robinhood Etherscan links for the corresponding chain-qualified objects.",
       "related_urls": [
         "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xe93237c50d904957cf27e7b1133b510c669c2e74"
       ]
@@ -987,13 +991,14 @@
       "label": "Official NetNet documentation machine-readable index",
       "url": "https://docs.netnet.capital/llms.txt",
       "status": "catalogued",
-      "content_review_status": "index_read_all_24_entries_catalogued",
+      "content_review_status": "index_read_all_25_entries_catalogued",
       "discovery_provenance": [
         {
           "kind": "user_supplied_known_index"
         }
       ],
-      "observed_on": "2026-09-10"
+      "observed_on": "2026-09-18",
+      "review_scope": "Current 25-entry index read; only targeted page bodies re-reviewed on September 18, not all 25 pages."
     },
     {
       "id": "netnet-docs-overview",
@@ -1137,7 +1142,9 @@
         }
       ],
       "observed_on": "2026-09-10",
-      "release_review_status": "retrieved_and_used_for_original_reference_summary_not_a_complete_audit"
+      "release_review_status": "retrieved_and_used_for_original_reference_summary_not_a_complete_audit",
+      "targeted_review_on": "2026-09-18",
+      "targeted_review_scope": "Targeted Credit/router terms rechecked: operating desk differs from pending allocator grant; documented 20% annual depositor ceiling remains, cap review is in preparation, router bound is $250,000 per call with minimum Loopback buffer. No current chain-grant/cap verification."
     },
     {
       "id": "netnet-docs-winnet",
@@ -1329,7 +1336,9 @@
         }
       ],
       "observed_on": "2026-09-10",
-      "release_review_status": "retrieved_and_used_for_original_reference_summary_not_a_complete_audit"
+      "release_review_status": "retrieved_and_used_for_original_reference_summary_not_a_complete_audit",
+      "targeted_review_on": "2026-09-18",
+      "targeted_review_scope": "Targeted scope review: generic older game/Core language does not override product-specific BASKETS referee/relayer or Credit curator risks."
     },
     {
       "id": "netnet-docs-official-channels",
@@ -1345,7 +1354,9 @@
         }
       ],
       "observed_on": "2026-09-10",
-      "release_review_status": "retrieved_and_used_for_original_reference_summary_not_a_complete_audit"
+      "release_review_status": "retrieved_and_used_for_original_reference_summary_not_a_complete_audit",
+      "targeted_review_on": "2026-09-18",
+      "targeted_review_scope": "Targeted BASKETS identity and publisher September 14 opening/deployment date, canonical NET/USDG v2 pair, and CreditRouter pending allocator-grant status rechecked. No complete current-address-table recount or chain verification."
     },
     {
       "id": "netnet-docs-founding-shareholder-guide",
@@ -1552,12 +1563,12 @@
     {
       "id": "robinhood-rhscan",
       "type": "explorer",
-      "label": "RHScan: user-selected Robinhood Chain explorer navigation",
+      "label": "Historical RHScan navigation/source observations",
       "url": "https://rh-scan.com/",
       "observed_on": "2026-09-12",
-      "status": "user_selected_default_navigation",
+      "status": "historical_former_navigation_default",
       "content_review_status": "public_ui_shells_and_object_identity_titles_observed_not_live_data_verified",
-      "scope": "Default explorer navigation for every Robinhood Chain object, including historical addresses and transactions. Public homepage, address route and transaction route inspected without wallet actions; UI shells and object identity titles observed. Use chain-qualified templates in assets/address-conventions.json.",
+      "scope": "Historical homepage,address and transaction UI-shell/identity observations on2026-09-12. Original URLs retained as provenance,not current navigation. Use the current explorer templates for returned object links.",
       "limits": "Dynamic balances, receipts and code were not verified. API documentation explicitly says it is unfinished; no endpoints, API keys, rate limits or stability guarantees established. Do not transplant Blockscout API paths. Earlier Blockscout source evidence is not RHScan verification.",
       "related_urls": [
         "https://rh-scan.com/address/0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
@@ -1573,7 +1584,7 @@
       "url": "https://robinhoodchain.blockscout.com/",
       "status": "catalogued",
       "content_review_status": "link_catalogued_not_content_reviewed",
-      "navigation_scope": "Original published explorer URL retained as historical source provenance. Use RHScan for all current and historical object navigation; this is not a fallback recommendation.",
+      "navigation_scope": "These URLs identify historical retrieval evidence,not current explorer navigation or Etherscan verification. Return Robinhood Etherscan links for the corresponding chain-qualified objects.",
       "discovery_provenance": [
         {
           "source_id": "netnet-docs-official-channels",
@@ -1591,7 +1602,7 @@
       "url": "https://robinhoodchain.blockscout.com/api/v2",
       "status": "catalogued",
       "content_review_status": "link_catalogued_not_content_reviewed",
-      "navigation_scope": "Original API URL retained as historical source provenance, not default explorer navigation or an RHScan endpoint. Do not rewrite this evidence origin onto the RHScan hostname.",
+      "navigation_scope": "These URLs identify historical retrieval evidence,not current explorer navigation or Etherscan verification. Return Robinhood Etherscan links for the corresponding chain-qualified objects.",
       "discovery_provenance": [
         {
           "kind": "local_definition",
@@ -1726,14 +1737,17 @@
       "label": "Pendle sNET market expiring 17 September 2026",
       "url": "https://api-v2.pendle.finance/core/v1/4663/markets/0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
       "status": "catalogued",
-      "content_review_status": "public_json_address_fields_reviewed_not_live_chain_verified",
+      "content_review_status": "public_json_address_expiry_and_active_status_reviewed_not_live_chain_verified",
       "discovery_provenance": [
         {
           "kind": "user_supplied_primary_api",
           "observed_on": "2026-09-10"
         }
       ],
-      "observed_on": "2026-09-10"
+      "observed_on": "2026-09-18",
+      "summary": "Historical market expired 2026-09-17T00:00:00Z; current official API reports isActive=false. Original market/PT/YT identities retained; October 1 successor is a separate record.",
+      "limits": "Publisher API status, not a chain-state, post-maturity liquidity or redemption check.",
+      "previous_observation_on": "2026-09-10"
     },
     {
       "id": "local-contract-registry",
@@ -1811,7 +1825,7 @@
       "id": "netnet-rw-play-article",
       "type": "official_article",
       "label": "RW-Play is the Next Meta",
-      "url": "https://x.com/NetNetCap/article/2086167540674241010",
+      "url": "https://x.com/NetNetCap/article/2086161326884188160",
       "status": "catalogued",
       "content_review_status": "full_visible_article_read",
       "discovery_provenance": [
@@ -1823,7 +1837,14 @@
       ],
       "published_on": "2026-08-08",
       "reviewed_on": "2026-09-10",
-      "reference": "references/rwa-strategy.md"
+      "reference": "references/rwa-strategy.md",
+      "submitted_url": "https://x.com/NetNetCap/article/2086167540674241010",
+      "article_id": "2086161326884188160",
+      "related_urls": [
+        "https://x.com/NetNetCap/status/2086167540674241010"
+      ],
+      "identity_reviewed_on": "2026-09-14",
+      "identity_note": "Article ID and announcement status ID differ. The submitted /article/2086167540674241010 URL is retained only as intake provenance, not a valid canonical article alias. This and the announcement record describe one publication."
     },
     {
       "id": "netnet-rw-play-announcement",
@@ -1840,7 +1861,11 @@
         }
       ],
       "published_on": "2026-08-08",
-      "reviewed_on": "2026-09-10"
+      "reviewed_on": "2026-09-10",
+      "article_id": "2086161326884188160",
+      "related_urls": [
+        "https://x.com/NetNetCap/article/2086161326884188160"
+      ]
     },
     {
       "id": "netnet-play-registry-asset",
@@ -2168,14 +2193,563 @@
       "review_scope": "swap feeProtocol deduction before feeGrowthGlobal increment",
       "reference": "references/lp-fee-inspection.md",
       "limits": "Pinned upstream semantics,not deployed-code equivalence,live fee amounts,security audit or permission to invoke state-changing methods."
+    },
+    {
+      "id": "etherscan-supported-chain-registry",
+      "type": "integration_api",
+      "label": "Etherscan supported-chain registry",
+      "url": "https://api.etherscan.io/v2/chainlist",
+      "observed_on": "2026-09-14",
+      "status": "catalogued",
+      "content_review_status": "provider_chain_registry_entry_reviewed",
+      "scope": "Provider lists Robinhood Chain,chainid4663,blockexplorer https://robin.etherscan.io/,API https://api.etherscan.io/v2/api?chainid=4663,status1. Supported-chain documentation also lists Robinhood including Free Tier availability.",
+      "related_urls": [
+        "https://docs.etherscan.io/supported-chains"
+      ],
+      "limits": "Provider-listed availability,not independently verified indexed data,anonymous API access,method quotas,archive coverage or contract-source equivalence. API use remains subject to host permissions and separately managed credentials."
+    },
+    {
+      "id": "robinhood-etherscan",
+      "type": "explorer",
+      "label": "Robinhood Etherscan: Robinhood Chain explorer navigation",
+      "url": "https://robin.etherscan.io/",
+      "observed_on": "2026-09-14",
+      "status": "user_selected_default_navigation",
+      "content_review_status": "identity_confirmed_from_provider_chain_registry",
+      "discovery_provenance": [
+        {
+          "source_id": "etherscan-supported-chain-registry",
+          "locator": "result entry chainid4663 / blockexplorer"
+        }
+      ],
+      "scope": "Current navigation destination for chain4663 addresses and transactions,including historical objects. Canonical URL templates live in assets/address-conventions.json.",
+      "limits": "Provider identity does not establish readable web pages,indexed completeness,verified source,balance/receipt correctness or API authorization. Original historical explorer evidence retains its own source and date.",
+      "execution_authority": false
+    },
+    {
+      "id": "netnet-post-2099145331459924002",
+      "type": "official_social_post",
+      "label": "Credit isolated-market announcement",
+      "url": "https://x.com/NetNetCap/status/2099145331459924002",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "The account describes launched NetNet Credit on Morpho/Robinhood Chain with isolated tokenized-equity collateral, oracles and risk parameters.",
+      "limits": "Publisher launch claim, not Morpho endorsement, allocator-grant evidence or a universal collateral guarantee.",
+      "execution_authority": false,
+      "source_account": "NetNetCap",
+      "post_id": "2099145331459924002",
+      "published_on": "2026-09-13",
+      "published_at": "2026-09-13T14:37:01Z",
+      "publication_time_precision": "second",
+      "reviewed_on": "2026-09-18",
+      "content_review_status": "original_authored_caption_reviewed",
+      "provenance": "Original NetNetCap caption and publication timestamp recovered through public post JSON; third-party reposts and linked material are not independently reviewed.",
+      "history_group": "product_launches_and_changes",
+      "reference": "references/announcements-and-history.md"
+    },
+    {
+      "id": "netnet-post-2099305368111477227",
+      "type": "official_social_post",
+      "label": "RW-Play composability thesis",
+      "url": "https://x.com/NetNetCap/status/2099305368111477227",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "The account argues that combining lottery, game, trading, character progression and leverage distinguishes crypto-native products from conventional lotteries.",
+      "limits": "Opinion about competitors and future product design, not deployed combined mechanics or inevitable adoption.",
+      "execution_authority": false,
+      "source_account": "NetNetCap",
+      "post_id": "2099305368111477227",
+      "published_on": "2026-09-14",
+      "published_at": "2026-09-14T01:12:57Z",
+      "publication_time_precision": "second",
+      "reviewed_on": "2026-09-18",
+      "content_review_status": "original_authored_caption_reviewed",
+      "provenance": "Original NetNetCap caption and publication timestamp recovered through public post JSON; third-party reposts and linked material are not independently reviewed.",
+      "history_group": "developer_platform_and_roadmap",
+      "reference": "references/announcements-and-history.md"
+    },
+    {
+      "id": "netnet-post-2099507610051363211",
+      "type": "official_social_post",
+      "label": "Treasury and Credit milestone report",
+      "url": "https://x.com/NetNetCap/status/2099507610051363211",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "The account reports Treasury above $17 million in under 60 days, nearly $2 million lent through Credit, and USDG lenders earning over 20% on capital.",
+      "limits": "Unreconciled publisher figures; Treasury scope is not established as Core RFV. The rate wording supplies neither APR/APY basis nor evidence that the documented 20% annual ceiling or caps changed. Image not independently reviewed.",
+      "execution_authority": false,
+      "source_account": "NetNetCap",
+      "post_id": "2099507610051363211",
+      "published_on": "2026-09-14",
+      "published_at": "2026-09-14T14:36:35Z",
+      "publication_time_precision": "second",
+      "reviewed_on": "2026-09-18",
+      "content_review_status": "original_authored_caption_reviewed",
+      "provenance": "Original NetNetCap caption and publication timestamp recovered through public post JSON; third-party reposts and linked material are not independently reviewed.",
+      "history_group": "historical_financial_reporting",
+      "reference": "references/announcements-and-history.md"
+    },
+    {
+      "id": "netnet-post-2099530975189381629",
+      "type": "official_social_post",
+      "label": "Treasury TVL headline",
+      "url": "https://x.com/NetNetCap/status/2099530975189381629",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "The account separately describes Treasury as more than $17 million in TVL.",
+      "limits": "Publisher wording, not an independent TVL calculation or a definition equating Treasury, sleeve-inclusive assets and Core RFV.",
+      "execution_authority": false,
+      "source_account": "NetNetCap",
+      "post_id": "2099530975189381629",
+      "published_on": "2026-09-14",
+      "published_at": "2026-09-14T16:09:26Z",
+      "publication_time_precision": "second",
+      "reviewed_on": "2026-09-18",
+      "content_review_status": "original_authored_caption_reviewed",
+      "provenance": "Original NetNetCap caption and publication timestamp recovered through public post JSON; third-party reposts and linked material are not independently reviewed.",
+      "history_group": "historical_financial_reporting",
+      "reference": "references/announcements-and-history.md"
+    },
+    {
+      "id": "netnet-post-2100641788906099080",
+      "type": "official_social_post",
+      "label": "Treasury above $19 million claim",
+      "url": "https://x.com/NetNetCap/status/2100641788906099080",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "The account reports NetNet Capital Management Treasury value above $19 million.",
+      "limits": "Dated publisher valuation, not independently reconciled reserves, Core RFV or a verified growth series; attached image not separately reviewed.",
+      "execution_authority": false,
+      "source_account": "NetNetCap",
+      "post_id": "2100641788906099080",
+      "published_on": "2026-09-17",
+      "published_at": "2026-09-17T17:43:25Z",
+      "publication_time_precision": "second",
+      "reviewed_on": "2026-09-18",
+      "content_review_status": "original_authored_caption_reviewed",
+      "provenance": "Original NetNetCap caption and publication timestamp recovered through public post JSON; third-party reposts and linked material are not independently reviewed.",
+      "history_group": "historical_financial_reporting",
+      "reference": "references/announcements-and-history.md"
+    },
+    {
+      "id": "netnet-post-2100913543453266186",
+      "type": "official_social_post",
+      "label": "NetNet Predict launch",
+      "url": "https://x.com/NetNetCap/status/2100913543453266186",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "The account announces the first weekly Treasury prediction market as live, with half of fees buying NET and half going to the House Vault.",
+      "limits": "Launch caption does not establish all deployed parameters. Current display combines Treasury and Sleeve, not Core RFV alone; NET buying is not burning or automatic Core revenue.",
+      "execution_authority": false,
+      "source_account": "NetNetCap",
+      "post_id": "2100913543453266186",
+      "published_on": "2026-09-18",
+      "published_at": "2026-09-18T11:43:16Z",
+      "publication_time_precision": "second",
+      "reviewed_on": "2026-09-18",
+      "content_review_status": "original_authored_caption_reviewed",
+      "provenance": "Original NetNetCap caption and publication timestamp recovered through public post JSON; third-party reposts and linked material are not independently reviewed.",
+      "history_group": "product_launches_and_changes",
+      "reference": "references/announcements-and-history.md"
+    },
+    {
+      "id": "netnet-post-2100913545831424358",
+      "type": "official_social_post",
+      "label": "Predict House Vault and trading gates",
+      "url": "https://x.com/NetNetCap/status/2100913545831424358",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "The account describes depositor-backed house participation, weekend trading stops, skew caps and dynamic fees.",
+      "limits": "First-vault-based-market rhetoric is unverified. Fee participation entails losses, queued access and withdrawal timing; it is not protected principal or lending APY.",
+      "execution_authority": false,
+      "source_account": "NetNetCap",
+      "post_id": "2100913545831424358",
+      "published_on": "2026-09-18",
+      "published_at": "2026-09-18T11:43:17Z",
+      "publication_time_precision": "second",
+      "reviewed_on": "2026-09-18",
+      "content_review_status": "original_authored_caption_reviewed",
+      "provenance": "Original NetNetCap caption and publication timestamp recovered through public post JSON; third-party reposts and linked material are not independently reviewed.",
+      "history_group": "product_launches_and_changes",
+      "reference": "references/announcements-and-history.md"
+    },
+    {
+      "id": "netnet-post-2100913560452743628",
+      "type": "official_social_post",
+      "label": "Predict expansion and RW-Play roadmap",
+      "url": "https://x.com/NetNetCap/status/2100913560452743628",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "The account plans more prediction offerings and prediction-dependent RW-Play quests.",
+      "limits": "Future direction, not existing additional markets, launched quests, public SDK availability or a delivery schedule.",
+      "execution_authority": false,
+      "source_account": "NetNetCap",
+      "post_id": "2100913560452743628",
+      "published_on": "2026-09-18",
+      "published_at": "2026-09-18T11:43:20Z",
+      "publication_time_precision": "second",
+      "reviewed_on": "2026-09-18",
+      "content_review_status": "original_authored_caption_reviewed",
+      "provenance": "Original NetNetCap caption and publication timestamp recovered through public post JSON; third-party reposts and linked material are not independently reviewed.",
+      "history_group": "developer_platform_and_roadmap",
+      "reference": "references/announcements-and-history.md"
+    },
+    {
+      "id": "netnet-post-2101004191359475957",
+      "type": "official_social_post",
+      "label": "Future sportsbook casino and self-repaying lending teaser",
+      "url": "https://x.com/NetNetCap/status/2101004191359475957",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "The account teases a sportsbook without wagered principal, a no-risk casino and automatically self-repaying loans packaged for RW-Play.",
+      "limits": "Promotional future claims only: no launched service, implementation, financing model, repayment guarantee or elimination of economic risk established.",
+      "execution_authority": false,
+      "source_account": "NetNetCap",
+      "post_id": "2101004191359475957",
+      "published_on": "2026-09-18",
+      "published_at": "2026-09-18T17:43:28Z",
+      "publication_time_precision": "second",
+      "reviewed_on": "2026-09-18",
+      "content_review_status": "original_authored_caption_reviewed",
+      "provenance": "Original NetNetCap caption and publication timestamp recovered through public post JSON; third-party reposts and linked material are not independently reviewed.",
+      "history_group": "developer_platform_and_roadmap",
+      "reference": "references/announcements-and-history.md"
+    },
+    {
+      "id": "netnet-app-registry-20260918",
+      "type": "official_contract_registry_asset",
+      "label": "Current Shareholder Services bundle: Predict and LP Zap",
+      "url": "https://app.netnet.capital/assets/index-9OJ6-wtv.js",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Targeted registry, Predict live adapter/shared UI/mock model and Add liquidity component review. Predict Desk/Vault carry publisher HUMAN-VERIFIED labels; LP Zap is deployed but app-gated with PLACEHOLDER status pending exemption/promotion.",
+      "limits": "Static source was not executed. Frontend model parameters, mock settlement rules and labels are not verified Solidity or current deployed constants. Historical hashes remain distinct records.",
+      "execution_authority": false,
+      "content_review_status": "targeted_static_registry_adapter_ui_and_mock_paths_reviewed_not_executed",
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-official-app",
+          "discovery": "HTML module script src"
+        }
+      ],
+      "sha256": "379faedc6c6494416fada1208e61dfd0913f2ab399f27a9ba56e5031913fca5d",
+      "targeted_review_on": "2026-09-18",
+      "targeted_review_scope": "Read/event ABI subsets An (Desk), Ot (House), Re (tokens) and _u (v2 pair); HO live adapter versus J7/iI mocks; live queue/notice maturity, House share-price units, million-dollar question display and named fee/cash fields. Supplies assets/analytics/predict-interface.json and house-interface.json; mock counter/settlement transitions are not promoted to deployed formulas.",
+      "reference": "references/products.md"
+    },
+    {
+      "id": "netnet-app-config-20260918",
+      "type": "official_app_configuration",
+      "label": "Current public application feature configuration",
+      "url": "https://app.netnet.capital/app-config.json",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Public config explicitly sets predictEnabled=true, overriding the bundled false default.",
+      "limits": "Feature flag is publisher configuration, not proof of deployed contracts, every route or user eligibility.",
+      "execution_authority": false,
+      "content_review_status": "public_json_feature_flags_read",
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-official-app",
+          "discovery": "application configuration"
+        }
+      ]
+    },
+    {
+      "id": "netnet-predict-ui-20260918",
+      "type": "official_app_route",
+      "label": "Predict trading and House public interface",
+      "url": "https://app.netnet.capital/#/predict",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Public trading and House tabs observed: first binary weekly combined Treasury-plus-Sleeve market, no settled series; House shares fees and losses with queued deposits and withdrawal notices.",
+      "limits": "Time-specific no-wallet UI observation, not solvency reconciliation, settled payout evidence or certified calendar/fee/tie/void behavior. Shared model and mock behavior require separate attribution.",
+      "execution_authority": false,
+      "content_review_status": "public_rendered_trading_and_house_ui_observed_without_wallet",
+      "reference": "references/products.md"
+    },
+    {
+      "id": "netnet-lp-ui-20260918",
+      "type": "official_app_route",
+      "label": "Invest Add liquidity public interface",
+      "url": "https://app.netnet.capital/#/invest",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Shareholder Desk Add liquidity tab offers direct two-token Uniswap v2 provision; one-transaction USDG Zap UI remains gated pending trading-levy exemption.",
+      "limits": "Tab is local interface state, not a separate deep link. Gating does not prove nondeployment or current on-chain exemption; no quote, approval or transaction prepared.",
+      "execution_authority": false,
+      "content_review_status": "public_rendered_add_liquidity_fallback_observed_without_wallet",
+      "reference": "references/products.md"
+    },
+    {
+      "id": "netnet-docs-baskets",
+      "type": "official_documentation",
+      "label": "Grab Desk (BASKETS)",
+      "url": "https://docs.netnet.capital/baskets",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Publisher reports September 14 opening: 2–4-player $100 USDG seats, $25 bag/$50 falling baskets/$25 house allocation, refereed gameplay, separate jackpot, USDG-first settlement and subsequent wallet stock conversion.",
+      "limits": "Documented terms, not chain verification. Untaken baskets go to jackpot, qualifying the 75% floor-return wording; forty baskets is the four-player example. Referee/key risks, timeout-triggered refunds and random-drop versus gameplay fairness remain distinct.",
+      "execution_authority": false,
+      "content_review_status": "targeted_full_page_mechanics_and_risk_review_not_deployment_audit",
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-docs-index",
+          "entry_path": "/baskets"
+        }
+      ],
+      "reference": "references/games.md"
+    },
+    {
+      "id": "pendle-snet-market-1oct2026",
+      "type": "integration_api",
+      "label": "Pendle sNET successor expiring 1 October 2026",
+      "url": "https://api-v2.pendle.finance/core/v1/4663/markets/0xab0093949fefa432bfb1a0ba8943ee4aebc898a8",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Official API lists chain 4663 NetNet market active, expiry 2026-10-01T00:00:00Z, new market/PT/YT and shared SY/accounting/underlying assets; pyUnit=NET and ptEqualsPyUnit=true.",
+      "limits": "API listing is not independently verified deployment, guaranteed liquidity, USD principal protection or proof of PT collateral support. API timestamp/whitelist fields are not certified creation times; feeRate metadata alone does not define a fee on trade principal.",
+      "execution_authority": false,
+      "content_review_status": "public_json_identity_units_expiry_and_status_reviewed_not_live_chain_verified",
+      "data_updated_at": "2026-09-18T19:41:00Z",
+      "reference": "references/integrations.md"
+    },
+    {
+      "id": "netnet-predict-desk-deployment",
+      "type": "explorer_api",
+      "label": "Predict Desk indexed creation",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/transactions/0x3818e3962b7ac67ce80efa73d92d8f67985656c58373927d3be2bd9b49332d8a",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Explorer index reports successful matching contract creation on chain 4663.",
+      "limits": "Indexed public evidence, not an independently fetched RPC receipt or verified Solidity/source-equivalence audit. Creation establishes deployment, not current permissions, exemption, enabled UI or correct operation.",
+      "execution_authority": false,
+      "content_review_status": "indexed_creation_receipt_and_unverified_contract_metadata_reviewed",
+      "chain_id": 4663,
+      "contract_address": "0x7EF9528408D99f98056922291048F0710001e015",
+      "transaction_hash": "0x3818e3962b7ac67ce80efa73d92d8f67985656c58373927d3be2bd9b49332d8a",
+      "block_number": 66174216,
+      "event_at": "2026-09-18T11:03:29Z",
+      "related_urls": [
+        "https://robinhoodchain.blockscout.com/api/v2/addresses/0x7EF9528408D99f98056922291048F0710001e015",
+        "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x7EF9528408D99f98056922291048F0710001e015"
+      ],
+      "navigation_scope": "Original Blockscout API provenance only; return Robinhood Etherscan object links using assets/address-conventions.json."
+    },
+    {
+      "id": "netnet-predict-vault-deployment",
+      "type": "explorer_api",
+      "label": "Predict Vault indexed creation",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/transactions/0x16869b6beca423d3a0dc71b78edadf7038d37e43ace49a508f829b8903c03eef",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Explorer index reports successful matching contract creation on chain 4663.",
+      "limits": "Indexed public evidence, not an independently fetched RPC receipt or verified Solidity/source-equivalence audit. Creation establishes deployment, not current permissions, exemption, enabled UI or correct operation.",
+      "execution_authority": false,
+      "content_review_status": "indexed_creation_receipt_and_unverified_contract_metadata_reviewed",
+      "chain_id": 4663,
+      "contract_address": "0xb488368902b1CbD7533F1536C3F860065398D3e9",
+      "transaction_hash": "0x16869b6beca423d3a0dc71b78edadf7038d37e43ace49a508f829b8903c03eef",
+      "block_number": 66174214,
+      "event_at": "2026-09-18T11:03:29Z",
+      "related_urls": [
+        "https://robinhoodchain.blockscout.com/api/v2/addresses/0xb488368902b1CbD7533F1536C3F860065398D3e9",
+        "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xb488368902b1CbD7533F1536C3F860065398D3e9"
+      ],
+      "navigation_scope": "Original Blockscout API provenance only; return Robinhood Etherscan object links using assets/address-conventions.json."
+    },
+    {
+      "id": "netnet-lp-zap-deployment",
+      "type": "explorer_api",
+      "label": "LP Zap indexed creation",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/transactions/0xf554b130e97fc10e63384c6d685e101a1b80916adbcb51044f200c3445031d1b",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Explorer index reports successful matching contract creation on chain 4663.",
+      "limits": "Indexed public evidence, not an independently fetched RPC receipt or verified Solidity/source-equivalence audit. Creation establishes deployment, not current permissions, exemption, enabled UI or correct operation.",
+      "execution_authority": false,
+      "content_review_status": "indexed_creation_receipt_and_unverified_contract_metadata_reviewed",
+      "chain_id": 4663,
+      "contract_address": "0x455ca67558414929D33Db4e949058165f1338C0d",
+      "transaction_hash": "0xf554b130e97fc10e63384c6d685e101a1b80916adbcb51044f200c3445031d1b",
+      "block_number": 64531671,
+      "event_at": "2026-09-16T13:07:16Z",
+      "related_urls": [
+        "https://robinhoodchain.blockscout.com/api/v2/addresses/0x455ca67558414929D33Db4e949058165f1338C0d",
+        "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x455ca67558414929D33Db4e949058165f1338C0d"
+      ],
+      "navigation_scope": "Original Blockscout API provenance only; return Robinhood Etherscan object links using assets/address-conventions.json."
+    },
+    {
+      "id": "netnet-predict-trade-20260918",
+      "type": "explorer_api",
+      "label": "Predict funded LOWER acquisition and NET-buy fee route",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/transactions/0x1b52872e4a623776abb679d73a29e79bb3da7759ac202deda49f3408b6e160e3",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Successful Desk call: indexed transfers show 25 USDG input, 59.111750805171013696 LOWER #1 minted, 0.317371 USDG sent to canonical NET/USDG pair, NET delivered to TaxCollector and ManagerSleeve.",
+      "limits": "One indexed transaction establishes funded acquisition and NET-buy routing, not a NET burn, complete fee schedule, all fees as Core revenue, audited solvency or successful redemption.",
+      "execution_authority": false,
+      "content_review_status": "indexed_receipt_and_token_transfers_reviewed",
+      "chain_id": 4663,
+      "block_number": 66444363,
+      "event_at": "2026-09-18T18:36:41Z",
+      "navigation_scope": "Historical Blockscout API evidence, not current explorer navigation."
+    },
+    {
+      "id": "netnet-predict-higher-creation-20260918",
+      "type": "explorer_api",
+      "label": "Predict HIGHER #1 series-token indexed evidence",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/transactions/0xcbbe954f0bf2a656f90a3a72246169666251ede98266532bd333bac0c0d712a4",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Successful Desk call with indexed HIGHER #1 mint at 0xE55AEe500Ef58D164cF5c04F24bCB041f315fEe6, block 66433276.",
+      "limits": "Top-level created_contract is null: this source supports series-token mint/name/decimal evidence, not an independently established internal deployment time or verified token Solidity. Outcome token identity is series-specific.",
+      "execution_authority": false,
+      "content_review_status": "indexed_successful_desk_call_and_token_mint_reviewed",
+      "chain_id": 4663,
+      "block_number": 66433276,
+      "event_at": "2026-09-18T18:18:01Z",
+      "navigation_scope": "Historical Blockscout API evidence, not current explorer navigation."
+    },
+    {
+      "id": "netnet-play-registry-20260918",
+      "type": "official_contract_registry_asset",
+      "label": "Current arcade bundle entry",
+      "url": "https://play.netnet.capital/assets/index-Duooacia.js",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Public arcade entry imports the current Dial-Up rules/live modules. Its dialupDesk registry text lists entry delay3s, void grace30s, print grace1500ms and manager-default outflow cap2000bps per600s.",
+      "limits": "Targeted module and desk-registry review, not exhaustive registry enumeration or verified deployed constants. Defaults and grace periods do not establish current allowance, complete refund conditions or successful payouts.",
+      "execution_authority": false,
+      "content_review_status": "targeted_static_imports_and_dialup_registry_reviewed_not_executed",
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-official-play",
+          "discovery": "HTML module script src"
+        }
+      ]
+    },
+    {
+      "id": "netnet-dialup-rules-20260918",
+      "type": "official_app_rules",
+      "label": "Dial-Up current rules and account presentation",
+      "url": "https://play.netnet.capital/assets/dialup-entry-Bdd3ztfM.js",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Current UI offers USDG-only deposits; USDG/sNET/wsNET withdrawals, dynamic roster/ladder/loot reads, wrapped accounting converted to sNET display, and deadline-refund/house-limit notices. Its session-edge label denotes the first/last30minutes of an equity session, distinct from outside-session schedule.",
+      "limits": "Presentation and bundled defaults are not live contract constants or confirmed refunds. House publication/signatures remain settlement dependencies; no guarantee of prize availability.",
+      "execution_authority": false,
+      "content_review_status": "targeted_static_rules_and_ui_paths_reviewed_not_executed",
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-play-registry-20260918",
+          "discovery": "imported module"
+        }
+      ],
+      "indexed_in_llms_txt": false,
+      "reference": "references/games.md"
+    },
+    {
+      "id": "netnet-dialup-live-20260918",
+      "type": "official_app_contract_interface",
+      "label": "Dial-Up current published live interface",
+      "url": "https://play.netnet.capital/assets/dialup-live-CblF-gU-.js",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Deposit handler rejects non-USDG inputs despite legacy branches; published interface uses wsNET accounting and wsToSNet conversion for display. OutflowCapped handling stops retries and presents deadline-return copy.",
+      "limits": "Publisher JavaScript/ABI review, not deployed-source audit, underlying NET-burn proof, current cap-state verification or observed refund transfer.",
+      "execution_authority": false,
+      "content_review_status": "targeted_static_live_adapter_and_abi_reviewed_not_executed",
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-dialup-rules-20260918",
+          "discovery": "imported module"
+        }
+      ],
+      "indexed_in_llms_txt": false,
+      "reference": "references/games.md"
+    },
+    {
+      "id": "netnet-dialup-roster-20260918",
+      "type": "official_app_api",
+      "label": "Dial-Up public roster and artifact snapshot",
+      "url": "https://netnetdialup-server-production.up.railway.app/v1/roster",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "At referenceAt 1789760596956, service reports four crypto markets LIVE and six equity markets PAUSED/session-edge; drum typeId 13 remaining=0. Earlier same-day snapshot reported all ten LIVE.",
+      "limits": "Mutable publisher-service assertions, not chain permission or lifetime totals. Roster/ladder/artifact availability must be read afresh; historical winner does not establish legal identity.",
+      "execution_authority": false,
+      "content_review_status": "public_json_roster_and_artifact_fields_reviewed",
+      "reference_at_ms": 1789760596956,
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-dialup-live-20260918",
+          "discovery": "published public service endpoint"
+        }
+      ],
+      "reference": "references/games.md"
+    },
+    {
+      "id": "uniswap-v2-liquidity-accounting",
+      "type": "integration_source",
+      "label": "Uniswap V2 LP ownership, flow and fee accounting",
+      "url": "https://github.com/Uniswap/v2-core/blob/4dd59067c76dea4a0e8e4bfdda41877a6b16dedc/contracts/UniswapV2Pair.sol",
+      "source_commit": "4dd59067c76dea4a0e8e4bfdda41877a6b16dedc",
+      "status": "catalogued",
+      "reviewed_on": "2026-09-18",
+      "content_review_status": "targeted_accounting_interface_review",
+      "review_scope": "Exact read methods and indexed events; minimum lock and ordinary transfers to zero; balance-derived Swap inputs and 3/1000 nominal input fee; protocol LP mint arithmetic, integer roots and event ordering; factory feeTo changes without events.",
+      "reference": "references/liquidity-analytics.md",
+      "related_urls": [
+        "https://github.com/Uniswap/v2-core/blob/4dd59067c76dea4a0e8e4bfdda41877a6b16dedc/contracts/interfaces/IUniswapV2Pair.sol",
+        "https://github.com/Uniswap/v2-core/blob/4dd59067c76dea4a0e8e4bfdda41877a6b16dedc/contracts/UniswapV2ERC20.sol",
+        "https://github.com/Uniswap/v2-core/blob/4dd59067c76dea4a0e8e4bfdda41877a6b16dedc/contracts/UniswapV2Factory.sol",
+        "https://github.com/Uniswap/v2-core/blob/4dd59067c76dea4a0e8e4bfdda41877a6b16dedc/contracts/interfaces/IERC20.sol",
+        "https://github.com/Uniswap/v2-core/blob/4dd59067c76dea4a0e8e4bfdda41877a6b16dedc/contracts/libraries/Math.sol"
+      ],
+      "limits": "Pinned upstream semantics, not deployed-code equivalence, current fee policy, complete ownership/history, security audit or permission to invoke state-changing methods.",
+      "execution_authority": false
+    },
+    {
+      "id": "netnet-v2-pair-verified-source",
+      "type": "explorer_api",
+      "label": "Canonical NET/USDG pair explorer-published verified source",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x59F95461E68e0c77605299791E1449f175165B54",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "content_review_status": "targeted_verified_source_and_abi_review",
+      "summary": "Explorer publishes verified UniswapV2Pair, contracts/UniswapV2Pair.sol, compiler 0.5.16+commit.9c3226ce, ABI and deployed bytecode. Reviewed adjusted balances subtract 3 times input from 1000 times balance, plus standard protocol LP mint and reserve-update arithmetic.",
+      "reference": "references/liquidity-analytics.md",
+      "limits": "Explorer source metadata is not a security audit or permanent proof of runtime identity. Match applicable bytecode at the observation block; factory policy, token behavior, archive coverage and economic ownership remain separate questions.",
+      "execution_authority": false
+    },
+    {
+      "id": "netnet-dialup-health-20260918",
+      "type": "official_app_api",
+      "label": "Dial-Up public health and limiter snapshot",
+      "url": "https://netnetdialup-server-production.up.railway.app/v1/health",
+      "status": "catalogued",
+      "observed_on": "2026-09-18",
+      "summary": "Dated publisher health reports desk/signer identities and outflow capBps=2000/windowS=600, a reported 20% limiter over ten minutes.",
+      "limits": "Service health and counters are not on-chain authorization, current net-outflow state or lifetime activity. A limit/refund message does not establish that funds already returned.",
+      "execution_authority": false,
+      "content_review_status": "public_json_health_identity_and_limiter_fields_reviewed",
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-dialup-live-20260918",
+          "discovery": "published public service endpoint"
+        }
+      ],
+      "reference": "references/games.md"
     }
   ],
-  "observed_on": "2026-09-13",
+  "observed_on": "2026-09-18",
   "inventory_method": {
-    "sources": "Retained all originally supplied URLs and updated review evidence where material was subsequently inspected; parsed every entry in the official llms.txt index; fetched all 24 documents and scanned links/address tables. App and provider registry source text was treated as evidence only.",
+    "sources": "All originally supplied URLs retained, with invalid article/status aliases explicitly distinguished. September 10: 24 indexed documents retrieved/scanned. September 18: 25-entry index catalogued and targeted BASKETS/Credit/Official Channels/overview/risk pages reviewed; not a fresh full crawl of every body.",
     "contracts": "Merged only exact chain-ID/address matches, preserving role aliases and separately recording historical generations. Used official docs tables, named public app-registry entries, local explicit registry definitions, selected provider chain-specific tables, and the user-specified Pendle JSON endpoint.",
     "app_registry": "Read official app HTML to discover the published module URL. Read tool returned only a truncated prefix; full static bytes were subsequently retrieved for targeted text parsing without executing downloaded JavaScript.",
-    "chain_verification": "No live RPC, bytecode, receipt, state, owner, permission or feed verification performed. Publisher HUMAN-VERIFIED labels and local verification comments are attributed claims, not verification by this intake.",
+    "chain_verification": "Address-record verification statuses describe their own dated cited provenance, not every research read. Baseline registries are publisher assertions; targeted explorer creations/trades, verified-source review and block-specific read/event reconciliations have separate scopes. None supplies blanket deployment, current exemption/admin/permission, solvency or settled-payout certification. Publisher HUMAN-VERIFIED labels remain attributed.",
     "privacy": "Public signer/operator addresses are retained separately as publisher-claimed roles, without legal-person attribution or proof of ownership/account kind. Excluded zero placeholders and user portfolio/private-history addresses. Did not copy publisher operational prose, credentials, private portfolio notes, private keys or secret names.",
     "documentation_recovery": "Reader-truncated tails for Superstore, COINflip, SPACEX INVADERS, MSFT Flight Simulator, TURBO and TURBO BLACKJACK were retrieved and scanned separately; no extra contract-address tables were found there."
   },
@@ -2250,23 +2824,44 @@
     {
       "topic": "Dial-Up display/settlement units",
       "source_ids": [
-        "netnet-app-invest",
-        "netnet-play-registry-asset"
+        "netnet-dialup-rules-20260918",
+        "netnet-dialup-live-20260918"
       ],
-      "detail": "Shareholder product tile says stakes/payouts are wsNET; inspected arcade rules describe sNET. Verify current contract and display/index conversion rather than resolving the unit difference from a label."
+      "detail": "Current published interface accounts in wsNET and converts by index for sNET display, resolving the apparent label conflict at publisher-code level. Deployment arithmetic and underlying NET-burn semantics remain unverified; deposits are USDG-only in the reviewed active handler.",
+      "observed_on": "2026-09-18"
+    },
+    {
+      "topic": "LP Zap deployed versus enabled",
+      "source_ids": [
+        "netnet-app-registry-20260918",
+        "netnet-lp-zap-deployment",
+        "netnet-lp-ui-20260918"
+      ],
+      "observed_on": "2026-09-18",
+      "detail": "Indexed creation corroborates deployment while registry PLACEHOLDER and actual public UI gate the one-transaction Zap. Unconditional no-levy copy describes intended exempt operation, not current tax state; direct Uniswap provision remains distinct."
+    },
+    {
+      "topic": "Historical NAV Pool versus launched Predict",
+      "source_ids": [
+        "netnet-post-2091525781000434080",
+        "netnet-post-2100913543453266186",
+        "netnet-app-registry-20260918"
+      ],
+      "observed_on": "2026-09-18",
+      "detail": "August proposal used backing-per-NET brackets and no house side. Launched Predict presents binary combined Treasury-plus-Sleeve outcomes with depositor-backed house and dynamic fees; do not relabel the proposal as deployed terms."
     }
   ],
   "coverage": {
     "submitted_source_urls_retained": 10,
-    "official_llms_index_entries": 24,
-    "official_llms_index_entries_catalogued": 24,
-    "official_llms_document_bodies_retrieved": 24,
+    "official_llms_index_entries": 25,
+    "official_llms_index_entries_catalogued": 25,
+    "official_llms_document_bodies_retrieved": 25,
     "full_semantic_document_reviews_claimed": 0,
     "live_chain_verified_contracts": 0,
     "registry_boundaries": [
       {
         "source_id": "netnet-docs-official-channels",
-        "coverage": "All 58 contract-address table entries observed in this page."
+        "coverage": "Historical September 10 scan covered all 58 table entries then observed; September 18 targeted BASKETS/Credit/pair review is not a full current-table recount."
       },
       {
         "source_id": "netnet-app-registry-asset",
@@ -2303,6 +2898,18 @@
       {
         "source_id": "netnet-play-registry-asset",
         "coverage": "94 named address/status/source entries parsed: 83 nonzero contract/program entries, ten public operator/signer role entries, one excluded zero placeholder. Adds Subway Runner desk, price verifier and Chainlink verifier proxy beyond the shareholder app registry. App rules are not llms-indexed protocol documentation. A separately discovered runnerHouseSigner alias points to a zero-address PLACEHOLDER and is excluded; no signer address inferred."
+      },
+      {
+        "source_id": "netnet-app-registry-20260918",
+        "coverage": "Targeted Predict Desk/Vault, series-token, LP Zap and dependency/UI paths only; no exhaustive current named-registry inventory."
+      },
+      {
+        "source_id": "netnet-docs-baskets",
+        "coverage": "BasketsDesk identity from Official Channels and published Permit2/shared randomness relationships; no inferred static stock router."
+      },
+      {
+        "source_id": "pendle-snet-market-1oct2026",
+        "coverage": "Successor market/LP, PT/YT and reused SY/accounting/underlying/reward/input/output identities from official API; not a protocol-wide inventory."
       }
     ],
     "gaps": [
@@ -2313,14 +2920,15 @@
       "Morpho app vault read delivered its HTML/metadata shell; live vault data was not reviewed. Provider registry full static Markdown supplied chain-specific tables after reader truncation.",
       "Multicall3 site reader produced raw HTML rather than a usable deployment table; its address remains official-app and local-definition evidence.",
       "A direct Pendle urllib request returned HTTP 403; read tool successfully retrieved full raw public JSON. No market live-chain verification performed.",
-      "Explorer navigation URLs are derived from the RHScan templates in assets/address-conventions.json for all Robinhood Chain objects, including historical ones; links are not verification. RHScan UI shells and address/transaction identities were observed, not dynamic balances, receipts or code; API documentation is unfinished. During earlier feed refinement, the NVDA proxy's public Blockscout smart-contract metadata was inspected for interface context only. That remains historical Blockscout evidence, not RHScan verification; no general explorer badge review or live proxy configuration verification is claimed.",
+      "Current explorer navigation uses Robinhood Etherscan templates;links are not verification. Historical RHScan UI observations and Blockscout source/bytecode reads retain their original dates and origins. Etherscan provider listing does not establish API credentials,quotas,archive coverage or deployed source verification.",
       "No recursive crawl of every linked integration documentation page, GitHub source repository, token, market, historical deployment or future llms.txt version.",
       "Six Stock Token Morpho market IDs are included as bytes32 identifiers, not contract addresses. The wsNET Loopback market ID was not present in the scanned documentation tables and was not inferred.",
-      "Subway Runner and DIAL-UP were discovered in official app bundles but are absent from the 24-entry llms.txt index. Source cataloging and published address extraction do not establish active service status; runnerHouseSigner is a zero placeholder in the inspected bundle."
+      "Subway Runner and DIAL-UP were discovered in official app bundles but are absent from the September 18 25-entry llms.txt index. Source cataloging and published address extraction do not establish active service status; runnerHouseSigner is a zero placeholder in the inspected bundle.",
+      "Predict and LP Zap expose indexed creation/bytecode evidence but no verified Solidity in the reviewed explorer responses. Frontend models and mock settlement paths are not certified deployed behavior; no House withdrawal or settled series inspected."
     ],
     "counts": {
-      "source_records": 128,
-      "contract_records_unique_by_chain_and_address": 174,
+      "source_records": 157,
+      "contract_records_unique_by_chain_and_address": 183,
       "public_role_address_records": 10,
       "trusted_product_mark_relationships": 6,
       "morpho_market_identifiers": 6,
@@ -2333,9 +2941,9 @@
       "source_types": {
         "dashboard": 6,
         "documentation_index": 1,
-        "explorer": 2,
-        "explorer_api": 3,
-        "integration_api": 2,
+        "explorer": 3,
+        "explorer_api": 8,
+        "integration_api": 4,
         "integration_contract_registry": 2,
         "integration_documentation": 2,
         "integration_source": 11,
@@ -2346,15 +2954,17 @@
         "marketplace_api": 2,
         "network_entry_point": 1,
         "nft_collection": 2,
-        "official_app_contract_interface": 2,
+        "official_app_api": 2,
+        "official_app_configuration": 1,
+        "official_app_contract_interface": 3,
         "official_app_or_site": 10,
-        "official_app_route": 6,
-        "official_app_rules": 1,
+        "official_app_route": 8,
+        "official_app_rules": 2,
         "official_article": 2,
         "official_channel": 2,
-        "official_contract_registry_asset": 2,
-        "official_documentation": 24,
-        "official_social_post": 34
+        "official_contract_registry_asset": 4,
+        "official_documentation": 25,
+        "official_social_post": 43
       },
       "contract_records_by_provenance_source_overlapping": {
         "chainlink-robinhood-feed-directory": 37,
@@ -2362,21 +2972,31 @@
         "local-holder-registry": 2,
         "local-turbo-registry": 3,
         "morpho-address-registry-current": 13,
+        "netnet-app-registry-20260918": 3,
         "netnet-app-registry-asset": 84,
+        "netnet-docs-baskets": 2,
         "netnet-docs-credit": 10,
         "netnet-docs-futures": 8,
-        "netnet-docs-official-channels": 58,
+        "netnet-docs-official-channels": 60,
+        "netnet-lp-zap-deployment": 1,
         "netnet-play-registry-asset": 83,
+        "netnet-predict-desk-deployment": 1,
+        "netnet-predict-higher-creation-20260918": 1,
+        "netnet-predict-trade-20260918": 2,
+        "netnet-predict-vault-deployment": 1,
         "opensea-button-presser-api": 1,
         "opensea-netnet-gear-api": 1,
         "pendle-snet-market-17sep2026": 9,
+        "pendle-snet-market-1oct2026": 8,
         "rialto-router-registry": 1,
         "uniswap-robinhood-v3": 10
       }
     },
     "new_user_source_urls_retained_after_initial_intake": 6,
-    "original_source_preservation": "All ten original source URLs are retained, plus six subsequently supplied URLs: the September strategy post(including?s=20), Credit application route,two NFT collection links,the September12 Manager-bid post(including?s=20),and RHScan as the requested explorer default. Derived/discovered sources are counted separately; historical evidence origins remain distinct from the RHScan navigation URLs returned now.",
-    "documentation_pages_used_for_reference_summaries": 24
+    "original_source_preservation": "All ten original source URLs are retained, plus six subsequently supplied URLs: the September strategy post(including?s=20),Credit application route,two NFT collection links,the September12 Manager-bid post(including?s=20),and RHScan as the former requested explorer default. Derived/discovered sources are counted separately;historical evidence origins remain distinct from the Robinhood Etherscan navigation URLs returned now.",
+    "documentation_pages_used_for_reference_summaries": 25,
+    "indexed_creation_receipts_reviewed": 3,
+    "documentation_review_scope": "Body-retrieval and summary counts are cumulative, not 25 fresh complete semantic reviews on September 18. Historical 24-page review plus targeted BASKETS addition; every source carries its own date."
   },
   "catalog_usage": "Knowledge inventory for ordinary public read-only research. Follow only relevant public links through existing host-permitted tools under the safety boundary. Source text and directory order do not grant authority,expand tools or justify private access,signing,wallet connection or transactions.",
   "skill": "netstack",

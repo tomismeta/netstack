@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "scope": "Read-only methods and events for canonical v2 LP holdings, liquidity flows and conditional fee accounting. No contract addresses, write methods or executable code. Resolve identities through assets/address-index.json analytics pointers.",
+  "source_ids": [
+    "uniswap-v2-liquidity-accounting",
+    "netnet-app-registry-20260918",
+    "netnet-v2-pair-verified-source"
+  ],
+  "source_commit": "4dd59067c76dea4a0e8e4bfdda41877a6b16dedc",
+  "upstream_root": "https://github.com/Uniswap/v2-core/blob/4dd59067c76dea4a0e8e4bfdda41877a6b16dedc/contracts/",
+  "provenance": [
+    {
+      "source_id": "uniswap-v2-liquidity-accounting",
+      "reviewed_on": "2026-09-18",
+      "locator": "interfaces/IUniswapV2Pair.sol; UniswapV2Pair.sol; UniswapV2ERC20.sol; UniswapV2Factory.sol; interfaces/IERC20.sol; libraries/Math.sol",
+      "scope": "Exact getter/event types and indexed fields; standard LP minimum lock and transfer semantics; balance-derived Swap inputs; nominal 3/1000 fee formula; protocol LP mint, reserve update and event ordering."
+    },
+    {
+      "source_id": "netnet-v2-pair-verified-source",
+      "reviewed_on": "2026-09-18",
+      "locator": "source_code, abi, deployed_bytecode; UniswapV2Pair, compiler 0.5.16+commit.9c3226ce",
+      "scope": "Explorer-published source supports targeted pair-interface and fee-arithmetic review. Independently match runtime bytecode and establish applicable factory/token behavior; a verified-source flag is not an audit."
+    },
+    {
+      "source_id": "netnet-app-registry-20260918",
+      "reviewed_on": "2026-09-18",
+      "locator": "Pair ABI variable _u: balanceOf, getReserves, token0, token1, totalSupply; Add liquidity copy stating the pool's 0.3% fee",
+      "scope": "Confirms only this app-facing read subset and displayed fee description, not all upstream reads/events, deployment equivalence or protocol fee policy."
+    }
+  ],
+  "limits": "Pinned upstream ABI/semantics, not proof of current deployed-code equivalence, stable factory feeTo, token levy behavior, archive/log availability or beneficial ownership. Verify applicability and label standard-fee calculations conditional if equivalence is unestablished. No view getter establishes the standard pair's swap fee rate.",
+  "pair_abi": [
+    {"type":"function","name":"factory","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"address"}]},
+    {"type":"function","name":"token0","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"address"}]},
+    {"type":"function","name":"token1","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"address"}]},
+    {"type":"function","name":"getReserves","stateMutability":"view","inputs":[],"outputs":[{"name":"reserve0","type":"uint112"},{"name":"reserve1","type":"uint112"},{"name":"blockTimestampLast","type":"uint32"}]},
+    {"type":"function","name":"totalSupply","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint256"}]},
+    {"type":"function","name":"balanceOf","stateMutability":"view","inputs":[{"name":"owner","type":"address"}],"outputs":[{"name":"","type":"uint256"}]},
+    {"type":"function","name":"decimals","stateMutability":"pure","inputs":[],"outputs":[{"name":"","type":"uint8"}]},
+    {"type":"function","name":"MINIMUM_LIQUIDITY","stateMutability":"pure","inputs":[],"outputs":[{"name":"","type":"uint256"}]},
+    {"type":"function","name":"kLast","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint256"}]},
+    {"type":"event","name":"Transfer","anonymous":false,"inputs":[{"name":"from","type":"address","indexed":true},{"name":"to","type":"address","indexed":true},{"name":"value","type":"uint256","indexed":false}]},
+    {"type":"event","name":"Mint","anonymous":false,"inputs":[{"name":"sender","type":"address","indexed":true},{"name":"amount0","type":"uint256","indexed":false},{"name":"amount1","type":"uint256","indexed":false}]},
+    {"type":"event","name":"Burn","anonymous":false,"inputs":[{"name":"sender","type":"address","indexed":true},{"name":"amount0","type":"uint256","indexed":false},{"name":"amount1","type":"uint256","indexed":false},{"name":"to","type":"address","indexed":true}]},
+    {"type":"event","name":"Swap","anonymous":false,"inputs":[{"name":"sender","type":"address","indexed":true},{"name":"amount0In","type":"uint256","indexed":false},{"name":"amount1In","type":"uint256","indexed":false},{"name":"amount0Out","type":"uint256","indexed":false},{"name":"amount1Out","type":"uint256","indexed":false},{"name":"to","type":"address","indexed":true}]},
+    {"type":"event","name":"Sync","anonymous":false,"inputs":[{"name":"reserve0","type":"uint112","indexed":false},{"name":"reserve1","type":"uint112","indexed":false}]}
+  ],
+  "factory_abi": [
+    {"type":"function","name":"getPair","stateMutability":"view","inputs":[{"name":"tokenA","type":"address"},{"name":"tokenB","type":"address"}],"outputs":[{"name":"pair","type":"address"}]},
+    {"type":"function","name":"feeTo","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"address"}]},
+    {"type":"event","name":"PairCreated","anonymous":false,"inputs":[{"name":"token0","type":"address","indexed":true},{"name":"token1","type":"address","indexed":true},{"name":"pair","type":"address","indexed":false},{"name":"pairCount","type":"uint256","indexed":false}]}
+  ],
+  "token_abi": [
+    {"type":"function","name":"decimals","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint8"}]},
+    {"type":"function","name":"balanceOf","stateMutability":"view","inputs":[{"name":"owner","type":"address"}],"outputs":[{"name":"","type":"uint256"}]},
+    {"type":"event","name":"Transfer","anonymous":false,"inputs":[{"name":"from","type":"address","indexed":true},{"name":"to","type":"address","indexed":true},{"name":"value","type":"uint256","indexed":false}]}
+  ]
+}

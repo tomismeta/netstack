@@ -2,7 +2,7 @@
   "contracts": [
     {
       "role": "Zap",
-      "aliases": [],
+      "aliases": ["Managed Futures Zap"],
       "file": "assets/addresses/contracts/zap.json"
     }
   ]

@@ -8,7 +8,7 @@ The [August4 original article](https://x.com/NetNetCap/status/208473195607646661
 
 **NetNet Capital, "RW-Play is the Next Meta," published and updated August 8, 2026.** Full article read through the public X page on September 10, 2026.
 
-- [Canonical article](https://x.com/NetNetCap/article/2086167540674241010)
+- [Canonical article](https://x.com/NetNetCap/article/2086161326884188160)
 - [Original announcement](https://x.com/NetNetCap/status/2086167540674241010)
 
 This is the substantive long-form RW-Play source, not the [September 6 game-launch teaser](https://x.com/NetNetCap/status/2096606360565870888). Preserve the two identities separately. The author posts as NetNet Capital; the announcement is signed "Al." That is not evidence of a legal identity or private-wallet ownership.

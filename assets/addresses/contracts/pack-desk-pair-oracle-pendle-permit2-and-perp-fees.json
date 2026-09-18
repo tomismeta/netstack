@@ -64,7 +64,7 @@
       "chain_id": 4663,
       "address": "0x5e49e1f85813f2b65858860a3fa231b4186f2e0e",
       "role": "PENDLE",
-      "aliases": [],
+      "aliases": ["PENDLE reward token"],
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
@@ -86,6 +86,7 @@
       "aliases": [],
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
+      "lifecycle_notes": "Also publisher-listed as BASKETS' USDG entry spender, distinct from BasketsDesk and the rotating Rialto stock-buy router. This research identity is not an approval recommendation or authorization instruction.",
       "live_chain_verification_status": "not_performed",
       "provenance": [
         {
@@ -93,6 +94,18 @@
           "locator": "Robinhood Chain Addresses table / Permit2",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "BASKETS (18+) / Permit2 (Uniswap's canonical deployment, the entry's spender)",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-18"
+        },
+        {
+          "source_id": "netnet-docs-baskets",
+          "locator": "Parameters / Authorization: exactly $100 USDG through Permit2, valid ten minutes",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-18"
         }
       ]
     },

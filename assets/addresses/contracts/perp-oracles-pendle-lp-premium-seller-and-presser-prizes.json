@@ -48,10 +48,12 @@
       "address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
       "role": "PLP-sNET-17SEP2026",
       "aliases": [
-        "Pendle market / PENDLE-LPT"
+        "Pendle market 17SEP2026",
+        "PENDLE-LPT 17SEP2026"
       ],
       "status": "recorded_from_public_source",
-      "lifecycle_status": "unspecified",
+      "lifecycle_status": "publisher_reported_historical_inactive",
+      "lifecycle_notes": "Official API isActive=false observed 2026-09-18 after the September 17 maturity. Retained historical market/LP identity with maturity-qualified aliases, not an evergreen active-market route. No current redemption or residual-liquidity state independently verified.",
       "live_chain_verification_status": "not_performed",
       "provenance": [
         {
@@ -59,6 +61,12 @@
           "locator": "lp.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "pendle-snet-market-17sep2026",
+          "locator": "address; expiry=2026-09-17T00:00:00Z; isActive=false",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-18"
         }
       ],
       "decimals": 18,

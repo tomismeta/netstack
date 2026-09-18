@@ -1,6 +1,11 @@
 {
   "contracts": [
     {
+      "role": "BasketsDesk",
+      "aliases": ["BASKETS", "Grab Desk"],
+      "file": "assets/addresses/contracts/baskets-desk.json"
+    },
+    {
       "role": "BlackjackDesk",
       "aliases": [
         "blackjackDesk",

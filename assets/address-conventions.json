@@ -1,22 +1,23 @@
 {
   "schema_version": 1,
   "skill": "netstack",
-  "observed_on": "2026-09-12",
+  "observed_on": "2026-09-18",
   "chain_id": 4663,
   "scope": "Published contracts and separately attributed public role addresses; not an audit or independently verified live deployment inventory.",
   "source_catalog": "assets/sources.json",
   "explorers": {
     "4663": {
-      "name": "RHScan",
-      "address_url_template": "https://rh-scan.com/address/{address}",
-      "transaction_url_template": "https://rh-scan.com/tx/{tx_hash}",
-      "source_id": "robinhood-rhscan",
-      "scope": "Use RHScan for all Robinhood Chain explorer navigation, including historical objects. Navigation links are not verification; API routes are not inferred from these UI templates."
+      "name": "Robinhood Etherscan",
+      "address_url_template": "https://robin.etherscan.io/address/{address}",
+      "transaction_url_template": "https://robin.etherscan.io/tx/{tx_hash}",
+      "source_id": "robinhood-etherscan",
+      "scope": "Use Robinhood Etherscan for all Robinhood Chain explorer navigation,including historical objects. Provider-listed for chain4663. Navigation links are not verification or proof of API access;retain original historical source URLs as provenance only."
     }
   },
   "record_notes": {
     "publisher_verification_claim": "An attributed publisher label, not independent live-chain verification by this package. Preserve live_chain_verification_status and lifecycle limits.",
-    "publisher_linked_provenance_urls": "Original publisher hyperlinks retained as source evidence, not default explorer destinations. Return RHScan links for any referenced Robinhood address or transaction using its exact identity; do not transplant provider-specific API paths or query tabs.",
+    "indexed_receipt_evidence": "A successful explorer-indexed creation or trade corroborates only that indexed event and identity. It is not a direct fixed-block RPC audit, verified Solidity source, complete authority review, current activation check or proof of later settlement.",
+    "publisher_linked_provenance_urls": "Original publisher hyperlinks retained as source evidence,not default explorer destinations. Return Robinhood Etherscan links for any referenced Robinhood address or transaction using its exact identity;do not transplant provider-specific API paths or query tabs.",
     "price_feed_metadata": "Publisher-directory provenance is in the parent contract provenance array and covers only the proxy and metadata fields named by its locator, including adjacent feed decimals. It does not establish a token pairing, current round, deployed behavior or NetNet use. Consumer policies and semantics sources remain separately attributed.",
     "netnet_use_evidence": "Directory inclusion alone does not establish NetNet use. Preserve recorded registry/local provenance and status; an empty consumer_policies list means not recorded, not unused. No exhaustive consumer list or exact-token relationship is inferred.",
     "public_role_addresses": "Published role attribution only, not proof of control, beneficial ownership, account kind or authority. No private key or personal portfolio information is included."
@@ -56,14 +57,31 @@
         "netnet-app-registry-asset"
       ],
       "detail": "NetNetGear shared loot collection 0x621342F15f86fd5620c5141D0cc1A6ceFDaE28eE and boardroomLoot library 0x6C2B1e062DA09d18389cC563D75B1e1899F2a02f are separate named contracts, not address aliases. Retired initial NetNetGear deployment is also retained."
+    },
+    {
+      "topic": "LP Zap deployment versus public app availability",
+      "source_ids": [
+        "netnet-app-registry-20260918",
+        "netnet-lp-zap-deployment"
+      ],
+      "detail": "The September 16 indexed creation corroborates the LP Zap address. On September 18 the app registry still labels it PLACEHOLDER and its Add liquidity panel gates the one-transaction route pending levy exemption, offering direct Uniswap provision instead. PLACEHOLDER does not mean undeployed; registry promotion and current on-chain exemption are not independently established."
+    },
+    {
+      "topic": "Predict launch versus historical NAV Pool proposal",
+      "source_ids": [
+        "netnet-app-registry-20260918",
+        "netnet-predict-desk-deployment",
+        "netnet-predict-vault-deployment"
+      ],
+      "detail": "Predict's observed binary market displays combined Treasury and Sleeve and has a depositor-funded House Vault. Do not import backing-per-NET brackets, parimutuel rules or no-house-side assumptions from the older NAV Pool proposal. Series outcome identities do not establish resolver authority, exact tie/void rules or audited vault solvency."
     }
   ],
   "coverage": {
     "canonical_source_coverage": "sources.json#/coverage",
-    "release_content_reviews": "sources.json#/release_reviews",
+    "source_content_reviews": "sources.json#/sources",
     "scope": "Address-specific counts only. Source inventory, extraction boundaries, gaps and content-review status are maintained in the linked source catalog, not duplicated here.",
     "counts": {
-      "contract_records_unique_by_chain_and_address": 174,
+      "contract_records_unique_by_chain_and_address": 183,
       "public_role_address_records": 10,
       "trusted_product_mark_relationships": 6,
       "morpho_market_identifiers": 6,

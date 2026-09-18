@@ -5,9 +5,10 @@
       "chain_id": 4663,
       "address": "0xA1ee052EC32532304a7522bd9A4b594eC28fF1b1",
       "role": "Zap",
-      "aliases": [],
+      "aliases": ["Managed Futures Zap"],
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
+      "lifecycle_notes": "Published under Managed Futures Desk (test program); this identity is not LPZap or the NET/USDG Add liquidity desk. No current operation is inferred from the historical listing.",
       "live_chain_verification_status": "not_performed",
       "provenance": [
         {

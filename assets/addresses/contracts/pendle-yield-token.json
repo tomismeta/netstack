@@ -7,7 +7,8 @@
       "role": "YT-sNET-17SEP2026",
       "aliases": [],
       "status": "recorded_from_public_source",
-      "lifecycle_status": "unspecified",
+      "lifecycle_status": "publisher_reported_historical_matured_market",
+      "lifecycle_notes": "September 17 YT identity retained. Parent market API reports isActive=false observed 2026-09-18; not an evergreen yield token or proof of current claim settlement.",
       "live_chain_verification_status": "not_performed",
       "provenance": [
         {
@@ -15,6 +16,12 @@
           "locator": "yt.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "pendle-snet-market-17sep2026",
+          "locator": "yt.address/expiry; parent isActive=false",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-18"
         }
       ],
       "decimals": 18,

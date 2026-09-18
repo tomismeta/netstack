@@ -4,6 +4,11 @@
       "role": "YT-sNET-17SEP2026",
       "aliases": [],
       "file": "assets/addresses/contracts/pendle-yield-token.json"
+    },
+    {
+      "role": "YT-sNET-1OCT2026",
+      "aliases": [],
+      "file": "assets/addresses/contracts/pendle-snet-1oct2026.json"
     }
   ]
 }

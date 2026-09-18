@@ -1,0 +1,33 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x455ca67558414929d33db4e949058165f1338c0d",
+      "chain_id": 4663,
+      "address": "0x455ca67558414929D33Db4e949058165f1338C0d",
+      "role": "LPZap",
+      "aliases": ["lpZap", "LP Zap", "NET/USDG LP Zap"],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "indexed_deployment_app_gated",
+      "lifecycle_notes": "Deployed per indexed successful creation, not an undeployed zero placeholder. Current published app registry labels lpZap PLACEHOLDER and excludes it from the enabled live configuration. Invest > Add liquidity shows the direct two-token Uniswap fallback pending exemption/promotion. Historical registry taxLegs()==2 is not a current getter result; neither tax exemption nor tax-free public Zap availability is verified. Distinct from the Managed Futures Zap.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-20260918",
+          "locator": "lpZap.address/status/source; SI live configuration gate; FP Add liquidity fallback; published NET/USDG v2 dependencies",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-18"
+        },
+        {
+          "source_id": "netnet-lp-zap-deployment",
+          "locator": "created_contract.hash; result=success; status=ok; block_number=64531671; timestamp=2026-09-16T13:07:16Z; created_contract.is_verified=false",
+          "evidence_kind": "explorer_indexed_transaction",
+          "observed_on": "2026-09-18"
+        }
+      ],
+      "deployment_transaction_hash": "0xf554b130e97fc10e63384c6d685e101a1b80916adbcb51044f200c3445031d1b",
+      "pair_id": "robinhood-0x59f95461e68e0c77605299791e1449f175165b54",
+      "pair_record": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+      "integration_role": "gated_usdg_to_net_usdg_uniswap_v2_lp_zap"
+    }
+  ]
+}

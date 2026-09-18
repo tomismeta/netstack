@@ -2,7 +2,7 @@
 
 **Source/as-of note:** official pages cited here were read on **2026-09-10**. This offline guide summarizes documented mechanics and distinctions; it does not verify live balances, contract permissions, deployment runtime, available inventory, prices or returns. The [address index](../assets/address-index.json) separates exact identities from prose; [Official Channels](https://docs.netnet.capital/official-channels) is the direct official source. Current figures require a dated, scoped observation, not reuse of a launch table.
 
-Selected original announcements through **2026-09-12** are incorporated as attributed, dated evidence in this unpublished working update; they do not establish current execution or override generation-specific product terms.
+Targeted product and source additions through **2026-09-18** are incorporated as attributed, dated evidence. These observations do not refresh every older source, establish all current permissions, or override generation-specific terms.
 
 **Questions answered:** Is RFV market cap? Can every NET immediately redeem at NAV? Do stock holdings back NET? Is rebase APY income? Is nnUSDG cash? Which “Turbo” is meant? How should missing current status and inconsistent documentation be reported?
 
@@ -34,6 +34,9 @@ Selected original announcements through **2026-09-12** are incorporated as attri
 | nnUSDG | Shares in NetNet Credit's curated USDG loan portfolio, exposed to liquidity restrictions and loan losses; not USDG or Treasury-backed NET. | [Credit](https://docs.netnet.capital/credit) |
 | Curator / allocator / sentinel | Credit roles setting risk permissions, allocating within bounds, or cancelling/reducing exposures. Not Core emission-policy governance. | [Credit roles](https://docs.netnet.capital/credit) |
 | tNET / underwriting shares | Valueless futures test margin / shares in the test venue's counterparty equity. No claim on Core Treasury. | [Futures](https://docs.netnet.capital/futures) |
+| Predict / outcome token | A weekly binary prediction market / a series-specific HIGHER or LOWER claim. The app's Treasury + Sleeve display is not Core RFV or backing per NET. | [Predict mechanics and limits](products.md), [launch](https://x.com/NetNetCap/status/2100913543453266186) |
+| House Vault | Predict's depositor-funded house exposure, sharing fees and losses through weekly share prices. Not nnUSDG lending, AMM liquidity or guaranteed USDG principal. | [House Vault](products.md), [announcement](https://x.com/NetNetCap/status/2100913545831424358) |
+| Retail v2 LP / LP Zap | Fungible NET/USDG pool receipt / a separate USDG entry helper. On September 18 the app offered direct Uniswap provision while the deployed Zap remained gated. Pool fees, NET levy and staking distributions are distinct. | [Liquidity provision](products.md), [integration boundaries](integrations.md) |
 | Fee revenue / principal / PnL | A specified earned fee / contributed or returned capital / economic profit or loss. A token transfer or large product volume alone establishes none of these classifications. | Applied accounting distinction from [fees](https://docs.netnet.capital/FEES.HTM), [RWA Desk](https://docs.netnet.capital/rwa-desk), [Credit](https://docs.netnet.capital/credit), [futures](https://docs.netnet.capital/futures) |
 
 ## High-value FAQ
@@ -107,6 +110,18 @@ No. Loopback lenders hold isolated wsNET/USDG loan exposure; nnUSDG holds a cura
 Vault operation, direct Morpho borrowing and router-assisted borrowing are different surfaces. The docs report a vault and first Sleeve loan while **CreditRouter awaits an allocator grant and app stock-borrow buttons are disabled**; wsNET uses Morpho directly. A published address does not prove activation or that the first loan used the router. See [Credit activation](products.md#documented-market-operation-versus-interface-activation).
 
 September 10's **over-100% APR**, **$800,000 deposited** and **over-$1.1-million collateral** promotions do not establish a change to the **20% deployment-time depositor accrual ceiling**, lending caps, actual returns or router permissions. Deposits and collateral are not one reconciled asset series. [Credit](products.md#netnet-credit-a-curated-lender-not-a-replacement-loopback) retains the sources and rate/size distinctions.
+
+### Are the House Vault, NET/USDG LP and staking interchangeable yield products?
+
+No. The **House Vault** underwrites prediction outcomes and can lose capital; queued deposits and withdrawal notices expose participants to weekly results. **NET/USDG v2 LP** owns a changing mix of the two pool assets and earns swap fees, with divergence and NET-levy costs. **sNET/wsNET** represent staking exposure, not either of those claims. USDG-equivalent interface values are not guaranteed USD redemption values. See [Products](products.md) and [Integrations](integrations.md).
+
+### Is Predict the earlier NAV Pool proposal, and do its fees burn NET?
+
+The launched Predict market is not established as the implementation of the historical backing-per-NET, no-house-side NAV Pool proposal. Its observed display combines Treasury and Sleeve; it has a depositor-backed house. The announcement splits fees between NET purchases and the House Vault. An indexed trade supports a NET purchase routed to the Sleeve, **not a burn** or proof that all fees accrue to Core. See [Products](products.md) and [Builders](builders.md).
+
+### Does an LP Zap deployment mean I can use a tax-free one-click deposit?
+
+No. On September 18 the public app's Add liquidity panel still gated the single-transaction desk pending exemption and offered direct two-token Uniswap provision instead, with a levy on the NET leg. Registry promotion, current exemption and user-interface availability are separate observations. Explain the [published design and current limitation](products.md), not executable steps, approvals or transactions.
 
 ### Does “fail closed” stop losses or just operations?
 

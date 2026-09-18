@@ -14,7 +14,7 @@
     },
     {
       "role": "PENDLE",
-      "aliases": [],
+      "aliases": ["PENDLE reward token"],
       "file": "assets/addresses/contracts/pack-desk-pair-oracle-pendle-permit2-and-perp-fees.json"
     },
     {
@@ -45,9 +45,35 @@
     {
       "role": "PLP-sNET-17SEP2026",
       "aliases": [
-        "Pendle market / PENDLE-LPT"
+        "Pendle market 17SEP2026",
+        "PENDLE-LPT 17SEP2026"
       ],
       "file": "assets/addresses/contracts/perp-oracles-pendle-lp-premium-seller-and-presser-prizes.json"
+    },
+    {
+      "role": "PLP-sNET-1OCT2026",
+      "aliases": ["Pendle sNET market 1OCT2026", "PENDLE-LPT 1OCT2026"],
+      "file": "assets/addresses/contracts/pendle-snet-1oct2026.json"
+    },
+    {
+      "role": "PredictDesk",
+      "aliases": ["predictDesk", "NetNet Predict", "Probability Desk"],
+      "file": "assets/addresses/contracts/predict-desk-and-vault.json"
+    },
+    {
+      "role": "PredictVault",
+      "aliases": ["predictVault", "House Vault", "Predict House Vault"],
+      "file": "assets/addresses/contracts/predict-desk-and-vault.json"
+    },
+    {
+      "role": "Predict HIGHER #1",
+      "aliases": ["HIGHER #1", "HI-1"],
+      "file": "assets/addresses/contracts/predict-series-1-outcomes.json"
+    },
+    {
+      "role": "Predict LOWER #1",
+      "aliases": ["LOWER #1", "LO-1"],
+      "file": "assets/addresses/contracts/predict-series-1-outcomes.json"
     },
     {
       "role": "PremiumSeller",
@@ -73,6 +99,11 @@
       "role": "PT-sNET-17SEP2026",
       "aliases": [],
       "file": "assets/addresses/contracts/pendle-principal-token-and-pteam.json"
+    },
+    {
+      "role": "PT-sNET-1OCT2026",
+      "aliases": [],
+      "file": "assets/addresses/contracts/pendle-snet-1oct2026.json"
     },
     {
       "role": "pTEAM",

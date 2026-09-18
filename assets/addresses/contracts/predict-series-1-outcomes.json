@@ -1,0 +1,50 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xe55aee500ef58d164cf5c04f24bcb041f315fee6",
+      "chain_id": 4663,
+      "address": "0xE55AEe500Ef58D164cF5c04F24bCB041f315fEe6",
+      "role": "Predict HIGHER #1",
+      "aliases": ["HIGHER #1", "HI-1"],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "series_specific_indexed_issuance_observed",
+      "lifecycle_notes": "Series #1 outcome only, not an evergreen HIGHER token or a vault share. Indexed token name and mint in a successful PredictDesk call establish the observed series identity; they do not establish current trading, settlement, redemption or verified source. Future series must be resolved separately.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-predict-higher-creation-20260918",
+          "locator": "token_transfers token_minting / token.address_hash, name=Predict HIGHER #1, symbol=HI-1, decimals=18; to.hash=PredictDesk; block_number=66433276",
+          "evidence_kind": "explorer_indexed_transaction",
+          "observed_on": "2026-09-18"
+        }
+      ],
+      "decimals": 18,
+      "series_id": 1,
+      "desk_id": "robinhood-0x7ef9528408d99f98056922291048f0710001e015",
+      "desk_record": "assets/addresses/contracts/predict-desk-and-vault.json"
+    },
+    {
+      "id": "robinhood-0xb1a1e14c586215235f64166fbc093b8d28fce5db",
+      "chain_id": 4663,
+      "address": "0xb1A1E14c586215235F64166FbC093b8d28Fce5DB",
+      "role": "Predict LOWER #1",
+      "aliases": ["LOWER #1", "LO-1"],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "series_specific_indexed_issuance_observed",
+      "lifecycle_notes": "Series #1 outcome only, not an evergreen LOWER token or a vault share. Indexed token name and mint in a successful PredictDesk call establish the observed series identity; they do not establish current trading, settlement, redemption or verified source. Future series must be resolved separately.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-predict-trade-20260918",
+          "locator": "token_transfers token_minting / token.address_hash, name=Predict LOWER #1, symbol=LO-1, decimals=18; to.hash=PredictDesk; block_number=66444363",
+          "evidence_kind": "explorer_indexed_transaction",
+          "observed_on": "2026-09-18"
+        }
+      ],
+      "decimals": 18,
+      "series_id": 1,
+      "desk_id": "robinhood-0x7ef9528408d99f98056922291048f0710001e015",
+      "desk_record": "assets/addresses/contracts/predict-desk-and-vault.json"
+    }
+  ]
+}

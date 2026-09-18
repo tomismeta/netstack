@@ -4,6 +4,11 @@
       "role": "LoopbackOracle",
       "aliases": [],
       "file": "assets/addresses/contracts/loopback-oracle.json"
+    },
+    {
+      "role": "LPZap",
+      "aliases": ["lpZap", "LP Zap", "NET/USDG LP Zap"],
+      "file": "assets/addresses/contracts/lp-zap.json"
     }
   ]
 }
