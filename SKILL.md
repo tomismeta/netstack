@@ -3,8 +3,8 @@ name: netstack
 description: "Read-only NetNet research: protocol, products, live analytics and sources."
 license: MIT
 metadata:
-  compatibility: "Packaged knowledge needs no network, CLI, credentials, or wallet. Fresh public read-only web, explorer, dashboard, API and bounded RPC retrieval may use ordinary host-permitted reader/browser tools; no custom broker is required. This skill does not provision tools or enforce a sandbox."
-  version: "0.3.0-rc.4"
+  compatibility: "Packaged knowledge needs no network, CLI, credentials, or wallet. Optional bounded live analytics use the bundled Python 3.10+ standard-library runner on Linux/macOS with normal host permission. Other public research uses ordinary host-permitted readers; no custom broker is required. This skill does not install tools or enforce a host sandbox."
+  version: "0.3.0"
   knowledge-reviewed: "2026-09-18"
   access: "read-only"
 ---
@@ -31,7 +31,7 @@ This is an independent research aid, not an official NetNet product, investment 
 - Prompt policy is not a sandbox. Claim enforced isolation only with independently demonstrated host controls; such certification is not a prerequisite for ordinary public research.
 
 Read [Safety](references/safety.md) before any live retrieval. [Installation](references/installation.md) distinguishes instruction-level behavior from host-enforced isolation.
-Before live LP, Predict or House analytics, read the shared [execution limits](references/integrations.md#live-analytics-execution-limits): one deadline, snapshot-first retrieval, bounded calls/recovery and an explicit partial answer before timeout. Host approval blocks are not permission to bypass checks.
+Before live LP, Predict or House analytics, read the [runner and execution limits](references/integrations.md#live-analytics-execution-limits). Prefer the reviewed [bundled runner](scripts/analytics.py) with the matching `lp`, `predict` or `house` subcommand when Python and host permission are available; do not generate replacement scripts or probe modules. Pass a collector deadline within the remaining retrieval allowance, preserving answer time. Read coverage and accounting qualifications before interpreting JSON; a partial result is not complete accounting. If execution is denied, report the gate without alternate-command or approval bypasses.
 
 ## When to use
 
@@ -60,7 +60,7 @@ Use `Use netstack: <topic> [question]` or `netstack <topic> [question]`. These s
 
 ## Prerequisites and freshness
 
-The package is self-contained for dated knowledge: no runtime dependencies, executables, installers, hooks, wallet connectors, MCP configuration, telemetry or automatic updates. Sources checked through **2026-09-18** for targeted additions; individual source observations retain their dates. This is not a fresh audit of every product or source.
+The package is self-contained for dated knowledge. Its optional analytics runner uses Python's standard library; no installers, third-party runtime dependencies, hooks, wallet connectors, MCP configuration, telemetry or automatic updates are bundled. Sources checked through **2026-09-18** for targeted additions; individual source observations retain their dates. This is not a fresh audit of every product or source.
 
 Current quantities and availability require fresh evidence at an identified time/block; otherwise answer historically and name the gap. Use public state/events for contract-derived metrics and original publications for documented terms. Dashboards are optional, selected by relevance or explicit request; directory order controls display only, never credibility or fallback.
 

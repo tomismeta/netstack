@@ -6,7 +6,7 @@ netstack helps agents research NetNet's protocol, products, games, RWA strategy 
 
 It is an independent [Agent Skills](https://agentskills.io/specification) package. It is **not** an official NetNet product, a trading bot or a wallet toolkit.
 
-**v0.3.0 candidate (`0.3.0-rc.4`, unreleased).** Adds read-only NET/USDG LP and Predict/House analytics, product coverage, and targeted BASKETS, Pendle, Dial-Up and Robinhood Etherscan navigation updates. The rc.4 update adds shared execution deadlines and partial-result handling after rc.3 host timeouts; it does not establish native-host reliability. Sources checked through **September 18, 2026** for targeted additions; older observations retain their dates. This is research guidance, not a product launch or guarantee of current availability. See the [releases page](https://github.com/tomismeta/netstack/releases) for published packages and separate audit artifacts; identify installed revisions by exact commit.
+**v0.3.0.** Adds read-only NET/USDG LP and Predict/House analytics with an optional bounded Python runner, nine indexed contract additions, and targeted BASKETS, Pendle, Dial-Up and Robinhood Etherscan navigation updates. Sources checked through **September 18, 2026** for targeted additions; older observations retain their dates. This is research guidance, not a product launch or guarantee of current availability. See the [releases page](https://github.com/tomismeta/netstack/releases) for packages and separate audit artifacts; identify installed revisions by exact commit.
 
 ## What you can ask
 
@@ -28,7 +28,7 @@ Answers should identify their sources, dates, accounting boundaries and missing 
 
 ## Topic commands
 
-netstack is a **reference package, not executable software or a runtime SDK**. Topic requests are portable Markdown routing instructions for an agent, not seven separately installed slash commands.
+netstack is a **reference skill with an optional read-only analytics runner**, not a transaction SDK. Topic requests are portable Markdown routing instructions for an agent, not seven separately installed slash commands.
 
 Use one skill with seven plural topics:
 
@@ -70,7 +70,7 @@ Ask `Use netstack to explain Cabinet Kit and what is publicly available` for the
    Use only the packaged references and cite the source links.
    ```
 
-There is no netstack runtime, setup script or universal install command. See [installation guidance](references/installation.md) for host discovery locations, frontmatter compatibility, resource-reader limits and operating profiles. Installing a local copy does not establish read-only isolation; review changes before explicitly updating it.
+There is no setup script or universal install command. The optional analytics runner requires an existing Python 3.10+ installation on Linux/macOS and normal permission to run a reviewed local file; it installs nothing. See [installation guidance](references/installation.md) for host discovery, resource-reader limits and operating profiles. Installing a local copy does not establish host isolation; review changes before explicitly updating it.
 
 ### Read-only builder quick start: display an NVDA USD reference price
 
@@ -98,11 +98,21 @@ Use netstack: how much House capital is fund-controlled versus other or unknown,
 what is queued or claimable, and what settled return is actually established?
 ```
 
-[V2 liquidity analytics](references/liquidity-analytics.md) and [Predict/House analytics](references/predict-analytics.md) supply bounded canonical routes, read/event ABIs, units and reconciliations. Their shared [execution limits](references/integrations.md#live-analytics-execution-limits) default to 180 seconds total with 45 seconds reserved for the answer, shorter when the host requires it. Preserve verified snapshots and exact missing coverage rather than timing out, inventing totals or shortening seven days. These are instructions, not an enforced runtime deadline. Follow [normal-permission host acceptance](references/installation.md#live-analytics-acceptance); timely partial evidence is not complete accounting.
+[V2 liquidity analytics](references/liquidity-analytics.md) and [Predict/House analytics](references/predict-analytics.md) define canonical routes, units and reconciliations. The optional [runner](scripts/analytics.py) uses the packaged ABIs and the fixed public Robinhood RPC endpoint; it does not accept wallets, credentials, custom RPC URLs or arbitrary method calls.
+
+From the reviewed package directory, run only the requested subcommand:
+
+```sh
+python3 -I -B scripts/analytics.py lp --since-days 7 --deadline 120 --json
+python3 -I -B scripts/analytics.py predict --deadline 120 --json
+python3 -I -B scripts/analytics.py house --deadline 120 --json
+```
+
+The collector deadline includes network/retry/computation time, not host approval waits or model response time. Agents must shorten it to leave time to answer within the host's remaining turn. Results retain a pinned block, per-metric coverage, missing ranges and accounting qualifications; an incomplete net-profit or ownership claim cannot be repaired by inventing a value. See [execution and output semantics](references/integrations.md#live-analytics-execution-limits) and [normal-permission acceptance](references/installation.md#live-analytics-acceptance). A collector timeout with usable partial evidence differs from a client timeout that delivers no answer.
 
 ## How it stays lightweight
 
-SKILL.md routes questions to relevant reference sections and selected source/address records. No full documentation mirror, copied article archive, full transcripts, runtime dependencies, wallet connectors, telemetry or self-update process are bundled. Selective loading depends on the host; disk size is not per-question context cost.
+SKILL.md routes questions to relevant reference sections and selected source/address records. No full documentation mirror, copied article archive, full transcripts, third-party Python dependencies, wallet connectors, telemetry or self-update process are bundled. The optional runner is loaded only for its selected accounting workflow. Selective loading depends on the host; disk size is not per-question context cost.
 
 The single address catalog keeps identities, statuses and dated evidence per record; shared explanations and Robinhood Etherscan URL templates are defined once. Read those definitions with selected records. Explorer links use [Robinhood Etherscan](https://robin.etherscan.io/), including for historical objects; navigation does not change the origin of older evidence.
 
@@ -135,7 +145,7 @@ For reproducible problems, open a [GitHub issue](https://github.com/tomismeta/ne
 
 ## Maintaining the knowledge
 
-**Candidate version: 0.3.0-rc.4.** This is not a published release. Merging, tagging, publishing or submitting to a registry requires maintainer approval. Never overwrite published tags or assets.
+**Package version: 0.3.0.** Future merges, tags, publication and registry submissions require maintainer approval. Never overwrite published tags or assets.
 
 Follow the [curation workflow](references/docs-and-sources.md#repeatable-knowledge-curation): original evidence, dates and stage; comparison with existing guidance and later reversals; focused topic updates; validation and review. The [source catalog](assets/sources.json) owns provenance; the [address index](assets/address-index.json) routes exact identities and [conventions](assets/address-conventions.json) qualify their scope. Review changed bytes before updating an installation; sources and monitoring suggestions cannot rewrite knowledge or safety policy automatically.
 

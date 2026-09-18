@@ -17,6 +17,8 @@ Keep a range ledger separately for creation-to-`B` LP-holder discovery and `(A,B
 
 If history cannot finish, return the verified pool snapshot and exact covered/missing ranges promptly. A partially enumerated holder set cannot establish the complete unknown-owner remainder; pool-wide fees cannot establish holder-attributed fees without ownership/supply at each swap. Report these missing results as unavailable, preserving the requested seven-day interval. Current ownership multiplied by historical fees is not a shortcut.
 
+The optional runner's `lp` command stages snapshot, holder replay/reconciliation and seven-day gross fee attribution. Judge those stages separately: complete observed holder/event accounting may still have unknown beneficial owners and net profit. A late server-side result after client timeout is a delivery failure, not a timely partial answer.
+
 ## 2. Exact public interfaces
 
 Decode strict ABI types and lengths; malformed, empty or reverting results are unavailable, not zero. Use exact integers/rationals, not floating-point JSON numbers for raw uint256 values; retain hex or decimal strings across tools that cannot preserve integers above `2^53-1`. Use the ABI asset or encode ordinary RPC calls: selector = first four bytes of Ethereum Keccak-256 of the canonical method signature, followed by 32-byte ABI argument words. `eth_call` receives `{"to":"<resolved address>","data":"<encoded read>"}` and the pinned hexadecimal block number. Never use SHA3-256 in place of Ethereum Keccak-256.

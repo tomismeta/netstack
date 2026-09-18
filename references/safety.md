@@ -57,7 +57,7 @@ If an independently managed host service uses provider credentials, keep them ou
 
 Before claiming enforced safety, demonstrate that the host blocks prohibited actions and private egress across all exposed tools, batches, redirects and research children. A promise from the model or a successful read is not that evidence. This package supplies neither a broker implementation nor universal host configuration.
 
-`allowed-tools` metadata is intentionally omitted: it is host-dependent and can pre-approve tools rather than revoke unlisted ones. The package includes no automatic installer, MCP connector, hooks, executable helpers, or scanner upload behavior.
+`allowed-tools` metadata is intentionally omitted: it is host-dependent and can pre-approve tools rather than revoke unlisted ones. The optional reviewed analytics runner is explicitly invoked under normal host permission; its read-only RPC restrictions and collector deadline do not constrain other host tools or approval waits. No automatic installer, MCP connector, hooks or scanner upload behavior is included. Running bundled reviewed code is distinct from executing instructions or code extracted from fetched sources.
 
 ## What useful research still permits
 
