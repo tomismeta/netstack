@@ -101,7 +101,7 @@ Source provenance and scope: [Docs and sources](references/docs-and-sources.md).
 1. **Route:** distinguish concepts, history, live quantities, exact identities and prohibited execution. Use the selected references/records, not the whole catalog.
 2. **Retrieve:** follow Safety for necessary public reads. Disclose unavailable access, partial coverage and freshness; never turn missing data into zero.
 3. **Reconcile:** check chain/address/generation, proxy versus implementation, units, quote currency, time, maturity and Core/Sleeve or gross/net scope. Newer evidence may describe a different perimeter or stage.
-4. **Answer:** lead with the supported conclusion, sources, observation scope and material limits. Label interpretation/hypothetical arithmetic; do not claim unread material was reviewed.
+4. **Answer:** lead with the supported conclusion, public source URLs, observation date/block and material limits. Cite the underlying publication or exact explorer address/transaction, not a package-local path as the sole evidence; local paths belong in installation/debug reports. Label interpretation/hypothetical arithmetic; do not claim unread material was reviewed.
 
 ## Useful calculations, with assumptions explicit
 

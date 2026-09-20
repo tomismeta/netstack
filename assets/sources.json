@@ -2793,9 +2793,10 @@
         }
       ],
       "related_urls": [
-        "https://play.netnet.capital/"
+        "https://play.netnet.capital/",
+        "https://play.netnet.capital/assets/book-entry-Df7OxyDa.js"
       ],
-      "stability": "Rediscover the current book-entry asset from the stable official entry https://play.netnet.capital/ and its module imports; the recorded hash is dated evidence, not a permanent endpoint.",
+      "stability": "Rediscover the current book-entry asset from the stable official entry https://play.netnet.capital/ and its module imports. A later September 20 read of the original URL returned SPA HTML, not the pinned JavaScript. The supplemental book-entry-Df7OxyDa.js observation and content hash are retained in assets/analytics/book-interface.json; original evidence is not silently repinned.",
       "reference": "references/games.md#the-book",
       "indexed_in_llms_txt": false
     },
@@ -2817,9 +2818,10 @@
         }
       ],
       "related_urls": [
-        "https://play.netnet.capital/"
+        "https://play.netnet.capital/",
+        "https://play.netnet.capital/assets/sportsbook-live-CTDzfCC8.js"
       ],
-      "stability": "Rediscover the current sportsbook-live import through book-entry from the stable official entry https://play.netnet.capital/. Do not execute downloaded application JavaScript to treat it as contract evidence.",
+      "stability": "Rediscover the current sportsbook-live import through book-entry from the stable official entry https://play.netnet.capital/. A later September 20 read of the original URL returned SPA HTML, not the pinned JavaScript; supplemental sportsbook-live-CTDzfCC8.js provenance is retained in assets/analytics/book-interface.json. Do not execute downloaded application JavaScript or infer source verification from a successful HTTP response.",
       "reference": "references/games.md#the-book",
       "indexed_in_llms_txt": false
     },

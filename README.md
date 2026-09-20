@@ -101,7 +101,7 @@ what is queued or claimable, and what settled return is actually established?
 
 [V2 liquidity analytics](references/liquidity-analytics.md) and [Predict/House analytics](references/predict-analytics.md) define canonical routes, units and reconciliations. The optional [runner](scripts/analytics.py) uses the packaged ABIs and the fixed public Robinhood RPC endpoint; it does not accept wallets, credentials, custom RPC URLs or arbitrary method calls.
 
-[THE BOOK](references/games.md#book-snapshot-first) uses a small source-pinned interface and a 30-second collection budget for a snapshot before deeper research—not a timing guarantee or dedicated runner. Separate principal, wagers, results and fee recipients; show native amounts and supported same-block USDG marks, and disclose unavailable evidence. Other public questions remain supported through scoped research.
+[THE BOOK](references/games.md#book-snapshot-first) uses a small source-pinned interface and a paced, sequential snapshot-first recipe—not a dedicated runner. Its 30-second collection budget includes backoff, not end-to-end answer time. Prioritize core state, valuation and bounded placements/fee allocations; selected bet reads are optional. Failed logs remain unknown, and partial coverage stays explicit. Show native amounts and supported same-block USDG marks, with public citations. Other public questions remain supported through scoped research.
 
 From the reviewed package directory, run only the requested subcommand:
 

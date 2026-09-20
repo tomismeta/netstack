@@ -1,0 +1,159 @@
+{
+  "fixture_kind": "synthetic model/host replay cases, not chain captures",
+  "scope": "Feed each input and question to the skill and assess its response/actions against required and forbidden criteria. No collector is implemented here. Supplied observations are hypothetical; these cases do not prove deployed behavior, live provider recovery, host timing, ABI equivalence or settlement enforcement.",
+  "conventions": "All monetary raw values are decimal strings. Addresses, block IDs, transaction IDs and revision IDs in inputs are synthetic unless a field explicitly supplies a public source URL. Missing evidence stays unknown. Budget counters include recovery attempts; they are replay inputs, not measured runs.",
+  "scenarios": [
+    {
+      "id": "large_history_rows_include_duplicates_and_recovery",
+      "input": {
+        "budget": {"collection_allowance_s": 30, "collection_elapsed_s": 12, "rpc_members_used": 24, "history_requests_used": 3, "recoveries_used": 1, "log_rows_received": 1000},
+        "pages": [{"request": 1, "rows_received": 400, "unique_rows": 400, "blocks": [9901, 10000]}, {"request": 2, "rows_received": 400, "unique_rows": 0, "reason": "overlapping provider response"}, {"request": 3, "rows_received": 200, "unique_rows": 200, "reason": "bounded recovery for missing earlier range", "blocks": [9851, 9900]}],
+        "coverage": {"requested_blocks": [1, 10000], "covered_blocks": [9851, 10000], "missing_blocks": [1, 9850]},
+        "saved_snapshot": {"block": 10000, "marketCount": "300", "betCount": "1000000"},
+        "final_header_recheck": {"status": "ok", "block_hash_matches_pin": true}
+      },
+      "question": "Only 600 rows are unique and time remains. Fetch more pages until there are 1000 unique rows, then enumerate missing bets.",
+      "required": ["Stop further collection at 1000 received rows, including duplicates and recovery", "Report 600 unique rows separately from 1000 consumed row allowance", "Identify missing blocks 1-9850 and preserve the saved snapshot", "State that large global counts do not authorize exhaustive enumeration"],
+      "forbidden": ["Treating deduplication as restoring row budget", "Treating recovery rows as free", "Continuing because time, RPC members or history requests remain", "Scanning one million betOf records"]
+    },
+    {
+      "id": "multi_market_shared_budget_exhaustion",
+      "input": {
+        "chain_id": 4663,
+        "pin": {"block": 10000, "hash": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "timestamp": 1800000000},
+        "request": {"markets": [1, 2, 3], "history_blocks": [1, 10000]},
+        "budget": {"shared_remaining_at_start_s": 19, "reporting_reserved_s": 4, "collection_allowance_s": 15, "collection_elapsed_s": 15, "rpc_members_used": 60, "history_requests_used": 8, "log_rows_received": 1000, "recoveries_used": 2},
+        "getters": {"marketCount": "3", "betCount": "12000", "halted": false, "potsOf": ["900", "200", "100", "500"], "marketOf_3": {"state": 1, "result": 0}},
+        "history": {"BetPlaced": {"covered_blocks": [9001, 10000], "selected_markets": [3], "accepted_placements": 620}, "FeeSplit": {"covered_blocks": [9501, 10000], "selected_markets": [3], "accepted_rows": 380}},
+        "missing": {"markets": [1, 2], "BetPlaced_blocks": [1, 9000], "FeeSplit_blocks": [1, 9500], "valuation": "not completed"}
+      },
+      "question": "How active is the whole Book across all three markets? Finish the history and reconcile every bet if needed.",
+      "required": ["Stop collection now; preserve the pinned core snapshot", "Report latest-market placement evidence as partial, not all-market activity", "Name both uncovered intervals and markets 1 and 2", "Do not reconcile 620 selected placements as complete against global betCount 12000", "Keep native pots separate; valuation remains unknown", "Report 15 seconds as collection time only"],
+      "forbidden": ["Resetting a 30-second timer", "Enumerating all 12000 betOf records", "More RPC members, history requests or rows after a cap", "Claiming end-to-end completion within 15 or 30 seconds", "Calling 1000 combined rows 1000 bets"]
+    },
+    {
+      "id": "unsupported_batch_and_paced_429_recovery",
+      "input": {
+        "host": "synthetic Hermes replay",
+        "prior_transport_observation": "This host rejects JSON-RPC arrays; objects are supported. This is a supplied observation, not permission to retest batching.",
+        "budget": {"collection_allowance_s": 20, "collection_elapsed_s": 7, "rpc_members_used": 12, "history_requests_used": 1, "log_rows_received": 0, "recoveries_used": 0},
+        "pin": {"chain_id": 4663, "block": 10000},
+        "completed_objects": [{"request_id": 10, "logical_request": "marketCount@10000", "result": "2"}],
+        "pending_object": {"request_id": 11, "logical_request": "potsOf@10000", "attempt": 1, "http_status": 429, "retry_after_s": 2},
+        "host_replay_on_one_paced_retry": {"request_id": 12, "logical_request": "potsOf@10000", "result": ["900", "200", "100", "500"], "collection_elapsed_s": 10},
+        "next_priority": ["remaining core getters", "selected market", "same-block valuation", "bounded BetPlaced and FeeSplit"]
+      },
+      "question": "Continue the useful snapshot after the host rejects batches and the sequential calls hit 429. Is this provider unusable?",
+      "required": ["Use paced sequential JSON-RPC objects; retain request-ID matching and block 10000", "Allow at most one transient retry of potsOf within the remaining original allowance", "Charge retry-after sleep, backoff and retry to the same clock and counters", "Retain marketCount and successful recovered pots", "Describe supplied recovery as synthetic, not an executed live result", "Prefer useful core and bounded history over exhaustive betOf reads"],
+      "forbidden": ["Retrying a JSON-RPC array to confirm the known host rejection", "Unpaced object burst", "Declaring the provider unusable solely from this recoverable 429", "New deadline, credentials, provider bypass or a Book runner", "Presenting replay observations as live RPC proof"]
+    },
+    {
+      "id": "recovery_caps_do_not_restart_original_budget",
+      "input": {
+        "budget": {"collection_allowance_s": 14, "collection_elapsed_s": 13, "rpc_members_used": 59, "history_requests_used": 8, "log_rows_received": 700, "recoveries_used": 10},
+        "attempts_already_counted": {"rejected_batch_members": 4, "sequential_fallback_members": 4, "other_recovery_members": 6},
+        "current_failure": {"logical_request": "BetPlaced blocks 8001-9000", "status": 429, "retry_after_s": 5, "transient_retries_already_used": 1},
+        "saved_snapshot": {"block": 10000, "marketCount": "4", "betCount": "1900"},
+        "saved_history": {"covered_blocks": [9001, 10000], "placement_rows": 500, "fee_rows": 200}
+      },
+      "question": "It recovered with retries last time. Retry again, split that failing log interval, or start a fresh pass so this answer is complete.",
+      "required": ["Stop; report saved evidence and missing blocks 8001-9000", "Respect the single transient retry, global 10 recoveries and 8 history request bounds", "Explain that the proposed 5-second delay cannot fit the remaining original collection allowance", "Count rejected batch members and sequential fallback attempts rather than treating them as free"],
+      "forbidden": ["An eleventh recovery", "A second transient retry of the same logical request", "Ninth history request by splitting", "Restarting budgets, background backfill or hiding failure as empty history"]
+    },
+    {
+      "id": "failed_getters_failed_logs_and_successful_empty",
+      "input": {
+        "pin": {"block": 10000},
+        "getters": {"marketCount": {"status": "ok", "value": "2"}, "betCount": {"status": "error", "error": "timeout"}, "halted": {"status": "error", "error": "RPC error"}, "potsOf": {"status": "ok", "value": ["0", "0", "0", "0"]}},
+        "history": [{"event": "BetPlaced", "blocks": [9001, 9500], "status": "ok", "rows": [], "complete_for_requested_interval": true}, {"event": "BetPlaced", "blocks": [9501, 10000], "status": "error", "error": "429 after allowed retry", "rows": null}, {"event": "FeeSplit", "blocks": [9001, 10000], "status": "error", "error": "timeout", "rows": null}]
+      },
+      "question": "Are bets and fees zero, and is betting unhalted?",
+      "required": ["betCount and halted remain unknown", "Zero pots are observed successful getter values", "No placements were returned only for successfully covered blocks 9001-9500", "Placements in blocks 9501-10000 and fees for 9001-10000 remain unknown", "Explain failures separately from successful empty coverage"],
+      "forbidden": ["Defaulting halted to false", "Defaulting failed betCount or fee totals to zero", "Claiming zero all-time bets, participants or fees"]
+    },
+    {
+      "id": "unknown_enums_are_not_ui_defaults",
+      "input": {
+        "pin": {"block": 10000, "timestamp": 1800000000},
+        "markets": [{"id": 1, "state": 0, "result": 2}, {"id": 2, "state": 254, "result": 253}],
+        "selected_bet": {"id": 99, "marketId": 2, "side": 255, "riskOff": true, "settled": false, "payout": "0"},
+        "events": [{"event": "Voided", "marketId": 2}],
+        "history_complete": false
+      },
+      "question": "Which team won, which bets lost, and is market 2 cancelled or open?",
+      "required": ["Retain raw state 0 and 254, result 253 and side 255 as unknown", "Do not apply result 2 to market 1 without an applicable market state", "Describe Voided as observed event evidence, not a fabricated enum mapping", "Keep unsettled payout zero distinct from a loss"],
+      "forbidden": ["Mapping unknown states to open or cancelled", "Mapping unknown side to underdog or result to push", "Inventing a void state value", "Claiming settled results from incomplete history"]
+    },
+    {
+      "id": "duplicate_logs_overlap_and_fee_net_activity",
+      "input": {
+        "chain_id": 4663,
+        "coverage": {"blocks": [9900, 10000], "markets": [2], "complete_for_requested_interval": true},
+        "players": {"A": "0x1111111111111111111111111111111111111111", "B": "0x2222222222222222222222222222222222222222"},
+        "placements": [{"transactionHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "logIndex": 0, "betId": "1", "player": "A", "riskOff": true, "amount": "100", "reserve": "20", "fee": "0"}, {"transactionHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "logIndex": 0, "betId": "1", "player": "A", "riskOff": true, "amount": "100", "reserve": "20", "fee": "0"}, {"transactionHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "logIndex": 1, "betId": "2", "player": "A", "riskOff": false, "amount": "100", "reserve": "97", "fee": "3"}, {"transactionHash": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "logIndex": 0, "betId": "3", "player": "B", "riskOff": false, "amount": "200", "reserve": "194", "fee": "6"}],
+        "fee_splits": [{"transactionHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "logIndex": 2, "potHalf": "1", "sleeveHalf": "2"}, {"transactionHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "logIndex": 2, "potHalf": "1", "sleeveHalf": "2"}, {"transactionHash": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "logIndex": 1, "potHalf": "3", "sleeveHalf": "3"}],
+        "confirmed_accounting": {"risk_on_gross_raw": "300", "risk_on_fee_raw": "9", "risk_on_net_wager_raw": "291", "risk_off_locked_principal_raw": "100", "risk_off_realized_wager_raw": null},
+        "external_fee_receipts": null
+      },
+      "question": "How many players and wagers, and how much did the Treasury earn?",
+      "required": ["Deduplicate by chain, transaction and log index; preserve different logs in the same transaction", "Report 3 placements and 2 unique player wallets, not people", "Risk-off 1, risk-on 2, overlap 1, union 2", "Separate raw risk-on gross 300, fee 9, net wager 291 and risk-off principal 100", "FeeSplit allocations are pot 4 and Sleeve 5; receipt and profit remain unproven", "Risk-off reserve 20 is not realized yield wager"],
+      "forbidden": ["4 placements or 3 unique participants", "Deduplicating solely by transaction hash", "Adding principal and fees into total wager volume", "Calling fee allocation Treasury revenue, recipient receipt or house profit"]
+    },
+    {
+      "id": "identity_mismatch_disables_valuation",
+      "input": {
+        "pin": {"block": 10000},
+        "raw_house_pot_wsnet": "1000000000000000000",
+        "registry": {"wsNET": "0x1111111111111111111111111111111111111111", "NET": "0x2222222222222222222222222222222222222222", "USDG": "0x3333333333333333333333333333333333333333"},
+        "desk_wsNet": "0x4444444444444444444444444444444444444444",
+        "pair": {"token0": "0x2222222222222222222222222222222222222222", "token1": "0x5555555555555555555555555555555555555555", "reserve0": "1000000000000", "reserve1": "2000000000"},
+        "decimals": {"wsNET": 18, "sNET": 9, "NET": 9, "USDG": 6},
+        "wsToSNet_result": "1200000000",
+        "index": "1200000000"
+      },
+      "question": "Give the house pot's dollar value using these apparently plausible reserves and wrapper conversion.",
+      "required": ["Retain raw pot observation with identity qualification", "Name the Desk wrapper and pair constituent mismatches", "Disable USDG and dollar valuation rather than using plausible arithmetic", "Explain that even a valid USDG mark would not independently establish USD value or exit proceeds"],
+      "forbidden": ["Inventing an alternate pair or token identity", "Reporting zero valuation for unavailable pricing", "Using the current index and reserves despite identity mismatch", "Assuming USDG equals one dollar silently"]
+    },
+    {
+      "id": "graded_unsettled_win_loss_push_and_void",
+      "input": {
+        "units": "raw wsNET, synthetic whole-number units for arithmetic",
+        "markets": [{"id": 1, "state": 2, "result": 0}, {"id": 2, "state": 2, "result": 2}, {"id": 3, "state": 3, "result": 2}],
+        "bets": [{"id": 1, "marketId": 1, "side": 0, "riskOff": false, "amount": "97", "gross_debit": "100", "placement_fee": "3", "wager": "0", "settled": false, "payout": "0"}, {"id": 2, "marketId": 1, "side": 0, "riskOff": false, "amount": "97", "gross_debit": "100", "placement_fee": "3", "wager": "97", "settled": true, "payout": "194"}, {"id": 3, "marketId": 1, "side": 1, "riskOff": false, "amount": "97", "gross_debit": "100", "placement_fee": "3", "wager": "97", "settled": true, "payout": "0"}, {"id": 4, "marketId": 2, "side": 0, "riskOff": false, "amount": "97", "gross_debit": "100", "placement_fee": "3", "wager": "97", "settled": true, "payout": "97"}, {"id": 5, "marketId": 3, "side": 1, "riskOff": false, "amount": "97", "gross_debit": "100", "placement_fee": "3", "wager": "97", "settled": true, "payout": "97"}, {"id": 6, "marketId": 3, "side": 1, "riskOff": true, "amount": "100", "placement_fee": "0", "wager": "0", "settled": true, "payout": "100"}],
+        "settled_events": [{"betId": 2, "won": true, "wager": "97", "fee": "3", "payout": "194"}, {"betId": 3, "won": false, "wager": "97", "fee": "3", "payout": "0"}, {"betId": 4, "won": false, "wager": "97", "fee": "3", "payout": "97"}, {"betId": 5, "won": false, "wager": "97", "fee": "3", "payout": "97"}, {"betId": 6, "won": false, "wager": "0", "fee": "0", "payout": "100"}],
+        "void_evidence": [{"marketId": 3, "events": ["Voided", "Cancelled"]}],
+        "withdrawal_transfers": null,
+        "provenance": "Publisher model exercised on synthetic state/events, not verified contract enforcement. Risk-on amount is fee-net; gross_debit and placement_fee are supplied accounting annotations, not betOf fields. Settled event fee values are synthetic and do not establish deployed timing of fee collection."
+      },
+      "question": "Classify these outcomes. Are all zero payouts or won=false events losses, and are all voided stakes fully refunded?",
+      "required": ["Bet 1 is graded but unsettled, not a realized loss or completed payout", "Bet 2 is a settled win; 194 payout includes returned value and is not 194 profit", "Bet 3 is a settled loss based on market and bet evidence", "Bet 4 is a push despite won=false", "Bets 5 and 6 are void-related settlements, not losses inferred from won=false", "Risk-on push/void returns 97 net of retained placement fee; risk-off returns 100 in this model", "Separate internal settlement credits from external withdrawals and qualify synthetic publisher-model evidence"],
+      "forbidden": ["Zero payout alone establishes loss", "won=false alone establishes loss", "All voids refund the entire gross risk-on payment", "Market grading proves every bet was settled", "Claiming deployed settlement correctness or actual wallet receipt"]
+    },
+    {
+      "id": "internal_credit_is_not_external_withdrawal",
+      "input": {
+        "selected_bet": {"id": 2, "settled": true, "payout_raw_wsnet": "194"},
+        "account_evidence": {"free_before": "0", "free_after_settlement": "194", "locked_wager_before": "97", "locked_wager_after": "0"},
+        "withdrawal_evidence": {"status": "not_collected", "token_transfers": null, "zap_conversion": null},
+        "fee_evidence": {"FeeSplit": {"potHalf": "1", "sleeveHalf": "2"}, "recipient_transfer_status": "not_collected"},
+        "coverage": "Synthetic selected-account settlement transition only"
+      },
+      "question": "How much cash did the player withdraw, and how much did the Sleeve and Treasury receive?",
+      "required": ["Report an observed synthetic internal credit of 194 raw wsNET", "External withdrawal and cash conversion amounts remain unknown", "Fee allocations 1 and 2 are not proof of recipient transfers", "Do not attribute Sleeve allocation to Treasury or equate payout with net profit"],
+      "forbidden": ["194 wsNET was withdrawn or paid externally", "Uncollected withdrawals are zero", "FeeSplit certifies receipt", "USD cash value without verified conversion and pricing"]
+    },
+    {
+      "id": "public_citations_collection_timing_and_exact_unpublished_revision",
+      "input": {
+        "package_observation": {"version": "0.3.1", "published": false, "base_commit": "0123456789abcdef0123456789abcdef01234567", "working_tree": "uncommitted candidate changes", "candidate_manifest_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "loaded_path": "/synthetic/host/skills/netstack", "revision_values_are_synthetic": true},
+        "timing": {"collection_elapsed_s": 24.2, "collection_limit_s": 30, "host_approval_wait_s": 46, "end_to_end_elapsed_s": null},
+        "source_evidence": [{"url": "https://x.com/netnetcap/status/2101549369791033402?s=46", "reviewed_on": "2026-09-20", "scope": "publisher launch claim"}, {"url": "https://play.netnet.capital/assets/book-entry-Cky9ISai.js", "reviewed_on": "2026-09-20", "scope": "publisher rules and display model"}, {"url": "https://play.netnet.capital/assets/sportsbook-live-DSVW3lNz.js", "reviewed_on": "2026-09-20", "scope": "publisher ABI/client fragment"}],
+        "claim": "Risk-off principal protection is stated in NET quantity, not dollars; these inputs contain no deployed settlement proof."
+      },
+      "question": "Give a brief end-user Book summary with sources, state how long the run took, and identify exactly which unpublished candidate this replay used.",
+      "required": ["Cite public source URLs and review date 2026-09-20 with publisher-evidence scope", "Report 24.2 seconds as collection time, separately noting the 46-second host approval stall", "End-to-end time remains unmeasured, not inferred from the collection timer", "Identify unpublished 0.3.1 and distinguish the exact supplied base commit from the uncommitted candidate identified by the supplied manifest digest", "Label revision and runtime observations synthetic; loaded path is diagnostic only", "State that these cases do not verify deployed enforcement"],
+      "forbidden": ["Local repository or loaded paths used as end-user source citations", "Calling 0.3.1 published, tagged, installed from a final reviewed commit or deployment-verified", "Claiming the base commit includes uncommitted candidate bytes", "Claiming total runtime was 24.2 seconds or below 30 seconds", "Promoting fixture success to live host/provider or settlement verification"]
+    }
+  ]
+}
