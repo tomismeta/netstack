@@ -121,10 +121,10 @@ The single address catalog keeps identities, statuses and dated evidence per rec
 
 ## What's covered
 
-The baseline documentation snapshot is dated **2026-09-10**, with September 18 updates and targeted **2026-09-20 THE BOOK and Loopback reviews**. Existing observations retain their own dates; inventory totals do not establish current on-chain state.
+The baseline documentation snapshot is dated **2026-09-10**, with September 18 updates and targeted **2026-09-20 THE BOOK, Loopback and official Sleeve accounting reviews**. Existing observations retain their own dates; inventory totals do not establish current on-chain state.
 
 - **25 indexed official documentation pages** represented cumulatively through original summaries and source references, not all freshly re-read on September 18.
-- **165 source records**, including original announcements, strategy/report articles, documentation, integrations, dashboards, feed metadata, scoped explorer evidence and pinned accounting interfaces.
+- **166 source records**, including original announcements, strategy/report articles, documentation, integrations, dashboards, feed metadata, scoped explorer evidence and pinned accounting interfaces.
 - **185 distinct contract-address records**, including **37 underlying feeds**: 35 Robinhood-labelled RWA candidates plus ETH/USD and USDG/USD. Two RWA classifications and 29 additional token relationships remain unverified; the six existing exact mappings retain their original provenance.
 - Five substantive strategy/report articles and four interview source posts, plus curated original product and policy announcements. Interview descriptions and available chapter notes were reviewed; full recordings/transcripts were not.
 

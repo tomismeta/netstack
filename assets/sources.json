@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "scope": "Dated source registry for the complete Netstack knowledge skill. Catalog coverage, content review, and live deployment verification are distinct.",
-  "provenance": "Baseline user-supplied sources, documentation and registries reviewed 2026-09-10; targeted additions September 12–18 include original posts, BASKETS, current app/config/UI, Dial-Up services, Pendle successor, indexed Predict/LP deployment evidence and scoped read-only analytics interfaces/accounting. September 20 adds THE BOOK announcement, app registry/rules/interface and indexed deployment metadata, plus Loopback interface discovery and a bounded fixed-block market-identity observation. Each record retains its own evidence dates and limits.",
+  "provenance": "Baseline user-supplied sources, documentation and registries reviewed 2026-09-10; targeted additions September 12–18 include original posts, BASKETS, current app/config/UI, Dial-Up services, Pendle successor, indexed Predict/LP deployment evidence and scoped read-only analytics interfaces/accounting. September 20 adds THE BOOK announcement, app registry/rules/interface and indexed deployment metadata, Loopback interface discovery and a bounded fixed-block market-identity observation, plus source-pinned official Reports Sleeve memo methodology. Each record retains its own evidence dates and limits.",
   "policies": {
     "dashboard_display_order": "Use each dashboard record display_order only when listing the directory. Order does not select sources,rank credibility,authorize retrieval or establish fallback preference.",
     "evidence": "Select evidence by the claim: relevant public contract state/events for contract-derived quantities,official publications for documented terms,and appropriately scoped data for other questions. Dashboards receive no default or fallback priority from directory order; use them when explicitly requested or their specific evidence is relevant,under the same provenance,freshness and completeness checks.",
@@ -2866,6 +2866,33 @@
       "navigation_scope": "Original Blockscout provenance only; return Robinhood Etherscan object links using assets/address-conventions.json."
     },
     {
+      "id": "netnet-reports-sleeve-methodology-20260920",
+      "type": "official_app_contract_interface",
+      "label": "Official Reports Sleeve memo composition and live valuation reads",
+      "url": "https://app.netnet.capital/assets/index-CbWQFNbN.js",
+      "status": "catalogued",
+      "observed_on": "2026-09-20",
+      "content_sha256": "5f8f4d296f59969b4cbbbb303cde322a9128ca80ebafef8ddb67b3095c9e5004",
+      "content_review_status": "targeted_static_live_adapter_and_reports_formula_reviewed_not_executed",
+      "targeted_review_scope": "mI live getSleeve and managerSleeve selection; Ot sharesOf/assetsOf; uI potsOf tuple; tF Reports composition, valuation, custody wording and gates; live snapshot index/TWAP producers; LP selection and TURBO pot versus liability-netted accounting. Not a full bundle or deployed-source audit.",
+      "summary": "Reports adds base holdings with scoped stock-Credit debt deductions, valued LP principal, gross TURBO pots, the Sleeve's PredictVault assetsOf claim and the full SportsBookDesk housePot marked as wsNET quantity times dividendIndex times marketPriceUsdg. The app derives free as max(housePotWs-reservedWs,0), without proving equality to freePot(). Player lockedWagers/lockedPrincipal are not added. Predict is labelled at the last struck share price. Despite the Book row's spot label, the live snapshot uses pairOracle.twapNetUsdg() and sNet.index()/1e9. Combined RFV/NAV remain memo presentations outside contractual Core backing.",
+      "limits": "Source methodology, not current reconciled balances, deployed enforcement, solvency or immediate withdrawability. Book exposure is off-wallet wsNET, not Safe NET; USDG marks do not prove USD parity or exit proceeds. Registry status gates can silently omit components, including both Credit collateral and debt, without triggering the Predict/Book verified-entry failure sentinels. Failed balances, conversions, index or marks can become zero; research must preserve unknowns. LP coverage is four registry pools at tier500, excludes skipped positions/uncollected fees; TURBO pots exclude unswept fees and are gross of open CALL/PUT liabilities. Older wallet-plus-LP-plus-TURBO prose omits Predict/Book terms in the actual total.",
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-official-app",
+          "discovery": "Official entry module script src, followed by targeted live-adapter and Reports component text inspection"
+        }
+      ],
+      "related_urls": [
+        "https://app.netnet.capital/#/reports",
+        "https://docs.netnet.capital/treasury",
+        "https://docs.netnet.capital/rwa-desk"
+      ],
+      "stability": "Rediscover the current module script from https://app.netnet.capital/ if the hashed asset rotates. Retain this dated content hash; inspect public source text without executing extracted JavaScript.",
+      "reference": "references/rwa-strategy.md#official-reports-sleeve-memo-methodology",
+      "execution_authority": false
+    },
+    {
       "id": "netnet-app-loopback-interface-20260920",
       "type": "official_app_contract_interface",
       "label": "Loopback published router and Morpho identity read interfaces",
@@ -2966,7 +2993,7 @@
   ],
   "observed_on": "2026-09-18",
   "inventory_method": {
-    "sources": "All originally supplied URLs retained, with invalid article/status aliases explicitly distinguished. September 10: 24 indexed documents retrieved/scanned. September 18: 25-entry index catalogued and targeted BASKETS/Credit/Official Channels/overview/risk pages reviewed; not a fresh full crawl of every body.",
+    "sources": "All originally supplied URLs retained, with invalid article/status aliases explicitly distinguished. September 10: 24 indexed documents retrieved/scanned. September 18: 25-entry index catalogued and targeted BASKETS/Credit/Official Channels/overview/risk pages reviewed; not a fresh full crawl of every body. September 20 includes a targeted, content-pinned official Reports Sleeve memo methodology review, not an independently reproduced current balance sheet.",
     "contracts": "Merged only exact chain-ID/address matches, preserving role aliases and separately recording historical generations. Used official docs tables, named public app-registry entries, local explicit registry definitions, selected provider chain-specific tables, and the user-specified Pendle JSON endpoint.",
     "app_registry": "Read official app HTML to discover the published module URL. Read tool returned only a truncated prefix; full static bytes were subsequently retrieved for targeted text parsing without executing downloaded JavaScript.",
     "chain_verification": "Address-record verification statuses describe their own dated cited provenance, not every research read. Baseline registries are publisher assertions; targeted explorer creations/trades, verified-source review and block-specific read/event reconciliations have separate scopes. None supplies blanket deployment, current exemption/admin/permission, solvency or settled-payout certification. Publisher HUMAN-VERIFIED labels remain attributed.",
@@ -3156,7 +3183,7 @@
       "Predict and LP Zap expose indexed creation/bytecode evidence but no verified Solidity in the reviewed explorer responses. Frontend models and mock settlement paths are not certified deployed behavior; no House withdrawal or settled series inspected."
     ],
     "counts": {
-      "source_records": 165,
+      "source_records": 166,
       "contract_records_unique_by_chain_and_address": 185,
       "public_role_address_records": 10,
       "trusted_product_mark_relationships": 6,
@@ -3186,7 +3213,7 @@
         "nft_collection": 2,
         "official_app_api": 2,
         "official_app_configuration": 1,
-        "official_app_contract_interface": 5,
+        "official_app_contract_interface": 6,
         "official_app_or_site": 10,
         "official_app_route": 8,
         "official_app_rules": 3,

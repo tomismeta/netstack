@@ -116,6 +116,39 @@ The [RWA Desk disclosure](https://docs.netnet.capital/rwa-desk) and [Treasury re
 
 Do not add tokenized equities to Core NAV because the August 8 article calls the strategy an RWA accumulation fund.
 
+## Official Reports Sleeve memo methodology
+
+The [official Reports page](https://app.netnet.capital/#/reports) includes off-wallet positions, not just the Safe's token balances. A **September 20, 2026 targeted source review** of its [published application bundle](https://app.netnet.capital/assets/index-CbWQFNbN.js), source `netnet-reports-sleeve-methodology-20260920`, established the following **publisher display methodology**, not an independently reconciled current balance sheet or deployed-contract audit.
+
+```text
+Sleeve total (memo)
+  = base holdings, including the negative Credit borrowing entry
+  + liquidity positions
+  + TURBO desk pots
+  + Predict House Vault assets attributable to the Sleeve
+  + THE BOOK house pot marked through the sNET index and Reports' NET price input
+```
+
+| Component | Reviewed source treatment |
+|---|---|
+| Base holdings | Stock-token balances and USDG cash in the Sleeve account; nnUSDG deposit converted with `convertToAssets`; posted stock collateral; less the separately calculated USDG debt across the six stock Credit markets. Wallet stock and posted collateral are distinct locations, not duplicate balances. This is the reviewed perimeter, not proof that every possible asset or liability is covered. |
+| Liquidity positions | Adds valued LP principal separately from wallet balances, excluding uncollected fees. The reviewed adapter supports the NVDA, AAPL, SPCX and GOOGL registry pools at fee tier `500` (0.05%); other positions are skipped, and Reports does not display that skipped count. Stock/USDG held by a pool is represented by the Sleeve's position claim; do not also count the pool's full balances. |
+| TURBO desk pots | Adds the desk-pot total, including free/reserved components at marks, **gross of open CALL/PUT liabilities**. This is not the separate TURBO analytics net “Books” calculation, which deducts liability terms and has its own fee treatment. Unswept fee buckets are excluded from the Reports pot total. Assets absent from its price map are skipped; neither omitted assets nor unpaid fees become zero-valued known holdings. |
+| Predict House Vault deposit | The live adapter reads `sharesOf(managerSleeve)` and `assetsOf(managerSleeve)` on PredictVault. The row uses `assetsOf / 10^6`, labelled **“USDG at the last struck share price.”** This is the Sleeve's vault claim, not all vault capital, direct wallet cash, or proof of immediate redemption. Queue/notice/claim states require separate [House accounting](predict-analytics.md#5-house-capital-ownership-queues-and-claims); do not assume this one row exhausts them or add shares and their asset equivalent. |
+| THE BOOK house pot | Reads `SportsBookDesk.potsOf()`: `housePot`, `reservedTotal`, `lockedWagers`, `lockedPrincipal`. The Reports adapter normalizes the first two by `10^18`, derives `free = max(housePotWs − reservedWs, 0)`, and marks **the full house pot** as `housePotWs × dividendIndex × marketPriceUsdg`. It does not add player locked wagers or locked principal. |
+
+**Book reservation and custody:** the app's derivation treats reserved cover as part of `housePot`, not an additional holding. To reproduce this memo, neither add the reserve again nor substitute only the derived free pot; present total/free/reserved separately. Compare against the independent `freePot()` getter before asserting deployed equality; the reviewed records do not establish it, and the app's clamp can hide `reservedTotal > housePot`. The position is **wsNET held in THE BOOK**, not evidence of a large direct NET balance in the Sleeve Safe. Its index-derived NET equivalent is a valuation step, not another holding. House capital is not fee revenue or realized profit, and a reserved amount is not necessarily a realized loss. A separate net-equity or available-capital analysis must disclose its liability/encumbrance adjustments rather than silently relabelling this memo.
+
+**Units and price source:** the row says “at the sNET index and NET spot,” but the reviewed live snapshot obtains `marketPriceUsdg` from the pair oracle's **`twapNetUsdg()`**, not a last-trade spot calculation. It normalizes `sNet.index()` by `10^9` to obtain `dividendIndex`; do not apply a second `10^18` index scaling. Distinguish this Reports price input from the Book arcade's separate pair-spot display. The app formats dollar labels, but USDG-denominated marks do not independently verify USDG/USD parity. Retain native wsNET and USDG amounts; use a supported USDG/USD mark or explicitly hypothetical $1/USDG assumption for USD. Marks are not executable liquidation proceeds and omit exit taxes, pool fees and slippage.
+
+**Registry gates and omissions:** Predict, Book, nnUSDG and stock-Credit reads depend on publisher `HUMAN-VERIFIED` registry labels, not independent audit status. A nonmatching label can omit a component without flagging the displayed total; skipping a Credit market omits both its collateral and debt. The Predict/Book missing-data sentinels only protect entries carrying that label. LP/TURBO object presence also gates the total, but does not prove every position was valued. Record the actual enabled and covered perimeter rather than assuming every possible term was read.
+
+**Freshness and failed reads:** the app uses asynchronous reads and zero/null fallbacks: failed balances/conversions or unmarked holdings can contribute zero, and unreadable collateral marks can coexist with a deducted debt entry. Even a missing sNET index falls back to zero in the Book mark. These are display behaviors, not acceptable evidence of absence. **For research reproduction, treat missing or stale components as unknown, not zero**, require consistently timed successful reads and price/index inputs, and mark incomplete totals partial/unavailable. A nonempty table does not establish completeness.
+
+**Publisher wording discrepancy:** the older explanatory sentence listing only wallet balances, liquidity positions and TURBO pots omits Predict and THE BOOK. The reviewed total calculation and named rows include both; cite the dated code-backed perimeter rather than repeating the shorter sentence as exhaustive.
+
+**Core boundary unchanged:** Reports' “True RFV” adds this Sleeve memo to on-chain RFV; “NAV incl. RWAs” divides that combined figure by total supply, while “True NAV (circulating)” uses circulating float. These are explicitly memo presentations, not contractual Core RFV/backing or a redemption promise. Do not mix their denominators or call the memo fully unencumbered net equity.
+
 ## September 12 Manager bid: a new announced inventory path
 
 The [September 12 announcement](https://x.com/NetNetCap/status/2098803824282771690) describes a **Manager-funded 2× NAV bid** supplying bought NET to the Real World Bonds Desk. This is inventory for redistribution, not FY-HI's conditional weekly repurchase-and-burn proposal or a Core support mechanism. Execution and the claimed backing benefit are unverified; no unlimited floor or automatic redemption follows. See [Products: Manager bid and bought inventory](products.md#september-12-manager-funded-bid-and-bought-net-inventory) for unresolved funding/NAV/remittance terms and the historical pTEAM distinction.

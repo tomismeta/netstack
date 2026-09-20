@@ -105,7 +105,7 @@ Source provenance and scope: [Docs and sources](references/docs-and-sources.md).
 
 ## Useful calculations, with assumptions explicit
 
-Use the selected methodology for calculations: [Core backing and supply](references/protocol.md), [Sleeve equity](references/rwa-strategy.md), or the applicable analytics guide. Keep units, debt, liabilities, costs and valuation assumptions explicit. Do not annualize a launch fee rate as a forecast or infer completeness from a nonempty response.
+Use the selected methodology for calculations: [Core backing and supply](references/protocol.md), [official Sleeve memo and equity boundaries](references/rwa-strategy.md#official-reports-sleeve-memo-methodology), or the applicable analytics guide. Sleeve reporting includes off-wallet claims; THE BOOK house-pot wsNET is not direct NET in the Safe. Keep units, debt, liabilities, costs and valuation assumptions explicit. Do not annualize a launch fee rate as a forecast or infer completeness from a nonempty response.
 
 ## Verification before answering
 
