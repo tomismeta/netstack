@@ -140,6 +140,8 @@ Ordinary unauthenticated public research and bounded read-only RPC use existing 
 
 **A skill prompt is not a sandbox.** Installing netstack does not remove capabilities or enforce restrictions; enforced-safety claims require independent evidence of host controls.
 
+Release-specific security results, retained findings and coverage limits accompany the [GitHub release](https://github.com/tomismeta/netstack/releases) in a separate `netstack-audit-<version>.zip`. That archive is review evidence, not an installable skill. Scanner results apply only to the recorded package bytes and do not certify host isolation or deployed contracts.
+
 ## Scope and limits
 
 The package does not certify host isolation, tool denials, live-chain state, smart-contract safety or exhaustive external-source coverage. Some address provenance names unpinned originating-repository files; those are historical claims, not bundled or independently reproducible public evidence.
