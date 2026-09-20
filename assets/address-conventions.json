@@ -3,7 +3,7 @@
   "skill": "netstack",
   "observed_on": "2026-09-18",
   "chain_id": 4663,
-  "scope": "Published contracts and separately attributed public role addresses; not an audit or independently verified live deployment inventory.",
+  "scope": "Published contracts and separately attributed public role addresses, plus a narrowly scoped fixed-block Loopback market-identity observation; not an audit or independently verified live deployment inventory.",
   "source_catalog": "assets/sources.json",
   "explorers": {
     "4663": {
@@ -16,6 +16,7 @@
   },
   "record_notes": {
     "publisher_verification_claim": "An attributed publisher label, not independent live-chain verification by this package. Preserve live_chain_verification_status and lifecycle limits.",
+    "fixed_block_market_identity": "A market's observation records only the named getter results, chain, block/hash/time and identity-hash check. It does not promote singleton/dependency contract records to live-chain-verified status or establish balances, oracle safety, liquidity, permissions or continued availability. Market IDs remain separate from chain/address counts.",
     "indexed_receipt_evidence": "A successful explorer-indexed creation or trade corroborates only that indexed event and identity. It is not a direct fixed-block RPC audit, verified Solidity source, complete authority review, current activation check or proof of later settlement.",
     "publisher_linked_provenance_urls": "Original publisher hyperlinks retained as source evidence,not default explorer destinations. Return Robinhood Etherscan links for any referenced Robinhood address or transaction using its exact identity;do not transplant provider-specific API paths or query tabs.",
     "price_feed_metadata": "Publisher-directory provenance is in the parent contract provenance array and covers only the proxy and metadata fields named by its locator, including adjacent feed decimals. It does not establish a token pairing, current round, deployed behavior or NetNet use. Consumer policies and semantics sources remain separately attributed.",
@@ -81,7 +82,7 @@
         "netnet-book-rules-20260920",
         "netnet-play-book-registry-20260920"
       ],
-      "detail": "September 20 targeted THE BOOK review: SportsBookDesk holds wsNET and published rules identify the house as the RWA Sleeve, never Treasury. Its house pot is not the depositor-funded USDG Predict House Vault. Launch language, publisher HUMAN-VERIFIED labels and successful indexed creation metadata do not verify source equivalence, current authority, balances or solvency; no fixed-block direct live verification was performed."
+      "detail": "Original September 20 targeted THE BOOK review: SportsBookDesk holds wsNET and published rules identify the house as the RWA Sleeve, never Treasury. Its house pot is not the depositor-funded USDG Predict House Vault. Launch language, publisher HUMAN-VERIFIED labels and successful indexed creation metadata do not verify source equivalence, current authority, balances or solvency. That review lacked fixed-block direct reads; later user-reported public RPC observations remain separately attributed, not a blanket audit or a permanent live-access restriction."
     }
   ],
   "coverage": {
@@ -92,7 +93,8 @@
       "contract_records_unique_by_chain_and_address": 185,
       "public_role_address_records": 10,
       "trusted_product_mark_relationships": 6,
-      "morpho_market_identifiers": 6,
+      "morpho_market_identifiers": 7,
+      "fixed_block_identity_observed_morpho_markets": 1,
       "underlying_price_feed_records": 37,
       "robinhood_labelled_rwa_feed_candidates": 35,
       "publisher_explicit_equity_feed_candidates": 33,

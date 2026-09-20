@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "source_id": "netnet-book-interface-20260920",
+  "source_url": "https://play.netnet.capital/assets/sportsbook-live-DSVW3lNz.js",
+  "source_sha256": "aaed6a9a8e60b0bed53d292604a09d1f4756b80095a4b772cc03a6d7ced3f16e",
+  "source_locator": "Tt desk ABI; wt wsNET ABI; Nt sNET ABI; Gt live adapter (Ce, Le, X). Static literals parsed without executing downloaded JavaScript; internalType omitted.",
+  "reviewed_on": "2026-09-20",
+  "ui_source": {"url":"https://play.netnet.capital/assets/book-entry-Cky9ISai.js","sha256":"54302513dbaabfc65517e37be3e793de5586f0c0b345c2748d1d958a05899a84","locator":"Constants D/_, Fe/He/Us, xs/Ls/cs; Xe/Es/gs/js/ir conversions; xe/Hs/Bs/Ur state display; Lr rules."},
+  "limits": "Publisher-derived read/event fragment, not verified deployed Solidity, bytecode equivalence, an audit or runtime permission. Does not extend the runner allowlist. No writes or quotes. Resolve addresses through assets/address-index.json; verify chain, identity, token decimals and one pinned block. Bound ID/log ranges; retain unknown enums/topics rather than copying UI fallbacks.",
+  "state_values": {"1":"open","2":"graded","3":"cancelled"},
+  "side_values": {"0":"favourite","1":"underdog"},
+  "result_values": {"0":"favourite covers","1":"underdog covers","2":"push"},
+  "enum_limits": "Labels are client constants/display logic, not Solidity enum declarations. State 1 is bettable only within openAt <= timestamp < closeAt and when not halted. Interpret result only for an applicable graded/cancelled market; do not infer a void state from its event alone. State 0 and all unlisted values remain unknown.",
+  "units": "Client Ce/Le map market owed/wagers/fees and bet amount/reserve/wager/payout to wsNET; pots are wsNET. UI uses wsNET 18 decimals, sNET/NET 9, USDG 6. Its indexRaw/index0/indexAtGrade scale is 1e9 sNET per whole wsNET, not 1e18. Times are Unix seconds, spreadTenths is tenths of a point, feeBps is basis points. Event monetary fields are interpreted as wsNET under published rules (the book holds/wagers/settles wsNET only), not independently verified Solidity semantics.",
+  "pots_output_order": ["housePotWs","reservedTotalWs","lockedWagersWs","lockedPrincipalWs"],
+  "reconciliation": "X maps the four unnamed potsOf outputs in the order above. freePot is an independent read to compare with the UI housePotWs-reservedTotalWs calculation; equality is not established here. These pots are not a user count or deposit total. FeeSplit and market feesPot/feesSleeve support bounded fee reconciliation; do not count fees again as wagers.",
+  "valuation": "At the same block, wsNET.wsToSNet(rawWs) returns raw sNET; divide by 10**confirmed_sNET_decimals. Alternative matching UI: rawSnet=floor(rawWs*sNET.index()/1e18), then divide by 1e9. Multiply sNET units by NET/USDG reserve spot, orienting reserves with BOTH token0/token1 and scaling by confirmed decimals. This is the UI sNET-to-NET parity mark, not a redemption or execution quote; USDG units are not independently verified USD. Do not mark historical activity at a current index/spot without labeling the substitution.",
+  "dependency_interfaces": {"path":"assets/analytics/v2-interface.json","pair_abi":["getReserves","token0","token1"],"token_abi":["decimals"],"limits":"Referenced standard read signatures, not Book ABI extraction or deployed-equivalence proof. Desk wsNet/sNet/net getters reconcile identities; match pair constituents to registry NET/USDG. Missing dependencies leave valuation unknown."},
+  "abi": [
+    {"type":"function","name":"marketCount","inputs":[],"outputs":[{"name":"","type":"uint256"}],"stateMutability":"view"},
+    {"type":"function","name":"halted","inputs":[],"outputs":[{"name":"","type":"bool"}],"stateMutability":"view"},
+    {"type":"function","name":"betCount","inputs":[],"outputs":[{"name":"","type":"uint256"}],"stateMutability":"view"},
+    {"type":"function","name":"potsOf","inputs":[],"outputs":[{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"},{"name":"","type":"uint256"}],"stateMutability":"view"},
+    {"type":"function","name":"marketOf","inputs":[{"name":"marketId","type":"uint256"}],"outputs":[{"name":"","type":"tuple","components":[{"name":"favourite","type":"bytes32"},{"name":"underdog","type":"bytes32"},{"name":"spreadTenths","type":"int32"},{"name":"openAt","type":"uint64"},{"name":"closeAt","type":"uint64"},{"name":"state","type":"uint8"},{"name":"result","type":"uint8"},{"name":"favScore","type":"uint8"},{"name":"dogScore","type":"uint8"},{"name":"owedFav","type":"uint128"},{"name":"owedDog","type":"uint128"},{"name":"wagersFav","type":"uint128"},{"name":"wagersDog","type":"uint128"},{"name":"feesPot","type":"uint128"},{"name":"feesSleeve","type":"uint128"},{"name":"indexAtGrade","type":"uint128"}]}],"stateMutability":"view"},
+    {"type":"function","name":"betOf","inputs":[{"name":"betId","type":"uint256"}],"outputs":[{"name":"","type":"tuple","components":[{"name":"player","type":"address"},{"name":"marketId","type":"uint32"},{"name":"side","type":"uint8"},{"name":"riskOff","type":"bool"},{"name":"settled","type":"bool"},{"name":"feeBps","type":"uint16"},{"name":"placedAt","type":"uint64"},{"name":"amount","type":"uint128"},{"name":"reserve","type":"uint128"},{"name":"index0","type":"uint128"},{"name":"wager","type":"uint128"},{"name":"payout","type":"uint128"}]}],"stateMutability":"view"},
+    {"type":"function","name":"freePot","inputs":[],"outputs":[{"name":"","type":"uint256"}],"stateMutability":"view"},
+    {"type":"function","name":"wsNet","inputs":[],"outputs":[{"name":"","type":"address"}],"stateMutability":"view"},
+    {"type":"function","name":"sNet","inputs":[],"outputs":[{"name":"","type":"address"}],"stateMutability":"view"},
+    {"type":"function","name":"net","inputs":[],"outputs":[{"name":"","type":"address"}],"stateMutability":"view"},
+    {"type":"event","name":"BetPlaced","inputs":[{"name":"betId","type":"uint256","indexed":true},{"name":"player","type":"address","indexed":true},{"name":"marketId","type":"uint256","indexed":true},{"name":"side","type":"uint8","indexed":false},{"name":"riskOff","type":"bool","indexed":false},{"name":"amount","type":"uint256","indexed":false},{"name":"reserve","type":"uint256","indexed":false},{"name":"feeBps","type":"uint16","indexed":false},{"name":"fee","type":"uint256","indexed":false},{"name":"index0","type":"uint256","indexed":false}],"anonymous":false},
+    {"type":"event","name":"FeeSplit","inputs":[{"name":"marketId","type":"uint256","indexed":true},{"name":"betId","type":"uint256","indexed":true},{"name":"potHalf","type":"uint256","indexed":false},{"name":"sleeveHalf","type":"uint256","indexed":false}],"anonymous":false},
+    {"type":"event","name":"Graded","inputs":[{"name":"marketId","type":"uint256","indexed":true},{"name":"favScore","type":"uint8","indexed":false},{"name":"dogScore","type":"uint8","indexed":false},{"name":"result","type":"uint8","indexed":false},{"name":"indexAtGrade","type":"uint256","indexed":false}],"anonymous":false},
+    {"type":"event","name":"Settled","inputs":[{"name":"betId","type":"uint256","indexed":true},{"name":"player","type":"address","indexed":true},{"name":"marketId","type":"uint256","indexed":true},{"name":"won","type":"bool","indexed":false},{"name":"wager","type":"uint256","indexed":false},{"name":"fee","type":"uint256","indexed":false},{"name":"payout","type":"uint256","indexed":false}],"anonymous":false},
+    {"type":"event","name":"Voided","inputs":[{"name":"marketId","type":"uint256","indexed":true}],"anonymous":false},
+    {"type":"event","name":"Cancelled","inputs":[{"name":"marketId","type":"uint256","indexed":true}],"anonymous":false},
+    {"type":"event","name":"MarketOpened","inputs":[{"name":"marketId","type":"uint256","indexed":true},{"name":"favourite","type":"bytes32","indexed":false},{"name":"underdog","type":"bytes32","indexed":false},{"name":"spreadTenths","type":"int32","indexed":false},{"name":"openAt","type":"uint64","indexed":false},{"name":"closeAt","type":"uint64","indexed":false}],"anonymous":false}
+  ],
+  "wsnet_abi": [
+    {"type":"function","name":"wsToSNet","inputs":[{"name":"amount","type":"uint256"}],"outputs":[{"name":"","type":"uint256"}],"stateMutability":"view"}
+  ],
+  "snet_abi": [
+    {"type":"function","name":"index","inputs":[],"outputs":[{"name":"","type":"uint256"}],"stateMutability":"view"}
+  ]
+}

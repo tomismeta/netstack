@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "scope": "Dated source registry for the complete Netstack knowledge skill. Catalog coverage, content review, and live deployment verification are distinct.",
-  "provenance": "Baseline user-supplied sources, documentation and registries reviewed 2026-09-10; targeted additions September 12–18 include original posts, BASKETS, current app/config/UI, Dial-Up services, Pendle successor, indexed Predict/LP deployment evidence and scoped read-only analytics interfaces/accounting. September 20 adds only THE BOOK announcement, app registry/rules/interface and indexed deployment metadata. Each record retains its own evidence dates and limits.",
+  "provenance": "Baseline user-supplied sources, documentation and registries reviewed 2026-09-10; targeted additions September 12–18 include original posts, BASKETS, current app/config/UI, Dial-Up services, Pendle successor, indexed Predict/LP deployment evidence and scoped read-only analytics interfaces/accounting. September 20 adds THE BOOK announcement, app registry/rules/interface and indexed deployment metadata, plus Loopback interface discovery and a bounded fixed-block market-identity observation. Each record retains its own evidence dates and limits.",
   "policies": {
     "dashboard_display_order": "Use each dashboard record display_order only when listing the directory. Order does not select sources,rank credibility,authorize retrieval or establish fallback preference.",
     "evidence": "Select evidence by the claim: relevant public contract state/events for contract-derived quantities,official publications for documented terms,and appropriately scoped data for other questions. Dashboards receive no default or fallback priority from directory order; use them when explicitly requested or their specific evidence is relevant,under the same provenance,freshness and completeness checks.",
@@ -1126,6 +1126,8 @@
         }
       ],
       "observed_on": "2026-09-10",
+      "targeted_review_on": "2026-09-20",
+      "targeted_review_scope": "Terms re-read for wsNET collateral, USDG loan asset, 62.5% liquidation threshold and Morpho Adaptive Curve model. Full market ID and exact address tuple come from the separately catalogued fixed-block RPC observation, not this documentation.",
       "release_review_status": "retrieved_and_used_for_original_reference_summary_not_a_complete_audit"
     },
     {
@@ -2805,7 +2807,7 @@
       "status": "catalogued",
       "observed_on": "2026-09-20",
       "summary": "Published interface names Desk market/bet/account/pot/quote/configuration reads and events, grader/manager controls, and Zap conversion/dependency getters. Live adapter reads the latest market and uses wsNET accounting, index and pair-derived dollar display with fallback/cache values on failed reads.",
-      "limits": "Frontend ABI and live adapter are research discovery evidence, not source verification, selector-to-bytecode equivalence, current getter values or authority proof. Fallback or cached UI fields cannot establish a complete fixed-block snapshot. No bundled ABI or callable analytics runner is supplied by this catalog.",
+      "limits": "Frontend ABI and live adapter are research discovery evidence, not source verification, selector-to-bytecode equivalence, current getter values or authority proof. Fallback or cached UI fields cannot establish a complete fixed-block snapshot. A minimal published read/event fragment is bundled at assets/analytics/book-interface.json; no THE BOOK analytics runner or helper is supplied.",
       "execution_authority": false,
       "content_review_status": "targeted_static_live_adapter_and_abi_reviewed_not_executed",
       "discovery_provenance": [
@@ -2829,7 +2831,7 @@
       "status": "catalogued",
       "observed_on": "2026-09-20",
       "summary": "Explorer address metadata reports is_contract=true, creation_status=success and creation_transaction_hash matching the publisher deployment; smart-contract endpoint returns bytecode without verified source.",
-      "limits": "Indexed address metadata, not a separately reviewed creation transaction receipt or direct fixed-block RPC audit. is_verified=false; bytecode does not establish source equivalence, authority, current wiring, market state, balances or correct operation. Direct official RPC and Etherscan reads returned HTTP 403.",
+      "limits": "Indexed address metadata, not a separately reviewed creation transaction receipt or direct fixed-block RPC audit. is_verified=false; bytecode does not establish source equivalence, authority, current wiring, market state, balances or correct operation. The original September 20 RPC/Etherscan clients returned HTTP 403; later user-reported public RPC POST success with honest User-Agent netstack-analytics/1 is separate evidence, not a captured fixture or permanent endpoint guarantee.",
       "execution_authority": false,
       "content_review_status": "indexed_address_creation_metadata_and_unverified_bytecode_reviewed",
       "chain_id": 4663,
@@ -2849,7 +2851,7 @@
       "status": "catalogued",
       "observed_on": "2026-09-20",
       "summary": "Explorer address metadata reports is_contract=true, creation_status=success and creation_transaction_hash matching the publisher deployment; smart-contract endpoint returns bytecode without verified source.",
-      "limits": "Indexed address metadata, not a separately reviewed creation transaction receipt or direct fixed-block RPC audit. is_verified=false; bytecode does not establish source equivalence, authority, current wiring, market state, balances or correct operation. Direct official RPC and Etherscan reads returned HTTP 403.",
+      "limits": "Indexed address metadata, not a separately reviewed creation transaction receipt or direct fixed-block RPC audit. is_verified=false; bytecode does not establish source equivalence, authority, current wiring, market state, balances or correct operation. The original September 20 RPC/Etherscan clients returned HTTP 403; later user-reported public RPC POST success with honest User-Agent netstack-analytics/1 is separate evidence, not a captured fixture or permanent endpoint guarantee.",
       "execution_authority": false,
       "content_review_status": "indexed_address_creation_metadata_and_unverified_bytecode_reviewed",
       "chain_id": 4663,
@@ -2860,6 +2862,85 @@
         "https://robinhoodchain.blockscout.com/tx/0x5a53a66d50b1edc23f102e93aaf08c46703598840bfed39d6a4594762c204c8f"
       ],
       "navigation_scope": "Original Blockscout provenance only; return Robinhood Etherscan object links using assets/address-conventions.json."
+    },
+    {
+      "id": "netnet-app-loopback-interface-20260920",
+      "type": "official_app_contract_interface",
+      "label": "Loopback published router and Morpho identity read interfaces",
+      "url": "https://app.netnet.capital/assets/index-CbWQFNbN.js",
+      "status": "catalogued",
+      "observed_on": "2026-09-20",
+      "content_review_status": "targeted_static_registry_and_identity_getters_reviewed_not_executed",
+      "summary": "The official entry's module publishes TurboRouter 0x4638617808e3f1Cf237c0d33Ae818126D5C77E17 and LoopbackOracle 0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16 in ff; kp includes marketId() returning bytes32; nt includes idToMarketParams(bytes32) returning loanToken, collateralToken, oracle, irm and lltv in that order. The Morpho singleton registry identity matches the canonical address record.",
+      "limits": "Static publisher interface and identity-discovery evidence only, not deployed-source equivalence or a full current registry recount. The full Loopback market ID was recovered by the separately catalogued RPC read, not inferred from a truncated ID or found as a literal in this inspected module.",
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-official-app",
+          "discovery": "HTML module script src"
+        }
+      ],
+      "related_urls": [
+        "https://app.netnet.capital/",
+        "https://docs.netnet.capital/lending"
+      ],
+      "stability": "Rediscover module script src from the official app entry if this dated asset rotates; inspect text, do not execute downloaded JavaScript.",
+      "reference": "references/addresses-and-roles.md",
+      "execution_authority": false
+    },
+    {
+      "id": "netnet-loopback-market-identity-20260920",
+      "type": "public_rpc_observation",
+      "label": "Loopback full market ID and singleton parameter observation",
+      "url": "https://rpc.mainnet.chain.robinhood.com",
+      "status": "catalogued",
+      "observed_on": "2026-09-20",
+      "content_review_status": "bounded_fixed_block_identity_getters_and_local_hash_checked",
+      "chain_id": 4663,
+      "summary": "Five ordinary public JSON-RPC POST requests with User-Agent netstack-analytics/1 established chain 4663, pinned block 67956523, read TurboRouter.marketId(), read that ID's five parameters on the recorded Morpho singleton, and rechecked the same header. Keccak-256 of the five returned ABI words exactly equals the recovered market ID.",
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-app-loopback-interface-20260920",
+          "discovery": "Published router identity and getter ABI, followed by singleton idToMarketParams(bytes32)"
+        }
+      ],
+      "rpc_evidence": {
+        "request_count": 5,
+        "transport": "HTTPS JSON-RPC POST",
+        "user_agent": "netstack-analytics/1",
+        "chain_id_result": "0x1237",
+        "block_number": 67956523,
+        "block_number_hex": "0x40cef2b",
+        "block_hash": "0x624ba33ccc1b0358d04b7ee044b9f34ca28f0c90d62cfeb8379a1c524235ffbb",
+        "block_timestamp_hex": "0x6aafd882",
+        "block_timestamp": "2026-09-20T12:58:42Z",
+        "header_reads": "eth_getBlockByNumber(latest,false), then eth_getBlockByNumber(0x40cef2b,false); number, hash and timestamp matched",
+        "calls": [
+          {
+            "method": "eth_call",
+            "to": "0x4638617808e3f1Cf237c0d33Ae818126D5C77E17",
+            "signature": "marketId()",
+            "data": "0x6ed71ede",
+            "block_tag": "0x40cef2b",
+            "result": "0xaa586d26a6fe62d9c0f0948fede6e2130500ac7a655587447e2d4a37e6330589"
+          },
+          {
+            "method": "eth_call",
+            "to": "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+            "signature": "idToMarketParams(bytes32)",
+            "data": "0x2c3c9157aa586d26a6fe62d9c0f0948fede6e2130500ac7a655587447e2d4a37e6330589",
+            "block_tag": "0x40cef2b",
+            "result": "0x0000000000000000000000005fc5360d0400a0fd4f2af552add042d716f1d16800000000000000000000000063c12667638f2ae6fc6ae09b43d98ec84a8586ea000000000000000000000000cde9599059f8ae6d6b9f33a0af7877827ec75f160000000000000000000000002bd3d5965b26b51814ac95127b2b80dd6ccc0fa100000000000000000000000000000000000000000000000008ac7230489e8000"
+          }
+        ],
+        "identity_hash": {
+          "method": "keccak256(abi.encode(address loanToken,address collateralToken,address oracle,address irm,uint256 lltv))",
+          "result": "0xaa586d26a6fe62d9c0f0948fede6e2130500ac7a655587447e2d4a37e6330589",
+          "matches_router_market_id": true
+        }
+      },
+      "limits": "Single-provider, fixed-block identity and five-parameter observation only. No creation receipt/log, deployed bytecode/source equivalence, balances, rates, utilization, oracle output/freshness, permissions, liquidity, current operation or safety verified. This does not increase the count of contract-address records or promote those records to live-chain-verified status. Earlier client-specific RPC failures and later observations retain their separate scopes.",
+      "reference": "assets/addresses/markets.json",
+      "execution_authority": false
     },
     {
       "id": "netnet-dialup-health-20260918",
@@ -3049,6 +3130,10 @@
         "coverage": "September 20 targeted sportsBookDesk and sportsBookZap identities only; no full current named-registry recount or blanket freshness update."
       },
       {
+        "source_id": "netnet-loopback-market-identity-20260920",
+        "coverage": "One wsNET/USDG market ID recovered from TurboRouter and matched to five Morpho singleton parameters at block 67956523 with matching identity hash; not a full market/deployment inventory or a current-state audit."
+      },
+      {
         "source_id": "pendle-snet-market-1oct2026",
         "coverage": "Successor market/LP, PT/YT and reused SY/accounting/underlying/reward/input/output identities from official API; not a protocol-wide inventory."
       }
@@ -3063,17 +3148,18 @@
       "A direct Pendle urllib request returned HTTP 403; read tool successfully retrieved full raw public JSON. No market live-chain verification performed.",
       "Current explorer navigation uses Robinhood Etherscan templates;links are not verification. Historical RHScan UI observations and Blockscout source/bytecode reads retain their original dates and origins. Etherscan provider listing does not establish API credentials,quotas,archive coverage or deployed source verification.",
       "No recursive crawl of every linked integration documentation page, GitHub source repository, token, market, historical deployment or future llms.txt version.",
-      "Six Stock Token Morpho market IDs are included as bytes32 identifiers, not contract addresses. The wsNET Loopback market ID was not present in the scanned documentation tables and was not inferred.",
+      "Seven Morpho bytes32 identifiers are included: the original six Stock Token markets plus wsNET/USDG Loopback. Loopback's full identity and parameters were observed on the recorded singleton at block 67956523; balances, liquidity, oracle health and current borrowing/liquidation availability were not checked. Market IDs are not extra contract addresses.",
       "Subway Runner and DIAL-UP were discovered in official app bundles but are absent from the September 18 25-entry llms.txt index. Source cataloging and published address extraction do not establish active service status; runnerHouseSigner is a zero placeholder in the inspected bundle.",
-      "THE BOOK September 20 evidence adds published launch/rules/interface and two matching indexed address-creation records with unverified bytecode. Direct official RPC and Etherscan access returned HTTP 403; no fixed-block authority, dependency wiring, balances, complete market/bet history, settlement or solvency verification was performed.",
+      "THE BOOK September 20 evidence adds published launch/rules/interface, a minimal bundled read/event fragment and two matching indexed address-creation records with unverified bytecode. Original client-specific RPC/Etherscan attempts returned HTTP 403; later user-reported honest-UA public RPC POST success is not a captured fixture or a current metric. No blanket live-access prohibition follows. Complete authority, history, settlement and solvency remain question-specific checks; no Book runner/helper is supplied.",
       "Predict and LP Zap expose indexed creation/bytecode evidence but no verified Solidity in the reviewed explorer responses. Frontend models and mock settlement paths are not certified deployed behavior; no House withdrawal or settled series inspected."
     ],
     "counts": {
-      "source_records": 163,
+      "source_records": 165,
       "contract_records_unique_by_chain_and_address": 185,
       "public_role_address_records": 10,
       "trusted_product_mark_relationships": 6,
-      "morpho_market_identifiers": 6,
+      "morpho_market_identifiers": 7,
+      "fixed_block_identity_observed_morpho_markets": 1,
       "underlying_price_feed_records": 37,
       "robinhood_labelled_rwa_candidates": 35,
       "rwa_candidates_with_incomplete_classification": 2,
@@ -3098,7 +3184,7 @@
         "nft_collection": 2,
         "official_app_api": 2,
         "official_app_configuration": 1,
-        "official_app_contract_interface": 4,
+        "official_app_contract_interface": 5,
         "official_app_or_site": 10,
         "official_app_route": 8,
         "official_app_rules": 3,
@@ -3106,6 +3192,7 @@
         "official_channel": 2,
         "official_contract_registry_asset": 5,
         "official_documentation": 25,
+        "public_rpc_observation": 1,
         "official_social_post": 44
       },
       "contract_records_by_provenance_source_overlapping": {

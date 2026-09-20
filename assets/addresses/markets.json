@@ -114,6 +114,69 @@
       "note": "Bytes32 market ID on the Morpho singleton, not a contract address.",
       "singleton_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
       "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
+    },
+    {
+      "chain_id": 4663,
+      "role": "wsNET / USDG",
+      "aliases": [
+        "Loopback",
+        "Lombard Credit Facility",
+        "Loopback Morpho market",
+        "wsNET/USDG"
+      ],
+      "market_id": "0xaa586d26a6fe62d9c0f0948fede6e2130500ac7a655587447e2d4a37e6330589",
+      "parameters": {
+        "loanToken": "0x5fc5360d0400a0fd4f2af552add042d716f1d168",
+        "collateralToken": "0x63c12667638f2ae6fc6ae09b43d98ec84a8586ea",
+        "oracle": "0xcde9599059f8ae6d6b9f33a0af7877827ec75f16",
+        "irm": "0x2bd3d5965b26b51814ac95127b2b80dd6ccc0fa1",
+        "lltv": "625000000000000000"
+      },
+      "parameter_roles": {
+        "loanToken": "USDG",
+        "collateralToken": "WrappedStakedNET (wsNET)",
+        "oracle": "LoopbackOracle",
+        "irm": "adaptiveCurveIrm",
+        "lltv": "62.5% liquidation loan-to-value against credited collateral; 1e18 scale, not Turbo's target advance rate or a spot-price LTV."
+      },
+      "provenance": [
+        {
+          "source_id": "netnet-app-loopback-interface-20260920",
+          "locator": "ff.turboRouter and ff.loopbackOracle identities; kp.marketId() and nt.idToMarketParams(bytes32) published read interfaces",
+          "observed_on": "2026-09-20",
+          "evidence_kind": "publisher_interface_discovery_not_deployed_source_verification"
+        },
+        {
+          "source_id": "netnet-loopback-market-identity-20260920",
+          "locator": "TurboRouter.marketId() followed by Morpho singleton idToMarketParams(id), pinned block 67956523; raw results retained in source record",
+          "observed_on": "2026-09-20",
+          "evidence_kind": "fixed_block_public_rpc_identity_read"
+        },
+        {
+          "source_id": "netnet-docs-lending",
+          "locator": "Terms: wsNET collateral, USDG loan asset, 62.5% maximum advance rate and Morpho Adaptive Curve",
+          "observed_on": "2026-09-20",
+          "evidence_kind": "publisher_documented_terms"
+        }
+      ],
+      "observation": {
+        "block_number": 67956523,
+        "block_number_hex": "0x40cef2b",
+        "block_hash": "0x624ba33ccc1b0358d04b7ee044b9f34ca28f0c90d62cfeb8379a1c524235ffbb",
+        "block_timestamp": "2026-09-20T12:58:42Z",
+        "chain_id_result": "0x1237",
+        "block_identity_recheck": "same_number_hash_and_timestamp",
+        "identity_hash": {
+          "method": "keccak256(abi.encode(address loanToken,address collateralToken,address oracle,address irm,uint256 lltv))",
+          "result": "0xaa586d26a6fe62d9c0f0948fede6e2130500ac7a655587447e2d4a37e6330589",
+          "matches_market_id": true
+        }
+      },
+      "status": "identity_and_parameters_observed_at_fixed_block",
+      "note": "Seventh catalogued Morpho market, distinct from the six Stock Token markets. Bytes32 identifier, not a contract address or transaction hash. Singleton pointer remains canonical.",
+      "limits": "Only router market identity, singleton parameters and their identity hash were checked at this block. No creation receipt/log, deployed-source equivalence, balances, utilization, rates, oracle output/freshness, liquidity, permissions or current borrowing/liquidation availability verified.",
+      "singleton_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+      "singleton_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
     }
   ]
 }

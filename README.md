@@ -6,7 +6,7 @@ netstack helps agents research NetNet's protocol, products, games, RWA strategy 
 
 It is an independent [Agent Skills](https://agentskills.io/specification) package. It is **not** an official NetNet product, a trading bot or a wallet toolkit.
 
-**v0.3.1.** Adds THE BOOK's desk/zap identities, launch and deployment evidence, published rules and open-ended read-only research guidance. Targeted THE BOOK evidence reviewed **September 20, 2026**; older observations retain their dates. Existing LP and Predict/House analytics remain unchanged; no sportsbook runner or ABI bundle is added. This is research guidance, not a product launch or guarantee of current availability. See the [releases page](https://github.com/tomismeta/netstack/releases) for published packages and separate audit artifacts; identify installed revisions by exact commit.
+**v0.3.1.** Adds THE BOOK's contracts, launch evidence, published rules, a minimal read/event interface and snapshot-first open-ended research, plus the Loopback Morpho market identity. Targeted evidence reviewed **September 20, 2026**; older observations retain their dates. Existing LP/Predict/House runner behavior is unchanged; no Book helper is added. This is research guidance, not a product launch or guarantee of availability. See the [releases page](https://github.com/tomismeta/netstack/releases) for published packages; identify installed revisions by exact commit.
 
 ## What you can ask
 
@@ -101,7 +101,7 @@ what is queued or claimable, and what settled return is actually established?
 
 [V2 liquidity analytics](references/liquidity-analytics.md) and [Predict/House analytics](references/predict-analytics.md) define canonical routes, units and reconciliations. The optional [runner](scripts/analytics.py) uses the packaged ABIs and the fixed public Robinhood RPC endpoint; it does not accept wallets, credentials, custom RPC URLs or arbitrary method calls.
 
-[THE BOOK](references/games.md#the-book) supports open-ended public research without a dedicated runner: discover relevant interfaces, distinguish principal, wagers, net results and fee recipients, and disclose unavailable evidence.
+[THE BOOK](references/games.md#book-snapshot-first) uses a small source-pinned interface and a 30-second collection budget for a snapshot before deeper research—not a timing guarantee or dedicated runner. Separate principal, wagers, results and fee recipients; show native amounts and supported same-block USDG marks, and disclose unavailable evidence. Other public questions remain supported through scoped research.
 
 From the reviewed package directory, run only the requested subcommand:
 
@@ -121,10 +121,10 @@ The single address catalog keeps identities, statuses and dated evidence per rec
 
 ## What's covered
 
-The baseline documentation snapshot is dated **2026-09-10**, with September 18 updates and a targeted **2026-09-20 THE BOOK review**. Existing observations retain their own dates; inventory totals do not establish current on-chain state.
+The baseline documentation snapshot is dated **2026-09-10**, with September 18 updates and targeted **2026-09-20 THE BOOK and Loopback reviews**. Existing observations retain their own dates; inventory totals do not establish current on-chain state.
 
 - **25 indexed official documentation pages** represented cumulatively through original summaries and source references, not all freshly re-read on September 18.
-- **163 source records**, including original announcements, strategy/report articles, documentation, integrations, dashboards, feed metadata, scoped explorer evidence and pinned LP accounting interfaces.
+- **165 source records**, including original announcements, strategy/report articles, documentation, integrations, dashboards, feed metadata, scoped explorer evidence and pinned accounting interfaces.
 - **185 distinct contract-address records**, including **37 underlying feeds**: 35 Robinhood-labelled RWA candidates plus ETH/USD and USDG/USD. Two RWA classifications and 29 additional token relationships remain unverified; the six existing exact mappings retain their original provenance.
 - Five substantive strategy/report articles and four interview source posts, plus curated original product and policy announcements. Interview descriptions and available chapter notes were reviewed; full recordings/transcripts were not.
 

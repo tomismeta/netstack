@@ -21,7 +21,7 @@ Use ordinary host-permitted public reads under [Safety's public-research rules](
 
 For live LP, Predict or House questions, prefer the optional reviewed [runner](../scripts/analytics.py) under normal host permission. It uses existing **Python 3.10+ on Linux/macOS, standard library only**, a fixed public Robinhood RPC origin and packaged canonical routes/ABIs. There is no custom-endpoint, credential, wallet or arbitrary-RPC mode. Read the matching accounting recipe before interpreting its output. Knowledge-only use remains available without Python.
 
-Those three runner commands are an implementation scope, **not a boundary on public research**. [THE BOOK's open-ended workflow](games.md#open-ended-public-research) uses ordinary host-permitted reads and interfaces discovered/validated for the question; it has no packaged runner command or bundled ABI requirement. Apply the shared whole-answer allowance, per-call bounds, finite call/log/recovery budgets, common-block snapshots and honest coverage reporting below to that research as well. A missing Book command is not a denied invocation; no replacement collector or wallet action is needed to explain or inspect public evidence.
+Those three runner commands are an implementation scope, **not a boundary on public research**. [THE BOOK's snapshot-first workflow](games.md#book-snapshot-first) uses a [small read/event interface](../assets/analytics/book-interface.json) with ordinary host-permitted reads; it has no runner command. Apply the shared whole-answer allowance, per-call bounds, finite call/log/recovery budgets, common-block snapshots and honest coverage reporting below. Other questions may discover additional interfaces; no wallet action or denied-command bypass is authorized.
 
 ### Invocation and deadline
 
@@ -59,6 +59,12 @@ The same network page advertises wallet, gas-sponsorship, sequencer and write AP
 For **all Robinhood Chain explorer navigation**, including historical addresses and transactions, return [Robinhood Etherscan](https://robin.etherscan.io/) links. [Etherscan's chain registry](https://api.etherscan.io/v2/chainlist) identifies this explorer for chain **4663**. Read `explorers["4663"]` in [address-conventions.json](../assets/address-conventions.json) and substitute only the exact validated chain-qualified address or transaction hash; a Morpho market ID is neither. Do not infer a chain or substitute an unrelated object when identity is missing.
 
 Etherscan's [supported-chain documentation](https://docs.etherscan.io/supported-chains) lists Robinhood Chain, including Free Tier availability. This does not provision API access or establish method quotas, archive coverage or anonymous availability. Web pages can restrict automated access: disclose missing observations and use suitable permitted public RPC for chain reads, not challenge bypasses or invented explorer APIs. Historical retrieval URLs in [sources.json](../assets/sources.json) preserve their original evidence origin. The explorer change does not change the public RPC endpoint or prove Etherscan verification of earlier source reads.
+
+### Public RPC request convention
+
+For ordinary public JSON-RPC POSTs, send `Content-Type: application/json`, `Accept: application/json` and an honest `User-Agent` such as **`netstack-analytics/1`**, already used by the bundled runner. September 20 dogfood reported a bare-client POST returning 403 while a UA-bearing POST succeeded. That is client/host-specific evidence, not a universal provider requirement, proof of present availability or an Etherscan access workaround. Earlier 403 observations remain dated failures, not a permanent “no live Book” verdict.
+
+Use this convention from the first request. Where an allowed public client omitted identification, correcting that request shape is not permission to impersonate a browser/user, rotate identities, obtain credentials, solve challenges or evade a host/provider restriction. If the properly identified request remains denied, report the exact failure and stop that path under the shared limits; do not cycle headers, endpoints or tools. A successful chain-ID response establishes access only for that call, not archive/log completeness.
 
 ## Read-only verification workflow
 
