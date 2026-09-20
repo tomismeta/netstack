@@ -1,12 +1,12 @@
 # Contracts, public addresses and roles
 
-Catalog additions observed 2026-09-18; package version **0.3.0**. Earlier record observations retain their own dates. Robinhood Chain mainnet **4663**. Exact values live in bounded JSON files routed by [address-index.json](../assets/address-index.json), not parallel copies in these references. Sources and their review status live in [sources.json](../assets/sources.json).
+Catalog additions observed 2026-09-18, with THE BOOK added 2026-09-20; local package version **0.3.1**, unpublished. Earlier record observations retain their own dates. Robinhood Chain mainnet **4663**. Exact values live in bounded JSON files routed by [address-index.json](../assets/address-index.json), not parallel copies in these references. Sources and their review status live in [sources.json](../assets/sources.json).
 
 ## Inventory and its boundaries
 
-The working inventory contains **183 distinct contract-address records**, **10 separately published public-role records**, **six trusted product mark mappings**, and **six Stock Token Morpho market IDs**. Its **37 underlying price-feed records** comprise **35 Robinhood-labelled RWA candidates** (33 explicitly classified `Equity`, two with incomplete classification) plus ETH/USD and USDG/USD. These are not 35 verified token mappings or 35 NetNet-used markets. Some public-role addresses may also occur in the contract set; section counts must not be added and described as unique wallets.
+The working inventory contains **185 distinct contract-address records**, **10 separately published public-role records**, **six trusted product mark mappings**, and **six Stock Token Morpho market IDs**. Its **37 underlying price-feed records** comprise **35 Robinhood-labelled RWA candidates** (33 explicitly classified `Equity`, two with incomplete classification) plus ETH/USD and USDG/USD. These are not 35 verified token mappings or 35 NetNet-used markets. Some public-role addresses may also occur in the contract set; section counts must not be added and described as unique wallets.
 
-Sources combine official NetNet docs, shareholder/arcade app registries, exact local-registry provenance and published Morpho, Uniswap, Rialto and Pendle deployments—not exhaustive discovery. **No inventory record has independently performed live-chain verification.** PredictDesk, PredictVault and LPZap have successful creation evidence from explorer-indexed transaction responses; series #1 outcomes have indexed issuance evidence. These are not independently fetched RPC receipts, source-verified Solidity or audits. Inclusion and generated explorer links do not verify current bytecode, permissions, ownership, activation, security or liquidity. Future chain checks must record block/hash and scope; “published” must not silently become “audited.”
+Sources combine official NetNet docs, shareholder/arcade app registries, exact local-registry provenance and published Morpho, Uniswap, Rialto and Pendle deployments—not exhaustive discovery. **No inventory record has independently performed live-chain verification.** PredictDesk, PredictVault and LPZap have successful creation evidence from explorer-indexed transaction responses; series #1 outcomes have indexed issuance evidence. SportsBookDesk/SportsBookZap have explorer-indexed successful creation and bytecode-presence evidence, with no verified source. These are not independently fetched RPC receipts, source-verified Solidity or audits. Inclusion and generated explorer links do not verify current permissions, ownership, activation, security or liquidity. Future chain checks must record block/hash and scope; “published” must not silently become “audited.”
 
 ## Data layout
 
@@ -38,6 +38,7 @@ Sources combine official NetNet docs, shareholder/arcade app registries, exact l
 | Credit | nnUSDG vault, market adapter, CreditRouter generations, each StockMorphoOracle, owner/curator Safe, isolated market IDs |
 | Loopback | wsNET collateral, Loopback oracle/router, Morpho market—not the long-dated TURBO product |
 | TURBO and arcade | Desk and card generations, blackjack/series relationships, jackpots, claim/escrow components, verifiers and published operator roles |
+| THE BOOK | SportsBookDesk for sports wagers/balances; SportsBookZap for conversion—not PredictDesk, PredictVault/House Vault, LPZap or Managed Futures Zap |
 | Pendle | sNET market, SY, PT, YT, LP and original/scaled accounting assets, each with different units and claims |
 | Infrastructure | Chain-specific Uniswap deployments, Rialto registry, Multicall and feeds; deployment names are not permission grants |
 
@@ -49,6 +50,7 @@ Canonical-role initials, not an alias's first letter, select the lookup index:
 |---|---|
 | NetNet Predict / Probability Desk / PredictDesk; House Vault / PredictVault | `p` → [Predict desk and vault](../assets/addresses/contracts/predict-desk-and-vault.json) |
 | HIGHER #1 / HI-1; LOWER #1 / LO-1 | `p` → [Predict series #1 outcomes](../assets/addresses/contracts/predict-series-1-outcomes.json); canonical roles begin `Predict` |
+| THE BOOK / sportsbook / SportsBookDesk; SportsBookZap | `s` → [SportsBook desk and zap](../assets/addresses/contracts/sportsbook-desk-and-zap.json); [mechanics and research](games.md#the-book) |
 | LP Zap / NET/USDG LP Zap | `l` → [LPZap](../assets/addresses/contracts/lp-zap.json), not Managed Futures' `z` → [Zap](../assets/addresses/contracts/zap.json) |
 | BASKETS / Grab Desk | `b` → [BasketsDesk](../assets/addresses/contracts/baskets-desk.json); Permit2 remains under `p`, DrandSigRegistry under `d` |
 | Pendle October 1 LP/PT; October 1 YT | `p` / `y` → [sNET 1OCT2026 identities](../assets/addresses/contracts/pendle-snet-1oct2026.json) |
@@ -185,6 +187,7 @@ For “display a USD reference price for this NVDA token”:
 - **Pendle:** a market identity includes chain, maturity, SY/PT/YT and accounting asset. The official API observed September 18 reports September 17 inactive and October 1 active; retain both identities. Activity is dated publisher metadata, not proof of current liquidity, redemption or deployment time.
 - **Predict:** Desk and House Vault are separate from series-specific HIGHER/LOWER tokens. A successful indexed trade proves the observed issuance, not future settlement, exact deployed fee/tie/void rules or an audited vault loss limit.
 - **LPZap:** a nonzero deployment can remain `PLACEHOLDER` in a publisher registry. Indexed successful creation and app gating coexist; do not call it undeployed or currently tax-free/enabled. The direct Uniswap NET/USDG route and older Managed Futures Zap are distinct.
+- **THE BOOK:** Desk and conversion Zap are separate roles. The app's `HUMAN-VERIFIED` label and indexed successful creation/code presence do not establish current grader/manager authority, balance coverage or enforcement of published grade/void rules. Grade, bet settlement, free-balance credit and withdrawal are separate evidence stages. Its house pot is not Predict's House Vault or the protocol Treasury.
 - **BASKETS:** publisher-reported opening does not verify deployed referee permissions or payout liveness. Separate the Desk, Permit2 entry spender and rotating Rialto router used for later stock conversion; never pin the latter from an old quote or infer an approval recommendation.
 
 ## Read-only identity procedure

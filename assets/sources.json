@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "scope": "Dated source registry for the complete Netstack knowledge skill. Catalog coverage, content review, and live deployment verification are distinct.",
-  "provenance": "Baseline user-supplied sources, documentation and registries reviewed 2026-09-10; targeted additions September 12–18 include original posts, BASKETS, current app/config/UI, Dial-Up services, Pendle successor, indexed Predict/LP deployment evidence and scoped read-only analytics interfaces/accounting. Each record retains its own evidence dates and limits.",
+  "provenance": "Baseline user-supplied sources, documentation and registries reviewed 2026-09-10; targeted additions September 12–18 include original posts, BASKETS, current app/config/UI, Dial-Up services, Pendle successor, indexed Predict/LP deployment evidence and scoped read-only analytics interfaces/accounting. September 20 adds only THE BOOK announcement, app registry/rules/interface and indexed deployment metadata. Each record retains its own evidence dates and limits.",
   "policies": {
     "dashboard_display_order": "Use each dashboard record display_order only when listing the directory. Order does not select sources,rank credibility,authorize retrieval or establish fallback preference.",
     "evidence": "Select evidence by the claim: relevant public contract state/events for contract-derived quantities,official publications for documented terms,and appropriately scoped data for other questions. Dashboards receive no default or fallback priority from directory order; use them when explicitly requested or their specific evidence is relevant,under the same provenance,freshness and completeness checks.",
@@ -2402,7 +2402,7 @@
       "status": "catalogued",
       "observed_on": "2026-09-18",
       "summary": "The account teases a sportsbook without wagered principal, a no-risk casino and automatically self-repaying loans packaged for RW-Play.",
-      "limits": "Promotional future claims only: no launched service, implementation, financing model, repayment guarantee or elimination of economic risk established.",
+      "limits": "Historical promotional future claims, not launch or risk-elimination evidence at the September 18 observation. The separate September 20 THE BOOK announcement advances only the sportsbook claim; it does not establish launch of the teased casino or self-repaying lending, repayment guarantees or elimination of economic risk.",
       "execution_authority": false,
       "source_account": "NetNetCap",
       "post_id": "2101004191359475957",
@@ -2725,6 +2725,143 @@
       "execution_authority": false
     },
     {
+      "id": "netnet-book-launch-20260920",
+      "type": "official_social_post",
+      "label": "THE BOOK no-loss sportsbook launch",
+      "url": "https://x.com/netnetcap/status/2101549369791033402?s=46",
+      "status": "catalogued",
+      "observed_on": "2026-09-20",
+      "summary": "NetNetCap announces THE BOOK as its no-loss sports Game Desk. The publisher reply describes a slow rollout with one initial game and wagering future rebases up until kickoff, with more events, wager types and no-loss games planned.",
+      "limits": "Publisher launch and roadmap claims, not a deployment audit, current game inventory or guarantee. No-loss is a risk-off claim in NET units, not dollar principal protection or risk-on protection. Published rules count risk-off yield through grade, not merely kickoff. This launch does not establish the separately teased casino or self-repaying lending.",
+      "execution_authority": false,
+      "content_review_status": "original_authored_caption_and_publisher_replies_reviewed",
+      "source_account": "NetNetCap",
+      "post_id": "2101549369791033402",
+      "published_on": "2026-09-20",
+      "publication_time_precision": "day",
+      "reviewed_on": "2026-09-20",
+      "provenance": "Original user-supplied URL preserved including s=46; public reader recovered the NetNetCap caption and publisher replies. Replies are thread context, not separately identified source records.",
+      "history_group": "product_launches_and_changes",
+      "related_urls": [
+        "https://x.com/NetNetCap/status/2101549369791033402",
+        "https://play.netnet.capital/"
+      ],
+      "reference": "references/games.md#the-book"
+    },
+    {
+      "id": "netnet-play-book-registry-20260920",
+      "type": "official_contract_registry_asset",
+      "label": "Official arcade registry: THE BOOK Desk and Zap",
+      "url": "https://play.netnet.capital/assets/index-Dqw1uNR5.js",
+      "status": "catalogued",
+      "observed_on": "2026-09-20",
+      "summary": "Publisher registry identifies SportsBookDesk 0x3174dE69a84c53F82F6B6Dca5C64E705cFFe8Dd6 and SportsBookZap 0xC866E4f53f1439d85171a06395ce37b887D16Fa1 on chain 4663, with HUMAN-VERIFIED labels and deployment transaction links.",
+      "limits": "HUMAN-VERIFIED is the publisher label, not independently verified Solidity, fixed-block deployed configuration, authority, balances, solvency or current operation. Historical bundle records remain separate.",
+      "execution_authority": false,
+      "content_review_status": "targeted_static_named_registry_reviewed_not_executed",
+      "targeted_review_on": "2026-09-20",
+      "targeted_review_scope": "sportsBookDesk and sportsBookZap named address/status/deployment provenance and THE BOOK entry discovery only; not a full registry recount.",
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-official-play",
+          "discovery": "HTML module script src"
+        }
+      ],
+      "related_urls": [
+        "https://play.netnet.capital/"
+      ],
+      "stability": "Hashed asset can rotate; rediscover the module script from the stable official entry https://play.netnet.capital/, then follow the current book-entry import. Do not guess a replacement hash.",
+      "reference": "references/games.md#the-book"
+    },
+    {
+      "id": "netnet-book-rules-20260920",
+      "type": "official_app_rules",
+      "label": "THE BOOK published house rules and presentation",
+      "url": "https://play.netnet.capital/assets/book-entry-Cky9ISai.js",
+      "status": "catalogued",
+      "observed_on": "2026-09-20",
+      "summary": "Published rules distinguish wsNET risk-on wagers from risk-off principal locks and rebases through grade, fixed spread and kickoff close, grading/void rules, skew-dependent fees split between house pot and RWA Sleeve, and USDG conversion costs. The house is described as the RWA Sleeve, never Treasury; dollar values are approximate.",
+      "limits": "Publisher rules and UI/model code are not verified deployed Solidity or current constants. The live quote model timing horizons differ from some rules and launch shorthand. NET-unit no-loss wording does not protect dollar value, foregone yield, conversion costs, contract safety or timely settlement.",
+      "execution_authority": false,
+      "content_review_status": "targeted_static_rules_and_ui_paths_reviewed_not_executed",
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-play-book-registry-20260920",
+          "discovery": "book-entry module import"
+        }
+      ],
+      "related_urls": [
+        "https://play.netnet.capital/"
+      ],
+      "stability": "Rediscover the current book-entry asset from the stable official entry https://play.netnet.capital/ and its module imports; the recorded hash is dated evidence, not a permanent endpoint.",
+      "reference": "references/games.md#the-book",
+      "indexed_in_llms_txt": false
+    },
+    {
+      "id": "netnet-book-interface-20260920",
+      "type": "official_app_contract_interface",
+      "label": "THE BOOK published Desk/Zap interface and live adapter",
+      "url": "https://play.netnet.capital/assets/sportsbook-live-DSVW3lNz.js",
+      "status": "catalogued",
+      "observed_on": "2026-09-20",
+      "summary": "Published interface names Desk market/bet/account/pot/quote/configuration reads and events, grader/manager controls, and Zap conversion/dependency getters. Live adapter reads the latest market and uses wsNET accounting, index and pair-derived dollar display with fallback/cache values on failed reads.",
+      "limits": "Frontend ABI and live adapter are research discovery evidence, not source verification, selector-to-bytecode equivalence, current getter values or authority proof. Fallback or cached UI fields cannot establish a complete fixed-block snapshot. No bundled ABI or callable analytics runner is supplied by this catalog.",
+      "execution_authority": false,
+      "content_review_status": "targeted_static_live_adapter_and_abi_reviewed_not_executed",
+      "discovery_provenance": [
+        {
+          "source_id": "netnet-book-rules-20260920",
+          "discovery": "sportsbook-live dynamic import"
+        }
+      ],
+      "related_urls": [
+        "https://play.netnet.capital/"
+      ],
+      "stability": "Rediscover the current sportsbook-live import through book-entry from the stable official entry https://play.netnet.capital/. Do not execute downloaded application JavaScript to treat it as contract evidence.",
+      "reference": "references/games.md#the-book",
+      "indexed_in_llms_txt": false
+    },
+    {
+      "id": "netnet-book-desk-deployment",
+      "type": "explorer_api",
+      "label": "SportsBookDesk indexed deployment metadata",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/addresses/0x3174dE69a84c53F82F6B6Dca5C64E705cFFe8Dd6",
+      "status": "catalogued",
+      "observed_on": "2026-09-20",
+      "summary": "Explorer address metadata reports is_contract=true, creation_status=success and creation_transaction_hash matching the publisher deployment; smart-contract endpoint returns bytecode without verified source.",
+      "limits": "Indexed address metadata, not a separately reviewed creation transaction receipt or direct fixed-block RPC audit. is_verified=false; bytecode does not establish source equivalence, authority, current wiring, market state, balances or correct operation. Direct official RPC and Etherscan reads returned HTTP 403.",
+      "execution_authority": false,
+      "content_review_status": "indexed_address_creation_metadata_and_unverified_bytecode_reviewed",
+      "chain_id": 4663,
+      "contract_address": "0x3174dE69a84c53F82F6B6Dca5C64E705cFFe8Dd6",
+      "transaction_hash": "0xba085b68260b6413c7d73babc89cfbfe91331a405f62285d512694d02172a235",
+      "related_urls": [
+        "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x3174dE69a84c53F82F6B6Dca5C64E705cFFe8Dd6",
+        "https://robinhoodchain.blockscout.com/tx/0xba085b68260b6413c7d73babc89cfbfe91331a405f62285d512694d02172a235"
+      ],
+      "navigation_scope": "Original Blockscout provenance only; return Robinhood Etherscan object links using assets/address-conventions.json."
+    },
+    {
+      "id": "netnet-book-zap-deployment",
+      "type": "explorer_api",
+      "label": "SportsBookZap indexed deployment metadata",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/addresses/0xC866E4f53f1439d85171a06395ce37b887D16Fa1",
+      "status": "catalogued",
+      "observed_on": "2026-09-20",
+      "summary": "Explorer address metadata reports is_contract=true, creation_status=success and creation_transaction_hash matching the publisher deployment; smart-contract endpoint returns bytecode without verified source.",
+      "limits": "Indexed address metadata, not a separately reviewed creation transaction receipt or direct fixed-block RPC audit. is_verified=false; bytecode does not establish source equivalence, authority, current wiring, market state, balances or correct operation. Direct official RPC and Etherscan reads returned HTTP 403.",
+      "execution_authority": false,
+      "content_review_status": "indexed_address_creation_metadata_and_unverified_bytecode_reviewed",
+      "chain_id": 4663,
+      "contract_address": "0xC866E4f53f1439d85171a06395ce37b887D16Fa1",
+      "transaction_hash": "0x5a53a66d50b1edc23f102e93aaf08c46703598840bfed39d6a4594762c204c8f",
+      "related_urls": [
+        "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xC866E4f53f1439d85171a06395ce37b887D16Fa1",
+        "https://robinhoodchain.blockscout.com/tx/0x5a53a66d50b1edc23f102e93aaf08c46703598840bfed39d6a4594762c204c8f"
+      ],
+      "navigation_scope": "Original Blockscout provenance only; return Robinhood Etherscan object links using assets/address-conventions.json."
+    },
+    {
       "id": "netnet-dialup-health-20260918",
       "type": "official_app_api",
       "label": "Dial-Up public health and limiter snapshot",
@@ -2908,6 +3045,10 @@
         "coverage": "BasketsDesk identity from Official Channels and published Permit2/shared randomness relationships; no inferred static stock router."
       },
       {
+        "source_id": "netnet-play-book-registry-20260920",
+        "coverage": "September 20 targeted sportsBookDesk and sportsBookZap identities only; no full current named-registry recount or blanket freshness update."
+      },
+      {
         "source_id": "pendle-snet-market-1oct2026",
         "coverage": "Successor market/LP, PT/YT and reused SY/accounting/underlying/reward/input/output identities from official API; not a protocol-wide inventory."
       }
@@ -2924,11 +3065,12 @@
       "No recursive crawl of every linked integration documentation page, GitHub source repository, token, market, historical deployment or future llms.txt version.",
       "Six Stock Token Morpho market IDs are included as bytes32 identifiers, not contract addresses. The wsNET Loopback market ID was not present in the scanned documentation tables and was not inferred.",
       "Subway Runner and DIAL-UP were discovered in official app bundles but are absent from the September 18 25-entry llms.txt index. Source cataloging and published address extraction do not establish active service status; runnerHouseSigner is a zero placeholder in the inspected bundle.",
+      "THE BOOK September 20 evidence adds published launch/rules/interface and two matching indexed address-creation records with unverified bytecode. Direct official RPC and Etherscan access returned HTTP 403; no fixed-block authority, dependency wiring, balances, complete market/bet history, settlement or solvency verification was performed.",
       "Predict and LP Zap expose indexed creation/bytecode evidence but no verified Solidity in the reviewed explorer responses. Frontend models and mock settlement paths are not certified deployed behavior; no House withdrawal or settled series inspected."
     ],
     "counts": {
-      "source_records": 157,
-      "contract_records_unique_by_chain_and_address": 183,
+      "source_records": 163,
+      "contract_records_unique_by_chain_and_address": 185,
       "public_role_address_records": 10,
       "trusted_product_mark_relationships": 6,
       "morpho_market_identifiers": 6,
@@ -2942,11 +3084,11 @@
         "dashboard": 6,
         "documentation_index": 1,
         "explorer": 3,
-        "explorer_api": 8,
+        "explorer_api": 11,
         "integration_api": 4,
         "integration_contract_registry": 2,
         "integration_documentation": 2,
-        "integration_source": 11,
+        "integration_source": 12,
         "interview": 4,
         "interview_recording": 1,
         "local_definition": 3,
@@ -2956,15 +3098,15 @@
         "nft_collection": 2,
         "official_app_api": 2,
         "official_app_configuration": 1,
-        "official_app_contract_interface": 3,
+        "official_app_contract_interface": 4,
         "official_app_or_site": 10,
         "official_app_route": 8,
-        "official_app_rules": 2,
+        "official_app_rules": 3,
         "official_article": 2,
         "official_channel": 2,
-        "official_contract_registry_asset": 4,
+        "official_contract_registry_asset": 5,
         "official_documentation": 25,
-        "official_social_post": 43
+        "official_social_post": 44
       },
       "contract_records_by_provenance_source_overlapping": {
         "chainlink-robinhood-feed-directory": 37,
@@ -2974,11 +3116,14 @@
         "morpho-address-registry-current": 13,
         "netnet-app-registry-20260918": 3,
         "netnet-app-registry-asset": 84,
+        "netnet-book-desk-deployment": 1,
+        "netnet-book-zap-deployment": 1,
         "netnet-docs-baskets": 2,
         "netnet-docs-credit": 10,
         "netnet-docs-futures": 8,
         "netnet-docs-official-channels": 60,
         "netnet-lp-zap-deployment": 1,
+        "netnet-play-book-registry-20260920": 2,
         "netnet-play-registry-asset": 83,
         "netnet-predict-desk-deployment": 1,
         "netnet-predict-higher-creation-20260918": 1,
@@ -2992,8 +3137,8 @@
         "uniswap-robinhood-v3": 10
       }
     },
-    "new_user_source_urls_retained_after_initial_intake": 6,
-    "original_source_preservation": "All ten original source URLs are retained, plus six subsequently supplied URLs: the September strategy post(including?s=20),Credit application route,two NFT collection links,the September12 Manager-bid post(including?s=20),and RHScan as the former requested explorer default. Derived/discovered sources are counted separately;historical evidence origins remain distinct from the Robinhood Etherscan navigation URLs returned now.",
+    "new_user_source_urls_retained_after_initial_intake": 7,
+    "original_source_preservation": "All ten original source URLs are retained, plus seven subsequently supplied URLs: the September strategy post(including?s=20),Credit application route,two NFT collection links,the September12 Manager-bid post(including?s=20),RHScan as the former requested explorer default,and the September20 THE BOOK launch post(including?s=46). Derived/discovered sources are counted separately;historical evidence origins remain distinct from the Robinhood Etherscan navigation URLs returned now.",
     "documentation_pages_used_for_reference_summaries": 25,
     "indexed_creation_receipts_reviewed": 3,
     "documentation_review_scope": "Body-retrieval and summary counts are cumulative, not 25 fresh complete semantic reviews on September 18. Historical 24-page review plus targeted BASKETS addition; every source carries its own date."

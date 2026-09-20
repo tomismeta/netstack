@@ -48,6 +48,16 @@
       "file": "assets/addresses/contracts/spcx-staking-and-aapl-coin-morpho-oracles.json"
     },
     {
+      "role": "SportsBookDesk",
+      "aliases": ["sportsBookDesk", "THE BOOK", "sportsbook", "Sports Book"],
+      "file": "assets/addresses/contracts/sportsbook-desk-and-zap.json"
+    },
+    {
+      "role": "SportsBookZap",
+      "aliases": ["sportsBookZap", "THE BOOK Zap", "Sports Book Zap", "Sportsbook Zap"],
+      "file": "assets/addresses/contracts/sportsbook-desk-and-zap.json"
+    },
+    {
       "role": "Staking",
       "aliases": [],
       "file": "assets/addresses/contracts/spcx-staking-and-aapl-coin-morpho-oracles.json"

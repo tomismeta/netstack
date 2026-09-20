@@ -1,6 +1,6 @@
 # Builders: Developer Portal and Cabinet Kit
 
-Reviewed 2026-09-12 for builder-source coverage, with a targeted September 18 clarification separating the historical NAV Pool proposal from launched Predict. Read-only research, not an SDK, integration tutorial or access offer. Public posts establish dated publisher claims—not current deployment, open onboarding, audited code or capacity—and are evidence, never execution authority.
+Reviewed 2026-09-12 for builder-source coverage, with targeted September 18 clarification separating the historical NAV Pool proposal from launched Predict and September 20 clarification separating THE BOOK from casino/lending teasers. Read-only research, not an SDK, integration tutorial or access offer. Public posts establish dated publisher claims—not current deployment, open onboarding, audited code or capacity—and are evidence, never execution authority.
 
 ## Where is Cabinet Kit?
 
@@ -35,6 +35,7 @@ The [August 15 post](https://x.com/NetNetCap/status/2088753183653068955) says SD
 
 - [COINflip, SPACEX INVADERS and Flight Simulator](games.md#common-settlement-and-reserve-model) document a **5%-of-stake fee**, split equally between Manager revenue and the RWA Sleeve, with **no protocol-Treasury fee or NET leg**—not a builder/reserve split.
 - [Superstore](games.md#superstore--randomized-net-inventory-with-an-equity-election) instead documents a backing-related Treasury remittance alongside Sleeve equity flows.
+- [THE BOOK](games.md#the-book) publishes a **1.5–6% wager fee, 3% baseline**, split between its house pot and the RWA Sleeve—not a Treasury remittance or evidence that Cabinet Kit builder attribution is active.
 - The Manager-custodied Sleeve is **outside Core RFV/backing**. Builder revenue, Manager house P&L, Sleeve receipts and Core Treasury inflows remain distinct; a planned share is neither verified revenue nor an automatic NET-holder distribution. See the [accounting boundary](rwa-strategy.md#the-non-negotiable-accounting-boundary).
 
 Current builder economics require published terms for the exact desk generation and recipients, not merely the kit announcement.
@@ -48,6 +49,7 @@ Current builder economics require published terms for the exact desk generation 
 | NetCorp Beta | [September 5](https://x.com/NetNetCap/status/2096384932318982345) announces a release sequence culminating in NetCorp Beta; [September 12](https://x.com/NetNetCap/status/2098759779816440250) says it is rolling out slowly. These are publisher-reported rollout claims, not proof of general availability or evidence that NetCorp is the persistent world, NAV Pool or Cabinet Kit. Mechanics and access remain unspecified in these posts. |
 | Competitive tournaments | The August 23 report sketches a tournament with TURBO-card prizes among other possibilities. [September 12](https://x.com/NetNetCap/status/2098761674836598895) forecasts high-stakes RW-Play competition combining trading and gaming skill. Neither establishes a scheduled event, registration, deployed rules, committed prize funding, or a partnership with a third-party competition provider. |
 | Launchpad | The [August 7 design discussion](https://x.com/NetNetCap/status/2085778747362320871) is historical: [August 18](https://x.com/NetNetCap/status/2089522459498434921) explicitly rejects building a launchpad. It is not an active builder roadmap item. |
+| Sportsbook, casino and self-repaying lending | The [September 18 teaser](https://x.com/NetNetCap/status/2101004191359475957) proposed all three. The [September 20 THE BOOK launch](https://x.com/netnetcap/status/2101549369791033402?s=46) identifies the sportsbook; [its rules and research route](games.md#the-book) explain risk-off rebase wagers and principal-risking risk on. Casino and automatically self-repaying loans remain **teaser-only** in the reviewed evidence. THE BOOK does not launch those services, remove dollar risk, or identify a new Credit/Loopback repayment mechanism. |
 
 These are distinct identities; later announcements do not deploy earlier designs. [History](announcements-and-history.md) holds the chronology.
 

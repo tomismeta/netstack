@@ -74,6 +74,14 @@
         "netnet-predict-vault-deployment"
       ],
       "detail": "Predict's observed binary market displays combined Treasury and Sleeve and has a depositor-funded House Vault. Do not import backing-per-NET brackets, parimutuel rules or no-house-side assumptions from the older NAV Pool proposal. Series outcome identities do not establish resolver authority, exact tie/void rules or audited vault solvency."
+    },
+    {
+      "topic": "THE BOOK house versus Predict House Vault",
+      "source_ids": [
+        "netnet-book-rules-20260920",
+        "netnet-play-book-registry-20260920"
+      ],
+      "detail": "September 20 targeted THE BOOK review: SportsBookDesk holds wsNET and published rules identify the house as the RWA Sleeve, never Treasury. Its house pot is not the depositor-funded USDG Predict House Vault. Launch language, publisher HUMAN-VERIFIED labels and successful indexed creation metadata do not verify source equivalence, current authority, balances or solvency; no fixed-block direct live verification was performed."
     }
   ],
   "coverage": {
@@ -81,7 +89,7 @@
     "source_content_reviews": "sources.json#/sources",
     "scope": "Address-specific counts only. Source inventory, extraction boundaries, gaps and content-review status are maintained in the linked source catalog, not duplicated here.",
     "counts": {
-      "contract_records_unique_by_chain_and_address": 183,
+      "contract_records_unique_by_chain_and_address": 185,
       "public_role_address_records": 10,
       "trusted_product_mark_relationships": 6,
       "morpho_market_identifiers": 6,

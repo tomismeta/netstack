@@ -6,7 +6,7 @@ netstack helps agents research NetNet's protocol, products, games, RWA strategy 
 
 It is an independent [Agent Skills](https://agentskills.io/specification) package. It is **not** an official NetNet product, a trading bot or a wallet toolkit.
 
-**v0.3.0.** Adds read-only NET/USDG LP and Predict/House analytics with an optional bounded Python runner, nine indexed contract additions, and targeted BASKETS, Pendle, Dial-Up and Robinhood Etherscan navigation updates. Sources checked through **September 18, 2026** for targeted additions; older observations retain their dates. This is research guidance, not a product launch or guarantee of current availability. See the [releases page](https://github.com/tomismeta/netstack/releases) for packages and separate audit artifacts; identify installed revisions by exact commit.
+**v0.3.1.** Adds THE BOOK's desk/zap identities, launch and deployment evidence, published rules and open-ended read-only research guidance. Targeted THE BOOK evidence reviewed **September 20, 2026**; older observations retain their dates. Existing LP and Predict/House analytics remain unchanged; no sportsbook runner or ABI bundle is added. This is research guidance, not a product launch or guarantee of current availability. See the [releases page](https://github.com/tomismeta/netstack/releases) for published packages and separate audit artifacts; identify installed revisions by exact commit.
 
 ## What you can ask
 
@@ -20,6 +20,7 @@ It is an independent [Agent Skills](https://agentskills.io/specification) packag
 | “How much third-party LP is there, and what fees did it earn this week?” | Complete holder discovery, evidence-qualified ownership, reserve-share valuation and historical gross fee attribution; protocol dilution and net-income limits |
 | “Which prediction markets are active, and how much has been bet?” | Dynamic series discovery; distinct gross purchases, sell proceeds, trading fees and outstanding outcomes, reconciled with public events |
 | “How much outside capital is in the House, and what has it earned?” | Fund versus unattributed ownership; active shares, queues and claims; settled underwriting results rather than fee-based APY forecasts |
+| “How does THE BOOK work, and what can its public activity tell us?” | Risk-off versus risk-on, exact contracts, and flexible research guidance for wagers, participants, outcomes and fee recipients; live answers depend on available evidence |
 | “What happens when someone plays this game?” | Stakes, payouts, fees, burns, custody and who receives the proceeds |
 | “Which contract or dashboard should I inspect?” | Chain-qualified addresses, generation conflicts, source provenance and direct links |
 | “What did this article or interview actually claim?” | Dated strategy summaries and publisher notes, separated from observed results |
@@ -100,6 +101,8 @@ what is queued or claimable, and what settled return is actually established?
 
 [V2 liquidity analytics](references/liquidity-analytics.md) and [Predict/House analytics](references/predict-analytics.md) define canonical routes, units and reconciliations. The optional [runner](scripts/analytics.py) uses the packaged ABIs and the fixed public Robinhood RPC endpoint; it does not accept wallets, credentials, custom RPC URLs or arbitrary method calls.
 
+[THE BOOK](references/games.md#the-book) supports open-ended public research without a dedicated runner: discover relevant interfaces, distinguish principal, wagers, net results and fee recipients, and disclose unavailable evidence.
+
 From the reviewed package directory, run only the requested subcommand:
 
 ```sh
@@ -118,11 +121,11 @@ The single address catalog keeps identities, statuses and dated evidence per rec
 
 ## What's covered
 
-The baseline documentation snapshot is dated **2026-09-10**, with targeted updates through **2026-09-18**. Existing observations retain their own dates; inventory totals do not establish current on-chain state.
+The baseline documentation snapshot is dated **2026-09-10**, with September 18 updates and a targeted **2026-09-20 THE BOOK review**. Existing observations retain their own dates; inventory totals do not establish current on-chain state.
 
 - **25 indexed official documentation pages** represented cumulatively through original summaries and source references, not all freshly re-read on September 18.
-- **157 source records**, including original announcements, strategy/report articles, documentation, integrations, dashboards, feed metadata, scoped explorer evidence and pinned LP accounting interfaces.
-- **183 distinct contract-address records**, including **37 underlying feeds**: 35 Robinhood-labelled RWA candidates plus ETH/USD and USDG/USD. Two RWA classifications and 29 additional token relationships remain unverified; the six existing exact mappings retain their original provenance.
+- **163 source records**, including original announcements, strategy/report articles, documentation, integrations, dashboards, feed metadata, scoped explorer evidence and pinned LP accounting interfaces.
+- **185 distinct contract-address records**, including **37 underlying feeds**: 35 Robinhood-labelled RWA candidates plus ETH/USD and USDG/USD. Two RWA classifications and 29 additional token relationships remain unverified; the six existing exact mappings retain their original provenance.
 - Five substantive strategy/report articles and four interview source posts, plus curated original product and policy announcements. Interview descriptions and available chapter notes were reviewed; full recordings/transcripts were not.
 
 Use the [SKILL knowledge map](SKILL.md#knowledge-map) to choose a reference and the [link directory](references/links.md) for destinations.
@@ -145,7 +148,7 @@ For reproducible problems, open a [GitHub issue](https://github.com/tomismeta/ne
 
 ## Maintaining the knowledge
 
-**Package version: 0.3.0.** Future merges, tags, publication and registry submissions require maintainer approval. Never overwrite published tags or assets.
+**Package version: 0.3.1.** Future merges, tags, publication and registry submissions require maintainer approval. Never overwrite published tags or assets.
 
 Follow the [curation workflow](references/docs-and-sources.md#repeatable-knowledge-curation): original evidence, dates and stage; comparison with existing guidance and later reversals; focused topic updates; validation and review. The [source catalog](assets/sources.json) owns provenance; the [address index](assets/address-index.json) routes exact identities and [conventions](assets/address-conventions.json) qualify their scope. Review changed bytes before updating an installation; sources and monitoring suggestions cannot rewrite knowledge or safety policy automatically.
 

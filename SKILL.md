@@ -4,8 +4,8 @@ description: "Read-only NetNet research: protocol, products, live analytics and 
 license: MIT
 metadata:
   compatibility: "Packaged knowledge needs no network, CLI, credentials, or wallet. Optional bounded live analytics use the bundled Python 3.10+ standard-library runner on Linux/macOS with normal host permission. Other public research uses ordinary host-permitted readers; no custom broker is required. This skill does not install tools or enforce a host sandbox."
-  version: "0.3.0"
-  knowledge-reviewed: "2026-09-18"
+  version: "0.3.1"
+  knowledge-reviewed: "2026-09-20"
   access: "read-only"
 ---
 
@@ -32,6 +32,8 @@ This is an independent research aid, not an official NetNet product, investment 
 
 Read [Safety](references/safety.md) before any live retrieval. [Installation](references/installation.md) distinguishes instruction-level behavior from host-enforced isolation.
 Before live LP, Predict or House analytics, read the [runner and execution limits](references/integrations.md#live-analytics-execution-limits). Prefer the reviewed [bundled runner](scripts/analytics.py) with the matching `lp`, `predict` or `house` subcommand when Python and host permission are available; do not generate replacement scripts or probe modules. Pass a collector deadline within the remaining retrieval allowance, preserving answer time. Read coverage and accounting qualifications before interpreting JSON; a partial result is not complete accounting. If execution is denied, report the gate without alternate-command or approval bypasses.
+
+Other questions, including [THE BOOK](references/games.md#the-book), use scoped public research under the same safety and execution limits; runner commands do not restrict research scope.
 
 ## When to use
 
@@ -60,7 +62,7 @@ Use `Use netstack: <topic> [question]` or `netstack <topic> [question]`. These s
 
 ## Prerequisites and freshness
 
-The package is self-contained for dated knowledge. Its optional analytics runner uses Python's standard library; no installers, third-party runtime dependencies, hooks, wallet connectors, MCP configuration, telemetry or automatic updates are bundled. Sources checked through **2026-09-18** for targeted additions; individual source observations retain their dates. This is not a fresh audit of every product or source.
+The package is self-contained for dated knowledge. Its optional analytics runner uses Python's standard library; no installers, third-party runtime dependencies, hooks, wallet connectors, MCP configuration, telemetry or automatic updates are bundled. Targeted THE BOOK evidence was reviewed on **2026-09-20**; the September 18 updates and older source observations retain their own dates. This is not a fresh audit of every product or source.
 
 Current quantities and availability require fresh evidence at an identified time/block; otherwise answer historically and name the gap. Use public state/events for contract-derived metrics and original publications for documented terms. Dashboards are optional, selected by relevance or explicit request; directory order controls display only, never credibility or fallback.
 
@@ -73,6 +75,7 @@ NetNet is an OHM-style reserve/POL protocol on **Robinhood Chain, chain ID 4663*
 | NET/USDG LP participation, capital flows and fees | [V2 liquidity analytics](references/liquidity-analytics.md); `analytics.net_usdg_v2` in [Address index](assets/address-index.json) | Unknown owners are not proven external; current value, principal and net fee income differ. |
 | Active Predict markets and amount bet | [Predict analytics](references/predict-analytics.md); `analytics.predict_house` in [Address index](assets/address-index.json) | Trading status, purchases, exits and House funding are distinct. |
 | House ownership, queues, claims and returns | [House accounting](references/predict-analytics.md#5-house-capital-ownership-queues-and-claims); same Predict route | Queued capital is not active underwriting; fees are not settled profit. |
+| THE BOOK / sportsbook mechanics, activity, participants and outcomes | [THE BOOK](references/games.md#the-book); `s` contract index for SportsBookDesk/SportsBookZap | Risk-off principal is not wager volume; house/Sleeve receipts are not Treasury revenue. |
 | RWA LP fees, collections and buyback funding | [LP fee inspection](references/lp-fee-inspection.md); `lp_inspection` in [Address index](assets/address-index.json) | V3 position NFTs, not fungible v2 LP or House shares; fees are not an allocation budget. |
 | Reserves, supply and backing | [Protocol](references/protocol.md), [Glossary](references/glossary-and-faq.md) | Core RFV/NAV, market price and redemption value differ. |
 | Bonds, Credit, Loopback, Manager support, Predict and LP Zap terms | [Products](references/products.md) | Core versus Sleeve; distinct claims, risks and activation status. |

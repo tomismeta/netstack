@@ -1,6 +1,6 @@
 # Direct application, dashboard and chart links
 
-Baseline public destinations retain their source dates; targeted Predict, liquidity, BASKETS and Pendle entries below reflect September 18, 2026 source observations, not a fresh check of every listed destination. Robinhood Etherscan is the explorer default, identified in Etherscan's chain registry on 2026-09-14. These are **reference links**, not instructions or authorization for wallet controls.
+Baseline public destinations retain their source dates; targeted Predict, liquidity, BASKETS and Pendle entries reflect September 18, 2026 source observations, with THE BOOK added September 20—not a fresh check of every listed destination. Robinhood Etherscan is the explorer default, identified in Etherscan's chain registry on 2026-09-14. These are **reference links**, not instructions or authorization for wallet controls.
 
 ## Robinhood Chain explorer
 
@@ -63,6 +63,7 @@ The following exact destinations were published by the shareholder app, official
 - [Dial-Up](https://play.netnet.capital/?open=dialup)
 - [TURBO Blackjack](https://play.netnet.capital/?open=blackjack)
 - [BASKETS — arcade hub](https://play.netnet.capital/) — the destination published by [BASKETS documentation](https://docs.netnet.capital/baskets) and Official Channels; select BASKETS in the hub. The documentation reports opening September 14. No dedicated deep link is assumed.
+- [THE BOOK — arcade hub](https://play.netnet.capital/) — September 20 launch and official app identify the sports book; select THE BOOK in the hub. [Rules, economics and public research](games.md#the-book) distinguish its wsNET wagers/house pot from Predict's House Vault. No unobserved deep link is assumed.
 - [TURBO long-dated desk](https://turbo.netnet.capital/)
 - [Managed Futures terminal](https://trading.netnet.capital/) — documented tNET test program, not the ordinary NET spot-price chart.
 

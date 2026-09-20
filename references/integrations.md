@@ -21,6 +21,8 @@ Use ordinary host-permitted public reads under [Safety's public-research rules](
 
 For live LP, Predict or House questions, prefer the optional reviewed [runner](../scripts/analytics.py) under normal host permission. It uses existing **Python 3.10+ on Linux/macOS, standard library only**, a fixed public Robinhood RPC origin and packaged canonical routes/ABIs. There is no custom-endpoint, credential, wallet or arbitrary-RPC mode. Read the matching accounting recipe before interpreting its output. Knowledge-only use remains available without Python.
 
+Those three runner commands are an implementation scope, **not a boundary on public research**. [THE BOOK's open-ended workflow](games.md#open-ended-public-research) uses ordinary host-permitted reads and interfaces discovered/validated for the question; it has no packaged runner command or bundled ABI requirement. Apply the shared whole-answer allowance, per-call bounds, finite call/log/recovery budgets, common-block snapshots and honest coverage reporting below to that research as well. A missing Book command is not a denied invocation; no replacement collector or wallet action is needed to explain or inspect public evidence.
+
 ### Invocation and deadline
 
 Use `python3 -I -B scripts/analytics.py lp --since-days 7 --deadline 120 --json` from the installed package directory; substitute `predict` or `house` and omit the LP-only `--since-days`. For another working directory use the installed script's exact path. Do not generate replacement scripts, probe modules or try inline-code/redirect variants to evade a denied invocation.
