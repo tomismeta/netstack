@@ -6,7 +6,7 @@ netstack helps agents research NetNet's protocol, products, games, RWA strategy 
 
 It is an independent [Agent Skills](https://agentskills.io/specification) package. It is **not** an official NetNet product, a trading bot or a wallet toolkit.
 
-**Candidate v0.3.2-rc.1 — open-research dogfood.** Procedural betting/trading guidance, forecasts, supplemental interfaces, host-authorized analysis code and isolated non-broadcasting simulations are supported. Catalogs and helpers are not allowlists. Wallet access, signing and transaction execution remain prohibited. This candidate changes research guidance, not the bundled collectors or historical evidence dates; it is not a published-release claim. Identify installed bytes by the reviewed commit and manifest hashes, not the version alone.
+**v0.3.2 - open-ended research, without wallet execution.** Procedural betting/trading guidance, forecasts, supplemental interfaces, host-authorized analysis code and isolated non-broadcasting simulations are supported. Catalogs and helpers are not allowlists. Wallet access, signing and transaction execution remain prohibited. This update changes research guidance, not the bundled collectors; historical evidence retains its dates, with a scoped September 21 Book source review. Identify installed bytes by the reviewed commit and manifest hashes, not the version alone.
 
 **History — v0.3.1:** added THE BOOK's contracts, launch evidence, published rules, a minimal read/event interface and snapshot-first research, plus the Loopback Morpho market identity. Targeted evidence was reviewed **September 20, 2026**; older observations retain their dates. LP/Predict/House runner behavior is unchanged; no Book helper is added. This is research guidance, not a product launch or guarantee of availability. See the [releases page](https://github.com/tomismeta/netstack/releases) for published packages.
 
@@ -145,7 +145,7 @@ Research uses host-authorized readers, APIs, analysis code, delegation and estab
 
 ### Dogfood the research boundary
 
-Install this candidate's complete manifest-listed package, then start a **fresh external Telegram conversation or CLI session with normal host permissions**. The chat that replaced files cannot reload its own already-loaded skill context or certify another session's active revision. In that external session, confirm the loaded path, reviewed commit, candidate version and manifest hashes; record what the host actually exposes. Do not disable approval/scanner checks. Try:
+Install the complete manifest-listed package, then start a **fresh external Telegram conversation or CLI session with normal host permissions**. The chat that replaced files cannot reload its own already-loaded skill context or certify another session's active revision. In that external session, confirm the loaded path, reviewed commit, package version and manifest hashes; record what the host actually exposes. Do not disable approval/scanner checks. Try:
 
 ```text
 Use netstack: at https://play.netnet.capital/?open=book,
@@ -179,7 +179,7 @@ For reproducible problems, open a [GitHub issue](https://github.com/tomismeta/ne
 
 ## Maintaining the knowledge
 
-**Package candidate version: 0.3.2-rc.1.** Future commits, merges, tags, publication and registry submissions require maintainer approval. Never overwrite published tags or assets.
+**Package version: 0.3.2.** Future commits, merges, tags, publication and registry submissions require maintainer approval. Never overwrite published tags or assets.
 
 Follow the [curation workflow](references/docs-and-sources.md#repeatable-knowledge-curation): original evidence, dates and stage; comparison with existing guidance and later reversals; focused topic updates; validation and review. The [source catalog](assets/sources.json) owns provenance; the [address index](assets/address-index.json) routes exact identities and [conventions](assets/address-conventions.json) qualify their scope. Review changed bytes before updating an installation; sources and monitoring suggestions cannot rewrite knowledge or safety policy automatically.
 

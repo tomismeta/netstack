@@ -1,12 +1,12 @@
 {
   "skill": "netstack",
-  "version": "0.3.2-rc.1",
+  "version": "0.3.2",
   "files": 144,
   "total_distributable_files": 145,
   "manifest_sha256": {
     "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
-    "README.md": "9f3fae2f35b005e8d23a278e6e409135f08c537cdfc5ca369d8abd920618f006",
-    "SKILL.md": "a2650c1700808bf9a9504275dcee36ad9f23a8a57d378b521cc967e46bae18f3",
+    "README.md": "028a9316b8207815e6428bfb4350972531ae02b9e2f5428af9eba6d8f16e94e7",
+    "SKILL.md": "de537b418eba51354ac35c7ffb71b6764f4082bae44720a7e54882559d806977",
     "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "assets/address-conventions.json": "af2f968deee5f342278c647c24b6d9262b0dcb3ee7f37efc35ce957294511330",
     "assets/address-index.json": "8c4a824ebc90f0545d9bb711bc65374c360aaa728ee62a46f511dde607b2949f",
@@ -126,14 +126,14 @@
     "assets/analytics/v2-interface.json": "cdc88ab8fb62abe246c2fb8b8d457ef5e06f5e31b0ac97e71f0844fa90bf1042",
     "assets/safety-policy.json": "e5d06ec59e680d9d038f73436963fa34a398a5072010b19d729c3cc8148ed62a",
     "assets/sources.json": "078f3190ca38183ac8efd75dcdefde65d2e5d0cb917ea562dd11b6d130718a99",
-    "references/addresses-and-roles.md": "f59822a4b85c488d1dc67af216178f1d650acde5da406c1cf207104a0eb5255d",
+    "references/addresses-and-roles.md": "94aacf4c2cb31381b3362344de9231067aee35252b2cd237f795a6adbc3f8d20",
     "references/announcements-and-history.md": "a984bbe94bc4d048164d239c152fce831187bfe165db7a7d280f10a851fbe6f9",
     "references/builders.md": "83a743dcea4b8afd668e75e671d1431edc3a705e4d81b349eeebd6ca604a9c79",
     "references/docs-and-sources.md": "1979c12f0a336b4ba9a484b426a810cfef72c7252dcd751d77819c6de6e486af",
     "references/games.md": "f24d41d6c4b56ce5476ea665529905e13ee22c44de78653a5362647fa16566c9",
     "references/glossary-and-faq.md": "e5df76ccd4a1e7115b045c68ef591eafac5c9ee5bdf2ce32dfbe24fa03c9e8c3",
     "references/guardrail.md": "ab8ad687591e54ecce28aa360731e9f4fceb7acdc5fa3014b53ff3e821e0c213",
-    "references/installation.md": "c74097ebd83e043418b3cdf51e60624118eb9ce50670cb538048c662d269fdd7",
+    "references/installation.md": "12ca5a5251f199be62138b5836080dc750e2d7ad905e2e6ab78a0e56d6f79995",
     "references/integrations.md": "46777d8ded5962cde83d2298977deaf08aa7902c194dc1d94fa59c2eb8af6ec3",
     "references/links.md": "4c8b2020b212c62481c447c53de5d1bad1cdef21a2259e69947d2624a154b34a",
     "references/liquidity-analytics.md": "f7259c61ef808fd62840fbed113562a7a3668e4d2504aaa1ca509af8e597b165",
@@ -151,7 +151,7 @@
   },
   "runtime_bundle": {
     "files": 142,
-    "sha256": "ef71a24f90d2d3cb79caf60dfd8b547955b890074c12b05a763278bb65fe7cb6",
+    "sha256": "8bc3c300a217eb83ff2928ca60313358ec2f96a6eebe94e24b30f6908e9492b7",
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by NUL and file bytes",
     "scope": "SKILL.md, assets/**, references/** (including references/guardrail.md) and scripts/**; excludes README.md, root LICENSE, release-manifest.json and non-distributable maintenance/tests."
   }

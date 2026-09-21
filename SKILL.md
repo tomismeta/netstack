@@ -4,7 +4,7 @@ description: "NetNet research, procedural guidance and modeling; no wallet execu
 license: MIT
 metadata:
   compatibility: "Packaged knowledge needs no network, CLI, credentials, or wallet. Optional live analytics use the bundled Python 3.10+ standard-library runner on Linux/macOS with normal host permission. Supplemental research, analysis code and non-broadcasting simulations use host-authorized tools; no custom broker is required. This package installs no tools and does not enforce a host sandbox."
-  version: "0.3.2-rc.1"
+  version: "0.3.2"
   knowledge-reviewed: "2026-09-21"
   access: "read-only"
 ---
