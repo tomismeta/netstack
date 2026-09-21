@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "Nonexhaustive read-only methods and events for canonical v2 LP holdings, liquidity flows and conditional fee accounting. No contract addresses, write methods or executable code in this fragment. Resolve catalogued identities through assets/address-index.json analytics pointers. Supplemental interfaces, metadata, balances, ownership, history, evidenced calculations and explicit models may be researched after establishing provenance and semantics under netstack-guardrail.md; omissions do not prohibit separately validated read-only quotes or isolated nonbroadcast simulations and do not extend helper support or authorize wallet operation.",
+  "scope": "Nonexhaustive read-only methods and events for canonical v2 LP holdings, liquidity flows and conditional fee accounting. No contract addresses, write methods or executable code in this fragment. Resolve catalogued identities through assets/address-index.json analytics pointers. Supplemental interfaces, metadata, balances, ownership, history, evidenced calculations and explicit models may be researched after establishing provenance and semantics under references/guardrail.md; omissions do not prohibit separately validated read-only quotes or isolated nonbroadcast simulations and do not extend helper support or authorize wallet operation.",
   "source_ids": [
     "uniswap-v2-liquidity-accounting",
     "netnet-app-registry-20260918",

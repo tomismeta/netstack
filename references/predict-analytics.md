@@ -1,6 +1,6 @@
 # Read-only Predict and House Vault analytics
 
-Use for current series, activity since opening, and House capital/ownership/performance. The [research guardrail](../netstack-guardrail.md) and [Safety](safety.md) govern retrieval and execution. Concrete user-operated workflow explanations, separately validated read-only quotes and isolated nonbroadcast simulations are allowed. The agent must not operate wallets, sign, submit transactions, mutate live-chain state or prepare execution-ready transaction artifacts; a quote or simulation is not an actual outcome. Dashboards are optional evidence; [product terms](products.md#netnet-predict-weekly-outcomes-and-house-vault) remain separate from measured balances.
+Use for current series, activity since opening, and House capital/ownership/performance. The [research guardrail](guardrail.md) and [Safety](safety.md) govern retrieval and execution. Concrete user-operated workflow explanations, separately validated read-only quotes and isolated nonbroadcast simulations are allowed. The agent must not operate wallets, sign, submit transactions, mutate live-chain state or prepare execution-ready transaction artifacts; a quote or simulation is not an actual outcome. Dashboards are optional evidence; [product terms](products.md#netnet-predict-weekly-outcomes-and-house-vault) remain separate from measured balances.
 
 ## 1. Select identities, evidence and a bounded snapshot
 

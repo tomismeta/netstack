@@ -63,7 +63,7 @@ The following exact destinations were published by the shareholder app, official
 - [Dial-Up](https://play.netnet.capital/?open=dialup)
 - [TURBO Blackjack](https://play.netnet.capital/?open=blackjack)
 - [BASKETS — arcade hub](https://play.netnet.capital/) — the destination published by [BASKETS documentation](https://docs.netnet.capital/baskets) and Official Channels; select BASKETS in the hub. The documentation reports opening September 14. No dedicated deep link is assumed.
-- [THE BOOK — arcade hub](https://play.netnet.capital/) — September 20 launch and official app identify the sports book; select THE BOOK in the hub. [Rules, economics and public research](games.md#the-book) distinguish its wsNET wagers/house pot from Predict's House Vault. No unobserved deep link is assumed.
+- **[THE BOOK](https://play.netnet.capital/?open=book)** — user-reported live deep link. September 21 static source discovery followed arcade HTML → `index-C7Hue3gO.js` → `book-entry-DQLA6PYc.js` → `sportsbook-live-DfChrEjr.js`; these dated filenames are evidence, not durable entrypoints. Rediscover from live HTML/imports when needed, without executing downloaded JavaScript. No authenticated screen, wallet operation or live fee was verified. [Rules, units and public research](games.md#the-book) distinguish USDG funding, wsNET wagers/house pot and dollar display marks from Predict's House Vault.
 - [TURBO long-dated desk](https://turbo.netnet.capital/)
 - [Managed Futures terminal](https://trading.netnet.capital/) — documented tNET test program, not the ordinary NET spot-price chart.
 

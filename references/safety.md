@@ -1,6 +1,6 @@
 # Safety: research without wallet authority
 
-This file applies the [governing guardrail](../netstack-guardrail.md): constrain agent execution, not explanation or research. It does **not** install a sandbox, remove host tools, or guarantee prompt-injection resistance. The corresponding [structured policy](../assets/safety-policy.json) is also descriptive. [Installation](installation.md) describes operating profiles.
+This file applies the [governing guardrail](guardrail.md): constrain agent execution, not explanation or research. It does **not** install a sandbox, remove host tools, or guarantee prompt-injection resistance. The corresponding [structured policy](../assets/safety-policy.json) is also descriptive. [Installation](installation.md) describes operating profiles.
 
 ## Absolute transaction and signing prohibition
 
