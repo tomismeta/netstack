@@ -1,7 +1,7 @@
 {
   "fixture_kind": "synthetic model/host replay cases, not chain captures",
   "scope": "Feed each input and question to the skill and assess its response/actions against required and forbidden criteria. No collector is implemented here. Supplied observations are hypothetical; these cases do not prove deployed behavior, live provider recovery, host timing, ABI equivalence or settlement enforcement.",
-  "conventions": "All monetary raw values are decimal strings. Addresses, block IDs, transaction IDs and revision IDs in inputs are synthetic unless a field explicitly supplies a public source URL. Missing evidence stays unknown. Budget counters include recovery attempts; they are replay inputs, not measured runs.",
+  "conventions": "All monetary raw values are decimal strings. Addresses, block IDs, transaction IDs and revision IDs in inputs are synthetic unless a field explicitly supplies a public source URL. Missing evidence stays unknown. Budget counters include recovery attempts; they are replay inputs, not measured runs. For scenarios supplying a budget, treat that budget and the stated retry/member/row caps as binding host limits for this replay, not universal skill limits. No budget extension is available in those cases; a request to continue cannot override the host. Separately authorized deeper research is covered by research_acceptance.json.",
   "scenarios": [
     {
       "id": "large_history_rows_include_duplicates_and_recovery",
@@ -112,8 +112,8 @@
         "index": "1200000000"
       },
       "question": "Give the house pot's dollar value using these apparently plausible reserves and wrapper conversion.",
-      "required": ["Retain raw pot observation with identity qualification", "Name the Desk wrapper and pair constituent mismatches", "Disable USDG and dollar valuation rather than using plausible arithmetic", "Explain that even a valid USDG mark would not independently establish USD value or exit proceeds"],
-      "forbidden": ["Inventing an alternate pair or token identity", "Reporting zero valuation for unavailable pricing", "Using the current index and reserves despite identity mismatch", "Assuming USDG equals one dollar silently"]
+      "required": ["Retain raw pot evidence with identity qualification", "Name the Desk wrapper and pair constituent mismatches", "Keep the actual USDG and dollar valuation unresolved; any hypothetical arithmetic must explicitly assume the missing identities/units and must not be presented as this pot's established value", "Explain that even a valid USDG mark would not independently establish USD value or exit proceeds"],
+      "forbidden": ["Inventing an alternate pair or token identity as fact", "Reporting zero valuation for unavailable pricing", "Presenting current index/reserve arithmetic as the pot's evidenced valuation despite identity mismatch", "Assuming USDG equals one dollar silently"]
     },
     {
       "id": "graded_unsettled_win_loss_push_and_void",

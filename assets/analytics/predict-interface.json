@@ -4,7 +4,7 @@
   "source_sha256": "379faedc6c6494416fada1208e61dfd0913f2ab399f27a9ba56e5031913fca5d",
   "source_locator": "An ABI; Re token ABI; HO live adapter; zO status decoder; C_ chooses HO for live and iI for mock.",
   "reviewed_on": "2026-09-18",
-  "limits": "Published ABI/live UI, not verified Solidity. Analytics reads/events only; writes, quotes and guess/proposal interfaces (Guessed, WinnerProposed, guessOf) omitted. Guesses are not wagers; unknown topics are not volume. No quoteBuy/quoteSell calls. Validate chain, identity, block and exact decoding; unknown enums stay unknown. token_abi is for USDG/outcomes, not House shares.",
+  "limits": "Published ABI/live UI, not verified Solidity. This nonexhaustive analytics fragment omits writes, quotes and guess/proposal interfaces (Guessed, WinnerProposed, guessOf); quoteBuy/quoteSell are not supplied or supported by the bundled helper. Separately validated supplemental reads, read-only quotes, isolated nonbroadcast simulations and explicit models are allowed under netstack-guardrail.md, never wallet operation or transaction execution. Guesses are not wagers; unknown topics are not volume. Validate chain, identity, block and exact decoding; unknown enums stay unknown. token_abi is for USDG/outcomes, not House shares.",
   "status_values": {"0":"none","1":"open","2":"resolved","3":"voided"},
   "side_values": {"long_true":"HIGHER","long_false":"LOWER"},
   "display_units": "todayWad/lineWad/printWad: raw/1e18 is millions of displayed dollars, raw/1e12 is dollars. Probability marks use raw/1e18. Confirm token decimals.",

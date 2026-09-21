@@ -32,7 +32,7 @@ The author's comparison with Axie and pump.fun is a strategic analogy, not proof
 | WinNET | Prize draws provide recurring activity backed by disclosed randomness | Draw prizes are not equivalent to venue profit or positive player expected value |
 | Real World Bonds | Subscriber USDG obtains discounted vested NET while funding equity purchases and a reserve remittance | The sleeve holding equities is outside Core RFV; backing-neutral issuance is not automatic equity backing |
 
-The article supplies cumulative boxes, careers, prizes, subscriptions, Rialto fills and sleeve-value figures as of August 8. Those are historical author-reported observations, not current totals. Do not reuse them in a live answer without rechecking the underlying records.
+The article supplies cumulative boxes, careers, prizes, subscriptions, Rialto fills and sleeve-value figures as of August 8. Those are historical author-reported observations, not current totals. Cite them with their historical date and scope when relevant; recheck underlying records before presenting updated figures as current.
 
 For current documented mechanics use [Games](games.md), [Products](products.md), [RWA Desk](https://docs.netnet.capital/rwa-desk), and [Treasury](https://docs.netnet.capital/treasury).
 

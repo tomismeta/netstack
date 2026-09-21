@@ -11,14 +11,14 @@
       "address_url_template": "https://robin.etherscan.io/address/{address}",
       "transaction_url_template": "https://robin.etherscan.io/tx/{tx_hash}",
       "source_id": "robinhood-etherscan",
-      "scope": "Use Robinhood Etherscan for all Robinhood Chain explorer navigation,including historical objects. Provider-listed for chain4663. Navigation links are not verification or proof of API access;retain original historical source URLs as provenance only."
+      "scope": "Robinhood Etherscan is the default object-navigation provider for chain 4663, including historical objects, not an exclusive research or citation provider. Suitable alternatives and original source URLs may be researched and cited. Derived navigation links are not verification or proof of API access; preserve original evidence URLs, dates and attribution."
     }
   },
   "record_notes": {
     "publisher_verification_claim": "An attributed publisher label, not independent live-chain verification by this package. Preserve live_chain_verification_status and lifecycle limits.",
     "fixed_block_market_identity": "A market's observation records only the named getter results, chain, block/hash/time and identity-hash check. It does not promote singleton/dependency contract records to live-chain-verified status or establish balances, oracle safety, liquidity, permissions or continued availability. Market IDs remain separate from chain/address counts.",
     "indexed_receipt_evidence": "A successful explorer-indexed creation or trade corroborates only that indexed event and identity. It is not a direct fixed-block RPC audit, verified Solidity source, complete authority review, current activation check or proof of later settlement.",
-    "publisher_linked_provenance_urls": "Original publisher hyperlinks retained as source evidence,not default explorer destinations. Return Robinhood Etherscan links for any referenced Robinhood address or transaction using its exact identity;do not transplant provider-specific API paths or query tabs.",
+    "publisher_linked_provenance_urls": "Original publisher hyperlinks retained as source evidence and direct citations. Robinhood Etherscan templates supply default object links after exact identity validation, not an exclusive provider requirement. Do not transplant provider-specific API paths or query tabs to another host.",
     "price_feed_metadata": "Publisher-directory provenance is in the parent contract provenance array and covers only the proxy and metadata fields named by its locator, including adjacent feed decimals. It does not establish a token pairing, current round, deployed behavior or NetNet use. Consumer policies and semantics sources remain separately attributed.",
     "netnet_use_evidence": "Directory inclusion alone does not establish NetNet use. Preserve recorded registry/local provenance and status; an empty consumer_policies list means not recorded, not unused. No exhaustive consumer list or exact-token relationship is inferred.",
     "public_role_addresses": "Published role attribution only, not proof of control, beneficial ownership, account kind or authority. No private key or personal portfolio information is included."

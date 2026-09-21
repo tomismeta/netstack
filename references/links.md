@@ -4,7 +4,7 @@ Baseline public destinations retain their source dates; targeted Predict, liquid
 
 ## Robinhood Chain explorer
 
-Use **[Robinhood Etherscan](https://robin.etherscan.io/)** for all returned Robinhood Chain explorer links, including current and historical contracts, public-role addresses, implementations and transactions. Resolve the exact validated chain **4663** plus address or transaction hash through `explorers["4663"]` in [address-conventions.json](../assets/address-conventions.json); never use a Morpho market ID as an address. [Etherscan's chain registry](https://api.etherscan.io/v2/chainlist) identifies the service; it does not verify balances, receipts, code or API access. Historical retrieval origins remain attributed in [sources.json](../assets/sources.json), not default navigation.
+Use **[Robinhood Etherscan](https://robin.etherscan.io/)** as the default for Robinhood Chain object links, including current and historical contracts, public-role addresses, implementations and transactions. It is not an exclusive research or citation provider; suitable alternative explorers/RPCs and original evidence URLs may be used. Resolve the exact validated chain **4663** plus address or transaction hash through `explorers["4663"]` in [address-conventions.json](../assets/address-conventions.json) when generating default links; never use a Morpho market ID as an address. [Etherscan's chain registry](https://api.etherscan.io/v2/chainlist) identifies the service; it does not verify balances, receipts, code or API access. Historical retrieval origins remain attributed in [sources.json](../assets/sources.json) and may be cited directly.
 
 ## Dashboard directory
 
