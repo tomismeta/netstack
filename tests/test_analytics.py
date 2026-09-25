@@ -8,9 +8,9 @@ import unittest
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from netstack_core import ZERO, RpcError, decode_event, load_json, topic
+from netstack_core import ZERO, RpcError, decode_event, load_json, topic, _decode_outputs, _encode_value
 from netstack_lp import _Ledger
-from netstack_markets import _Evidence, _classification, _settled
+from netstack_markets import _Evidence, _classification, _discover, _settled
 
 A = "0x" + "11" * 20
 B = "0x" + "22" * 20
@@ -56,23 +56,60 @@ class LiquidityConservation(unittest.TestCase):
 
 
 class MarketBoundaries(unittest.TestCase):
-    def test_close_boundary_overrides_open_enum_and_false_halt(self):
+    def test_clock_boundaries_do_not_assert_trade_acceptance(self):
         raw = {"status": 1, "openTime": 10, "lastCallTime": 20,
                "closeTime": 30, "printTime": 40}
-        before = _classification(raw, 29, False)
-        at_close = _classification(raw, 30, False)
-        self.assertTrue(before["conditional_buy_window"])
-        self.assertTrue(before["last_call_skew_reducing_buys_only"])
-        self.assertFalse(at_close["conditional_buy_window"])
-        self.assertTrue(at_close["closed_by_clock"])
-        self.assertFalse(at_close["settlement_established"])
+        for timestamp, expected in ((9, "scheduled"), (10, "trading_window"),
+                                    (19, "trading_window"), (20, "last_call"),
+                                    (29, "last_call"), (30, "closed_awaiting_settlement"),
+                                    (40, "closed_awaiting_settlement"), (41, "closed_awaiting_settlement")):
+            for halted in (False, True, None):
+                with self.subTest(timestamp=timestamp, halted=halted):
+                    state = _classification(raw, timestamp, halted)
+                    observed, interpreted = state["observations"], state["publisher_interpretation"]
+                    self.assertEqual(observed["raw_status"], 1)
+                    self.assertIs(observed["halted"], halted)
+                    self.assertEqual(observed["at_or_after_close_time"], timestamp >= 30)
+                    self.assertEqual(observed["after_print_time"], timestamp > 40)
+                    self.assertEqual(interpreted["clock_state"], expected)
+                    self.assertEqual(interpreted["buy_acceptance"]["status"], "unverified")
+                    self.assertEqual(interpreted["sell_acceptance"]["status"], "unverified")
 
-    def test_unknown_enum_and_inconsistent_times_never_advertise_trading(self):
+    def test_unknown_enum_inconsistent_times_and_settlement_stay_distinct(self):
         raw = {"status": 255, "openTime": 10, "lastCallTime": 20,
                "closeTime": 30, "printTime": 40}
-        self.assertFalse(_classification(raw, 15, False)["conditional_buy_window"])
+        unknown = _classification(raw, 15, False)
+        self.assertEqual(unknown["observations"]["raw_status"], 255)
+        self.assertEqual(unknown["publisher_interpretation"]["clock_state"], "unknown_enum")
         raw.update(status=1, lastCallTime=5)
-        self.assertFalse(_classification(raw, 15, False)["conditional_buy_window"])
+        self.assertEqual(_classification(raw, 15, False)["publisher_interpretation"]["clock_state"], "contradictory_timestamps")
+        self.assertEqual(_classification(raw, 30, False)["publisher_interpretation"]["clock_state"], "closed_awaiting_settlement")
+        raw.update(lastCallTime=20)
+        for status, label in ((0, "none"), (2, "resolved"), (3, "voided")):
+            raw["status"] = status
+            state = _classification(raw, 41, False)
+            self.assertEqual(state["publisher_interpretation"]["clock_state"], label)
+            self.assertEqual(state["observations"]["raw_status"], status)
+
+    def test_selected_series_does_not_expand_into_unrelated_rows(self):
+        raw = {"status": 1, "openTime": 10, "lastCallTime": 20,
+               "closeTime": 30, "printTime": 40}
+        def unavailable_older_series(address, abi, method, args, block=None):
+            if args[0] != 2:
+                raise RpcError("unrelated series unavailable")
+            return dict(raw)
+        ctx = SimpleNamespace(
+            result={"metrics": {}, "coverage": {}, "errors": []}, timestamp=25,
+            call=unavailable_older_series, checkpoint=lambda: None)
+        rows = _discover(ctx, A, [], {"seriesCount": 100, "vault": B, "halted": False}, selected_id=2)
+        self.assertEqual(set(rows), {2})
+        self.assertEqual(set(ctx.result["metrics"]["series"]), {"2"})
+        coverage = ctx.result["coverage"]["series_discovery"]
+        self.assertTrue(coverage["discovery_complete"])
+        self.assertEqual(coverage["missing_id_ranges"], [])
+        self.assertEqual(ctx.result["errors"], [])
+        with self.assertRaises(RpcError):
+            _discover(ctx, A, [], {"seriesCount": 1}, selected_id=2)
 
     def test_queue_maturity_uses_accounting_state_not_wall_clock(self):
         live = {"seriesCount": 3, "live": True}
@@ -212,6 +249,35 @@ class StrictEventDecoding(unittest.TestCase):
             decode_event(raw, abi)
 
 
+class BoundedAssetMenus(unittest.TestCase):
+    def decode(self, field, words):
+        raw = "0x" + "".join(value.to_bytes(32, "big").hex() for value in words)
+        return _decode_outputs({"outputs": [field]}, raw)
+
+    def test_tuple_menu_preserves_address_and_signed_units(self):
+        field = {"type": "tuple[]", "components": [
+            {"name": "token", "type": "address"}, {"name": "adjustment", "type": "int24"}]}
+        entries = self.decode(field, [32, 2, int(A, 16), (1 << 256) - 7, int(B, 16), 19])
+        self.assertEqual(entries, [{"token": A, "adjustment": -7}, {"token": B, "adjustment": 19}])
+
+    def test_empty_menu_differs_from_truncated_or_oversized_response(self):
+        self.assertEqual(self.decode({"type": "address[]"}, [32, 0]), [])
+        for words in ([32, 1], [32, 129], [64, 0], [32, 0, 0]):
+            with self.subTest(words=words), self.assertRaises(RpcError):
+                self.decode({"type": "address[]"}, words)
+
+    def test_menu_rejects_noncanonical_token_address(self):
+        with self.assertRaises(RpcError):
+            self.decode({"type": "address[]"}, [32, 1, (1 << 160) + 1])
+
+    def test_market_identifier_encoding_retains_leading_zeroes_and_exact_width(self):
+        identifier = "0x" + "00" * 31 + "01"
+        self.assertEqual(_encode_value({"type": "bytes32"}, identifier), bytes.fromhex(identifier[2:]))
+        for invalid in ("0x01", identifier + "00"):
+            with self.subTest(invalid=invalid), self.assertRaises(RpcError):
+                _encode_value({"type": "bytes32"}, invalid)
+
+
 class CollectorCLI(unittest.TestCase):
     def invoke(self, *args):
         script = Path(__file__).resolve().parents[1] / "scripts" / "analytics.py"
@@ -219,7 +285,7 @@ class CollectorCLI(unittest.TestCase):
                               capture_output=True, text=True, timeout=3)
 
     def test_expired_collection_returns_json_without_network_or_hanging(self):
-        for command in ("lp", "predict", "house"):
+        for command in ("lp", "predict", "house", "rfv"):
             with self.subTest(command=command):
                 result = self.invoke(command, "--deadline", "0.01", "--json")
                 self.assertEqual(result.returncode, 2, result.stderr)

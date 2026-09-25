@@ -8,6 +8,14 @@ from netstack_core import ZERO, RpcError, amount, load_json, ratio, resolve_rout
 
 WAD = 10**18
 _STATUS = {0: "none", 1: "open", 2: "resolved", 3: "voided"}
+_INTERPRETATION_SOURCE = {
+    "authority": "publisher ABI/live consumer, not verified deployed enforcement",
+    "source_id": "netnet-app-registry-20260918", "observed_on": "2026-09-18",
+}
+_RULE_SOURCE = {
+    "authority": "publisher documentation, not verified deployed enforcement",
+    "url": "https://docs.netnet.capital/predict", "reviewed_on": "2026-09-25",
+}
 _TRADE_FIELDS = (
     "buy_count", "sell_count", "redemption_count", "buy_gross_usdg_raw",
     "buy_fees_usdg_raw", "sell_net_usdg_raw", "sell_fees_usdg_raw",
@@ -87,7 +95,7 @@ def _comparison(observed, expected, complete, **extra):
     }
 
 
-def _setup(ctx, command):
+def _setup(ctx, command, snapshot_only=False):
     routes = resolve_routes("predict")
     source = load_json(routes["_route"]["desk_interface"])
     house_source = load_json(routes["_route"]["house_interface"])
@@ -101,9 +109,19 @@ def _setup(ctx, command):
         "interface_evidence": "published view ABI and live consumer, not verified Solidity",
         "source_id": source["source_id"], "metadata_observed_on": source["reviewed_on"],
         "snapshot_block": ctx.block,
+        "mode": "single_series_snapshot" if snapshot_only else "snapshot_and_history",
+    }
+    metrics["interpretation_evidence"] = dict(_INTERPRETATION_SOURCE)
+    metrics["settlement_trust"] = {
+        "publisher_rules": dict(_RULE_SOURCE),
+        "print_authority": "documented team Safe/grader posts the print; numeric bounds do not authenticate correctness",
+        "unverified": ["grader appointment and all current privileged controls",
+                       "independent correctness of the posted print", "print-dispute/challenge rights"],
+        "distinct_remedies": "documented 72-hour ungraded void is not a print dispute; 24-hour closest-guess challenge concerns the prize only",
+        "interface_limit": "bundled view/event fragment omits writes; missing challenge functions prove no absence of challenge rights",
     }
     ctx.result["coverage"]["collection_complete"] = False
-    requested = ("activity", "funding", "counter_reconciliation", "outcome_supply_reconciliation", "fees_paid_reconciliation", "cash_reconciliation") if command == "predict" else ("ownership", "house_events", "performance", "cash_reconciliation")
+    requested = () if snapshot_only else (("activity", "funding", "counter_reconciliation", "outcome_supply_reconciliation", "fees_paid_reconciliation", "cash_reconciliation") if command == "predict" else ("ownership", "house_events", "performance", "cash_reconciliation"))
     for name in requested:
         metrics[name] = {"status": "unavailable", "reason": "retrieval not reached; pinned snapshots take priority"}
     ctx.result["not_proven"].extend([
@@ -140,6 +158,20 @@ def _setup(ctx, command):
     if hv.get("wired") is not True:
         raise RpcError("Selected House is not established wired at the pinned block")
     decimals = _optional(ctx, usdg, ta, "decimals")
+    if snapshot_only:
+        metrics["usdg"] = {"address": usdg, "decimals": decimals, "reviewed_six_decimal_convention": decimals == 6}
+        metrics["dependency_code"] = {}
+        for name in ("net", "sleeve", "treasury"):
+            address = dv.get(name)
+            if address is None:
+                continue
+            present = ctx.code(address) not in ("0x", "0x0", "0x00")
+            metrics["dependency_code"][name] = {"address": address, "code_present": present}
+            if not present:
+                _problem(ctx, name, "No deployed dependency code at pinned block")
+            ctx.checkpoint()
+        metrics["desk_snapshot"]["markPrice_scope"] = "current Desk-level mark only, never a historical-series execution price"
+        return routes, da, ha, ta, dv, hv, decimals
     metrics["usdg"] = {"address": usdg, "decimals": decimals, "reviewed_six_decimal_convention": decimals == 6}
     for name, address in (("desk", desk), ("house", house)):
         balance = _optional(ctx, usdg, ta, "balanceOf", (address,))
@@ -167,36 +199,49 @@ def _classification(raw, timestamp, halted):
             state = "last_call"
         else:
             state = "trading_window"
-    window = state in ("trading_window", "last_call") and not inconsistent
     return {
-        "raw_status": status, "status_label": _STATUS.get(status, "unknown_enum"),
-        "clock_state": state, "timestamp_inconsistency": inconsistent,
-        "new_buy_halted": halted, "conditional_buy_window": window and halted is False,
-        "buy_acceptance": "not proven; amount, side/skew, minimum and account gates remain",
-        "last_call_skew_reducing_buys_only": state == "last_call",
-        "sell_window": "acceptance_unproven" if window else "not_established",
-        "halt_is_not_a_sell_halt": True,
-        "closed_by_clock": status == 1 and timestamp >= close,
-        "awaiting_posted_print": status == 1 and timestamp > printing,
-        "settlement_established": status in (2, 3),
+        "observations": {
+            "raw_status": status, "halted": halted,
+            "timestamp_inconsistency": inconsistent,
+            "before_open_time": timestamp < op,
+            "at_or_after_last_call_time": timestamp >= last,
+            "at_or_after_close_time": timestamp >= close,
+            "after_print_time": timestamp > printing,
+        },
+        "publisher_interpretation": {
+            "enum_evidence": dict(_INTERPRETATION_SOURCE),
+            "status_label": _STATUS.get(status, "unknown_enum"), "clock_state": state,
+            "rule_evidence": dict(_RULE_SOURCE),
+            "last_call_rule": "documented skew-reducing buys only; exact strictness not established",
+            "halt_rule": "documented new-buy halt, not a sell halt",
+            "buy_acceptance": {"status": "unverified", "remaining_gates": ["clock", "halt", "amount", "side/skew", "minimum", "account"]},
+            "sell_acceptance": {"status": "unverified", "limit": "published availability is not an executable quote or acceptance proof"},
+            "settlement": "stored resolved/void enum; print correctness and actual redemption remain unproven" if status in (2, 3) else "not established",
+        },
     }
 
 
-def _discover(ctx, desk, da, dv, all_series=True):
+def _discover(ctx, desk, da, dv, all_series=True, selected_id=None):
     count = dv.get("seriesCount")
     rows, raw_rows = {}, {}
     ctx.result["metrics"]["series"] = rows
     cov = ctx.result["coverage"]["series_discovery"] = {
         "count": count, "inspected_ids": [], "missing_id_ranges": [],
-        "discovery_complete": False, "scope": "all selected Desk IDs" if all_series else "latest selected Desk series only",
+        "discovery_complete": False,
+        "scope": "requested series only" if selected_id is not None else "all selected Desk IDs" if all_series else "latest selected Desk series only",
+        "requested_id": selected_id,
     }
     if count is None:
         cov["reason"] = "seriesCount unavailable"
         return raw_rows
-    low = 1 if all_series else max(1, count)
-    cov["missing_id_ranges"] = [[low, count]] if count else []
+    if selected_id is not None and not 1 <= selected_id <= count:
+        cov["reason"] = "requested ID outside pinned seriesCount"
+        raise RpcError("Requested series ID is outside pinned seriesCount", kind="input")
+    low = selected_id if selected_id is not None else 1 if all_series else max(1, count)
+    upper = selected_id if selected_id is not None else count
+    cov["missing_id_ranges"] = [[low, upper]] if count else []
     # Newest-first bounded pages preserve the current series on interruption.
-    for high in range(count, low - 1, -20):
+    for high in range(upper, low - 1, -20):
         for sid in range(high, max(low - 1, high - 20), -1):
             raw = _optional(ctx, desk, da, "series", (sid,))
             if raw is not None:
@@ -465,6 +510,10 @@ def _token_snapshots(ctx, ta, series):
                 _problem(ctx, "series:" + str(sid), "zero outcome identity")
                 continue
             if address not in tokens:
+                if ctx.code(address) in ("0x", "0x0", "0x00"):
+                    token["error"] = "no deployed outcome code"
+                    _problem(ctx, "series:" + str(sid), "no deployed outcome code")
+                    continue
                 values = _getters(ctx, address, ta, ("decimals", "totalSupply", "name", "symbol"), token)
                 tokens[address] = values
             else:
@@ -474,11 +523,21 @@ def _token_snapshots(ctx, ta, series):
 
 
 def run_predict(ctx, args):
-    routes, da, ha, ta, dv, hv, decimals = _setup(ctx, "predict")
+    selected_id = getattr(args, "series", None)
+    snapshot_only = selected_id is not None
+    if snapshot_only:
+        ctx.result["metrics"]["requested_series_id"] = selected_id
+        ctx.result["coverage"]["history"] = {"status": "not_requested", "reason": "single-series snapshot; no log or historical calls"}
+        ctx.result["not_proven"].append("Snapshot does not establish activity totals, quote acceptance, original funding or House ownership.")
+    routes, da, ha, ta, dv, hv, decimals = _setup(ctx, "predict", snapshot_only=snapshot_only)
     desk, house, usdg = (routes[key]["address"] for key in ("desk", "house", "usdg"))
-    series = _discover(ctx, desk, da, dv)
+    series = _discover(ctx, desk, da, dv, selected_id=selected_id)
     tokens = _token_snapshots(ctx, ta, series)
     metrics = ctx.result["metrics"]
+    if snapshot_only:
+        ctx.result["coverage"]["collection_complete"] = not ctx.result["errors"] and ctx.result["coverage"]["series_discovery"]["discovery_complete"]
+        ctx.checkpoint()
+        return
     metrics["activity"] = {"status": "unavailable", "event_coverage_complete": False, "series": {}}
     metrics["funding"] = {"status": "unavailable", "series": {}}
     metrics["counter_reconciliation"] = {}
@@ -514,7 +573,11 @@ def run_predict(ctx, args):
             row["opened_events"] = len(openings[sid])
             row["settled_events"] = len(settlements[sid])
             row["zero_counts_mean"] = "zero in selected deployment scan" if complete else "zero observed only; unscanned history is unknown"
-            row["redeemed_status_at_snapshot"] = _STATUS.get(series.get(sid, {}).get("status"), "uninspected_or_unknown")
+            row["raw_status_at_snapshot"] = series.get(sid, {}).get("status")
+            row["publisher_status_at_snapshot"] = {
+                "label": _STATUS.get(row["raw_status_at_snapshot"], "uninspected_or_unknown"),
+                **_INTERPRETATION_SOURCE,
+            }
             row["prizes_paid_event_usdg_raw"] = str(sum(e["values"]["usdg"] for e in ledger.events if e["address"] == desk and e["event"] == "PrizePaid" and e["values"]["series"] == sid))
             row["prizes_rolled_event_usdg_raw"] = str(sum(e["values"]["usdg"] for e in ledger.events if e["address"] == desk and e["event"] == "PrizeRolled" and e["values"]["series"] == sid))
             activity["series"][str(sid)] = row

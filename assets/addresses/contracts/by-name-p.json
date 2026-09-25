@@ -76,6 +76,16 @@
       "file": "assets/addresses/contracts/predict-series-1-outcomes.json"
     },
     {
+      "role": "Predict HIGHER #2",
+      "aliases": ["HIGHER #2", "HI-2"],
+      "file": "assets/addresses/contracts/predict-series-2-outcomes.json"
+    },
+    {
+      "role": "Predict LOWER #2",
+      "aliases": ["LOWER #2", "LO-2"],
+      "file": "assets/addresses/contracts/predict-series-2-outcomes.json"
+    },
+    {
       "role": "PremiumSeller",
       "aliases": [],
       "file": "assets/addresses/contracts/perp-oracles-pendle-lp-premium-seller-and-presser-prizes.json"

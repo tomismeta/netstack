@@ -1,0 +1,118 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x2f2f215b810fa692304cb0095804ab3c8e4cef78",
+      "chain_id": 4663,
+      "address": "0x2F2F215b810Fa692304cB0095804Ab3C8e4cEf78",
+      "role": "assetBondDesk V2",
+      "aliases": [
+        "assetBondDesk",
+        "Asset Bond Desk",
+        "hOHM Bond Desk"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "indexed_deployment_publisher_reported_successor",
+      "lifecycle_notes": "V2 replaces V1. Registry reports deployment with no listed assets/inventory and a 60-second add-asset delay; these initial conditions are not current activation or balance evidence. Different from stock RwaDesk V1/V2 and Core bonds. New-generation mint/inventory/remittance rules require their own evidence.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-20260925",
+          "locator": "assetBondDesk.address and attributed status",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-app-registry-20260925-refresh",
+          "locator": "assetBondDesk.address; DESK V2 and V1 supersession statement",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-deployer-creations-20260925",
+          "locator": "Successful indexed create: 0x7015bcbcc905e51813ee9b2163ee487d351c7e5f90600a3998461af44c34bbd7; created address 0x2F2F215b810Fa692304cB0095804Ab3C8e4cEf78",
+          "evidence_kind": "explorer_indexed_creation",
+          "observed_on": "2026-09-25"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "predecessor_id": "robinhood-0xfdb9586cd58cd61e9f571ed41db27b57f63781e3",
+      "predecessor_record": "assets/addresses/contracts/asset-bond-desk-and-zap.json",
+      "deployment_transaction_hash": "0x7015bcbcc905e51813ee9b2163ee487d351c7e5f90600a3998461af44c34bbd7",
+      "deployment_block_number": 70000046,
+      "deployment_at": "2026-09-22T22:06:36.000000Z"
+    },
+    {
+      "id": "robinhood-0xfdb9586cd58cd61e9f571ed41db27b57f63781e3",
+      "chain_id": 4663,
+      "address": "0xfdb9586cd58cd61e9F571ed41db27b57F63781e3",
+      "role": "assetBondDesk V1",
+      "aliases": [
+        "historical Asset Bond Desk",
+        "Asset Bond Desk V1"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_superseded_never_activated",
+      "lifecycle_notes": "Publisher states V1 never listed an asset or held inventory before V2 replaced it. Indexed creation corroborates identity/date, not an independently checked zero-history or current absence of balances. Do not route current V2 calls/history to V1.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-20260925-refresh",
+          "locator": "assetBondDesk.source explicit V1 address, block and never-listed/never-held statement",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-deployer-creations-20260925",
+          "locator": "Successful indexed create: 0x68291687a5df386ea21ec4f52faab88a96d578c3630d03e978a186c4d0b1fddb; created address 0xfdb9586cd58cd61e9F571ed41db27b57F63781e3",
+          "evidence_kind": "explorer_indexed_creation",
+          "observed_on": "2026-09-25"
+        }
+      ],
+      "successor_id": "robinhood-0x2f2f215b810fa692304cb0095804ab3c8e4cef78",
+      "successor_record": "assets/addresses/contracts/asset-bond-desk-and-zap.json",
+      "deployment_transaction_hash": "0x68291687a5df386ea21ec4f52faab88a96d578c3630d03e978a186c4d0b1fddb",
+      "deployment_block_number": 69985110,
+      "deployment_at": "2026-09-22T21:41:38.000000Z"
+    },
+    {
+      "id": "robinhood-0x3b4c1617c76c72d41ff43b625bc5dbbf3a32d986",
+      "chain_id": 4663,
+      "address": "0x3B4C1617C76c72D41Ff43B625BC5DbBF3A32D986",
+      "role": "assetBondZap",
+      "aliases": [
+        "Asset Bond Zap",
+        "hOHM Bond Zap"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "indexed_deployment_publisher_reported_zap",
+      "lifecycle_notes": "USDG conversion helper for Asset Bond Desk V2, not LPZap, SportsBookZap or Managed Futures Zap. Registry distinguishes actual creation block 70679077 from simulation block 70678127. No current permissions, allowances, quotes or enabled operation inferred.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-20260925",
+          "locator": "assetBondZap.address and attributed status",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-app-registry-20260925-refresh",
+          "locator": "assetBondZap.address; desk dependency; receipt versus simulation block",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-deployer-creations-20260925",
+          "locator": "Successful indexed create: 0xe64710962b9861a4be8850f18625eb9036ce9b397de71ff4324ef870b57e9174; created address 0x3B4C1617C76c72D41Ff43B625BC5DbBF3A32D986",
+          "evidence_kind": "explorer_indexed_creation",
+          "observed_on": "2026-09-25"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "desk_id": "robinhood-0x2f2f215b810fa692304cb0095804ab3c8e4cef78",
+      "desk_record": "assets/addresses/contracts/asset-bond-desk-and-zap.json",
+      "deployment_transaction_hash": "0xe64710962b9861a4be8850f18625eb9036ce9b397de71ff4324ef870b57e9174",
+      "deployment_block_number": 70679077,
+      "deployment_at": "2026-09-23T17:06:27.000000Z"
+    }
+  ]
+}

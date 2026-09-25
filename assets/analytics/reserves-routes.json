@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "workflow": "references/reserve-analytics.md",
+  "interface": "assets/analytics/reserves-interface.json",
+  "pair_interface": "assets/analytics/v2-interface.json",
+  "treasury": {"file":"assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json","id":"robinhood-0x04822ea321a0dee6f40656172f29312104855d66"},
+  "usdg": {"file":"assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json","id":"robinhood-0x5fc5360d0400a0fd4f2af552add042d716f1d168"},
+  "net": {"file":"assets/addresses/contracts/net-assets-pair-and-credit-vault.json","id":"robinhood-0xca9c78dd337a67f6e0077f65f5e9218719d30edf"},
+  "pair": {"file":"assets/addresses/contracts/net-assets-pair-and-credit-vault.json","id":"robinhood-0x59f95461e68e0c77605299791e1449f175165b54"},
+  "vault": {"file":"assets/addresses/contracts/morpho-vault-registry-factories-and-msft-token.json","id":"robinhood-0xbeeff033f34c046626b8d0a041844c5d1a5409dd"},
+  "sleeve": {"file":"assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json","id":"robinhood-0x498752d5fa0600cbd613074c151abe15b3fec7cb"},
+  "scope": "Canonical Core RFV formula endpoints only. Verify Treasury pointers, vault asset and pair tokens at the pinned block; never follow a mismatched pointer. Sleeve is the separate canonical custody address, not a Treasury getter. Unrecognized Treasury holdings and accidental transfers are outside this formula and require separate inventory."
+}

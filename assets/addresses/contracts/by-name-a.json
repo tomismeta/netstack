@@ -18,6 +18,21 @@
         "Adaptive Curve Irm"
       ],
       "file": "assets/addresses/contracts/aapl-token-pool-and-interest-rate-model.json"
+    },
+    {
+      "role": "assetBondDesk V2",
+      "aliases": ["assetBondDesk", "Asset Bond Desk", "hOHM Bond Desk"],
+      "file": "assets/addresses/contracts/asset-bond-desk-and-zap.json"
+    },
+    {
+      "role": "assetBondDesk V1",
+      "aliases": ["historical Asset Bond Desk", "Asset Bond Desk V1"],
+      "file": "assets/addresses/contracts/asset-bond-desk-and-zap.json"
+    },
+    {
+      "role": "assetBondZap",
+      "aliases": ["Asset Bond Zap", "hOHM Bond Zap"],
+      "file": "assets/addresses/contracts/asset-bond-desk-and-zap.json"
     }
   ]
 }

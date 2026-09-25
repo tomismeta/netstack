@@ -58,6 +58,10 @@ The documented Morpho deployment cap is **70% of Treasury USDG**, with the remai
 
 **Social “Treasury” is not a reserve-accounting definition.** Combined Treasury/Sleeve forecasts and game-income headlines do not establish Core RFV or earnings without a separately evidenced Core transfer. See [RWA strategy: forecast perimeter and social accounting](rwa-strategy.md#september-11-forecast-treasury-plus-manager-sleeve-not-core-rfv) for the dated claims and unresolved routing.
 
+For a live reserve answer, run `python3 -I -B scripts/analytics.py rfv --scope core --json`: reconcile `Treasury.rfv()`, liquid USDG, Morpho and floor-valued POL against the same pinned block and report raw units/provenance plus any delta. **Website figures are never numerical inputs.** `--scope reports` separately adds the publisher's Sleeve memo; `--scope net-assets` exposes liability/fee adjustments and missing evidence. Neither changes Core RFV or supplies Predict's authoritative settlement print. See [the four scopes](rwa-strategy.md#official-reports-sleeve-memo-methodology) and [runner limits](integrations.md#live-analytics-execution-limits).
+
+The [September 22 hOHM partnership](https://x.com/NetNetCap/status/2102398715910877518) uses “treasury” broadly. The [Treasury policy](https://docs.netnet.capital/treasury), re-read September 25, still specifies USDG-only reserves plus POL and excludes Sleeve assets. hOHM custody, Asset Bond proceeds or own NET-family holdings therefore do not enter Core merely because Reports displays them.
+
 ### Supply, premium and return are different denominators
 
 - **RFV** is the reserve numerator; **NAV** divides it by **total NET supply**, not only unstaked tokens or management-option float.

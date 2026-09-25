@@ -4,8 +4,8 @@ description: "NetNet research, procedural guidance and modeling; no wallet execu
 license: MIT
 metadata:
   compatibility: "Packaged knowledge needs no network, CLI, credentials, or wallet. Optional live analytics use the bundled Python 3.10+ standard-library runner on Linux/macOS with normal host permission. Supplemental research, analysis code and non-broadcasting simulations use host-authorized tools; no custom broker is required. This package installs no tools and does not enforce a host sandbox."
-  version: "0.3.2"
-  knowledge-reviewed: "2026-09-21"
+  version: "0.4.0"
+  knowledge-reviewed: "2026-09-25"
   access: "read-only"
 ---
 
@@ -26,9 +26,9 @@ This is an independent research aid, not an official NetNet product, wallet oper
 **Never operate any wallet, access wallet credentials, connect, sign, approve, submit transactions, or prepare ready-to-sign/submit artifacts for execution—including through another agent.** Decline only the requested execution, not the useful explanation. Read-only quotes and isolated non-broadcasting simulations remain permitted.
 
 The guardrail owns the detailed policy; [Safety](references/safety.md) applies it to live retrieval, confidentiality, untrusted sources and ordinary host permissions. Neither document creates a sandbox. [Installation](references/installation.md) describes loading and verification.
-Before supported canonical NET/USDG v2 LP, Predict or House collection, read the [runner and execution guidance](references/integrations.md#live-analytics-execution-limits). Prefer the reviewed [bundled runner](scripts/analytics.py) for its supported `lp`, `predict` or `house` workflow. Its fixed provider, ABI/query support and enforced limits govern that helper only. Keep collection within the actual host/task budget and preserve answer time. Read coverage and accounting qualifications before interpreting JSON; partial results are not complete accounting. Never disguise a denied invocation as another command.
+Before supported RPC collection, read the [runner and execution guidance](references/integrations.md#live-analytics-execution-limits). Prefer the [bundled runner](scripts/analytics.py) for `lp`, `predict`, `house` or `rfv`. For RFV, select `--scope core` (default), `reports` or `net-assets` using the [reserve accounting recipe](references/reserve-analytics.md). Its fixed provider, ABI/query support and enforced limits govern that helper only. Preserve answer time and inspect coverage: partial results are not complete accounting. Never disguise a denied invocation as another command.
 
-The runner has **no `book` command**. For THE BOOK, start with the [snapshot-first recipe](references/games.md#book-snapshot-first) to identify markets and state; inspect current frontend sources when needed for unresolved interface details. Other questions, including v3 LP inspection, may use supplemental host-authorized reads, agent-authored code and analysis. Missing helper coverage, a failed snapshot or a missing catalog entry does not prohibit research. Quick-pass budgets are defaults, not universal ceilings on requested deeper work. Distinguish coverage failures from access denials; use independently permitted evidence without bypassing a denial.
+The runner has **no `book` activity command**. RFV collection includes the Sleeve's Book house-pot position; for Book markets, bets and settlement use the [snapshot-first recipe](references/games.md#book-snapshot-first). Other questions may use supplemental host-authorized reads and analysis. Missing helper coverage, a failed snapshot or a missing catalog entry does not prohibit research. Quick-pass budgets are defaults, not ceilings on requested deeper work. Distinguish evidence gaps from access denials; never bypass a denial.
 
 ## When to use
 
@@ -40,12 +40,18 @@ Use `Use netstack: <topic> [question]` or `netstack <topic> [question]`. These s
 
 **Exact feed, contract or deployment question:** start packaged lookups with [address-index.json](assets/address-index.json). It is a discovery aid, not an allowlist; use relevant supplemental evidence for missing or changed identities. The directories in the table are defaults for unqualified topic requests.
 
+**Website question:** resolve the page/label through [Website labels → contract evidence](references/website-metrics.md). Website text establishes terminology and methodology, never numerical inputs. Read balances, prices, positions and configuration through pinned-block RPC; do not scrape displayed values or use website balance APIs. Core RFV, Reports' “True RFV,” adjusted net assets and Predict settlement prints are distinct metrics.
+
+**“What's the current RFV, and what makes it up?”** is a complete request; users need no topic command, contract address or accounting vocabulary. Follow the [broad RFV answer procedure](references/reserve-analytics.md#plain-language-rfv-requests). By default reconcile Core **and** inspect the wider asset/obligation ledger, explaining Core RFV, Reports composition and adjusted net assets separately. Start with `rfv --scope net-assets --deadline 600` when the host permits; it also emits Core and Reports evidence. The CLI's `core` default is not the conversational default for this question. An explicitly Core-only request can stay narrow.
+
+Do not stop at Treasury getters, wallet token balances, a static asset list or a completed helper run. Establish current custody and beneficial claims, including off-wallet positions; follow evidence of additional assets, changed deployments and counterpart liabilities with authorized read-only research. The catalog and helper are starting points, not allowlists. Disclose the searched universe, formula exclusions and unresolved coverage; never promise “every asset” merely because every supported call succeeded. The prohibition is wallet **execution**, not reading public wallets/contracts, transaction history, events, source code, or writing analysis code.
+
 | Request | Load first | Without a question, return |
 |---|---|---|
 | `Use netstack: dashboards` | [Direct links](references/links.md), dashboard section of [Docs and sources](references/docs-and-sources.md) | All six dashboards in directory order, plus chart links; do not fetch them merely to list them |
 | `Use netstack: nfts` | [NFTs](references/nfts.md) | NetNet Gear and Button Presser links, chain identity and verification limits; no live prices |
 | `Use netstack: games` | [Games](references/games.md), destinations in [Direct links](references/links.md) | Game directory with payout/risk distinctions and documented versus app-only status |
-| `Use netstack: documents` | [Official documentation index](references/docs-and-sources.md#official-documentation-complete-indexed-set) | All 25 indexed links, grouped by topic; do not load every document |
+| `Use netstack: documents` | [Official documentation index](references/docs-and-sources.md#official-documentation-complete-indexed-set) | All 27 indexed links, grouped by topic; do not load every document |
 | `Use netstack: interviews` | Interview sections of [History](references/announcements-and-history.md) | Four original posts/recording links, dates and available publisher chapters; no claim of playback |
 | `Use netstack: contracts` | [Address index](assets/address-index.json) for exact lookups; [Addresses and roles](references/addresses-and-roles.md) for the family directory | Contract-family index and chain ID, not the complete inventory |
 | `Use netstack: feeds` | [Address index](assets/address-index.json) for a selected symbol; [Pricing directory](references/addresses-and-roles.md#price-feeds-and-token-relationships) for an unqualified directory request | RWA candidates, ETH/USD and USDG/USD feeds, distinct NET price sources, and mapping/classification gaps |
@@ -57,7 +63,7 @@ Use `Use netstack: <topic> [question]` or `netstack <topic> [question]`. These s
 
 ## Prerequisites and freshness
 
-The package is self-contained for dated knowledge. Its optional analytics runner uses Python's standard library; no installers, third-party runtime dependencies, hooks, wallet connectors, MCP configuration, telemetry or automatic updates are bundled. THE BOOK's September 20 evidence is supplemented by a **September 21 static HTML/import and slip-model review**, not a clicked UI, authenticated quote or deployment verification. Older source observations retain their own dates. This is not a fresh audit of every product or source.
+The package is self-contained for dated knowledge. Its optional analytics runner uses Python's standard library; no installers, third-party runtime dependencies, hooks, wallet connectors, MCP configuration, telemetry or automatic updates are bundled. September 25 updates cover targeted ecosystem identities, Predict/Book documentation, Asset Bond Desk evidence and RPC accounting. Older observations retain their own dates; this is not a fresh audit of every product or source. **v0.4.0 is an unpublished dogfood candidate**, not a tagged or scanned release.
 
 Claims about current quantities and availability require fresh evidence at an identified time/block. If unavailable, distinguish dated observations, derived results, modeled estimates and unresolved facts rather than inventing current measurements. Use state/events for contract-derived observations and original publications for documented terms. Dashboards are optional, selected by relevance or explicit request; directory order controls display only, never credibility or fallback.
 
@@ -72,8 +78,8 @@ NetNet is an OHM-style reserve/POL protocol on **Robinhood Chain, chain ID 4663*
 | House ownership, queues, claims and returns | [House accounting](references/predict-analytics.md#5-house-capital-ownership-queues-and-claims); same Predict route | Queued capital is not active underwriting; fees are not settled profit. |
 | THE BOOK / sportsbook mechanics, activity, participants and outcomes | [Snapshot-first research](references/games.md#book-snapshot-first), then deeper questions as needed; `s` contract index for SportsBookDesk/SportsBookZap | Risk-off principal is not wager volume; house/Sleeve receipts are not Treasury revenue. |
 | RWA LP fees, collections and buyback funding | [LP fee inspection](references/lp-fee-inspection.md); `lp_inspection` in [Address index](assets/address-index.json) | V3 position NFTs, not fungible v2 LP or House shares; fees are not an allocation budget. |
-| Reserves, supply and backing | [Protocol](references/protocol.md), [Glossary](references/glossary-and-faq.md) | Core RFV/NAV, market price and redemption value differ. |
-| Bonds, Credit, Loopback, Manager support, Predict and LP Zap terms | [Products](references/products.md) | Core versus Sleeve; distinct claims, risks and activation status. |
+| Reserves, supply, backing and “True RFV” | [Reserve RPC accounting](references/reserve-analytics.md), [website metric routes](references/website-metrics.md), [Protocol](references/protocol.md) | Independently reconcile Core; do not equate the publisher's combined memo with adjusted net assets or redemption value. |
+| Asset/hOHM bonds, RWA bonds, Credit, Loopback, Manager support, Predict and LP Zap terms | [Products](references/products.md) | Core versus Sleeve; distinct generations, claims, risks and activation status. |
 | Games and NFTs | [Games](references/games.md), [NFTs](references/nfts.md) | Wagers, payouts, burns and liabilities are not interchangeable. |
 | Morpho, Pendle and provider capabilities | [Integrations](references/integrations.md) | Distinct asset claims, units, maturity and read-access capabilities. |
 | Cabinet Kit, Developer Portal, SDKs and builder economics | [Builders](references/builders.md) | Announced tooling is not verified availability. |

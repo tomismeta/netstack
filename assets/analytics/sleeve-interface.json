@@ -1,0 +1,1316 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-09-25",
+  "source_url": "https://app.netnet.capital/assets/index-hABaJsIB.js",
+  "source_sha256": "c11fbca68220e63050314b78669c3c0e094b9a40177b490c92ff4bfd7300262b",
+  "limits": "Dated publisher interface/methodology with separately attributed official Morpho math/source and targeted Book/House bytecode semantics below; never website numerical inputs, a universal deployed-equivalence claim or an audit. Product prints remain authoritative. All numerical reads pinned by Context.",
+  "conventions": {
+    "reports": "Core plus wallet, Credit claims/collateral less stored debt, enumerated LP principal only, gross TURBO pots/premiums, Predict assetsOf, Book housePot and own NET-family at pairOracle TWAP/index. Stock wallet uses raw feed; LP/TURBO use feed times uiMultiplier once, matching published formulas, not proven economic basis. USDG cash uses one USDG unit; feed USD values use published USDG parity only in replica, not economic net assets.",
+    "adjusted": "Treasury external cash/gross vault claim/LP USDG plus supported external Sleeve/extra Treasury assets, less accrued debt and supported liabilities. Exclude all own-NET-family backing; reconstruct Book obligations and Predict active/queued/matured claims conditionally without duplicates. Unknown necessary accounting prevents known-universe total."
+  },
+  "feed_policy_source": {
+    "source_id": "chainlink-robinhood-feed-policy-20260925",
+    "url": "https://reference-data-directory.vercel.app/feeds-robinhood-mainnet.json",
+    "reviewed_on": "2026-09-25",
+    "locator": "Exact primary proxyAddress match; heartbeat, threshold, docs.marketHours",
+    "limits": "Documented publisher metadata, not an on-chain enforcement guarantee or publisher-set consumer validity. The collector chooses max_age_seconds equal to the documented heartbeat, with no grace period or market-hours/weekend extension. Deviation is an update trigger, not an observed error bound. Unknown feeds retain collector-owned 4-hour fallback."
+  },
+  "feed_policies": {
+    "0x61b7e5650328764b076a108eff5fa7282a1b9ad2": {"max_age_seconds":86400,"heartbeat_seconds":86400,"deviation_percent":"0.5","market_hours":"Crypto","policy_owner":"collector_from_publisher_heartbeat","source":"feed_policy_source","market_hours_extension":false},
+    "0x379ec4f7c378f34a1b47e4f3cbebcbac3e8e9f15": {"max_age_seconds":86400,"heartbeat_seconds":86400,"deviation_percent":"0.5","market_hours":"us_equities_24/5","policy_owner":"collector_from_publisher_heartbeat","source":"feed_policy_source","market_hours_extension":false},
+    "0xb265810950ba6c5c0ff821c9963014a56fd8bffb": {"max_age_seconds":86400,"heartbeat_seconds":86400,"deviation_percent":"0.5","market_hours":"us_equities_24/5","policy_owner":"collector_from_publisher_heartbeat","source":"feed_policy_source","market_hours_extension":false},
+    "0x6b22a786baa607d76728168703a39ea9c99f2cd0": {"max_age_seconds":86400,"heartbeat_seconds":86400,"deviation_percent":"0.5","market_hours":"us_equities_24/5","policy_owner":"collector_from_publisher_heartbeat","source":"feed_policy_source","market_hours_extension":false},
+    "0xf6f373a037c30f0e5010d854385ca89185ae638b": {"max_age_seconds":86400,"heartbeat_seconds":86400,"deviation_percent":"0.5","market_hours":"us_equities_24/5","policy_owner":"collector_from_publisher_heartbeat","source":"feed_policy_source","market_hours_extension":false},
+    "0x45c3c877c15e6ba2ebb19ea114ea508d14c1af2e": {"max_age_seconds":86400,"heartbeat_seconds":86400,"deviation_percent":"0.5","market_hours":"us_equities_24/5","policy_owner":"collector_from_publisher_heartbeat","source":"feed_policy_source","market_hours_extension":false},
+    "0xa3a468a452940b7d6b69991207b508c609a98ef2": {"max_age_seconds":86400,"heartbeat_seconds":86400,"deviation_percent":"0.5","market_hours":"us_equities_24/5","policy_owner":"collector_from_publisher_heartbeat","source":"feed_policy_source","market_hours_extension":false}
+  },
+  "morpho_accrual_source": {
+    "source_id": "morpho-accrual-methodology-20260925",
+    "registry_url": "https://docs.morpho.org/developers/contracts/addresses/",
+    "chain_id": 4663,
+    "morpho": "0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010",
+    "supported_irm": "0x2bd3d5965b26b51814ac95127b2b80dd6ccc0fa1",
+    "reviewed_on": "2026-09-25",
+    "source_urls": [
+      "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+      "https://raw.githubusercontent.com/morpho-org/morpho-blue/v1.0.0/src/libraries/periphery/MorphoBalancesLib.sol",
+      "https://raw.githubusercontent.com/morpho-org/morpho-blue/v1.0.0/src/libraries/MathLib.sol",
+      "https://raw.githubusercontent.com/morpho-org/morpho-blue-irm/v1.0.0/src/AdaptiveCurveIrm.sol"
+    ],
+    "method": "Pinned borrowRateView(params,stored market) returns interval average rate, not instantaneous spot rate; MORPHO identity must match. Three-term Taylor integer interest; fee assets floor and virtual fee shares floor; supply floor, borrow ceil. Include minted fee shares if Sleeve equals feeRecipient.",
+    "limits": "Official deployment-to-version attribution plus explorer-published verified singleton source; not independently recompiled. Unknown IRMs are unsupported rather than approximated."
+  },
+  "predict_accounting_source": {
+    "source_id": "netnet-house-accounting-bytecode-20260925",
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xb488368902b1CbD7533F1536C3F860065398D3e9",
+    "documentation_url": "https://docs.netnet.capital/predict",
+    "reviewed_on": "2026-09-25",
+    "runtime_keccak256": "0x23b13523c73c5eeb691d96744f9cdd96eb32eca5668310798eb605ca4c75c65e",
+    "locator": "Static deployed bytecode: selector 2c62fa10 -> 0x5c9 assetsOf = mulDiv(sharesOf,sharePrice,1e18); f5eb42dc -> 0xef9 effective shares includes only unmatured notices and converted generation-compatible pending; maturity predicate 0x1428; claim conversion 0x4aa uses stored exit price. No downloaded code executed.",
+    "method": "Add unconverted pending and matured notice once to assetsOf, only after exact runtime-code match and same-block assetsOf == floor(sharesOf*sharePriceWad/1e18). Matured raw pending is already represented by effective shares. Old-generation matured exits use stored exitPrice, including zero; do not discard a matured old-generation payable claim.",
+    "limits": "Targeted bytecode and getter/state identity review, not verified Solidity, a full decompilation or an audit. All numerical inputs must be pinned RPC."
+  },
+  "book_accounting_source": {
+    "source_id": "netnet-book-accounting-bytecode-20260925",
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x3174dE69a84c53F82F6B6Dca5C64E705cFFe8Dd6",
+    "documentation_url": "https://docs.netnet.capital/the-book",
+    "reviewed_on": "2026-09-25",
+    "runtime_keccak256": "0x5a96d1e0e1e7300c09e7eaa64f376999e286c5024b6a8fbb559d45ca591bafea",
+    "locator": "Static deployed bytecode: 0x4148 max(owedFav-wagersDog,owedDog-wagersFav,0); grade 0x2ae4 removes open exposure, moves loser risk-on wagers to house, reserves winning side; settle 0x2db2 early-returns already settled, 0x3000 risk-off, 0x409c yield subtracts ceil(P*i0/i1); 0x4049 credits playerTotal/free balance. No downloaded code executed.",
+    "method": "playerTotal is free balances only; custody identity is housePot+playerTotal+lockedWagers+lockedPrincipal. Open reserved exposure is contingent, not payable debt. Decided unpaid bet payouts reconstructed once; settled payout history is already in free balances. Fee counters are lifetime allocations not held liabilities. All assets/claims are wsNET, excluded with own-NET backing.",
+    "limits": "Conditional on reviewed bytecode semantics, exact runtime code, token identities and pinned state reconciliations. All positive unsettled risk-off payouts retain locked principal; positive risk-on win/push payouts retain locked wager. Zero residuals in nonnegative reserved/locked-wager/locked-principal stocks can establish aggregate claims despite omitted settled/zero-payable bets, not complete history or verified Solidity. Otherwise omitted bets remain an obligation-discovery gap. Never sum mutually exclusive outcome risks."
+  },
+  "morpho_accrual_abi": [
+    {"type":"function","name":"feeRecipient","inputs":[],"outputs":[{"name":"","type":"address"}],"stateMutability":"view"},
+    {"type":"function","name":"MORPHO","inputs":[],"outputs":[{"name":"","type":"address"}],"stateMutability":"view"},
+    {"type":"function","name":"borrowRateView","inputs":[
+      {"name":"marketParams","type":"tuple","components":[{"name":"loanToken","type":"address"},{"name":"collateralToken","type":"address"},{"name":"oracle","type":"address"},{"name":"irm","type":"address"},{"name":"lltv","type":"uint256"}]},
+      {"name":"market","type":"tuple","components":[{"name":"totalSupplyAssets","type":"uint128"},{"name":"totalSupplyShares","type":"uint128"},{"name":"totalBorrowAssets","type":"uint128"},{"name":"totalBorrowShares","type":"uint128"},{"name":"lastUpdate","type":"uint128"},{"name":"fee","type":"uint128"}]}
+    ],"outputs":[{"name":"","type":"uint256"}],"stateMutability":"view"}
+  ],
+  "book_balance_source": {
+    "url": "https://play.netnet.capital/assets/sportsbook-live-hLi-xNP1.js",
+    "reviewed_on": "2026-09-25",
+    "locator": "gt ABI; ae snapshot maps accountOf outputs to freeWs and lockedWs",
+    "limits": "Static publisher ABI, not deployed-source verification. playerTotal retained separately; custody residual tests an identity, not proof of liability scope."
+  },
+  "book_balance_abi": [
+    {"type":"function","name":"playerTotal","inputs":[],"outputs":[{"name":"","type":"uint256"}],"stateMutability":"view"},
+    {"type":"function","name":"accountOf","inputs":[{"name":"player","type":"address"}],"outputs":[{"name":"free","type":"uint256"},{"name":"locked","type":"uint256"}],"stateMutability":"view"}
+  ],
+  "net_twap_abi": [
+    {"type":"function","name":"pair","inputs":[],"outputs":[{"name":"","type":"address"}],"stateMutability":"view"},
+    {"type":"function","name":"twapNetUsdg","inputs":[],"outputs":[{"name":"","type":"uint256"}],"stateMutability":"view"},
+    {"type":"function","name":"twapMinWindow","inputs":[],"outputs":[{"name":"","type":"uint256"}],"stateMutability":"view"},
+    {"type":"function","name":"twapMaxWindow","inputs":[],"outputs":[{"name":"","type":"uint256"}],"stateMutability":"view"}
+  ],
+  "rwa_abi": [
+    {
+      "type": "function",
+      "name": "menu",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple[]",
+          "components": [
+            {
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "name": "feed",
+              "type": "address"
+            },
+            {
+              "name": "targetWeightBps",
+              "type": "uint256"
+            },
+            {
+              "name": "active",
+              "type": "bool"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "menuLength",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    }
+  ],
+  "pack_abi": [
+    {
+      "type": "function",
+      "name": "menuAssets",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "address[]"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "feedOf",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ]
+    }
+  ],
+  "asset_desk_abi": [
+    {
+      "type": "function",
+      "name": "assetInfo",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "components": [
+            {
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "name": "haircutBps",
+              "type": "uint16"
+            },
+            {
+              "name": "epochCapNet9",
+              "type": "uint96"
+            },
+            {
+              "name": "active",
+              "type": "bool"
+            },
+            {
+              "name": "decimals",
+              "type": "uint8"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "assetList",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view"
+    }
+  ],
+  "twap_abi": [
+    {
+      "type": "function",
+      "name": "asset",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "assetDecimals",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "count",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint16"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "maxAge",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "newestAt",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint40"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "poolId",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "poolManager",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "priceWad",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "quoteDecimals",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "window",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint16"
+        }
+      ],
+      "stateMutability": "view"
+    }
+  ],
+  "turbo_abi": [
+    {
+      "type": "function",
+      "name": "asset0",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "asset1",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "asset2",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "bookOf",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "components": [
+            {
+              "name": "potUnits",
+              "type": "uint256"
+            },
+            {
+              "name": "reservedUnits",
+              "type": "uint256"
+            },
+            {
+              "name": "putPotUsdg",
+              "type": "uint256"
+            },
+            {
+              "name": "putReservedUsdg",
+              "type": "uint256"
+            },
+            {
+              "name": "premiumUsdg",
+              "type": "uint256"
+            },
+            {
+              "name": "feeManagerTok",
+              "type": "uint256"
+            },
+            {
+              "name": "feeSleeveTok",
+              "type": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "quoteCashOut",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256"
+        },
+        {
+          "name": "count",
+          "type": "uint256"
+        },
+        {
+          "name": "holder",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "netOut",
+          "type": "uint256"
+        },
+        {
+          "name": "perfFee",
+          "type": "uint256"
+        },
+        {
+          "name": "rung",
+          "type": "uint8"
+        },
+        {
+          "name": "markWad",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "seriesCount",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "seriesOf",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "components": [
+            {
+              "name": "asset",
+              "type": "address"
+            },
+            {
+              "name": "side",
+              "type": "uint8"
+            },
+            {
+              "name": "state",
+              "type": "uint8"
+            },
+            {
+              "name": "salesHalted",
+              "type": "bool"
+            },
+            {
+              "name": "expiry",
+              "type": "uint64"
+            },
+            {
+              "name": "createdAt",
+              "type": "uint64"
+            },
+            {
+              "name": "maxCards",
+              "type": "uint32"
+            },
+            {
+              "name": "sold",
+              "type": "uint32"
+            },
+            {
+              "name": "outstanding",
+              "type": "uint32"
+            },
+            {
+              "name": "strikeWad",
+              "type": "uint256"
+            },
+            {
+              "name": "unitsPerCard",
+              "type": "uint256"
+            },
+            {
+              "name": "baseUiMultiplier",
+              "type": "uint256"
+            },
+            {
+              "name": "listLeverageWad",
+              "type": "uint256"
+            },
+            {
+              "name": "premiumUsdgRaw",
+              "type": "uint256"
+            },
+            {
+              "name": "settleMarkWad",
+              "type": "uint256"
+            },
+            {
+              "name": "settlePerCard",
+              "type": "uint256"
+            },
+            {
+              "name": "liqRoundId",
+              "type": "uint80"
+            },
+            {
+              "name": "settleRoundId",
+              "type": "uint80"
+            },
+            {
+              "name": "knockCheckpointAt",
+              "type": "uint64"
+            },
+            {
+              "name": "driftOnsetAt",
+              "type": "uint64"
+            },
+            {
+              "name": "offHoursWindowId",
+              "type": "uint80"
+            },
+            {
+              "name": "soldInWindow",
+              "type": "uint32"
+            },
+            {
+              "name": "windowCapCards",
+              "type": "uint32"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "sleeve",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "usdgFees",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "components": [
+            {
+              "name": "feeManager",
+              "type": "uint256"
+            },
+            {
+              "name": "feeSleeve",
+              "type": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    }
+  ],
+  "token_abi": [
+    {
+      "type": "function",
+      "name": "decimals",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "balanceOf",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "uiMultiplier",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "symbol",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "index_abi": [
+    {
+      "type": "function",
+      "name": "index",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "wsToSNet",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    }
+  ],
+  "feed_abi": [
+    {
+      "type": "function",
+      "name": "decimals",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "latestRoundData",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "roundId",
+          "type": "uint80"
+        },
+        {
+          "name": "answer",
+          "type": "int256"
+        },
+        {
+          "name": "startedAt",
+          "type": "uint256"
+        },
+        {
+          "name": "updatedAt",
+          "type": "uint256"
+        },
+        {
+          "name": "answeredInRound",
+          "type": "uint80"
+        }
+      ]
+    }
+  ],
+  "vault_abi": [
+    {
+      "type": "function",
+      "name": "balanceOf",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "convertToAssets",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "asset",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "withdrawQueueLength",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "withdrawQueue",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ]
+    }
+  ],
+  "router_abi": [
+    {
+      "type": "function",
+      "name": "marketId",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ]
+    }
+  ],
+  "morpho_abi": [
+    {
+      "type": "function",
+      "name": "position",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "bytes32"
+        },
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "supplyShares",
+          "type": "uint256"
+        },
+        {
+          "name": "borrowShares",
+          "type": "uint128"
+        },
+        {
+          "name": "collateral",
+          "type": "uint128"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "market",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "totalSupplyAssets",
+          "type": "uint128"
+        },
+        {
+          "name": "totalSupplyShares",
+          "type": "uint128"
+        },
+        {
+          "name": "totalBorrowAssets",
+          "type": "uint128"
+        },
+        {
+          "name": "totalBorrowShares",
+          "type": "uint128"
+        },
+        {
+          "name": "lastUpdate",
+          "type": "uint128"
+        },
+        {
+          "name": "fee",
+          "type": "uint128"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "idToMarketParams",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "loanToken",
+          "type": "address"
+        },
+        {
+          "name": "collateralToken",
+          "type": "address"
+        },
+        {
+          "name": "oracle",
+          "type": "address"
+        },
+        {
+          "name": "irm",
+          "type": "address"
+        },
+        {
+          "name": "lltv",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "Supply",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "bytes32",
+          "indexed": true
+        },
+        {
+          "name": "caller",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "onBehalf",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "assets",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "shares",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "SupplyCollateral",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "bytes32",
+          "indexed": true
+        },
+        {
+          "name": "caller",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "onBehalf",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "assets",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "anonymous": false
+    }
+  ],
+  "nfpm_abi": [
+    {
+      "type": "function",
+      "name": "balanceOf",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "tokenOfOwnerByIndex",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "ownerOf",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "factory",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "positions",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "nonce",
+          "type": "uint96"
+        },
+        {
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "name": "token0",
+          "type": "address"
+        },
+        {
+          "name": "token1",
+          "type": "address"
+        },
+        {
+          "name": "fee",
+          "type": "uint24"
+        },
+        {
+          "name": "tickLower",
+          "type": "int24"
+        },
+        {
+          "name": "tickUpper",
+          "type": "int24"
+        },
+        {
+          "name": "liquidity",
+          "type": "uint128"
+        },
+        {
+          "name": "feeGrowthInside0LastX128",
+          "type": "uint256"
+        },
+        {
+          "name": "feeGrowthInside1LastX128",
+          "type": "uint256"
+        },
+        {
+          "name": "tokensOwed0",
+          "type": "uint128"
+        },
+        {
+          "name": "tokensOwed1",
+          "type": "uint128"
+        }
+      ]
+    }
+  ],
+  "factory_abi": [
+    {
+      "type": "function",
+      "name": "getPool",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "token0",
+          "type": "address"
+        },
+        {
+          "name": "token1",
+          "type": "address"
+        },
+        {
+          "name": "fee",
+          "type": "uint24"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ]
+    }
+  ],
+  "pool_abi": [
+    {
+      "type": "function",
+      "name": "factory",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "token0",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "token1",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "fee",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint24"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "slot0",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "sqrtPriceX96",
+          "type": "uint160"
+        },
+        {
+          "name": "tick",
+          "type": "int24"
+        },
+        {
+          "name": "observationIndex",
+          "type": "uint16"
+        },
+        {
+          "name": "observationCardinality",
+          "type": "uint16"
+        },
+        {
+          "name": "observationCardinalityNext",
+          "type": "uint16"
+        },
+        {
+          "name": "feeProtocol",
+          "type": "uint8"
+        },
+        {
+          "name": "unlocked",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "feeGrowthGlobal0X128",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "feeGrowthGlobal1X128",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "ticks",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "tick",
+          "type": "int24"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "liquidityGross",
+          "type": "uint128"
+        },
+        {
+          "name": "liquidityNet",
+          "type": "int128"
+        },
+        {
+          "name": "feeGrowthOutside0X128",
+          "type": "uint256"
+        },
+        {
+          "name": "feeGrowthOutside1X128",
+          "type": "uint256"
+        },
+        {
+          "name": "tickCumulativeOutside",
+          "type": "int56"
+        },
+        {
+          "name": "secondsPerLiquidityOutsideX128",
+          "type": "uint160"
+        },
+        {
+          "name": "secondsOutside",
+          "type": "uint32"
+        },
+        {
+          "name": "initialized",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

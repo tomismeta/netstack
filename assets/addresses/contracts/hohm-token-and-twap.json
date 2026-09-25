@@ -1,0 +1,80 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x76cf788606f3d968b93b8a243d0e185c974ee407",
+      "chain_id": 4663,
+      "address": "0x76Cf788606F3d968B93B8A243D0e185C974EE407",
+      "role": "hohmToken",
+      "aliases": [
+        "hOHM",
+        "Origami hOHM",
+        "Robinhood hOHM"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_listed_token_not_implementation_verified",
+      "lifecycle_notes": "Chain 4663 identity only; never substitute the Ethereum hOHM cashtag address. Registry describes a LayerZero OFT and warns explorer source is a stub. No independent bridge/redemption, pause/blocklist, backing or transfer-safety audit. Holding hOHM in the Sleeve does not put it in Core RFV.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-20260925",
+          "locator": "hohmToken.address and attributed status",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-app-registry-20260925-refresh",
+          "locator": "hohmToken.address; symbol/name/18-decimal metadata; source-stub and OFT qualifications",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        }
+      ],
+      "decimals": 18,
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "publisher_linked_provenance_urls": [
+        "https://robinhoodchain.blockscout.com/token/0x76Cf788606F3d968B93B8A243D0e185C974EE407"
+      ]
+    },
+    {
+      "id": "robinhood-0x32ca7363c45212d119deeb11d02ce638234729d6",
+      "chain_id": 4663,
+      "address": "0x32Ca7363C45212d119DEEB11d02Ce638234729d6",
+      "role": "hohmTwapOracle",
+      "aliases": [
+        "hOHM V4 TWAP",
+        "hOHM/USDG V4 TWAP oracle"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "indexed_deployment_publisher_reported_oracle",
+      "lifecycle_notes": "Published hOHM/USDG V4 TWAP oracle, distinct from Core NET PairOracle and an instantaneous pool mark. Initial warming status and publisher parameter statements are dated, not current health/freshness or verified deployed arithmetic.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-20260925",
+          "locator": "hohmTwapOracle.address and attributed status in earlier same-day asset",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-app-registry-20260925-refresh",
+          "locator": "hohmTwapOracle.address; asset/PoolManager/poolId relationship",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-deployer-creations-20260925",
+          "locator": "Successful indexed create: 0x45442436d16443fc96fc5c7b1245b9337fd95a0e297b82ca53e153db7605df4e; created address 0x32Ca7363C45212d119DEEB11d02Ce638234729d6",
+          "evidence_kind": "explorer_indexed_creation",
+          "observed_on": "2026-09-25"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "asset_id": "robinhood-0x76cf788606f3d968b93b8a243d0e185c974ee407",
+      "asset_record": "assets/addresses/contracts/hohm-token-and-twap.json",
+      "pool_record": "assets/addresses/v4-pools.json",
+      "pool_id": "0x9b646837dd7713cf145036482e572e03045435f0fcc4be09a214c8bd094b05ba",
+      "deployment_transaction_hash": "0x45442436d16443fc96fc5c7b1245b9337fd95a0e297b82ca53e153db7605df4e",
+      "deployment_block_number": 69969037,
+      "deployment_at": "2026-09-22T21:14:42.000000Z"
+    }
+  ]
+}

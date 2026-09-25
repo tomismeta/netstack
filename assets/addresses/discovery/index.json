@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "chain_id": 4663,
+  "observed_on": "2026-09-25",
+  "source_catalog": "assets/sources.json",
+  "source_id": "netnet-deployer-creations-20260925",
+  "deployer_record": "assets/addresses/public-roles-discovered-deployer.json",
+  "deployer_id": "robinhood-role-indexed-deployer-cfbd7e12",
+  "scope": "53 candidates absent from the 185-address baseline: a dated difference of explorer-indexed creations, not 53 new active products or an exhaustive deployment graph. Four now have canonical role records; the remaining 49 stay outside the canonical contract inventory. hOHM and Predict children were discovered separately, not among these 53.",
+  "counts": {
+    "indexed_pages": 3,
+    "indexed_rows": 142,
+    "successful_unique_creations": 138,
+    "baseline_canonical_contracts": 185,
+    "baseline_missing_candidates": 53,
+    "now_canonical_role_identified": 4,
+    "historical_named_candidates": 10,
+    "unclassified_candidates": 39,
+    "remaining_outside_canonical_inventory": 49
+  },
+  "files": [
+    {
+      "classification": "promoted",
+      "count": 4,
+      "file": "assets/addresses/discovery/promoted.json"
+    },
+    {
+      "classification": "historical-named",
+      "count": 10,
+      "file": "assets/addresses/discovery/historical-named.json"
+    },
+    {
+      "classification": "unclassified",
+      "count": 13,
+      "file": "assets/addresses/discovery/unclassified-1.json"
+    },
+    {
+      "classification": "unclassified",
+      "count": 13,
+      "file": "assets/addresses/discovery/unclassified-2.json"
+    },
+    {
+      "classification": "unclassified",
+      "count": 13,
+      "file": "assets/addresses/discovery/unclassified-3.json"
+    }
+  ],
+  "classification_notes": {
+    "canonical_role_identified": "Follow canonical_record and canonical_id; this row preserves creation evidence, not a second canonical record. Publication is not current activation.",
+    "historical_named_candidate": "Explorer names identify five RouterSource, two RwaFeedAdapter, one RwaFeedAdapterV2, one Zap and one WrappedStakedNET creation. These historical names do not establish current consumer wiring, successor equivalence, permissions or that any is active. Do not alias them to production adapters, Zap or wsNET.",
+    "unclassified_creation": "39 unnamed July 30 creations remain role-unknown. Proximity in time, shared deployer and naming absence do not establish behavior or active status."
+  },
+  "evidence_limits": "Successful indexed create rows establish the explorer-reported address, transaction, block and date only. Not independently fetched RPC receipts, verified Solidity, current bytecode/authority, a complete list of deployer transactions, recursive factory children or all ecosystem deployers. A non-exhaustive source account is not a person attribution.",
+  "creation_evidence_url_template": "https://robinhoodchain.blockscout.com/api/v2/transactions/{creation_transaction_hash}",
+  "address_evidence_url_template": "https://robinhoodchain.blockscout.com/api/v2/addresses/{address}"
+}

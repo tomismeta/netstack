@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "chain_id": 4663,
+  "observed_on": "2026-09-25",
+  "scope": "Three bytes32 V4 pool identities separate from canonical contract addresses and Morpho markets. Two distinct wsNET/hOHM fee tiers each held a Sleeve NFT at the recorded block; hOHM/USDG is the separate oracle quote pool.",
+  "pools": [
+    {
+      "chain_id": 4663,
+      "pool_manager_id": "robinhood-0x8366a39cc670b4001a1121b8f6a443a643e40951",
+      "pool_manager_record": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+      "name": "hOHM / USDG V4 oracle pool",
+      "aliases": [
+        "hohmUsdgV4PoolId"
+      ],
+      "pool_id": "0x9b646837dd7713cf145036482e572e03045435f0fcc4be09a214c8bd094b05ba",
+      "status": "indexed_constructor_identity_not_live_pool_verified",
+      "oracle_record": "assets/addresses/contracts/hohm-token-and-twap.json",
+      "oracle_id": "robinhood-0x32ca7363c45212d119deeb11d02ce638234729d6",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-20260925-refresh",
+          "locator": "hohmTwapOracle source relationship to hohmUsdgV4PoolId",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-hohm-oracle-indexed-bytecode-20260925",
+          "locator": "creation-bytecode tail and indexed deployed constants",
+          "evidence_kind": "explorer_indexed_bytecode",
+          "observed_on": "2026-09-25"
+        }
+      ],
+      "limits": "Exact indexed pool ID; complete PoolKey/Initialize evidence not established here. Do not invent fee/tickSpacing/hooks or confuse this USDG quote pool with either wsNET/hOHM pool."
+    },
+    {
+      "chain_id": 4663,
+      "pool_manager_id": "robinhood-0x8366a39cc670b4001a1121b8f6a443a643e40951",
+      "pool_manager_record": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+      "name": "wsNET / hOHM V4 0.05%",
+      "pool_id": "0xaa91d484602c8c5a4dd55ebb359383ef734270cb0892abfb1af10df8604ad32e",
+      "status": "fixed_block_pool_key_and_sleeve_position_observed",
+      "pool_key": {
+        "currency0": "0x63C12667638f2Ae6fC6ae09B43D98Ec84a8586eA",
+        "currency1": "0x76Cf788606F3d968B93B8A243D0e185C974EE407",
+        "fee": 500,
+        "tick_spacing": 10,
+        "hooks": "0x0000000000000000000000000000000000000000"
+      },
+      "identity_method": "keccak256(abi.encode(address currency0,address currency1,uint24 fee,int24 tickSpacing,address hooks)); full pool ID, not truncated PositionInfo bits",
+      "position_manager_id": "robinhood-0x58daec3116aae6d93017baaea7749052e8a04fa7",
+      "position_manager_record": "assets/addresses/contracts/uniswap-v4-position-manager.json",
+      "observed_positions": [
+        {
+          "token_id": "3080718",
+          "owner_id": "robinhood-0x498752d5fa0600cbd613074c151abe15b3fec7cb",
+          "owner_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+          "mint_transaction_hash": "0xe4fe24614f354d0a11cb4f6857acdbff01c8fc53a80ba3e3a540483b1c290a7a",
+          "mint_block_number": 69177744
+        }
+      ],
+      "observation": {
+        "block_number": 72320994,
+        "block_hash": "0xab11da818e860c2bff4b45b0c5ca66b432d4367c322d38f88fb26d7714869c65",
+        "block_timestamp": "2026-09-25T15:06:18+00:00",
+        "source_id": "netnet-v4-position-identity-20260925"
+      },
+      "provenance": [
+        {
+          "source_id": "netnet-v4-position-identity-20260925",
+          "locator": "PositionManager PoolKey/owner getters and incoming Transfer logs at pinned block",
+          "evidence_kind": "fixed_block_rpc_identity_and_ownership",
+          "observed_on": "2026-09-25"
+        }
+      ],
+      "limits": "Dated identity/ownership evidence only; neither liquidity value, economic net assets, verified source nor current completeness. NFT ID is not a contract address or pool ID."
+    },
+    {
+      "chain_id": 4663,
+      "pool_manager_id": "robinhood-0x8366a39cc670b4001a1121b8f6a443a643e40951",
+      "pool_manager_record": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+      "name": "wsNET / hOHM V4 0.9%",
+      "pool_id": "0x0d023852c8ca6599d25446b8f78c61c17105e26af5c9761607e26326e78f5f2c",
+      "status": "fixed_block_pool_key_and_sleeve_position_observed",
+      "pool_key": {
+        "currency0": "0x63C12667638f2Ae6fC6ae09B43D98Ec84a8586eA",
+        "currency1": "0x76Cf788606F3d968B93B8A243D0e185C974EE407",
+        "fee": 9000,
+        "tick_spacing": 90,
+        "hooks": "0x0000000000000000000000000000000000000000"
+      },
+      "identity_method": "keccak256(abi.encode(address currency0,address currency1,uint24 fee,int24 tickSpacing,address hooks)); full pool ID, not truncated PositionInfo bits",
+      "position_manager_id": "robinhood-0x58daec3116aae6d93017baaea7749052e8a04fa7",
+      "position_manager_record": "assets/addresses/contracts/uniswap-v4-position-manager.json",
+      "observed_positions": [
+        {
+          "token_id": "3269350",
+          "owner_id": "robinhood-0x498752d5fa0600cbd613074c151abe15b3fec7cb",
+          "owner_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+          "mint_transaction_hash": "0xff77a2588b18b61a37cc9cc1a68de1b8ae95132a84b99e8a370aadc49094737d",
+          "mint_block_number": 72309553
+        }
+      ],
+      "observation": {
+        "block_number": 72320994,
+        "block_hash": "0xab11da818e860c2bff4b45b0c5ca66b432d4367c322d38f88fb26d7714869c65",
+        "block_timestamp": "2026-09-25T15:06:18+00:00",
+        "source_id": "netnet-v4-position-identity-20260925"
+      },
+      "provenance": [
+        {
+          "source_id": "netnet-v4-position-identity-20260925",
+          "locator": "PositionManager PoolKey/owner getters and incoming Transfer logs at pinned block",
+          "evidence_kind": "fixed_block_rpc_identity_and_ownership",
+          "observed_on": "2026-09-25"
+        }
+      ],
+      "limits": "Dated identity/ownership evidence only; neither liquidity value, economic net assets, verified source nor current completeness. NFT ID is not a contract address or pool ID."
+    }
+  ],
+  "ownership_scope": {
+    "observation": {
+      "block_number": 72320994,
+      "block_hash": "0xab11da818e860c2bff4b45b0c5ca66b432d4367c322d38f88fb26d7714869c65",
+      "block_timestamp": "2026-09-25T15:06:18+00:00",
+      "source_id": "netnet-v4-position-identity-20260925"
+    },
+    "balance_of_sleeve": 2,
+    "owned_token_ids": [
+      "3080718",
+      "3269350"
+    ],
+    "discovery": "Complete address/topic-filtered incoming Transfer range0..72320994, then ownerOf rechecks and balanceOf cardinality match. This dated universe must be rediscovered at every new observation block."
+  }
+}

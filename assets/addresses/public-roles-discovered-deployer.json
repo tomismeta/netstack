@@ -1,0 +1,28 @@
+{
+  "public_role_addresses": [
+    {
+      "id": "robinhood-role-indexed-deployer-cfbd7e12",
+      "chain_id": 4663,
+      "address": "0xCfBd7e12A0f154a45576a73C1E409200068507B9",
+      "role": "indexed NetNet ecosystem deployer",
+      "aliases": [
+        "discovered deployer",
+        "creation inventory source account"
+      ],
+      "status": "discovered_from_public_explorer_not_publisher_person_attribution",
+      "account_kind": "explorer_reported_eoa",
+      "ownership_status": "not_verified_no_legal_person_attribution",
+      "live_chain_verification_status": "not_performed",
+      "lifecycle_notes": "Explorer is_contract=false on September 25 and indexed creation rows identify this source account. Shared deployment history is not proof of beneficial ownership, current control, organizational authority or every contract being a NetNet product.",
+      "provenance": [
+        {
+          "source_id": "netnet-deployer-creations-20260925",
+          "locator": "addresses/{address}: hash and is_contract=false; internal-transactions source account",
+          "evidence_kind": "explorer_indexed_address_and_creations",
+          "observed_on": "2026-09-25"
+        }
+      ],
+      "discovery_inventory": "assets/addresses/discovery/index.json"
+    }
+  ]
+}

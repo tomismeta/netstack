@@ -1,0 +1,62 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x7185ed82f9e4ae9a3fff0ae072eaf83bba969abc",
+      "chain_id": 4663,
+      "address": "0x7185eD82f9e4Ae9a3fFF0Ae072eaF83BBA969AbC",
+      "role": "Predict HIGHER #2",
+      "aliases": [
+        "HIGHER #2",
+        "HI-2"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "series_specific_indexed_creation_observed",
+      "lifecycle_notes": "Series #2 outcome only, not an evergreen HIGHER token or a House share. Successful indexed CREATE trace and token metadata establish historical identity/date/name/scale, not current trading, settlement or source correctness. Resolve every series separately.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-predict-series-2-indexed-20260925",
+          "locator": "Successful CREATE trace index 28 from PredictDesk; block 68853620; token endpoint address_hash/name=Predict HIGHER #2/symbol=HI-2/decimals=18",
+          "evidence_kind": "explorer_indexed_creation_and_token_metadata",
+          "observed_on": "2026-09-25"
+        }
+      ],
+      "decimals": 18,
+      "series_id": 2,
+      "deployment_transaction_hash": "0x882d709b08602d9fce815e8ed1581b5bf7d1b55429c9aaf85988aaf52563992d",
+      "deployment_block_number": 68853620,
+      "deployment_at": "2026-09-21T14:03:18Z",
+      "desk_id": "robinhood-0x7ef9528408d99f98056922291048f0710001e015",
+      "desk_record": "assets/addresses/contracts/predict-desk-and-vault.json"
+    },
+    {
+      "id": "robinhood-0x414b1637de64d91223df88f9f060fd1983d0e593",
+      "chain_id": 4663,
+      "address": "0x414b1637de64d91223Df88f9f060fd1983d0E593",
+      "role": "Predict LOWER #2",
+      "aliases": [
+        "LOWER #2",
+        "LO-2"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "series_specific_indexed_creation_observed",
+      "lifecycle_notes": "Series #2 outcome only, not an evergreen LOWER token or a House share. Successful indexed CREATE trace and token metadata establish historical identity/date/name/scale, not current trading, settlement or source correctness. Resolve every series separately.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-predict-series-2-indexed-20260925",
+          "locator": "Successful CREATE trace index 29 from PredictDesk; block 68853620; token endpoint address_hash/name=Predict LOWER #2/symbol=LO-2/decimals=18",
+          "evidence_kind": "explorer_indexed_creation_and_token_metadata",
+          "observed_on": "2026-09-25"
+        }
+      ],
+      "decimals": 18,
+      "series_id": 2,
+      "deployment_transaction_hash": "0x882d709b08602d9fce815e8ed1581b5bf7d1b55429c9aaf85988aaf52563992d",
+      "deployment_block_number": 68853620,
+      "deployment_at": "2026-09-21T14:03:18Z",
+      "desk_id": "robinhood-0x7ef9528408d99f98056922291048f0710001e015",
+      "desk_record": "assets/addresses/contracts/predict-desk-and-vault.json"
+    }
+  ]
+}

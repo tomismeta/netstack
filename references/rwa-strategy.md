@@ -118,7 +118,7 @@ Do not add tokenized equities to Core NAV because the August 8 article calls the
 
 ## Official Reports Sleeve memo methodology
 
-The [official Reports page](https://app.netnet.capital/#/reports) includes off-wallet positions, not just the Safe's token balances. A **September 20, 2026 targeted source review** of its [published application bundle](https://app.netnet.capital/assets/index-CbWQFNbN.js), source `netnet-reports-sleeve-methodology-20260920`, established the following **publisher display methodology**, not an independently reconciled current balance sheet or deployed-contract audit.
+The [Reports page](https://app.netnet.capital/#/reports) names off-wallet claims as well as Safe balances. The September 20 [methodology source](https://app.netnet.capital/assets/index-CbWQFNbN.js) and September 25 inspected [app registry/methodology asset](https://app.netnet.capital/assets/index-BssLYnjl.js) are **dated publisher-code evidence only**; hashed URLs can rotate or disappear. The latter adds Asset Desk tokens and the Sleeve's own NET-family holdings. Neither source provides live numerical inputs to the collector or proves a reconciled balance sheet.
 
 ```text
 Sleeve total (memo)
@@ -127,6 +127,8 @@ Sleeve total (memo)
   + TURBO desk pots
   + Predict House Vault assets attributable to the Sleeve
   + THE BOOK house pot marked through the sNET index and Reports' NET price input
+  + Sleeve-held tokens enumerated from Asset Bond Desk configuration
+  + Sleeve Safe's own NET, sNET and wsNET holdings
 ```
 
 | Component | Reviewed source treatment |
@@ -136,6 +138,8 @@ Sleeve total (memo)
 | TURBO desk pots | Adds the desk-pot total, including free/reserved components at marks, **gross of open CALL/PUT liabilities**. This is not the separate TURBO analytics net “Books” calculation, which deducts liability terms and has its own fee treatment. Unswept fee buckets are excluded from the Reports pot total. Assets absent from its price map are skipped; neither omitted assets nor unpaid fees become zero-valued known holdings. |
 | Predict House Vault deposit | The live adapter reads `sharesOf(managerSleeve)` and `assetsOf(managerSleeve)` on PredictVault. The row uses `assetsOf / 10^6`, labelled **“USDG at the last struck share price.”** This is the Sleeve's vault claim, not all vault capital, direct wallet cash, or proof of immediate redemption. Queue/notice/claim states require separate [House accounting](predict-analytics.md#5-house-capital-ownership-queues-and-claims); do not assume this one row exhausts them or add shares and their asset equivalent. |
 | THE BOOK house pot | Reads `SportsBookDesk.potsOf()`: `housePot`, `reservedTotal`, `lockedWagers`, `lockedPrincipal`. The Reports adapter normalizes the first two by `10^18`, derives `free = max(housePotWs − reservedWs, 0)`, and marks **the full house pot** as `housePotWs × dividendIndex × marketPriceUsdg`. It does not add player locked wagers or locked principal. |
+| Asset Bond configuration / hOHM | The app's `deskHoldings` means configured tokens' `balanceOf(managerSleeve)`, **not tokens held by the Desk**. Deduplicate assets already present in another Safe row. Use each asset's evidenced decimals/oracle, not a stock-feed rule borrowed for hOHM; unpriced native holdings remain visible. Desk inventory and vesting obligations require separate accounting. |
+| Own NET-family holdings | NET, sNET and wsNET in the Safe are separate custody balances, with wrappers converted through the index before valuation. Do not add wrapper backing again. The expanded memo includes this own-token exposure; it is neither new external reserves nor proof that every unit is free inventory. |
 
 **Book reservation and custody:** the app's derivation treats reserved cover as part of `housePot`, not an additional holding. To reproduce this memo, neither add the reserve again nor substitute only the derived free pot; present total/free/reserved separately. Compare against the independent `freePot()` getter before asserting deployed equality; the reviewed records do not establish it, and the app's clamp can hide `reservedTotal > housePot`. The position is **wsNET held in THE BOOK**, not evidence of a large direct NET balance in the Sleeve Safe. Its index-derived NET equivalent is a valuation step, not another holding. House capital is not fee revenue or realized profit, and a reserved amount is not necessarily a realized loss. A separate net-equity or available-capital analysis must disclose its liability/encumbrance adjustments rather than silently relabelling this memo.
 
@@ -145,9 +149,28 @@ Sleeve total (memo)
 
 **Freshness and failed reads:** the app uses asynchronous reads and zero/null fallbacks: failed balances/conversions or unmarked holdings can contribute zero, and unreadable collateral marks can coexist with a deducted debt entry. Even a missing sNET index falls back to zero in the Book mark. These are display behaviors, not acceptable evidence of absence. **For research reproduction, treat missing or stale components as unknown, not zero**, require consistently timed successful reads and price/index inputs, and mark incomplete totals partial/unavailable. A nonempty table does not establish completeness.
 
-**Publisher wording discrepancy:** the older explanatory sentence listing only wallet balances, liquidity positions and TURBO pots omits Predict and THE BOOK. The reviewed total calculation and named rows include both; cite the dated code-backed perimeter rather than repeating the shorter sentence as exhaustive.
+**Perimeter discipline:** historical explanatory text can omit newer rows even when the calculation includes them. Use the dated calculation and current canonical identities, not a shorter marketing sentence, as methodology; a successful partial sum must not masquerade as complete coverage.
+
+**v4 universe versus website gate:** the [replacement September 25 bundle](https://app.netnet.capital/assets/index-hABaJsIB.js) adds a registry-gated position surface, but its placeholder gate misses independently observed Sleeve-owned wsNET/hOHM positions. At block **72,320,994**, incoming PositionManager `Transfer` discovery, `ownerOf`, `balanceOf` cardinality and nonzero liquidity corroborated both the [older](https://robin.etherscan.io/tx/0xe4fe24614f354d0a11cb4f6857acdbff01c8fc53a80ba3e3a540483b1c290a7a) and [newer](https://robin.etherscan.io/tx/0xff77a2588b18b61a37cc9cc1a68de1b8ae95132a84b99e8a370aadc49094737d) position—not just a registry-seeded candidate. This is dated ownership evidence, not a permanent current-position list or valuation guarantee. For net assets, discover all owned positions within the selected manager and reconcile cardinality before claiming coverage; identify each pool, raw asset legs and fees at the same block. Retain these exposures separately from the website replica even when the UI omits them. A bounded or failed log scan, unmatched count, unknown pool or unsupported mark leaves an explicit gap, never zero exposure.
+
+Exact pool/NFT relationships are in the [v4 identity map](../assets/addresses/v4-pools.json): the hOHM/USDG oracle pool is distinct from the two wsNET/hOHM fee tiers. Pool IDs are bytes32 identities, not contract addresses; do not substitute a quote pool for a Sleeve position.
 
 **Core boundary unchanged:** Reports' “True RFV” adds this Sleeve memo to on-chain RFV; “NAV incl. RWAs” divides that combined figure by total supply, while “True NAV (circulating)” uses circulating float. These are explicitly memo presentations, not contractual Core RFV/backing or a redemption promise. Do not mix their denominators or call the memo fully unencumbered net equity.
+
+### Four values, four questions
+
+| Scope / route | Meaning and limits |
+|---|---|
+| **Core RFV — `rfv --scope core`** | `Treasury.rfv()` and same-block liquid USDG, haircutted Morpho and floor-valued POL reconciliation; total-supply NAV. Neither hOHM nor Sleeve is added. |
+| **Reports memo — `rfv --scope reports`** | The expanded composition above, plus Core for the website label “True RFV.” This retains documented gross pots and valuation exclusions; it is not contractual backing or fully net equity. |
+| **Adjusted net assets — `rfv --scope net-assets`** | Uses an alternative Treasury external-claim basis: cash + gross USDG vault claim + the Treasury LP's USDG leg, **replacing** Core's haircut/geometric-POL formula rather than adding to it. Own NET/sNET/wsNET assets and same-token obligations are disclosed separately, not independent external backing. Adds supported external Sleeve/Treasury-extra claims and subtracts attributable external liabilities once. Required unresolved valuation, accrual, ownership or liability inputs withhold the scoped aggregate; searched and unsearched history remain explicit. This is neither Core RFV nor proof of exhaustive economic coverage. |
+| **Predict settlement print — `predict` plus the settlement ledger** | [Product docs](https://docs.netnet.capital/predict) include LP/TURBO fees, exclude RWA NET inventory and freeze the Sleeve House claim at opening deposit value. Neither current Reports nor adjusted net assets substitutes for the Safe's print. |
+
+**All live inputs come from pinned RPC at one block**, with raw units, getter/contract provenance and header recheck. Websites supply only label/definition discovery. Missing prices, skipped positions, debt reads or liabilities are unknown, never zero. USDG values are not USD without an independently supported conversion. For Predict, the missing prerequisite is the exact published calculation script/version and print-time constituent ledger, including how newer Book/hOHM/Asset Desk positions enter its specification; the reviewed documentation supplies no script URL.
+
+### September 22 hOHM partnership
+
+The [official Olympus/Origami announcement](https://x.com/NetNetCap/status/2102398715910877518) describes wsNET/hOHM liquidity, intended hOHM bonding and unloop exits; its “treasury alongside USDG” language does **not** amend Core's still-USDG-only [reserve policy](https://docs.netnet.capital/treasury). The [community Asset Desk interpretation](https://x.com/StandartXBT/status/2102523641728799093) is a separate claim, not official verified terms. [Products](products.md#asset-bond-desk-and-the-hohm-partnership) distinguishes its custody/remittance/vesting evidence from the older RWA Desk formula. Holdings or a partnership do not establish a reliable mark, immediate redemption, absence of underlying leverage or completed activation.
 
 ## September 12 Manager bid: a new announced inventory path
 

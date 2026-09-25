@@ -45,6 +45,11 @@
       "file": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json"
     },
     {
+      "role": "uniswapV4PositionManager",
+      "aliases": ["V4 PositionManager", "hOHM/wsNET position manager"],
+      "file": "assets/addresses/contracts/uniswap-v4-position-manager.json"
+    },
+    {
       "role": "UniversalRouter",
       "aliases": [],
       "file": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json"

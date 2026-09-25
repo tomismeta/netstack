@@ -1,0 +1,14 @@
+{
+  "contracts": [
+    {
+      "role": "hohmToken",
+      "aliases": ["hOHM", "Origami hOHM", "Robinhood hOHM"],
+      "file": "assets/addresses/contracts/hohm-token-and-twap.json"
+    },
+    {
+      "role": "hohmTwapOracle",
+      "aliases": ["hOHM V4 TWAP", "hOHM/USDG V4 TWAP oracle"],
+      "file": "assets/addresses/contracts/hohm-token-and-twap.json"
+    }
+  ]
+}

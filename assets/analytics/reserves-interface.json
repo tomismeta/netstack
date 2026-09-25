@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "source_id": "netnet-core-reserves-interface-20260925",
+  "reviewed_on": "2026-09-25",
+  "scope": "Read-only Treasury RFV reconciliation. Source bundles and documentation establish interface and methodology only, not deployed implementation equivalence. No website balances, prices or displayed totals are numerical inputs.",
+  "provenance": [
+    {"url":"https://app.netnet.capital/assets/index-BssLYnjl.js","locator":"Treasury getters and live RFV consumer inspected in the recorded ecosystem audit","scope":"Historical interface evidence; URL returned 404 on the later same-day recheck."},
+    {"url":"https://app.netnet.capital/assets/index-hABaJsIB.js","locator":"Treasury ABI fr; live consumer rfv/liquidUsdg/morphoAssets/backingPerToken; to=200; ERC-4626 convertToAssets","scope":"Current app asset statically inspected 2026-09-25, never executed. Consumer derives POL by subtraction; this collector independently reconstructs POL from RPC reserves and LP ownership."},
+    {"url":"https://docs.netnet.capital/treasury","locator":"Sections 1-3 and 5-6","scope":"USDG reserve units, 2% documented Morpho haircut, 2*sqrt(x*y)*LP share convention, total NET supply denominator, exclusion of Sleeve from Core RFV."},
+    {"url":"https://eips.ethereum.org/EIPS/eip-4626","locator":"asset, balanceOf, convertToAssets","scope":"Standard read interface. asset identity is checked against canonical USDG at the pinned block; no redemption or liquidity guarantee."}
+  ],
+  "methodology": {
+    "treasury_value_decimals": 18,
+    "morpho_haircut_bps": 200,
+    "bps_denominator": 10000,
+    "parameter_status": "Documented methodology, not a deployed parameter read. The published Treasury interface has no Morpho haircut getter. Equality at a snapshot is observed reconciliation, not proof of code equivalence or immutable policy.",
+    "pol_integer_order": "x=floor(usdgReserveRaw*10^18/10^usdgDecimals); y=floor(netReserveRaw*10^18/10^netDecimals); root=isqrt(x*y); polWad=floor(2*root*treasuryLpRaw/totalLpRaw)",
+    "rfv_integer_order": "cashWad + floor(grossMorphoWad*9800/10000) + polWad",
+    "nav_integer_order": "floor(rfvWad*10^netDecimals/totalNetSupplyRaw)"
+  },
+  "treasury_abi": [
+    {"type":"function","name":"rfv","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint256"}]},
+    {"type":"function","name":"liquidUsdg","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint256"}]},
+    {"type":"function","name":"morphoAssets","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint256"}]},
+    {"type":"function","name":"backingPerToken","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint256"}]},
+    {"type":"function","name":"net","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"address"}]},
+    {"type":"function","name":"usdg","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"address"}]},
+    {"type":"function","name":"morphoVault","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"address"}]},
+    {"type":"function","name":"canonicalPair","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"address"}]}
+  ],
+  "token_abi": [
+    {"type":"function","name":"decimals","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint8"}]},
+    {"type":"function","name":"balanceOf","stateMutability":"view","inputs":[{"name":"account","type":"address"}],"outputs":[{"name":"","type":"uint256"}]},
+    {"type":"function","name":"totalSupply","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint256"}]}
+  ],
+  "vault_abi": [
+    {"type":"function","name":"asset","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"address"}]},
+    {"type":"function","name":"decimals","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint8"}]},
+    {"type":"function","name":"balanceOf","stateMutability":"view","inputs":[{"name":"account","type":"address"}],"outputs":[{"name":"","type":"uint256"}]},
+    {"type":"function","name":"convertToAssets","stateMutability":"view","inputs":[{"name":"shares","type":"uint256"}],"outputs":[{"name":"","type":"uint256"}]}
+  ]
+}

@@ -7,6 +7,17 @@
   "limits": "Published ABI/live UI, not verified Solidity. This nonexhaustive analytics fragment omits writes, quotes and guess/proposal interfaces (Guessed, WinnerProposed, guessOf); quoteBuy/quoteSell are not supplied or supported by the bundled helper. Separately validated supplemental reads, read-only quotes, isolated nonbroadcast simulations and explicit models are allowed under references/guardrail.md, never wallet operation or transaction execution. Guesses are not wagers; unknown topics are not volume. Validate chain, identity, block and exact decoding; unknown enums stay unknown. token_abi is for USDG/outcomes, not House shares.",
   "status_values": {"0":"none","1":"open","2":"resolved","3":"voided"},
   "side_values": {"long_true":"HIGHER","long_false":"LOWER"},
+  "interpretation_authority": "status_values and side_values are September 18 published live-consumer interpretations, not verified deployed enforcement; raw enums remain separate",
+  "supplemental_review": {
+    "source_id": "netnet-predict-rule-review-20260925",
+    "reviewed_on": "2026-09-25",
+    "source_url": "https://app.netnet.capital/assets/index-BpcUqlRH.js",
+    "source_sha256": "7b499d958448f670e7e93f9c1fe9fffbac4a79343d3f097395266263aa802e6a",
+    "scope": "jn published Desk ABI includes quoteBuy(bool,uint256) and quoteSell(bool,uint256) views and grade/setGrader/setHalted/setMinTicket/void/proposeWinner/payPrize writes. Live adapter calls quote views. K_ enum and Ja side mapping corroborate original interpretations. No verified Solidity or exhaustive privilege/challenge-rights audit.",
+    "strict_skew": "sm raisesSkew uses post absolute skew > pre absolute skew; aA rejects raisesSkew at last call. Equal absolute skew is allowed by this frontend amount model; documented skew-reducing prose does not establish strict deployed semantics.",
+    "helper_support": "No quote engine or quote CLI; independently validated supplemental read-only quote research is described in references/predict-analytics.md",
+    "source_reachability": "September 18 asset URL returned 404; Blockscout Desk smart-contract API returned bytecode but no verified Solidity/source ABI."
+  },
   "display_units": "todayWad/lineWad/printWad: raw/1e18 is millions of displayed dollars, raw/1e12 is dollars. Probability marks use raw/1e18. Confirm token decimals.",
   "abi": [
     {"type":"function","name":"barred","inputs":[{"name":"","type":"address"}],"outputs":[{"name":"","type":"bool"}],"stateMutability":"view"},

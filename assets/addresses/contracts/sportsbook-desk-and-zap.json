@@ -12,6 +12,18 @@
       "live_chain_verification_status": "not_performed",
       "provenance": [
         {
+          "source_id": "netnet-docs-the-book",
+          "locator": "Addresses: SportsBookDesk; first graded game and September 22 slate are publisher-reported events",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "THE BOOK table: SportsBookDesk; adjacent StockMorphoOracle rows remain Credit roles",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
           "source_id": "netnet-play-book-registry-20260920",
           "locator": "sportsBookDesk.address, status and source deployment statement",
           "evidence_kind": "publisher_registry_or_documentation",
@@ -38,6 +50,18 @@
       "lifecycle_notes": "Matching indexed address-creation metadata corroborates deployment. Published interface describes USDG/sNET conversions for THE BOOK, not the NET/USDG LP Zap or Managed Futures Zap. Explorer is_verified=false; bytecode without verified source does not verify current Desk/router wiring, conversion caps, exemptions, warmup state or safe operation. Publisher HUMAN-VERIFIED is an attributed label only.",
       "live_chain_verification_status": "not_performed",
       "provenance": [
+        {
+          "source_id": "netnet-docs-the-book",
+          "locator": "Addresses: SportsBookZap",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "THE BOOK table: SportsBookZap",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
         {
           "source_id": "netnet-play-book-registry-20260920",
           "locator": "sportsBookZap.address, status and source deployment statement",

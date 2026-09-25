@@ -1,0 +1,12 @@
+{
+  "chain_id": 4663,
+  "observed_on": "2026-09-25",
+  "conventions": "assets/addresses/discovery/index.json",
+  "source_id": "netnet-deployer-creations-20260925",
+  "candidates": [
+    {"address":"0x3B4C1617C76c72D41Ff43B625BC5DbBF3A32D986","creation_transaction_hash":"0xe64710962b9861a4be8850f18625eb9036ce9b397de71ff4324ef870b57e9174","creation_block_number":70679077,"created_at":"2026-09-23T17:06:27.000000Z","classification":"canonical_role_identified","role":"assetBondZap","canonical_record":"assets/addresses/contracts/asset-bond-desk-and-zap.json","canonical_id":"robinhood-0x3b4c1617c76c72d41ff43b625bc5dbbf3a32d986","lifecycle_status":"published_role_not_current_activation"},
+    {"address":"0x2F2F215b810Fa692304cB0095804Ab3C8e4cEf78","creation_transaction_hash":"0x7015bcbcc905e51813ee9b2163ee487d351c7e5f90600a3998461af44c34bbd7","creation_block_number":70000046,"created_at":"2026-09-22T22:06:36.000000Z","classification":"canonical_role_identified","role":"assetBondDesk V2","canonical_record":"assets/addresses/contracts/asset-bond-desk-and-zap.json","canonical_id":"robinhood-0x2f2f215b810fa692304cb0095804ab3c8e4cef78","lifecycle_status":"published_role_not_current_activation"},
+    {"address":"0xfdb9586cd58cd61e9F571ed41db27b57F63781e3","creation_transaction_hash":"0x68291687a5df386ea21ec4f52faab88a96d578c3630d03e978a186c4d0b1fddb","creation_block_number":69985110,"created_at":"2026-09-22T21:41:38.000000Z","classification":"canonical_role_identified","role":"assetBondDesk V1","canonical_record":"assets/addresses/contracts/asset-bond-desk-and-zap.json","canonical_id":"robinhood-0xfdb9586cd58cd61e9f571ed41db27b57f63781e3","lifecycle_status":"superseded_publisher_reported_never_activated"},
+    {"address":"0x32Ca7363C45212d119DEEB11d02Ce638234729d6","creation_transaction_hash":"0x45442436d16443fc96fc5c7b1245b9337fd95a0e297b82ca53e153db7605df4e","creation_block_number":69969037,"created_at":"2026-09-22T21:14:42.000000Z","classification":"canonical_role_identified","role":"hohmTwapOracle","canonical_record":"assets/addresses/contracts/hohm-token-and-twap.json","canonical_id":"robinhood-0x32ca7363c45212d119deeb11d02ce638234729d6","lifecycle_status":"published_role_not_current_activation"}
+  ]
+}

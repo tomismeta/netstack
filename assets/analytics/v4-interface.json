@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "chain_id": 4663,
+  "provenance": {
+    "observed_on": "2026-09-25",
+    "publisher_interface": "https://app.netnet.capital/assets/index-hABaJsIB.js",
+    "storage_reference": "https://github.com/Uniswap/v4-core/blob/main/src/libraries/StateLibrary.sol",
+    "position_reference": "https://github.com/Uniswap/v4-core/blob/main/src/libraries/Position.sol",
+    "scope": "Published read interfaces and upstream storage semantics, corroborated by pinned RPC owner/pool/liquidity reads. Not source-equivalence or security verification. Scalar extsload returns one word without requiring arbitrary storage RPC."
+  },
+  "position_manager_abi": [
+    {"type":"function","name":"poolManager","stateMutability":"view","inputs":[],"outputs":[{"type":"address"}]},
+    {"type":"function","name":"balanceOf","stateMutability":"view","inputs":[{"name":"owner","type":"address"}],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"ownerOf","stateMutability":"view","inputs":[{"name":"tokenId","type":"uint256"}],"outputs":[{"type":"address"}]},
+    {"type":"function","name":"getPositionLiquidity","stateMutability":"view","inputs":[{"name":"tokenId","type":"uint256"}],"outputs":[{"type":"uint128"}]},
+    {"type":"function","name":"getPoolAndPositionInfo","stateMutability":"view","inputs":[{"name":"tokenId","type":"uint256"}],"outputs":[{"name":"poolKey","type":"tuple","components":[{"name":"currency0","type":"address"},{"name":"currency1","type":"address"},{"name":"fee","type":"uint24"},{"name":"tickSpacing","type":"int24"},{"name":"hooks","type":"address"}]},{"name":"info","type":"uint256"}]},
+    {"type":"event","name":"Transfer","anonymous":false,"inputs":[{"name":"from","type":"address","indexed":true},{"name":"to","type":"address","indexed":true},{"name":"tokenId","type":"uint256","indexed":true}]}
+  ],
+  "pool_manager_abi": [
+    {"type":"function","name":"extsload","stateMutability":"view","inputs":[{"name":"slot","type":"bytes32"}],"outputs":[{"type":"bytes32"}]}
+  ]
+}

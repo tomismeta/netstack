@@ -49,6 +49,7 @@
     "d": "assets/addresses/contracts/by-name-d.json",
     "f": "assets/addresses/contracts/by-name-f.json",
     "g": "assets/addresses/contracts/by-name-g.json",
+    "h": "assets/addresses/contracts/by-name-h.json",
     "i": "assets/addresses/contracts/by-name-i.json",
     "j": "assets/addresses/contracts/by-name-j.json",
     "l": "assets/addresses/contracts/by-name-l.json",
@@ -70,13 +71,23 @@
     "assets/addresses/public-roles-rialto-superstore-and-boardroom.json",
     "assets/addresses/public-roles-boardroom-relayer-and-dialup-signers.json",
     "assets/addresses/public-roles-dialup-and-keeper.json",
-    "assets/addresses/public-roles-climb-operator.json"
+    "assets/addresses/public-roles-climb-operator.json",
+    "assets/addresses/public-roles-discovered-deployer.json"
   ],
   "analytics": {
     "net_usdg_v2": "assets/analytics/liquidity-routes.json",
-    "predict_house": "assets/analytics/predict-routes.json"
+    "predict_house": "assets/analytics/predict-routes.json",
+    "reserve_accounting": "assets/analytics/reserves-routes.json"
   },
   "markets": "assets/addresses/markets.json",
+  "v4_pools": "assets/addresses/v4-pools.json",
+  "discovery": "assets/addresses/discovery/index.json",
+  "new_family_routes": {
+    "hOHM": "assets/addresses/contracts/by-name-h.json",
+    "Asset Bond Desk V1/V2 and Zap": "assets/addresses/contracts/by-name-a.json",
+    "Predict HIGHER/LOWER #2": "assets/addresses/contracts/by-name-p.json",
+    "website_metric_meanings": "references/website-metrics.md"
+  },
   "lp_inspection": {
     "sleeve": {
       "file": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",

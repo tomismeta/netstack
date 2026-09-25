@@ -58,6 +58,12 @@ def block_spec(text):
         raise argparse.ArgumentTypeError("must be latest-2 or a nonnegative block number")
     return text
 
+def series_id(text):
+    if len(text) > 78 or not re.fullmatch(r"[1-9][0-9]*", text) or int(text) >= 2**256:
+        raise argparse.ArgumentTypeError("must be a positive uint256 series ID")
+    return int(text)
+
+
 
 def parser():
     result = Parser(
@@ -66,7 +72,8 @@ def parser():
     commands = result.add_subparsers(dest="command", required=True)
     for command, help_text in (("lp", "NET/USDG v2 LP holders, flows and conditional gross fees"),
                                ("predict", "selected Predict Desk series and observed trading flows"),
-                               ("house", "selected House Vault accounts, queues and observed cash flows")):
+                               ("house", "selected House Vault accounts, queues and observed cash flows"),
+                               ("rfv", "reconciled Core RFV and RPC-backed Sleeve asset accounting")):
         child = commands.add_parser(command, help=help_text, description=help_text)
         child.add_argument("--deadline", type=positive_seconds, default=120.0, metavar="SECONDS",
                            help="whole-process walltime, including a 2-second serialization reserve (default: 120; maximum: 600)")
@@ -77,6 +84,12 @@ def parser():
                                help="exact historical fee interval ending at the pinned block (default: 7)")
         else:
             child.set_defaults(since_days=None)
+        if command == "predict":
+            child.add_argument("--series", type=series_id, metavar="ID",
+                               help="single-series pinned snapshot only; no logs, history or quote (default: all series and history)")
+        if command == "rfv":
+            child.add_argument("--scope", choices=("core", "reports", "net-assets"), default="core",
+                               help="Core reserves, publisher Reports composition, or adjusted net assets (default: core)")
         child.add_argument("--json", action="store_true", help="emit machine-readable JSON (also the default)")
         child.add_argument("--output", metavar="PATH", help="atomic partial/final checkpoint outside the installed package; symlinks refused")
     return result
@@ -92,7 +105,10 @@ def _provenance(ctx):
     ctx.check()
     version = load_json("release-manifest.json").get("version")
     files = {}
-    for name in ("analytics.py", "netstack_core.py", "netstack_lp.py", "netstack_markets.py"):
+    modules = ["analytics.py", "netstack_core.py"]
+    modules.extend(("netstack_reserves.py", "netstack_sleeve.py", "netstack_v4.py", "netstack_discovery.py") if ctx.command == "rfv"
+                   else ("netstack_lp.py",) if ctx.command == "lp" else ("netstack_markets.py",))
+    for name in modules:
         ctx.check()
         try:
             with (_SCRIPT_DIRECTORY / name).open("rb") as handle:
@@ -177,12 +193,17 @@ def main(argv=None):
                 from netstack_lp import run
             elif args.command == "predict":
                 from netstack_markets import run_predict as run
+            elif args.command == "rfv":
+                from netstack_reserves import run
             else:
                 from netstack_markets import run_house as run
             run(ctx, args)
             ctx.check()
             ctx.recheck()
-            if result["errors"] or _pending_coverage(result["coverage"]):
+            requested = result["coverage"].get("requested_scope") if args.command == "rfv" else None
+            incomplete = (not requested.get("collection_complete", False) if requested is not None
+                          else bool(result["errors"] or _pending_coverage(result["coverage"])))
+            if incomplete:
                 result["status"] = "partial"
                 result["stopping_reason"] = "incomplete_collection"
                 exit_code = 2

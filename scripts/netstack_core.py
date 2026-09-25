@@ -16,6 +16,7 @@ import stat
 import secrets
 import time
 from fractions import Fraction
+from email.utils import parsedate_to_datetime
 
 ROOT = Path(__file__).resolve().parents[1]
 ZERO = "0x" + "0" * 40
@@ -26,6 +27,9 @@ MAX_TOTAL_BYTES = 64 * 1024 * 1024
 MAX_ABI_BYTES = 65536
 MAX_PAGE_ROWS = 2000
 SERIALIZATION_RESERVE = 2.0
+MAX_LOG_BLOCKS = 100000
+MAX_RECOVERY_WAIT = 30.0
+TRANSFER_TOPIC = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
 _HEX = re.compile(r"0x(?:[0-9a-fA-F]{2})*\Z")
 _QUANTITY = re.compile(r"0x(?:0|[1-9a-fA-F][0-9a-fA-F]*)\Z")
 _MASK64 = (1 << 64) - 1
@@ -48,10 +52,11 @@ class StopRun(Exception):
 
 class RpcError(Exception):
     """A sanitized failure; provider messages and credential-bearing URLs are excluded."""
-    def __init__(self, message, *, kind="protocol", retryable=False, splittable=False):
+    def __init__(self, message, *, kind="protocol", retryable=False, splittable=False, retry_after=None):
         self.kind = kind
         self.retryable = retryable
         self.splittable = splittable
+        self.retry_after = retry_after
         super().__init__(message)
 
 
@@ -122,7 +127,7 @@ def load_json(relative_path):
 
 
 def resolve_routes(workflow):
-    if workflow not in ("liquidity", "predict"):
+    if workflow not in ("liquidity", "predict", "reserves", "sleeve", "v4"):
         raise RpcError("Unknown canonical route set", kind="input")
     route = load_json("assets/analytics/" + workflow + "-routes.json")
     resolved = {"_route": route}
@@ -194,6 +199,9 @@ def _canonical_type(item, depth=0):
     if depth > 8 or not isinstance(item, dict) or not isinstance(item.get("type"), str):
         raise RpcError("Malformed ABI type", kind="abi")
     kind = item["type"]
+    if kind.endswith("[]"):
+        element = dict(item, type=kind[:-2])
+        return _canonical_type(element, depth + 1) + "[]"
     if kind == "tuple":
         components = item.get("components")
         if not isinstance(components, list) or len(components) > 128:
@@ -230,7 +238,8 @@ def topic(item):
 
 def _dynamic(item):
     kind = _canonical_type(item)
-    return kind in ("string", "bytes") or (item["type"] == "tuple" and any(_dynamic(c) for c in item["components"]))
+    return kind.endswith("[]") or kind in ("string", "bytes") or (
+        item["type"] == "tuple" and any(_dynamic(c) for c in item["components"]))
 
 
 def _static_size(item):
@@ -291,6 +300,11 @@ def _decode_dynamic(item, data, offset):
     if offset + 32 > len(data):
         raise RpcError("Truncated ABI length", kind="decode")
     length = int.from_bytes(data[offset:offset + 32], "big")
+    if item["type"].endswith("[]"):
+        if length > 128:
+            raise RpcError("ABI array count exceeds limit", kind="decode")
+        element = dict(item, type=item["type"][:-2])
+        return _decode_sequence([element] * length, data, offset + 32)
     if length > 4096:
         raise RpcError("ABI metadata exceeds size limit", kind="decode")
     start = offset + 32
@@ -346,6 +360,11 @@ def _decode_outputs(item, raw):
 
 def _encode_value(item, value):
     kind = _canonical_type(item)
+    if kind.endswith("[]"):
+        raise RpcError("Array arguments are not supported", kind="input")
+    if kind.startswith("bytes") and kind != "bytes":
+        length = int(kind[5:])
+        return bytes.fromhex(_hex(value, length)[2:]).ljust(32, b"\0")
     if kind.startswith("uint"):
         _integer(value, "ABI argument")
         if value >= 1 << int(kind[4:]):
@@ -486,7 +505,7 @@ class _FixedHTTPSConnection(http.client.HTTPSConnection):
 
 class Context:
     def __init__(self, command, deadline=120, output=None):
-        if command not in ("lp", "predict", "house"):
+        if command not in ("lp", "predict", "house", "rfv"):
             raise RpcError("Unknown analytics command", kind="input")
         if not isinstance(deadline, (int, float)) or not math.isfinite(deadline) or not 0 < deadline <= 600:
             raise RpcError("Deadline must be positive and at most 600 seconds", kind="input")
@@ -516,7 +535,9 @@ class Context:
         self._receipts = {}
         self._next_id = 1
         self._members = self._rows = self._raw_bytes = self._recoveries = 0
-        self._member_limit = 250
+        self._retry_not_before = 0.0
+        self._retry_wait_seconds = 0.0
+        self._member_limit = 750 if command == "rfv" else 250
         self._row_limit = 50000 if command == "lp" else 10000
         self._allowed = None
         self._last_body = serialize_result(self.result)
@@ -691,7 +712,8 @@ class Context:
         self.result["resources"] = {"rpc_members_used": self._members, "rpc_member_limit": self._member_limit,
                                     "event_rows_accepted": self._rows, "event_row_limit": self._row_limit,
                                     "response_bytes": self._raw_bytes, "recovery_attempts": self._recoveries,
-                                    "recovery_limit": 10}
+                                    "recovery_limit": 10, "recovery_wait_seconds": self._retry_wait_seconds,
+                                    "initial_log_block_limit": MAX_LOG_BLOCKS}
         self.result["elapsed_seconds"] = max(0.0, time.monotonic() - self._started)
         self.result["collector_deadline_seconds"] = self._deadline
         self._last_body = serialize_result({key: value for key, value in self.result.items()
@@ -713,7 +735,10 @@ class Context:
     def _functions(self):
         if self._allowed is None:
             allowed = {}
-            for filename in ("v2-interface.json", "predict-interface.json", "house-interface.json"):
+            filenames = ("v2-interface.json", "predict-interface.json", "house-interface.json")
+            if self.command == "rfv":
+                filenames += ("reserves-interface.json", "sleeve-interface.json", "book-interface.json", "v4-interface.json")
+            for filename in filenames:
                 document = load_json("assets/analytics/" + filename)
                 for key, items in document.items():
                     if key != "abi" and not key.endswith("_abi"):
@@ -771,9 +796,22 @@ class Context:
             return
         if method == "eth_getLogs" and len(params) == 1 and isinstance(params[0], dict):
             query = params[0]
-            if set(query) != {"address", "fromBlock", "toBlock", "topics"}:
+            if set(query) == {"fromBlock", "toBlock", "topics"}:
+                topics = query["topics"]
+                if (not isinstance(topics, list) or len(topics) != 3
+                        or topics[0] != [TRANSFER_TOPIC] or topics[1] is not None
+                        or not isinstance(topics[2], str) or len(topics[2]) != 66
+                        or topics[2][2:26] != "0" * 24):
+                    raise RpcError("Unscoped owner transfer filter", kind="permission")
+                self._discovery_owner("0x" + topics[2][26:])
+                if _quantity(query["toBlock"]) - _quantity(query["fromBlock"]) >= MAX_LOG_BLOCKS:
+                    raise RpcError("Owner transfer range exceeds bounded limit", kind="permission")
+                if self.block is None or _quantity(query["toBlock"]) > self.block:
+                    raise RpcError("Owner transfers require a pinned historical range", kind="permission")
+            elif set(query) == {"address", "fromBlock", "toBlock", "topics"}:
+                _address(query["address"])
+            else:
                 raise RpcError("Unapproved log filter fields", kind="permission")
-            _address(query["address"])
             if _quantity(query["fromBlock"]) > _quantity(query["toBlock"]):
                 raise RpcError("Inverted log range", kind="input")
             topics = query["topics"]
@@ -800,18 +838,54 @@ class Context:
             return RpcError("RPC permission denied; no alternate provider attempted", kind="permission")
         if any(term in message for term in ("pruned", "missing trie", "historical state", "archive", "state unavailable")):
             return RpcError("Historical RPC state unavailable or pruned", kind="pruned")
+        if any(term in message for term in ("rate limit", "too many requests", "request quota")):
+            return RpcError("RPC rate limit; bounded cooldown required", kind="rate_limit", retryable=True)
         if "revert" in message:
             return RpcError("Read-only contract call reverted", kind="revert")
         if any(term in message for term in ("too many result", "more than", "range", "response size", "limit exceeded")):
             return RpcError("Provider log range or response limit", kind="range", splittable=True)
-        if any(term in message for term in ("timeout", "timed out", "temporarily", "rate limit", "busy")):
+        if any(term in message for term in ("timeout", "timed out", "temporarily", "busy")):
             return RpcError("Transient RPC service failure", kind="transient", retryable=True, splittable=True)
         return RpcError("RPC returned error code " + str(code), kind="remote")
+
+    @staticmethod
+    def _retry_after(value):
+        if value is None:
+            return None
+        try:
+            value = value.strip()
+            if value.isdigit():
+                return float(value)
+            date = parsedate_to_datetime(value)
+            if date.tzinfo is None:
+                return None
+            return max(0.0, date.timestamp() - time.time())
+        except (ValueError, TypeError, OverflowError):
+            return None
+
+    def _recover(self, error):
+        self.check()
+        if self._recoveries >= 10:
+            self._stop("recovery_limit")
+        delay = min(8.0, 2.0 ** min(self._recoveries, 3))
+        if error.retry_after is not None:
+            delay = max(delay, error.retry_after)
+        delay = max(delay, self._retry_not_before - time.monotonic())
+        # Never shorten Retry-After to fit our budget, or let another request
+        # bypass a cooldown that could not be honored.
+        if delay > MAX_RECOVERY_WAIT or time.monotonic() + delay >= self._collect_end:
+            self._stop("provider_backoff_exceeds_budget")
+        self._recoveries += 1
+        self._retry_wait_seconds += delay
+        time.sleep(delay)
+        self.check()
 
     def _exchange_once(self, requests):
         self.check()
         if self._members + len(requests) > self._member_limit:
             self._stop("rpc_member_limit")
+        if time.monotonic() < self._retry_not_before:
+            self._recover(RpcError("Provider cooldown", kind="rate_limit"))
         for method, params in requests:
             self._validate_payload(method, params)
         entries = []
@@ -836,7 +910,13 @@ class Context:
                 raise RpcError("RPC redirect refused", kind="permission")
             if response.status != 200:
                 transient = response.status in (408, 429, 500, 502, 503, 504)
-                raise RpcError("RPC HTTP status " + str(response.status), kind="http", retryable=transient)
+                retry_after = self._retry_after(response.getheader("Retry-After")) if transient else None
+                if response.status == 429 or retry_after is not None:
+                    self._retry_not_before = max(self._retry_not_before,
+                                                time.monotonic() + max(1.0, retry_after or 0.0))
+                raise RpcError("RPC HTTP status " + str(response.status),
+                               kind="rate_limit" if response.status == 429 else "http",
+                               retryable=transient, retry_after=retry_after)
             if response.getheader("Content-Encoding", "identity").lower() not in ("", "identity"):
                 raise RpcError("Compressed RPC responses are not accepted", kind="protocol")
             length = response.getheader("Content-Length")
@@ -867,6 +947,8 @@ class Context:
                 if ("result" in value) == ("error" in value):
                     raise RpcError("RPC response must contain one result or error", kind="protocol")
                 indexed[value["id"]] = self._remote_error(value["error"]) if "error" in value else value["result"]
+                if isinstance(indexed[value["id"]], RpcError) and indexed[value["id"]].kind == "rate_limit":
+                    self._retry_not_before = max(self._retry_not_before, time.monotonic() + 1.0)
             return [indexed[entry["id"]] for entry in entries]
         except StopRun:
             raise
@@ -896,14 +978,14 @@ class Context:
             except RpcError as exc:
                 if attempt or not exc.retryable or self._recoveries >= 10:
                     raise
-                self.check()
-                self._recoveries += 1
+                self._recover(exc)
         if accept is not None:
             accept(results)
         # Retry only failed transient members, never successful members.
         retry_indices = [i for i, value in enumerate(results) if isinstance(value, RpcError) and value.retryable]
-        if retry_indices and attempt == 0 and self._recoveries < 10:
-            self._recoveries += 1
+        fatal = any(isinstance(value, RpcError) and value.kind in ("permission", "integrity") for value in results)
+        if retry_indices and not fatal and attempt == 0 and self._recoveries < 10:
+            self._recover(max((results[i] for i in retry_indices), key=lambda error: error.retry_after or 0.0))
             try:
                 retried = self._exchange_once([requests[i] for i in retry_indices])
                 for index, value in zip(retry_indices, retried):
@@ -1194,18 +1276,39 @@ class Context:
             "assumption": "Code existence is monotonic; redeployments or historical provider omissions are not disproved."}
         return low
 
-    def logs(self, key, address, abi, event_names, start, end, chunk=100000, *, indexed_topics=None):
+    def _discovery_owner(self, owner):
+        owner = _address(owner)
+        routes = resolve_routes("reserves")
+        if self.command != "rfv" or owner not in (routes["treasury"]["address"], routes["sleeve"]["address"]):
+            raise RpcError("Owner discovery is limited to canonical RFV custody", kind="permission")
+        return owner
+
+    def owner_transfers(self, key, owner, start, end):
+        owner = self._discovery_owner(owner)
+        abi = load_json("assets/analytics/v2-interface.json")["pair_abi"]
+        return self.logs(key, None, abi, ["Transfer"], start, end,
+                         indexed_topics=[None, "0x" + owner[2:].rjust(64, "0")], owner=owner, newest_first=True)
+
+    def logs(self, key, address, abi, event_names, start, end, chunk=100000, *, indexed_topics=None, owner=None, newest_first=False):
         self.check()
-        address = _address(address)
+        if address is None:
+            owner = self._discovery_owner(owner)
+            if event_names != ["Transfer"] or indexed_topics != [None, "0x" + owner[2:].rjust(64, "0")]:
+                raise RpcError("Owner discovery requires an exact incoming Transfer filter", kind="permission")
+        else:
+            address = _address(address)
         _integer(start, "log start")
         _integer(end, "log end")
-        if self.block is None or end > self.block or start > end or type(chunk) is not int or chunk <= 0:
+        if (self.block is None or end > self.block or start > end or type(chunk) is not int
+                or chunk <= 0 or type(newest_first) is not bool):
             raise RpcError("Invalid pinned log scan range", kind="input")
         events = [item for item in abi if item.get("type") == "event" and not item.get("anonymous", False)
                   and (not event_names or item.get("name") in event_names)]
         if not events or (event_names and set(event_names) != {event["name"] for event in events}):
             raise RpcError("Requested events are not present in ABI", kind="abi")
         selectors = sorted(set(topic(event) for event in events))
+        if address is None and selectors != [TRANSFER_TOPIC]:
+            raise RpcError("Owner discovery requires the standard Transfer signature", kind="permission")
         topics = [selectors]
         if indexed_topics is not None:
             if not isinstance(indexed_topics, (tuple, list)) or len(indexed_topics) > 3:
@@ -1219,7 +1322,9 @@ class Context:
                     topics.append(None if entry is None else _hex(entry, 32))
         coverage = {"requested_range": [start, end], "covered_ranges": [], "missing_ranges": [[start, end]],
                     "event_coverage_complete": False, "unknown_topics": {}, "rows": 0,
-                    "filter": {"address": address, "topics": topics},
+                    "filter": {"address": address, "topics": topics, "owner": owner},
+                    "initial_chunk_blocks": min(chunk, MAX_LOG_BLOCKS),
+                    "scan_order": "newest_first" if newest_first else "oldest_first",
                     "provider_completeness_assumption": "Served ranges are complete only assuming the RPC provider did not silently omit logs.",
                     "snapshot_valid": None, "status": "in_progress"}
         if key in self.result["coverage"]:
@@ -1236,12 +1341,18 @@ class Context:
             self.result["coverage"][key] = coverage
         seen = {}
         block_hashes, tx_positions, tx_hash_positions = {}, {}, {}
-        for chunk_start in range(start, end + 1, chunk):
-            pending = [(chunk_start, min(end, chunk_start + chunk - 1))]
+        chunk = min(chunk, MAX_LOG_BLOCKS)
+        intervals = (((max(start, right - chunk + 1), right) for right in range(end, start - 1, -chunk))
+                     if newest_first else
+                     ((left, min(end, left + chunk - 1)) for left in range(start, end + 1, chunk)))
+        for interval in intervals:
+            pending = [interval]
             while pending:
                 self.check()
                 left, right = pending.pop()
-                query = {"address": address, "fromBlock": hex(left), "toBlock": hex(right), "topics": topics}
+                query = {"fromBlock": hex(left), "toBlock": hex(right), "topics": topics}
+                if address is not None:
+                    query["address"] = address
                 try:
                     raw = self._rpc("eth_getLogs", [query])
                     if not isinstance(raw, list):
@@ -1250,18 +1361,21 @@ class Context:
                         raise RpcError("Log page reaches suspected provider row cap", kind="cap", splittable=True)
                 except RpcError as exc:
                     if not exc.splittable or left == right or self._recoveries >= 10:
+                        coverage["status"] = "partial"
+                        coverage["failure_kind"] = exc.kind
                         coverage["failure"] = str(exc)
                         raise
                     self._recoveries += 1
                     middle = (left + right) // 2
-                    pending.extend([(middle + 1, right), (left, middle)])
+                    pending.extend([(left, middle), (middle + 1, right)] if newest_first else
+                                   [(middle + 1, right), (left, middle)])
                     continue
                 page, page_seen, page_blocks, page_transactions, page_hash_positions = [], {}, {}, {}, {}
                 for raw_log in raw:
                     self.check()
                     log = _validated_log(raw_log)
                     self._observe_log(log)
-                    if log["address"] != address or not left <= log["blockNumber"] <= right:
+                    if (address is not None and log["address"] != address) or not left <= log["blockNumber"] <= right:
                         raise RpcError("Wrong emitter or out-of-range event log", kind="integrity")
                     if log["topics"][0] not in selectors:
                         name = log["topics"][0]
@@ -1292,7 +1406,16 @@ class Context:
                         raise RpcError("Transaction hash appears at conflicting positions", kind="integrity")
                     page_hash_positions[log["transactionHash"]] = tx_key
                     page_blocks[number], page_transactions[tx_key], page_seen[identity] = block_hash, log["transactionHash"], fingerprint
-                    decoded = decode_event(raw_log, abi)
+                    if address is None:
+                        # ERC20 and ERC721 share this selector. Unknown event
+                        # layouts remain candidates, never assumed token balances.
+                        decoded = dict(log, event="Transfer", values={}, transfer_kind="unknown")
+                        if len(log["topics"]) == 3 and len(log["data"]) == 66:
+                            decoded.update(transfer_kind="erc20", values={"value": int(log["data"], 16)})
+                        elif len(log["topics"]) == 4 and log["data"] == "0x":
+                            decoded.update(transfer_kind="erc721", values={"tokenId": int(log["topics"][3], 16)})
+                    else:
+                        decoded = decode_event(raw_log, abi)
                     if decoded is None:
                         name = log["topics"][0]
                         coverage["unknown_topics"][name] = coverage["unknown_topics"].get(name, 0) + 1
@@ -1315,3 +1438,6 @@ class Context:
                 coverage["event_coverage_complete"] = not coverage["missing_ranges"]
                 coverage["status"] = "completed" if coverage["event_coverage_complete"] else "in_progress"
                 yield page
+                # Consumers have now incorporated this page. Persist both their
+                # quantities and the exact served/missing intervals before more RPC.
+                self.checkpoint()

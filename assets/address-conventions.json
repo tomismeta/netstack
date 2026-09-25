@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "skill": "netstack",
-  "observed_on": "2026-09-18",
+  "observed_on": "2026-09-25",
   "chain_id": 4663,
-  "scope": "Published contracts and separately attributed public role addresses, plus a narrowly scoped fixed-block Loopback market-identity observation; not an audit or independently verified live deployment inventory.",
+  "scope": "Canonical contracts and separately attributed public roles, scoped fixed-block identity observations, and a separate bounded indexed-creation discovery inventory; not an audit or independently verified live deployment universe.",
   "source_catalog": "assets/sources.json",
   "explorers": {
     "4663": {
@@ -21,7 +21,9 @@
     "publisher_linked_provenance_urls": "Original publisher hyperlinks retained as source evidence and direct citations. Robinhood Etherscan templates supply default object links after exact identity validation, not an exclusive provider requirement. Do not transplant provider-specific API paths or query tabs to another host.",
     "price_feed_metadata": "Publisher-directory provenance is in the parent contract provenance array and covers only the proxy and metadata fields named by its locator, including adjacent feed decimals. It does not establish a token pairing, current round, deployed behavior or NetNet use. Consumer policies and semantics sources remain separately attributed.",
     "netnet_use_evidence": "Directory inclusion alone does not establish NetNet use. Preserve recorded registry/local provenance and status; an empty consumer_policies list means not recorded, not unused. No exhaustive consumer list or exact-token relationship is inferred.",
-    "public_role_addresses": "Published role attribution only, not proof of control, beneficial ownership, account kind or authority. No private key or personal portfolio information is included."
+    "public_role_addresses": "Published or explicitly explorer-discovered operational roles, not proof of control, beneficial ownership or personal identity. An explorer-reported EOA is attributed metadata, not a current code audit.",
+    "discovery_inventory": "53 baseline-missing indexed creations are separate candidates, not 53 active products. Four now point to canonical roles; ten historically named and39 unclassified candidates remain outside canonical counts. Shared deployer/time does not prove role, successor identity or activity.",
+    "v4_pool_and_position_identity": "V4 pool IDs are bytes32 hashes of complete PoolKeys, not addresses, transaction hashes or NFT IDs. PoolManager and PositionManager are distinct canonical contracts. Fixed-block ownership/cardinality observations do not establish current ownership, source equivalence or balance-sheet value."
   },
   "known_discrepancies": [
     {
@@ -90,8 +92,9 @@
     "source_content_reviews": "sources.json#/sources",
     "scope": "Address-specific counts only. Source inventory, extraction boundaries, gaps and content-review status are maintained in the linked source catalog, not duplicated here.",
     "counts": {
-      "contract_records_unique_by_chain_and_address": 185,
-      "public_role_address_records": 10,
+      "contract_records_unique_by_chain_and_address": 193,
+      "named_contract_records_excluding_underlying_feeds": 156,
+      "public_role_address_records": 11,
       "trusted_product_mark_relationships": 6,
       "morpho_market_identifiers": 7,
       "fixed_block_identity_observed_morpho_markets": 1,
@@ -99,8 +102,14 @@
       "robinhood_labelled_rwa_feed_candidates": 35,
       "publisher_explicit_equity_feed_candidates": 33,
       "incomplete_classification_feed_candidates": 2,
-      "rwa_feed_candidates_without_exact_token_relationship": 29
+      "rwa_feed_candidates_without_exact_token_relationship": 29,
+      "v4_pool_identifiers": 3,
+      "fixed_block_identity_observed_v4_positions": 2,
+      "discovery_candidates_baseline_missing": 53,
+      "discovery_candidates_now_canonical": 4,
+      "discovery_candidates_outside_canonical_inventory": 49
     },
+    "contract_count_composition": "156 named contract records + 37 underlying price-feed contract records = 193 unique chain/address pairs. Feed records are included in the total, not an additional 37 addresses.",
     "live_chain_verified_contracts": 0
   }
 }

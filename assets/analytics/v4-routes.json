@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "chain_id": 4663,
+  "workflow": "references/reserve-analytics.md",
+  "interface": "assets/analytics/v4-interface.json",
+  "position_manager": {"file":"assets/addresses/contracts/uniswap-v4-position-manager.json","id":"robinhood-0x58daec3116aae6d93017baaea7749052e8a04fa7"},
+  "pool_manager": {"file":"assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json","id":"robinhood-0x8366a39cc670b4001a1121b8f6a443a643e40951"},
+  "scope": "Discover all incoming NFT transfers for the selected manager and owner through the pinned block, resolve current owners, and reconcile their count against balanceOf. This is not every possible position manager or direct PoolManager-owned position. Publisher registry gates do not determine ownership."
+}

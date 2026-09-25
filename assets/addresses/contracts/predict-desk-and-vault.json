@@ -12,6 +12,18 @@
       "live_chain_verification_status": "not_performed",
       "provenance": [
         {
+          "source_id": "netnet-docs-predict",
+          "locator": "Addresses: Predict Desk; series-specific outcome contracts; Safe grading terms",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Predict table: Desk",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
           "source_id": "netnet-app-registry-20260918",
           "locator": "predictDesk.address, status and source deployment statement",
           "evidence_kind": "publisher_registry_or_documentation",
@@ -44,6 +56,18 @@
       "lifecycle_notes": "USDG-funded prediction-house loss exposure, not an AMM LP or lending vault. Indexed creation does not verify share accounting, queue/withdrawal enforcement, solvency, current operation or Solidity source.",
       "live_chain_verification_status": "not_performed",
       "provenance": [
+        {
+          "source_id": "netnet-docs-predict",
+          "locator": "Addresses: House Vault; internal nontransferable share accounting",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-docs-official-channels",
+          "locator": "Predict table: House Vault",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
         {
           "source_id": "netnet-app-registry-20260918",
           "locator": "predictVault.address, status and source; Predict House Vault UI and live adapter",

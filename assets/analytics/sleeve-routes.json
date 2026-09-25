@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "interface": "assets/analytics/sleeve-interface.json",
+  "markets": "assets/addresses/markets.json",
+  "coverage": "Published menus, exact token/feed catalog, bounded recent owner-transfer and Morpho event windows, attributable candidate dispositions and enumerable V3/verified V4 NFTs. Records searched/unsearched ranges and omitted Book bet IDs; completed known-universe accounting is never exhaustive arbitrary ERC20/history/indirect custody.",
+  "net_twap": {
+    "file": "assets/addresses/contracts/pack-desk-pair-oracle-pendle-permit2-and-perp-fees.json",
+    "id": "robinhood-0x929631b33f4070d6f54477fba3fd27566567daca"
+  },
+  "rwa": {
+    "file": "assets/addresses/contracts/rwa-desk-v2-and-feed-router-adapters.json",
+    "id": "robinhood-0xa84efc3136bf1bb89ade9e5be6ab32cb1a04f08d"
+  },
+  "pack": {
+    "file": "assets/addresses/contracts/pack-desk-pair-oracle-pendle-permit2-and-perp-fees.json",
+    "id": "robinhood-0x7cf28d61d42352eb2fd68167e9b08f73cbbf21eb"
+  },
+  "asset_desk": {
+    "file": "assets/addresses/contracts/asset-bond-desk-and-zap.json",
+    "id": "robinhood-0x2f2f215b810fa692304cb0095804ab3c8e4cef78"
+  },
+  "hohm": {
+    "file": "assets/addresses/contracts/hohm-token-and-twap.json",
+    "id": "robinhood-0x76cf788606f3d968b93b8a243d0e185c974ee407"
+  },
+  "hohm_twap": {
+    "file": "assets/addresses/contracts/hohm-token-and-twap.json",
+    "id": "robinhood-0x32ca7363c45212d119deeb11d02ce638234729d6"
+  },
+  "credit_vault": {
+    "file": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+    "id": "robinhood-0x99347d5f70d3838763f6bddcf80304c8aa953b57"
+  },
+  "morpho": {
+    "file": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+    "id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
+  },
+  "snet": {
+    "file": "assets/addresses/contracts/share-certificate-snet-and-spacex-invaders.json",
+    "id": "robinhood-0xb773ec2c326b7f98a5a83fc098825492f020a4c7"
+  },
+  "wsnet": {
+    "file": "assets/addresses/contracts/weth-and-wsnet.json",
+    "id": "robinhood-0x63c12667638f2ae6fc6ae09b43d98ec84a8586ea"
+  },
+  "turbo": {
+    "file": "assets/addresses/contracts/turbo-deployments-and-adapters.json",
+    "id": "robinhood-0x757122439420900ca44a80c390d586011fd72c8a"
+  },
+  "loopback_router": {
+    "file": "assets/addresses/contracts/turbo-deployments-and-adapters.json",
+    "id": "robinhood-0x4638617808e3f1cf237c0d33ae818126d5c77e17"
+  },
+  "predict_house": {
+    "file": "assets/addresses/contracts/predict-desk-and-vault.json",
+    "id": "robinhood-0xb488368902b1cbd7533f1536c3f860065398d3e9"
+  },
+  "predict_desk": {
+    "file": "assets/addresses/contracts/predict-desk-and-vault.json",
+    "id": "robinhood-0x7ef9528408d99f98056922291048f0710001e015"
+  },
+  "book": {
+    "file": "assets/addresses/contracts/sportsbook-desk-and-zap.json",
+    "id": "robinhood-0x3174de69a84c53f82f6b6dca5c64e705cffe8dd6"
+  },
+  "position_manager": {
+    "file": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+    "id": "robinhood-0x73991a25c818bf1f1128deaab1492d45638de0d3"
+  },
+  "factory": {
+    "file": "assets/addresses/contracts/underwriting-vaults-and-uniswap-infrastructure.json",
+    "id": "robinhood-0x1f7d7550b1b028f7571e69a784071f0205fd2efa"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x58daec3116aae6d93017baaea7749052e8a04fa7",
+      "chain_id": 4663,
+      "address": "0x58daec3116aae6d93017baaea7749052e8a04fa7",
+      "role": "uniswapV4PositionManager",
+      "aliases": [
+        "V4 PositionManager",
+        "hOHM/wsNET position manager"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "fixed_block_interface_and_sleeve_ownership_observed",
+      "lifecycle_notes": "Publisher registry retains an unpromoted candidate, but independent same-block public RPC reads establish its PoolManager and two Sleeve-owned positions at block72320994. This is not source-equivalence, permission, current-ownership or safety verification. Rediscover every owned NFT rather than assuming these two remain complete.",
+      "live_chain_verification_status": "scoped_fixed_block_identity_and_ownership_only",
+      "provenance": [
+        {
+          "source_id": "netnet-app-registry-20260925-refresh",
+          "locator": "uniswapV4PositionManager source candidate; published zero-address placeholder is not imported",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-v4-position-identity-20260925",
+          "locator": "poolManager(); balanceOf(Sleeve); ownerOf/getPoolAndPositionInfo/getPositionLiquidity for3080718 and3269350; filtered incoming Transfer logs",
+          "evidence_kind": "fixed_block_rpc_identity_and_ownership",
+          "observed_on": "2026-09-25"
+        }
+      ],
+      "pool_manager_id": "robinhood-0x8366a39cc670b4001a1121b8f6a443a643e40951",
+      "pool_manager_record": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+      "position_inventory": "assets/addresses/v4-pools.json"
+    }
+  ]
+}
