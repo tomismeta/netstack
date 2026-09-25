@@ -46,6 +46,7 @@ The agent must not:
 - Sign messages, permits, approvals or transactions, including gasless authorizations and wallet-based authentication.
 - Submit or perform bets, trades, transfers, approvals, deposits, withdrawals, claims, borrowing, staking or other state-changing blockchain actions.
 - Prepare ready-to-sign or ready-to-submit transaction artifacts for execution. Plain-language steps, formulas, interface explanations and non-broadcasting research queries are not such artifacts.
+  Function signatures and parameter explanations are explanatory; execution-ready wallet calldata or unsigned transaction bundles are prohibited even without submission. ABI encoding for authorized read-only queries and established isolated non-broadcasting simulations remains permitted; encoding alone does not make a research query a wallet execution artifact.
 - Perform a prohibited action through a browser, RPC, API, relayer, bundler, script, plugin, other skill or delegated agent.
 
 This boundary applies to all wallets, including wallets owned or already controlled by the host agent. User-operated instructions remain permitted; permission to explain is never permission for the agent to execute.

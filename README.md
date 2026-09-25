@@ -196,6 +196,8 @@ For reproducible problems, open a [GitHub issue](https://github.com/tomismeta/ne
 
 **Package version: 0.4.0, unpublished candidate.** Agent dogfooding precedes any release scan, tag or publication. Commits, merges, tags, publication and registry submissions require maintainer approval; never overwrite published tags or assets. The local manifest identifies candidate bytes, not release approval.
 
+**Candidate freeze:** retain the explicitly installed immutable revision until the maintainer requests an update. This freeze is not a release approval or a claim of complete external validation; do not automatically track the feature branch.
+
 Follow the [curation workflow](references/docs-and-sources.md#repeatable-knowledge-curation): original evidence, dates and stage; comparison with existing guidance and later reversals; focused topic updates; validation and review. The [source catalog](assets/sources.json) owns provenance; the [address index](assets/address-index.json) routes exact identities and [conventions](assets/address-conventions.json) qualify their scope. Review changed bytes before updating an installation; sources and monitoring suggestions cannot rewrite knowledge or safety policy automatically.
 
 ## License
