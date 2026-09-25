@@ -15,6 +15,20 @@ For non-core scopes, `coverage.requested_scope` controls successful completion o
 
 Historical replay requires archive state. A retained block header does not imply its contract state is still available; a pruned historical read stays unavailable rather than being replaced with a current-block value.
 
+### Stdout detail and same-collection evidence
+
+RFV alone accepts `--detail summary|full`; **full remains the default**, including with `--json`. For a smaller presentation from one broad collection:
+
+```sh
+python3 -I -B scripts/analytics.py rfv --scope net-assets --deadline 600 --detail summary --json
+```
+
+Summary is an explicitly labelled stdout projection (`output_detail`), not another valuation or a reduced collection. It retains the final status/reason, errors, coverage and missing evidence, snapshot/recheck and code provenance, publisher-methodology identity/source hashes/limits, the distinct accounting totals and exact units, and every family's observed quantities, publisher inclusion, economic treatment and unresolved inputs. Null remains unavailable; an observed zero remains zero. Known-universe completion is still not exhaustive ownership.
+
+Successful raw read traces, completed raw per-item ledgers, repeated accounting/inventory copies and source excerpts may be omitted. `output_detail.omissions` identifies the affected paths. `summary_reference` is a JSON Pointer to retained evidence in that same summary; optional `indices` select rows in original order and `field_aliases` map duplicate field names to retained names. A reference is not another asset to add. Partial/failed collections keep raw reads and incomplete ledgers because an amount may not yet have reached a derived row.
+
+Add `--output PATH` **to that same invocation**, only when full evidence should be saved outside the package. It always writes full partial/final checkpoints, irrespective of stdout detail; no automatic saving, rerun or checkpoint import is added. Without it, omitted evidence is explicitly **not saved**. If final saving fails or stops, an earlier checkpoint may exist: inspect that file's own envelope rather than assuming it equals final stdout. Summary projects the actual finalized document, including checkpoint errors or a deadline fallback, never a newer mutable result. If projection itself is interrupted, stdout may fall back to labelled full evidence with `projection_stopping_reason`; the original timer and exit-status rules still apply.
+
 ## Plain-language RFV requests
 
 For “what's the current RFV and what makes it up?”, act without making the user choose a metric, find addresses or learn command syntax:

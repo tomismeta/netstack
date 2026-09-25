@@ -21,6 +21,7 @@ import re
 import select
 
 from netstack_core import Context, RpcError, SERIALIZATION_RESERVE, StopRun, load_json, serialize_result
+from netstack_output import full_fallback, summarize_rfv
 
 
 class ArgumentError(Exception):
@@ -90,6 +91,8 @@ def parser():
         if command == "rfv":
             child.add_argument("--scope", choices=("core", "reports", "net-assets"), default="core",
                                help="Core reserves, publisher Reports composition, or adjusted net assets (default: core)")
+            child.add_argument("--detail", choices=("summary", "full"), default="full",
+                               help="stdout evidence detail (default: full); --output always preserves full checkpoints")
         child.add_argument("--json", action="store_true", help="emit machine-readable JSON (also the default)")
         child.add_argument("--output", metavar="PATH", help="atomic partial/final checkpoint outside the installed package; symlinks refused")
     return result
@@ -106,7 +109,7 @@ def _provenance(ctx):
     version = load_json("release-manifest.json").get("version")
     files = {}
     modules = ["analytics.py", "netstack_core.py"]
-    modules.extend(("netstack_reserves.py", "netstack_sleeve.py", "netstack_v4.py", "netstack_discovery.py", "netstack_methodology.py") if ctx.command == "rfv"
+    modules.extend(("netstack_reserves.py", "netstack_sleeve.py", "netstack_v4.py", "netstack_discovery.py", "netstack_methodology.py", "netstack_output.py") if ctx.command == "rfv"
                    else ("netstack_lp.py",) if ctx.command == "lp" else ("netstack_markets.py",))
     for name in modules:
         ctx.check()
@@ -247,6 +250,7 @@ def main(argv=None):
             result["status"] = "partial"
             exit_code = 2
     text = None
+    checkpoint_status = "not_requested" if args.output is None else "not_confirmed"
     try:
         if ctx is not None:
             ctx.begin_finalization()
@@ -255,6 +259,8 @@ def main(argv=None):
                 result["snapshot"]["confirmation"] = (
                     "invalid" if result["snapshot"]["recheck_status"] == "mismatch" else "unconfirmed")
             ctx.checkpoint()
+            if args.output is not None:
+                checkpoint_status = "saved"
             text = ctx._last_json
         else:
             text = serialize_result(result)
@@ -271,6 +277,15 @@ def main(argv=None):
         exit_code = 2
         # Reuse a valid aggregate body without repeating expensive serialization.
         text = ctx.partial_json(ctx._stopped or "deadline_exhausted") if ctx is not None else serialize_result(result)
+    if args.command == "rfv" and args.detail == "summary":
+        try:
+            # Finalization can reuse an older valid checkpoint or add an output
+            # error. Project exactly that document, not the mutable ctx.result.
+            text = summarize_rfv(text, checkpoint_status)
+        except (StopRun, KeyboardInterrupt) as exc:
+            exit_code = 2
+            reason = exc.reason if isinstance(exc, StopRun) else "interrupted_by_SIGINT"
+            text = full_fallback(text, checkpoint_status, reason)
     try:
         if ctx is not None:
             ctx._emitting = True

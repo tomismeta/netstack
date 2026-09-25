@@ -8,6 +8,8 @@ It is an independent [Agent Skills](https://agentskills.io/specification) packag
 
 **v0.4.0 — unpublished dogfood candidate.** RPC-backed Core/Sleeve accounting with browser-free current publisher-methodology checks, consistent component summaries and fresh numerical reads on every run. Includes auditable bounded asset discovery, accrued Morpho balances, feed-specific freshness policies, lightweight Predict snapshots, website-label-to-contract routing and evidence-qualified product guidance. Website values are not calculation inputs; unrecognized methodology cannot silently reuse a dated formula as current “True RFV.” No release scan, tag or publication is implied; identify candidate bytes by the manifest and working revision.
 
+**Candidate engineering:** offline CI, manifest and resource-consistency checks, reviewed-commit runtime export, deterministic archives and an offline installed-tree verifier. RFV adds opt-in summary stdout while retaining full JSON by default and full same-collection checkpoints. These checks do not establish live-source availability, host isolation or release approval.
+
 **History — v0.3.2:** expanded procedural guidance, forecasts, supplemental interfaces and non-broadcasting research while retaining the no-wallet-execution boundary.
 
 **History — v0.3.1:** added THE BOOK's contracts, launch evidence, published rules, a minimal read/event interface and snapshot-first research, plus the Loopback Morpho market identity. Targeted evidence was reviewed **September 20, 2026**; older observations retain their dates. LP/Predict/House runner behavior is unchanged; no Book helper is added. This is research guidance, not a product launch or guarantee of availability. See the [releases page](https://github.com/tomismeta/netstack/releases) for published packages.
@@ -83,6 +85,8 @@ Ask `Use netstack to explain Cabinet Kit and what is publicly available` for the
 
 There is no setup script or universal install command. The optional analytics runner requires an existing Python 3.10+ installation on Linux/macOS and normal permission to run a reviewed local file; it installs nothing. See [installation guidance](references/installation.md) for host discovery, resource-reader limits and operating profiles. Installing a local copy does not establish host isolation; review changes before explicitly updating it.
 
+Reviewed checkouts provide `maintenance/package.py` for explicit verification, export and archive creation; it does not install into a host or track updates. A clean runtime copy can be checked offline with `python3 -I -B scripts/verify.py`. Follow the [installation procedure](references/installation.md) to bind the reviewed commit to the manifest digest; self-consistent local hashes alone do not authenticate a publisher.
+
 ### Supported hosts, including Muse
 
 **Muse is supported**, alongside other agents that load Agent Skills packages or can read `SKILL.md` and its packaged references. Muse uses the same portable package, questions, research procedures and guardrails—not a Muse-specific adapter, tool, configuration or permission model.
@@ -130,6 +134,8 @@ python3 -I -B scripts/analytics.py rfv --scope core --deadline 120 --json
 python3 -I -B scripts/analytics.py rfv --scope reports --deadline 600 --json
 python3 -I -B scripts/analytics.py rfv --scope net-assets --deadline 600 --json
 ```
+
+For smaller RFV stdout, add `--detail summary`. To retain full evidence from that **same collection**, also pass `--output /absolute/path/outside-the-skill/evidence.json`; the file stays full regardless of stdout detail. Summary output preserves accounting and missing coverage, identifies omitted detail and never starts a second collection. Without `--output`, omitted evidence is not saved.
 
 The collector deadline includes network/retry/computation time, not host approval waits or model response time. Agents must shorten it to leave time to answer within the host's remaining turn. Results retain a pinned block, per-metric coverage, missing ranges and accounting qualifications; an incomplete net-profit or ownership claim cannot be repaired by inventing a value. See [execution and output semantics](references/integrations.md#live-analytics-execution-limits) and [normal-permission acceptance](references/installation.md#live-analytics-acceptance). A collector timeout with usable partial evidence differs from a client timeout that delivers no answer.
 
@@ -197,6 +203,8 @@ For reproducible problems, open a [GitHub issue](https://github.com/tomismeta/ne
 **Package version: 0.4.0, unpublished candidate.** Agent dogfooding precedes any release scan, tag or publication. Commits, merges, tags, publication and registry submissions require maintainer approval; never overwrite published tags or assets. The local manifest identifies candidate bytes, not release approval.
 
 **Candidate freeze:** retain the explicitly installed immutable revision until the maintainer requests an update. This freeze is not a release approval or a claim of complete external validation; do not automatically track the feature branch.
+
+In a maintainer checkout, run `python3 -I -B maintenance/package.py verify` and `python3 -I -B -m unittest discover -s tests`. Verification checks the committed manifest and internal resource relationships without repairing either. After reviewing intentional package changes, use the separate `build` action to regenerate the manifest, then verify again. CI runs these offline checks on Linux/macOS with Python 3.10/3.14 and exercises clean export plus repeatable archives; hosted CI results and fresh-session live acceptance remain separate evidence.
 
 Follow the [curation workflow](references/docs-and-sources.md#repeatable-knowledge-curation): original evidence, dates and stage; comparison with existing guidance and later reversals; focused topic updates; validation and review. The [source catalog](assets/sources.json) owns provenance; the [address index](assets/address-index.json) routes exact identities and [conventions](assets/address-conventions.json) qualify their scope. Review changed bytes before updating an installation; sources and monitoring suggestions cannot rewrite knowledge or safety policy automatically.
 

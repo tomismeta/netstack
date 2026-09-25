@@ -4,6 +4,25 @@ This Agent Skills directory includes dated references and an **optional read-onl
 
 **This package is distributed independently through GitHub and portable archives, not as an official Hermes bundled-skill submission.** The locations below are optional deployment instructions. Deploy a reviewed immutable commit SHA, not a moving branch; record that SHA and review changes before replacing the installed copy. Verify package files against `release-manifest.json` and confirm the host loads that revision.
 
+## Offline verification and reviewed exports
+
+With existing Python 3.10+ on Linux/macOS, run these commands from the reviewed checkout. Maintainer export/archive additionally require Git and a full 40-hex commit equal to the checkout's current `HEAD`; installed verification needs no Git:
+
+```sh
+python3 -I -B maintenance/package.py verify
+python3 -I -B maintenance/package.py export --commit REVIEWED_FULL_40_HEX_SHA --output /real/parent/netstack
+python3 -I -B /real/parent/netstack/scripts/verify.py
+python3 -I -B maintenance/package.py archive --commit REVIEWED_FULL_40_HEX_SHA --output /real/parent/netstack.zip
+```
+
+`verify` never repairs or rewrites anything. Maintainer verification checks the checkout's distributable files and curated content, excluding Git metadata, `.omp`, CI, maintenance, tests, handoffs and caches. The installed verifier is standalone and offline: it imports neither analytics nor network clients, checks exact installed membership, manifest counts, each SHA-256 and the declared runtime-bundle digest, and rejects extra files/directories, including repository artifacts. Neither command installs a skill or changes host permissions.
+
+Export and archive read **committed blob bytes**, never dirty worktree bytes, and require that committed manifest/content to verify. Their destination must not exist and its parent must already be a real directory; symlink ancestors, traversal and overwrite are refused. Export writes the discovery marker only after the other files and removes its output on failure. Archives contain one `netstack/` directory with sorted members, uncompressed `ZIP_STORED` bytes and fixed timestamps/permissions, yielding identical bytes across supported hosts for the same committed package. Keep both root `LICENSE` and `assets/LICENSE.txt`.
+
+After deliberately reviewing checkout edits, maintainers may run `python3 -I -B maintenance/package.py build` to regenerate **only** `release-manifest.json`, then review and commit the complete candidate before exporting its immutable SHA. Verification/export/archive never regenerate a stale manifest. Package bounds are 512 files, 128 directories, 1 MiB per file (128 KiB for the manifest), 16 MiB total, and portable ASCII relative paths of at most 255 bytes/eight components. Readers refuse symlinks, hard-linked/nonregular files, case aliases and ambiguous paths; JSON parsing rejects duplicate keys, nonfinite numbers and excessive nesting.
+
+The reported manifest/runtime hashes prove **integrity relative to the supplied manifest, not authenticity**, an independent audit, or a containing commit's identity. A modified manifest and verifier can endorse modified bytes: independently review/pin the complete release and record its full commit and hashes outside the installed skill. Installed verification does not rerun maintainer content checks or prove the host loaded this directory; confirm discovery and revision separately.
+
 ## Discovery locations
 
 | Host | Location for the complete folder | Scope of the claim |
@@ -25,7 +44,7 @@ Original repository material is MIT licensed, copyright 2026 tomismeta; keep the
 
 ## Hermes Agent quick start
 
-On the Hermes machine where you choose to deploy it, review the complete repository at an immutable commit SHA and its [safety boundary](safety.md), then copy or export the complete tracked folder into the documented skill location. Confirm every nested asset and the bundled `assets/LICENSE.txt` are present; JSON-index-linked files are required for exact lookups.
+On the Hermes machine where you choose to deploy it, review the complete repository at an immutable commit SHA and its [safety boundary](safety.md), then use the reviewed export above to create the manifest-listed runtime folder for the documented skill location. Do not copy the whole repository into the active skill. Confirm every nested asset and the bundled `assets/LICENSE.txt` are present; JSON-index-linked files are required for exact lookups.
 
 [Hermes documentation](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills/#direct-url-url) describes direct-URL support-file retrieval and a community-source security scan. That does not establish recursive retrieval through this package's JSON indexes, so a raw-SKILL URL import is not the recommended installation for this layout. Discovery and successful reads do not establish security scanning; review warnings and refusals rather than bypassing them with `--force`.
 
