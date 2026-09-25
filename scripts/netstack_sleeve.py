@@ -1,7 +1,7 @@
 """Pinned RPC sleeve inventory; Reports conventions are not economic net assets."""
 from fractions import Fraction
 
-from netstack_core import ZERO, RpcError, amount, keccak256, load_json, ratio, resolve_routes
+from netstack_core import ZERO, RpcError, StopRun, amount, keccak256, load_json, ratio, resolve_routes
 from netstack_v4 import collect as collect_v4, liquidity_amounts
 from netstack_discovery import TRANSFER_WINDOW, inventory, token_candidates, inspect_tokens, discover_transfers, disposition
 
@@ -25,6 +25,10 @@ def _raw(value):
     if isinstance(value, (list, tuple)):
         return [_raw(v) for v in value]
     return value
+
+
+def _value_wad(value):
+    return None if value is None else str(value.numerator // value.denominator)
 
 
 def debt_assets(shares, assets, total_shares):
@@ -157,9 +161,9 @@ class Collector:
         self.net_mark, self.index, self.usdg_usd = None, None, None
         self.scope = "reports"
         self.families = {name: {"status": "not_started", "rows": [], "missing": [],
-                               "supplemental_missing": [], "reports_collection_complete": False,
+                               "supplemental_missing": [], "historical_reports_collection_complete": False,
                                "collection_complete": False, "discovery_complete": False,
-                               "reports_value_wad": None} for name in FAMILIES}
+                               "historical_reports_value_wad": None} for name in FAMILIES}
         self.metrics = {"owner": self.owner, "block": ctx.block,
                         "interface_source": self.source["source_url"],
                         "interface_sha256": self.source["source_sha256"],
@@ -171,6 +175,12 @@ class Collector:
         ctx.result["metrics"]["sleeve"] = self.metrics
         self.values, self.economic_values = {}, {}
         self.economic_gaps = []
+        self.methodology = {
+            "status": "unavailable", "v4_principal_included": None, "fetched_this_run": False,
+            "reviewed_at": None, "sources": [], "evidence": [],
+            "reason": "Current publisher methodology has not yet been checked.",
+            "limits": ["Methodology is a current source observation, not a pinned-chain fact."]}
+        ctx.result["metrics"]["reports_methodology"] = self.methodology
 
     def address(self, key):
         return self.routes[key]["address"]
@@ -320,7 +330,8 @@ class Collector:
                  reports=True, extra=None):
         token = token.lower()
         row = {"label": label, "token": token, "quantity_raw": _raw(raw),
-               "block": self.ctx.block, "included_in_reports": reports,
+               "block": self.ctx.block, "included_in_historical_reports": reports,
+               "included_in_reports": None,
                "own_net_exposure": token in self.own_tokens, "basis": basis,
                "decimals": None, "amount": None, "reports_value_wad": None,
                "economic_value_wad": None, "sign": sign}
@@ -364,13 +375,12 @@ class Collector:
         f = self.families[family]
         if discovery is not None:
             f["discovery_complete"] = discovery
-        included = [r for r in f["rows"] if r["included_in_reports"]]
+        included = [r for r in f["rows"] if r["included_in_historical_reports"]]
         vals = [self.values.get(id(r)) for r in included]
         value = sum(vals, Fraction()) if all(v is not None for v in vals) and not f["missing"] else None
-        f["reports_value_wad"] = None if value is None else str(value.numerator // value.denominator)
-        self.values[family] = value
+        f["historical_reports_value_wad"] = None if value is None else str(value.numerator // value.denominator)
         report_discovery = f.get("reports_discovery_complete", f["discovery_complete"])
-        f["reports_collection_complete"] = not f["missing"] and report_discovery and value is not None
+        f["historical_reports_collection_complete"] = not f["missing"] and report_discovery and value is not None
         f["collection_complete"] = not f["missing"] and not f["supplemental_missing"] and f["discovery_complete"]
         f["status"] = "collected_known_scope" if f["collection_complete"] else "partial"
         self.ctx.checkpoint()
@@ -450,7 +460,8 @@ class Collector:
         if asset != self.usdg:
             self.missing("credit", "ERC4626 loan asset identity unavailable or mismatched")
             claim = None
-        self.quantity("credit", self.usdg, claim, "Credit ERC4626 claim", extra={"contract": vault, "getter": "convertToAssets(balanceOf(sleeve))", "shares_raw": _raw(shares)})
+        claim_row = self.quantity("credit", self.usdg, claim, "Credit ERC4626 claim", extra={"contract": vault, "getter": "convertToAssets(balanceOf(sleeve))", "shares_raw": _raw(shares)})
+        f["vault_claim_complete"] = self.values.get(id(claim_row)) is not None
         ids = {row["market_id"] for row in load_json(self.routes["_route"]["markets"])["markets"]}
         router_id = self.read(self.address("loopback_router"), "router_abi", "marketId")
         if router_id:
@@ -464,9 +475,11 @@ class Collector:
     def credit_ids(self, ids):
         f = self.families["credit"]
         address = self.address("morpho")
+        coverage = f.setdefault("stored_position_valuation_complete", {})
         for mid in sorted(ids):
             if mid in f["markets"]:
                 continue
+            coverage[mid] = False
             params, position, market = self.many([(address, "morpho_abi", "idToMarketParams", (mid,)),
                                                   (address, "morpho_abi", "position", (mid, self.owner)),
                                                   (address, "morpho_abi", "market", (mid,))])
@@ -482,9 +495,10 @@ class Collector:
             token = params["collateralToken"]
             self.register(token, "morpho_collateral")
             extra = {"contract": address, "market_id": mid, "getter": "position(bytes32,address)"}
-            self.quantity("credit", token, position["collateral"], "Posted collateral", extra=extra)
+            collateral_row = self.quantity("credit", token, position["collateral"], "Posted collateral", extra=extra)
             debt = debt_assets(position["borrowShares"], market["totalBorrowAssets"], market["totalBorrowShares"])
             debt_row = self.quantity("credit", params["loanToken"], debt, "Stored-share debt", sign=-1, extra=extra)
+            coverage[mid] = all(self.values.get(id(r)) is not None for r in (collateral_row, debt_row))
             current, interest, fee_shares = None, None, None
             rate = 0
             supported = self.source["morpho_accrual_source"]
@@ -718,9 +732,11 @@ class Collector:
             for key in ("potUnits", "reservedUnits", "feeManagerTok", "feeSleeveTok"):
                 self.quantity("turbo", token, book[key], key, basis="turbo",
                               reports=key in ("potUnits", "reservedUnits"),
-                              extra={"contract": address, "getter": "bookOf(address)", "attributable_to_sleeve": key != "feeManagerTok"})
+                              extra={"contract": address, "getter": "bookOf(address)", "asset_token": token,
+                                     "attributable_to_sleeve": key != "feeManagerTok"})
             for key in ("putPotUsdg", "putReservedUsdg", "premiumUsdg"):
-                self.quantity("turbo", self.usdg, book[key], key, extra={"contract": address, "getter": "bookOf(address)"})
+                self.quantity("turbo", self.usdg, book[key], key,
+                              extra={"contract": address, "getter": "bookOf(address)", "asset_token": token})
         fees = vals["usdgFees"]
         for key in ("feeManager", "feeSleeve"):
             self.quantity("turbo", self.usdg, None if fees is None else fees[key], "USDG " + key,
@@ -849,7 +865,7 @@ class Collector:
         result = collect_v4(self.ctx, self.owner)
         f = self.families["v4"]
         f["inventory"] = result
-        f["reports_scope"] = "Current 2026-09-25 publisher registry gates V4 as PLACEHOLDER; independently observed holdings are supplemental, never asserted zero."
+        f["reports_scope"] = "Principal inclusion requires current supported publisher methodology; pending fees remain separate. The dated historical recipe excludes V4."
         for message in result.get("missing", []):
             self.missing("v4", str(message))
         for p in result.get("positions", []):
@@ -864,6 +880,8 @@ class Collector:
                     raw = None if value is None else int(value)
                     self.quantity("v4", token, raw, label, reports=False,
                                   extra={"nft_id": str(p["position_id"]), "pool_id": p["pool_id"],
+                                         "exposure_kind": "principal" if field == "amount" else "fees",
+                                         "owner": self.owner, "ownership_status": "verified_direct",
                                          "provenance": p.get("read_provenance")})
         self.finish("v4", result.get("ownership_complete", False) and result.get("collection_complete", False))
 
@@ -948,26 +966,240 @@ class Collector:
             self.missing(family, "Bounded candidate search incomplete; inspect searched/unsearched ranges", supplemental=True)
         self.finish(family, complete and (family != "wallet" or self.metrics["universe"]["menu_discovery_complete"]))
 
-    def publish(self):
+    def check_methodology(self):
+        self.methodology.update(status="unavailable", v4_principal_included=None,
+                                fetched_this_run=False, reason="Current methodology check in progress.")
+        try:
+            from netstack_methodology import collect_reports_methodology
+            evidence = collect_reports_methodology(self.ctx)
+            if not isinstance(evidence, dict):
+                raise ValueError("Methodology evidence unavailable")
+            self.methodology = evidence
+        except StopRun:
+            raise
+        except RpcError as exc:
+            if exc.kind in ("permission", "integrity"):
+                raise
+            self.methodology = dict(self.ctx.result["metrics"].get("reports_methodology", self.methodology), status="unavailable",
+                                    v4_principal_included=None, fetched_this_run=False,
+                                    reason="Current methodology retrieval failed: " + exc.kind)
+        except Exception as exc:
+            self.methodology = dict(self.ctx.result["metrics"].get("reports_methodology", self.methodology), status="unavailable",
+                                    v4_principal_included=None, fetched_this_run=False,
+                                    reason="Current methodology unavailable: " + type(exc).__name__)
+        self.ctx.result["metrics"]["reports_methodology"] = self.methodology
+
+    def v4_details(self, inclusion):
+        family = self.families["v4"]
+        inventory = family.get("inventory", self.ctx.result["metrics"].get("v4_positions", {}))
+        ownership_complete = inventory.get("ownership_complete", False)
+        expected = inventory.get("expected_owned_count")
+        supported_tokens = {self.usdg, self.wsnet}
+        hohm = self.address("hohm")
+        if "asset_desk_menu" in self.tokens.get(hohm, {}).get("sources", []):
+            supported_tokens.add(hohm)
+        scope = self.methodology.get("v4_position_scope", {})
+        scope_valid = (scope.get("selection") == "publisher_registry_allowlist" and
+                       scope.get("position_manager", "").lower() == inventory.get("position_manager") and
+                       scope.get("owner", "").lower() == self.owner and
+                       isinstance(scope.get("token_ids"), list))
+        selected_ids = set(scope.get("token_ids", [])) if scope_valid else set()
+        owned_ids = {str(p["position_id"]) for p in inventory.get("candidates", [])
+                     if p.get("owner") == self.owner}
+        selected_owned = owned_ids & selected_ids
+        observed_owners = {str(p["position_id"]): p.get("owner") for p in inventory.get("candidates", [])}
+        selected_ownership_complete = ownership_complete or all(observed_owners.get(tid) is not None
+                                                               for tid in selected_ids)
+        for row in family["rows"]:
+            row["included_in_reports"] = (
+                inclusion and row.get("exposure_kind") == "principal" and
+                row.get("nft_id") in selected_ids) if scope_valid and inclusion is not None else (
+                    False if inclusion is False else None)
+        summary = {
+            "block": self.ctx.block, "owner": self.owner,
+            "publisher_principal_included": inclusion,
+            "publisher_fees_included": False if inclusion is not None else None,
+            "historical_recipe_included": False,
+            "publisher_position_scope": scope,
+            "publisher_position_scope_supported": scope_valid,
+            "owned_positions_outside_publisher_scope": sorted(owned_ids - selected_ids) if scope_valid else None,
+            "observed_positions": inventory.get("positions", []),
+            "ownership": {
+                "collection_complete": ownership_complete, "expected_owned_count": expected,
+                "position_manager": inventory.get("position_manager"),
+                "candidates": inventory.get("candidates", []),
+                "read_provenance": [r for r in inventory.get("read_provenance", [])
+                                    if r.get("getter") in ("balanceOf", "ownerOf")],
+                "uninspected": inventory.get("uninspected", [])},
+            "missing": list(dict.fromkeys(inventory.get("missing", []) + family["missing"] + family["supplemental_missing"])),
+            "economic_treatment": "Include attributable external principal and pending fees once at supported economic marks; exclude every own NET/sNET/wsNET leg, including fees.",
+            "valuation_basis": "Pinned RPC quantities and marks only; USDG cash, wsNET at NET TWAP times index, hOHM at supported desk oracle. No website numerical input or live spot fallback."}
+        publisher_principal = None
+        for kind in ("principal", "fees"):
+            rows = [r for r in family["rows"] if r.get("exposure_kind") == kind]
+            values = [self.values.get(id(r)) for r in rows]
+            known = sum((v for v in values if v is not None), Fraction())
+            quantities_complete = (ownership_complete and expected is not None and
+                                   len(rows) == 2 * expected and
+                                   all(r["quantity_raw"] is not None for r in rows))
+            valued = quantities_complete and all(v is not None for v in values)
+            publisher_supported = all(r["quantity_raw"] == "0" or r["token"] in supported_tokens
+                                      for r in rows)
+            own = sum((self.values.get(id(r)) or Fraction()) for r in rows if r["own_net_exposure"])
+            external_rows = [r for r in rows if not r["own_net_exposure"]]
+            external = [self.economic_values.get(id(r)) for r in external_rows]
+            external_total = (sum(external, Fraction()) if quantities_complete and
+                              all(v is not None for v in external) else None)
+            summary[kind] = {
+                "rows": rows, "quantity_collection_complete": bool(quantities_complete),
+                "valuation_complete": bool(valued),
+                "reports_value_wad": str(known.numerator // known.denominator) if valued else None,
+                "known_priced_subtotal_wad": str(known.numerator // known.denominator),
+                "publisher_valuation_supported": publisher_supported,
+                "economic_external_value_wad": _value_wad(external_total),
+                "own_net_known_reports_mark_wad": str(own.numerator // own.denominator)}
+            if kind == "principal":
+                selected = [r for r in rows if r.get("nft_id") in selected_owned]
+                selected_values = [self.values.get(id(r)) for r in selected]
+                selected_complete = (scope_valid and selected_ownership_complete and
+                                     len(selected) == 2 * len(selected_owned) and
+                                     all(v is not None for v in selected_values) and
+                                     all(r["quantity_raw"] == "0" or r["token"] in supported_tokens for r in selected))
+                if selected_complete:
+                    publisher_principal = sum(selected_values, Fraction())
+        impact = publisher_principal if inclusion is True else Fraction() if inclusion is False else None
+        summary["publisher_total_impact_wad"] = _value_wad(impact)
+        summary["principal_if_included_wad"] = _value_wad(publisher_principal)
+        summary["impact_status"] = ("included" if inclusion is True and publisher_principal is not None else
+                                    "excluded" if inclusion is False else
+                                    "unvalued" if inclusion is True else "methodology_unverified")
+        return publisher_principal, summary
+
+    def publisher_rows(self, methodology_valid):
+        policy = self.methodology.get("selection_policy", {})
+        v3, wallet, credit = (policy.get(name, {}) for name in ("v3", "wallet", "credit"))
+        supported = (v3.get("selection") == "owner_enumeration" and v3.get("fee") == 500 and
+                     v3.get("position_manager") == self.address("position_manager") and
+                     v3.get("usdg") == self.usdg and isinstance(v3.get("assets"), list) and
+                     isinstance(wallet.get("fixed_stock_tokens"), list) and
+                     isinstance(credit.get("market_ids"), list) and
+                     credit.get("vault") == self.address("credit_vault"))
+        gaps = [] if supported else ["Publisher component selection policy is unavailable or incompatible with collector routes."]
+        assets = v3.get("assets", []) if supported else []
+        pools = {asset["pool"] for asset in assets}
+        stocks = {asset["token"] for asset in assets}
+        fixed = set(wallet.get("fixed_stock_tokens", []))
+        market_ids = set(credit.get("market_ids", []))
+        selected = []
+        for name, family in self.families.items():
+            if name == "v4":
+                continue
+            for row in family["rows"]:
+                include = row["included_in_historical_reports"]
+                token = row["token"]
+                metadata = self.tokens.get(token, {})
+                sources = set(metadata.get("sources", []))
+                if include and supported:
+                    if name == "v3":
+                        include = row.get("pool") in pools
+                    elif name == "wallet":
+                        stock = token in fixed or bool(sources & {"rwa_menu", "pack_menu"})
+                        desk = "asset_desk_menu" in sources
+                        include = token in self.own_tokens or token == self.usdg or stock or desk
+                        if stock and desk and row["quantity_raw"] != "0":
+                            gaps.append("Overlapping stock and asset-desk custody requires separately reviewed publisher multiplicity: " + token)
+                    elif name == "credit":
+                        include = (row.get("market_id") in market_ids if "market_id" in row
+                                   else row.get("contract") == credit["vault"])
+                    elif name == "turbo":
+                        include = row.get("asset_token") in stocks
+                    if include and token not in self.own_tokens and token != self.usdg and metadata.get("feed") and row["quantity_raw"] != "0":
+                        observed_feed = self.prices.get("feed:" + metadata["feed"], {})
+                        if row["decimals"] != 18 or observed_feed.get("decimals") != 8:
+                            gaps.append("Publisher stock 18-decimal token/8-decimal feed convention not matched: " + token)
+                row["included_in_reports"] = include if methodology_valid and supported else None
+                if include and supported:
+                    selected.append(row)
+        return selected, list(dict.fromkeys(gaps))
+
+    def publish(self, checkpoint=True):
         metrics = self.ctx.result["metrics"]
+        self.methodology = metrics.get("reports_methodology", self.methodology)
+        methodology_valid = (self.methodology.get("status") == "verified" and
+                             self.methodology.get("fetched_this_run") is True and
+                             type(self.methodology.get("v4_principal_included")) is bool)
+        inclusion = self.methodology["v4_principal_included"] if methodology_valid else None
         replica_names = tuple(name for name in FAMILIES if name not in ("v4", "treasury_extra"))
         core_complete = self.core.get("core_complete", False) and self.core.get("rfv_wad") is not None
-        complete = core_complete and all(self.families[name]["reports_collection_complete"] for name in replica_names)
+        historical_complete = core_complete and all(
+            self.families[name]["historical_reports_collection_complete"] for name in replica_names)
         known_rows = [r for f in self.families.values() for r in f["rows"]]
-        subtotal = sum((self.values.get(id(r)) or Fraction()) for r in known_rows if r["included_in_reports"])
+        historical_subtotal = sum((self.values.get(id(r)) or Fraction()) for r in known_rows
+                                  if r["included_in_historical_reports"])
+        historical_total = historical_subtotal + self.core["rfv_wad"] if historical_complete else None
+        historical_missing = {
+            n: f["missing"] or ["Included quantity/valuation or discovery not complete"]
+            for n, f in self.families.items()
+            if n in replica_names and not f["historical_reports_collection_complete"]}
+        if not core_complete:
+            historical_missing["core"] = ["Core RFV reconstruction incomplete"]
+        selected_rows, selection_gaps = self.publisher_rows(methodology_valid)
+        v4_principal, v4_details = self.v4_details(inclusion)
+        credit_policy = self.methodology.get("selection_policy", {}).get("credit", {})
+        credit_family = self.families["credit"]
+        credit_required_ids = credit_policy.get("market_ids", [])
+        credit_complete = (credit_family.get("vault_claim_complete", False) and
+                           bool(credit_required_ids) and
+                           all(credit_family.get("stored_position_valuation_complete", {}).get(mid, False)
+                               for mid in credit_required_ids) and
+                           all(self.values.get(id(row)) is not None for row in credit_family["rows"]
+                               if row["included_in_reports"] is True))
+        publisher_family_complete = {
+            name: credit_complete if name == "credit" else self.families[name]["historical_reports_collection_complete"]
+            for name in replica_names}
+        pinned_complete = core_complete and all(publisher_family_complete.values()) and (inclusion is False or v4_principal is not None)
+        complete = methodology_valid and not selection_gaps and pinned_complete
+        subtotal = (sum((self.values.get(id(r)) or Fraction()) for r in selected_rows) +
+                    (v4_principal or Fraction()) * (inclusion is True)) if methodology_valid and not selection_gaps else None
         total = subtotal + self.core["rfv_wad"] if complete else None
-        own = sum((self.values.get(id(r)) or Fraction()) for r in known_rows if r["own_net_exposure"] and r["included_in_reports"])
-        metrics["reports_true_rfv"] = {
-            "scope": "2026-09-25 published known-component formula with full V3 enumeration; not product settlement or exhaustive net assets",
+        missing = {name: messages for name, messages in historical_missing.items() if name != "credit"}
+        if not credit_complete:
+            missing["credit"] = ["Publisher-selected vault claim or stored market position valuation incomplete."]
+        if not methodology_valid:
+            missing["methodology"] = ["Current supported publisher calculation was not fetched and verified in this run."]
+        if selection_gaps:
+            missing["publisher_selection"] = selection_gaps
+        if inclusion is not False and v4_principal is None:
+            missing["v4"] = self.families["v4"]["missing"] or [
+                "V4 ownership, principal quantities or supported publisher marks incomplete"]
+        metrics["reports_historical_rfv"] = {
+            "recipe_date": "2026-09-25",
+            "scope": "Frozen 2026-09-25 known-component Reports recipe at the requested block; not the current publisher total or a historical-block observation.",
             "unit": "USDG under published stock-feed USD parity convention",
-            "value_wad": None if total is None else str(total.numerator // total.denominator),
+            "value_wad": _value_wad(historical_total),
+            "value": None if historical_total is None else amount(historical_total.numerator // historical_total.denominator, 18),
+            "known_components_subtotal_wad": _value_wad(historical_subtotal),
+            "collection_complete": bool(historical_complete), "required_missing": historical_missing,
+            "component_selection": "metrics.component_summary"}
+        metrics["reports_true_rfv"] = {
+            "scope": "Current publisher-source-derived pinned RPC reconstruction; not independently matched to a rendered headline, product settlement or exhaustive net assets",
+            "unit": "USDG under published stock-feed USD parity convention",
+            "value_wad": _value_wad(total),
             "value": None if total is None else amount(total.numerator // total.denominator, 18),
-            "known_components_subtotal_wad": str(subtotal.numerator // subtotal.denominator),
-            "collection_complete": complete,
-            "core_complete": bool(core_complete),
-            "required_missing": {n: f["missing"] or ["Included quantity/valuation or discovery not complete"] for n, f in self.families.items() if n in replica_names and not f["reports_collection_complete"]},
-            "excluded_known_exposure": "V4 holdings excluded by dated publisher display gate, not a chain whitelist. LP owed/TURBO fees/direct Morpho supply supplemental.",
+            "known_components_subtotal_wad": _value_wad(subtotal),
+            "collection_complete": bool(complete), "pinned_collection_complete": bool(pinned_complete),
+            "methodology_valid": methodology_valid, "methodology_status": self.methodology.get("status"),
+            "publisher_selection_valid": not selection_gaps,
+            "selection_policy": self.methodology.get("selection_policy"),
+            "methodology_evidence": "metrics.reports_methodology",
+            "core_complete": bool(core_complete), "required_missing": missing,
+            "component_summary": "metrics.component_summary",
+            "publisher_headline_comparison": {
+                "status": "unavailable", "publisher_value_wad": None, "difference_wad": None,
+                "reason": "No independent comparable displayed headline observation; static source review does not observe a rendered value."},
+            "excluded_known_exposure": "Each component summary discloses selected, excluded and unclassified rows, unresolved valuations, and distinct economic treatment.",
             "rounding": "Sum exact rational row values, floor once to 18 decimals; never sum displayed values."}
+        own = Fraction()
         external, own_ledger, net_values = {}, [], []
         gaps = list(self.economic_gaps)
         if not core_complete:
@@ -983,6 +1215,16 @@ class Collector:
             gaps.append("USDG/USD conversion unavailable: round age " + str(obs.get("age_seconds")) +
                         " seconds; applicable current-mark limit " + str(obs.get("max_age_seconds")) +
                         " seconds; positive stock exposures retained without economic valuation.")
+        component_summary = {}
+        economic_treatment = {
+            "wallet": "External direct custody at supported economic marks; all own NET/sNET/wsNET excluded.",
+            "credit": "Accrued debt replaces stored debt; attributable accrued supply and vault claims included once; own-token collateral excluded.",
+            "v3": "External LP principal and attributable mixed owed/pending growth included once; own-token legs excluded.",
+            "turbo": "External principal and attributable sleeve fees less supported liabilities; manager fees and own-token legs excluded.",
+            "predict": "Active claims, refundable deposits and matured exits included once, without adding gross vault custody.",
+            "book": "Own-NET house backing and obligations disclosed separately and excluded from external backing; attributable external claims only.",
+            "v4": "External LP principal and attributable pending fees included once; own-token principal and fees excluded.",
+            "treasury_extra": "Discovered external Treasury custody not already represented in Core; own-token holdings excluded."}
         for name, family in self.families.items():
             selected = []
             if not family["discovery_complete"]:
@@ -991,7 +1233,7 @@ class Collector:
                 if ": unpriced or stale;" not in message:
                     gaps.append(name + ": " + message)
             for row in family["rows"]:
-                additive = row["included_in_reports"] or name in ("v3", "v4", "credit", "treasury_extra")
+                additive = row["included_in_historical_reports"] or name in ("v3", "v4", "credit", "treasury_extra")
                 if name == "turbo" and not additive:
                     additive = row.get("attributable_to_sleeve", False) or "liability_basis" in row
                 if name == "book" and row.get("attributable_to_sleeve"):
@@ -1008,6 +1250,7 @@ class Collector:
                         entry[key] = row[key]
                 if row["own_net_exposure"]:
                     own_ledger.append(dict(entry, family=name))
+                    own += self.values.get(id(row)) or Fraction()
                 else:
                     value = self.economic_values.get(id(row))
                     selected.append((entry, value))
@@ -1019,6 +1262,60 @@ class Collector:
             external[name] = {"rows": [r for r, _ in selected],
                               "known_rows_value_wad": None if exact is None else str(exact.numerator // exact.denominator),
                               "collection_complete": family["collection_complete"]}
+            rows = family["rows"]
+            chosen = [i for i, row in enumerate(rows) if row["included_in_reports"] is True]
+            excluded = [i for i, row in enumerate(rows) if row["included_in_reports"] is False]
+            unclassified = [i for i, row in enumerate(rows) if row["included_in_reports"] is None]
+            selected_values = [self.values.get(id(rows[i])) for i in chosen]
+            selected_subtotal = sum((v for v in selected_values if v is not None), Fraction())
+            publisher_complete = (methodology_valid and not selection_gaps and
+                                  publisher_family_complete.get(name, False))
+            contribution = selected_subtotal if publisher_complete else None
+            if name == "v4":
+                contribution = (v4_principal if inclusion is True else
+                                Fraction() if inclusion is False else None)
+                publisher_complete = methodology_valid and contribution is not None
+            elif name == "treasury_extra":
+                publisher_complete = methodology_valid and not selection_gaps
+                contribution = Fraction() if publisher_complete else None
+            policy_key = "sportsbook" if name == "book" else name
+            policy = (self.methodology.get("v4_position_scope") if name == "v4" else
+                      {"selection": "Outside publisher Reports scope"} if name == "treasury_extra" else
+                      self.methodology.get("selection_policy", {}).get(policy_key))
+            component_gaps = [message for message in gaps if message.startswith(name + ":")]
+            if name == "credit":
+                component_gaps.extend(self.economic_gaps)
+            component_summary[name] = {
+                "status": family["status"],
+                "observed": {"collection_complete": family["collection_complete"],
+                             "discovery_complete": family["discovery_complete"], "rows": rows},
+                "valuation": {
+                    "reports_basis_complete": family["collection_complete"] and
+                                              all(self.values.get(id(row)) is not None for row in rows),
+                    "valued_row_count": sum(self.values.get(id(row)) is not None for row in rows),
+                    "unpriced_row_indices": [i for i, row in enumerate(rows) if self.values.get(id(row)) is None],
+                    "meaning": "Individual row marks are not an additive total; alternative debt/claim analyses may overlap."},
+                "publisher": {
+                    "selection": policy, "collection_complete": bool(publisher_complete),
+                    "contribution_wad": _value_wad(contribution),
+                    "known_selected_subtotal_wad": _value_wad(selected_subtotal) if methodology_valid else None,
+                    "selected_row_indices": chosen, "excluded_row_indices": excluded,
+                    "unclassified_row_indices": unclassified,
+                    "required_missing": ([] if publisher_complete else
+                                         missing.get(name, []) + selection_gaps +
+                                         ([] if methodology_valid else missing.get("methodology", [])))},
+                "historical": {
+                    "included": name in replica_names,
+                    "contribution_wad": family["historical_reports_value_wad"] if name in replica_names else "0",
+                    "collection_complete": family["historical_reports_collection_complete"] if name in replica_names else True},
+                "economic": {
+                    "treatment": economic_treatment[name],
+                    "known_rows_value_wad": external[name]["known_rows_value_wad"],
+                    "collection_complete": not component_gaps, "required_missing": component_gaps,
+                    "external_rows": external[name]["rows"],
+                    "excluded_own_net_rows": [row for row in own_ledger if row["family"] == name]},
+                "missing": list(dict.fromkeys(family["missing"] + family["supplemental_missing"])),
+                "details": v4_details if name == "v4" else {"evidence": "metrics.sleeve.components." + name}}
         gaps = list(dict.fromkeys(gaps))
         net_total = core_external + sum(net_values, Fraction()) if not gaps else None
         metrics["adjusted_net_assets"] = {
@@ -1037,17 +1334,43 @@ class Collector:
                                 "sleeve": self.metrics["universe"].get("candidate_inventory"),
                                 "treasury": self.core.get("treasury_inventory")},
             "reason": "Required economic inputs unresolved" if gaps else "Conditional known-universe net assets at pinned marks; not future product settlement"}
+        core_missing = [] if core_complete else ["Core RFV reconstruction incomplete"]
+        core_economic_missing = core_missing + ([] if core_external is not None else ["Treasury external-asset basis unavailable"])
+        component_summary["core"] = {
+            "status": "collected_known_scope" if core_complete else "partial",
+            "observed": {"collection_complete": bool(core_complete), "discovery_complete": bool(core_complete),
+                         "evidence": "metrics.core_rfv"},
+            "valuation": {"reports_basis_complete": bool(core_complete),
+                          "reports_value_wad": _value_wad(self.core.get("rfv_wad"))},
+            "publisher": {
+                "selection": "Pinned Treasury.rfv", "collection_complete": bool(core_complete and methodology_valid),
+                "contribution_wad": _value_wad(self.core.get("rfv_wad")) if core_complete and methodology_valid else None,
+                "known_selected_subtotal_wad": _value_wad(self.core.get("rfv_wad")) if methodology_valid else None,
+                "required_missing": core_missing + ([] if methodology_valid else missing.get("methodology", []))},
+            "historical": {"included": True, "contribution_wad": _value_wad(self.core.get("rfv_wad")),
+                           "collection_complete": bool(core_complete)},
+            "economic": {
+                "treatment": "Alternative external basis replaces Core RFV: cash, gross vault claim and LP USDG only; own-NET POL excluded.",
+                "known_rows_value_wad": _value_wad(core_external),
+                "collection_complete": not core_economic_missing, "required_missing": core_economic_missing,
+                "evidence": "metrics.core_rfv.external_asset_basis"},
+            "missing": core_missing, "details": {"evidence": "metrics.core_rfv"}}
+        metrics["component_summary"] = component_summary
         self.metrics["universe"]["known_component_collection_complete"] = all(f["collection_complete"] for f in self.families.values())
         selected_complete = complete if self.scope == "reports" else not gaps
         self.ctx.result["coverage"]["sleeve"] = {
             "collection_complete": selected_complete, "exhaustive_asset_universe": False,
+            "reports_pinned_collection_complete": bool(pinned_complete),
+            "reports_methodology_valid": methodology_valid,
+            "current_reports_total_complete": bool(complete),
             "known_component_collection_complete": self.metrics["universe"]["known_component_collection_complete"],
             "families": {n: {"collection_complete": f["collection_complete"], "discovery_complete": f["discovery_complete"]} for n, f in self.families.items()}}
         self.ctx.result["coverage"]["collection_complete"] = selected_complete
         self.ctx.result["coverage"]["requested_scope"] = {
             "scope": self.scope, "collection_complete": selected_complete,
             "all_assets_exhaustive": False}
-        self.ctx.checkpoint()
+        if checkpoint:
+            self.ctx.checkpoint()
 
 
 def collect(ctx, args, core):
@@ -1056,18 +1379,25 @@ def collect(ctx, args, core):
     # Install null aggregate placeholders before the first optional call. A StopRun
     # preserves all earlier quantities and never advertises a partial sum as total.
     c.publish()
-    c.bootstrap()
-    c.wallet()
-    c.credit()
-    c.predict()
-    book_count = c.book()
-    turbo_count = c.turbo()
-    c.publish()
-    c.v3()
-    c.v4()
-    c.turbo_series(turbo_count)
-    c.book_markets(book_count)
-    c.credit_discovery()
-    c.discover_assets()
-    c.publish()
+    try:
+        c.bootstrap()
+        c.wallet()
+        c.credit()
+        c.predict()
+        book_count = c.book()
+        turbo_count = c.turbo()
+        c.publish()
+        c.v3()
+        c.v4()
+        c.turbo_series(turbo_count)
+        c.book_markets(book_count)
+        c.credit_discovery()
+        c.discover_assets()
+        c.publish()
+        # Source availability must never erase or prevent authorized RPC evidence.
+        c.check_methodology()
+    finally:
+        # No RPC, HTTP or checkpoint after cancellation; retain all observed rows.
+        c.publish(checkpoint=False)
+    ctx.checkpoint()
     return c.metrics

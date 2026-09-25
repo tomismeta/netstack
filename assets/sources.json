@@ -14,6 +14,22 @@
   },
   "sources": [
     {
+      "id": "netnet-reports-methodology-20260925-current",
+      "type": "official_app_contract_interface",
+      "label": "Current Reports calculation with publisher-selected V4 principal",
+      "url": "https://app.netnet.capital/assets/index-CmCKnROW.js",
+      "discovery_url": "https://app.netnet.capital/",
+      "reviewed_on": "2026-09-25",
+      "content_review_status": "targeted_static_reports_calculation_and_dependency_review",
+      "source_sha256": "446ba4dd84f4876e0bae4882bcffb13f605d90d6b1ea15ca2974badfa2a26609",
+      "locator": "nH Reports aggregate; k7 V4 principal/fee valuation; N7/E7/iM V4 reader and registry selection; getSleeve/getSnapshot input paths. The earlier same-session CuF9XSuu asset used aH/S7/A7 aliases. Supported recognition and exact scope recorded in assets/analytics/reports-methodology.json.",
+      "earlier_reviewed_asset": {"url": "https://app.netnet.capital/assets/index-CuF9XSuu.js", "source_sha256": "3f48cd2d9a6408b873111d983a11bf6d94c8be051644fe65acdd46a7a2521b8d", "relationship": "Publisher rotated the entry during review; both accounting paths were inspected statically rather than assuming a new hash preserved methodology."},
+      "summary": "The reviewed current calculation includes selected V4 principal in Sleeve memo and then adds Core RFV. V4 fees are separate. Publisher selection, ownership and pricing remain distinct from every independently discovered position and from economic external-asset treatment.",
+      "limits": "Static calculation evidence, not numerical website inputs, a rendered-headline observation, deployed contract verification or permanent current-methodology status. Fetch current official HTML and source at run time; unrecognized accounting/source changes cannot inherit this review.",
+      "reference": "references/reserve-analytics.md",
+      "execution_authority": false
+    },
+    {
       "id": "chainlink-robinhood-feed-policy-20260925",
       "type": "integration_source",
       "label": "Targeted USDG and six-stock reference-feed policy metadata",
@@ -3474,7 +3490,7 @@
       "Three V4 pool identifiers are separately catalogued. Two wsNET/hOHM position keys/owners are pinned RPC observations; the hOHM/USDG oracle-pool ID has indexed bytecode evidence but no complete PoolKey or fresh pool-state verification in this catalog."
     ],
     "counts": {
-      "source_records": 183,
+      "source_records": 184,
       "contract_records_unique_by_chain_and_address": 193,
       "public_role_address_records": 11,
       "trusted_product_mark_relationships": 6,
@@ -3510,7 +3526,7 @@
         "nft_collection": 2,
         "official_app_api": 2,
         "official_app_configuration": 1,
-        "official_app_contract_interface": 8,
+        "official_app_contract_interface": 9,
         "official_app_or_site": 10,
         "official_app_route": 8,
         "official_app_rules": 3,

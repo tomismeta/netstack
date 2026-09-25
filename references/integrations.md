@@ -19,7 +19,7 @@ Use ordinary host-authorized research under [Safety](safety.md#everyday-public-r
 
 ## Live analytics execution limits
 
-For supported **RFV/Sleeve, NET/USDG v2, Predict and House scopes**, prefer the optional reviewed [runner](../scripts/analytics.py) under normal host permission. It uses **Python 3.10+, Linux/macOS, standard library only**, a fixed public Robinhood RPC origin and packaged canonical routes/ABIs. No custom endpoint, credentials, wallet or arbitrary-RPC mode. Knowledge-only use needs no Python.
+For supported **RFV/Sleeve, NET/USDG v2, Predict and House scopes**, prefer the optional reviewed [runner](../scripts/analytics.py) under normal host permission. It uses **Python 3.10+, Linux/macOS, standard library only**, a fixed public Robinhood RPC origin and packaged canonical routes/ABIs. Non-core RFV also checks the current official shareholder app's calculation source as bounded, unexecuted text; no browser is required. No custom endpoint, credentials, wallet or arbitrary-RPC mode. Knowledge-only use needs no Python.
 
 These commands define helper coverage, **not research permission**. RFV's non-core scopes include a Book house-pot/state snapshot, but there is **no `book` activity command**; use [Book's snapshot-first workflow](games.md#book-snapshot-first) and [interface](../assets/analytics/book-interface.json) for wagers/history/settlement. Deeper research may choose a finite scope within actual host deadlines, quotas and approved costs. Do not execute untrusted sources or bypass denials.
 
@@ -37,7 +37,7 @@ python3 -I -B scripts/analytics.py rfv --scope reports --deadline 600 --json
 python3 -I -B scripts/analytics.py rfv --scope net-assets --deadline 600 --json
 ```
 
-`core` is the default: Treasury RFV/component reconciliation and total-supply NAV. `reports` adds the separately labelled Sleeve memo/“True RFV” composition. `net-assets` exposes supported adjustments and missing liabilities/fees/ownership evidence, not guaranteed complete net equity. **Website numbers are never inputs**: all quantities and valuation getters come from the same pinned RPC block; website labels/code only establish discovery and methodology. [Scope definitions](rwa-strategy.md#four-values-four-questions) distinguish these from Predict's settlement print. A missing component leaves a partial ledger or unavailable aggregate, never a website fallback or zero.
+`core` is the default: Treasury RFV/component reconciliation and total-supply NAV, without a publisher-source request. `reports` reconstructs the current supported publisher composition only when its methodology check and required RPC collection succeed. `net-assets` exposes separate economic adjustments and missing liabilities/fees/ownership evidence, not guaranteed complete net equity. **Website numbers are never calculation inputs**: all quantities and valuation getters come from the same pinned RPC block. Publisher-source retrieval has its own observation time; it is not block-pinned chain evidence. An independently observed website headline is only a comparison, never a replacement input. [Scope definitions](rwa-strategy.md#four-values-four-questions) prevent adding overlapping totals.
 
 The 600-second examples are for a deliberately broader collection when the host allowance permits; shorten them for a quick pass. A plain-language RFV breakdown defaults to broad asset/obligation research, not the CLI's narrow Core scope. One non-core run emits Core and both broader ledgers; do not repeat all three commands to answer the same question.
 

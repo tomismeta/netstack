@@ -6,7 +6,7 @@ netstack helps agents research NetNet's protocol, products, games, RWA strategy 
 
 It is an independent [Agent Skills](https://agentskills.io/specification) package. It is **not** an official NetNet product, a trading bot or a wallet toolkit.
 
-**v0.4.0 — unpublished dogfood candidate.** RPC-backed Core/Sleeve accounting, auditable bounded asset discovery, accrued Morpho balances, feed-specific freshness policies and lightweight Predict series snapshots. Includes website-label-to-contract routing, Asset Bond Desk/hOHM identities, deployment lifecycle discovery and evidence-qualified Predict/Book guidance. Website values are not numerical inputs. No release scan, tag or publication is implied; identify candidate bytes by the manifest and working revision.
+**v0.4.0 — unpublished dogfood candidate.** RPC-backed Core/Sleeve accounting with browser-free current publisher-methodology checks, consistent component summaries and fresh numerical reads on every run. Includes auditable bounded asset discovery, accrued Morpho balances, feed-specific freshness policies, lightweight Predict snapshots, website-label-to-contract routing and evidence-qualified product guidance. Website values are not calculation inputs; unrecognized methodology cannot silently reuse a dated formula as current “True RFV.” No release scan, tag or publication is implied; identify candidate bytes by the manifest and working revision.
 
 **History — v0.3.2:** expanded procedural guidance, forecasts, supplemental interfaces and non-broadcasting research while retaining the no-wallet-execution boundary.
 

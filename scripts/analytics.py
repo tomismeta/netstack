@@ -106,7 +106,7 @@ def _provenance(ctx):
     version = load_json("release-manifest.json").get("version")
     files = {}
     modules = ["analytics.py", "netstack_core.py"]
-    modules.extend(("netstack_reserves.py", "netstack_sleeve.py", "netstack_v4.py", "netstack_discovery.py") if ctx.command == "rfv"
+    modules.extend(("netstack_reserves.py", "netstack_sleeve.py", "netstack_v4.py", "netstack_discovery.py", "netstack_methodology.py") if ctx.command == "rfv"
                    else ("netstack_lp.py",) if ctx.command == "lp" else ("netstack_markets.py",))
     for name in modules:
         ctx.check()

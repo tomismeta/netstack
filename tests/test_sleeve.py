@@ -5,6 +5,7 @@ from types import SimpleNamespace
 import sys
 import unittest
 
+from unittest.mock import patch
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from netstack_core import RpcError, keccak256
@@ -115,6 +116,16 @@ class SleeveLedger(unittest.TestCase):
                 "external_assets_wad": 100*WAD, "core_complete": True}
         c = Collector(ctx, core)
         c.register(B, "test", symbol="USDG")["decimals"] = 6
+        c.methodology.update(status="verified", v4_principal_included=False, fetched_this_run=True)
+        c.methodology["selection_policy"] = {
+            "v3": {"selection": "owner_enumeration", "fee": 500, "usdg": B,
+                   "position_manager": c.address("position_manager"),
+                   "assets": [{"token": D, "pool": D}]},
+            "wallet": {"fixed_stock_tokens": []},
+            "credit": {"market_ids": ["selected-market"], "vault": c.address("credit_vault")}}
+        # Synthetic required claims start as observed zero balances; tests add exposure.
+        c.families["credit"]["vault_claim_complete"] = True
+        c.families["credit"]["stored_position_valuation_complete"] = {"selected-market": True}
         return c
 
     def test_missing_quantity_prevents_total_but_does_not_erase_cash(self):
@@ -124,7 +135,7 @@ class SleeveLedger(unittest.TestCase):
         c.finish("wallet", True)
         c.publish()
         self.assertEqual(cash["reports_value_wad"], str(7*WAD))
-        self.assertIsNone(c.families["wallet"]["reports_value_wad"])
+        self.assertIsNone(c.families["wallet"]["historical_reports_value_wad"])
         self.assertIsNone(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"])
 
     def test_native_zero_does_not_require_a_fabricated_price(self):
@@ -138,7 +149,7 @@ class SleeveLedger(unittest.TestCase):
 
     def test_supplemental_fees_excluded_from_reports_but_in_external_ledger(self):
         c = self.collector()
-        c.quantity("v3", B, 10_000_000, "principal")
+        c.quantity("v3", B, 10_000_000, "principal", extra={"pool": D})
         c.quantity("v3", B, 2_000_000, "mixed owed", reports=False)
         for name in FAMILIES:
             c.finish(name, True)
@@ -169,7 +180,7 @@ class SleeveLedger(unittest.TestCase):
 
     def test_supplemental_unknown_liability_blocks_net_not_reports(self):
         c = self.collector()
-        c.quantity("turbo", B, 10_000_000, "put pot")
+        c.quantity("turbo", B, 10_000_000, "put pot", extra={"asset_token": D})
         c.quantity("turbo", B, None, "unresolved liability", sign=-1, reports=False,
                    extra={"liability_basis": "unknown"})
         for name in FAMILIES:
@@ -213,7 +224,7 @@ class SleeveLedger(unittest.TestCase):
     def test_stored_debt_is_not_added_again_to_accrued_debt(self):
         c = self.collector()
         c.quantity("credit", B, 2_000_000, "stored", sign=-1,
-                   extra={"included_in_economic": False})
+                   extra={"included_in_economic": False, "market_id": "selected-market"})
         c.quantity("credit", B, 3_000_000, "accrued", sign=-1, reports=False)
         c.quantity("predict", B, 5_000_000, "active shares")
         c.quantity("predict", B, 7_000_000, "pending", reports=False,
@@ -223,6 +234,228 @@ class SleeveLedger(unittest.TestCase):
         c.publish()
         self.assertEqual(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"], str(103*WAD))
         self.assertEqual(c.ctx.result["metrics"]["adjusted_net_assets"]["value_wad"], str(109*WAD))
+
+    def valued_v4(self, c, extra_position=False, missing_fees=False, missing_mark=False):
+        c.net_mark, c.index = None if missing_mark else Fraction(5), 2 * 10**9
+        c.register(c.snet, "sNET")["decimals"] = 9
+        c.register(c.wsnet, "wsNET")["decimals"] = 18
+        positions = [{"position_id": 7, "pool_id": "0x" + "55" * 32,
+                      "currency0": B, "currency1": c.wsnet,
+                      "amount0_raw": 10_000_000, "amount1_raw": 2*WAD,
+                      "fees0_raw": 1_000_000, "fees1_raw": WAD//2,
+                      "read_provenance": []}]
+        if missing_fees:
+            positions[0].update(fees0_raw=None, fees1_raw=None)
+        if extra_position:
+            positions.append(dict(positions[0], position_id=8, amount0_raw=7_000_000,
+                                  amount1_raw=0, fees0_raw=0, fees1_raw=0))
+        inventory = {"position_manager": D, "owner": A, "expected_owned_count": len(positions),
+                     "ownership_complete": True, "collection_complete": True, "missing": [],
+                     "positions": positions,
+                     "candidates": [{"position_id": p["position_id"], "owner": A} for p in positions],
+                     "read_provenance": [{"contract": D, "getter": "ownerOf", "arguments": [7],
+                                          "block": 1000, "value": A}]}
+        c.methodology["v4_position_scope"] = {
+            "selection": "publisher_registry_allowlist", "position_manager": D,
+            "owner": A, "token_ids": ["7"]}
+        with patch("netstack_sleeve.collect_v4", return_value=inventory):
+            c.v4()
+        for name in FAMILIES:
+            c.finish(name, True)
+
+    def test_v4_principal_inclusion_exclusion_and_unknown_keep_owned_exposure_visible(self):
+        for inclusion, status, expected in ((True, "verified", 130),
+                                            (False, "verified", 100),
+                                            (None, "unsupported", None)):
+            with self.subTest(inclusion=inclusion, status=status):
+                c = self.collector()
+                self.valued_v4(c)
+                c.methodology.update(v4_principal_included=inclusion, status=status)
+                c.publish()
+                metrics = c.ctx.result["metrics"]
+                self.assertEqual(metrics["reports_true_rfv"]["value_wad"],
+                                 None if expected is None else str(expected*WAD))
+                self.assertEqual(metrics["reports_historical_rfv"]["value_wad"], str(100*WAD))
+                summary = metrics["component_summary"]["v4"]["details"]
+                self.assertEqual(summary["principal"]["reports_value_wad"], str(30*WAD))
+                self.assertEqual(summary["fees"]["reports_value_wad"], str(6*WAD))
+                self.assertEqual(summary["principal"]["own_net_known_reports_mark_wad"], str(20*WAD))
+                self.assertEqual(summary["ownership"]["expected_owned_count"], 1)
+                self.assertEqual(summary["publisher_total_impact_wad"],
+                                 None if inclusion is None else str(30*WAD if inclusion else 0))
+                self.assertEqual(metrics["adjusted_net_assets"]["value_wad"], str(111*WAD))
+                self.assertEqual(metrics["reports_true_rfv"]["publisher_headline_comparison"]["status"], "unavailable")
+                c.publish()
+                self.assertEqual(metrics["adjusted_net_assets"]["value_wad"], str(111*WAD))
+
+    def test_publisher_registry_selects_principal_without_hiding_extra_owned_v4(self):
+        c = self.collector()
+        self.valued_v4(c, extra_position=True)
+        c.methodology["v4_principal_included"] = True
+        c.publish()
+        metrics = c.ctx.result["metrics"]
+        self.assertEqual(metrics["reports_true_rfv"]["value_wad"], str(130*WAD))
+        self.assertEqual(metrics["component_summary"]["v4"]["details"]["principal"]["reports_value_wad"], str(37*WAD))
+        self.assertEqual(metrics["component_summary"]["v4"]["details"]["owned_positions_outside_publisher_scope"], ["8"])
+        self.assertEqual(metrics["adjusted_net_assets"]["value_wad"], str(118*WAD))
+        self.assertEqual([r["included_in_reports"] for r in c.families["v4"]["rows"]],
+                         [True, False, True, False, False, False, False, False])
+
+    def test_stale_methodology_withholds_current_total_without_blocking_economic_scope(self):
+        c = self.collector()
+        self.valued_v4(c)
+        c.methodology.update(v4_principal_included=True, fetched_this_run=False)
+        c.publish()
+        metrics = c.ctx.result["metrics"]
+        self.assertIsNone(metrics["reports_true_rfv"]["value_wad"])
+        self.assertFalse(metrics["reports_true_rfv"]["methodology_valid"])
+        self.assertTrue(metrics["reports_true_rfv"]["pinned_collection_complete"])
+        self.assertEqual(metrics["reports_historical_rfv"]["value_wad"], str(100*WAD))
+        self.assertFalse(c.ctx.result["coverage"]["requested_scope"]["collection_complete"])
+        c.scope = "net-assets"
+        c.publish()
+        self.assertEqual(metrics["adjusted_net_assets"]["value_wad"], str(111*WAD))
+        self.assertTrue(c.ctx.result["coverage"]["requested_scope"]["collection_complete"])
+
+    def test_missing_other_family_does_not_bury_valued_v4(self):
+        c = self.collector()
+        self.valued_v4(c)
+        c.methodology["v4_principal_included"] = True
+        c.quantity("credit", B, None, "Posted collateral", extra={"market_id": "selected-market"})
+        c.finish("credit", False)
+        c.publish()
+        metrics = c.ctx.result["metrics"]
+        self.assertIsNone(metrics["reports_true_rfv"]["value_wad"])
+        self.assertEqual(metrics["component_summary"]["v4"]["publisher"]["contribution_wad"], str(30*WAD))
+        self.assertEqual(metrics["component_summary"]["v4"]["details"]["fees"]["economic_external_value_wad"], str(WAD))
+
+    def test_unpriced_v4_leg_retains_cash_and_withholds_only_current_publisher_total(self):
+        c = self.collector()
+        self.valued_v4(c, missing_mark=True)
+        c.methodology["v4_principal_included"] = True
+        c.publish()
+        metrics = c.ctx.result["metrics"]
+        self.assertIsNone(metrics["reports_true_rfv"]["value_wad"])
+        self.assertEqual(metrics["reports_historical_rfv"]["value_wad"], str(100*WAD))
+        self.assertIsNone(metrics["component_summary"]["v4"]["details"]["principal"]["reports_value_wad"])
+        self.assertEqual(metrics["component_summary"]["v4"]["details"]["principal"]["known_priced_subtotal_wad"], str(10*WAD))
+        self.assertEqual(metrics["adjusted_net_assets"]["value_wad"], str(111*WAD))
+
+    def test_v4_fee_failure_does_not_invalidate_selected_principal_only_report(self):
+        c = self.collector()
+        self.valued_v4(c, missing_fees=True)
+        c.methodology["v4_principal_included"] = True
+        c.publish()
+        metrics = c.ctx.result["metrics"]
+        self.assertEqual(metrics["reports_true_rfv"]["value_wad"], str(130*WAD))
+        self.assertIsNone(metrics["component_summary"]["v4"]["details"]["fees"]["reports_value_wad"])
+        self.assertFalse(metrics["component_summary"]["v4"]["details"]["fees"]["quantity_collection_complete"])
+        self.assertIsNone(metrics["adjusted_net_assets"]["value_wad"])
+
+    def test_current_scope_excludes_other_v3_pools_and_discovered_credit_positions(self):
+        c = self.collector()
+        c.quantity("v3", B, 10_000_000, "selected principal", extra={"pool": D})
+        extra_lp = c.quantity("v3", B, 7_000_000, "other pool", extra={"pool": A})
+        c.quantity("credit", B, 3_000_000, "selected collateral", extra={"market_id": "selected-market"})
+        extra_credit = c.quantity("credit", B, 5_000_000, "other collateral", extra={"market_id": "other-market"})
+        for name in FAMILIES:
+            c.finish(name, True)
+        c.publish()
+        metrics = c.ctx.result["metrics"]
+        self.assertEqual(metrics["reports_true_rfv"]["value_wad"], str(113*WAD))
+        self.assertEqual(metrics["reports_historical_rfv"]["value_wad"], str(125*WAD))
+        self.assertEqual(metrics["adjusted_net_assets"]["value_wad"], str(125*WAD))
+        self.assertFalse(extra_lp["included_in_reports"])
+        self.assertFalse(extra_credit["included_in_reports"])
+
+    def test_broader_credit_discovery_gap_does_not_invalidate_fixed_publisher_claims(self):
+        c = self.collector()
+        c.quantity("credit", B, 3_000_000, "selected collateral",
+                   extra={"market_id": "selected-market"})
+        for name in FAMILIES:
+            c.finish(name, True)
+        c.missing("credit", "Incoming position history unavailable after provider rate limit")
+        c.finish("credit", False)
+        c.publish()
+        metrics = c.ctx.result["metrics"]
+        self.assertEqual(metrics["reports_true_rfv"]["value_wad"], str(103*WAD))
+        self.assertTrue(metrics["component_summary"]["credit"]["publisher"]["collection_complete"])
+        self.assertFalse(metrics["component_summary"]["credit"]["observed"]["discovery_complete"])
+        self.assertIsNone(metrics["adjusted_net_assets"]["value_wad"])
+        self.assertIsNone(metrics["reports_historical_rfv"]["value_wad"])
+
+    def test_current_publisher_requires_every_selected_credit_claim(self):
+        for missing in ("vault", "selected-market", "new-required-market"):
+            with self.subTest(missing=missing):
+                c = self.collector()
+                for name in FAMILIES:
+                    c.finish(name, True)
+                if missing == "vault":
+                    c.families["credit"]["vault_claim_complete"] = False
+                elif missing == "selected-market":
+                    c.families["credit"]["stored_position_valuation_complete"][missing] = False
+                else:
+                    c.methodology["selection_policy"]["credit"]["market_ids"].append(missing)
+                c.publish()
+                self.assertIsNone(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"])
+                self.assertFalse(c.ctx.result["metrics"]["component_summary"]["credit"]["publisher"]["collection_complete"])
+
+    def test_component_summary_exposes_non_lp_contributions_exclusions_and_missing_marks(self):
+        c = self.collector()
+        c.net_mark = Fraction(5)
+        c.register(C, "NET")["decimals"] = 9
+        c.quantity("wallet", B, 7_000_000, "cash")
+        c.quantity("wallet", C, 2*10**9, "own NET")
+        c.quantity("credit", B, 3_000_000, "selected collateral",
+                   extra={"market_id": "selected-market"})
+        c.quantity("credit", B, 5_000_000, "other collateral",
+                   extra={"market_id": "other-market"})
+        c.quantity("predict", B, None, "unavailable active claim")
+        for name in FAMILIES:
+            c.finish(name, True)
+        c.publish()
+        metrics = c.ctx.result["metrics"]
+        summaries = metrics["component_summary"]
+        self.assertEqual(summaries["wallet"]["publisher"]["contribution_wad"], str(17*WAD))
+        self.assertEqual(summaries["wallet"]["economic"]["known_rows_value_wad"], str(7*WAD))
+        self.assertEqual(summaries["wallet"]["economic"]["excluded_own_net_rows"][0]["quantity_raw"], str(2*10**9))
+        self.assertEqual(summaries["credit"]["publisher"]["contribution_wad"], str(3*WAD))
+        excluded = summaries["credit"]["publisher"]["excluded_row_indices"]
+        self.assertEqual([summaries["credit"]["observed"]["rows"][i]["quantity_raw"] for i in excluded],
+                         ["5000000"])
+        self.assertEqual(summaries["credit"]["economic"]["known_rows_value_wad"], str(8*WAD))
+        self.assertIsNone(summaries["predict"]["publisher"]["contribution_wad"])
+        self.assertFalse(summaries["predict"]["valuation"]["reports_basis_complete"])
+        self.assertIsNone(summaries["predict"]["economic"]["known_rows_value_wad"])
+        self.assertFalse(summaries["predict"]["economic"]["collection_complete"])
+        self.assertEqual(summaries["core"]["publisher"]["contribution_wad"], str(100*WAD))
+        self.assertEqual(summaries["core"]["economic"]["known_rows_value_wad"], str(100*WAD))
+        self.assertIsNone(metrics["reports_true_rfv"]["value_wad"])
+        self.assertIsNone(metrics["adjusted_net_assets"]["value_wad"])
+
+    def test_methodology_error_retains_rpc_valuation_and_does_not_block_net_assets(self):
+        c = self.collector()
+        self.valued_v4(c)
+        c.scope = "net-assets"
+        c.methodology["v4_principal_included"] = True
+        with patch("netstack_methodology.collect_reports_methodology", side_effect=RuntimeError("module failed")):
+            c.check_methodology()
+        c.publish()
+        metrics = c.ctx.result["metrics"]
+        self.assertEqual(metrics["reports_methodology"]["status"], "unavailable")
+        self.assertIsNone(metrics["reports_true_rfv"]["value_wad"])
+        self.assertEqual(metrics["component_summary"]["v4"]["details"]["principal"]["reports_value_wad"], str(30*WAD))
+        self.assertEqual(metrics["adjusted_net_assets"]["value_wad"], str(111*WAD))
+        self.assertTrue(c.ctx.result["coverage"]["requested_scope"]["collection_complete"])
+
+    def test_methodology_permission_and_integrity_failures_remain_terminal(self):
+        for kind in ("permission", "integrity"):
+            c = self.collector()
+            with patch("netstack_methodology.collect_reports_methodology",
+                       side_effect=RpcError("Denied or invalid source", kind=kind)):
+                with self.assertRaises(RpcError) as failure:
+                    c.check_methodology()
+            self.assertEqual(failure.exception.kind, kind)
 
     def test_morpho_pending_fee_shares_belong_only_to_fee_recipient(self):
         for recipient, expected in ((A, "1057"), (D, "1047"), (None, None)):
