@@ -6,7 +6,7 @@
   "manifest_sha256": {
     "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "README.md": "48a8efa59ad5faa08338d013b2852dda9c77e0b9038ab0ad4c278e3f0fc72783",
-    "SKILL.md": "97d14890aaf21da73ab1ff0fcebddb99827e234bf9286f3dabc9cfa54571fdd4",
+    "SKILL.md": "27bc7dfd57de853b490fef8acebfc73c399b46421f9d809908d7b3cb67792748",
     "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "assets/address-conventions.json": "50773fa44bb43ee0f20462e5ce031c19775c916f69f26ef1f48c96a7ffa68021",
     "assets/address-index.json": "8e51e987bec9ad60d9551a7ee9b960083d5c5004f61992850c970be6af71e6b6",
@@ -185,7 +185,7 @@
   },
   "runtime_bundle": {
     "files": 176,
-    "sha256": "5b6f8ceeccd43ea881e9bb2c340d1e369591476c23c1a548372d247c9560c666",
+    "sha256": "af12bb1f809d6f3bab3675a24d8e750ea47e0e029e1d95a59b399a42ca1214d1",
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by NUL and file bytes",
     "scope": "SKILL.md, assets/**, references/** (including references/guardrail.md) and scripts/**; excludes README.md, root LICENSE, release-manifest.json and non-distributable maintenance/tests."
   }
