@@ -1,0 +1,56 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xde9df88aba59b644d4d7f6305e52ab982a3cfcac",
+      "chain_id": 4663,
+      "address": "0xDe9df88ABA59b644D4d7f6305e52aB982A3cFCac",
+      "role": "advanceDesk",
+      "aliases": ["AdvanceDesk", "NET Advance", "NET ADVANCE Desk"],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_operating",
+      "lifecycle_notes": "Publisher reports operating; indexed creation corroborates deployment at block 72454633 on 2026-09-25. Explorer raw input matches creation bytecode and independent RLP CREATE computation for creator nonce 320 resolves the swapped publisher diary labels to this Desk transaction. HUMAN-VERIFIED remains publisher attribution. Targeted explorer-runtime mechanics are recorded in advance-interface.json, not independently pinned RPC state, verified Solidity or an audit. Current configuration, positions and absence of a successor are not established.",
+      "live_chain_verification_status": "not_performed",
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "publisher_reported_deployment_block_number": 72454633,
+      "publisher_reported_deployment_on": "2026-09-25",
+      "deployment_transaction_hash": "0xbd96d867eccc406d843884a58da2e323c312f1dcdb0d3fff17576a30f5f23a83",
+      "deployment_block_number": 72454633,
+      "deployment_at": "2026-09-25T18:50:04Z",
+      "provenance": [
+        {"source_id": "netnet-docs-advance", "locator": "Status and Addresses: AdvanceDesk on chain 4663; reported opening/deployment date; block_number=72454633", "evidence_kind": "publisher_registry_or_documentation", "observed_on": "2026-09-26"},
+        {"source_id": "netnet-advance-app-20260926", "locator": "Vf.advanceDesk address/status/source; e8.advanceDesk address; QA interface", "evidence_kind": "publisher_registry_or_documentation", "observed_on": "2026-09-26"},
+        {"source_id": "netnet-advance-desk-deployment-20260926", "locator": "Indexed successful creation; raw_input equals explorer creation_bytecode; creator 0xCfBd7e12A0f154a45576a73C1E409200068507B9 nonce 320 gives this address via RLP CREATE", "evidence_kind": "explorer_indexed_creation", "observed_on": "2026-09-26"},
+        {"source_id": "netnet-advance-desk-bytecode-20260926", "locator": "Explorer deployed_bytecode: 15921 bytes; targeted dispatcher/accounting/authorization tracing and bounded offline synthetic execution; not live RPC verification", "evidence_kind": "explorer_deployed_bytecode_analysis", "observed_on": "2026-09-26"}
+      ],
+      "zap_id": "robinhood-0x04e2f5707a4421c7afc7b56c14bc190550ac594d",
+      "zap_record": "assets/addresses/contracts/advance-desk-and-zap.json",
+      "house_id": "robinhood-0x498752d5fa0600cbd613074c151abe15b3fec7cb",
+      "house_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json"
+    },
+    {
+      "id": "robinhood-0x04e2f5707a4421c7afc7b56c14bc190550ac594d",
+      "chain_id": 4663,
+      "address": "0x04E2F5707A4421c7aFc7b56c14bc190550aC594D",
+      "role": "advanceZap",
+      "aliases": ["AdvanceZap", "NET ADVANCE Zap"],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_operating",
+      "lifecycle_notes": "Publisher identifies the USDG/NET/sNET conversion helper for AdvanceDesk, distinct from Asset Bond, LP, Book and Managed Futures Zaps. Indexed creation plus matching raw input/creation bytecode and independent RLP CREATE for creator nonce 321 resolve swapped diary labels at explorer-evidence level. Executable input routes, including a conditional router swap CALL rather than mere approvals, are traced in advance-routes.json. No observed live user transaction, independently pinned code/state, verified Solidity or dependency audit is implied.",
+      "live_chain_verification_status": "not_performed",
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "publisher_reported_deployment_block_number": 72454633,
+      "publisher_reported_deployment_on": "2026-09-25",
+      "deployment_transaction_hash": "0xaebf8d3c8dad4a79ef044091243bf4b6ae01e621bf6f1f8a120f9470370c9dbe",
+      "deployment_block_number": 72454633,
+      "deployment_at": "2026-09-25T18:50:04Z",
+      "provenance": [
+        {"source_id": "netnet-docs-advance", "locator": "Ways in and Addresses: AdvanceZap on chain 4663; reported deployment date; block_number=72454633", "evidence_kind": "publisher_registry_or_documentation", "observed_on": "2026-09-26"},
+        {"source_id": "netnet-advance-app-20260926", "locator": "Vf.advanceZap address/status/source; e8.advanceZap address; gk interface", "evidence_kind": "publisher_registry_or_documentation", "observed_on": "2026-09-26"},
+        {"source_id": "netnet-advance-zap-deployment-20260926", "locator": "Indexed successful creation; raw_input equals explorer creation_bytecode; creator 0xCfBd7e12A0f154a45576a73C1E409200068507B9 nonce 321 gives this address via RLP CREATE", "evidence_kind": "explorer_indexed_creation", "observed_on": "2026-09-26"},
+        {"source_id": "netnet-advance-zap-bytecode-20260926", "locator": "Explorer deployed_bytecode: 6914 bytes; immutable bindings, input routes, quote selection, router CALL and House-only skim traced with bounded offline synthetic execution; not live RPC verification", "evidence_kind": "explorer_deployed_bytecode_analysis", "observed_on": "2026-09-26"}
+      ],
+      "desk_id": "robinhood-0xde9df88aba59b644d4d7f6305e52ab982a3cfcac",
+      "desk_record": "assets/addresses/contracts/advance-desk-and-zap.json"
+    }
+  ]
+}

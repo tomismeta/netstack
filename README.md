@@ -8,7 +8,9 @@ It is an independent [Agent Skills](https://agentskills.io/specification) packag
 
 **v0.4.0 — unpublished dogfood candidate.** RPC-backed Core/Sleeve accounting with browser-free current publisher-methodology checks, consistent component summaries and fresh numerical reads on every run. Includes auditable bounded asset discovery, accrued Morpho balances, feed-specific freshness policies, lightweight Predict snapshots, website-label-to-contract routing and evidence-qualified product guidance. Website values are not calculation inputs; unrecognized methodology cannot silently reuse a dated formula as current “True RFV.” No release scan, tag or publication is implied; identify candidate bytes by the manifest and working revision.
 
-**Candidate engineering:** offline CI, manifest and resource-consistency checks, reviewed-commit runtime export, deterministic archives and an offline installed-tree verifier. RFV adds opt-in summary stdout while retaining full JSON by default and full same-collection checkpoints. These checks do not establish live-source availability, host isolation or release approval.
+**Candidate engineering:** offline CI, manifest and resource-consistency checks, reviewed-commit runtime export, deterministic archives and an offline installed-tree verifier. RFV adds opt-in summary stdout while retaining full JSON by default and full same-collection checkpoints. September 26 changes add fresh V4 owner/count reconciliation, source-derived publisher NFT selection, NET Advance read views and bounded Desk/Zap runtime analysis. Explorer-supplied bytecode supports exact settlement/shortfall allocation and a genuine Zap swap branch, not pinned live state, dependency execution or a full audit. Publisher Advance reserves remain distinct from net House equity. These checks do not establish live-source availability, host isolation or release approval.
+
+**Conditional scenarios:** natural-language questions use stated changes with other evidenced rates and behavior held constant, not a questionnaire or a new calculator command. [Advance guidance](references/products.md#advance-scenarios-user-and-protocol-together) applies the evidenced integer settlement rules to the user's holdings and House/Treasury flows, collateral shortfalls and the comparison with simply staking. Missing current rates remain conditional inputs, not missing settlement rules; projected gains, marked collateral credit and Treasury entitlements are not realized cash profit or observed remittances.
 
 **History — v0.3.2:** expanded procedural guidance, forecasts, supplemental interfaces and non-broadcasting research while retaining the no-wallet-execution boundary.
 
@@ -130,12 +132,16 @@ python3 -I -B scripts/analytics.py lp --since-days 7 --deadline 120 --json
 python3 -I -B scripts/analytics.py predict --deadline 120 --json
 python3 -I -B scripts/analytics.py predict --series 2 --deadline 120 --json
 python3 -I -B scripts/analytics.py house --deadline 120 --json
+python3 -I -B scripts/analytics.py advance --view capacity --deadline 120 --json
+python3 -I -B scripts/analytics.py advance --view totals --deadline 600 --json
 python3 -I -B scripts/analytics.py rfv --scope core --deadline 120 --json
 python3 -I -B scripts/analytics.py rfv --scope reports --deadline 600 --json
 python3 -I -B scripts/analytics.py rfv --scope net-assets --deadline 600 --json
 ```
 
 For smaller RFV stdout, add `--detail summary`. To retain full evidence from that **same collection**, also pass `--output /absolute/path/outside-the-skill/evidence.json`; the file stays full regardless of stdout detail. Summary output preserves accounting and missing coverage, identifies omitted detail and never starts a second collection. Without `--output`, omitted evidence is not saved.
+
+For [NET Advance](references/products.md), `--view params` and `capacity` collect pinned configuration/state without position history; `positions`, `holders` and `totals` enumerate opening events and reconcile the discovered universe against `positionCount()`. The default is `totals`. Missing history, count mismatches or failed required reads withhold full-universe totals while retaining observed rows. No historical holder list, estimated initial advance, closed flag or gross fee is a substitute for current evidence or realized profit.
 
 The collector deadline includes network/retry/computation time, not host approval waits or model response time. Agents must shorten it to leave time to answer within the host's remaining turn. Results retain a pinned block, per-metric coverage, missing ranges and accounting qualifications; an incomplete net-profit or ownership claim cannot be repaired by inventing a value. See [execution and output semantics](references/integrations.md#live-analytics-execution-limits) and [normal-permission acceptance](references/installation.md#live-analytics-acceptance). A collector timeout with usable partial evidence differs from a client timeout that delivers no answer.
 
@@ -147,9 +153,9 @@ The address catalog keeps identities, statuses and dated evidence per record; sh
 
 ## What's covered
 
-Baseline documentation dates from **September 10, 2026**, with targeted additions through **September 25**. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
+Baseline documentation dates from **September 10, 2026**, with targeted additions through **September 26**. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
 
-- **27 indexed official documentation pages**, represented by original summaries and source links; not all freshly reread.
+- **28 indexed official documentation pages**, represented by original summaries and source links; not all freshly reread.
 - Canonical contracts, feeds, market and pool IDs, plus a separately qualified deployer-discovery inventory. Counts and boundaries live in [address conventions](assets/address-conventions.json), not a competing inventory here.
 - Original announcements, strategy/report articles, documentation, integrations and scoped interface/creation evidence in the [source catalog](assets/sources.json).
 - Four interview source posts with publisher descriptions and available chapters; no claim that full recordings/transcripts were reviewed.

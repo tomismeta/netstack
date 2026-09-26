@@ -285,7 +285,7 @@ class CollectorCLI(unittest.TestCase):
                               capture_output=True, text=True, timeout=3)
 
     def test_expired_collection_returns_json_without_network_or_hanging(self):
-        for command in ("lp", "predict", "house", "rfv"):
+        for command in ("lp", "predict", "house", "rfv", "advance"):
             with self.subTest(command=command):
                 result = self.invoke(command, "--deadline", "0.01", "--json")
                 self.assertEqual(result.returncode, 2, result.stderr)

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "skill": "netstack",
-  "observed_on": "2026-09-25",
+  "observed_on": "2026-09-26",
   "chain_id": 4663,
   "scope": "Canonical contracts and separately attributed public roles, scoped fixed-block identity observations, and a separate bounded indexed-creation discovery inventory; not an audit or independently verified live deployment universe.",
   "source_catalog": "assets/sources.json",
@@ -23,7 +23,8 @@
     "netnet_use_evidence": "Directory inclusion alone does not establish NetNet use. Preserve recorded registry/local provenance and status; an empty consumer_policies list means not recorded, not unused. No exhaustive consumer list or exact-token relationship is inferred.",
     "public_role_addresses": "Published or explicitly explorer-discovered operational roles, not proof of control, beneficial ownership or personal identity. An explorer-reported EOA is attributed metadata, not a current code audit.",
     "discovery_inventory": "53 baseline-missing indexed creations are separate candidates, not 53 active products. Four now point to canonical roles; ten historically named and39 unclassified candidates remain outside canonical counts. Shared deployer/time does not prove role, successor identity or activity.",
-    "v4_pool_and_position_identity": "V4 pool IDs are bytes32 hashes of complete PoolKeys, not addresses, transaction hashes or NFT IDs. PoolManager and PositionManager are distinct canonical contracts. Fixed-block ownership/cardinality observations do not establish current ownership, source equivalence or balance-sheet value."
+    "v4_pool_and_position_identity": "V4 pool IDs are bytes32 hashes of complete PoolKeys, not addresses, transaction hashes or NFT IDs. PoolManager and PositionManager are distinct canonical contracts. Fixed-block ownership/cardinality observations do not establish current ownership, source equivalence or balance-sheet value.",
+    "advance_identity": "AdvanceDesk and AdvanceZap have separate canonical roles. September26 explorer indexed creations corroborate September25 date/block; matching transaction raw input/creation bytecode and independent RLP CREATE derivation resolve the publisher's swapped diary labels at explorer-evidence level. Targeted deployed-bytecode analysis supports explicitly scoped conditional mechanics, not independently pinned RPC code/state, verified Solidity, real dependency execution or a full audit. Publisher ABI names remain labels; runtime branch evidence is separately attributed in advance-interface.json and advance-routes.json. Position IDs/counts must be discovered fresh, never seeded from dated examples."
   },
   "known_discrepancies": [
     {
@@ -92,8 +93,8 @@
     "source_content_reviews": "sources.json#/sources",
     "scope": "Address-specific counts only. Source inventory, extraction boundaries, gaps and content-review status are maintained in the linked source catalog, not duplicated here.",
     "counts": {
-      "contract_records_unique_by_chain_and_address": 193,
-      "named_contract_records_excluding_underlying_feeds": 156,
+      "contract_records_unique_by_chain_and_address": 195,
+      "named_contract_records_excluding_underlying_feeds": 158,
       "public_role_address_records": 11,
       "trusted_product_mark_relationships": 6,
       "morpho_market_identifiers": 7,
@@ -109,7 +110,7 @@
       "discovery_candidates_now_canonical": 4,
       "discovery_candidates_outside_canonical_inventory": 49
     },
-    "contract_count_composition": "156 named contract records + 37 underlying price-feed contract records = 193 unique chain/address pairs. Feed records are included in the total, not an additional 37 addresses.",
+    "contract_count_composition": "158 named contract records + 37 underlying price-feed contract records = 195 unique chain/address pairs. Feed records are included in the total, not an additional 37 addresses.",
     "live_chain_verified_contracts": 0
   }
 }

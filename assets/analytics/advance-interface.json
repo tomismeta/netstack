@@ -1,0 +1,769 @@
+{
+  "schema_version": 1,
+  "source_id": "netnet-advance-app-20260926",
+  "source_url": "https://app.netnet.capital/assets/index-BnVQi9hM.js",
+  "source_sha256": "5faf6a3a9b30da127413925896f91d90dc6df1934d1d8b9fc97ee21be9ea5dfa",
+  "source_locator": "QA AdvanceDesk ABI; gk AdvanceZap ABI; eF ERC20 ABI; nF sNET index ABI; pF live adapter; lG Reports advance snapshot; Vf deployment diary. Static text only, never executed.",
+  "reviewed_on": "2026-09-26",
+  "limits": "Read/event ABI names remain publisher labels from static source. Separately scoped explorer-runtime analysis below supports conditional implementation mechanics, not verified Solidity, independently pinned deployed code, live state or a full audit. No wallet or transaction functions are packaged. Values must be fetched anew at one pinned block; dated metadata is never a financial fallback.",
+  "runtime_evidence": {
+    "reviewed_on": "2026-09-26",
+    "method": "Disassemble explorer deployed_bytecode, derive selectors from statically parsed publisher ABI labels, trace stack/branches and exercise actual runtime bytes in a bounded offline interpreter with synthetic dependency replies. Indexed creation raw input matched explorer creation_bytecode; independent RLP CREATE address computation matched creator/nonces and resolved swapped publisher diary labels.",
+    "limits": "Explorer reports both contracts unverified and nonproxy; analyzed executable runtimes contain no DELEGATECALL. No independently pinned eth_getCode/state or verified Solidity. Interpreter has no gas model, real dependency execution or transaction rollback; reverted scratch effects are not committed EVM state. Conditional branch evidence is not successful chain integration, exhaustive EVM equivalence, oracle freshness, solvency, actual allowances, current configured Zap, live positions or a security audit. Metadata/source retrieval stopped at IPFS HTTP 429 and Etherscan HTTP 403; no Solidity was recovered.",
+    "desk": {
+      "source_id": "netnet-advance-desk-bytecode-20260926",
+      "source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xDe9df88ABA59b644D4d7f6305e52aB982A3cFCac",
+      "runtime_keccak256": "0xef5932a499b949e7560e7340f5af0475bebe91b55ba10983ba4f069224091af6",
+      "runtime_bytes": 15921,
+      "locator": "Deployed-runtime byte offsets: open shared 0x2ee5; quote arithmetic 0x37fe; repay 0x22e4; close 0x0d5a; finalization 0x28b3; Treasury 0x36b0; previewClose 0x13db; catch-up 0x2ad6."
+    },
+    "zap": {
+      "source_id": "netnet-advance-zap-bytecode-20260926",
+      "source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x04E2F5707A4421c7aFc7b56c14bc190550aC594D",
+      "runtime_keccak256": "0xda9f1ee07506dab604d4bd5b2ec1422e5e0cba949808fcd2b15f9e18614bff09",
+      "runtime_bytes": 6914,
+      "locator": "Deployed-runtime byte offsets: sNET 0x0304; NET 0x0751; USDG 0x0974; quoteLegs 0x0721; pool quote 0x1158; inventory quote 0x1392; route selection 0x17a0; actual router swap CALL 0x0d90; skim 0x051f. Detailed route limits in advance-routes.json."
+    }
+  },
+  "discovery_evidence": {
+    "counter": "positionCount() is displayed as locksIssued by the Reports consumer. No reviewed global contiguous-ID enumeration consumer; do not assume 1..count.",
+    "method": "Scan Opened/Repaid/Closed/Shortfall from the canonical recorded deployment boundary to the snapshot, deduplicate by log identity, then reconcile unique Opened IDs with pinned positionCount. RPC range coverage assumes no silently omitted logs.",
+    "owner_consumer": "pF.positionIds pages positionsOf(owner,offset,limit), not a global holder list. The helper discovers public owners from Opened events and re-reads position(id)."
+  },
+  "accounting_evidence": {
+    "position": "Eight-field tuple: owner,destination,openedAt uint64,closed bool,wsLocked,principalNet,owed,paid. In analyzed runtime, paid combines actual USDG repayment receipts with collateral mark-valuation coverage on close; it is not cash recovery, voluntary repayment, realized revenue or profit.",
+    "advanced": "Opened.advance and advanceOf(id) record original USDG advance A, transferred in full to destination at open. With Q=10^18 and B=10000, A=floor(wsAmount*(openMark*4000)/(Q*B)), O=floor(A*11500/B), T=floor(A*500/B), returned fee=O-A-T. Residual fee is not always floor(A*1000/B). No inversion of owed or division by a fee multiplier.",
+    "capacity": "capacity returns unallocated in analyzed runtime. Open requires unallocated >= A+T, subtracts A+T and adds only T to escrowed. Treasury reserve is additional to the full advance, not a deduction from its proceeds and not the entire nominal 15% uplift. Raw Desk USDG balance is neither capacity nor maximum immediately lendable advance.",
+    "repayment": "repay caps requested USDG to owed-paid, pulls exactly that amount from caller with strict true return and exact balance-increase checks, adds it to paid and unallocated, and emits Repaid.usdg. Any caller may repay before maturity or while halted; full repayment automatically finalizes with zero collateral take and all collateral returned to recorded owner. Partial repayment releases no collateral. Closed positions cannot be repaid.",
+    "maturity": "The analyzed runtime enforces a literal 2592000-second term from openedAt. Unpaid close requires maturity even for owner; at maturity any caller may close. Already-paid early close requires owner, although normal full repay finalizes immediately. No halt check on close/repay. No automatic transaction or arbitrary pre-maturity price-triggered liquidation in these entrypoints; live getter/state and dependency behavior still require pinned evidence.",
+    "close": "For unpaid matured close, after attempted staking catch-up, M=floor(currentIndex*oraclePrice/10^21), U=owed-paid and W=wsLocked. taken=min(ceil(U*10^18/M),W); covered=min(U,floor(taken*M/10^18)); paid+=covered. Shortfall is emitted if still unpaid, but position closes, wsLocked becomes zero and all original lock leaves lockedTotal. Taken wsNET remains in Desk inventory; remainder returns to owner. No USDG collection or AMM sale occurs on this path; covered is this close's valuation increment, not cumulative paid.",
+    "yield_and_principal": "Yield-first is TakeSplit accounting: yieldWs is zero when floor(W*index/10^18)<=principalNet, otherwise floor((floor(W*index/10^18)-principalNet)*10^18/index). yieldTaken=min(taken,yieldWs), principalTaken=taken-yieldTaken. No separate yield/principal transfers or prohibition on principal exhaustion.",
+    "treasury": "At finalization, T=floor(originalAdvance*500/10000), O=original owed and P=final paid including collateral coverage. treasuryDue=min(T,floor(T*P/O)); escrowed-=T; unallocated+=T-treasuryDue. Cash comes from reserve funded at open, not a sale of taken collateral. A reverted Treasury token call or canonical false defers due to treasuryOwed; malformed/empty successful returndata can revert the whole close. payTreasury is permissionless while halted but strict: failed transfer reverts, preserving debt on real EVM rollback. Other strict transfers, including owner collateral return, can also revert finalization.",
+    "inventory": "Settlement reclassifies taken wsNET to Desk inventory, not an immediate transfer to House. House-only withdrawInventory cannot withdraw lockedTotal through that path and is not halted. inventoryCostUsdg marks current inventory using buyPrice, not historical book cost. Buy collects actual USDG and is halted with new opens.",
+    "preview": "previewClose is an informational projection, not permission or executable-outcome proof: it uses projectedIndex rather than close's actual index after catch-up and does not enforce maturity or caller authorization or finalize. Actual catch-up tries up to eight rebases; failed/no-progress rebase can return early, while eight advancing iterations still leaving an epoch due revert EpochsDue. Oracle/dependency errors or zero mark can prevent closing.",
+    "index": "pF.clock reads sNET.index. Analyzed Desk uses floor(wsAmount*index/10^18) for principal NET and scales index times oracle price by 10^21 for close mark. Open uses the lower nonzero spot/oracle price before index scaling. External oracle validity, token decimals and staking behavior are not established by Desk analysis alone; current index and decimals require fresh reads."
+  },
+  "publisher_documentation": {
+    "source_id": "netnet-docs-advance",
+    "url": "https://docs.netnet.capital/net-advance",
+    "authority": "Published operating description, distinct from conditional explorer-runtime mechanics recorded above. Neither publication nor bounded bytecode analysis certifies current chain state, dependency safety or guaranteed settlement."
+  },
+  "desk_abi": [
+    {
+      "type": "function",
+      "name": "ADVANCE_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "FEE_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "MARK_SCALE",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "MAX_ADVANCE_PER_POSITION",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "MIN_LOCK_NET",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "TERM",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "TREASURY_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "advanceOf",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "capacity",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "escrowed",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "halted",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "house",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "inventory",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "inventoryCostUsdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "inventoryNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "lockedTotal",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "maxAdvance",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "position",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct IAdvanceDesk.Position",
+          "components": [
+            {
+              "name": "owner",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "destination",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "openedAt",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "closed",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "wsLocked",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "principalNet",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "owed",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "paid",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "positionCount",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "priceScale",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "sNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IAdvanceSNet"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "treasury",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "treasuryOwed",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "unallocated",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "unlockAt",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "wsNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "zap",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "event",
+      "name": "Closed",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "wsTaken",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdgCovered",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "wsReturned",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Opened",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "owner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "destination",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "wsLocked",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "principalNet",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "advance",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "owed",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Repaid",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "payer",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Shortfall",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false
+    }
+  ],
+  "zap_abi": [
+    {
+      "type": "function",
+      "name": "ZAP_CAP_USDG",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "desk",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IAdvanceDeskZap"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "house",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "net",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "sNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "wsNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IWrappedStakedNET"
+        }
+      ],
+      "stateMutability": "view"
+    }
+  ],
+  "token_abi": [
+    {
+      "type": "function",
+      "name": "balanceOf",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "decimals",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "name",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "string",
+          "internalType": "string"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "symbol",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "string",
+          "internalType": "string"
+        }
+      ],
+      "stateMutability": "view"
+    }
+  ],
+  "snet_abi": [
+    {
+      "type": "function",
+      "name": "index",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    }
+  ]
+}

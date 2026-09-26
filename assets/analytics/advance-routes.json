@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "workflow": "references/products.md",
+  "interface": "assets/analytics/advance-interface.json",
+  "desk": {
+    "file": "assets/addresses/contracts/advance-desk-and-zap.json",
+    "id": "robinhood-0xde9df88aba59b644d4d7f6305e52ab982a3cfcac"
+  },
+  "zap": {
+    "file": "assets/addresses/contracts/advance-desk-and-zap.json",
+    "id": "robinhood-0x04e2f5707a4421c7afc7b56c14bc190550ac594d"
+  },
+  "usdg": {
+    "file": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+    "id": "robinhood-0x5fc5360d0400a0fd4f2af552add042d716f1d168"
+  },
+  "net": {
+    "file": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+    "id": "robinhood-0xca9c78dd337a67f6e0077f65f5e9218719d30edf"
+  },
+  "sleeve": {
+    "file": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+    "id": "robinhood-0x498752d5fa0600cbd613074c151abe15b3fec7cb"
+  },
+  "treasury": {
+    "file": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json",
+    "id": "robinhood-0x04822ea321a0dee6f40656172f29312104855d66"
+  },
+  "snet": {
+    "file": "assets/addresses/contracts/share-certificate-snet-and-spacex-invaders.json",
+    "id": "robinhood-0xb773ec2c326b7f98a5a83fc098825492f020a4c7"
+  },
+  "wsnet": {
+    "file": "assets/addresses/contracts/weth-and-wsnet.json",
+    "id": "robinhood-0x63c12667638f2ae6fc6ae09b43d98ec84a8586ea"
+  },
+  "scope": "Selected NET Advance Desk and Zap, identified by publisher records and separately corroborated explorer creation/runtime evidence. Discover position IDs and public holder addresses each run; no fixed inventory, beneficial-owner inference or all-generation coverage. Borrower collateral and owed/paid are not added to Treasury/Sleeve RFV; Desk cash is not capacity. Mechanics below are conditional on the analyzed explorer bytes, not live transaction history or independently pinned code/state.",
+  "source_id": "netnet-advance-zap-bytecode-20260926",
+  "reviewed_on": "2026-09-26",
+  "implementation_evidence": {
+    "provenance": "Runtime hash, source URL, offline method and limits are in advance-interface.json runtime_evidence.zap. Function names are publisher ABI labels mapped to actual selectors and opcode branches. Synthetic replies demonstrate call/calldata paths, not real dependency execution.",
+    "bindings": "Analyzed Zap embeds fixed Desk, USDG, NET, sNET, wsNET, router, staking and House addresses. Its 14-selector dispatcher has no configuration/cap/authority setter; storage accesses are the slot-0 reentrancy guard. All entries are nonpayable. No DELEGATECALL, CALLCODE, CREATE or SELFDESTRUCT in executable runtime. These facts do not establish dependency immutability or present Desk Zap authorization.",
+    "input_receipts": "All three routes require positive input and exact inbound balance increase with canonical true transferFrom return. Transfer-tax/short-receipt inputs are rejected; this is distinct from the fee-on-transfer-compatible pool swap.",
+    "ownership_and_minimums": "All three routes call Desk.openFor(original caller,wsOut,destination,minAdvance), checking final wsOut>=minWs and forwarding minAdvance unchanged. USDG additionally requires nonzero wsOut. Desk's analyzed openFor accepts caller equal to owner or configured Zap, pulls wsNET from caller and enforces advance minimum itself. Caller identity forwarded by Zap is not proof of current allowed-Zap state."
+  },
+  "input_routes": {
+    "snet": "openWithSnet pulls sNET, calls wsNET.wrap(input), checks minWs and calls Desk.openFor. No staking warmup read, pool swap, deadline or USDG input-cap check.",
+    "net": "openWithNet requires staking.warmupEpochs()==0, pulls NET, stakes to Zap, measures actual sNET balance increase, wraps that delta, checks minWs and calls Desk.openFor. No pool swap, deadline or USDG input-cap check; Desk still imposes lending constraints.",
+    "usdg": "openWithUsdg requires input<=25000000000 raw USDG units, timestamp<=caller deadline and warmupEpochs()==0 even when inventory wins. After exact USDG receipt it computes pool then inventory quotes and executes exactly one full-input leg, never a partial inventory fill plus pool remainder. Final nonzero wsOut/minWs checks precede Desk.openFor.",
+    "usdg_cap": "Fixed per-invocation USDG input cap is 25000000000 raw units, 25000 USDG under the six-decimal convention. Not Desk capacity, an advance cap, a global/lifetime cap, or a cap on NET/sNET input. Current decimals require separate evidence.",
+    "inventory_leg": "Calls Desk.buy(full usdgIn,0), takes its returned wsOut and applies Zap's final minWs. No swap or stake on this branch; Desk.buy's local minimum is zero, not absence of final Zap slippage protection.",
+    "pool_leg": "Actual CALL at runtime byte offset 0x0d90 to fixed router 0x89e5db8b5aa49aa85ac63f691524311aeb649eba uses selector 0x5c11d795, swapExactTokensForTokensSupportingFeeOnTransferTokens(usdgIn,0,[USDG,NET],Zap,deadline). Measures positive actual NET balance delta, stakes exactly that delta, wraps actual sNET delta and applies final minWs. This is an executable user-input AMM buy branch, not a maturity collateral sale or proof every input uses the pool."
+  },
+  "quote_selection": {
+    "pool": "router.getAmountsOut(usdgIn,[USDG,NET]) supplies gross NET. adjustedNet=gross-floor(gross*500/10000), then wsNET.sNetToWs(adjustedNet) supplies wsPair. The fixed 500bps quote deduction is not a live levy getter; gross19 stays19 while gross20 becomes19. No second quote deduction is applied to measured swap proceeds.",
+    "inventory": "Requires nonzero Desk.inventory and input<=Desk.inventoryCostUsdg; equality qualifies. Then wsInventory=floor(input*10^18/Desk.buyPrice). inventoryCostUsdg is current marked inventory cost, not historical book cost; exact inventory sufficiency is enforced downstream by Desk.buy.",
+    "selection": "useInventory=(wsInventory!=0 && wsInventory>=wsPair); ties choose inventory. Both public quoteLegs and runtime route selection compute the pair quote first. Inventory is not an unconditional preference.",
+    "failures": "Router quote failure bubbles even when inventory would otherwise be viable. A reverted inventoryCostUsdg call is specifically caught and gives zero inventory quote, allowing pool selection; malformed successful returndata, other dependency failures and zero buyPrice are not universal fallbacks.",
+    "limits": "quoteLegs does not enforce the positive-input/cap/deadline/warmup opening checks. Quotes are not proof of executable outcomes, router pair behavior, actual levy enforcement, liquidity, current allowances or successful on-chain integration."
+  },
+  "recovery": "skim(token,to) is reentrancy-guarded and restricted to immutable House 0x498752d5fa0600cbd613074c151abe15b3fec7cb, snapshotted from Desk.house during creation. Requires nonzero recipient and token balance; strict-transfers the full chosen token balance held at Zap to that recipient. No token whitelist or accidental/excess-only restriction, no access to Desk-held collateral through skim, no native-asset recovery entrypoint or authority updater.",
+  "constructor_scope": "Creation bytecode checks wsNET/sNET and Desk asset bindings, derives the raw USDG cap from configured 25000 and USDG.decimals<=18, reads House and gives maximum approvals USDG->router/Desk, NET->staking, sNET->wsNET and wsNET->Desk. Constructor approvals are separate from the actual runtime swap-CALL proof; current allowances and dependency behavior were not read."
+}

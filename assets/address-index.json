@@ -77,7 +77,8 @@
   "analytics": {
     "net_usdg_v2": "assets/analytics/liquidity-routes.json",
     "predict_house": "assets/analytics/predict-routes.json",
-    "reserve_accounting": "assets/analytics/reserves-routes.json"
+    "reserve_accounting": "assets/analytics/reserves-routes.json",
+    "net_advance": "assets/analytics/advance-routes.json"
   },
   "markets": "assets/addresses/markets.json",
   "v4_pools": "assets/addresses/v4-pools.json",
@@ -85,6 +86,7 @@
   "new_family_routes": {
     "hOHM": "assets/addresses/contracts/by-name-h.json",
     "Asset Bond Desk V1/V2 and Zap": "assets/addresses/contracts/by-name-a.json",
+    "NET Advance Desk and Zap": "assets/addresses/contracts/by-name-a.json",
     "Predict HIGHER/LOWER #2": "assets/addresses/contracts/by-name-p.json",
     "website_metric_meanings": "references/website-metrics.md"
   },

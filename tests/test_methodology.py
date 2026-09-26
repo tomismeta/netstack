@@ -17,8 +17,16 @@ import netstack_methodology as methodology
 
 HTML = b'<html><script type="module" crossorigin src="/assets/current.js"></script></html>'
 # Synthetic reviewed source exercises the trust boundary, not JS execution.
-BUNDLE = (b'function principal(p){return p.amount*p.mark}function report(core,v4){return core+v4}'
-          b';u.jsx("div",{className:"label",children:"True RFV"});')
+REGISTRY = b'{alpha:{tokenId:"41",status:"HUMAN-VERIFIED",source:"synthetic"}}'
+SELECTOR = (b';function uM(){return Object.values(lM).filter(t=>t.status==="HUMAN-VERIFIED")'
+            b'.map(t=>BigInt(t.tokenId))}')
+BUNDLE = (b'const unrelated={tokenId:"999"},lM=' + REGISTRY + SELECTOR
+          + b'function positions(){return uM()}function principal(p){return p.amount*p.mark}'
+          b'function report(core,v4){return core+v4};')
+
+
+def registry_entry(key, token_id, status="HUMAN-VERIFIED"):
+    return ('%s:{tokenId:"%s",status:"%s",source:"synthetic"}' % (key, token_id, status)).encode()
 
 
 class Response:
@@ -46,14 +54,17 @@ class PublisherBoundaries(unittest.TestCase):
         profile = deepcopy(load_json("assets/analytics/reports-methodology.json"))
         profile["entry_shell_sha256"] = methodology._digest(HTML.replace(b"/assets/current.js", b"<ENTRY_BUNDLE>"))
         digest = methodology._digest(BUNDLE)
+        registry = {"registry_binding": "lM", "selector_binding": "uM"}
         profile["reviewed_bundles"] = [{"bundle_sha256": digest,
-                                       "executable_sha256": methodology._executable_fingerprint(BUNDLE),
+                                       "executable_sha256": methodology._registry_observation(BUNDLE, registry)[1],
+                                       "registry_extraction": registry,
                                        "evidence": [{"id": "test_review", "source_sha256": digest,
                                                      "excerpt": "function report(core,v4){return core+v4}"}]}]
         return profile
 
-    def collect(self, bundle=BUNDLE, html=HTML, first_response=None, profile=None):
-        responses = [first_response or Response(html, "text/html"), Response(bundle, "application/javascript")]
+    def collect(self, bundle=BUNDLE, html=HTML, first_response=None, profile=None, bundle_response=None):
+        responses = [first_response or Response(html, "text/html"),
+                     bundle_response or Response(bundle, "application/javascript")]
         ctx = self.context()
         with patch.object(methodology, "load_json", return_value=profile or self.profile()), \
                 patch.object(methodology, "_PublisherHTTPSConnection") as connection:
@@ -71,7 +82,11 @@ class PublisherBoundaries(unittest.TestCase):
         self.assertTrue(result["fetched_this_run"])
         self.assertTrue(result["v4_principal_included"])
         self.assertFalse(result["v4_fees_included"])
-        self.assertEqual(result["v4_position_scope"]["token_ids"], ["3269350"])
+        self.assertEqual(result["v4_position_scope"]["token_ids"], ["41"])
+        provenance = result["v4_position_scope"]["selection_provenance"]
+        self.assertEqual(provenance["source_sha256"], methodology._digest(BUNDLE))
+        self.assertEqual(provenance["registry_sha256"], methodology._digest(REGISTRY))
+        self.assertEqual((provenance["entry_count"], provenance["selected_count"]), (1, 1))
         self.assertEqual([row["sha256"] for row in result["sources"]],
                          [methodology._digest(HTML), methodology._digest(BUNDLE)])
         self.assertEqual(result["headline_comparison"]["status"], "unavailable")
@@ -89,10 +104,17 @@ class PublisherBoundaries(unittest.TestCase):
         self.assertFalse(unavailable["fetched_this_run"])
         self.assertEqual(unavailable["sources"], [])
         self.assertIsNone(unavailable["v4_principal_included"])
+        failed_bundle, _ = self.collect(bundle_response=Response(b"", "application/javascript", status=503))
+        self.assertEqual(failed_bundle["status"], "unavailable")
+        self.assertIsNone(failed_bundle["v4_position_scope"])
+        self.assertEqual([row["role"] for row in failed_bundle["sources"]], ["entry_html"])
 
-    def test_changed_aggregate_or_principal_is_not_certified_by_unchanged_v4_label(self):
+    def test_changed_aggregate_principal_selector_or_reader_is_not_certified(self):
         for bundle in (BUNDLE.replace(b"return core+v4", b"return core-v4"),
                        BUNDLE.replace(b"p.amount*p.mark", b"p.fees*p.mark"),
+                       BUNDLE.replace(b'Object.values(lM)', b'Object.values(unrelated)'),
+                       BUNDLE.replace(b'return uM()', b'return [999n]'),
+                       BUNDLE.replace(b'status==="HUMAN-VERIFIED"', b'status!=="HUMAN-VERIFIED"'),
                        b'const visible="True RFV V4 principal";',
                        BUNDLE+b';import("./unreviewed.js");'):
             with self.subTest(bundle=bundle):
@@ -101,16 +123,83 @@ class PublisherBoundaries(unittest.TestCase):
                 self.assertIsNone(result["v4_principal_included"])
                 self.assertEqual(result["evidence"], [])
 
-    def test_only_intrinsic_plain_text_change_preserves_recognition(self):
-        result, _ = self.collect(bundle=BUNDLE.replace(b'children:"True RFV"', b'children:"Reserve report"'))
-        self.assertEqual(result["status"], "verified")
-        self.assertEqual(result["recognition"], "reviewed_executable_fingerprint")
-        for change in (b'children:principal(p)', b'children:"True RFV",onClick:run',
-                       b'children:"True RFV\\x22"', b'children:`${report(1,2)}`'):
-            result, _ = self.collect(bundle=BUNDLE.replace(b'children:"True RFV"', change))
+    def test_registry_replacement_growth_shrink_and_empty_are_fresh_data(self):
+        for entries, expected in (
+                ([registry_entry("replacement", "72")], ["72"]),
+                ([registry_entry("second", "73"), registry_entry("first", "41")], ["73", "41"]),
+                ([registry_entry("one", "0"), registry_entry("two", str((1 << 256) - 1))],
+                 ["0", str((1 << 256) - 1)]),
+                ([registry_entry("unreviewed", "84", "PLACEHOLDER")], []),
+                ([], [])):
+            literal = b"{" + b",".join(entries) + b"}"
+            changed = BUNDLE.replace(REGISTRY, literal)
+            with self.subTest(expected=expected):
+                result, _ = self.collect(bundle=changed)
+                self.assertEqual(result["status"], "verified")
+                scope = result["v4_position_scope"]
+                self.assertEqual(scope["token_ids"], expected)
+                self.assertEqual(scope["selection_provenance"]["entry_count"], len(entries))
+                self.assertEqual(scope["selection_provenance"]["empty_selection_proved"], not expected)
+                self.assertEqual(scope["selection_provenance"]["source_sha256"], methodology._digest(changed))
+                self.assertEqual(result["recognition"], "reviewed_registry_data_fingerprint")
+
+    def test_malformed_duplicate_or_executable_registry_fails_closed(self):
+        invalid = [
+            b"{"+registry_entry("one", value)+b"}"
+            for value in ("", "-1", "+1", "01", "1.0", "1e2", "0x10", str(1 << 256))
+        ]
+        invalid.extend([
+            b"{"+registry_entry("one", "41")+b","+registry_entry("two", "41")+b"}",
+            b"{"+registry_entry("one", "41")+b","+registry_entry("one", "42")+b"}",
+            b"{"+registry_entry("__proto__", "41")+b"}",
+            REGISTRY.replace(b'"41"', b"41n"),
+            REGISTRY.replace(b'"41"', b'getPositionId()'),
+            REGISTRY.replace(b'"synthetic"', b'fetchSource()'),
+            REGISTRY.replace(b'"synthetic"', b'"synthetic",extra:run()'),
+            REGISTRY.replace(b'"synthetic"', b'"unterminated'),
+            REGISTRY[:-1]+b",}",
+            b"Object.assign({}, "+REGISTRY+b")",
+        ])
+        for literal in invalid:
+            with self.subTest(literal=literal):
+                result, _ = self.collect(bundle=BUNDLE.replace(REGISTRY, literal))
+                self.assertEqual(result["status"], "unsupported")
+                self.assertIsNone(result["v4_position_scope"])
+
+    def test_registry_ambiguity_and_limits_do_not_imply_empty_selection(self):
+        too_many = b"{" + b",".join(registry_entry("item"+str(i), str(i))
+                                     for i in range(methodology.MAX_REGISTRY_ENTRIES+1)) + b"}"
+        for changed in (
+                BUNDLE.replace(REGISTRY, too_many),
+                BUNDLE.replace(REGISTRY, b"{"+b" "*methodology.MAX_REGISTRY_BYTES+b"}"),
+                BUNDLE.replace(b'"synthetic"', b'"'+b"x"*8193+b'"'),
+                BUNDLE+b",lM={}",
+                BUNDLE+SELECTOR,
+                BUNDLE.replace(b",lM=", b",other="),
+                BUNDLE.replace(REGISTRY, b"null")):
+            result, _ = self.collect(bundle=changed)
             self.assertEqual(result["status"], "unsupported")
-        result, _ = self.collect(bundle=BUNDLE.replace(b'u.jsx("div"', b'u.jsx(Calculator'))
+            self.assertIsNone(result["v4_position_scope"])
+
+    def test_dated_bundle_evidence_is_not_current_recognition(self):
+        historical = BUNDLE.replace(b"return core+v4", b"return core")
+        profile = self.profile()
+        profile["historical_reviewed_bundles"] = [{
+            "bundle_sha256": methodology._digest(historical),
+            "executable_sha256": methodology._registry_observation(
+                historical, profile["reviewed_bundles"][0]["registry_extraction"])[1],
+        }]
+        result, _ = self.collect(bundle=historical, profile=profile)
         self.assertEqual(result["status"], "unsupported")
+        self.assertIsNone(result["v4_position_scope"])
+
+    def test_packaged_id_list_cannot_override_fresh_selection(self):
+        profile = self.profile()
+        profile["v4_position_scope"]["token_ids"] = ["72"]
+        result, calls = self.collect(profile=profile)
+        self.assertEqual(result["status"], "unsupported")
+        self.assertIsNone(result["v4_position_scope"])
+        self.assertEqual(calls, 0)
 
     def test_extra_inline_scripts_and_unreviewed_entry_envelope_fail_closed(self):
         for addition in (b'<script>changeAccounting()</script>',

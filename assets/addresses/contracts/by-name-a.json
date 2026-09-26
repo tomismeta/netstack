@@ -20,6 +20,16 @@
       "file": "assets/addresses/contracts/aapl-token-pool-and-interest-rate-model.json"
     },
     {
+      "role": "advanceDesk",
+      "aliases": ["AdvanceDesk", "NET Advance", "NET ADVANCE Desk"],
+      "file": "assets/addresses/contracts/advance-desk-and-zap.json"
+    },
+    {
+      "role": "advanceZap",
+      "aliases": ["AdvanceZap", "NET ADVANCE Zap"],
+      "file": "assets/addresses/contracts/advance-desk-and-zap.json"
+    },
+    {
       "role": "assetBondDesk V2",
       "aliases": ["assetBondDesk", "Asset Bond Desk", "hOHM Bond Desk"],
       "file": "assets/addresses/contracts/asset-bond-desk-and-zap.json"

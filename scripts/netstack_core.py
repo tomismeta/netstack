@@ -127,7 +127,7 @@ def load_json(relative_path):
 
 
 def resolve_routes(workflow):
-    if workflow not in ("liquidity", "predict", "reserves", "sleeve", "v4"):
+    if workflow not in ("liquidity", "predict", "reserves", "sleeve", "v4", "advance"):
         raise RpcError("Unknown canonical route set", kind="input")
     route = load_json("assets/analytics/" + workflow + "-routes.json")
     resolved = {"_route": route}
@@ -505,7 +505,7 @@ class _FixedHTTPSConnection(http.client.HTTPSConnection):
 
 class Context:
     def __init__(self, command, deadline=120, output=None):
-        if command not in ("lp", "predict", "house", "rfv"):
+        if command not in ("lp", "predict", "house", "rfv", "advance"):
             raise RpcError("Unknown analytics command", kind="input")
         if not isinstance(deadline, (int, float)) or not math.isfinite(deadline) or not 0 < deadline <= 600:
             raise RpcError("Deadline must be positive and at most 600 seconds", kind="input")
@@ -537,7 +537,7 @@ class Context:
         self._members = self._rows = self._raw_bytes = self._recoveries = 0
         self._retry_not_before = 0.0
         self._retry_wait_seconds = 0.0
-        self._member_limit = 750 if command == "rfv" else 250
+        self._member_limit = 750 if command in ("rfv", "advance") else 250
         self._row_limit = 50000 if command == "lp" else 10000
         self._allowed = None
         self._last_body = serialize_result(self.result)
@@ -735,9 +735,12 @@ class Context:
     def _functions(self):
         if self._allowed is None:
             allowed = {}
-            filenames = ("v2-interface.json", "predict-interface.json", "house-interface.json")
-            if self.command == "rfv":
-                filenames += ("reserves-interface.json", "sleeve-interface.json", "book-interface.json", "v4-interface.json")
+            if self.command == "advance":
+                filenames = ("advance-interface.json",)
+            else:
+                filenames = ("v2-interface.json", "predict-interface.json", "house-interface.json")
+                if self.command == "rfv":
+                    filenames += ("reserves-interface.json", "sleeve-interface.json", "book-interface.json", "v4-interface.json", "advance-interface.json")
             for filename in filenames:
                 document = load_json("assets/analytics/" + filename)
                 for key, items in document.items():

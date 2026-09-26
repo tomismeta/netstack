@@ -301,6 +301,82 @@ class SleeveLedger(unittest.TestCase):
         self.assertEqual([r["included_in_reports"] for r in c.families["v4"]["rows"]],
                          [True, False, True, False, False, False, False, False])
 
+    def test_selected_v4_owners_cannot_bypass_unreconciled_manager_inventory(self):
+        c = self.collector()
+        self.valued_v4(c)
+        c.methodology["v4_principal_included"] = True
+        c.families["v4"]["inventory"].update(ownership_complete=False, expected_owned_count=2)
+        c.publish()
+        metrics = c.ctx.result["metrics"]
+        details = metrics["component_summary"]["v4"]["details"]
+        self.assertIsNone(metrics["reports_true_rfv"]["value_wad"])
+        self.assertIsNone(details["principal"]["reports_value_wad"])
+        self.assertEqual(details["principal"]["known_priced_subtotal_wad"], str(30*WAD))
+
+    def test_unselected_v4_quantity_gap_withholds_owned_total_not_selected_publisher(self):
+        c = self.collector()
+        self.valued_v4(c, extra_position=True)
+        c.methodology["v4_principal_included"] = True
+        for row in c.families["v4"]["rows"]:
+            if row["nft_id"] == "8":
+                row["quantity_raw"] = None
+                c.values[id(row)] = c.economic_values[id(row)] = None
+        c.missing("v4", "Unselected position quantities unavailable")
+        c.finish("v4", False)
+        c.publish()
+        metrics = c.ctx.result["metrics"]
+        self.assertEqual(metrics["reports_true_rfv"]["value_wad"], str(130*WAD))
+        self.assertIsNone(metrics["component_summary"]["v4"]["details"]["principal"]["reports_value_wad"])
+        self.assertIsNone(metrics["adjusted_net_assets"]["value_wad"])
+
+    def valued_advance(self, c, missing=None, inventory=3*WAD, missing_mark=False):
+        self.valued_v4(c)
+        if missing_mark:
+            c.net_mark = None
+        state = {"house": c.owner, "usdg": c.usdg, "wsNet": c.wsnet, "sNet": c.snet,
+                 "capacity": 99_000_000, "unallocated": 7_000_000, "escrowed": 6_000_000,
+                 "inventory": inventory, "inventoryNet": 50_000_000_000, "lockedTotal": 9*WAD,
+                 "positionCount": 12, "halted": False}
+        if missing:
+            state[missing] = None
+        with patch.object(c, "many", side_effect=lambda specs: [state[method] for _, _, method, _ in specs]):
+            c.advance()
+        c.methodology["selection_policy"]["advance"] = {
+            "desk": c.families["advance"]["contract"],
+            "principal_fields": ["unallocated", "escrowed", "inventory"],
+            "usdg_decimals": 6, "wsnet_decimals": 18}
+
+    def test_advance_publisher_reserves_do_not_become_economic_assets_or_historical_recipe(self):
+        c = self.collector()
+        self.valued_advance(c)
+        c.publish()
+        metrics = c.ctx.result["metrics"]
+        self.assertEqual(metrics["reports_true_rfv"]["value_wad"], str(143*WAD))
+        self.assertEqual(metrics["reports_historical_rfv"]["value_wad"], str(100*WAD))
+        self.assertEqual(metrics["component_summary"]["advance"]["publisher"]["contribution_wad"], str(43*WAD))
+        self.assertEqual(metrics["adjusted_net_assets"]["external_asset_ledger"]["advance"]["rows"], [])
+        self.assertIsNone(metrics["adjusted_net_assets"]["value_wad"])
+        self.assertTrue(any(gap.startswith("advance:") for gap in metrics["adjusted_net_assets"]["required_missing"]))
+
+    def test_advance_missing_reader_or_binding_withholds_publisher_despite_known_cash(self):
+        for missing in ("capacity", "inventoryNet", "house"):
+            with self.subTest(missing=missing):
+                c = self.collector()
+                self.valued_advance(c, missing=missing)
+                c.publish()
+                metrics = c.ctx.result["metrics"]
+                self.assertIsNone(metrics["reports_true_rfv"]["value_wad"])
+                self.assertIn("advance", metrics["reports_true_rfv"]["required_missing"])
+                self.assertEqual(metrics["component_summary"]["advance"]["publisher"]["known_selected_subtotal_wad"], str(43*WAD))
+
+    def test_zero_advance_inventory_needs_no_mark_but_nonzero_inventory_does(self):
+        for inventory, expected in ((0, str(113*WAD)), (WAD, None)):
+            with self.subTest(inventory=inventory):
+                c = self.collector()
+                self.valued_advance(c, inventory=inventory, missing_mark=True)
+                c.publish()
+                self.assertEqual(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"], expected)
+
     def test_stale_methodology_withholds_current_total_without_blocking_economic_scope(self):
         c = self.collector()
         self.valued_v4(c)

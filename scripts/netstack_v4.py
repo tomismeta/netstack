@@ -1,5 +1,5 @@
 """Pinned V4 NFT discovery, principal and accrued fees; no valuation or wallet access."""
-from netstack_core import CHAIN_ID, ZERO, RpcError, keccak256, load_json, resolve_routes
+from netstack_core import ZERO, RpcError, keccak256, load_json, resolve_routes
 
 Q96 = 1 << 96
 Q128 = 1 << 128
@@ -89,10 +89,15 @@ def collect(ctx, sleeve):
     result = {"position_manager": pm, "pool_manager": manager, "positions": [], "missing": [],
               "ownership_complete": False, "collection_complete": False, "read_provenance": [],
               "scope": routes["_route"]["scope"], "expected_owned_count": None,
+              "observed_owned_count": 0, "ownership_status": "partial",
+              "ownership_reason": "Pinned current ownership has not been reconciled.",
+              "history_complete": False,
               "owner": sleeve, "candidates": [], "exhaustive_across_managers": False,
               "uninspected": ["Other NFT managers", "Direct PoolManager custody", "Indirect/third-party custody"],
-              "discovery": {"method": "Revalidate evidenced seeds, reconcile current ownerOf count, then bounded incoming transfers if needed.",
-                            "event_scan_required": None}}
+              "discovery": {"method": "Per-run incoming position-manager Transfer logs from 0 through the pinned block, newest first; current ownerOf cardinality reconciled with balanceOf.",
+                            "coverage_key": "v4_incoming_nfts", "event_scan_required": None,
+                            "history_complete": False, "status": "not_started",
+                            "reason": "Discovery has not started.", "candidate_limit": 128}}
     ctx.result["metrics"]["v4_positions"] = result
     coverage = ctx.result["coverage"].setdefault("v4_positions", {"collection_complete": False})
 
@@ -116,7 +121,7 @@ def collect(ctx, sleeve):
         expected = read(pm, nft_abi, "balanceOf", (sleeve,))
         result["expected_owned_count"] = expected
         if expected > 128:
-            raise RpcError("V4 owned position count exceeds collection limit", kind="coverage")
+            missing("V4 owned position count exceeds collection limit")
         candidates, owners = {}, set()
 
         def inspect(token_id, source):
@@ -133,13 +138,17 @@ def collect(ctx, sleeve):
             try:
                 row["owner"] = read(pm, nft_abi, "ownerOf", (token_id,))
             except RpcError as exc:
+                if exc.kind in ("permission", "integrity"):
+                    raise
                 row["error_kind"] = exc.kind
-                if exc.kind == "revert":
-                    row["reason"] = "ownerOf reverted; no current custody inferred from a historical NFT."
-                    return
-                raise
+                row["reason"] = ("ownerOf reverted; historical receipt does not prove current custody or a burn."
+                                 if exc.kind == "revert" else
+                                 "Pinned ownerOf is unavailable; historical receipt does not prove current custody.")
+                ctx.checkpoint()
+                return
             if row["owner"] == sleeve:
                 owners.add(token_id)
+                result["observed_owned_count"] = len(owners)
                 if len(owners) > expected:
                     raise RpcError("V4 ownerOf matches exceed pinned balanceOf", kind="integrity")
                 row.update(disposition="unpriced", reason="Pinned direct NFT ownership; position quantities not yet inspected.")
@@ -147,30 +156,20 @@ def collect(ctx, sleeve):
                 row.update(disposition="excluded", reason="Pinned ownerOf is a different custodian; no beneficial ownership inferred.")
             ctx.checkpoint()
 
-        # Dated observations are seeds, never a static owned-position list.
-        # Current ownerOf + current balanceOf cardinality proves the selected
-        # manager's direct custody without an unnecessary full history scan.
-        seeds = load_json("assets/addresses/v4-pools.json")
-        if seeds["chain_id"] != CHAIN_ID:
-            raise RpcError("V4 candidate catalog chain mismatch", kind="integrity")
-        for pool in seeds["pools"] if expected else []:
-            if pool.get("position_manager_id") != "robinhood-" + pm:
-                continue
-            for entry in pool.get("observed_positions", []):
-                if entry.get("owner_id") == "robinhood-" + sleeve and entry["mint_block_number"] <= ctx.block:
-                    inspect(int(entry["token_id"]), {"kind": "dated_catalog_seed",
-                                                     "record": "assets/addresses/v4-pools.json",
-                                                     "mint_transaction_hash": entry["mint_transaction_hash"]})
-        result["discovery"]["event_scan_required"] = len(owners) != expected
-        if len(owners) != expected:
-            result["discovery"]["coverage_key"] = "v4_incoming_nfts"
+        result["discovery"]["event_scan_required"] = expected != 0
+        if expected:
+            result["discovery"].update(status="in_progress", reason="Current ownership is not yet reconciled.")
             try:
                 for page in ctx.logs("v4_incoming_nfts", pm, nft_abi, ["Transfer"], 0, ctx.block,
                                      indexed_topics=[None, "0x" + sleeve[2:].rjust(64, "0")], newest_first=True):
-                    for event in page:
+                    # Context yields each page in canonical ascending order.
+                    # Inspect recent receipts first, including within a page.
+                    for event in reversed(page):
                         inspect(event["values"]["tokenId"], {"kind": "incoming_transfer",
                                                             "transaction_hash": event["transactionHash"],
                                                             "block": event["blockNumber"], "log_index": event["logIndex"]})
+                        if len(owners) == expected:
+                            break
                     ctx.checkpoint()
                     if len(owners) == expected:
                         event_coverage = ctx.result["coverage"].get("v4_incoming_nfts")
@@ -180,10 +179,29 @@ def collect(ctx, sleeve):
             except RpcError as exc:
                 if exc.kind in ("permission", "integrity"):
                     raise
+                result["discovery"]["failure_kind"] = exc.kind
                 missing("Bounded incoming NFT discovery: " + str(exc))
+        event_coverage = ctx.result["coverage"].get("v4_incoming_nfts", {})
+        result["history_complete"] = event_coverage.get("event_coverage_complete", False)
+        result["discovery"]["history_complete"] = result["history_complete"]
         result["ownership_complete"] = len(owners) == expected
-        if not result["ownership_complete"]:
-            missing("Current ownerOf matches do not reconcile with position-manager balanceOf")
+        if result["ownership_complete"]:
+            result["ownership_status"] = "complete"
+            result["ownership_reason"] = ("Pinned balanceOf is zero; the selected manager has no directly owned NFTs."
+                                          if expected == 0 else
+                                          "Distinct pinned ownerOf matches exactly reconcile with pinned balanceOf; no additional current NFTs can remain undiscovered at this manager.")
+            result["discovery"].update(
+                status="not_required_zero_balance" if expected == 0 else "ownership_reconciled",
+                reason=result["ownership_reason"])
+            for candidate in candidates.values():
+                if candidate["disposition"] == "ownership_unresolved":
+                    candidate.update(
+                        disposition="excluded", exclusion_basis="reconciled_current_owner_count",
+                        reason="ownerOf remains unavailable, but the exact current-owner count is already reconciled by other NFTs; this historical candidate cannot be an additional owned NFT. No burn inferred.")
+        else:
+            result["ownership_reason"] = "Current ownerOf matches do not reconcile with position-manager balanceOf; observed positions are a partial universe."
+            result["discovery"].update(status="partial", reason=result["ownership_reason"])
+            missing(result["ownership_reason"])
         for token_id in sorted(owners):
             ctx.check()
             provenance_start = len(result["read_provenance"])
@@ -236,6 +254,9 @@ def collect(ctx, sleeve):
             raise
     result["collection_complete"] = result["ownership_complete"] and not result["missing"]
     coverage.update(collection_complete=result["collection_complete"],
-                    ownership_complete=result["ownership_complete"], missing=result["missing"])
+                    ownership_complete=result["ownership_complete"], ownership_status=result["ownership_status"],
+                    ownership_reason=result["ownership_reason"], history_complete=result["history_complete"],
+                    expected_owned_count=result["expected_owned_count"],
+                    observed_owned_count=result["observed_owned_count"], missing=result["missing"])
     ctx.checkpoint()
     return result

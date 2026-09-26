@@ -16,19 +16,23 @@ from netstack_core import MAX_TOTAL_BYTES, RpcError, StopRun, load_json
 
 HOST = "app.netnet.capital"
 ENTRY_URL = "https://" + HOST + "/"
-PROFILE_ID = "reports-20260925-v4-principal"
+PROFILE_ID = "reports-20260926-dynamic-v4-registry"
 MAX_HTML_BYTES = 128 * 1024
 MAX_BUNDLE_BYTES = 2 * 1024 * 1024
 MAX_REQUESTS = 2
 MAX_SECONDS = 15.0
 _ASSET_PATH = re.compile(r"/assets/[A-Za-z0-9_-]+\.js\Z")
 _SHA256 = re.compile(r"[0-9a-f]{64}\Z")
-# Only an intrinsic React element with exactly these two literal props qualifies.
-# Do not generalize this to arbitrary children/title/className properties: those
-# can be application data. Every executable byte and all other literals remain.
-_PRESENTATIONAL_TEXT = re.compile(
-    rb'(u\.jsx\("(?:div|span|p|strong|h[1-6])",\{className:"[A-Za-z0-9 _-]{1,128}",children:")'
-    rb'[A-Za-z0-9 .,:%&!?()/_+\-]{1,160}("\}\))')
+MAX_REGISTRY_BYTES = 64 * 1024
+MAX_REGISTRY_ENTRIES = 128
+_IDENTIFIER = re.compile(r"[A-Za-z_$][A-Za-z0-9_$]{0,63}\Z")
+# This is the reviewed registry's literal object grammar, not a JS evaluator.
+# Only these data fields can vary; the selector and every byte outside the
+# object stay bound to the reviewed complete-bundle fingerprint.
+_REGISTRY_ENTRY = re.compile(
+    rb'([A-Za-z_$][A-Za-z0-9_$]{0,127}):\{tokenId:"(0|[1-9][0-9]{0,77})",'
+    rb'status:"([A-Z][A-Z0-9_-]{0,63})",source:"'
+    rb'(?:[^"\\\x00-\x1f]|\\(?:["\\/bfnrt]|u[0-9A-Fa-f]{4})){0,8192}"\}')
 
 
 def _now():
@@ -39,8 +43,58 @@ def _digest(raw):
     return hashlib.sha256(raw).hexdigest()
 
 
-def _executable_fingerprint(raw):
-    return _digest(_PRESENTATIONAL_TEXT.sub(rb'\1<PRESENTATIONAL_TEXT>\2', raw))
+def _registry_observation(raw, descriptor):
+    """Extract only the literal registry consumed by the reviewed Reports path.
+
+    A matching whole-bundle fingerprint proves this binding is still the one
+    consumed by Reports. Parsing alone is never sufficient for recognition.
+    """
+    binding = descriptor["registry_binding"].encode("ascii")
+    selector = descriptor["selector_binding"].encode("ascii")
+    prefix = b"," + binding + b"="
+    suffix = (b";function " + selector + b"(){return Object.values(" + binding
+              + b').filter(t=>t.status==="HUMAN-VERIFIED").map(t=>BigInt(t.tokenId))}')
+    if len(raw) > MAX_BUNDLE_BYTES or raw.count(prefix) != 1 or raw.count(suffix) != 1:
+        raise RpcError("Publisher V4 registry binding is ambiguous or unsupported", kind="unsupported")
+    start = raw.index(prefix) + len(prefix)
+    end = raw.index(suffix)
+    literal = raw[start:end]
+    if (not 2 <= len(literal) <= MAX_REGISTRY_BYTES
+            or not literal.startswith(b"{") or not literal.endswith(b"}")):
+        raise RpcError("Publisher V4 registry literal is unsupported", kind="unsupported")
+    try:
+        literal.decode("utf-8")
+    except UnicodeError as exc:
+        raise RpcError("Publisher V4 registry is not UTF-8", kind="unsupported") from exc
+    rows = literal[1:-1]
+    position, count = 0, 0
+    keys, ids, selected = set(), set(), []
+    while position < len(rows):
+        match = _REGISTRY_ENTRY.match(rows, position)
+        if match is None or count >= MAX_REGISTRY_ENTRIES:
+            raise RpcError("Publisher V4 registry entries are unsupported or exceed limits", kind="unsupported")
+        key, token_id, status = match.groups()
+        if key == b"__proto__" or key in keys or token_id in ids or int(token_id) >= 1 << 256:
+            raise RpcError("Publisher V4 registry contains duplicate or invalid identities", kind="unsupported")
+        keys.add(key)
+        ids.add(token_id)
+        count += 1
+        if status == b"HUMAN-VERIFIED":
+            selected.append(token_id.decode("ascii"))
+        position = match.end()
+        if position < len(rows):
+            if rows[position:position + 1] != b"," or position + 1 == len(rows):
+                raise RpcError("Publisher V4 registry separator is unsupported", kind="unsupported")
+            position += 1
+    fingerprint = _digest(raw[:start] + b"<REPORTS_V4_REGISTRY>" + raw[end:])
+    provenance = {"method": "reviewed_reports_v4_registry_v1",
+                  "registry_binding": descriptor["registry_binding"],
+                  "selector_binding": descriptor["selector_binding"],
+                  "source_sha256": _digest(raw), "registry_sha256": _digest(literal),
+                  "byte_offset": start, "byte_length": len(literal),
+                  "entry_count": count, "selected_count": len(selected),
+                  "empty_selection_proved": not selected}
+    return selected, fingerprint, provenance
 
 
 def _destination(url):
@@ -194,11 +248,11 @@ def _entry_bundle(raw, expected_shell):
 
 def _reviewed_profile():
     profile = load_json("assets/analytics/reports-methodology.json")
-    if (profile.get("schema_version") != 1 or profile.get("profile_id") != PROFILE_ID
-            or profile.get("source_id") != "netnet-reports-methodology-20260925-current"
+    if (profile.get("schema_version") != 2 or profile.get("profile_id") != PROFILE_ID
+            or profile.get("source_id") != "netnet-reports-methodology-20260926-current"
             or profile.get("entry_url") != ENTRY_URL or profile.get("v4_principal_included") is not True
             or profile.get("v4_fees_included") is not False
-            or profile.get("normalization") != "intrinsic_jsx_plain_text_v1"):
+            or profile.get("normalization") != "reviewed_reports_v4_registry_v1"):
         raise RpcError("Packaged publisher methodology profile is invalid", kind="package")
     digest = profile.get("entry_shell_sha256")
     if not isinstance(digest, str) or not _SHA256.fullmatch(digest):
@@ -212,6 +266,12 @@ def _reviewed_profile():
         for name in ("bundle_sha256", "executable_sha256"):
             if not isinstance(bundle.get(name), str) or not _SHA256.fullmatch(bundle[name]):
                 raise RpcError("Packaged publisher fingerprint is invalid", kind="package")
+        registry = bundle.get("registry_extraction")
+        if (not isinstance(registry, dict)
+                or any(not isinstance(registry.get(name), str)
+                       or not _IDENTIFIER.fullmatch(registry[name])
+                       for name in ("registry_binding", "selector_binding"))):
+            raise RpcError("Packaged publisher registry extraction is invalid", kind="package")
         evidence = bundle.get("evidence")
         if (not isinstance(evidence, list) or not evidence
                 or any(not isinstance(row, dict) or row.get("source_sha256") != bundle["bundle_sha256"]
@@ -224,7 +284,7 @@ def _reviewed_profile():
         raise RpcError("Packaged publisher accounting metadata is invalid", kind="package")
     scope = profile.get("v4_position_scope")
     if (not isinstance(scope, dict) or scope.get("selection") != "publisher_registry_allowlist"
-            or scope.get("token_ids") != ["3269350"] or scope.get("hooks") != "zero_only"
+            or "token_ids" in scope or scope.get("hooks") != "zero_only"
             or scope.get("currencies") != ["wsNET", "hOHM", "USDG"]
             or scope.get("position_manager") != "0x58daec3116aae6d93017baaea7749052e8a04fa7"
             or scope.get("owner") != "0x498752d5fa0600cbd613074c151abe15b3fec7cb"):
@@ -245,8 +305,10 @@ def collect_reports_methodology(ctx):
               "sources": [], "evidence": [], "limits": {
                   "max_requests": MAX_REQUESTS, "max_html_bytes": MAX_HTML_BYTES,
                   "max_bundle_bytes": MAX_BUNDLE_BYTES, "max_seconds": MAX_SECONDS,
+                  "max_registry_bytes": MAX_REGISTRY_BYTES, "max_registry_entries": MAX_REGISTRY_ENTRIES,
                   "redirects": False, "browser_or_javascript_execution": False,
-                  "numerical_website_inputs": False, "recognition_scope": "reviewed executable fingerprint only",
+                  "numerical_website_inputs": False,
+                  "recognition_scope": "reviewed complete bundle with bounded Reports registry data extraction",
                   "current_source_not_pinned_chain_fact": True,
                   "not_independent_contract_audit": True},
               "usage": {"requests": 0, "bytes_received": 0},
@@ -262,19 +324,28 @@ def collect_reports_methodology(ctx):
         bundle = _fetch(ctx, bundle_url, MAX_BUNDLE_BYTES, "entry_bundle", result, end)
         result["fetched_this_run"] = True
         actual = _digest(bundle)
-        matched = next((row for row in profile["reviewed_bundles"] if actual == row["bundle_sha256"]), None)
-        recognition = "reviewed_bundle_sha256"
+        matched = None
+        for reviewed in profile["reviewed_bundles"]:
+            try:
+                token_ids, fingerprint, selection_provenance = _registry_observation(
+                    bundle, reviewed["registry_extraction"])
+            except RpcError:
+                continue
+            if actual == reviewed["bundle_sha256"] or fingerprint == reviewed["executable_sha256"]:
+                matched = reviewed
+                break
         if matched is None:
-            fingerprint = _executable_fingerprint(bundle)
-            matched = next((row for row in profile["reviewed_bundles"]
-                            if fingerprint == row["executable_sha256"]), None)
-            recognition = "reviewed_executable_fingerprint"
-        if matched is None:
-            raise RpcError("Current publisher calculation is not recognized; static review is required", kind="unsupported")
+            raise RpcError("Current publisher calculation or V4 registry is not recognized; static review is required",
+                           kind="unsupported")
+        recognition = ("reviewed_bundle_sha256" if actual == matched["bundle_sha256"]
+                       else "reviewed_registry_data_fingerprint")
+        selection_provenance["source_url"] = bundle_url
+        scope = {**profile["v4_position_scope"], "token_ids": token_ids,
+                 "selection_provenance": selection_provenance}
         ctx.check()
         result.update(status="verified", reviewed_at=profile["reviewed_at"], profile_id=PROFILE_ID,
                       recognition=recognition, v4_principal_included=True, v4_fees_included=False,
-                      v4_position_scope=profile["v4_position_scope"], evidence=matched["evidence"],
+                      v4_position_scope=scope, evidence=matched["evidence"],
                       source_id=profile["source_id"], selection_policy=profile["selection_policy"],
                       valuation_conventions=profile["valuation_conventions"],
                       accounting_caveats=profile["accounting_caveats"])

@@ -74,7 +74,8 @@ def parser():
     for command, help_text in (("lp", "NET/USDG v2 LP holders, flows and conditional gross fees"),
                                ("predict", "selected Predict Desk series and observed trading flows"),
                                ("house", "selected House Vault accounts, queues and observed cash flows"),
-                               ("rfv", "reconciled Core RFV and RPC-backed Sleeve asset accounting")):
+                               ("rfv", "reconciled Core RFV and RPC-backed Sleeve asset accounting"),
+                               ("advance", "NET Advance positions, holders, totals, capacity and parameters")):
         child = commands.add_parser(command, help=help_text, description=help_text)
         child.add_argument("--deadline", type=positive_seconds, default=120.0, metavar="SECONDS",
                            help="whole-process walltime, including a 2-second serialization reserve (default: 120; maximum: 600)")
@@ -88,6 +89,9 @@ def parser():
         if command == "predict":
             child.add_argument("--series", type=series_id, metavar="ID",
                                help="single-series pinned snapshot only; no logs, history or quote (default: all series and history)")
+        if command == "advance":
+            child.add_argument("--view", choices=("positions", "holders", "totals", "capacity", "params"), default="totals",
+                               help="requested pinned evidence view (default: totals); capacity/params do not enumerate positions")
         if command == "rfv":
             child.add_argument("--scope", choices=("core", "reports", "net-assets"), default="core",
                                help="Core reserves, publisher Reports composition, or adjusted net assets (default: core)")
@@ -109,8 +113,11 @@ def _provenance(ctx):
     version = load_json("release-manifest.json").get("version")
     files = {}
     modules = ["analytics.py", "netstack_core.py"]
-    modules.extend(("netstack_reserves.py", "netstack_sleeve.py", "netstack_v4.py", "netstack_discovery.py", "netstack_methodology.py", "netstack_output.py") if ctx.command == "rfv"
-                   else ("netstack_lp.py",) if ctx.command == "lp" else ("netstack_markets.py",))
+    if ctx.command == "advance":
+        modules.append("netstack_advance.py")
+    else:
+        modules.extend(("netstack_reserves.py", "netstack_sleeve.py", "netstack_v4.py", "netstack_discovery.py", "netstack_methodology.py", "netstack_output.py") if ctx.command == "rfv"
+                       else ("netstack_lp.py",) if ctx.command == "lp" else ("netstack_markets.py",))
     for name in modules:
         ctx.check()
         try:
@@ -123,6 +130,11 @@ def _provenance(ctx):
         files["scripts/" + name] = hashlib.sha256(data).hexdigest()
     ctx.result["provenance"] = {"package_version": version, "runtime_sha256": files,
                                 "meaning": "Hashes identify the local code used; they are not an authenticity or deployed-contract verification claim."}
+    if ctx.command == "advance":
+        interface = load_json("assets/analytics/advance-interface.json")
+        ctx.result["provenance"]["analysis"] = {
+            "source_url": interface["source_url"], "source_sha256": interface["source_sha256"],
+            "disclaimer": "Unofficial independent Netstack analysis; not a NetNet publication. The founder has not confirmed this analysis. The cited bundle supplies the reviewed interface; chain observations require a successful pinned snapshot."}
 
 
 def _pending_coverage(value):
@@ -198,12 +210,14 @@ def main(argv=None):
                 from netstack_markets import run_predict as run
             elif args.command == "rfv":
                 from netstack_reserves import run
+            elif args.command == "advance":
+                from netstack_advance import run
             else:
                 from netstack_markets import run_house as run
             run(ctx, args)
             ctx.check()
             ctx.recheck()
-            requested = result["coverage"].get("requested_scope") if args.command == "rfv" else None
+            requested = result["coverage"].get("requested_scope") if args.command in ("rfv", "advance") else None
             incomplete = (not requested.get("collection_complete", False) if requested is not None
                           else bool(result["errors"] or _pending_coverage(result["coverage"])))
             if incomplete:
