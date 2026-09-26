@@ -6,6 +6,7 @@ import socket
 import sys
 import tempfile
 import time
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -13,6 +14,8 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import netstack_core as core
 import netstack_discovery as discovery
+import netstack_lp as lp
+import netstack_markets as markets
 
 ADDRESS = '0x' + '11' * 20
 TX = '0x' + 'aa' * 32
@@ -139,6 +142,70 @@ class CollectorIntegrity(unittest.TestCase):
             self.ctx.calls([(ADDRESS, self.abi, 'totalSupply', ()), (ADDRESS, self.abi, 'kLast', ())])
         self.assertEqual(failure.exception.kind, 'permission')
         self.assertEqual(self.ctx._exchange_once.call_count, 1)
+
+    def test_later_terminal_member_overrides_ordinary_error_and_latches(self):
+        self.responses.extend([core.RpcError('Unavailable history', kind='pruned'),
+                               core.RpcError('Forbidden', kind='permission')])
+        specs = [(ADDRESS, self.abi, 'totalSupply', ()), (ADDRESS, self.abi, 'kLast', ())]
+        with self.assertRaises(core.RpcError) as failure:
+            self.ctx.calls(specs)
+        self.assertEqual(failure.exception.kind, 'permission')
+        with self.assertRaises(core.RpcError) as later:
+            self.ctx.call(*specs[0])
+        self.assertEqual(later.exception.kind, 'permission')
+        self.assertEqual(self.ctx._exchange_once.call_count, 1)
+
+    def test_integrity_failure_during_retry_is_terminal(self):
+        self.responses.extend([core.RpcError('Busy', kind='transient', retryable=True),
+                               core.RpcError('Conflicting response', kind='integrity')])
+        with patch.object(core.time, 'sleep'):
+            with self.assertRaises(core.RpcError) as failure:
+                self.ctx._rpc('eth_chainId', [])
+        self.assertEqual(failure.exception.kind, 'integrity')
+        with self.assertRaises(core.RpcError) as later:
+            self.ctx._rpc('eth_chainId', [])
+        self.assertEqual(later.exception.kind, 'integrity')
+        self.assertEqual(self.ctx._exchange_once.call_count, 2)
+
+
+class TerminalDenials(unittest.TestCase):
+    def test_http_denial_stops_batch_getter_and_log_fallbacks(self):
+        for path in ('lp_batch', 'market_getters', 'market_logs'):
+            with self.subTest(path=path):
+                requests = []
+                class Denied:
+                    status = 403
+                    def request(self, method, endpoint, body, headers):
+                        requests.append(json.loads(body))
+                    def getresponse(self):
+                        return self
+                    def close(self):
+                        pass
+                ctx = core.Context('lp' if path == 'lp_batch' else 'predict', deadline=30)
+                ctx.block, ctx.timestamp = 100, 1000000
+                abi = core.load_json('assets/analytics/v2-interface.json')['pair_abi']
+                target = core.resolve_routes('liquidity')['pair']['address']
+                try:
+                    with patch.object(core, '_FixedHTTPSConnection', side_effect=lambda *a, **kw: Denied()):
+                        with self.assertRaises(core.RpcError) as failure:
+                            if path == 'lp_batch':
+                                collector = lp._LP(ctx, SimpleNamespace(since_days=7))
+                                collector._fetch([('supply', (target, abi, 'totalSupply', ())),
+                                                  ('kLast', (target, abi, 'kLast', ()))], {})
+                            elif path == 'market_getters':
+                                markets._getters(ctx, target, abi, ('totalSupply', 'kLast'), {})
+                            else:
+                                markets._scan(ctx, 'events', target, abi, ('Transfer',), 99,
+                                              lambda page: self.fail('Denied scan must not consume pages'))
+                        self.assertEqual(failure.exception.kind, 'permission')
+                        with self.assertRaises(core.RpcError) as later:
+                            ctx._rpc('eth_chainId', [])
+                        self.assertEqual(later.exception.kind, 'permission')
+                    self.assertEqual(len(requests), 1)
+                    if path == 'market_logs':
+                        self.assertFalse(ctx.result['coverage']['events']['event_coverage_complete'])
+                finally:
+                    ctx.close()
 
 
 class RetryBudgets(unittest.TestCase):

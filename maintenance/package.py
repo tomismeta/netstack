@@ -19,8 +19,8 @@ import zipfile
 
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "scripts"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(ROOT / "scripts"))
 from netstack_package import (MANIFEST, MAX_FILE_BYTES, MAX_FILES, MAX_MANIFEST_BYTES, MAX_TOTAL_BYTES,
                               build_manifest, manifest_bytes, open_directory, read_package,
                               repository_only, runtime_path, validate_files, verify_files)

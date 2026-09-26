@@ -534,6 +534,7 @@ class Context:
         self._observed_positions = {}
         self._observed_logs = {}
         self._integrity_invalid = False
+        self._terminal_error = None
         self._output_fd = None
         self._output_name = None
         self._receipts = {}
@@ -589,6 +590,8 @@ class Context:
     def check(self):
         if self._stopped:
             raise StopRun(self._stopped)
+        if self._terminal_error is not None:
+            raise self._terminal_error
         if self._integrity_invalid:
             raise RpcError("Previously observed chain identities conflict; retrieval is invalid", kind="integrity")
         if time.monotonic() >= self._collect_end:
@@ -976,6 +979,7 @@ class Context:
             self._arm()
 
     def _exchange(self, requests, accept=None):
+        self.check()
         if not 1 <= len(requests) <= 20:
             raise RpcError("RPC batch size must be 1..20", kind="input")
         for attempt in range(2):
@@ -983,6 +987,9 @@ class Context:
                 results = self._exchange_once(requests)
                 break
             except RpcError as exc:
+                if exc.kind in ("permission", "integrity"):
+                    self._terminal_error = exc
+                    raise
                 if attempt or not exc.retryable or self._recoveries >= 10:
                     raise
                 self._recover(exc)
@@ -1002,6 +1009,11 @@ class Context:
                     results[index] = exc
             if accept is not None:
                 accept(results)
+        terminal = next((value for value in results
+                         if isinstance(value, RpcError) and value.kind in ("permission", "integrity")), None)
+        if terminal is not None:
+            self._terminal_error = terminal
+            raise terminal
         return results
 
     def _rpc(self, method, params):

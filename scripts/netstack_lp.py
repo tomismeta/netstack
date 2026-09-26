@@ -167,7 +167,9 @@ class _LP:
         self._publish()
 
     def _error(self, scope, error):
-        self.ctx.result["errors"].append({"scope": scope, "error": str(error)})
+        if error.kind in ("permission", "integrity"):
+            raise error
+        self.ctx.result["errors"].append({"scope": scope, "error": str(error), "kind": error.kind})
 
     def _fetch(self, requests, destination, block=None):
         """Retain successful batch members even if one archive read fails."""
@@ -175,7 +177,9 @@ class _LP:
             part = requests[offset:offset + 20]
             try:
                 values = self.ctx.calls([spec for _, spec in part], block=block)
-            except RpcError:
+            except RpcError as error:
+                if error.kind in ("permission", "integrity"):
+                    raise
                 for key, spec in part:
                     try:
                         destination[key] = self.ctx.call(*spec, block=block)

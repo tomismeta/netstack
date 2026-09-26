@@ -263,6 +263,7 @@ def main(argv=None):
     # A useful partial collection can still confirm B when retrieval failed
     # without cancellation or permission denial. Never restart after a stop.
     if (ctx is not None and ctx.block is not None and ctx._stopped is None
+            and ctx._terminal_error is None
             and result["snapshot"].get("recheck_status") == "not_performed"
             and not any(isinstance(error, dict) and error.get("kind") == "permission"
                         for error in result["errors"])):

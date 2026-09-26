@@ -266,6 +266,22 @@ class ReviewedCommitExports(unittest.TestCase):
         self.assertEqual(integrity.verify_files(integrity.read_package(output))["manifest_sha256"], report["manifest_sha256"])
         self.assertFalse((output / "tests").exists())
 
+    def test_excluded_maintenance_modules_cannot_shadow_runtime_verifiers(self):
+        marker = self.parent / "shadow-executed"
+        shadow = ("from pathlib import Path\nPath(" + repr(str(marker)) +
+                  ").write_text('executed')\nraise SystemExit(99)\n").encode()
+        write_files(self.root, {
+            "maintenance/package.py": (ROOT / "maintenance/package.py").read_bytes(),
+            "maintenance/content.py": (ROOT / "maintenance/content.py").read_bytes(),
+            "maintenance/netstack_package.py": shadow,
+            "maintenance/netstack_core.py": shadow,
+        })
+        result = subprocess.run([sys.executable, "-I", "-B", str(self.root / "maintenance/package.py"), "verify"],
+                                capture_output=True, text=True, timeout=30)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertFalse(marker.exists())
+        self.assertEqual(json.loads(result.stdout)["version"], self.version)
+
     def test_export_receipt_binds_reviewed_commit_and_exact_bytes_without_host_paths(self):
         output = self.parent / "installed"
         with patch.dict(os.environ, {"USER": "receipt-user-a", "HOSTNAME": "receipt-host-a.example"}), \

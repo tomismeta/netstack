@@ -37,7 +37,10 @@ def _raw(value):
 
 
 def _problem(ctx, scope, error):
-    ctx.result["errors"].append({"scope": scope, "error": str(error)})
+    kind = error.kind if isinstance(error, RpcError) else "evidence"
+    if kind in ("permission", "integrity"):
+        raise error
+    ctx.result["errors"].append({"scope": scope, "error": str(error), "kind": kind})
 
 
 def _optional(ctx, address, abi, method, args=(), block=None):
