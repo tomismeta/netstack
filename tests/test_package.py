@@ -268,7 +268,11 @@ class ReviewedCommitExports(unittest.TestCase):
 
     def test_export_receipt_binds_reviewed_commit_and_exact_bytes_without_host_paths(self):
         output = self.parent / "installed"
-        report = packaging.export_package(self.root, self.commit, output)
+        with patch.dict(os.environ, {"USER": "receipt-user-a", "HOSTNAME": "receipt-host-a.example"}), \
+                patch("getpass.getuser", return_value="receipt-user-a"), \
+                patch("socket.gethostname", return_value="receipt-host-a.example"), \
+                patch("time.time", return_value=1700000000):
+            report = packaging.export_package(self.root, self.commit, output)
         receipt_path = self.parent / "installed.receipt.json"
         self.assertEqual(report["output"], str(output))
         self.assertEqual(report["receipt"], str(receipt_path))
@@ -276,7 +280,8 @@ class ReviewedCommitExports(unittest.TestCase):
         self.assertEqual(set(receipt), {"commit", "version", "manifest_sha256", "runtime_sha256", "note"})
         self.assertEqual(receipt["commit"], self.commit)
         self.assertEqual(receipt["version"], self.version)
-        self.assertFalse(any(str(self.parent) in value for value in receipt.values()))
+        for private_value in (str(self.parent), "receipt-user-a", "receipt-host-a.example", "1700000000"):
+            self.assertNotIn(private_value, receipt_path.read_text())
         self.assertEqual(receipt["manifest_sha256"],
                          hashlib.sha256((output / integrity.MANIFEST).read_bytes()).hexdigest())
         runtime = sorted(path for path in self.source if path == "SKILL.md"
@@ -286,7 +291,11 @@ class ReviewedCommitExports(unittest.TestCase):
         self.assertEqual(receipt["runtime_sha256"], digest)
         self.assertEqual(integrity.read_package(output), self.source)
         relocated = self.parent / "relocated"
-        second_report = packaging.export_package(self.root, self.commit, relocated)
+        with patch.dict(os.environ, {"USER": "receipt-user-b", "HOSTNAME": "receipt-host-b.example"}), \
+                patch("getpass.getuser", return_value="receipt-user-b"), \
+                patch("socket.gethostname", return_value="receipt-host-b.example"), \
+                patch("time.time", return_value=1800000000):
+            second_report = packaging.export_package(self.root, self.commit, relocated)
         self.assertEqual(second_report["output"], str(relocated))
         self.assertEqual(second_report["receipt"], str(self.parent / "relocated.receipt.json"))
         self.assertEqual(Path(second_report["receipt"]).read_bytes(), receipt_path.read_bytes())

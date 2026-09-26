@@ -45,6 +45,11 @@ def _amount_fields(raw, role, decimals):
 def prepare_result(result):
     """One presentation contract for every checkpoint, including pre-RPC failures."""
     metrics, snapshot = result.get("metrics", {}), result.get("snapshot", {})
+    coverage = result.setdefault("coverage", {})
+    coverage.setdefault("collection_complete", False)
+    for key in ("required_missing", "supplemental_missing"):
+        if coverage.get(key) is None:
+            coverage[key] = []
     reads = metrics.get("read_provenance", [])
     block = snapshot.get("block_number")
     context = metrics.get("read_context", {})
@@ -182,12 +187,12 @@ def run(ctx, args):
         "read_context": {"block": ctx.block, "rpc_origin": "https://" + RPC_HOST},
         "tokens": {}, "identity": {}, "params": {}, "capacity": {}, "balances": [],
         "positions": [], "holders": [], "totals": None,
-        "read_provenance": [], "required_missing": required,
-        "supplemental_missing": supplemental,
+        "read_provenance": [],
     })
     coverage = ctx.result["coverage"]
     requested = coverage["requested_scope"] = {"scope": view, "collection_complete": False}
-    coverage["collection_complete"] = False
+    coverage.update(collection_complete=False, required_missing=required,
+                    supplemental_missing=supplemental)
 
     def gap(scope, message, needed=True, kind="unavailable"):
         record = {"scope": scope, "reason": str(message), "kind": kind}
@@ -233,8 +238,7 @@ def run(ctx, args):
         return True
 
     def finish():
-        requested.update(collection_complete=not required,
-                         required_missing=required, supplemental_missing=supplemental)
+        requested.update(collection_complete=not required)
         coverage["collection_complete"] = requested["collection_complete"]
         ctx.checkpoint()
 

@@ -198,7 +198,6 @@ def summarize_advance(text, checkpoint_status="not_requested", checkpoint_ref=No
     scope = metrics.get("scope", {})
     view = scope.get("view")
     coverage = full.get("coverage", {})
-    requested = coverage.get("requested_scope", {})
     result = {key: full[key] for key in (
         "schema_version", "command", "status", "stopping_reason", "snapshot", "verification")
         if key in full}
@@ -220,14 +219,15 @@ def summarize_advance(text, checkpoint_status="not_requested", checkpoint_ref=No
             amounts = values.get("amounts", {})
             if values:
                 projected[family] = {
-                    key: amounts.get(key, value) for key, value in values.items()
+                    ("desk_halted" if family == "capacity" and key == "halted" else key): amounts.get(key, value)
+                    for key, value in values.items()
                     if key not in ("amounts", "interpretation", "halt_scope",
                                    "balance_interpretation", "zap_halted")}
         # Interrupted getters can precede publication of their derived metric.
         # Retain those observations without repeating per-read block/RPC metadata.
         incomplete = (full.get("status") != "completed"
                       or coverage.get("collection_complete") is not True
-                      or metrics.get("required_missing") or metrics.get("supplemental_missing"))
+                      or coverage.get("required_missing") or coverage.get("supplemental_missing"))
         if incomplete and metrics.get("read_provenance"):
             projected["reads"] = [
                 {key: value for key, value in row.items() if key not in ("context_reference", "block")}
@@ -240,21 +240,11 @@ def summarize_advance(text, checkpoint_status="not_requested", checkpoint_ref=No
         # Position/holder totals and incomplete event accounting are not a
         # presentation ledger: retain them, including unknown future fields.
         projected = {key: value for key, value in metrics.items()
-                     if key not in ("scope", "provenance", "required_missing", "supplemental_missing")}
+                     if key not in ("scope", "provenance")}
         result["not_proven"] = full.get("not_proven", [])
         omissions.remove("not_proven")
     result["metrics"] = projected
-    result["coverage"] = {
-        "collection_complete": coverage.get("collection_complete"),
-        "requested_scope": requested,
-        "required_missing": metrics.get("required_missing", requested.get("required_missing", [])),
-        "supplemental_missing": metrics.get("supplemental_missing", requested.get("supplemental_missing", [])),
-        **{key: value for key, value in coverage.items()
-           if key not in ("collection_complete", "requested_scope")},
-    }
-    result["coverage"]["requested_scope"] = {
-        key: value for key, value in requested.items()
-        if key not in ("required_missing", "supplemental_missing")}
+    result["coverage"] = coverage
     result["errors"] = full.get("errors", [])
     result["output_detail"] = {
         "mode": "summary", "omissions": omissions,

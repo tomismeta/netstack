@@ -137,6 +137,9 @@ class AdvanceAccounting(unittest.TestCase):
         self.assertIsNone(amounts["lockedTotal"]["formatted"])
         self.assertIsNone(amounts["lockedTotal"]["display"])
         self.assertFalse(full["coverage"]["collection_complete"])
+        self.assertEqual([gap["scope"] for gap in full["coverage"]["required_missing"]],
+                         ["decimals:" + ctx.routes["wsnet"]["address"]])
+        self.assertEqual(full["coverage"]["supplemental_missing"], [])
 
     def test_full_checkpoint_requires_getters_at_the_selected_block_for_observed_state(self):
         result = {"command": "advance", "snapshot": {"block_number": 20}, "metrics": {
@@ -268,7 +271,8 @@ class AdvanceAccounting(unittest.TestCase):
         result = ctx.run("capacity")
         self.assertIsNone(result["tokens"]["net"]["name"])
         self.assertTrue(ctx.result["coverage"]["requested_scope"]["collection_complete"])
-        self.assertTrue(result["supplemental_missing"])
+        self.assertEqual([gap["scope"] for gap in ctx.result["coverage"]["supplemental_missing"]],
+                         ["name:" + ctx.routes["net"]["address"]])
 
     def test_missing_decimals_never_becomes_hardcoded_token_scale(self):
         ctx = SyntheticContext()

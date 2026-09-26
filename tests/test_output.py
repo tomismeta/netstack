@@ -15,6 +15,7 @@ import analytics
 import netstack_core as core
 import netstack_output as output
 from cli_fixture import Fixture
+from test_advance import SyntheticContext
 
 
 def document(metrics, status="completed"):
@@ -133,6 +134,7 @@ class AdvanceSummary(unittest.TestCase):
         metrics = value["metrics"]
         metrics.setdefault("scope", {"view": "capacity"})
         value["coverage"] = {"collection_complete": complete,
+                             "required_missing": [], "supplemental_missing": [],
                              "requested_scope": {"scope": metrics["scope"]["view"],
                                                  "collection_complete": complete}}
         return json.dumps(value)
@@ -159,7 +161,7 @@ class AdvanceSummary(unittest.TestCase):
         summary = json.loads(output.summarize_advance(full))
         for key, value in amounts.items():
             self.assertEqual(summary["metrics"]["capacity"][key], value)
-        self.assertFalse(summary["metrics"]["capacity"]["halted"])
+        self.assertFalse(summary["metrics"]["capacity"]["desk_halted"])
         self.assertEqual(summary["metrics"]["params"]["MIN_LOCK_NET"], minimum)
         self.assertEqual(summary["metrics"]["params"]["TERM"], 2592000)
         self.assertEqual(summary["verification"], json.loads(full)["verification"])
@@ -177,9 +179,9 @@ class AdvanceSummary(unittest.TestCase):
                 value = json.loads(self.full({
                     "scope": {"view": "capacity", "desk": "desk"},
                     "capacity": {"capacity": 31, "inventory": None},
-                    "supplemental_missing": [gap],
                     "read_provenance": [observed, unpublished, failed]}, status, complete))
                 value["errors"] = [{"scope": "inventory", "error": "RPC failed", "required": False}]
+                value["coverage"]["supplemental_missing"] = [gap]
                 summary = json.loads(output.summarize_advance(core.serialize_result(value)))
                 retained = summary["metrics"]["reads"]
                 self.assertEqual(retained[1]["getter"], "treasuryOwed")
@@ -233,8 +235,28 @@ class AdvanceSummary(unittest.TestCase):
             self.assertEqual(summary["output_detail"]["full_evidence"]["checkpoint_status"], "saved")
             self.assertTrue(summary["output_detail"]["full_evidence"]["available"])
             self.assertEqual(summary["output_detail"]["full_evidence"]["checkpoint_ref"], str(path))
-            self.assertLess(len(stdout.getvalue()), len(path.read_text()) // 2)
+            self.assertEqual(summary["coverage"], saved["coverage"])
+            self.assertLessEqual(len(stdout.getvalue().encode("utf-8")), 4096)
 
+
+    def test_capacity_summary_stays_within_operator_budget_but_never_truncates_errors(self):
+        ctx = SyntheticContext()
+        ctx.command = "advance"
+        ctx.result.update(command="advance", snapshot={"block_number": ctx.block})
+        analytics._provenance(ctx)
+        ctx.run("capacity")
+        ctx.result.update(status="completed", stopping_reason="completed_requested_collection")
+        full = core.serialize_result(ctx.result)
+        summary = output.summarize_advance(full)
+        self.assertLessEqual(len(summary.encode("utf-8")), 4096)
+        self.assertEqual(json.loads(summary)["coverage"], json.loads(full)["coverage"])
+        ctx.result["status"] = "partial"
+        ctx.result["errors"] = [
+            {"scope": "position:" + str(i), "kind": "unavailable", "error": "Missing pinned state"}
+            for i in range(100)]
+        summary = output.summarize_advance(core.serialize_result(ctx.result))
+        self.assertGreater(len(summary.encode("utf-8")), 4096)
+        self.assertEqual(json.loads(summary)["errors"], ctx.result["errors"])
 
 class InterruptedProjection(unittest.TestCase):
     def test_projection_stop_keeps_actual_checkpoint_failure_document_not_pruned_tree(self):
