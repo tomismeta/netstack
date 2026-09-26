@@ -72,6 +72,30 @@ def _aggregate(rows, complete):
     }
 
 
+def provenance(ctx):
+    """Resolve catalog identity and evidence locally; never observe chain state."""
+    routes = resolve_routes("advance")
+    contracts = {role: routes[role] for role in ("desk", "zap")}
+    source_ids = {entry["source_id"] for record in contracts.values()
+                  for entry in record["provenance"]}
+    sources = {entry["id"]: entry for entry in load_json("assets/sources.json")["sources"]
+               if entry["id"] in source_ids}
+    if source_ids != sources.keys():
+        raise RpcError("Advance catalog source references are incomplete", kind="package")
+    ctx.result["metrics"] = {
+        "scope": {"view": "provenance", "chain_id": CHAIN_ID,
+                  "evidence_kind": "offline_catalog", "selected_deployment_only": True},
+        "contracts": contracts, "sources": sources,
+        "provenance": {"reference": "/provenance/analysis"},
+    }
+    ctx.result["coverage"].update(
+        collection_complete=True,
+        requested_scope={"scope": "provenance", "collection_complete": True})
+    ctx.result["not_proven"].append(
+        "Offline catalog lookup: no network requests, current code/state verification or proof of the host-loaded revision.")
+    ctx.checkpoint()
+
+
 def run(ctx, args):
     view = args.view
     if view not in ("positions", "holders", "totals", "capacity", "params"):
@@ -86,13 +110,8 @@ def run(ctx, args):
         "scope": {"chain_id": CHAIN_ID, "desk": desk, "zap": zap,
                   "view": view, "snapshot_block": ctx.block,
                   "selected_deployment_only": True, "limits": routes["_route"]["scope"]},
-        "provenance": {
-            "source_id": interface["source_id"], "source_url": interface["source_url"],
-            "source_sha256": interface["source_sha256"],
-            "reviewed_on": interface["reviewed_on"],
-            "runtime_evidence": interface["runtime_evidence"],
-            "disclaimer": "Unofficial Netstack analysis from pinned reads, publisher ABI labels and separately scoped explorer-bytecode analysis; not a NetNet publication or founder confirmation. This collection checks code presence and pointers, not equality to the analyzed runtime hash.",
-        },
+        "provenance": {"reference": "/provenance/analysis"},
+        "read_context": {"block": ctx.block, "rpc_origin": "https://" + RPC_HOST},
         "tokens": {}, "identity": {}, "params": {}, "capacity": {}, "balances": [],
         "positions": [], "holders": [], "totals": None,
         "read_provenance": [], "required_missing": required,
@@ -119,7 +138,7 @@ def run(ctx, args):
 
     def read(address, abi, method, arguments=(), needed=True):
         entry = {"contract": address, "getter": method, "arguments": list(arguments),
-                 "block": ctx.block, "rpc_origin": "https://" + RPC_HOST,
+                 "context_reference": "/metrics/read_context",
                  "status": "not_observed"}
         metrics["read_provenance"].append(entry)
         try:
@@ -132,12 +151,14 @@ def run(ctx, args):
             ctx.checkpoint()
             return None
         entry.update(status="observed", value=value)
+        ctx.result.setdefault("verification", {})["live_state_observed"] = True
+        ctx.result["verification"]["analyzed_runtime_match"] = "not_checked"
         ctx.checkpoint()
         return value
 
     def code(address):
-        entry = {"contract": address, "getter": "eth_getCode", "block": ctx.block,
-                 "rpc_origin": "https://" + RPC_HOST, "status": "not_observed"}
+        entry = {"contract": address, "getter": "eth_getCode",
+                 "context_reference": "/metrics/read_context", "status": "not_observed"}
         metrics["read_provenance"].append(entry)
         try:
             present = ctx.code(address) not in ("0x", "0x0", "0x00")

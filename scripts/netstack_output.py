@@ -1,5 +1,7 @@
-"""RFV-only stdout projection of an already finalized, JSON-safe checkpoint."""
+"""Opt-in stdout projections of already finalized, JSON-safe checkpoints."""
 import json
+
+from netstack_core import amount
 
 
 def _encode(value):
@@ -187,5 +189,134 @@ def summarize_rfv(text, checkpoint_status="not_requested"):
     detail["omissions"] = omissions
     detail["references"] = "summary_reference is a JSON Pointer into this document; indices select rows in original order and field_aliases map duplicate names to retained names. No reference is an additional asset."
     detail["partial_read_policy"] = "Raw reads and incomplete per-item ledgers are retained on partial/failed collections because derived amounts may not yet have been published."
+    result["output_detail"] = detail
+    return _encode(result) + "\n"
+
+
+def _integer(value):
+    if type(value) is int:
+        return value
+    if isinstance(value, str) and value.removeprefix("-").isascii() and value.removeprefix("-").isdigit():
+        return int(value)
+    return None
+
+
+def _advance_amount(raw, role, tokens):
+    decimals = _integer(tokens.get(role, {}).get("decimals"))
+    quantity = _integer(raw)
+    formatted = None
+    if quantity is not None and decimals is not None and 0 <= decimals <= 255:
+        formatted = amount(quantity, decimals)
+    return {"raw": raw, "token": role, "decimals": decimals, "formatted": formatted}
+
+
+def summarize_advance(text, checkpoint_status="not_requested"):
+    """Present pinned Advance evidence without changing its full checkpoint.
+
+    Preserve position/holder accounting and all incomplete read evidence. Only
+    successful reads already published in another field can be omitted.
+    """
+    result = json.loads(text)
+    metrics = result.get("metrics", {})
+    snapshot = result.get("snapshot", {})
+    scope = metrics.get("scope", {})
+    tokens = metrics.get("tokens", {})
+    reads = metrics.get("read_provenance", [])
+    omissions = []
+
+    def pinned(row):
+        context = (metrics.get("read_context", {})
+                   if isinstance(row, dict) and row.get("context_reference") == "/metrics/read_context" else {})
+        return (isinstance(row, dict) and row.get("status") == "observed"
+                and "error" not in row and "error_kind" not in row
+                and row.get("contract") is not None and row.get("getter") is not None
+                and snapshot.get("block_number") is not None
+                and row.get("block", context.get("block")) == snapshot["block_number"])
+
+    verification = {
+        **result.get("verification", {}),
+        "live_state_observed": any(
+            pinned(row) and row["getter"] != "eth_getCode" and row.get("value") is not None
+            for row in reads),
+        "live_state_scope": "Successful pinned getter observations only; not a claim of complete coverage.",
+        "analyzed_runtime_match": "not_checked",
+        "runtime_caveat": "Code presence and pointers do not match pinned runtime to the separately analyzed explorer code or prove settlement.",
+        "zap_halted": {"status": "unknown", "value": None,
+                       "reason": "Reviewed Zap ABI exposes no separate halted getter; Desk halted is not Zap halt state."},
+    }
+    # Keep verification near the beginning without discarding unknown envelope fields.
+    result["verification"] = verification
+    result = {key: result[key] for key in (
+        "schema_version", "command", "status", "stopping_reason", "snapshot", "verification")
+        if key in result} | result
+
+    def represented(row):
+        if not pinned(row) or "value" not in row or row["value"] is None:
+            return False
+        address, getter, value = row["contract"], row["getter"], row["value"]
+        arguments = row.get("arguments", [])
+        if not arguments:
+            identity = metrics.get("identity", {}).get(address, {})
+            if getter in identity and identity[getter] == value:
+                return True
+            for token in tokens.values():
+                if token.get("address") == address and getter in ("decimals", "symbol", "name"):
+                    return getter in token and token[getter] == value
+            for family in ("params", "capacity"):
+                expected = scope.get("zap") if getter == "ZAP_CAP_USDG" else scope.get("desk")
+                if address == expected and getter in metrics.get(family, {}):
+                    return metrics[family][getter] == value
+        if getter == "balanceOf":
+            return any(row.get("token") == address and arguments == [row.get("holder")]
+                       and row.get("raw") == value for row in metrics.get("balances", []))
+        if getter == "position":
+            return any(arguments == [row.get("position_id")] and row.get("raw_position") == value
+                       for row in metrics.get("positions", []))
+        return False
+
+    complete = (result.get("status") == "completed"
+                and result.get("coverage", {}).get("collection_complete") is True
+                and not metrics.get("required_missing"))
+    if complete and reads:
+        retained = [row for row in reads if not represented(row)]
+        omitted = len(reads) - len(retained)
+        if omitted:
+            metrics["read_provenance"] = retained
+            omissions.append({"path": "/metrics/read_provenance",
+                              "kind": "successful_reads_published_in_metrics", "entry_count": omitted})
+
+    units = {
+        "capacity": {"capacity": "usdg", "maxAdvance": "usdg", "unallocated": "usdg",
+                     "escrowed": "usdg", "inventory": "wsnet", "inventoryNet": "net",
+                     "lockedTotal": "wsnet", "treasuryOwed": "usdg", "ZAP_CAP_USDG": "usdg"},
+        "params": {"MAX_ADVANCE_PER_POSITION": "usdg", "MIN_LOCK_NET": "net"},
+    }
+    for family, fields in units.items():
+        values = metrics.get(family, {})
+        if values:
+            values["amounts"] = {name: _advance_amount(values[name], role, tokens)
+                                 for name, role in fields.items() if name in values}
+    for balance in metrics.get("balances", []):
+        balance["formatted"] = _advance_amount(balance.get("raw"), balance.get("token_role"), tokens)["formatted"]
+    if metrics.get("capacity"):
+        metrics["capacity"]["zap_halted"] = None
+
+    for provenance, path in (
+        (result.get("provenance", {}).get("analysis", {}), "/provenance/analysis"),
+        (metrics.get("provenance", {}), "/metrics/provenance"),
+    ):
+        runtime = provenance.get("runtime_evidence")
+        if isinstance(runtime, dict):
+            provenance["runtime_evidence"] = {
+                key: value for key, value in runtime.items() if key not in ("method", "limits")}
+            provenance["runtime_evidence"]["caveat"] = verification["runtime_caveat"]
+            for role in ("desk", "zap"):
+                reference = provenance["runtime_evidence"].get(role)
+                if isinstance(reference, dict) and "locator" in reference:
+                    del reference["locator"]
+            omissions.append({"path": path + "/runtime_evidence", "kind": "runtime_analysis_narrative"})
+    detail = _detail("summary", checkpoint_status)
+    detail["omissions"] = omissions
+    detail["partial_read_policy"] = "Failed reads and partial-only observations are retained; successful reads are omitted only when published elsewhere in these metrics and collection is complete."
     result["output_detail"] = detail
     return _encode(result) + "\n"

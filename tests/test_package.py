@@ -266,6 +266,88 @@ class ReviewedCommitExports(unittest.TestCase):
         self.assertEqual(integrity.verify_files(integrity.read_package(output))["manifest_sha256"], report["manifest_sha256"])
         self.assertFalse((output / "tests").exists())
 
+    def test_export_receipt_binds_reviewed_commit_and_exact_installed_bytes(self):
+        output = self.parent / "installed"
+        report = packaging.export_package(self.root, self.commit, output)
+        receipt_path = self.parent / "installed.receipt.json"
+        self.assertEqual(report["receipt"], str(receipt_path))
+        receipt = json.loads(receipt_path.read_bytes())
+        self.assertEqual(receipt["status"], "exported")
+        self.assertEqual(receipt["commit"], self.commit)
+        self.assertEqual(receipt["version"], self.version)
+        self.assertEqual(receipt["output"], str(output))
+        self.assertEqual(receipt["manifest_sha256"],
+                         hashlib.sha256((output / integrity.MANIFEST).read_bytes()).hexdigest())
+        runtime = sorted(path for path in self.source if path == "SKILL.md"
+                         or path.startswith(("assets/", "references/", "scripts/")))
+        digest = hashlib.sha256(b"".join(path.encode() + b"\0" + (output / path).read_bytes()
+                                        for path in runtime)).hexdigest()
+        self.assertEqual(receipt["runtime_sha256"], digest)
+        self.assertEqual(integrity.read_package(output), self.source)
+
+    def test_existing_receipt_file_directory_and_symlinks_refuse_export(self):
+        output = self.parent / "installed"
+        receipt = self.parent / "installed.receipt.json"
+        victim = self.parent / "keep"
+        victim.write_bytes(b"preserve")
+        for kind in ("file", "directory", "symlink", "dangling"):
+            with self.subTest(kind=kind):
+                if kind == "file":
+                    receipt.write_bytes(b"old receipt")
+                elif kind == "directory":
+                    receipt.mkdir()
+                else:
+                    receipt.symlink_to(victim if kind == "symlink" else self.parent / "absent")
+                with self.assertRaises(FileExistsError):
+                    packaging.export_package(self.root, self.commit, output)
+                self.assertFalse(output.exists())
+                self.assertEqual(victim.read_bytes(), b"preserve")
+                if kind == "file":
+                    self.assertEqual(receipt.read_bytes(), b"old receipt")
+                elif kind in {"symlink", "dangling"}:
+                    self.assertTrue(receipt.is_symlink())
+                if kind == "directory":
+                    receipt.rmdir()
+                else:
+                    receipt.unlink()
+        self.assertEqual(sorted(path.name for path in self.parent.iterdir()), ["keep", "reviewed"])
+
+    def test_receipt_publication_race_preserves_competing_symlink_and_cleans_export(self):
+        output = self.parent / "installed"
+        receipt = self.parent / "installed.receipt.json"
+        victim = self.parent / "keep"
+        victim.write_bytes(b"preserve")
+        original = packaging._write_file
+
+        def competing_receipt(directory, name, raw):
+            original(directory, name, raw)
+            if name.startswith(".netstack-receipt-"):
+                receipt.symlink_to(victim)
+
+        with patch.object(packaging, "_write_file", side_effect=competing_receipt):
+            with self.assertRaises(FileExistsError):
+                packaging.export_package(self.root, self.commit, output)
+        self.assertFalse(output.exists())
+        self.assertTrue(receipt.is_symlink())
+        self.assertEqual(victim.read_bytes(), b"preserve")
+        self.assertEqual(sorted(path.name for path in self.parent.iterdir()),
+                         ["installed.receipt.json", "keep", "reviewed"])
+
+    def test_partial_receipt_write_removes_staging_and_export(self):
+        output = self.parent / "installed"
+        original = packaging._write_file
+
+        def disk_failure(directory, name, raw):
+            if name.startswith(".netstack-receipt-"):
+                original(directory, name, raw[:100])
+                raise OSError("synthetic partial receipt write failure")
+            original(directory, name, raw)
+
+        with patch.object(packaging, "_write_file", side_effect=disk_failure):
+            with self.assertRaises(OSError):
+                packaging.export_package(self.root, self.commit, output)
+        self.assertEqual(sorted(path.name for path in self.parent.iterdir()), ["reviewed"])
+
     def test_archives_are_exact_sorted_normalized_and_worktree_independent(self):
         first, second = self.parent / "one.zip", self.parent / "two.zip"
         packaging.archive_package(self.root, self.commit, first)
@@ -347,6 +429,7 @@ class ReviewedCommitExports(unittest.TestCase):
 
         def disk_failure(directory, name, raw):
             if name == "SKILL.md":
+                self.assertTrue((self.parent / "incomplete.receipt.json").is_file())
                 raise OSError("synthetic disk failure before discovery")
             original(directory, name, raw)
 

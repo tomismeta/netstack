@@ -25,7 +25,7 @@ BLOCK_HASH = "0x" + "bb" * 32
 OTHER_HASH = "0x" + "cc" * 32
 SCENARIOS = (
     "success", "read-failure", "reconciliation-mismatch", "header-mismatch",
-    "header-unavailable", "stop", "deadline", "checkpoint-failure", "predict",
+    "header-unavailable", "stop", "deadline", "checkpoint-failure", "predict", "offline",
 )
 
 
@@ -66,7 +66,7 @@ class Fixture:
         self.triggers = {}
         if scenario == "predict":
             self.predict()
-        else:
+        elif scenario != "offline":
             self.reserves()
 
     def add(self, address, signature, result, args=(), trigger=None):
@@ -199,6 +199,7 @@ class Fixture:
         return dict(envelope, result=result)
 
     def connection(self, host, port, *, timeout, context):
+        require(self.scenario != "offline", "Offline command attempted RPC transport")
         require(host == core.RPC_HOST and port == 443 and timeout > 0,
                 "Unexpected transport destination")
         return Connection(self)

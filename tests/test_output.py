@@ -1,4 +1,4 @@
-"""RFV presentation boundaries: missing evidence, exact units and finalization."""
+"""Presentation boundaries: missing evidence, exact units and finalization."""
 from contextlib import redirect_stdout
 import io
 import json
@@ -119,6 +119,136 @@ class SummaryAccounting(unittest.TestCase):
         self.assertFalse(sleeve["reads"]["unavailable_entries"][1]["has_code"])
         self.assertEqual(sleeve["components"]["credit"]["markets"]["unpriced"]["debt_raw"], "7")
         self.assertEqual(sleeve["components"]["credit"]["missing"], ["Unresolved debt"])
+
+
+class AdvanceSummary(unittest.TestCase):
+    def full(self, metrics, status="completed", complete=True):
+        value = json.loads(document(metrics, status))
+        value["command"] = "advance"
+        value["coverage"] = {"collection_complete": complete,
+                             "requested_scope": {"scope": metrics.get("scope", {}).get("view", "capacity"),
+                                                 "collection_complete": complete}}
+        return core.serialize_result(value)
+
+    def test_exact_token_units_preserve_large_integers_without_float_rounding(self):
+        huge = "123456789012345678901234567890123456789"
+        full = self.full({
+            "tokens": {"usdg": {"decimals": 6}, "wsnet": {"decimals": 18},
+                       "net": {"decimals": 9}, "snet": {"decimals": 3}},
+            "capacity": {"capacity": 5538443, "maxAdvance": huge, "inventory": huge,
+                         "inventoryNet": huge, "escrowed": 0, "treasuryOwed": 1, "halted": False},
+            "params": {"MIN_LOCK_NET": 1, "MAX_ADVANCE_PER_POSITION": 5538443, "TERM": 2592000},
+            "balances": [{"token_role": "snet", "raw": huge}]})
+        summary = json.loads(output.summarize_advance(full))
+        capacity = summary["metrics"]["capacity"]
+        self.assertEqual(capacity["amounts"]["capacity"]["formatted"], "5.538443")
+        self.assertEqual(capacity["amounts"]["maxAdvance"]["formatted"],
+                         "123456789012345678901234567890123.456789")
+        self.assertEqual(capacity["amounts"]["inventory"]["formatted"],
+                         "123456789012345678901.234567890123456789")
+        self.assertEqual(capacity["amounts"]["inventoryNet"]["formatted"],
+                         "123456789012345678901234567890.123456789")
+        self.assertEqual(capacity["amounts"]["escrowed"]["formatted"], "0.000000")
+        self.assertEqual(capacity["amounts"]["treasuryOwed"]["formatted"], "0.000001")
+        self.assertEqual(capacity["maxAdvance"], huge)
+        self.assertFalse(capacity["halted"])
+        self.assertIsNone(capacity["zap_halted"])
+        self.assertEqual(summary["metrics"]["balances"][0]["formatted"],
+                         "123456789012345678901234567890123456.789")
+        self.assertEqual(summary["metrics"]["params"]["amounts"]["MIN_LOCK_NET"]["formatted"], "0.000000001")
+        self.assertEqual(json.loads(full)["metrics"]["capacity"]["maxAdvance"], huge)
+        self.assertNotIn("amounts", json.loads(full)["metrics"]["capacity"])
+
+    def test_missing_decimals_never_borrow_another_token_scale_or_balance_default(self):
+        summary = json.loads(output.summarize_advance(self.full({
+            "tokens": {"usdg": {"decimals": None}, "net": {"decimals": 0}},
+            "capacity": {"capacity": 5538443, "inventory": 1, "inventoryNet": 17,
+                         "maxAdvance": None},
+            "balances": [{"token_role": "snet", "raw": 1, "decimals": 18}]})))
+        amounts = summary["metrics"]["capacity"]["amounts"]
+        for name in ("capacity", "inventory", "maxAdvance"):
+            self.assertIsNone(amounts[name]["formatted"])
+        self.assertEqual(amounts["inventoryNet"]["formatted"], "17")
+        self.assertIsNone(summary["metrics"]["balances"][0]["formatted"])
+
+    def test_live_verification_requires_pinned_getter_not_code_or_runtime_metadata(self):
+        code = {"contract": "desk", "getter": "eth_getCode", "status": "observed",
+                "block": 10, "code_present": True}
+        getter = {"contract": "desk", "getter": "halted", "status": "observed",
+                  "context_reference": "/metrics/read_context", "value": False}
+        for rows, context, observed in (
+            ([code], {"block": 10}, False),
+            ([getter], {"block": 11}, False),
+            ([{**getter, "status": "unavailable", "value": None}], {"block": 10}, False),
+            ([getter], {"block": 10}, True),
+        ):
+            with self.subTest(rows=rows, context=context):
+                result = json.loads(output.summarize_advance(self.full({
+                    "read_context": context, "read_provenance": rows})))
+                self.assertIs(result["verification"]["live_state_observed"], observed)
+                self.assertEqual(result["verification"]["analyzed_runtime_match"], "not_checked")
+                self.assertEqual(result["verification"]["zap_halted"]["status"], "unknown")
+
+    def test_partial_and_failed_reads_survive_even_when_requested_collection_completes(self):
+        observed = {"contract": "desk", "getter": "capacity", "status": "observed",
+                    "value": 31, "context_reference": "/metrics/read_context"}
+        unpublished = {**observed, "getter": "treasuryOwed", "value": 7}
+        failed = {**observed, "getter": "inventory", "status": "unavailable",
+                  "value": None, "error_kind": "rpc"}
+        for status, complete in (("partial", False), ("completed", False), ("completed", True)):
+            with self.subTest(status=status, complete=complete):
+                value = json.loads(self.full({
+                    "scope": {"desk": "desk"}, "read_context": {"block": 10},
+                    "capacity": {"capacity": 31, "inventory": None},
+                    "supplemental_missing": [{"scope": "inventory", "reason": "RPC failed"}],
+                    "read_provenance": [observed, unpublished, failed]}, status, complete))
+                value["errors"] = [{"scope": "inventory", "error": "RPC failed", "required": False}]
+                summary = json.loads(output.summarize_advance(core.serialize_result(value)))
+                retained = summary["metrics"]["read_provenance"]
+                self.assertIn(unpublished, retained)
+                self.assertIn(failed, retained)
+                self.assertEqual(observed in retained, not (status == "completed" and complete))
+                self.assertEqual(summary["errors"], value["errors"])
+                self.assertEqual(summary["coverage"], value["coverage"])
+                self.assertEqual(summary["metrics"]["supplemental_missing"],
+                                 value["metrics"]["supplemental_missing"])
+
+    def test_noncapacity_scope_preserves_owner_destination_and_partial_subtotals(self):
+        metrics = {
+            "scope": {"view": "holders"},
+            "positions": [{"owner": "owner", "destination": "different-destination",
+                           "raw_position": {"closed": True, "owed": 1151, "paid": 1151},
+                           "original_advance_usdg_raw": 1001, "repaid_usdg_raw": None,
+                           "observed_repaid_event_subtotal_usdg_raw": 51,
+                           "realized_profit_usdg_raw": None, "history_complete": False}],
+            "holders": [{"owner": "owner", "ownership_scope": "Not necessarily destination",
+                         "inventory_complete": False, "totals": {"paid_raw": None},
+                         "observed_subtotals": {"paid_raw": 1151}}],
+            "totals": {"inventory_complete": False, "totals": {"paid_raw": None}},
+            "event_history": {"complete": False, "events": [{"event": "Repaid", "raw": {"usdg": 51}}]}}
+        summary = json.loads(output.summarize_advance(self.full(metrics, "partial", False)))
+        for key in ("positions", "holders", "totals", "event_history"):
+            self.assertEqual(summary["metrics"][key], metrics[key])
+
+    def test_offline_summary_output_checkpoint_retains_full_runtime_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory).resolve() / "advance.json"
+            stdout = io.StringIO()
+            with patch.object(analytics, "_PROCESS_STARTED", time.monotonic()), redirect_stdout(stdout):
+                status = analytics.main(["advance", "provenance", "--detail", "summary",
+                                         "--output", str(path)])
+            saved = json.loads(path.read_text())
+            summary = json.loads(stdout.getvalue())
+            self.assertEqual(status, 0)
+            self.assertIn("method", saved["provenance"]["analysis"]["runtime_evidence"])
+            self.assertNotIn("method", summary["provenance"]["analysis"]["runtime_evidence"])
+            for role in ("desk", "zap"):
+                for key in ("source_id", "source_url", "runtime_keccak256"):
+                    self.assertEqual(summary["provenance"]["analysis"]["runtime_evidence"][role][key],
+                                     saved["provenance"]["analysis"]["runtime_evidence"][role][key])
+            self.assertFalse(summary["verification"]["live_state_observed"])
+            self.assertNotIn("output_detail", saved)
+            self.assertEqual(summary["output_detail"]["full_evidence"]["checkpoint_status"], "saved")
 
 
 class InterruptedProjection(unittest.TestCase):

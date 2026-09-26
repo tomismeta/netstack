@@ -21,7 +21,7 @@ import re
 import select
 
 from netstack_core import Context, RpcError, SERIALIZATION_RESERVE, StopRun, load_json, serialize_result
-from netstack_output import full_fallback, summarize_rfv
+from netstack_output import full_fallback, summarize_advance, summarize_rfv
 
 
 class ArgumentError(Exception):
@@ -90,11 +90,14 @@ def parser():
             child.add_argument("--series", type=series_id, metavar="ID",
                                help="single-series pinned snapshot only; no logs, history or quote (default: all series and history)")
         if command == "advance":
+            child.add_argument("action", nargs="?", choices=("provenance",),
+                               help="offline Desk/Zap catalog provenance; no RPC calls")
             child.add_argument("--view", choices=("positions", "holders", "totals", "capacity", "params"), default="totals",
                                help="requested pinned evidence view (default: totals); capacity/params do not enumerate positions")
         if command == "rfv":
             child.add_argument("--scope", choices=("core", "reports", "net-assets"), default="core",
                                help="Core reserves, publisher Reports composition, or adjusted net assets (default: core)")
+        if command in ("rfv", "advance"):
             child.add_argument("--detail", choices=("summary", "full"), default="full",
                                help="stdout evidence detail (default: full); --output always preserves full checkpoints")
         child.add_argument("--json", action="store_true", help="emit machine-readable JSON (also the default)")
@@ -114,7 +117,7 @@ def _provenance(ctx):
     files = {}
     modules = ["analytics.py", "netstack_core.py"]
     if ctx.command == "advance":
-        modules.append("netstack_advance.py")
+        modules.extend(("netstack_advance.py", "netstack_output.py"))
     else:
         modules.extend(("netstack_reserves.py", "netstack_sleeve.py", "netstack_v4.py", "netstack_discovery.py", "netstack_methodology.py", "netstack_output.py") if ctx.command == "rfv"
                        else ("netstack_lp.py",) if ctx.command == "lp" else ("netstack_markets.py",))
@@ -133,8 +136,12 @@ def _provenance(ctx):
     if ctx.command == "advance":
         interface = load_json("assets/analytics/advance-interface.json")
         ctx.result["provenance"]["analysis"] = {
-            "source_url": interface["source_url"], "source_sha256": interface["source_sha256"],
-            "disclaimer": "Unofficial independent Netstack analysis; not a NetNet publication. The founder has not confirmed this analysis. The cited bundle supplies the reviewed interface; chain observations require a successful pinned snapshot."}
+            "interface": {key: interface[key] for key in
+                          ("source_id", "source_url", "source_sha256", "reviewed_on")},
+            "runtime_evidence": interface["runtime_evidence"],
+            "meaning": "Unofficial independent catalog analysis, not a NetNet publication or current runtime match. Source IDs and JSON Pointer references identify evidence, not extra observations."}
+        ctx.result["verification"] = {"live_state_observed": False,
+                                      "analyzed_runtime_match": "not_checked"}
 
 
 def _pending_coverage(value):
@@ -178,6 +185,9 @@ def main(argv=None):
     ctx = None
     try:
         args = parser().parse_args(argv)
+        if (args.command == "advance" and args.action == "provenance"
+                and (args.view != "totals" or args.block != "latest-2")):
+            raise ArgumentError("Offline provenance cannot select a live view or block")
     except ArgumentError as exc:
         sys.stdout.write(serialize_result(_failure(None, str(exc))))
         return 1
@@ -203,20 +213,25 @@ def main(argv=None):
             if args.output is not None:
                 ctx._open_output_parent()
             _provenance(ctx)
-            ctx.pin(args.block)
-            if args.command == "lp":
-                from netstack_lp import run
-            elif args.command == "predict":
-                from netstack_markets import run_predict as run
-            elif args.command == "rfv":
-                from netstack_reserves import run
-            elif args.command == "advance":
-                from netstack_advance import run
+            offline = args.command == "advance" and args.action == "provenance"
+            if offline:
+                from netstack_advance import provenance
+                provenance(ctx)
             else:
-                from netstack_markets import run_house as run
-            run(ctx, args)
-            ctx.check()
-            ctx.recheck()
+                ctx.pin(args.block)
+                if args.command == "lp":
+                    from netstack_lp import run
+                elif args.command == "predict":
+                    from netstack_markets import run_predict as run
+                elif args.command == "rfv":
+                    from netstack_reserves import run
+                elif args.command == "advance":
+                    from netstack_advance import run
+                else:
+                    from netstack_markets import run_house as run
+                run(ctx, args)
+                ctx.check()
+                ctx.recheck()
             requested = result["coverage"].get("requested_scope") if args.command in ("rfv", "advance") else None
             incomplete = (not requested.get("collection_complete", False) if requested is not None
                           else bool(result["errors"] or _pending_coverage(result["coverage"])))
@@ -291,11 +306,12 @@ def main(argv=None):
         exit_code = 2
         # Reuse a valid aggregate body without repeating expensive serialization.
         text = ctx.partial_json(ctx._stopped or "deadline_exhausted") if ctx is not None else serialize_result(result)
-    if args.command == "rfv" and args.detail == "summary":
+    if args.command in ("rfv", "advance") and args.detail == "summary":
         try:
             # Finalization can reuse an older valid checkpoint or add an output
             # error. Project exactly that document, not the mutable ctx.result.
-            text = summarize_rfv(text, checkpoint_status)
+            project = summarize_advance if args.command == "advance" else summarize_rfv
+            text = project(text, checkpoint_status)
         except (StopRun, KeyboardInterrupt) as exc:
             exit_code = 2
             reason = exc.reason if isinstance(exc, StopRun) else "interrupted_by_SIGINT"

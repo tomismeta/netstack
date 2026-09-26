@@ -24,6 +24,27 @@ class AnalyticsCLI(unittest.TestCase):
         self.assertEqual(process.stderr, b"", process.stderr.decode("utf-8", "replace"))
         return process, json.loads(process.stdout)
 
+    def test_advance_provenance_is_offline_and_not_live_verification(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory).resolve() / "provenance.json"
+            process = subprocess.run(
+                [sys.executable, "-I", "-B", str(FIXTURE), "offline",
+                 "advance", "provenance", "--json", "--output", str(output)],
+                capture_output=True, timeout=15)
+            self.assertEqual(process.returncode, 0, process.stderr)
+            report = json.loads(process.stdout)
+            self.assertEqual(output.read_bytes(), process.stdout)
+            self.assertFalse(report["verification"]["live_state_observed"])
+            self.assertEqual(report["verification"]["analyzed_runtime_match"], "not_checked")
+            self.assertEqual(report["snapshot"], {})
+            contracts = report["metrics"]["contracts"]
+            self.assertEqual(set(contracts), {"desk", "zap"})
+            self.assertNotEqual(contracts["desk"]["address"], contracts["zap"]["address"])
+            for record in contracts.values():
+                self.assertEqual(record["live_chain_verification_status"], "not_performed")
+                for evidence in record["provenance"]:
+                    self.assertIn(evidence["source_id"], report["metrics"]["sources"])
+
     def assert_confirmed(self, report):
         snapshot = report["snapshot"]
         self.assertEqual(snapshot["chain_id"], 4663)

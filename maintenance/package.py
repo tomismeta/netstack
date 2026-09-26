@@ -203,15 +203,33 @@ def export_package(root, commit, output):
     files = committed_files(root, commit)
     report = verify_package(files)
     destination, parent = _destination(output)
+    receipt = destination.with_name(destination.name + ".receipt.json")
+    temporary = ".netstack-receipt-" + uuid.uuid4().hex
+    report.update(status="exported", commit=commit.lower(), output=str(destination),
+                  receipt=str(receipt))
     directory = None
     created = False
+    receipt_created = False
     try:
+        try:
+            os.stat(receipt.name, dir_fd=parent, follow_symlinks=False)
+        except FileNotFoundError:
+            pass
+        else:
+            raise FileExistsError("receipt destination already exists: " + str(receipt))
         reviewed_head(root, commit)
         os.mkdir(destination.name, mode=0o700, dir_fd=parent)
         created = True
         directory = os.open(destination.name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=parent)
-        # SKILL.md is the discovery marker and is written only after every other member.
+        # Publish the complete receipt before SKILL.md makes the package discoverable.
         for path in sorted(files, key=lambda path: (path == "SKILL.md", path)):
+            if path == "SKILL.md":
+                raw = (json.dumps(report, indent=2) + "\n").encode("utf-8")
+                _write_file(parent, temporary, raw)
+                os.link(temporary, receipt.name, src_dir_fd=parent, dst_dir_fd=parent,
+                        follow_symlinks=False)
+                receipt_created = True
+                os.unlink(temporary, dir_fd=parent)
             descriptor = os.dup(directory)
             try:
                 parts = path.split("/")
@@ -228,16 +246,21 @@ def export_package(root, commit, output):
                 os.close(descriptor)
         os.fchmod(directory, 0o755)
     except BaseException:
+        if receipt_created:
+            os.unlink(receipt.name, dir_fd=parent)
         if directory is not None:
             _remove_contents(directory)
         if created:
             os.rmdir(destination.name, dir_fd=parent)
         raise
     finally:
+        try:
+            os.unlink(temporary, dir_fd=parent)
+        except FileNotFoundError:
+            pass
         if directory is not None:
             os.close(directory)
         os.close(parent)
-    report.update(status="exported", commit=commit.lower(), output=str(destination))
     return report
 
 
