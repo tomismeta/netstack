@@ -1,8 +1,6 @@
 """Opt-in stdout projections of already finalized, JSON-safe checkpoints."""
 import json
 
-from netstack_core import amount
-
 
 def _encode(value):
     # The input was serialized by netstack_core already: do not copy its entire
@@ -193,130 +191,90 @@ def summarize_rfv(text, checkpoint_status="not_requested"):
     return _encode(result) + "\n"
 
 
-def _integer(value):
-    if type(value) is int:
-        return value
-    if isinstance(value, str) and value.removeprefix("-").isascii() and value.removeprefix("-").isdigit():
-        return int(value)
-    return None
-
-
-def _advance_amount(raw, role, tokens):
-    decimals = _integer(tokens.get(role, {}).get("decimals"))
-    quantity = _integer(raw)
-    formatted = None
-    if quantity is not None and decimals is not None and 0 <= decimals <= 255:
-        formatted = amount(quantity, decimals)
-    return {"raw": raw, "token": role, "decimals": decimals, "formatted": formatted}
-
-
-def summarize_advance(text, checkpoint_status="not_requested"):
-    """Present pinned Advance evidence without changing its full checkpoint.
-
-    Preserve position/holder accounting and all incomplete read evidence. Only
-    successful reads already published in another field can be omitted.
-    """
-    result = json.loads(text)
-    metrics = result.get("metrics", {})
-    snapshot = result.get("snapshot", {})
+def summarize_advance(text, checkpoint_status="not_requested", checkpoint_ref=None):
+    """Project finalized Advance observations; never infer or reformat evidence."""
+    full = json.loads(text)
+    metrics = full.get("metrics", {})
     scope = metrics.get("scope", {})
-    tokens = metrics.get("tokens", {})
-    reads = metrics.get("read_provenance", [])
-    omissions = []
-
-    def pinned(row):
-        context = (metrics.get("read_context", {})
-                   if isinstance(row, dict) and row.get("context_reference") == "/metrics/read_context" else {})
-        return (isinstance(row, dict) and row.get("status") == "observed"
-                and "error" not in row and "error_kind" not in row
-                and row.get("contract") is not None and row.get("getter") is not None
-                and snapshot.get("block_number") is not None
-                and row.get("block", context.get("block")) == snapshot["block_number"])
-
-    verification = {
-        **result.get("verification", {}),
-        "live_state_observed": any(
-            pinned(row) and row["getter"] != "eth_getCode" and row.get("value") is not None
-            for row in reads),
-        "live_state_scope": "Successful pinned getter observations only; not a claim of complete coverage.",
-        "analyzed_runtime_match": "not_checked",
-        "runtime_caveat": "Code presence and pointers do not match pinned runtime to the separately analyzed explorer code or prove settlement.",
-        "zap_halted": {"status": "unknown", "value": None,
-                       "reason": "Reviewed Zap ABI exposes no separate halted getter; Desk halted is not Zap halt state."},
-    }
-    # Keep verification near the beginning without discarding unknown envelope fields.
-    result["verification"] = verification
-    result = {key: result[key] for key in (
+    view = scope.get("view")
+    coverage = full.get("coverage", {})
+    requested = coverage.get("requested_scope", {})
+    result = {key: full[key] for key in (
         "schema_version", "command", "status", "stopping_reason", "snapshot", "verification")
-        if key in result} | result
-
-    def represented(row):
-        if not pinned(row) or "value" not in row or row["value"] is None:
-            return False
-        address, getter, value = row["contract"], row["getter"], row["value"]
-        arguments = row.get("arguments", [])
-        if not arguments:
-            identity = metrics.get("identity", {}).get(address, {})
-            if getter in identity and identity[getter] == value:
-                return True
-            for token in tokens.values():
-                if token.get("address") == address and getter in ("decimals", "symbol", "name"):
-                    return getter in token and token[getter] == value
-            for family in ("params", "capacity"):
-                expected = scope.get("zap") if getter == "ZAP_CAP_USDG" else scope.get("desk")
-                if address == expected and getter in metrics.get(family, {}):
-                    return metrics[family][getter] == value
-        if getter == "balanceOf":
-            return any(row.get("token") == address and arguments == [row.get("holder")]
-                       and row.get("raw") == value for row in metrics.get("balances", []))
-        if getter == "position":
-            return any(arguments == [row.get("position_id")] and row.get("raw_position") == value
-                       for row in metrics.get("positions", []))
-        return False
-
-    complete = (result.get("status") == "completed"
-                and result.get("coverage", {}).get("collection_complete") is True
-                and not metrics.get("required_missing"))
-    if complete and reads:
-        retained = [row for row in reads if not represented(row)]
-        omitted = len(reads) - len(retained)
-        if omitted:
-            metrics["read_provenance"] = retained
-            omissions.append({"path": "/metrics/read_provenance",
-                              "kind": "successful_reads_published_in_metrics", "entry_count": omitted})
-
-    units = {
-        "capacity": {"capacity": "usdg", "maxAdvance": "usdg", "unallocated": "usdg",
-                     "escrowed": "usdg", "inventory": "wsnet", "inventoryNet": "net",
-                     "lockedTotal": "wsnet", "treasuryOwed": "usdg", "ZAP_CAP_USDG": "usdg"},
-        "params": {"MAX_ADVANCE_PER_POSITION": "usdg", "MIN_LOCK_NET": "net"},
+        if key in full}
+    result["scope"] = {key: value for key, value in scope.items() if key != "limits"}
+    omissions = ["provenance", "resources", "not_proven", "verbose metric metadata"]
+    projected = {}
+    if view == "provenance":
+        projected["contracts"] = {
+            role: {"address": record["address"], "evidence": [
+                {key: entry[key] for key in ("evidence_kind", "source_id") if key in entry}
+                for entry in record.get("provenance", [])]}
+            for role, record in metrics.get("contracts", {}).items()}
+        projected["sources"] = {
+            source_id: source["url"] for source_id, source in metrics.get("sources", {}).items()}
+        omissions.append("full catalog records and source narratives")
+    elif view in ("capacity", "params"):
+        for family in ("capacity", "params"):
+            values = metrics.get(family, {})
+            amounts = values.get("amounts", {})
+            if values:
+                projected[family] = {
+                    key: amounts.get(key, value) for key, value in values.items()
+                    if key not in ("amounts", "interpretation", "halt_scope",
+                                   "balance_interpretation", "zap_halted")}
+        # Interrupted getters can precede publication of their derived metric.
+        # Retain those observations without repeating per-read block/RPC metadata.
+        incomplete = (full.get("status") != "completed"
+                      or coverage.get("collection_complete") is not True
+                      or metrics.get("required_missing") or metrics.get("supplemental_missing"))
+        if incomplete and metrics.get("read_provenance"):
+            projected["reads"] = [
+                {key: value for key, value in row.items() if key not in ("context_reference", "block")}
+                for row in metrics["read_provenance"]]
+        omissions.append("custody balances, detailed read provenance, token metadata and identity getters")
+        caveat = metrics.get("capacity", {}).get("balance_interpretation") or metrics.get("params", {}).get("interpretation")
+        if caveat:
+            result["caveat"] = caveat
+    else:
+        # Position/holder totals and incomplete event accounting are not a
+        # presentation ledger: retain them, including unknown future fields.
+        projected = {key: value for key, value in metrics.items()
+                     if key not in ("scope", "provenance", "required_missing", "supplemental_missing")}
+        result["not_proven"] = full.get("not_proven", [])
+        omissions.remove("not_proven")
+    result["metrics"] = projected
+    result["coverage"] = {
+        "collection_complete": coverage.get("collection_complete"),
+        "requested_scope": requested,
+        "required_missing": metrics.get("required_missing", requested.get("required_missing", [])),
+        "supplemental_missing": metrics.get("supplemental_missing", requested.get("supplemental_missing", [])),
+        **{key: value for key, value in coverage.items()
+           if key not in ("collection_complete", "requested_scope")},
     }
-    for family, fields in units.items():
-        values = metrics.get(family, {})
-        if values:
-            values["amounts"] = {name: _advance_amount(values[name], role, tokens)
-                                 for name, role in fields.items() if name in values}
-    for balance in metrics.get("balances", []):
-        balance["formatted"] = _advance_amount(balance.get("raw"), balance.get("token_role"), tokens)["formatted"]
-    if metrics.get("capacity"):
-        metrics["capacity"]["zap_halted"] = None
-
-    for provenance, path in (
-        (result.get("provenance", {}).get("analysis", {}), "/provenance/analysis"),
-        (metrics.get("provenance", {}), "/metrics/provenance"),
-    ):
-        runtime = provenance.get("runtime_evidence")
-        if isinstance(runtime, dict):
-            provenance["runtime_evidence"] = {
-                key: value for key, value in runtime.items() if key not in ("method", "limits")}
-            provenance["runtime_evidence"]["caveat"] = verification["runtime_caveat"]
-            for role in ("desk", "zap"):
-                reference = provenance["runtime_evidence"].get(role)
-                if isinstance(reference, dict) and "locator" in reference:
-                    del reference["locator"]
-            omissions.append({"path": path + "/runtime_evidence", "kind": "runtime_analysis_narrative"})
-    detail = _detail("summary", checkpoint_status)
-    detail["omissions"] = omissions
-    detail["partial_read_policy"] = "Failed reads and partial-only observations are retained; successful reads are omitted only when published elsewhere in these metrics and collection is complete."
-    result["output_detail"] = detail
-    return _encode(result) + "\n"
+    result["coverage"]["requested_scope"] = {
+        key: value for key, value in requested.items()
+        if key not in ("required_missing", "supplemental_missing")}
+    result["errors"] = full.get("errors", [])
+    result["output_detail"] = {
+        "mode": "summary", "omissions": omissions,
+        "full_evidence": {"checkpoint_status": checkpoint_status, "checkpoint_ref": checkpoint_ref,
+                          "available": checkpoint_status == "saved",
+                          "policy": "--output saves full same-collection evidence; otherwise omitted details are not saved."},
+    }
+    # Small envelope fields stay on one line; quantities and source records get
+    # their own lines rather than hiding the full document in one giant line.
+    lines = []
+    for key, value in result.items():
+        if key == "metrics":
+            groups = []
+            for name, rows in value.items():
+                if isinstance(rows, dict):
+                    entries = ",\n".join("      " + _encode(k) + ": " + _encode(v) for k, v in rows.items())
+                    groups.append("    " + _encode(name) + ": {\n" + entries + "\n    }")
+                else:
+                    groups.append("    " + _encode(name) + ": " + _encode(rows))
+            lines.append('  "metrics": {\n' + ",\n".join(groups) + "\n  }")
+        else:
+            lines.append("  " + _encode(key) + ": " + _encode(value))
+    return "{\n" + ",\n".join(lines) + "\n}\n"

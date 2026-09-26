@@ -451,6 +451,10 @@ def json_safe(value):
 
 
 def serialize_result(result):
+    if result.get("command") == "advance":
+        # Lazy import avoids a module cycle; every saved/printed body shares this contract.
+        from netstack_advance import prepare_result
+        prepare_result(result)
     return json.dumps(json_safe(result), ensure_ascii=True, allow_nan=False, separators=(",", ":")) + "\n"
 
 

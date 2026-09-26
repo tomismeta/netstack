@@ -207,6 +207,8 @@ def export_package(root, commit, output):
     temporary = ".netstack-receipt-" + uuid.uuid4().hex
     report.update(status="exported", commit=commit.lower(), output=str(destination),
                   receipt=str(receipt))
+    identity = {key: report[key] for key in
+                ("commit", "version", "manifest_sha256", "runtime_sha256", "note")}
     directory = None
     created = False
     receipt_created = False
@@ -224,7 +226,7 @@ def export_package(root, commit, output):
         # Publish the complete receipt before SKILL.md makes the package discoverable.
         for path in sorted(files, key=lambda path: (path == "SKILL.md", path)):
             if path == "SKILL.md":
-                raw = (json.dumps(report, indent=2) + "\n").encode("utf-8")
+                raw = (json.dumps(identity, indent=2) + "\n").encode("utf-8")
                 _write_file(parent, temporary, raw)
                 os.link(temporary, receipt.name, src_dir_fd=parent, dst_dir_fd=parent,
                         follow_symlinks=False)

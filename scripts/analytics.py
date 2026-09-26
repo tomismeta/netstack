@@ -140,8 +140,6 @@ def _provenance(ctx):
                           ("source_id", "source_url", "source_sha256", "reviewed_on")},
             "runtime_evidence": interface["runtime_evidence"],
             "meaning": "Unofficial independent catalog analysis, not a NetNet publication or current runtime match. Source IDs and JSON Pointer references identify evidence, not extra observations."}
-        ctx.result["verification"] = {"live_state_observed": False,
-                                      "analyzed_runtime_match": "not_checked"}
 
 
 def _pending_coverage(value):
@@ -310,8 +308,10 @@ def main(argv=None):
         try:
             # Finalization can reuse an older valid checkpoint or add an output
             # error. Project exactly that document, not the mutable ctx.result.
-            project = summarize_advance if args.command == "advance" else summarize_rfv
-            text = project(text, checkpoint_status)
+            if args.command == "advance":
+                text = summarize_advance(text, checkpoint_status, args.output)
+            else:
+                text = summarize_rfv(text, checkpoint_status)
         except (StopRun, KeyboardInterrupt) as exc:
             exit_code = 2
             reason = exc.reason if isinstance(exc, StopRun) else "interrupted_by_SIGINT"

@@ -2,7 +2,7 @@
 
 from collections import defaultdict
 
-from netstack_core import CHAIN_ID, RPC_HOST, ZERO, RpcError, load_json, resolve_routes
+from netstack_core import CHAIN_ID, RPC_HOST, ZERO, RpcError, amount, load_json, resolve_routes
 
 
 POSITION_LIMIT = 128
@@ -11,6 +11,74 @@ _PARAMS = ("ADVANCE_BPS", "FEE_BPS", "TREASURY_BPS", "TERM",
            "MAX_ADVANCE_PER_POSITION", "MIN_LOCK_NET")
 _CAPACITY = ("capacity", "maxAdvance", "halted", "unallocated", "escrowed",
              "inventory", "inventoryNet", "lockedTotal", "treasuryOwed")
+_AMOUNT_ROLES = {
+    "capacity": {"capacity": "usdg", "maxAdvance": "usdg", "unallocated": "usdg",
+                 "escrowed": "usdg", "inventory": "wsnet", "inventoryNet": "net",
+                 "lockedTotal": "wsnet", "treasuryOwed": "usdg", "ZAP_CAP_USDG": "usdg"},
+    "params": {"MAX_ADVANCE_PER_POSITION": "usdg", "MIN_LOCK_NET": "net"},
+}
+_UNITS = {"usdg": "USDG", "net": "NET", "snet": "sNET", "wsnet": "wsNET"}
+_LIMITS = (
+    "Runtime hash match and successful settlement are not verified.",
+    "Event amounts are not independently reconciled token transfers; paid includes collateral credit, not just cash.",
+    "Borrower collateral is not protocol backing; token custody is not available capacity.",
+)
+_NO_LIVE = "No live getter observations; current capacity is unknown, not zero."
+
+
+def _amount_fields(raw, role, decimals):
+    # Production inputs are integers; decoded checkpoints may carry exact strings.
+    def integer(value):
+        if type(value) is int:
+            return value
+        if isinstance(value, str) and value.removeprefix("-").isascii() and value.removeprefix("-").isdigit():
+            return int(value)
+        return None
+
+    quantity, precision = integer(raw), integer(decimals)
+    formatted = (amount(quantity, precision) if quantity is not None
+                 and precision is not None and 0 <= precision <= 255 else None)
+    return {"raw": raw, "token": role, "decimals": decimals, "formatted": formatted,
+            "display": formatted + " " + _UNITS[role] if formatted is not None and role in _UNITS else None}
+
+
+def prepare_result(result):
+    """One presentation contract for every checkpoint, including pre-RPC failures."""
+    metrics, snapshot = result.get("metrics", {}), result.get("snapshot", {})
+    reads = metrics.get("read_provenance", [])
+    block = snapshot.get("block_number")
+    context = metrics.get("read_context", {})
+    observed = any(
+        row.get("status") == "observed" and row.get("getter") not in (None, "eth_getCode")
+        and row.get("contract") is not None and row.get("value") is not None
+        and "error" not in row and "error_kind" not in row and block is not None
+        and row.get("block", context.get("block") if row.get("context_reference") == "/metrics/read_context" else None) == block
+        for row in reads)
+    result["verification"] = {
+        "live_state_observed": observed,
+        "analyzed_runtime_match": "not_checked",
+        "zap_halted": {"status": "unknown", "value": None,
+                       "reason": "No separate Zap getter; Desk halt governs Desk opening restrictions."},
+        "runtime_caveat": "Live getters do not verify runtime equality or successful settlement.",
+    }
+    limits = result.setdefault("not_proven", [])
+    for text in _LIMITS:
+        if text not in limits:
+            limits.append(text)
+    if observed and _NO_LIVE in limits:
+        limits.remove(_NO_LIVE)
+    elif not observed and _NO_LIVE not in limits:
+        limits.append(_NO_LIVE)
+    tokens = metrics.get("tokens", {})
+    for family, fields in _AMOUNT_ROLES.items():
+        values = metrics.get(family, {})
+        if values:
+            values["amounts"] = {
+                name: _amount_fields(values[name], role, tokens.get(role, {}).get("decimals"))
+                for name, role in fields.items() if name in values}
+    for balance in metrics.get("balances", []):
+        fields = _amount_fields(balance.get("raw"), balance.get("token_role"), balance.get("decimals"))
+        balance.update(formatted=fields["formatted"], display=fields["display"])
 
 
 def _event_ref(event):
@@ -120,13 +188,6 @@ def run(ctx, args):
     coverage = ctx.result["coverage"]
     requested = coverage["requested_scope"] = {"scope": view, "collection_complete": False}
     coverage["collection_complete"] = False
-    ctx.result["not_proven"].extend([
-        "Event-labeled advances and repayments are not independently reconciled token transfers.",
-        "Analyzed Desk position.paid combines USDG repayments and collateral coverage; neither paid nor closed establishes realized profit.",
-        "Borrower collateral, owed and paid are not Treasury or Sleeve RFV assets.",
-        "Current token balances are not the capacity/maxAdvance getter values.",
-        "Explorer-bytecode mechanics are not independently matched to pinned runtime code by this collector; current dependency behavior and successful settlement remain unproven.",
-    ])
 
     def gap(scope, message, needed=True, kind="unavailable"):
         record = {"scope": scope, "reason": str(message), "kind": kind}
@@ -151,8 +212,6 @@ def run(ctx, args):
             ctx.checkpoint()
             return None
         entry.update(status="observed", value=value)
-        ctx.result.setdefault("verification", {})["live_state_observed"] = True
-        ctx.result["verification"]["analyzed_runtime_match"] = "not_checked"
         ctx.checkpoint()
         return value
 

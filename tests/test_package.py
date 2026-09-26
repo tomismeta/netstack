@@ -266,16 +266,17 @@ class ReviewedCommitExports(unittest.TestCase):
         self.assertEqual(integrity.verify_files(integrity.read_package(output))["manifest_sha256"], report["manifest_sha256"])
         self.assertFalse((output / "tests").exists())
 
-    def test_export_receipt_binds_reviewed_commit_and_exact_installed_bytes(self):
+    def test_export_receipt_binds_reviewed_commit_and_exact_bytes_without_host_paths(self):
         output = self.parent / "installed"
         report = packaging.export_package(self.root, self.commit, output)
         receipt_path = self.parent / "installed.receipt.json"
+        self.assertEqual(report["output"], str(output))
         self.assertEqual(report["receipt"], str(receipt_path))
         receipt = json.loads(receipt_path.read_bytes())
-        self.assertEqual(receipt["status"], "exported")
+        self.assertEqual(set(receipt), {"commit", "version", "manifest_sha256", "runtime_sha256", "note"})
         self.assertEqual(receipt["commit"], self.commit)
         self.assertEqual(receipt["version"], self.version)
-        self.assertEqual(receipt["output"], str(output))
+        self.assertFalse(any(str(self.parent) in value for value in receipt.values()))
         self.assertEqual(receipt["manifest_sha256"],
                          hashlib.sha256((output / integrity.MANIFEST).read_bytes()).hexdigest())
         runtime = sorted(path for path in self.source if path == "SKILL.md"
@@ -284,6 +285,12 @@ class ReviewedCommitExports(unittest.TestCase):
                                         for path in runtime)).hexdigest()
         self.assertEqual(receipt["runtime_sha256"], digest)
         self.assertEqual(integrity.read_package(output), self.source)
+        relocated = self.parent / "relocated"
+        second_report = packaging.export_package(self.root, self.commit, relocated)
+        self.assertEqual(second_report["output"], str(relocated))
+        self.assertEqual(second_report["receipt"], str(self.parent / "relocated.receipt.json"))
+        self.assertEqual(Path(second_report["receipt"]).read_bytes(), receipt_path.read_bytes())
+        self.assertEqual(integrity.read_package(relocated), self.source)
 
     def test_existing_receipt_file_directory_and_symlinks_refuse_export(self):
         output = self.parent / "installed"

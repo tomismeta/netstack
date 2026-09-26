@@ -3,6 +3,7 @@
 from copy import deepcopy
 from pathlib import Path
 from types import SimpleNamespace
+import json
 import sys
 import unittest
 from unittest.mock import patch
@@ -10,7 +11,7 @@ from unittest.mock import patch
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import netstack_advance as advance
-from netstack_core import RpcError
+from netstack_core import RpcError, serialize_result
 
 
 def address(number):
@@ -121,6 +122,34 @@ class SyntheticContext:
 
 
 class AdvanceAccounting(unittest.TestCase):
+    def test_full_checkpoint_formats_exact_units_without_filling_missing_decimals(self):
+        ctx = SyntheticContext()
+        ctx.values[(ctx.routes["desk"]["address"], "capacity", ())] = 123456789012345678901
+        ctx.values[(ctx.routes["wsnet"]["address"], "decimals", ())] = RpcError("Missing precision")
+        ctx.run("capacity")
+        ctx.result.update(command="advance", snapshot={"block_number": ctx.block})
+        full = json.loads(serialize_result(ctx.result))
+        amounts = full["metrics"]["capacity"]["amounts"]
+        self.assertEqual(amounts["capacity"]["raw"], "123456789012345678901")
+        self.assertEqual(amounts["capacity"]["formatted"], "123456789012345.678901")
+        self.assertEqual(amounts["capacity"]["display"], "123456789012345.678901 USDG")
+        self.assertEqual(amounts["lockedTotal"]["raw"], str(2**100 + 3))
+        self.assertIsNone(amounts["lockedTotal"]["formatted"])
+        self.assertIsNone(amounts["lockedTotal"]["display"])
+        self.assertFalse(full["coverage"]["collection_complete"])
+
+    def test_full_checkpoint_requires_getters_at_the_selected_block_for_observed_state(self):
+        result = {"command": "advance", "snapshot": {"block_number": 20}, "metrics": {
+            "read_context": {"block": 19}, "read_provenance": [
+                {"contract": address(1), "getter": "capacity", "value": 100,
+                 "status": "observed", "context_reference": "/metrics/read_context"}]}}
+        self.assertFalse(json.loads(serialize_result(result))["verification"]["live_state_observed"])
+        result["metrics"]["read_context"]["block"] = 20
+        full = json.loads(serialize_result(result))
+        self.assertTrue(full["verification"]["live_state_observed"])
+        self.assertEqual(full["verification"]["analyzed_runtime_match"], "not_checked")
+        self.assertIsNone(full["verification"]["zap_halted"]["value"])
+
     def test_required_dependency_gap_retains_rows_but_withholds_full_aggregates(self):
         ctx = SyntheticContext()
         ctx.values[(ctx.routes["desk"]["address"], "house", ())] = RpcError("pruned dependency")

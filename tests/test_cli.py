@@ -45,6 +45,27 @@ class AnalyticsCLI(unittest.TestCase):
                 for evidence in record["provenance"]:
                     self.assertIn(evidence["source_id"], report["metrics"]["sources"])
 
+    def test_immediate_advance_denial_saves_same_verification_without_observations(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory).resolve() / "denied.json"
+            process = subprocess.run(
+                [sys.executable, "-I", "-B", str(FIXTURE), "permission",
+                 "advance", "--view", "capacity", "--detail", "summary",
+                 "--output", str(output)], capture_output=True, timeout=15)
+            self.assertEqual(process.returncode, 2, process.stderr)
+            summary, full = json.loads(process.stdout), json.loads(output.read_bytes())
+            self.assertEqual(summary["verification"], full["verification"])
+            self.assertFalse(full["verification"]["live_state_observed"])
+            self.assertEqual(full["verification"]["analyzed_runtime_match"], "not_checked")
+            self.assertIsNone(full["verification"]["zap_halted"]["value"])
+            self.assertEqual(full["verification"]["zap_halted"]["status"], "unknown")
+            self.assertEqual(full["snapshot"], {})
+            self.assertEqual(full["metrics"], {})
+            self.assertEqual(summary["errors"], full["errors"])
+            self.assertEqual(full["errors"][0]["kind"], "permission")
+            self.assertEqual(full["stopping_reason"], "rpc_or_evidence_failure")
+            self.assertEqual(full["resources"]["recovery_attempts"], 0)
+
     def assert_confirmed(self, report):
         snapshot = report["snapshot"]
         self.assertEqual(snapshot["chain_id"], 4663)

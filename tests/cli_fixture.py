@@ -25,7 +25,7 @@ BLOCK_HASH = "0x" + "bb" * 32
 OTHER_HASH = "0x" + "cc" * 32
 SCENARIOS = (
     "success", "read-failure", "reconciliation-mismatch", "header-mismatch",
-    "header-unavailable", "stop", "deadline", "checkpoint-failure", "predict", "offline",
+    "header-unavailable", "stop", "deadline", "checkpoint-failure", "predict", "offline", "permission",
 )
 
 
@@ -202,6 +202,8 @@ class Fixture:
         require(self.scenario != "offline", "Offline command attempted RPC transport")
         require(host == core.RPC_HOST and port == 443 and timeout > 0,
                 "Unexpected transport destination")
+        if self.scenario == "permission":
+            raise core.RpcError("Synthetic permission denial", kind="permission")
         return Connection(self)
 
 
