@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x79e71f8a8a2912e40687a8820b2dc0fdd2f686b3",
+  "contract_record": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json",
+  "chain_id": 4663,
+  "address": "0x79e71F8a8a2912E40687a8820b2dC0fdd2f686b3",
+  "generation": "distributor",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal EM, Unicode character offsets[270496,271514); consumer binding to distributor",
+      "observed_on": "2026-10-07"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 7,
+    "implementation": "unreviewed",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned code, storage, current permissions and financial reconciliation.",
+      "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+    ],
+    "literal_abi_sha256": "fa8075b277bb26ca50eca182bb3036b78663185c80d8b576366ae19074734424",
+    "literal_character_range": [
+      270496,
+      271514
+    ]
+  },
+  "functions": [
+    {
+      "name": "currentRateWad",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "currentRateWad()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal EM, Unicode character offsets[270496,271514); consumer binding to distributor; ABI entry[0]"
+      },
+      "selector": "0x4dae397c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface currentRateWad(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "distribute",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "minted",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "distribute()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal EM, Unicode character offsets[270496,271514); consumer binding to distributor; ABI entry[1]"
+      },
+      "selector": "0xe4fc6b6d",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface distribute(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "kWad",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "kWad()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal EM, Unicode character offsets[270496,271514); consumer binding to distributor; ABI entry[2]"
+      },
+      "selector": "0x4256bb0b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface kWad(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "nextReward",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "nextReward()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal EM, Unicode character offsets[270496,271514); consumer binding to distributor; ABI entry[3]"
+      },
+      "selector": "0x6da4fe26",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface nextReward(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "premium",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "premium()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal EM, Unicode character offsets[270496,271514); consumer binding to distributor; ABI entry[4]"
+      },
+      "selector": "0xe0a73a93",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface premium(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "rMaxWad",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "rMaxWad()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal EM, Unicode character offsets[270496,271514); consumer binding to distributor; ABI entry[5]"
+      },
+      "selector": "0x6e78d0fc",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface rMaxWad(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "Distributed",
+      "inputs": [
+        {
+          "name": "epoch",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "rateWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Distributed(uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal EM, Unicode character offsets[270496,271514); consumer binding to distributor; ABI entry[6]"
+      },
+      "topic0": "0xc5d35a65af09b3042394b742529d10f7fbf9a37294d6b13e4d63d06f9909a15b"
+    }
+  ],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": []
+}

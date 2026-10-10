@@ -19,6 +19,12 @@
           "locator": "Successful CREATE trace index 28 from PredictDesk; block 68853620; token endpoint address_hash/name=Predict HIGHER #2/symbol=HI-2/decimals=18",
           "evidence_kind": "explorer_indexed_creation_and_token_metadata",
           "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-predict-runtime-depth-20261010",
+          "locator": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x7185eD82f9e4Ae9a3fFF0Ae072eaF83BBA969AbC deployed_bytecode;1993bytes;Keccak256=0x1e885071188ec8e93373085aafb1569fae587912b48aa61ffd2564538b7718c7; exact variant identity only, no current supply/holdings retained",
+          "evidence_kind": "explorer_runtime_identity",
+          "observed_on": "2026-10-10"
         }
       ],
       "decimals": 18,
@@ -48,6 +54,12 @@
           "locator": "Successful CREATE trace index 29 from PredictDesk; block 68853620; token endpoint address_hash/name=Predict LOWER #2/symbol=LO-2/decimals=18",
           "evidence_kind": "explorer_indexed_creation_and_token_metadata",
           "observed_on": "2026-09-25"
+        },
+        {
+          "source_id": "netnet-predict-runtime-depth-20261010",
+          "locator": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x414b1637de64d91223Df88f9f060fd1983d0E593 deployed_bytecode;1993bytes;Keccak256=0x1e885071188ec8e93373085aafb1569fae587912b48aa61ffd2564538b7718c7; exact variant identity only, no current supply/holdings retained",
+          "evidence_kind": "explorer_runtime_identity",
+          "observed_on": "2026-10-10"
         }
       ],
       "decimals": 18,

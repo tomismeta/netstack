@@ -36,6 +36,14 @@ def debt_assets(shares, assets, total_shares):
     denominator = total_shares + 10**6
     return (shares * (assets + 1) + denominator - 1) // denominator
 
+def advance_receivable(position):
+    """October 7 Reports principal convention, floored per open position."""
+    if position["closed"] or position["owed"] <= position["paid"]:
+        return 0, 0
+    outstanding = position["owed"] - position["paid"]
+    return outstanding * 10000 // 11500, outstanding * 1000 // 11500
+
+
 
 def accrued_market(market, rate, timestamp):
     """Morpho v1.0.0 expectedMarketBalances, including fee-share dilution."""
@@ -497,6 +505,9 @@ class Collector:
             self.register(token, "morpho_collateral")
             extra = {"contract": address, "market_id": mid, "getter": "position(bytes32,address)"}
             collateral_row = self.quantity("credit", token, position["collateral"], "Posted collateral", extra=extra)
+            if position["borrowShares"] > market["totalBorrowShares"]:
+                self.missing("credit", mid + ": borrower shares exceed total market borrow shares")
+                continue
             debt = debt_assets(position["borrowShares"], market["totalBorrowAssets"], market["totalBorrowShares"])
             debt_row = self.quantity("credit", params["loanToken"], debt, "Stored-share debt", sign=-1, extra=extra)
             coverage[mid] = all(self.values.get(id(r)) is not None for r in (collateral_row, debt_row))
@@ -904,7 +915,40 @@ class Collector:
             self.missing("advance", "Advance House/token dependencies do not reconcile to the pinned Sleeve routes")
         if not family["reader_complete"]:
             self.missing("advance", "Publisher Advance reader or dependency bindings incomplete")
-        for getter, token in (("unallocated", self.usdg), ("escrowed", self.usdg), ("inventory", self.wsnet)):
+        count = state["positionCount"]
+        positions_complete = count is not None and 0 <= count <= MAX_ITEMS
+        family["positions"] = []
+        family["position_coverage"] = {
+            "expected_count": _raw(count), "read_count": 0,
+            "id_range": [1, count] if count else [],
+            "uninspected_ranges": [[MAX_ITEMS + 1, count]] if count is not None and count > MAX_ITEMS else [],
+            "collection_complete": False}
+        principal, fee = 0, 0
+        for pid in range(1, min(count or 0, MAX_ITEMS) + 1):
+            position = self.read(desk, "advance_abi", "position", (pid,))
+            item = {"position_id": str(pid), "raw": _raw(position),
+                    "principal_receivable_raw": None, "fee_accruing_raw": None}
+            family["positions"].append(item)
+            if position is None or position["owner"] == ZERO:
+                positions_complete = False
+                self.missing("advance", "Advance position unavailable or nonexistent: " + str(pid), supplemental=True)
+            else:
+                p, f = advance_receivable(position)
+                principal += p
+                fee += f
+                item.update(principal_receivable_raw=str(p), fee_accruing_raw=str(f))
+                family["position_coverage"]["read_count"] += 1
+            self.ctx.checkpoint()
+        family["position_coverage"]["collection_complete"] = positions_complete
+        family["receivable_complete"] = family["reader_complete"] and positions_complete
+        family["observed_principal_receivable_raw"] = str(principal)
+        family["observed_fee_accruing_raw"] = str(fee)
+        if not positions_complete:
+            self.missing("advance", "Complete position1..positionCount coverage required for current principal receivable",
+                         supplemental=True)
+        state["receivable"] = principal if positions_complete else None
+        for getter, token in (("unallocated", self.usdg), ("escrowed", self.usdg),
+                              ("inventory", self.wsnet), ("receivable", self.usdg)):
             row = self.quantity("advance", token, state[getter], "Advance " + getter, reports=False,
                                 extra={"contract": desk, "getter": getter, "included_in_economic": False})
             row["economic_value_wad"] = None
@@ -1113,12 +1157,15 @@ class Collector:
                      v3.get("position_manager") == self.address("position_manager") and
                      v3.get("usdg") == self.usdg and isinstance(v3.get("assets"), list) and
                      isinstance(wallet.get("fixed_stock_tokens"), list) and
+                     wallet.get("rwa_desk", self.address("rwa")) == self.address("rwa") and
                      isinstance(credit.get("market_ids"), list) and
                      credit.get("vault") == self.address("credit_vault"))
         advance = policy.get("advance")
         advance_supported = (isinstance(advance, dict) and
                              advance.get("desk") == self.families["advance"].get("contract") and
-                             advance.get("principal_fields") == ["unallocated", "escrowed", "inventory"] and
+                             advance.get("principal_fields") in (
+                                 ["unallocated", "escrowed", "inventory"],
+                                 ["unallocated", "receivable", "inventory"]) and
                              advance.get("usdg_decimals") == 6 and advance.get("wsnet_decimals") == 18)
         gaps = [] if supported else ["Publisher component selection policy is unavailable or incompatible with collector routes."]
         if advance is not None and not advance_supported:
@@ -1201,12 +1248,14 @@ class Collector:
             for name in replica_names}
         advance_selected = self.methodology.get("selection_policy", {}).get("advance") is not None
         advance_family = self.families["advance"]
+        advance_rows = [row for row in advance_family["rows"] if row["included_in_reports"] is True]
+        needs_receivable = "receivable" in self.methodology.get("selection_policy", {}).get("advance", {}).get("principal_fields", [])
         publisher_family_complete["advance"] = (
             not advance_selected or
             (advance_family.get("reader_complete", False) and
-             len(advance_family["rows"]) == 3 and
-             all(row["included_in_reports"] is True and self.values.get(id(row)) is not None
-                 for row in advance_family["rows"])))
+             (not needs_receivable or advance_family.get("receivable_complete", False)) and
+             len(advance_rows) == 3 and
+             all(self.values.get(id(row)) is not None for row in advance_rows)))
         pinned_complete = core_complete and all(publisher_family_complete.values()) and (inclusion is False or v4_principal is not None)
         complete = methodology_valid and not selection_gaps and pinned_complete
         subtotal = (sum((self.values.get(id(r)) or Fraction()) for r in selected_rows) +
@@ -1277,7 +1326,7 @@ class Collector:
             "predict": "Active claims, refundable deposits and matured exits included once, without adding gross vault custody.",
             "book": "Own-NET house backing and obligations disclosed separately and excluded from external backing; attributable external claims only.",
             "v4": "External LP principal and attributable pending fees included once; own-token principal and fees excluded.",
-            "advance": "Publisher reserve snapshot only; collateral and owed are not added. Economic ownership, escrow liabilities and receivables remain unresolved.",
+            "advance": "Versioned publisher reserve/principal-receivable convention only; not independent net House equity. Custody, escrow liabilities, receivable fair value and ownership remain unresolved.",
             "treasury_extra": "Discovered external Treasury custody not already represented in Core; own-token holdings excluded."}
         for name, family in self.families.items():
             selected = []

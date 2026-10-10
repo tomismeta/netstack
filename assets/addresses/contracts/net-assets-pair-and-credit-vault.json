@@ -134,6 +134,13 @@
           "locator": "usdgVault.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-credit-implementation-20261010-credit-vault",
+          "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x99347d5F70D3838763f6Bddcf80304C8aa953B57",
+          "locator": "Explorer ABI/source/runtime identity; unpinned, no financial state",
+          "evidence_kind": "explorer_source_and_runtime",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED"

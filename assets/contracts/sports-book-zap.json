@@ -1,0 +1,579 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0xc866e4f53f1439d85171a06395ce37b887d16fa1",
+  "contract_record": "assets/addresses/contracts/sportsbook-desk-and-zap.json",
+  "chain_id": 4663,
+  "address": "0xC866E4f53f1439d85171a06395ce37b887D16Fa1",
+  "generation": "SportsBookZap",
+  "provenance": [
+    {
+      "source_id": "netnet-book-interfaces-20261010",
+      "url": "https://play.netnet.capital/assets/sportsbook-live-BuQ1LO4q.js",
+      "sha256": "994aeb2cfd1fb5c684a0f6023dccd057d9740956dde35e66dfd5a9b796e1faf8",
+      "locator": "Literal Ft; Unicode character offsets (19049, 21090)",
+      "observed_on": "2026-10-10"
+    },
+    {
+      "source_id": "netnet-book-interfaces-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xC866E4f53f1439d85171a06395ce37b887D16Fa1",
+      "locator": "Exact-address runtime/creation metadata, no verified ABI/source",
+      "observed_on": "2026-10-10"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal",
+    "supplied_entry_count": 21,
+    "implementation": "source_unavailable_dispatcher_correlated_unpinned",
+    "pinned_state": "not_obtained",
+    "source_evidence_path": "assets/contracts/book-source-evidence.json",
+    "dispatcher_evidence": {
+      "unmatched_dispatcher_selectors": [],
+      "interface_selectors_not_seen": []
+    },
+    "missing_evidence": [
+      "Verified Solidity and independently pinned runtime/source equivalence.",
+      "Current dependent code, authority and accounting snapshot; canonical RPC403 prevented collection.",
+      "Full transaction/event discovery and receipt/state reconciliation; no financial history stored.",
+      "Publisher Zap literal omits constructor and all events; four event-like LOG topic constants are present in runtime. Their signatures/indexed fields remain unknown and are not decoded by collector."
+    ]
+  },
+  "functions": [
+    {
+      "name": "ZAP_CAP_USDG",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[0]"
+      },
+      "signature": "ZAP_CAP_USDG()",
+      "selector": "0x6a980fa4",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Raw USDG per-call input cap; not wsNET, daily cap or limit on multiple deposits."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0xa0",
+        "entry_offset": "0x185"
+      }
+    },
+    {
+      "name": "desk",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[1]"
+      },
+      "signature": "desk()",
+      "selector": "0xc12b293c",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: desk. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x5a",
+        "entry_offset": "0x1ac"
+      }
+    },
+    {
+      "name": "net",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[2]"
+      },
+      "signature": "net()",
+      "selector": "0xc2fff4a5",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: net. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x65",
+        "entry_offset": "0x1d3"
+      }
+    },
+    {
+      "name": "router",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[3]"
+      },
+      "signature": "router()",
+      "selector": "0xf887ea40",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: router. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x40",
+        "entry_offset": "0x248"
+      }
+    },
+    {
+      "name": "sNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[4]"
+      },
+      "signature": "sNet()",
+      "selector": "0x1adb8eb6",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: sNet. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0xba",
+        "entry_offset": "0xf9"
+      }
+    },
+    {
+      "name": "staking",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[5]"
+      },
+      "signature": "staking()",
+      "selector": "0x4cf088d9",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: staking. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x8a",
+        "entry_offset": "0x14b"
+      }
+    },
+    {
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[6]"
+      },
+      "signature": "usdg()",
+      "selector": "0xf5b91b7b",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: usdg. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x35",
+        "entry_offset": "0x221"
+      }
+    },
+    {
+      "name": "wsNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[7]"
+      },
+      "signature": "wsNet()",
+      "selector": "0xd52014e3",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: wsNet. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x70",
+        "entry_offset": "0x1fa"
+      }
+    },
+    {
+      "name": "zapInSnet",
+      "inputs": [
+        {
+          "name": "sNetIn",
+          "type": "uint256"
+        },
+        {
+          "name": "minWs",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "wsOut",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[8]"
+      },
+      "signature": "zapInSnet(uint256,uint256)",
+      "selector": "0x23b2f8ee",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Caller-funded or caller-account path per publisher; detailed implementation enforcement unverified."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Pull sNET, wrap to wsNET, require minimum wsNET, depositFor caller. Runtime uses entire Zap sNET balance, not just caller input; stray balances can affect outputs."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0xc5",
+        "entry_offset": "0x138"
+      }
+    },
+    {
+      "name": "zapInUsdg",
+      "inputs": [
+        {
+          "name": "usdgIn",
+          "type": "uint256"
+        },
+        {
+          "name": "minWs",
+          "type": "uint256"
+        },
+        {
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "wsOut",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[9]"
+      },
+      "signature": "zapInUsdg(uint256,uint256,uint256)",
+      "selector": "0x58acb6ab",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Caller-funded or caller-account path per publisher; detailed implementation enforcement unverified."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Pull capped USDG, require warmup disabled and deadline, taxed NET buy through router, stake/wrap and credit caller after minimum-wsNET check. Not1:1 USDG/wsNET."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x95",
+        "entry_offset": "0x172"
+      }
+    },
+    {
+      "name": "zapOutSnet",
+      "inputs": [
+        {
+          "name": "wsIn",
+          "type": "uint256"
+        },
+        {
+          "name": "minSnet",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "sNetOut",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[10]"
+      },
+      "signature": "zapOutSnet(uint256,uint256)",
+      "selector": "0xfe56c954",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Caller-funded or caller-account path per publisher; detailed implementation enforcement unverified."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "withdrawFrom caller free Desk ledger, unwrap wsNET and transfer sNET subject minimum; ledger allowance needed. Runtime uses Zap whole sNET balance, not isolated delta."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x4b",
+        "entry_offset": "0x26f"
+      }
+    },
+    {
+      "name": "zapOutUsdg",
+      "inputs": [
+        {
+          "name": "wsIn",
+          "type": "uint256"
+        },
+        {
+          "name": "minUsdg",
+          "type": "uint256"
+        },
+        {
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "usdgOut",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[11]"
+      },
+      "signature": "zapOutUsdg(uint256,uint256,uint256)",
+      "selector": "0x0d036451",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Caller-funded or caller-account path per publisher; detailed implementation enforcement unverified."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "withdrawFrom free ledger, unwrap/unstake, sell NET through router to caller; minimum USDG and deadline. Runtime measures recipient USDG balance delta. NET trading tax/pool impact not Book revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0xaf",
+        "entry_offset": "0xd3"
+      }
+    }
+  ],
+  "events": [],
+  "errors": [
+    {
+      "name": "AboveZapCap",
+      "inputs": [
+        {
+          "name": "cap",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[12]"
+      },
+      "signature": "AboveZapCap(uint256)",
+      "selector": "0xb46909b4",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "Expired",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[13]"
+      },
+      "signature": "Expired()",
+      "selector": "0x203d82d8",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "InvalidConfig",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[14]"
+      },
+      "signature": "InvalidConfig()",
+      "selector": "0x35be3ac8",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "Reentrancy",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[15]"
+      },
+      "signature": "Reentrancy()",
+      "selector": "0xab143c06",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "Slippage",
+      "inputs": [
+        {
+          "name": "got",
+          "type": "uint256"
+        },
+        {
+          "name": "min",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[16]"
+      },
+      "signature": "Slippage(uint256,uint256)",
+      "selector": "0x2746152a",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "TransferFailed",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[17]"
+      },
+      "signature": "TransferFailed()",
+      "selector": "0x90b8ec18",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "WarmupActive",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[18]"
+      },
+      "signature": "WarmupActive()",
+      "selector": "0x1f1dad94",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[19]"
+      },
+      "signature": "ZeroAddress()",
+      "selector": "0xd92e233d",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "ZeroAmount",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ft[20]"
+      },
+      "signature": "ZeroAmount()",
+      "selector": "0x1f2a2005",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": []
+}

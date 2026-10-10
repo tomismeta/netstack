@@ -1,0 +1,1059 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x4638617808e3f1cf237c0d33ae818126d5c77e17",
+  "contract_record": "assets/addresses/contracts/turbo-deployments-and-adapters.json",
+  "chain_id": 4663,
+  "address": "0x4638617808e3f1Cf237c0d33Ae818126D5C77E17",
+  "generation": "loopback-router",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal sf, Unicode character offsets[367426,368789); consumer binding to loopback-router",
+      "observed_on": "2026-10-07"
+    },
+    {
+      "source_id": "netnet-credit-implementation-20261010-loopback-router",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x4638617808e3f1Cf237c0d33Ae818126D5C77E17",
+      "observed_on": "2026-10-10",
+      "locator": "src/lending/TurboRouter.sol"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_obtained_explorer_abi",
+    "supplied_entry_count": 29,
+    "implementation": "targeted_source_review",
+    "pinned_state": "not_obtained",
+    "dispatcher_evidence": {
+      "method": "PUSH4 EQ PUSHn JUMPI byte-pattern; incomplete and not semantic reachability proof",
+      "observed_selector_count": 18,
+      "unmatched_dispatcher_selectors": []
+    },
+    "missing_evidence": [
+      "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+      "Independent compiler equivalence and exhaustive function reachability."
+    ]
+  },
+  "functions": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "currentLtvWad",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "currentLtvWad(address)",
+      "selector": "0x457a1b1e",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol:326"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "_currentLtvWad"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Stored-market LTV view, debt ceil(borrowShares*totalBorrowAssets/totalBorrowShares), WITHOUT Morpho virtual offsets or fresh interest. Zero debt returns0, zero collateral mark returns uint256.max. Not authoritative freshly accrued health."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "irm",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "irm()",
+      "selector": "0x28e8fe7d",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads irm state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "lltv",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "lltv()",
+      "selector": "0x217b7ffe",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads lltv state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "marketId",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "marketId()",
+      "selector": "0x6ed71ede",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads marketId state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "marketParams",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "loanToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "collateralToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "irm",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lltv",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IMorphoBlue.MarketParams",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "marketParams()",
+      "selector": "0x7b9e68f2",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol:139"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "MarketParams"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined marketParams operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "morpho",
+      "outputs": [
+        {
+          "internalType": "contract IMorphoBlue",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "morpho()",
+      "selector": "0xd8fbc833",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads morpho state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "net",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "net()",
+      "selector": "0xc2fff4a5",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads net state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "onMorphoRepay",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "onMorphoRepay(uint256,bytes)",
+      "selector": "0x05b4591c",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol:253"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "InsufficientProceeds",
+          "NoOpInFlight",
+          "NotMorpho",
+          "SlippageExceeded",
+          "TransferFailed",
+          "Unwind",
+          "balanceOf",
+          "decode",
+          "marketParams",
+          "rebase",
+          "swapExactTokensForTokensSupportingFeeOnTransferTokens",
+          "transfer",
+          "unstake",
+          "unwrap",
+          "withdrawCollateral"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Only Morpho in active unwind callback; withdraw collateral, unwrap, repeatedly unstake until empty, taxed sale; repay principal/debt from proceeds."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "onMorphoSupplyCollateral",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "onMorphoSupplyCollateral(uint256,bytes)",
+      "selector": "0xb1022fdf",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol:186"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "NoOpInFlight",
+          "NotMorpho",
+          "SlippageExceeded",
+          "TransferFailed",
+          "Turbo",
+          "balanceOf",
+          "borrow",
+          "decode",
+          "marketParams",
+          "swapExactTokensForTokensSupportingFeeOnTransferTokens",
+          "transfer",
+          "transferFrom",
+          "zap"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Only Morpho in active turbo callback; pull initial collateral, borrow authorized debt, buy/zap and return surplus."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "oracle",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "oracle()",
+      "selector": "0x7dc0d1d0",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads oracle state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "sNet",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "sNet()",
+      "selector": "0x1adb8eb6",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads sNet state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "staking",
+      "outputs": [
+        {
+          "internalType": "contract IStaking",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "staking()",
+      "selector": "0x4cf088d9",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads staking state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "swapRouter",
+      "outputs": [
+        {
+          "internalType": "contract IUniswapV2Router02",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "swapRouter()",
+      "selector": "0xc31c9c07",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads swapRouter state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "wsIn",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "borrowAssets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minWsFromLoop",
+          "type": "uint256"
+        }
+      ],
+      "name": "turbo",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "turbo(uint256,uint256,uint256)",
+      "selector": "0xdc04ad28",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol:163"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "AboveTargetLtv",
+          "OpInFlight",
+          "ZeroAmount",
+          "_currentLtvWad",
+          "_settleRebase",
+          "encode",
+          "marketParams",
+          "supplyCollateral"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Permissionless callback loop: wsNET collateral plus committed minimum loop output, USDG borrow -> taxed NET buy -> zap stake/wrap; surplus wsNET returned; borrow authorization and post-borrow LTV<=0.53125e18 required."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "repayShares",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "wsCollateralOut",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minUsdgFromSale",
+          "type": "uint256"
+        }
+      ],
+      "name": "unwind",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "unwind(uint256,uint256,uint256)",
+      "selector": "0x46322c37",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol:235"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "OpInFlight",
+          "ZeroAmount",
+          "encode",
+          "marketParams",
+          "repay"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Repay specified borrow shares, free specified wsNET, unwrap/unstake/sell NET; enforce proceeds >= repayment and slippage; surplus USDG returned, not protocol income."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "usdg",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdg()",
+      "selector": "0xf5b91b7b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads usdg state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "wsNet",
+      "outputs": [
+        {
+          "internalType": "contract IWsNET",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "wsNet()",
+      "selector": "0xd52014e3",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads wsNet state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "zap",
+      "outputs": [
+        {
+          "internalType": "contract IZap",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "zap()",
+      "selector": "0x262d6152",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol:27"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "AboveTargetLtv",
+          "IERC20",
+          "IMorphoBlue",
+          "IMorphoOracle",
+          "IStaking",
+          "IUniswapV2Router02",
+          "IWsNET",
+          "IZap",
+          "InsufficientProceeds",
+          "MarketParams",
+          "NoOpInFlight",
+          "NotMorpho",
+          "OpInFlight",
+          "SlippageExceeded",
+          "TransferFailed",
+          "Turbo",
+          "Unwind",
+          "ZeroAmount",
+          "_currentLtvWad",
+          "_settleRebase",
+          "approve",
+          "balanceOf",
+          "borrow",
+          "constructor",
+          "currentLtvWad",
+          "decode",
+          "encode",
+          "epoch",
+          "keccak256",
+          "market",
+          "marketParams",
+          "onMorphoRepay",
+          "onMorphoSupplyCollateral",
+          "position",
+          "price",
+          "rebase",
+          "repay",
+          "supplyCollateral",
+          "swapExactTokensForTokensSupportingFeeOnTransferTokens",
+          "transfer",
+          "transferFrom",
+          "turbo",
+          "type",
+          "unstake",
+          "unwind",
+          "unwrap",
+          "withdrawCollateral",
+          "zap"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined zap operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    }
+  ],
+  "events": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "wsIn",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "usdgBorrowed",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "wsLooped",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "wsSurplusReturned",
+          "type": "uint256"
+        }
+      ],
+      "name": "Turbo",
+      "type": "event",
+      "signature": "Turbo(address,uint256,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "Explorer ABI event Turbo; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xc48b5fc38569353cea6a9744a043e377efefff58de905986242180a93bf53e4f"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "usdgRepaid",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "wsFreed",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "usdgSurplusReturned",
+          "type": "uint256"
+        }
+      ],
+      "name": "Unwind",
+      "type": "event",
+      "signature": "Unwind(address,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "Explorer ABI event Unwind; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xed2784480bdab74064f940b0fbead975d5ce4f0936822552f3b893e1646b2237"
+    }
+  ],
+  "errors": [
+    {
+      "inputs": [],
+      "name": "AboveTargetLtv",
+      "type": "error",
+      "signature": "AboveTargetLtv()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "Explorer ABI error AboveTargetLtv; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x0ad7ff6f"
+    },
+    {
+      "inputs": [],
+      "name": "InsufficientProceeds",
+      "type": "error",
+      "signature": "InsufficientProceeds()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "Explorer ABI error InsufficientProceeds; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xe8775e4a"
+    },
+    {
+      "inputs": [],
+      "name": "NoOpInFlight",
+      "type": "error",
+      "signature": "NoOpInFlight()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "Explorer ABI error NoOpInFlight; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x273caf48"
+    },
+    {
+      "inputs": [],
+      "name": "NotMorpho",
+      "type": "error",
+      "signature": "NotMorpho()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "Explorer ABI error NotMorpho; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xe51b5123"
+    },
+    {
+      "inputs": [],
+      "name": "OpInFlight",
+      "type": "error",
+      "signature": "OpInFlight()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "Explorer ABI error OpInFlight; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x5d875475"
+    },
+    {
+      "inputs": [],
+      "name": "SlippageExceeded",
+      "type": "error",
+      "signature": "SlippageExceeded()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "Explorer ABI error SlippageExceeded; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x8199f5f3"
+    },
+    {
+      "inputs": [],
+      "name": "TransferFailed",
+      "type": "error",
+      "signature": "TransferFailed()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "Explorer ABI error TransferFailed; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x90b8ec18"
+    },
+    {
+      "inputs": [],
+      "name": "ZeroAmount",
+      "type": "error",
+      "signature": "ZeroAmount()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "Explorer ABI error ZeroAmount; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x1f2a2005"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "morpho_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "usdg_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "net_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "sNet_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "staking_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "wsNet_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "zap_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "swapRouter_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "oracle_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "irm_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-router",
+        "locator": "src/lending/TurboRouter.sol: constructor; explorer decoded_constructor_args"
+      }
+    }
+  ],
+  "runtime_evidence": {
+    "source_id": "netnet-credit-implementation-20261010-loopback-router",
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x4638617808e3f1Cf237c0d33Ae818126D5C77E17",
+    "observed_on": "2026-10-10",
+    "source_status": "explorer_verified_source_obtained",
+    "source_file": "src/lending/TurboRouter.sol",
+    "source_sha256": "053590bac9ceed72018fe0247f65b07a9efa6991e8eaff76c827c09437ed144b",
+    "runtime_sha256": "0b68334bb2df9e665c40ba71c339bf126ef197dbff062596eb23a7a575a8f7fd",
+    "runtime_bytes": 7634,
+    "runtime_observation": "unpinned_explorer_response",
+    "compiler_version": "v0.8.30+commit.73712a01",
+    "proxy_type": null,
+    "implementations": [],
+    "additional_sources": [
+      {
+        "file_path": "src/interfaces/IStaking.sol",
+        "sha256": "34e5202a43208d307382214826720a23913b587f6c5c32f339fee022db108b78"
+      },
+      {
+        "file_path": "src/interfaces/external/IERC20.sol",
+        "sha256": "3b2bdeac1b60996e9ef139ede11f53bce36a8115a3c3092f2ea2309d8243de1d"
+      },
+      {
+        "file_path": "src/interfaces/external/IUniswapV2.sol",
+        "sha256": "0facf540a1771e87ab41400b76a23a7cd18a747a730c800316118fa27424d19c"
+      },
+      {
+        "file_path": "src/lending/LendingConstants.sol",
+        "sha256": "d0b286953f8b5b0c1d5f3bf2058afb4740b183c2f72e17145eda483b1cacbdf9"
+      },
+      {
+        "file_path": "src/lending/interfaces/IMorphoBlue.sol",
+        "sha256": "fd561cf7c0adbb60fff8912501236a04b59ef32abf24b4df313f288e9cab97de"
+      }
+    ],
+    "constructor_bindings": [
+      [
+        "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+        {
+          "internalType": "address",
+          "name": "morpho_",
+          "type": "address"
+        }
+      ],
+      [
+        "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+        {
+          "internalType": "address",
+          "name": "usdg_",
+          "type": "address"
+        }
+      ],
+      [
+        "0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+        {
+          "internalType": "address",
+          "name": "net_",
+          "type": "address"
+        }
+      ],
+      [
+        "0xb773ec2C326B7f98a5a83fc098825492F020a4c7",
+        {
+          "internalType": "address",
+          "name": "sNet_",
+          "type": "address"
+        }
+      ],
+      [
+        "0xB078cc304A0B264C5F3680DC0488954ACcd02E87",
+        {
+          "internalType": "address",
+          "name": "staking_",
+          "type": "address"
+        }
+      ],
+      [
+        "0x63C12667638f2Ae6fC6ae09B43D98Ec84a8586eA",
+        {
+          "internalType": "address",
+          "name": "wsNet_",
+          "type": "address"
+        }
+      ],
+      [
+        "0xA1ee052EC32532304a7522bd9A4b594eC28fF1b1",
+        {
+          "internalType": "address",
+          "name": "zap_",
+          "type": "address"
+        }
+      ],
+      [
+        "0x89e5DB8B5aA49aA85AC63f691524311AEB649eba",
+        {
+          "internalType": "address",
+          "name": "swapRouter_",
+          "type": "address"
+        }
+      ],
+      [
+        "0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16",
+        {
+          "internalType": "address",
+          "name": "oracle_",
+          "type": "address"
+        }
+      ],
+      [
+        "0x2BD3d5965B26B51814AC95127B2b80dD6CcC0fa1",
+        {
+          "internalType": "address",
+          "name": "irm_",
+          "type": "address"
+        }
+      ]
+    ],
+    "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+  }
+}

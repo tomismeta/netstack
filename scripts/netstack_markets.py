@@ -3,7 +3,7 @@
 from collections import Counter, defaultdict
 from fractions import Fraction
 
-from netstack_core import ZERO, RpcError, amount, load_json, ratio, resolve_routes
+from netstack_core import ZERO, RpcError, amount, decode_event, keccak256, load_json, ratio, resolve_routes
 
 
 WAD = 10**18
@@ -97,6 +97,125 @@ def _comparison(observed, expected, complete, **extra):
         **extra,
     }
 
+def _runtime(ctx, address, expected):
+    code = ctx.code(address)
+    raw = bytes.fromhex(code[2:])
+    observed = "0x" + keccak256(raw).hex()
+    return {
+        "address": address, "runtime_bytes": len(raw), "runtime_keccak256": observed,
+        "matched": len(raw) == expected["runtime_bytes"] and observed == expected["runtime_keccak256"],
+        "evidence": "assets/contracts/predict-source-evidence.json",
+        "scope": "exact runtime identity at snapshot, not source verification or dependency audit",
+    }
+
+
+def _history_consistency(metrics, coverage):
+    problems = []
+    command = "predict" if "activity" in metrics else "house"
+    complete = coverage.get("desk_events" if command == "predict" else "house_events", {}).get("event_coverage_complete", False)
+    if command == "predict":
+        count = metrics.get("desk_snapshot", {}).get("seriesCount")
+        discovered = coverage.get("series_discovery", {}).get("discovery_complete", False)
+        rows = {sid: row for sid, row in metrics.get("counter_reconciliation", {}).items()
+                if sid.isdigit() and isinstance(row, dict)}
+        if count is None or not discovered or len(rows) != int(count):
+            problems.append("series counter and complete inspected history are not reconciled")
+        for sid, row in rows.items():
+            if not row.get("opening_consistent"):
+                problems.append("series " + sid + " lacks one matching Opened event")
+            for field in ("volume_hypothesis", "fees_hypothesis"):
+                if row.get(field, {}).get("residual_raw") != "0":
+                    problems.append("series " + sid + " " + field + " disagrees with stored counter")
+            raw = metrics.get("series", {}).get(sid, {}).get("raw", {})
+            activity = metrics.get("activity", {}).get("series", {}).get(sid, {})
+            if raw.get("status") in ("2", "3") and activity.get("settled_events") != 1:
+                problems.append("series " + sid + " settled state lacks one settlement event")
+        ids = metrics.get("activity", {}).get("series_identity_check", {})
+        if ids.get("event_ids_outside_count") or ids.get("event_ids_not_inspected"):
+            problems.append("event series identities differ from the pinned series counter")
+        for row in metrics.get("fees_paid_reconciliation", {}).get("accounts", {}).values():
+            if row.get("residual_raw") != "0":
+                problems.append("account fee getter differs from observed fee history")
+    else:
+        hv = metrics.get("house_snapshot", {})
+        events = metrics.get("house_events", {})
+        counts = events.get("event_counts", {})
+        count = hv.get("seriesCount")
+        funded = events.get("funded_series_counts", {})
+        settled = events.get("settled_series_counts", {})
+        if count is None or hv.get("live") is None:
+            problems.append("House series counter/live state unavailable")
+        else:
+            count = int(count)
+            expected_settled = count - int(hv["live"])
+            if len(funded) != count or any(int(sid) < 1 or int(sid) > count or n != 1 for sid, n in funded.items()):
+                problems.append("House seriesCount differs from Funded history")
+            if len(settled) != expected_settled or any(int(sid) < 1 or int(sid) > expected_settled or n != 1 for sid, n in settled.items()):
+                problems.append("House live/seriesCount differs from Settled history")
+        if not counts.get("Deposited") and not counts.get("DepositQueued") and any(int(hv.get(name) or 0) for name in ("totalShares", "totalPending", "totalClaimable", "activeAssets")):
+            problems.append("House capital/claims exist but no deposit history was returned")
+    return {"consistent": bool(complete and not problems), "event_ranges_complete": complete,
+            "contradictions_or_missing_evidence": problems,
+            "scope": "Independent pinned counters/state versus observed history; provider range completion alone never establishes inactivity."}
+
+
+def prepare_result(result):
+    """Attach reportable totals only after state, history and snapshot agree."""
+    metrics, coverage = result.get("metrics", {}), result.get("coverage", {})
+    if "scope" not in metrics:
+        return
+    confirmed = result.get("snapshot", {}).get("recheck_status") == "confirmed"
+    implementation = metrics.get("implementation", {})
+    bound = all(implementation.get(name, {}).get("matched", False) for name in ("desk", "house"))
+    snapshot_only = metrics["scope"].get("mode") == "single_series_snapshot"
+    discovery = coverage.get("series_discovery", {}).get("discovery_complete", False)
+    if snapshot_only:
+        ready = confirmed and bound and discovery and not result.get("errors")
+        coverage["collection_complete"] = ready
+        return
+    metrics["state_history_consistency"] = _history_consistency(metrics, coverage)
+    consistent = metrics["state_history_consistency"]["consistent"]
+    # Do not erase raw observations on checkpoint/recheck failure.
+    activity = metrics.get("activity")
+    if isinstance(activity, dict) and "series" in activity:
+        ready = confirmed and bound and discovery and consistent and activity.get("event_coverage_complete", False)
+        activity["totals_established"] = ready
+        activity["selected_deployment_totals"] = activity["series"] if ready else None
+        activity["status"] = "reconciled_event_scope" if ready else "partial_observed"
+    house_events = metrics.get("house_events")
+    if isinstance(house_events, dict) and "event_labeled_sums_raw" in house_events:
+        ready = confirmed and bound and consistent and house_events.get("event_coverage_complete", False)
+        house_events["totals_established"] = ready
+        house_events["selected_deployment_event_totals"] = house_events["event_labeled_sums_raw"] if ready else None
+        house_events["status"] = "reconciled_event_scope" if ready else "partial_observed"
+        house_events["zero_settlements"] = "established for selected deployment" if ready and not house_events.get("settled_series_counts") else "not established" if not house_events.get("settled_series_counts") else False
+    receipts = metrics.get("receipt_reconciliation", {})
+    receipts_ready = receipts.get("retrieval_complete", False) and receipts.get("all_groups_matched", False)
+    cash = metrics.get("cash_reconciliation", {})
+    account = "desk" if "activity" in metrics else "house"
+    cash_ready = (cash.get("accounts", {}).get(account, {}).get("balance_reconciliation_complete", False)
+                  and cash.get("event_cash_legs_matched", False))
+    if account == "desk":
+        cash_ready = cash_ready and cash.get("outcome_event_legs_matched", False) and all(
+            row.get("supply_reconciled", False) for row in metrics.get("outcome_supply_reconciliation", {}).values()
+            if isinstance(row, dict))
+    coverage["accounting_reconciled"] = bool(cash_ready)
+    if receipts:
+        receipts["confirmed_totals"] = receipts.get("observed_matched_subtotals") if confirmed and bound and consistent and receipts_ready and cash_ready and coverage.get("retrieval_complete", False) else None
+    performance = metrics.get("performance", {})
+    for row in performance.get("underwriting_cycles", {}).values():
+        evidence_ready = row.get("evidence_established", False)
+        row["result_established"] = bool(confirmed and bound and consistent and receipts_ready and cash_ready and evidence_ready)
+        row["net_underwriting_cash_return_raw"] = row.get("observed_net_cash_return_raw") if row["result_established"] else None
+        row["return_fraction"] = row.get("observed_return_fraction") if row["result_established"] else None
+    for row in performance.get("struck_price_returns", {}).values():
+        row["established"] = bool(confirmed and bound and consistent and row.get("evidence_established", False))
+        row["return_fraction"] = row.get("observed_return_fraction") if row["established"] else None
+    performance["realized_share_price_return"] = performance.get("observed_share_price_return") if confirmed and bound and consistent else None
+    required = coverage.get("retrieval_complete", False)
+    coverage["collection_complete"] = bool(required and confirmed and bound and discovery and consistent and receipts_ready and cash_ready and not result.get("errors"))
+
+
 
 def _setup(ctx, command, snapshot_only=False):
     routes = resolve_routes("predict")
@@ -109,7 +228,7 @@ def _setup(ctx, command, snapshot_only=False):
         "deployment_scope": "selected registry deployment only; earlier deployments are not enumerated",
         "selected_deployment_only": True,
         "unit": "USDG; no USD parity or dollar valuation assumed",
-        "interface_evidence": "published view ABI and live consumer, not verified Solidity",
+        "interface_evidence": "publisher ABI plus exact explorer-runtime review; no verified Solidity",
         "source_id": source["source_id"], "metadata_observed_on": source["reviewed_on"],
         "snapshot_block": ctx.block,
         "mode": "single_series_snapshot" if snapshot_only else "snapshot_and_history",
@@ -118,11 +237,18 @@ def _setup(ctx, command, snapshot_only=False):
     metrics["settlement_trust"] = {
         "publisher_rules": dict(_RULE_SOURCE),
         "print_authority": "documented team Safe/grader posts the print; numeric bounds do not authenticate correctness",
-        "unverified": ["grader appointment and all current privileged controls",
+        "unverified": ["current Safe signer/threshold and external dependency controls",
                        "independent correctness of the posted print", "print-dispute/challenge rights"],
-        "distinct_remedies": "documented 72-hour ungraded void is not a print dispute; 24-hour closest-guess challenge concerns the prize only",
-        "interface_limit": "bundled view/event fragment omits writes; missing challenge functions prove no absence of challenge rights",
+        "distinct_remedies": "runtime 72-hour ungraded void is not a print dispute; prize proposals select an eligible non-overshooting guess and do not change outcome payout",
+        "interface_limit": "complete publisher functions reviewed against exact runtime; no verified Solidity, exhaustive reachability audit or independent print script",
     }
+    evidence = load_json("assets/contracts/predict-source-evidence.json")
+    metrics["implementation"] = {}
+    for name, address in (("desk", desk), ("house", house)):
+        observed = _runtime(ctx, address, evidence["runtime"][name])
+        metrics["implementation"][name] = observed
+        if not observed["matched"]:
+            raise RpcError("Unsupported " + name + " runtime at pinned block; do not apply reviewed accounting", kind="unavailable")
     ctx.result["coverage"]["collection_complete"] = False
     requested = () if snapshot_only else (("activity", "funding", "counter_reconciliation", "outcome_supply_reconciliation", "fees_paid_reconciliation", "cash_reconciliation") if command == "predict" else ("ownership", "house_events", "performance", "cash_reconciliation"))
     for name in requested:
@@ -133,7 +259,7 @@ def _setup(ctx, command, snapshot_only=False):
         "Role anchors and account getters do not prove every beneficial owner.",
         "Fees, book, cash, pending deposits and claim liabilities are not additive profit buckets.",
     ])
-    for address in (desk, house, usdg):
+    for address in (usdg,):
         if ctx.code(address) in ("0x", "0x0", "0x00"):
             raise RpcError("No deployed code at pinned block: " + address)
     da, ha, ta = source["abi"], house_source["abi"], source["token_abi"]
@@ -215,8 +341,8 @@ def _classification(raw, timestamp, halted):
             "enum_evidence": dict(_INTERPRETATION_SOURCE),
             "status_label": _STATUS.get(status, "unknown_enum"), "clock_state": state,
             "rule_evidence": dict(_RULE_SOURCE),
-            "last_call_rule": "documented skew-reducing buys only; exact strictness not established",
-            "halt_rule": "documented new-buy halt, not a sell halt",
+            "last_call_rule": "reviewed runtime rejects increased absolute skew after last call; equality does not alone reject a buy",
+            "halt_rule": "reviewed runtime new-buy halt, not a sell halt",
             "buy_acceptance": {"status": "unverified", "remaining_gates": ["clock", "halt", "amount", "side/skew", "minimum", "account"]},
             "sell_acceptance": {"status": "unverified", "limit": "published availability is not an executable quote or acceptance proof"},
             "settlement": "stored resolved/void enum; print correctness and actual redemption remain unproven" if status in (2, 3) else "not established",
@@ -310,6 +436,7 @@ class _Evidence:
         self.balances_before = {}
         self.event_keys = []
         self.cash_keys = []
+        self.non_cash_deposits = set()
 
     def extend(self, page):
         self.events.extend(page)
@@ -336,6 +463,8 @@ class _Evidence:
                 elif name == "NetBought":
                     unknown_routing[event["transactionHash"]] += value["usdgSpent"]
             elif address == self.house:
+                if name == "Deposited" and _event_id(event) in self.non_cash_deposits:
+                    continue
                 if name in ("Deposited", "DepositQueued"):
                     sender, recipient, quantity = account, self.house, value["usdg"]
                 elif name in ("DepositCancelled", "WithdrawClaimed"):
@@ -482,6 +611,85 @@ class _Evidence:
         return expected, matched_keys
 
 
+def _receipts(ctx, ledger, da, ha, ta, outcomes=None):
+    """Receipt-local evidence, separate from the independent Transfer census."""
+    report = ctx.result["metrics"]["receipt_reconciliation"] = {
+        "transactions": {}, "retrieval_complete": False, "all_groups_matched": False,
+        "observed_matched_subtotals": {}, "confirmed_totals": None,
+        "scope": "Exact transaction/token/direction groups; singleton operations only in attributed subtotals. Fees are event accounting, not standalone cash receipts.",
+    }
+    by_tx = defaultdict(list)
+    for event in ledger.events:
+        by_tx[event["transactionHash"]].append(event)
+    totals = Counter()
+    token_addresses = {ledger.usdg} | set((outcomes or {}).values())
+    for tx, scanned in sorted(by_tx.items()):
+        row = report["transactions"][tx] = {"status": "unavailable"}
+        try:
+            receipt = ctx.receipt(tx)
+            if int(receipt["status"], 16) != 1:
+                raise RpcError("Failed receipt contains scanned market events", kind="integrity")
+            local = _Evidence(ctx, ledger.desk, ledger.house, ledger.usdg)
+            decoded = []
+            for raw in receipt["logs"]:
+                address = raw["address"].lower()
+                abi = da if address == ledger.desk else ha if address == ledger.house else ta if address in token_addresses else None
+                if abi is not None:
+                    event = decode_event(raw, abi)
+                    if event is not None:
+                        decoded.append(event)
+            decoded_by_key = {_event_id(event): event for event in decoded}
+            scanned_keys = {_event_id(event) for event in scanned}
+            if any(decoded_by_key.get(_event_id(event)) != event for event in scanned):
+                raise RpcError("Scanned event absent from or differs from its receipt", kind="integrity")
+            selected = [event for event in decoded if
+                        (event["address"] == ledger.desk and "desk_events" in ledger.event_keys) or
+                        (event["address"] == ledger.house and
+                         ("house_events" in ledger.event_keys or event["event"] in ("Funded", "Settled")))]
+            omitted = [_event_ref(event) for event in selected if _event_id(event) not in scanned_keys]
+            local.extend(selected)
+            transfers = [event for event in decoded if event["event"] == "Transfer"]
+            local.add_transfers(transfers)
+            # Lazy queued joins emit Deposited without a new preceding cash leg.
+            last_deposit = {}
+            sync = []
+            for event in sorted(selected, key=lambda e: e["logIndex"]):
+                if event["address"] != ledger.house or event["event"] != "Deposited":
+                    continue
+                account = event["values"]["account"]
+                candidates = [transfer for transfer in transfers if transfer["address"] == ledger.usdg
+                              and transfer["values"]["from"] == account and transfer["values"]["to"] == ledger.house
+                              and last_deposit.get(account, -1) < transfer["logIndex"] < event["logIndex"]]
+                if not candidates:
+                    local.non_cash_deposits.add(_event_id(event))
+                    ledger.non_cash_deposits.add(_event_id(event))
+                    sync.append(_event_ref(event))
+                last_deposit[account] = event["logIndex"]
+            expected, matched, matches, mismatches, routing, unmatched = local.matching(outcomes)
+            attributed = all(len(group["events"]) == 1 for group in expected.values())
+            matched_all = not omitted and not mismatches and attributed and all(item["matched"] for item in routing)
+            for key in matched:
+                group = expected.get(key)
+                if group is not None and len(group["events"]) == 1:
+                    operation = group["operations"][0]
+                    totals[operation + (".usdg_raw" if key[0] == ledger.usdg else ".outcome_raw")] += group["amount"]
+            fee_events = [event for event in selected if event["address"] == ledger.desk and event["event"] in ("Bought", "Sold")]
+            row.update(status="checked", matched=matched_all, groups=matches,
+                       mismatches=mismatches, missing_scan_events=omitted,
+                       synchronized_deposits_without_new_cash=sync, net_routing=routing,
+                       event_trade_fees_usdg_raw=str(sum(event["values"]["fee"] for event in fee_events)),
+                       fee_attribution="Fee is withheld/accounted inside the trade; NET routing may spend old pending fees, so its cash is not assigned to this trade's fee.",
+                       unmatched_usdg_transfers=unmatched)
+        except RpcError as error:
+            _problem(ctx, "receipt:" + tx, error)
+            row["error"] = str(error)
+        report["observed_matched_subtotals"] = _raw(dict(totals))
+        ctx.checkpoint()
+    report["retrieval_complete"] = all(row["status"] == "checked" for row in report["transactions"].values())
+    report["all_groups_matched"] = all(row.get("matched", False) for row in report["transactions"].values())
+    ctx.checkpoint()
+
+
 def _cash_history(ctx, ledger, ta, start, addresses, outcomes=None, after_page=None):
     indexed = ["0x" + address[2:].rjust(64, "0") for address in addresses]
     keys = ("usdg_outgoing", "usdg_incoming")
@@ -504,6 +712,7 @@ def _cash_history(ctx, ledger, ta, start, addresses, outcomes=None, after_page=N
 def _token_snapshots(ctx, ta, series):
     tokens = {}
     rows = ctx.result["metrics"]["series"]
+    expected = load_json("assets/contracts/predict-source-evidence.json")["runtime"]["outcome"]
     for sid, raw in series.items():
         for long_side, field in ((True, "long"), (False, "short")):
             address = raw[field]
@@ -513,9 +722,10 @@ def _token_snapshots(ctx, ta, series):
                 _problem(ctx, "series:" + str(sid), "zero outcome identity")
                 continue
             if address not in tokens:
-                if ctx.code(address) in ("0x", "0x0", "0x00"):
-                    token["error"] = "no deployed outcome code"
-                    _problem(ctx, "series:" + str(sid), "no deployed outcome code")
+                token["implementation"] = _runtime(ctx, address, expected)
+                if not token["implementation"]["matched"]:
+                    token["error"] = "unknown outcome runtime variant"
+                    _problem(ctx, "series:" + str(sid), "Outcome runtime differs from reviewed variant; supply/payout semantics unavailable")
                     continue
                 values = _getters(ctx, address, ta, ("decimals", "totalSupply", "name", "symbol"), token)
                 tokens[address] = values
@@ -538,7 +748,7 @@ def run_predict(ctx, args):
     tokens = _token_snapshots(ctx, ta, series)
     metrics = ctx.result["metrics"]
     if snapshot_only:
-        ctx.result["coverage"]["collection_complete"] = not ctx.result["errors"] and ctx.result["coverage"]["series_discovery"]["discovery_complete"]
+        ctx.result["coverage"]["retrieval_complete"] = not ctx.result["errors"] and ctx.result["coverage"]["series_discovery"]["discovery_complete"]
         ctx.checkpoint()
         return
     metrics["activity"] = {"status": "unavailable", "event_coverage_complete": False, "series": {}}
@@ -575,7 +785,7 @@ def run_predict(ctx, args):
             row["event_coverage_complete"] = complete
             row["opened_events"] = len(openings[sid])
             row["settled_events"] = len(settlements[sid])
-            row["zero_counts_mean"] = "zero in selected deployment scan" if complete else "zero observed only; unscanned history is unknown"
+            row["zero_counts_mean"] = "zero observed only; a full total additionally requires pinned counters/state reconciliation and confirmed snapshot"
             row["raw_status_at_snapshot"] = series.get(sid, {}).get("status")
             row["publisher_status_at_snapshot"] = {
                 "label": _STATUS.get(row["raw_status_at_snapshot"], "uninspected_or_unknown"),
@@ -588,8 +798,8 @@ def run_predict(ctx, args):
             returned = sum(e["values"]["usdgReturned"] for e in returns[sid])
             fcomplete = _complete(ctx, "house_funding_events")
             metrics["funding"]["series"][str(sid)] = {
-                "funded_event_usdg_raw": str(funding) if funds[sid] or fcomplete else None,
-                "returned_event_usdg_raw": str(returned) if returns[sid] or fcomplete else None,
+                "funded_event_usdg_raw": str(funding) if funds[sid] else None,
+                "returned_event_usdg_raw": str(returned) if returns[sid] else None,
                 "funding_events": len(funds[sid]), "return_events": len(returns[sid]),
                 "event_coverage_complete": fcomplete, "cash_status": "consult cash_reconciliation; event values are not automatically cash-verified",
             }
@@ -662,6 +872,7 @@ def run_predict(ctx, args):
 
     _scan(ctx, "desk_events", desk, da, [], desk_start, desk_page)
     _scan(ctx, "house_funding_events", house, ha, ["Funded", "Settled"], house_start, funding_page)
+    _receipts(ctx, ledger, da, ha, ta, outcomes)
     _cash_history(ctx, ledger, ta, min(desk_start, house_start), [desk, house], outcomes, publish)
     # This command did not request House deposit/withdrawal history; Vault-side
     # unmatched cash is intentionally retained, never classified as wagers.
@@ -695,6 +906,7 @@ def run_predict(ctx, args):
             metrics["outcome_supply_reconciliation"][token] = {
                 "opening_supply_evidence": baseline,
                 "opening_supply_raw": _raw(before), "minted_raw": str(supply["minted"]), "burned_raw": str(supply["burned"]),
+                "zero_endpoint_limit": "Outcome transfer(to=zero) can emit the same destination without reducing totalSupply; these are endpoint observations, not independently attributed privileged burns.",
                 "total_supply_raw": _raw(total), "event_coverage_complete": _complete(ctx, key),
                 "supply_residual_raw": None if before is None or total is None else str(total - before - supply["minted"] + supply["burned"]),
                 "supply_comparison_performed": before is not None and total is not None,
@@ -711,7 +923,7 @@ def run_predict(ctx, args):
                 supply = tokens.get(raw[field], {}).get("totalSupply")
                 payout = raw["longPayoutUsdg"] if field == "long" else 10**6 - raw["longPayoutUsdg"]
                 estimate[field] = str(supply * payout // WAD) if eligible and supply is not None else None
-            metrics["series"][str(sid)]["remaining_claim_frontend_estimate"] = {"usdg_raw_by_side": estimate, "scope": "aggregate frontend payout indication; holder rounding and deployed redemption semantics unproven; not solvency"}
+            metrics["series"][str(sid)]["remaining_claim_estimate"] = {"usdg_raw_by_side": estimate, "scope": "exact-runtime aggregate payout indication; individual floors and inaccessible zero-address balances can reduce actual claims; not a solvency proof"}
     for (sid, account), event_fees in sorted(fees.items()):
         observed = _optional(ctx, desk, da, "feesPaid", (sid, account))
         metrics["fees_paid_reconciliation"]["accounts"][str(sid) + ":" + account] = _comparison(observed, event_fees, _complete(ctx, "desk_events"))
@@ -727,7 +939,7 @@ def run_predict(ctx, args):
         if events:
             first, last = events[0], events[-1]
             metrics["activity"]["series"][str(sid)]["observed_activity_timestamps"] = {"first": ctx.header(first["blockNumber"])["timestamp"], "last": ctx.header(last["blockNumber"])["timestamp"], "scope": "timestamps of first/last observed activity blocks"}
-    ctx.result["coverage"]["collection_complete"] = not ctx.result["errors"] and all(_complete(ctx, key) for key in ledger.event_keys + ledger.cash_keys + ["outcome_transfers:" + token for token in tokens]) and ctx.result["coverage"]["series_discovery"]["discovery_complete"] and fees_cov["complete"]
+    ctx.result["coverage"]["retrieval_complete"] = not ctx.result["errors"] and all(_complete(ctx, key) for key in ledger.event_keys + ledger.cash_keys + ["outcome_transfers:" + token for token in tokens]) and ctx.result["coverage"]["series_discovery"]["discovery_complete"] and fees_cov["complete"]
     ctx.checkpoint()
 
 
@@ -756,11 +968,11 @@ def run_house(ctx, args):
     metrics["house_cash_pending_claim_hypothesis"] = _comparison(hv.get("usdg_balance_raw"), None if hv.get("totalPending") is None or hv.get("totalClaimable") is None else hv["totalPending"] + hv["totalClaimable"], False, caveat="diagnostic for live funded Vault; idle active capital, donations and other legs can differ")
     generation = hv.get("generation")
     start_series = hv.get("generationStartSeries")
-    # No published generation event or reset semantics permits historical replay.
+    # Runtime reset rules are reviewed; historical account replay is still absent.
     gen = ctx.result["coverage"]["generation"] = {
         "current_generation": _raw(generation), "generation_start_series": _raw(start_series),
-        "reset_semantics_established": False, "historical_ownership_replay_complete": False,
-        "reason": "same-block getters retained; generation boundary/storage reset rules are not established by this ABI",
+        "reset_semantics_established": True, "historical_ownership_replay_complete": False,
+        "reason": "exact runtime: zero exit price with remaining shares advances generation; old active shares/pending are excluded, matured notices survive; no full historical owner replay",
     }
     roles = defaultdict(list)
     for name in ("sleeve", "treasury"):
@@ -845,11 +1057,12 @@ def run_house(ctx, args):
                              "maturity_predicate": "n<count or (n==count and not live), with nonzero notice series",
                              "free_shares_ui_raw": None if shares is None or matured else str(shares - notice["shares"]),
                              "generation_compatible": start_series is not None and notice["series"] >= start_series,
-                             "assetsOf_claim_overlap_unresolved": True}
+                             "assetsOf_claim_overlap_unresolved": False,
+                             "matured_claim_excluded_from_assetsOf": True}
             if matured:
                 exit_price = _optional(ctx, house, ha, "exitPriceWad", (notice["series"],))
                 indication = None if exit_price is None else notice["shares"] * exit_price // WAD
-                values["claim_usdg_raw"] = indication if row["notice"]["generation_compatible"] else None
+                values["claim_usdg_raw"] = indication
                 row["notice"]["exitPriceWad_raw"] = _raw(exit_price)
                 row["notice"]["frontend_claim_usdg_raw"] = _raw(indication)
                 row["notice"]["cash_paid"] = "not established by getter; consult WithdrawClaimed transfer evidence"
@@ -894,6 +1107,8 @@ def run_house(ctx, args):
         metrics["house_events"] = {"status": "complete_event_scope" if complete else "partial_observed", "event_counts": dict(counts), "event_labeled_sums_raw": _raw(dict(sums)), "event_coverage_complete": complete,
                                    "zero_settlements": "none in selected deployment history" if complete and not settlements else "not established" if not settlements else False,
                                    "cash_status": "event-labeled, consult independent cash reconciliation"}
+        metrics["house_events"]["funded_series_counts"] = {str(sid): len(events) for sid, events in funds.items()}
+        metrics["house_events"]["settled_series_counts"] = {str(sid): len(events) for sid, events in settlements.items()}
         account_cov["discovered_addresses"] = sorted(discovered)
         account_cov["missing_addresses"] = sorted(discovered - set(account_cov["fully_read_addresses"]))
         account_cov["event_discovery_complete"] = complete
@@ -902,6 +1117,7 @@ def run_house(ctx, args):
         ledger.publish()
 
     _scan(ctx, "house_events", house, ha, [], start, house_page)
+    _receipts(ctx, ledger, da, ha, ta)
     # Cash gets an independent bounded scan before unbounded account enumeration.
     _cash_history(ctx, ledger, ta, start, [house])
 
@@ -924,9 +1140,11 @@ def run_house(ctx, args):
                 "funded_event_raw": str(funding), "returned_event_raw": str(returned),
                 "funding_events": len(funds[sid]), "settlement_events": len(settlements[sid]),
                 "cash_matched": cash_matched, "event_coverage_complete": event_complete,
-                "transfer_history_complete": transfer_complete, "result_established": established,
-                "net_underwriting_cash_return_raw": str(returned - funding) if established else None,
-                "return_fraction": ratio(Fraction(returned - funding, funding)) if established and funding > 0 else None,
+                "transfer_history_complete": transfer_complete, "result_established": False,
+                "evidence_established": established,
+                "observed_net_cash_return_raw": str(returned - funding) if established else None,
+                "observed_return_fraction": ratio(Fraction(returned - funding, funding)) if established and funding > 0 else None,
+                "net_underwriting_cash_return_raw": None, "return_fraction": None,
                 "scope": "scoped gross returned capital minus funding; investor joins/exits separate; already-netted costs not deducted twice",
                 "settlement_observations": [{"raw": _raw(e["values"]), **_event_ref(e)} for e in settlements[sid]],
             }
@@ -950,10 +1168,10 @@ def run_house(ctx, args):
         # A reset-free historical basis is not established for older generations.
         previous_event = settlements[previous][0]
         ordered = (previous_event["blockNumber"], previous_event["transactionIndex"], previous_event["logIndex"]) < (events[0]["blockNumber"], events[0]["transactionIndex"], events[0]["logIndex"])
-        compatible = generation == 0 and ordered and opening is not None and opening > 0 and closing is not None and _complete(ctx, "house_events") and closing == events[0]["values"]["sharePriceWad"] and opening == previous_event["values"]["sharePriceWad"]
+        compatible = generation is not None and ordered and opening is not None and opening > 0 and closing is not None and _complete(ctx, "house_events") and closing == events[0]["values"]["sharePriceWad"] and opening == previous_event["values"]["sharePriceWad"]
         if compatible:
             factor = Fraction(closing, opening)
-            row.update({"established": True, "return_fraction": ratio(factor - 1), "compatibility_evidence": "initial generation, complete ordered settlement history, preceding-series join and matching current exit/event price; live adapter comparator convention"})
+            row.update({"evidence_established": True, "observed_return_fraction": ratio(factor - 1), "compatibility_evidence": "current generation after stored reset boundary, complete ordered settlement history, preceding-series join and matching current exit/event price; exact-runtime struck-price accounting"})
             first_time = ctx.header(settlements[previous][0]["blockNumber"])["timestamp"]
             last_time = ctx.header(events[0]["blockNumber"])["timestamp"]
             row["elapsed_seconds"] = last_time - first_time
@@ -970,15 +1188,15 @@ def run_house(ctx, args):
             factor = Fraction(1)
             for _, value in factors:
                 factor *= value
-            metrics["performance"]["realized_share_price_return"] = {
+            metrics["performance"]["observed_share_price_return"] = {
                 "return_fraction": ratio(factor - 1), "completed_series": [sid for sid, _ in factors],
                 "scope": "only this compatible contiguous subperiod, not lifetime performance",
             }
             metrics["performance"]["reason"] = "compatible completed-period factors only; no annualization or investor-specific return"
     if not settlements and _complete(ctx, "house_events"):
-        metrics["performance"]["reason"] = "no settled cycles in complete selected-deployment history; realized return is unknown, not 0%"
+        metrics["performance"]["reason"] = "no settled cycles observed; pinned series/live reconciliation is required even when RPC returned complete empty ranges; realized return unknown, not 0%"
     for account in sorted(discovered - set(account_cov["fully_read_addresses"])):
         read_account(account)
     ownership()
-    ctx.result["coverage"]["collection_complete"] = not ctx.result["errors"] and _complete(ctx, "house_events") and all(_complete(ctx, key) for key in ledger.cash_keys) and account_cov["discovered_account_reads_complete"] and ctx.result["coverage"]["series_discovery"]["discovery_complete"]
+    ctx.result["coverage"]["retrieval_complete"] = not ctx.result["errors"] and _complete(ctx, "house_events") and all(_complete(ctx, key) for key in ledger.cash_keys) and account_cov["discovered_account_reads_complete"] and ctx.result["coverage"]["series_discovery"]["discovery_complete"]
     ctx.checkpoint()

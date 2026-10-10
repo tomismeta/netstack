@@ -1,0 +1,1098 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x32ca7363c45212d119deeb11d02ce638234729d6",
+  "contract_record": "assets/addresses/contracts/hohm-token-and-twap.json",
+  "chain_id": 4663,
+  "address": "0x32Ca7363C45212d119DEEB11d02Ce638234729d6",
+  "generation": "hohm-twap",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap",
+      "observed_on": "2026-10-07"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 47,
+    "implementation": "unreviewed",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned code, storage, current permissions and financial reconciliation.",
+      "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+    ],
+    "literal_abi_sha256": "2def2ed87a78abb86a43e1ea7d4781f426638fa0a5104380541e1b51742474e2",
+    "literal_character_range": [
+      792877,
+      798818
+    ]
+  },
+  "functions": [
+    {
+      "name": "MAX_WINDOW",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MAX_WINDOW()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[1]"
+      },
+      "selector": "0xdeb96634",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface MAX_WINDOW(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "POOLS_SLOT",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "POOLS_SLOT()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[2]"
+      },
+      "selector": "0x57eb1da7",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface POOLS_SLOT(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "asset",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "asset()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[3]"
+      },
+      "selector": "0x38d52e0f",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface asset(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "assetDecimals",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "assetDecimals()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[4]"
+      },
+      "selector": "0xc2d41601",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface assetDecimals(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "assetIsCurrency0",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "assetIsCurrency0()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[5]"
+      },
+      "selector": "0x03debff4",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface assetIsCurrency0(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "checkpoint",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "checkpoint()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[6]"
+      },
+      "selector": "0xc2c4c5c1",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface checkpoint(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "count",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "count()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[7]"
+      },
+      "selector": "0x06661abd",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface count(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "decodeSlot0",
+      "inputs": [
+        {
+          "name": "word",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "sqrtP",
+          "type": "uint160",
+          "internalType": "uint160"
+        },
+        {
+          "name": "tick",
+          "type": "int24",
+          "internalType": "int24"
+        },
+        {
+          "name": "protocolFee",
+          "type": "uint24",
+          "internalType": "uint24"
+        },
+        {
+          "name": "lpFee",
+          "type": "uint24",
+          "internalType": "uint24"
+        }
+      ],
+      "stateMutability": "pure",
+      "signature": "decodeSlot0(bytes32)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[8]"
+      },
+      "selector": "0x4ae31b3b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface decodeSlot0(bytes32). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "head",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "head()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[9]"
+      },
+      "selector": "0x8f7dcfa3",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface head(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "lastSampleAt",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint40",
+          "internalType": "uint40"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "lastSampleAt()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[10]"
+      },
+      "selector": "0xa89f18e7",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface lastSampleAt(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "liveSqrtPriceX96",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "sqrtP",
+          "type": "uint160",
+          "internalType": "uint160"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "liveSqrtPriceX96()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[11]"
+      },
+      "selector": "0x1f79be44",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface liveSqrtPriceX96(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "liveTick",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "tick",
+          "type": "int24",
+          "internalType": "int24"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "liveTick()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[12]"
+      },
+      "selector": "0x9c234a32",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface liveTick(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "maxAge",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint32",
+          "internalType": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "maxAge()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[13]"
+      },
+      "selector": "0x687043c5",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface maxAge(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "maxSpotDevBps",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "maxSpotDevBps()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[14]"
+      },
+      "selector": "0xbb226be2",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface maxSpotDevBps(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "meanTick",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "int24",
+          "internalType": "int24"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "meanTick()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[15]"
+      },
+      "selector": "0x042ba85b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface meanTick(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "minInterval",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint32",
+          "internalType": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "minInterval()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[16]"
+      },
+      "selector": "0x3fb19a53",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface minInterval(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "newestAt",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint40",
+          "internalType": "uint40"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "newestAt()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[17]"
+      },
+      "selector": "0xb06cc14d",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface newestAt(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "pendingSample",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "tick",
+          "type": "int24",
+          "internalType": "int24"
+        },
+        {
+          "name": "at",
+          "type": "uint40",
+          "internalType": "uint40"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pendingSample()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[18]"
+      },
+      "selector": "0x90de85d0",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface pendingSample(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "poolId",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "poolId()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[19]"
+      },
+      "selector": "0x3e0dc34e",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface poolId(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "poolManager",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IPoolManagerExtsload"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "poolManager()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[20]"
+      },
+      "selector": "0xdc4c90d3",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface poolManager(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "priceWad",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "priceWad()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[21]"
+      },
+      "selector": "0xbb47b68a",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface priceWad(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "priceWadAtTick",
+      "inputs": [
+        {
+          "name": "tick",
+          "type": "int24",
+          "internalType": "int24"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "priceWadAtTick(int24)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[22]"
+      },
+      "selector": "0x0decb771",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface priceWadAtTick(int24). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "priceWadFromSqrtPriceX96",
+      "inputs": [
+        {
+          "name": "sqrtP",
+          "type": "uint160",
+          "internalType": "uint160"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "priceWadFromSqrtPriceX96(uint160)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[23]"
+      },
+      "selector": "0x4a39fe74",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface priceWadFromSqrtPriceX96(uint160). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "quoteDecimals",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "quoteDecimals()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[24]"
+      },
+      "selector": "0x3fd1e2bd",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface quoteDecimals(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "sampleAt",
+      "inputs": [
+        {
+          "name": "i",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "tick",
+          "type": "int24",
+          "internalType": "int24"
+        },
+        {
+          "name": "at",
+          "type": "uint40",
+          "internalType": "uint40"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "sampleAt(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[25]"
+      },
+      "selector": "0xf2e84e22",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface sampleAt(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "slot0Key",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "slot0Key()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[26]"
+      },
+      "selector": "0xec423af7",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface slot0Key(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "window",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "window()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[27]"
+      },
+      "selector": "0x461645bf",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface window(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "Checkpoint",
+      "inputs": [
+        {
+          "name": "tick",
+          "type": "int24",
+          "indexed": false,
+          "internalType": "int24"
+        },
+        {
+          "name": "at",
+          "type": "uint40",
+          "indexed": false,
+          "internalType": "uint40"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Checkpoint(int24,uint40)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[28]"
+      },
+      "topic0": "0x38f9117cf5240b8ec6ae21df3049b24e0c0cff0de6e2d246e8fee34cc04fd26d"
+    },
+    {
+      "name": "RingReset",
+      "inputs": [
+        {
+          "name": "newestAt",
+          "type": "uint40",
+          "indexed": false,
+          "internalType": "uint40"
+        },
+        {
+          "name": "at",
+          "type": "uint40",
+          "indexed": false,
+          "internalType": "uint40"
+        }
+      ],
+      "anonymous": false,
+      "signature": "RingReset(uint40,uint40)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[29]"
+      },
+      "topic0": "0x8d293c7e8cbec3d2e0ba356478ecdb575172f6aa252827d152690dd3c143ec65"
+    },
+    {
+      "name": "SampleCommitted",
+      "inputs": [
+        {
+          "name": "tick",
+          "type": "int24",
+          "indexed": false,
+          "internalType": "int24"
+        },
+        {
+          "name": "at",
+          "type": "uint40",
+          "indexed": false,
+          "internalType": "uint40"
+        }
+      ],
+      "anonymous": false,
+      "signature": "SampleCommitted(int24,uint40)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[30]"
+      },
+      "topic0": "0x31c7810d83dcc117aa486cc6b4400d22656c2a129f4bfc9ac7a88cc38648fe34"
+    },
+    {
+      "name": "SampleRejected",
+      "inputs": [
+        {
+          "name": "tick",
+          "type": "int24",
+          "indexed": false,
+          "internalType": "int24"
+        },
+        {
+          "name": "at",
+          "type": "uint40",
+          "indexed": false,
+          "internalType": "uint40"
+        },
+        {
+          "name": "reason",
+          "type": "uint8",
+          "indexed": false,
+          "internalType": "enum V4TwapOracle.RejectReason"
+        }
+      ],
+      "anonymous": false,
+      "signature": "SampleRejected(int24,uint40,uint8)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[31]"
+      },
+      "topic0": "0x34e41bf0c3c711ea8033f80076133d46bd85f0cf10ea5560a02ecf726589d31c"
+    }
+  ],
+  "errors": [
+    {
+      "name": "DecimalsTooHigh",
+      "inputs": [],
+      "signature": "DecimalsTooHigh()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[32]"
+      },
+      "selector": "0xa3095eff"
+    },
+    {
+      "name": "DeviationTooWide",
+      "inputs": [],
+      "signature": "DeviationTooWide()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[33]"
+      },
+      "selector": "0xd9c1a472"
+    },
+    {
+      "name": "MaxAgeBelowInterval",
+      "inputs": [],
+      "signature": "MaxAgeBelowInterval()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[34]"
+      },
+      "selector": "0x452890d8"
+    },
+    {
+      "name": "MulDivOverflow",
+      "inputs": [],
+      "signature": "MulDivOverflow()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[35]"
+      },
+      "selector": "0x49248f77"
+    },
+    {
+      "name": "PoolNotInitialized",
+      "inputs": [],
+      "signature": "PoolNotInitialized()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[36]"
+      },
+      "selector": "0x486aa307"
+    },
+    {
+      "name": "SpotDeviates",
+      "inputs": [],
+      "signature": "SpotDeviates()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[37]"
+      },
+      "selector": "0x638e6d94"
+    },
+    {
+      "name": "Stale",
+      "inputs": [],
+      "signature": "Stale()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[38]"
+      },
+      "selector": "0xd7815800"
+    },
+    {
+      "name": "TickOutOfRange",
+      "inputs": [],
+      "signature": "TickOutOfRange()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[39]"
+      },
+      "selector": "0xc7e13a01"
+    },
+    {
+      "name": "TooSoon",
+      "inputs": [],
+      "signature": "TooSoon()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[40]"
+      },
+      "selector": "0x6fed7d85"
+    },
+    {
+      "name": "Warming",
+      "inputs": [],
+      "signature": "Warming()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[41]"
+      },
+      "selector": "0xaf7b2cf7"
+    },
+    {
+      "name": "WindowOutOfRange",
+      "inputs": [],
+      "signature": "WindowOutOfRange()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[42]"
+      },
+      "selector": "0xf522a024"
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "signature": "ZeroAddress()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[43]"
+      },
+      "selector": "0xd92e233d"
+    },
+    {
+      "name": "ZeroInterval",
+      "inputs": [],
+      "signature": "ZeroInterval()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[44]"
+      },
+      "selector": "0x346ff607"
+    },
+    {
+      "name": "ZeroPoolId",
+      "inputs": [],
+      "signature": "ZeroPoolId()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[45]"
+      },
+      "selector": "0xce8aa684"
+    },
+    {
+      "name": "ZeroPrice",
+      "inputs": [],
+      "signature": "ZeroPrice()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[46]"
+      },
+      "selector": "0x4dfba023"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "poolManager_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "poolId_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "asset_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "assetIsCurrency0_",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "assetDecimals_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "quoteDecimals_",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "minInterval_",
+          "type": "uint32",
+          "internalType": "uint32"
+        },
+        {
+          "name": "window_",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "maxAge_",
+          "type": "uint32",
+          "internalType": "uint32"
+        },
+        {
+          "name": "maxSpotDevBps_",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Qn, Unicode character offsets[792877,798818); consumer binding to hohm-twap; ABI entry[0]"
+      }
+    }
+  ]
+}

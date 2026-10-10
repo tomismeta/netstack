@@ -1,0 +1,910 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0xca9c78dd337a67f6e0077f65f5e9218719d30edf",
+  "contract_record": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+  "chain_id": 4663,
+  "address": "0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+  "generation": "net",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net",
+      "observed_on": "2026-10-07"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 31,
+    "implementation": "unreviewed",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned code, storage, current permissions and financial reconciliation.",
+      "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+    ],
+    "literal_abi_sha256": "90bc685fa48f6e444a670c7ce90f17dd3eb3a358c88cf1468d239c730f741f97",
+    "literal_character_range": [
+      257223,
+      262499
+    ]
+  },
+  "functions": [
+    {
+      "name": "addTaxedPair",
+      "inputs": [
+        {
+          "name": "pair",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "kind",
+          "type": "uint8",
+          "internalType": "enum INET.PoolKind"
+        },
+        {
+          "name": "v3Fee",
+          "type": "uint24",
+          "internalType": "uint24"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "addTaxedPair(address,uint8,uint24)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[0]"
+      },
+      "selector": "0xaccb406f",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface addTaxedPair(address,uint8,uint24). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "allowance",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "spender",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "allowance(address,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[1]"
+      },
+      "selector": "0xdd62ed3e",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface allowance(address,address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "approve",
+      "inputs": [
+        {
+          "name": "spender",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "approve(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[2]"
+      },
+      "selector": "0x095ea7b3",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface approve(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "balanceOf",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "balanceOf(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[3]"
+      },
+      "selector": "0x70a08231",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface balanceOf(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "burn",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "burn(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[4]"
+      },
+      "selector": "0x42966c68",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface burn(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "burnFrom",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "burnFrom(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[5]"
+      },
+      "selector": "0x79cc6790",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface burnFrom(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "cancelTaxExempt",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "cancelTaxExempt(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[6]"
+      },
+      "selector": "0xd0831af0",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface cancelTaxExempt(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "canonicalPair",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "canonicalPair()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[7]"
+      },
+      "selector": "0x7381382b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface canonicalPair(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "decimals",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "decimals()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[8]"
+      },
+      "selector": "0x313ce567",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface decimals(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "enableTax",
+      "inputs": [
+        {
+          "name": "canonicalPair_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "enableTax(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[9]"
+      },
+      "selector": "0xcd80c9eb",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface enableTax(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "executeTaxExempt",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "executeTaxExempt(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[10]"
+      },
+      "selector": "0x63f7d08c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface executeTaxExempt(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "isTaxExempt",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isTaxExempt(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[11]"
+      },
+      "selector": "0x16c2be6b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface isTaxExempt(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "isTaxedPair",
+      "inputs": [
+        {
+          "name": "pair",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isTaxedPair(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[12]"
+      },
+      "selector": "0xb8f810b0",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface isTaxedPair(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "mint",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "mint(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[13]"
+      },
+      "selector": "0x40c10f19",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface mint(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "name",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "string",
+          "internalType": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "name()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[14]"
+      },
+      "selector": "0x06fdde03",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface name(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "queueTaxExempt",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "queueTaxExempt(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[15]"
+      },
+      "selector": "0xe8036706",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface queueTaxExempt(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "symbol",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "string",
+          "internalType": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "symbol()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[16]"
+      },
+      "selector": "0x95d89b41",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface symbol(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "taxCollector",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "taxCollector()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[17]"
+      },
+      "selector": "0xbea1dcf8",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface taxCollector(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "taxEnabled",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "taxEnabled()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[18]"
+      },
+      "selector": "0x870bd30b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface taxEnabled(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "taxTotalBps",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "signature": "taxTotalBps()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[19]"
+      },
+      "selector": "0x35fd9dc7",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface taxTotalBps(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "totalSupply",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "totalSupply()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[20]"
+      },
+      "selector": "0x18160ddd",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface totalSupply(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "transfer",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "transfer(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[21]"
+      },
+      "selector": "0xa9059cbb",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface transfer(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "transferFrom",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "transferFrom(address,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[22]"
+      },
+      "selector": "0x23b872dd",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface transferFrom(address,address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "Approval",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "spender",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Approval(address,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[23]"
+      },
+      "topic0": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
+    },
+    {
+      "name": "TaxCollected",
+      "inputs": [
+        {
+          "name": "payer",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "pair",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "netAmount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "TaxCollected(address,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[24]"
+      },
+      "topic0": "0x5d37fd68fe66745a199f8c603e00ae02183f4aabb8ec0089589b0b40c4ead5e1"
+    },
+    {
+      "name": "TaxEnabled",
+      "inputs": [
+        {
+          "name": "canonicalPair",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false,
+      "signature": "TaxEnabled(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[25]"
+      },
+      "topic0": "0x0b2e2c65f26171597a9c58845a287b8ac8daa85265c377ecfeca2c837a8363e5"
+    },
+    {
+      "name": "TaxExemptAdded",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false,
+      "signature": "TaxExemptAdded(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[26]"
+      },
+      "topic0": "0x20200da9cb0ace40cddab61c423bbdee4a4a74fe32308aa6919903886eefcf22"
+    },
+    {
+      "name": "TaxExemptCancelled",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false,
+      "signature": "TaxExemptCancelled(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[27]"
+      },
+      "topic0": "0xdda3aa8ffda613e2a3874fda5c45502f510ea36d9de837b482bea47546aece6a"
+    },
+    {
+      "name": "TaxExemptQueued",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "executableAt",
+          "type": "uint64",
+          "indexed": false,
+          "internalType": "uint64"
+        }
+      ],
+      "anonymous": false,
+      "signature": "TaxExemptQueued(address,uint64)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[28]"
+      },
+      "topic0": "0x294af0d53e63fd3a3cbd4117d33f3136480d9cc056900e5c274c64611a5d03d0"
+    },
+    {
+      "name": "TaxedPairAdded",
+      "inputs": [
+        {
+          "name": "pair",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false,
+      "signature": "TaxedPairAdded(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[29]"
+      },
+      "topic0": "0xbf25ba010f0cbc243f8e7672daf17974ceb7ac0c09d4f6f03a83e37845ea9924"
+    },
+    {
+      "name": "Transfer",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Transfer(address,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal n, Unicode character offsets[257223,262499); consumer binding to net; ABI entry[30]"
+      },
+      "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+    }
+  ],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": []
+}

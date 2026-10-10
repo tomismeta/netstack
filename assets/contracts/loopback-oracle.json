@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0xcde9599059f8ae6d6b9f33a0af7877827ec75f16",
+  "chain_id": 4663,
+  "address": "0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16",
+  "contract_record": "assets/addresses/contracts/loopback-oracle.json",
+  "generation": "loopback-oracle",
+  "provenance": [
+    {
+      "source_id": "netnet-credit-implementation-20261010-loopback-oracle",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16",
+      "observed_on": "2026-10-10",
+      "locator": "src/lending/LoopbackOracle.sol"
+    }
+  ],
+  "functions": [
+    {
+      "inputs": [],
+      "name": "netIsToken0",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "netIsToken0()",
+      "selector": "0x0f0964aa",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-oracle",
+        "locator": "src/lending/LoopbackOracle.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads netIsToken0 state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "pair",
+      "outputs": [
+        {
+          "internalType": "contract IUniswapV2Pair",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pair()",
+      "selector": "0xa8aa1b31",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-oracle",
+        "locator": "src/lending/LoopbackOracle.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads pair state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "pairOracle",
+      "outputs": [
+        {
+          "internalType": "contract IPairOracle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pairOracle()",
+      "selector": "0xb1b9a7c5",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-oracle",
+        "locator": "src/lending/LoopbackOracle.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads pairOracle state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "price",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "price()",
+      "selector": "0xa035b1fe",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-oracle",
+        "locator": "src/lending/LoopbackOracle.sol:52"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "Diverged",
+          "_pairPriceWad",
+          "backingPerToken",
+          "index",
+          "twapNetUsdg"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "floor(clamp(floor(TWAP*0.9),backingFloor,5*backingFloor)*sNETindex/1e9)*1e6; Morpho1e36 scale. Reverts if spot<floor(TWAP*0.85) or TWAP invalid; fail-closed also blocks liquidation, not just borrows."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "sNet",
+      "outputs": [
+        {
+          "internalType": "contract IsNET",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "sNet()",
+      "selector": "0x1adb8eb6",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-oracle",
+        "locator": "src/lending/LoopbackOracle.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads sNet state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "treasury",
+      "outputs": [
+        {
+          "internalType": "contract ITreasury",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "treasury()",
+      "selector": "0x61d027b3",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-oracle",
+        "locator": "src/lending/LoopbackOracle.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads treasury state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    }
+  ],
+  "events": [],
+  "errors": [
+    {
+      "inputs": [],
+      "name": "Diverged",
+      "type": "error",
+      "signature": "Diverged()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-oracle",
+        "locator": "Explorer ABI error Diverged; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xefac79d8"
+    }
+  ],
+  "constructors": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "pairOracle_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "treasury_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "sNet_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "net_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-loopback-oracle",
+        "locator": "src/lending/LoopbackOracle.sol: constructor; explorer decoded_constructor_args"
+      }
+    }
+  ],
+  "special_entrypoints": [],
+  "completeness": {
+    "supplied_interface": "complete_obtained_explorer_abi",
+    "supplied_entry_count": 8,
+    "implementation": "targeted_source_review",
+    "pinned_state": "not_obtained",
+    "dispatcher_evidence": {
+      "method": "PUSH4 EQ PUSHn JUMPI byte-pattern; incomplete and not semantic reachability proof",
+      "observed_selector_count": 6,
+      "unmatched_dispatcher_selectors": []
+    },
+    "missing_evidence": [
+      "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+      "Independent compiler equivalence and exhaustive function reachability."
+    ]
+  },
+  "runtime_evidence": {
+    "source_id": "netnet-credit-implementation-20261010-loopback-oracle",
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16",
+    "observed_on": "2026-10-10",
+    "source_status": "explorer_verified_source_obtained",
+    "source_file": "src/lending/LoopbackOracle.sol",
+    "source_sha256": "eeb8f5d9daae0b908ad88a2a24688e52b37554cb538be6619c5d939a86a1cf08",
+    "runtime_sha256": "f981dc3fba7b078eabbfba86e82c4289c3f050fb22ace34af3b4bf4a5a157347",
+    "runtime_bytes": 1550,
+    "runtime_observation": "unpinned_explorer_response",
+    "compiler_version": "v0.8.30+commit.73712a01",
+    "proxy_type": null,
+    "implementations": [],
+    "additional_sources": [
+      {
+        "file_path": "src/Constants.sol",
+        "sha256": "1a02fd6a04c98a0119cc38b6d0bf244d2103715733f0d9d0e28ca2227ce02d5d"
+      },
+      {
+        "file_path": "src/interfaces/IPairOracle.sol",
+        "sha256": "ff754e7dbfed580049324400497ddde0844609609cbb6250de3d849ce8524138"
+      },
+      {
+        "file_path": "src/interfaces/ITreasury.sol",
+        "sha256": "e0574920aa8097bbd499dfc49cb7ed70941c1ae4bf45aa5122b40d217c57f679"
+      },
+      {
+        "file_path": "src/interfaces/IsNET.sol",
+        "sha256": "2d5e70f1ded1ea16373aa169ba7ed458b30706c497a95f0cead8b376bbba6d92"
+      },
+      {
+        "file_path": "src/interfaces/external/IERC20.sol",
+        "sha256": "3b2bdeac1b60996e9ef139ede11f53bce36a8115a3c3092f2ea2309d8243de1d"
+      },
+      {
+        "file_path": "src/interfaces/external/IUniswapV2.sol",
+        "sha256": "0facf540a1771e87ab41400b76a23a7cd18a747a730c800316118fa27424d19c"
+      },
+      {
+        "file_path": "src/lending/LendingConstants.sol",
+        "sha256": "d0b286953f8b5b0c1d5f3bf2058afb4740b183c2f72e17145eda483b1cacbdf9"
+      }
+    ],
+    "constructor_bindings": [
+      [
+        "0x929631b33F4070D6f54477fba3FD27566567dAca",
+        {
+          "internalType": "address",
+          "name": "pairOracle_",
+          "type": "address"
+        }
+      ],
+      [
+        "0x04822Ea321A0DEE6F40656172F29312104855d66",
+        {
+          "internalType": "address",
+          "name": "treasury_",
+          "type": "address"
+        }
+      ],
+      [
+        "0xb773ec2C326B7f98a5a83fc098825492F020a4c7",
+        {
+          "internalType": "address",
+          "name": "sNet_",
+          "type": "address"
+        }
+      ],
+      [
+        "0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+        {
+          "internalType": "address",
+          "name": "net_",
+          "type": "address"
+        }
+      ]
+    ],
+    "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+  }
+}

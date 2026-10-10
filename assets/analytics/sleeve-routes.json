@@ -8,8 +8,8 @@
     "id": "robinhood-0x929631b33f4070d6f54477fba3fd27566567daca"
   },
   "rwa": {
-    "file": "assets/addresses/contracts/rwa-desk-v2-and-feed-router-adapters.json",
-    "id": "robinhood-0xa84efc3136bf1bb89ade9e5be6ab32cb1a04f08d"
+    "file": "assets/addresses/contracts/sleeve-bond-desk.json",
+    "id": "robinhood-0x732b3d1d3e8912cae75164fa14a6e1c4c64615b3"
   },
   "pack": {
     "file": "assets/addresses/contracts/pack-desk-pair-oracle-pendle-permit2-and-perp-fees.json",

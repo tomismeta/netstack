@@ -70,6 +70,13 @@
           "locator": "marketAdapter.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-credit-implementation-20261010-market-adapter",
+          "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xf0eeF247585b184836915e80f984246d981c55C4",
+          "locator": "Explorer ABI/source/runtime identity; unpinned, no financial state",
+          "evidence_kind": "explorer_source_and_runtime",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED"
@@ -128,6 +135,13 @@
           "locator": "morphoBlue.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-credit-implementation-20261010-morpho",
+          "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+          "locator": "Explorer ABI/source/runtime identity; unpinned, no financial state",
+          "evidence_kind": "explorer_source_and_runtime",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",

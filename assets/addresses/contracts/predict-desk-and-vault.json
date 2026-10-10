@@ -5,7 +5,11 @@
       "chain_id": 4663,
       "address": "0x7EF9528408D99f98056922291048F0710001e015",
       "role": "PredictDesk",
-      "aliases": ["predictDesk", "NetNet Predict", "Probability Desk"],
+      "aliases": [
+        "predictDesk",
+        "NetNet Predict",
+        "Probability Desk"
+      ],
       "status": "recorded_from_public_source",
       "lifecycle_status": "indexed_deployment_and_trade_observed",
       "lifecycle_notes": "Successful indexed creation and a funded outcome trade corroborate deployment and historical operation, not current availability, verified Solidity, fee constants, settlement correctness or admin authority. Publisher HUMAN-VERIFIED is an attributed registry label only.",
@@ -40,6 +44,12 @@
           "locator": "to.hash; successful USDG-funded LOWER #1 mint at block 66444363",
           "evidence_kind": "explorer_indexed_transaction",
           "observed_on": "2026-09-18"
+        },
+        {
+          "source_id": "netnet-predict-runtime-depth-20261010",
+          "locator": "desk exact runtime function paths; assets/contracts/predict-source-evidence.json; unpinned explorer evidence, no verified Solidity or live financial state",
+          "evidence_kind": "targeted_explorer_runtime_semantics",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
@@ -50,7 +60,11 @@
       "chain_id": 4663,
       "address": "0xb488368902b1CbD7533F1536C3F860065398D3e9",
       "role": "PredictVault",
-      "aliases": ["predictVault", "House Vault", "Predict House Vault"],
+      "aliases": [
+        "predictVault",
+        "House Vault",
+        "Predict House Vault"
+      ],
       "status": "recorded_from_public_source",
       "lifecycle_status": "indexed_deployment_publisher_reported_house_vault",
       "lifecycle_notes": "USDG-funded prediction-house loss exposure, not an AMM LP or lending vault. Indexed creation does not verify share accounting, queue/withdrawal enforcement, solvency, current operation or Solidity source.",
@@ -79,6 +93,12 @@
           "locator": "created_contract.hash; result=success; status=ok; block_number=66174214; timestamp=2026-09-18T11:03:29Z; created_contract.is_verified=false",
           "evidence_kind": "explorer_indexed_transaction",
           "observed_on": "2026-09-18"
+        },
+        {
+          "source_id": "netnet-predict-runtime-depth-20261010",
+          "locator": "house exact runtime function paths; assets/contracts/predict-source-evidence.json; unpinned explorer evidence, no verified Solidity or live financial state",
+          "evidence_kind": "targeted_explorer_runtime_semantics",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",

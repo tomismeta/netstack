@@ -1,0 +1,2579 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x50dc51ce9e633bed99d1d826fa0e2caac3183bf6",
+  "contract_record": "assets/addresses/contracts/netlong-futures.json",
+  "chain_id": 4663,
+  "address": "0x50dC51CE9e633bed99D1D826fa0E2CaAc3183bF6",
+  "generation": "netlong-futures-vault",
+  "provenance": [
+    {
+      "source_id": "netnet-trading-entry-20261010",
+      "url": "https://trading.netnet.capital/assets/index-BViJKZuW.js",
+      "sha256": "b62b66a56fbaa9d7b387761108e99e72633369c14f3a8ad6fda8444ba9be70bc",
+      "locator": "Literal is, Unicode character offsets[602817,611439)",
+      "observed_on": "2026-10-10"
+    },
+    {
+      "source_id": "netlong-futures-explorer-20261010-vault",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x50dC51CE9e633bed99D1D826fa0E2CaAc3183bF6",
+      "observed_on": "2026-10-10",
+      "locator": "Explorer-reported deployed_bytecode and creation_bytecode; no source_code or abi fields"
+    }
+  ],
+  "execution_authority": false,
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 88,
+    "implementation": "material_runtime_paths_reviewed_source_unavailable",
+    "pinned_state": "not_obtained_rpc_denied",
+    "missing_evidence": [
+      "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+      "Compiler rebuild/source-runtime equivalence.",
+      "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
+    ],
+    "literal_character_range": [
+      602817,
+      611439
+    ],
+    "resolved_literal_abi_sha256": "742a757773a1aff72befb0bea6c8b5a56ff60027636fff4ba4a301e4cba1cdf8"
+  },
+  "runtime_evidence": {
+    "sha256": "cdf15f1c649e2b46728ac5d9c9a41662147d02c8ecd3f131fa9515599c0801dd",
+    "byte_length": 17874,
+    "bytecode_origin": "explorer_reported_not_rpc_pinned",
+    "selector_comparison": "Compiler dispatcher PUSH3/PUSH4 EQ PUSH2 JUMPI targets; selector presence is not full semantic equivalence.",
+    "source_verification": {
+      "is_verified": false,
+      "is_fully_verified": false,
+      "is_partially_verified": false,
+      "local_compilation_performed": false
+    },
+    "dispatch_function_count": 68,
+    "unrepresented_dispatch_selectors": [
+      {
+        "selector": "0xfaa20b9c",
+        "entry_pc": "0xa69",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xf29ebf61",
+        "entry_pc": "0xa23",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xd52014e3",
+        "entry_pc": "0x9a9",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xc2fff4a5",
+        "entry_pc": "0x954",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xcb71faa8",
+        "entry_pc": "0x97b",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xcf70cb69",
+        "entry_pc": "0x98e",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xb89601cd",
+        "entry_pc": "0x943",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xaf54aa86",
+        "entry_pc": "0x8c5",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x7dc0d1d0",
+        "entry_pc": "0x7cf",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x4f0b47fe",
+        "entry_pc": "0x6ce",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x4cf088d9",
+        "entry_pc": "0x68f",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x2b20e397",
+        "entry_pc": "0x5fc",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x2f45580c",
+        "entry_pc": "0x60e",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x262d6152",
+        "entry_pc": "0x5b1",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x21e9ec8a",
+        "entry_pc": "0x576",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x1adb8eb6",
+        "entry_pc": "0x4d4",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      }
+    ],
+    "creation_template_comparison": {
+      "runtime_bytes": 17874,
+      "embedded_template_sha256": "1ca3ae1e41f0fb07ccdf4e0111e25a6fddc5981e6a476b716fff812d7c1ce52e",
+      "immutable_word_offsets": [
+        1241,
+        1462,
+        1684,
+        2004,
+        2393,
+        2478,
+        2600,
+        2761,
+        3807,
+        4218,
+        4543,
+        4698,
+        5982,
+        6137,
+        6688,
+        7030,
+        7077,
+        7962,
+        8860,
+        9835,
+        9882,
+        11592,
+        11757,
+        12026,
+        12191,
+        12680,
+        14578,
+        16429
+      ],
+      "normalization_matches_creation_template": true,
+      "constructor_runtime_offset": 1124
+    }
+  },
+  "functions": [
+    {
+      "name": "balanceWs",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[0]"
+      },
+      "signature": "balanceWs()",
+      "selector": "0xa7363cb5",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Actual wsNET.balanceOf(vault), not LP equity; includes trader collateral, queued claims and reserves."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x888"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "totalFreeWs",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[1]"
+      },
+      "signature": "totalFreeWs()",
+      "selector": "0xba928ccf",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Aggregate freely credited trader wsNET liability, storage slot1. Excluded from LP equity even though physically in vault."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x94b"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "totalLockedWs",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[2]"
+      },
+      "signature": "totalLockedWs()",
+      "selector": "0xdcac5049",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Aggregate wsNET locked for intents/positions, slot2. Locked margin is a trader liability rather than LP capital."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x9ec"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "clearingReserveWs",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[3]"
+      },
+      "signature": "clearingReserveWs()",
+      "selector": "0x2ad80df3",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Insurance/clearing reserve bucket, slot3, segregated from LP equity and used before LP risk when settling profits."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x5f3"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "totalOwedWs",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[4]"
+      },
+      "signature": "totalOwedWs()",
+      "selector": "0xd8182b5d",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Aggregate immediately dated trader claims, slot4; liabilities already subtracted from equity. Does not include all unfunded ADL episode units."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x9d0"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "equityWs",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "int256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[5]"
+      },
+      "signature": "equityWs()",
+      "selector": "0xd28acb13",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Signed actual balance minus free, locked, clearing reserve, funded owed liabilities and reserved redemption payouts (slot25). May be negative; unsigned balance and equity are not interchangeable."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x9a1"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "unencumberedWs",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[6]"
+      },
+      "signature": "unencumberedWs()",
+      "selector": "0x0543484b",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Saturating actual balance minus free,locked,reserve and reserved-redemption buckets. Distinct from equity because owed liabilities are not subtracted in this liquidity headroom view."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x465"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "subscribedWs",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[7]"
+      },
+      "signature": "subscribedWs()",
+      "selector": "0xa73edff1",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Historical net LP subscription basis, slot9, adjusted when shares burn. Used by breaker thresholds; not current marked LP NAV."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x890"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "totalShares",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[8]"
+      },
+      "signature": "totalShares()",
+      "selector": "0x3a98ef39",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Total nontransferable LP share accounting units, slot7. Distinct from trader free wsNET and a token totalSupply ABI."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x675"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "sharesOf",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[9]"
+      },
+      "signature": "sharesOf(address)",
+      "selector": "0xf5eb42dc",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Address-owned available LP shares; requestRedeem removes shares from owner available balance while they remain in total shares until paid/burned."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0xa4a"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "sharePriceWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[10]"
+      },
+      "signature": "sharePriceWad()",
+      "selector": "0x2770c503",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "1e18 at zero shares, zero at nonpositive equity, otherwise floor(positiveEquityWs*1e18/totalShares). This is LP share equity, not NET token backing."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x5d8"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "capacityUsdWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[11]"
+      },
+      "signature": "capacityUsdWad()",
+      "selector": "0x3a1c3e93",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Positive equityWs multiplied by oracle.floorPerWsWad /1e18, floor-rounded; zero when equity nonpositive. Capacity values risk capital at backing floor, not wsNET market price."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x66d"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "utilizationBps",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[12]"
+      },
+      "signature": "utilizationBps()",
+      "selector": "0x975e900e",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "totalAbsSkewUsdWad*10000/capacityUsdWad. Zero capacity yields zero only for zero skew, otherwise uint256 max; do not mistake the sentinel for a finite utilization."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x85d"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "opensAllowed",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "allowed",
+          "type": "bool"
+        },
+        {
+          "name": "reason",
+          "type": "uint8"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[13]"
+      },
+      "signature": "opensAllowed()",
+      "selector": "0xb893d8ff",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Returns allowed/reason from equity/ADL debt, LP breaker and matured-redemption queue. Reason1 breaker,2 pending mature redemption,3 insolvency or unpaid current ADL; this aggregate permission excludes desk-specific feed/halter/divergence limits."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x922"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "breakerTripped",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "bool"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[14]"
+      },
+      "signature": "breakerTripped()",
+      "selector": "0x8cfe95aa",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Cached boolean breaker state refreshed on accounting paths, not a standalone live oracle result. Runtime uses subscribed basis with 60% trip and 70% recovery hysteresis."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x7f6"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "adlMode",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "bool"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[15]"
+      },
+      "signature": "adlMode()",
+      "selector": "0x4e2cb85c",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "True when equity<=0 with no clearing reserve, or current episode unpaidWs!=0. Meaning differs from generic paused status and can affect profitable close payout priority."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x6b6"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "adlEpoch",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[16]"
+      },
+      "signature": "adlEpoch()",
+      "selector": "0xb656b6fc",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Current monotonically incremented ADL episode ID, not market epoch."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x8fb"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "adlUnpaidWs",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[17]"
+      },
+      "signature": "adlUnpaidWs()",
+      "selector": "0x9875fd05",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Current ADL episode unfunded wsNET claim amount; queued units are not an immediately withdrawable balance."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x865"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "adlClaimOf",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tuple",
+          "components": [
+            {
+              "name": "epoch",
+              "type": "uint64"
+            },
+            {
+              "name": "units",
+              "type": "uint256"
+            },
+            {
+              "name": "accAtEntry",
+              "type": "uint256"
+            },
+            {
+              "name": "claimedWs",
+              "type": "uint256"
+            }
+          ]
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[18]"
+      },
+      "signature": "adlClaimOf(address)",
+      "selector": "0x1d2a5a6a",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Per-trader episode ID, units, entry accumulator and claimedWs. Keep episode association when computing accrual; do not sum units directly with dated owed cash."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x513"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "adlClaimable",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[19]"
+      },
+      "signature": "adlClaimable(address)",
+      "selector": "0x0130d466",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "floor(units*(episodePaidAccumulator-entryAccumulator)/1e18)-claimedWs. Funding creates claimable credit pro rata; this view does not transfer tokens."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x43f"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "freeOf",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[20]"
+      },
+      "signature": "freeOf(address)",
+      "selector": "0x33e25bb9",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Trader wsNET free balance, used for deposits, released margin and credited payments. User-specific state must be freshly read and never shipped as fixture state."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x634"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "owedOf",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[21]"
+      },
+      "signature": "owedOf(address)",
+      "selector": "0x228db984",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Trader dated payout claim awaiting liquidity/outflow capacity, not market PnL or free collateral."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x589"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "deskCount",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[22]"
+      },
+      "signature": "deskCount()",
+      "selector": "0x47d0a311",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Length of append-only desk registry. Discover bounded indices0..count-1 and verify each runtime/model/binding; publisher four is not a permanent enumeration constant."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x687"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "deskAt",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "i",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[23]"
+      },
+      "signature": "deskAt(uint256)",
+      "selector": "0x1f0113f5",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Bounds-checked indexed desk address. Current publisher registry order BTC/ETH/SOL/NET is assertion rather than live eth_call verification."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x563"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "desks",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "desk",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tuple",
+          "components": [
+            {
+              "name": "registered",
+              "type": "bool"
+            },
+            {
+              "name": "skewShareBps",
+              "type": "uint16"
+            },
+            {
+              "name": "skewUsdWad",
+              "type": "int256"
+            },
+            {
+              "name": "oiUsdWad",
+              "type": "uint256"
+            },
+            {
+              "name": "lockedWs",
+              "type": "uint256"
+            }
+          ]
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[24]"
+      },
+      "signature": "desks(address)",
+      "selector": "0x957cfb9c",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Registered flag, skewShareBps, signed entry-notional skew, gross entry-notional OI and lockedWs for one desk. Registration alone does not authenticate future implementation semantics."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x803"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "totalAbsSkewUsdWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[25]"
+      },
+      "signature": "totalAbsSkewUsdWad()",
+      "selector": "0x390603d5",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Sum over desks of abs(desk signed entry-notional skew), slot15. It is not abs(sum skews): opposite markets do not offset each other."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x664"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "totalOiUsdWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[26]"
+      },
+      "signature": "totalOiUsdWad()",
+      "selector": "0x46e468d6",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Gross stored long-plus-short entry-notional exposure across desks, slot16, not current mark exposure or liquidity."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x67e"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "outflowOf",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "windowId",
+          "type": "uint64"
+        },
+        {
+          "name": "potWs",
+          "type": "uint256"
+        },
+        {
+          "name": "paidWs",
+          "type": "uint256"
+        },
+        {
+          "name": "takenWs",
+          "type": "uint256"
+        },
+        {
+          "name": "headroomWs",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[27]"
+      },
+      "signature": "outflowOf()",
+      "selector": "0x783a9197",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "600-second window identifier, opening pot, paid, taken and remaining headroom. 20% of window pot is gross budget; realized loss taken during window increases headroom. Distinct from token balance and solvency."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x781"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "redemptionOf",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tuple",
+          "components": [
+            {
+              "name": "shares",
+              "type": "uint256"
+            },
+            {
+              "name": "dueAt",
+              "type": "uint64"
+            },
+            {
+              "name": "epoch",
+              "type": "uint64"
+            },
+            {
+              "name": "units",
+              "type": "uint256"
+            },
+            {
+              "name": "accAtEntry",
+              "type": "uint256"
+            },
+            {
+              "name": "claimedWs",
+              "type": "uint256"
+            }
+          ]
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[28]"
+      },
+      "signature": "redemptionOf(address)",
+      "selector": "0x55cc812c",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Owner requested shares/dueAt; after maturation epoch, pro-rata units, entry accumulator and claimed amount. DueAt alone never guarantees full immediate liquidity."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x6e1"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "redeemClaimable",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[29]"
+      },
+      "signature": "redeemClaimable(address)",
+      "selector": "0x724958fd",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "floor(units*(poolPaidAccumulator-entryAccumulator)/1e18)-claimedWs for matured epoch. A requested but unmatured share claim has no cash payout yet."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x75b"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "pendingRedeemWs",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[30]"
+      },
+      "signature": "pendingRedeemWs()",
+      "selector": "0x34c9d205",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Current matured pool shares multiplied by current LP share price; a floating estimate, not already reserved cash and not the requested queue before maturity."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x65c"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "maturedPoolShares",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[31]"
+      },
+      "signature": "maturedPoolShares()",
+      "selector": "0x1a235dc3",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Current redemption epoch units converted by pool factor/1e18. Shares remain economically exposed until actual burn/payment."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x4cc"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "poolEpoch",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[32]"
+      },
+      "signature": "poolEpoch()",
+      "selector": "0xfc7fb688",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Current redemption-pool epoch; rollover preserves claim accounting for prior fully paid pool."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0xa84"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "deposit",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[33]"
+      },
+      "signature": "deposit(uint256)",
+      "selector": "0xb6b55f25",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "caller"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Transfers positive wsNET in and credits caller freeOf; does not issue LP shares or increase pool equity."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x90f"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "depositSNet",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "sNet",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[34]"
+      },
+      "signature": "depositSNet(uint256)",
+      "selector": "0xe69e4a20",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "caller"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Transfers sNET, wraps through wsNET and credits actual returned wrapped amount to freeOf. Input raw sNET has9 decimals, output wsNET18; conversion is index-dependent."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x9f5"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "depositNet",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "net",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[35]"
+      },
+      "signature": "depositNet(uint256)",
+      "selector": "0xd9f9e712",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "caller"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Transfers NET, stakes through configured helper and wraps, credits returned wsNET. NET raw9 vs wsNET18; external staking/wrapping behavior can revert."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x9d9"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "depositFor",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        },
+        {
+          "name": "ws",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[36]"
+      },
+      "signature": "depositFor(address,uint256)",
+      "selector": "0x2f4f21e2",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "payer can credit another nonzero trader"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Transfers payer wsNET into vault and credits named trader free balance. Beneficiary is not a recipient of an immediate outbound transfer."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x621"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "withdraw",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        },
+        {
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[37]"
+      },
+      "signature": "withdraw(uint256,address)",
+      "selector": "0x00f714ce",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "caller own free balance"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Debits caller freeOf/aggregate free then transfers requested wsNET to nonzero to; no redemption queue for already free trader collateral. Transfer failure reverts."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x42a"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "withdrawSNet",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        },
+        {
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "sNet",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[38]"
+      },
+      "signature": "withdrawSNet(uint256,address)",
+      "selector": "0x287a4b78",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "caller own free balance"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Debits wsNET free collateral then unwraps and sends sNET to recipient; returns raw sNET9. No direct use of LP shares."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x5e0"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "withdrawNet",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        },
+        {
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "net",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[39]"
+      },
+      "signature": "withdrawNet(uint256,address)",
+      "selector": "0x15a74bb9",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "caller own free balance"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Debits free wsNET, unwraps to sNET then unstakes to recipient NET; returns raw NET9 and depends on staking availability."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x4a6"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "claimOwed",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "paid",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[40]"
+      },
+      "signature": "claimOwed(address)",
+      "selector": "0x798a6ca5",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless for named trader"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Moves min(owedOf,unencumberedWs,outflowHeadroom) to freeOf, decrementing aggregate owed and counting outflow. Does not send wallet tokens; shortfall remains owed."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x7bc"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "payAdlClaims",
+      "stateMutability": "nonpayable",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "paid",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[41]"
+      },
+      "signature": "payAdlClaims()",
+      "selector": "0xb1f6c3c3",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Allocates available positive equity/headroom to current ADL episode pro rata by accumulated payment per unit; moves funded amounts into aggregate owed liabilities and records outflow. Does not iterate traders."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x8f3"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "claimAdl",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[42]"
+      },
+      "signature": "claimAdl(address)",
+      "selector": "0x0c2f80b9",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless for named trader"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Realizes funded ADL accumulator entitlement into trader freeOf, decrements aggregate owed and updates claimed/episode state. No external token transfer."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x46d"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "closeAdlEpisode",
+      "stateMutability": "nonpayable",
+      "inputs": [],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[43]"
+      },
+      "signature": "closeAdlEpisode()",
+      "selector": "0x6a3269c8",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless; existing unpaid episode and flat book"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Requires an episode and zero totalOi; settles as much as possible, writes residual unpaid to zero and increments episode. This is a bankruptcy closeout/writeoff, not a guarantee that all claimant units were paid."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x753"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "subscribe",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[44]"
+      },
+      "signature": "subscribe(uint256)",
+      "selector": "0x0f574ba7",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "caller"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Deposits wsNET as LP capital, mints shares floor(ws*totalShares/equity) or ws when supply zero. Nonzero existing shares with nonpositive equity revert; increases subscribed basis and refreshes breaker."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x493"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "requestRedeem",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "dueAt",
+          "type": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[45]"
+      },
+      "signature": "requestRedeem(uint256)",
+      "selector": "0xaa2f892d",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "share owner"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Requires at least0.01e18 shares, enough available shares, no other redemption, utilization<=8000bps. Removes owner available shares and sets dueAt=now+86400; shares are not immediately burned/paid."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x899"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "cancelRedeem",
+      "stateMutability": "nonpayable",
+      "inputs": [],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[46]"
+      },
+      "signature": "cancelRedeem()",
+      "selector": "0xe6a29666",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "request owner; not matured"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Deletes unmatured request and returns available shares; cannot cancel an already matured pool claim."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0xa08"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "matureRedeem",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[47]"
+      },
+      "signature": "matureRedeem(address)",
+      "selector": "0x17da698a",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless for account after dueAt"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Converts requested shares to current epoch pro-rata units at factor; initializes payout accumulator and clears requested shares. Joins cash queue without immediate transfer."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x4b9"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "payRedemptions",
+      "stateMutability": "nonpayable",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "paid",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[48]"
+      },
+      "signature": "payRedemptions()",
+      "selector": "0xfb96195f",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Pays current matured pool constrained by positive equity, ADL seniority, residual skew-risk capital and outflow window. Burns proportionate shares/basis, reserves wsNET in slot25 and advances accumulator/epoch. Integer dust can roll an epoch; no per-account loop."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0xa7c"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "claimRedeem",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[49]"
+      },
+      "signature": "claimRedeem(address)",
+      "selector": "0x0c5cb572",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless for account"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Claims accrued reserved redemption wsNET, reduces slot25, updates claimed accumulator and transfers to account. Does not reduce share capital again; cash was reserved at payRedemptions."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x480"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "fundReserve",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[50]"
+      },
+      "signature": "fundReserve(uint256)",
+      "selector": "0x75c54224",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless donor"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Transfers positive wsNET into clearing reserve bucket. No LP shares or trader credit granted, so a reserve contribution differs from subscribe or deposit."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x76e"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "donate",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[51]"
+      },
+      "signature": "donate(uint256)",
+      "selector": "0xf14faf6f",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless donor"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Transfers wsNET without user entitlement, funds outstanding ADL when possible and refreshes breaker. Donation recapitalizes residual system rather than opening a position."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0xa10"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    }
+  ],
+  "events": [
+    {
+      "name": "Deposited",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "asset",
+          "type": "uint8",
+          "indexed": false
+        },
+        {
+          "name": "amountIn",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[52]"
+      },
+      "signature": "Deposited(address,address,uint8,uint256,uint256)",
+      "topic0": "0x3a5bca0be965fc36c168e6da9bdfb354bc1a90518bf586533ac2a1e23c1c39df"
+    },
+    {
+      "name": "Settled",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "desk",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "pnlWs",
+          "type": "int256",
+          "indexed": false
+        },
+        {
+          "name": "feeWs",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "penaltyWs",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "paidWs",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "deferredWs",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "adlClaimWs",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[53]"
+      },
+      "signature": "Settled(address,address,int256,uint256,uint256,uint256,uint256,uint256)",
+      "topic0": "0x5801a05bd0687aeef40fe9328d1c6d6090d59d1321a736108e6dc508a81d5eb3"
+    },
+    {
+      "name": "OwedPaid",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[54]"
+      },
+      "signature": "OwedPaid(address,uint256)",
+      "topic0": "0x7c3f2fdca25b6386b46446f1056ca4cd7b2d3eed9618213db286386de1af0157"
+    },
+    {
+      "name": "Subscribed",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "shares",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[55]"
+      },
+      "signature": "Subscribed(address,uint256,uint256)",
+      "topic0": "0xf94991dcbea6e8ac439cbc93bd9c62a4d39f04e0ad656df9a703f13552c2787f"
+    },
+    {
+      "name": "RedeemRequested",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "shares",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "dueAt",
+          "type": "uint64",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[56]"
+      },
+      "signature": "RedeemRequested(address,uint256,uint64)",
+      "topic0": "0x2bce3b57cea92a28770fa711cdba92da74de3482a36af80eeb9a2bd9bbb910f3"
+    },
+    {
+      "name": "RedeemCancelled",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "shares",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[57]"
+      },
+      "signature": "RedeemCancelled(address,uint256)",
+      "topic0": "0x707c112eb875282039fb46815a6f223e231d0c4b757949570ca4214a35de055e"
+    },
+    {
+      "name": "RedeemMatured",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "shares",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "valueWs",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[58]"
+      },
+      "signature": "RedeemMatured(address,uint256,uint256)",
+      "topic0": "0xb9a7fe10bf623f00303084c86ba11c83c588102b8d153d189989737c061455dd"
+    },
+    {
+      "name": "RedemptionsPaid",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "paidWs",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "remainingWs",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[59]"
+      },
+      "signature": "RedemptionsPaid(uint256,uint256)",
+      "topic0": "0x760ad85b9a6a82d994cae890197173770a4f60673baf83555c1e227402990292"
+    },
+    {
+      "name": "RedeemClaimed",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[60]"
+      },
+      "signature": "RedeemClaimed(address,uint256)",
+      "topic0": "0x9887148cd9a4ee7cd8c2e99ede63c41161da88f30be82a89c4a4e37835b288a2"
+    },
+    {
+      "name": "AdlClaimRecorded",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "epoch",
+          "type": "uint64",
+          "indexed": true
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[61]"
+      },
+      "signature": "AdlClaimRecorded(uint64,address,uint256)",
+      "topic0": "0x75c7eeec11805e4ec84516ec26c676d3ccbf12f11edf937fab6dd25546ec7e27"
+    },
+    {
+      "name": "AdlClaimsPaid",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "epoch",
+          "type": "uint64",
+          "indexed": true
+        },
+        {
+          "name": "paidWs",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "unpaidWs",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[62]"
+      },
+      "signature": "AdlClaimsPaid(uint64,uint256,uint256)",
+      "topic0": "0xce35dc4aec16b246a8a22c85f74cf0fff272bd124f049b855c4775a5773c61d5"
+    },
+    {
+      "name": "AdlClaimed",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[63]"
+      },
+      "signature": "AdlClaimed(address,uint256)",
+      "topic0": "0x20afdb22cb74840d3276325420f7a3da1d12dbf363844eba62085bce353f3d5f"
+    },
+    {
+      "name": "AdlEpisodeClosed",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "epoch",
+          "type": "uint64",
+          "indexed": true
+        },
+        {
+          "name": "socializedWs",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[64]"
+      },
+      "signature": "AdlEpisodeClosed(uint64,uint256)",
+      "topic0": "0x7627de401f8de2abbad8d7d3a5e153ce9ec5dc1b220f8d58fe1c7214c01492c2"
+    },
+    {
+      "name": "Donated",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[65]"
+      },
+      "signature": "Donated(address,uint256)",
+      "topic0": "0x2a01595cddf097c90216094025db714da3f4e5bd8877b56ba86a24ecead8e543"
+    },
+    {
+      "name": "BreakerSet",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "tripped",
+          "type": "bool",
+          "indexed": false
+        },
+        {
+          "name": "equityWs",
+          "type": "int256",
+          "indexed": false
+        },
+        {
+          "name": "subscribedWs",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[66]"
+      },
+      "signature": "BreakerSet(bool,int256,uint256)",
+      "topic0": "0x3c38f3c611b218b75772318d52b7c6d9e978e282447c9fb2ad9e4f989fe877b5"
+    }
+  ],
+  "errors": [
+    {
+      "name": "ZeroAmount",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[67]"
+      },
+      "signature": "ZeroAmount()",
+      "selector": "0x1f2a2005",
+      "publisher_message": "Nothing to do: the amount is zero.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[68]"
+      },
+      "signature": "ZeroAddress()",
+      "selector": "0xd92e233d",
+      "publisher_message": "An address is missing.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NotDesk",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[69]"
+      },
+      "signature": "NotDesk()",
+      "selector": "0xce62f9e0",
+      "publisher_message": "Only a registered clearinghouse may call this.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NotRegistrar",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[70]"
+      },
+      "signature": "NotRegistrar()",
+      "selector": "0x2ad95351",
+      "publisher_message": "Only the registrar may call this.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "RegistryFinalized",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[71]"
+      },
+      "signature": "RegistryFinalized()",
+      "selector": "0xf233c87c",
+      "publisher_message": "The desk registry is final.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "TooManyDesks",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[72]"
+      },
+      "signature": "TooManyDesks()",
+      "selector": "0x0956922a",
+      "publisher_message": "The desk registry is full.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "InsufficientFree",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[73]"
+      },
+      "signature": "InsufficientFree()",
+      "selector": "0xfa9ec973",
+      "publisher_message": "The account's free margin does not cover this.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "InsufficientShares",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[74]"
+      },
+      "signature": "InsufficientShares()",
+      "selector": "0x39996567",
+      "publisher_message": "Not enough vault shares.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "RedemptionOpen",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[75]"
+      },
+      "signature": "RedemptionOpen()",
+      "selector": "0xa9a4b3e7",
+      "publisher_message": "A redemption request is already open on this account.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NoRedemption",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[76]"
+      },
+      "signature": "NoRedemption()",
+      "selector": "0xb3b7d75f",
+      "publisher_message": "There is no redemption request on this account.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NotMatured",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[77]"
+      },
+      "signature": "NotMatured()",
+      "selector": "0x111c4409",
+      "publisher_message": "The redemption's notice period has not elapsed.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "AlreadyMatured",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[78]"
+      },
+      "signature": "AlreadyMatured()",
+      "selector": "0xb453c220",
+      "publisher_message": "The redemption has already matured.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "RedeemGated",
+      "inputs": [
+        {
+          "name": "utilBps",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[79]"
+      },
+      "signature": "RedeemGated(uint256)",
+      "selector": "0x3fcccfab",
+      "publisher_message": "Redemptions are refused while vault utilization is above the gate.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "OpensPaused",
+      "inputs": [
+        {
+          "name": "reason",
+          "type": "uint8"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[80]"
+      },
+      "signature": "OpensPaused(uint8)",
+      "selector": "0xe6fdb380",
+      "publisher_message": "New contracts are paused on this market. Closes and withdrawals continue.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "SkewCapped",
+      "inputs": [
+        {
+          "name": "desk",
+          "type": "address"
+        },
+        {
+          "name": "skewUsd",
+          "type": "uint256"
+        },
+        {
+          "name": "capUsd",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[81]"
+      },
+      "signature": "SkewCapped(address,uint256,uint256)",
+      "selector": "0x3fe28c72",
+      "publisher_message": "This order would push the market past its skew cap. Reduce the size or take the other side.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "OiCapped",
+      "inputs": [
+        {
+          "name": "oiUsd",
+          "type": "uint256"
+        },
+        {
+          "name": "capUsd",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[82]"
+      },
+      "signature": "OiCapped(uint256,uint256)",
+      "selector": "0x03ce25c8",
+      "publisher_message": "This order would push open interest past the vault's cap.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "TransferFailed",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[83]"
+      },
+      "signature": "TransferFailed()",
+      "selector": "0x90b8ec18",
+      "publisher_message": "A token transfer failed. Check the approval and balance.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "BadDesk",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[84]"
+      },
+      "signature": "BadDesk()",
+      "selector": "0xf0becc7d",
+      "publisher_message": "That address is not a registered clearinghouse.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "VaultInsolvent",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[85]"
+      },
+      "signature": "VaultInsolvent()",
+      "selector": "0x1f50fd96",
+      "publisher_message": "The vault's equity is exhausted; subscriptions are refused until it is recapitalized.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NoEpisode",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[86]"
+      },
+      "signature": "NoEpisode()",
+      "selector": "0xdefbd046",
+      "publisher_message": "There is no auto-deleveraging episode to close.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "BookNotFlat",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[87]"
+      },
+      "signature": "BookNotFlat()",
+      "selector": "0xa80bd413",
+      "publisher_message": "The episode closes only once every contract on the desks is closed.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": []
+}

@@ -1,6 +1,43 @@
 {
   "contracts": [
     {
+      "role": "PONS (Pons) market token",
+      "aliases": [
+        "ponsToken"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "PLP-sNET-15OCT2026",
+      "aliases": ["Pendle sNET market 15OCT2026", "PENDLE-LPT 15OCT2026"],
+      "file": "assets/addresses/contracts/pendle-snet-15oct2026.json"
+    },
+    {
+      "role": "PT-sNET-15OCT2026",
+      "aliases": [],
+      "file": "assets/addresses/contracts/pendle-snet-15oct2026.json"
+    },
+    {
+      "role": "Predict HIGHER #3",
+      "aliases": ["HIGHER #3", "HI-3"],
+      "file": "assets/addresses/contracts/predict-series-3-outcomes.json"
+    },
+    {
+      "role": "Predict LOWER #3",
+      "aliases": ["LOWER #3", "LO-3"],
+      "file": "assets/addresses/contracts/predict-series-3-outcomes.json"
+    },
+    {
+      "role": "Predict HIGHER #4",
+      "aliases": ["HIGHER #4", "HI-4"],
+      "file": "assets/addresses/contracts/predict-series-4-outcomes.json"
+    },
+    {
+      "role": "Predict LOWER #4",
+      "aliases": ["LOWER #4", "LO-4"],
+      "file": "assets/addresses/contracts/predict-series-4-outcomes.json"
+    },
+    {
       "role": "PackDesk",
       "aliases": [
         "GOOGL trusted mark source contract"

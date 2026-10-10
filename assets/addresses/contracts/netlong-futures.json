@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "scope": "Durable current futures deployment identities plus separately marked superseded root; no dynamic financial state.",
+  "contracts": [
+    {
+      "id": "robinhood-0x90f5b57a7236a1447ce786b1ebe42433e55d9fd0",
+      "chain_id": 4663,
+      "address": "0x90f5B57A7236A1447Ce786B1ebE42433e55D9fD0",
+      "role": "NetLong Shared Margin Oracle",
+      "aliases": [
+        "perpV1MarginOracle",
+        "marginOracle"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_listed",
+      "live_chain_verification_status": "explorer_runtime_observed_not_rpc_pinned",
+      "provenance": [
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "perpV1MarginOracle registry entry; HUMAN-VERIFIED is a publisher assertion",
+          "evidence_kind": "publisher_registry",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netlong-futures-explorer-20261010-oracle",
+          "locator": "creation_bytecode and deployed_bytecode; source/ABI absent",
+          "evidence_kind": "explorer_runtime",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "lifecycle_notes": "Publisher lists this October8 redeployment as current. Superseded never-funded status is publisher assertion, not independently reproduced. No balances, OI, positions or account ledgers retained.",
+      "interface_catalog": "assets/contracts/netlong-futures-oracle.json"
+    },
+    {
+      "id": "robinhood-0x56a8816132579c6c080e65147682da2d6d20efb0",
+      "chain_id": 4663,
+      "address": "0x56a8816132579c6c080e65147682DA2d6D20efb0",
+      "role": "NetLong Futures Fee Router",
+      "aliases": [
+        "perpV1FeeRouter"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_listed",
+      "live_chain_verification_status": "explorer_runtime_observed_not_rpc_pinned",
+      "provenance": [
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "perpV1FeeRouter registry entry; HUMAN-VERIFIED is a publisher assertion",
+          "evidence_kind": "publisher_registry",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netlong-futures-explorer-20261010-fee-router",
+          "locator": "creation_bytecode and deployed_bytecode; source/ABI absent",
+          "evidence_kind": "explorer_runtime",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "lifecycle_notes": "Publisher lists this October8 redeployment as current. Superseded never-funded status is publisher assertion, not independently reproduced. No balances, OI, positions or account ledgers retained.",
+      "interface_catalog": "assets/contracts/netlong-futures-fee-router.json"
+    },
+    {
+      "id": "robinhood-0x50dc51ce9e633bed99d1d826fa0e2caac3183bf6",
+      "chain_id": 4663,
+      "address": "0x50dC51CE9e633bed99D1D826fa0E2CaAc3183bF6",
+      "role": "NetLong Futures Vault",
+      "aliases": [
+        "perpV1Vault"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_listed",
+      "live_chain_verification_status": "explorer_runtime_observed_not_rpc_pinned",
+      "provenance": [
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "perpV1Vault registry entry; HUMAN-VERIFIED is a publisher assertion",
+          "evidence_kind": "publisher_registry",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netlong-futures-explorer-20261010-vault",
+          "locator": "creation_bytecode and deployed_bytecode; source/ABI absent",
+          "evidence_kind": "explorer_runtime",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "lifecycle_notes": "Publisher lists this October8 redeployment as current. Superseded never-funded status is publisher assertion, not independently reproduced. No balances, OI, positions or account ledgers retained.",
+      "interface_catalog": "assets/contracts/netlong-futures-vault.json"
+    },
+    {
+      "id": "robinhood-0xca728e8ee6c8d59c1a3abdf1dea43f2f4a63c575",
+      "chain_id": 4663,
+      "address": "0xcA728E8ee6c8D59C1a3aBDF1DeA43f2f4a63C575",
+      "role": "NetLong Futures BTC Desk",
+      "aliases": [
+        "perpV1DeskBtc"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_listed",
+      "live_chain_verification_status": "explorer_runtime_observed_not_rpc_pinned",
+      "provenance": [
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "perpV1DeskBtc registry entry; HUMAN-VERIFIED is a publisher assertion",
+          "evidence_kind": "publisher_registry",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netlong-futures-explorer-20261010-btc",
+          "locator": "creation_bytecode and deployed_bytecode; source/ABI absent",
+          "evidence_kind": "explorer_runtime",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "lifecycle_notes": "Publisher lists this October8 redeployment as current. Superseded never-funded status is publisher assertion, not independently reproduced. No balances, OI, positions or account ledgers retained.",
+      "interface_catalog": "assets/contracts/netlong-futures-btc.json"
+    },
+    {
+      "id": "robinhood-0x8784014a4cafec70bbc2ae678c59bbe64dbe7858",
+      "chain_id": 4663,
+      "address": "0x8784014A4CaFEC70Bbc2aE678c59BBe64dbE7858",
+      "role": "NetLong Futures ETH Desk",
+      "aliases": [
+        "perpV1DeskEth"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_listed",
+      "live_chain_verification_status": "explorer_runtime_observed_not_rpc_pinned",
+      "provenance": [
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "perpV1DeskEth registry entry; HUMAN-VERIFIED is a publisher assertion",
+          "evidence_kind": "publisher_registry",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netlong-futures-explorer-20261010-eth",
+          "locator": "creation_bytecode and deployed_bytecode; source/ABI absent",
+          "evidence_kind": "explorer_runtime",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "lifecycle_notes": "Publisher lists this October8 redeployment as current. Superseded never-funded status is publisher assertion, not independently reproduced. No balances, OI, positions or account ledgers retained.",
+      "interface_catalog": "assets/contracts/netlong-futures-eth.json"
+    },
+    {
+      "id": "robinhood-0x87b14a8e5304e35b0cbddaba3454587b85ff2470",
+      "chain_id": 4663,
+      "address": "0x87b14A8e5304e35B0CbDDaBA3454587B85Ff2470",
+      "role": "NetLong Futures SOL Desk",
+      "aliases": [
+        "perpV1DeskSol"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_listed",
+      "live_chain_verification_status": "explorer_runtime_observed_not_rpc_pinned",
+      "provenance": [
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "perpV1DeskSol registry entry; HUMAN-VERIFIED is a publisher assertion",
+          "evidence_kind": "publisher_registry",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netlong-futures-explorer-20261010-sol",
+          "locator": "creation_bytecode and deployed_bytecode; source/ABI absent",
+          "evidence_kind": "explorer_runtime",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "lifecycle_notes": "Publisher lists this October8 redeployment as current. Superseded never-funded status is publisher assertion, not independently reproduced. No balances, OI, positions or account ledgers retained.",
+      "interface_catalog": "assets/contracts/netlong-futures-sol.json"
+    },
+    {
+      "id": "robinhood-0x77d247ec5e2094e8226bcc1a5b8bfb8a903bb00f",
+      "chain_id": 4663,
+      "address": "0x77D247Ec5E2094E8226BCC1A5b8bfB8A903Bb00f",
+      "role": "NetLong Futures NET Desk",
+      "aliases": [
+        "perpV1DeskNet"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_listed",
+      "live_chain_verification_status": "explorer_runtime_observed_not_rpc_pinned",
+      "provenance": [
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "perpV1DeskNet registry entry; HUMAN-VERIFIED is a publisher assertion",
+          "evidence_kind": "publisher_registry",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netlong-futures-explorer-20261010-net",
+          "locator": "creation_bytecode and deployed_bytecode; source/ABI absent",
+          "evidence_kind": "explorer_runtime",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "lifecycle_notes": "Publisher lists this October8 redeployment as current. Superseded never-funded status is publisher assertion, not independently reproduced. No balances, OI, positions or account ledgers retained.",
+      "interface_catalog": "assets/contracts/netlong-futures-net.json"
+    },
+    {
+      "id": "robinhood-0x62407957401bb3c78e001aed2a68cfdd5f1ccef2",
+      "chain_id": 4663,
+      "address": "0x62407957401Bb3C78e001aEd2A68cFDD5f1CcEf2",
+      "role": "NetLong Futures Superseded Vault",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "superseded",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "perpV1Vault registry superseded deployment note",
+          "evidence_kind": "publisher_registry",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "lifecycle_notes": "Publisher identifies replacement October8; no assumption about its desk addresses, source equivalence or historical/current liabilities. Not a current market discovery root."
+    }
+  ]
+}

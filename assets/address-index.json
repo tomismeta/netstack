@@ -2,7 +2,7 @@
   "schema_version": 1,
   "chain_id": 4663,
   "conventions": "assets/address-conventions.json",
-  "lookup": "For packaged lookups, use these literal package-relative paths and read conventions plus the selected file. The index is a discovery aid, not a prerequisite or exhaustive research allowlist: missing records may be investigated with suitable host-authorized evidence establishing exact chain, address and semantics. Contract indexes are grouped by initial of canonical role; entries include aliases. Before selecting an outcome record, bare HIGHER/LOWER require a series; never substitute #1. Alias routes: Loopback market, Lombard Credit Facility or wsNET/USDG market -> markets (select wsNET / USDG, then follow singleton_record and singleton_id); LoopbackOracle -> l; Loopback TurboRouter -> t, not the long-dated TurboDesk. BASKETS or Grab Desk -> b (BasketsDesk); THE BOOK, sportsbook or Sports Book -> s (SportsBookDesk); THE BOOK Zap or Sportsbook Zap -> s (SportsBookZap); House Vault -> p (PredictVault), not THE BOOK's RWA Sleeve-backed house pot; clarify bare House before selecting Book or Predict; NetNet Predict or Probability Desk -> p (PredictDesk); HIGHER #1/HI-1 or LOWER #1/LO-1 -> p (Predict outcome roles); NET/USDG LP Zap or LP Zap -> l (LPZap); Managed Futures Zap -> z (Zap). Pendle LP/PT -> p and YT -> y: require a maturity and distinguish the retained September 17 and October 1 identities. The PENDLE role is a historically listed reward token, not an LP/PT/YT market; clarify an ambiguous Pendle request. RwaDesk/rwaDesk labels must be qualified by V1 or V2, never distinguished by letter case alone. Do not invent package paths by appending fragments or query strings.",
+  "lookup": "For packaged lookups, use these literal package-relative paths and read conventions plus the selected file. The index is a discovery aid, not a prerequisite or exhaustive research allowlist: missing records may be investigated with suitable host-authorized evidence establishing exact chain, address and semantics. Contract indexes are grouped by initial of canonical role; entries include aliases. Before selecting an outcome record, bare HIGHER/LOWER require a series; never substitute #1. Alias routes: Loopback market, Lombard Credit Facility or wsNET/USDG market -> markets (select wsNET / USDG, then follow singleton_record and singleton_id); LoopbackOracle -> l; Loopback TurboRouter -> t, not the long-dated TurboDesk. BASKETS or Grab Desk -> b (BasketsDesk); THE BOOK, sportsbook or Sports Book -> s (SportsBookDesk); THE BOOK Zap or Sportsbook Zap -> s (SportsBookZap); House Vault -> p (PredictVault), not THE BOOK's RWA Sleeve-backed house pot; clarify bare House before selecting Book or Predict; NetNet Predict or Probability Desk -> p (PredictDesk); HIGHER #1/HI-1 or LOWER #1/LO-1 -> p (Predict outcome roles); NET/USDG LP Zap or LP Zap -> l (LPZap); Managed Futures Zap -> z (Zap). Pendle LP/PT -> p and YT -> y: require a maturity and distinguish the retained September17, October1 and October15 identities. The PENDLE role is a historically listed reward token, not an LP/PT/YT market; clarify an ambiguous Pendle request. RwaDesk/rwaDesk labels require generation/date: V1 and historical rwaDeskV2 route through r; current SleeveBondDesk/rwaDesk routes through s. Never distinguish generations by letter case alone. Do not invent package paths by appending fragments or query strings.",
   "feeds": {
     "USDG": "assets/addresses/feeds/usdg.json",
     "ETH": "assets/addresses/feeds/eth.json",
@@ -72,22 +72,34 @@
     "assets/addresses/public-roles-boardroom-relayer-and-dialup-signers.json",
     "assets/addresses/public-roles-dialup-and-keeper.json",
     "assets/addresses/public-roles-climb-operator.json",
-    "assets/addresses/public-roles-discovered-deployer.json"
+    "assets/addresses/public-roles-discovered-deployer.json",
+    "assets/addresses/public-roles-netlong.json"
   ],
   "analytics": {
     "net_usdg_v2": "assets/analytics/liquidity-routes.json",
     "predict_house": "assets/analytics/predict-routes.json",
     "reserve_accounting": "assets/analytics/reserves-routes.json",
-    "net_advance": "assets/analytics/advance-routes.json"
+    "net_advance": "assets/analytics/advance-routes.json",
+    "netlong": "assets/analytics/netlong-routes.json",
+    "premiumseller": "assets/analytics/premiumseller-routes.json",
+    "sleeve_bonds": "assets/analytics/sleeve-bonds-routes.json",
+    "credit": "assets/analytics/credit-routes.json",
+    "book": "assets/analytics/book-routes.json"
   },
   "markets": "assets/addresses/markets.json",
   "v4_pools": "assets/addresses/v4-pools.json",
   "discovery": "assets/addresses/discovery/index.json",
+  "contract_capabilities": "assets/contracts/catalog.json",
   "new_family_routes": {
+    "NetLong margin loans and LOSE": "assets/addresses/contracts/netlong-margin-and-lose.json",
+    "Current wsNET futures and shared MarginOracle": "assets/addresses/contracts/netlong-futures.json",
     "hOHM": "assets/addresses/contracts/by-name-h.json",
     "Asset Bond Desk V1/V2 and Zap": "assets/addresses/contracts/by-name-a.json",
     "NET Advance Desk and Zap": "assets/addresses/contracts/by-name-a.json",
     "Predict HIGHER/LOWER #2": "assets/addresses/contracts/by-name-p.json",
+    "Predict HIGHER/LOWER #3 and #4": "assets/addresses/contracts/by-name-p.json",
+    "SleeveBondDesk current successor": "assets/addresses/contracts/by-name-s.json",
+    "Pendle October15 maturity": "assets/addresses/contracts/pendle-snet-15oct2026.json",
     "website_metric_meanings": "references/website-metrics.md"
   },
   "lp_inspection": {

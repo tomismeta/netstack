@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x55e76ba1f7c7603c27bbdf8dfa1b235f7e512540",
+  "contract_record": "assets/addresses/contracts/rwa-desk-v2-and-feed-router-adapters.json",
+  "chain_id": 4663,
+  "address": "0x55e76ba1f7c7603c27bbdf8dfa1b235f7e512540",
+  "generation": "rwa-feed-adapter-v3-fixed-to-sleeve-20260930",
+  "source_id": "netnet-sleeve-bond-runtime-20261010",
+  "source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x55e76ba1f7c7603c27bbdf8dfa1b235f7e512540",
+  "provenance": [
+    {
+      "source_id": "netnet-sleeve-bond-runtime-20261010",
+      "locator": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x55e76ba1f7c7603c27bbdf8dfa1b235f7e512540",
+      "observed_on": "2026-10-10",
+      "evidence_kind": "explorer_unpinned_runtime_and_dependency_interface"
+    }
+  ],
+  "completeness": {
+    "interface": "one_source_declared_runtime_matched_function_three_unnamed_getters",
+    "source": "current_exact_address_unavailable",
+    "implementation": "targeted_runtime",
+    "live_state": "not_obtained",
+    "full_validation": false,
+    "missing_evidence": [
+      "Current exact-address source/full ABI and3getter names.",
+      "Independent pinned runtime and actual feed/token implementations,feed liveness and multiplier values.",
+      "No owner/setter or proxy path observed in4branch runtime; not a universal dependency authority audit."
+    ]
+  },
+  "events": [],
+  "errors": [],
+  "evidence": {
+    "address": "0x55e76ba1f7c7603c27bbdf8dfa1b235f7e512540",
+    "runtime_bytes": 1783,
+    "runtime_sha256": "10472ea23bb6e1dfab88465d7498bfb4aab4fc47804e182e96e788d8fda5673c",
+    "source_status": "source_and_full_abi_unavailable",
+    "dispatcher_selectors": [
+      "0x0b8ad9f6",
+      "0x0dcaeaf2",
+      "0x1ab5b41a",
+      "0x53c3a6a1"
+    ],
+    "known_interface": "priceWad(address feed,address token) from obtained IFeedAdapter declaration in RouterSource compilation; current body independently traced. Other3getter names unknown.",
+    "semantics": "Requires feed answer>0,answeredInRound>=roundId,updatedAt<=timestamp,age<=345600seconds. Token.uiMultiplier() must be inclusively0.8e18..1.2e18. Returns floor(answer*10^(18-feedDecimals)*uiMultiplier/1e18). Feed decimals>18 revert. No sessionOpen branch. Bound getters return0.8e18,345600,1.2e18 respectively.",
+    "generation_warning": "Obtained RouterSource compilation contains an older RwaFeedAdapter implementation with identity-only multiplier/session-aware age; that source is NOT the exact-address current adapter."
+  },
+  "functions": [
+    {
+      "name": "priceWad",
+      "signature": "priceWad(address,address)",
+      "selector": "0x53c3a6a1",
+      "inputs": [
+        {
+          "name": "feed",
+          "type": "address"
+        },
+        {
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "public read; feed and token dependency failures propagate"
+      },
+      "interface_attribution": "Obtained IRwaFeedAdapter declaration in exact RouterSource source; name not recovered from current adapter source. Matching current dispatcher and body independently reviewed.",
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Requires feed answer>0,answeredInRound>=roundId,updatedAt<=timestamp,age<=345600seconds. Token.uiMultiplier() must be inclusively0.8e18..1.2e18. Returns floor(answer*10^(18-feedDecimals)*uiMultiplier/1e18). Feed decimals>18 revert. No sessionOpen branch. Bound getters return0.8e18,345600,1.2e18 respectively."
+      },
+      "evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "Current adapter deployed runtime selector0x53c3a6a1; IRwaFeedAdapter.priceWad declaration in obtained src/rwa/RwaAdapters.sol is interface evidence only",
+        "kind": "targeted_exact_runtime_with_separately_obtained_interface"
+      }
+    }
+  ],
+  "unnamed_dispatchers": [
+    {
+      "selector": "0x0b8ad9f6",
+      "shape": "no input;uint256 output",
+      "effects": "Immutable lower uiMultiplier bound0.8e18",
+      "abi_name": null
+    },
+    {
+      "selector": "0x0dcaeaf2",
+      "shape": "no input;uint256 output",
+      "effects": "Immutable maximum feed age345600seconds",
+      "abi_name": null
+    },
+    {
+      "selector": "0x1ab5b41a",
+      "shape": "no input;uint256 output",
+      "effects": "Immutable upper uiMultiplier bound1.2e18",
+      "abi_name": null
+    }
+  ],
+  "missing_evidence": [
+    "Current exact-address source/full ABI and3getter names.",
+    "Independent pinned runtime and actual feed/token implementations,feed liveness and multiplier values.",
+    "No owner/setter or proxy path observed in4branch runtime; not a universal dependency authority audit."
+  ]
+}

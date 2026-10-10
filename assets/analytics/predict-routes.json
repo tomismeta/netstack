@@ -3,6 +3,24 @@
   "workflow": "references/predict-analytics.md",
   "desk_interface": "assets/analytics/predict-interface.json",
   "house_interface": "assets/analytics/house-interface.json",
+  "source_evidence": "assets/contracts/predict-source-evidence.json",
+  "outcome_catalogs": [
+    "assets/contracts/predict-outcome-series-1-higher.json",
+    "assets/contracts/predict-outcome-series-1-lower.json",
+    "assets/contracts/predict-outcome-series-2-higher.json",
+    "assets/contracts/predict-outcome-series-2-lower.json",
+    "assets/contracts/predict-outcome-series-3-higher.json",
+    "assets/contracts/predict-outcome-series-3-lower.json",
+    "assets/contracts/predict-outcome-series-4-higher.json",
+    "assets/contracts/predict-outcome-series-4-lower.json"
+  ],
+  "historical_outcome_records": [
+    "assets/addresses/contracts/predict-series-1-outcomes.json",
+    "assets/addresses/contracts/predict-series-2-outcomes.json",
+    "assets/addresses/contracts/predict-series-3-outcomes.json",
+    "assets/addresses/contracts/predict-series-4-outcomes.json"
+  ],
+  "outcome_discovery_policy": "Historical identity evidence only, never current-run seeds; discover every requested series/token association from the pinned Desk.",
   "desk": {"file":"assets/addresses/contracts/predict-desk-and-vault.json","id":"robinhood-0x7ef9528408d99f98056922291048f0710001e015"},
   "house": {"file":"assets/addresses/contracts/predict-desk-and-vault.json","id":"robinhood-0xb488368902b1cbd7533f1536c3f860065398d3e9"},
   "usdg": {"file":"assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json","id":"robinhood-0x5fc5360d0400a0fd4f2af552add042d716f1d168"},

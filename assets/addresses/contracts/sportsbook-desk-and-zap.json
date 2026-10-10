@@ -5,7 +5,12 @@
       "chain_id": 4663,
       "address": "0x3174dE69a84c53F82F6B6Dca5C64E705cFFe8Dd6",
       "role": "SportsBookDesk",
-      "aliases": ["sportsBookDesk", "THE BOOK", "sportsbook", "Sports Book"],
+      "aliases": [
+        "sportsBookDesk",
+        "THE BOOK",
+        "sportsbook",
+        "Sports Book"
+      ],
       "status": "recorded_from_public_source",
       "lifecycle_status": "indexed_deployment_publisher_reported_launch",
       "lifecycle_notes": "September 20 publisher launch and matching indexed address-creation metadata corroborate identity and deployment, not current market activity, authority, balances, solvency or settlement correctness. Explorer is_verified=false and bytecode without verified source do not establish Solidity equivalence. Published rules describe the house as the RWA Sleeve, never Treasury; this is not the depositor-funded Predict House Vault. Publisher HUMAN-VERIFIED is an attributed label only.",
@@ -34,6 +39,12 @@
           "locator": "address hash; is_contract=true; creation_status=success; matching creation_transaction_hash; is_verified=false; smart-contract endpoint bytecode without verified source",
           "evidence_kind": "explorer_indexed_address_metadata",
           "observed_on": "2026-09-20"
+        },
+        {
+          "source_id": "netnet-book-interfaces-20261010",
+          "locator": "2026-10-10 complete supplied desk publisher ABI; 56 exact-address explorer runtime dispatcher selectors match, but no verified ABI/Solidity or independently pinned chain state. See assets/contracts/book-source-evidence.json.",
+          "evidence_kind": "publisher_interface_and_unpinned_explorer_runtime",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
@@ -44,7 +55,12 @@
       "chain_id": 4663,
       "address": "0xC866E4f53f1439d85171a06395ce37b887D16Fa1",
       "role": "SportsBookZap",
-      "aliases": ["sportsBookZap", "THE BOOK Zap", "Sports Book Zap", "Sportsbook Zap"],
+      "aliases": [
+        "sportsBookZap",
+        "THE BOOK Zap",
+        "Sports Book Zap",
+        "Sportsbook Zap"
+      ],
       "status": "recorded_from_public_source",
       "lifecycle_status": "indexed_deployment_publisher_reported_book_zap",
       "lifecycle_notes": "Matching indexed address-creation metadata corroborates deployment. Published interface describes USDG/sNET conversions for THE BOOK, not the NET/USDG LP Zap or Managed Futures Zap. Explorer is_verified=false; bytecode without verified source does not verify current Desk/router wiring, conversion caps, exemptions, warmup state or safe operation. Publisher HUMAN-VERIFIED is an attributed label only.",
@@ -73,6 +89,12 @@
           "locator": "address hash; is_contract=true; creation_status=success; matching creation_transaction_hash; is_verified=false; smart-contract endpoint bytecode without verified source",
           "evidence_kind": "explorer_indexed_address_metadata",
           "observed_on": "2026-09-20"
+        },
+        {
+          "source_id": "netnet-book-interfaces-20261010",
+          "locator": "2026-10-10 complete supplied zap publisher ABI; 12 exact-address explorer runtime dispatcher selectors match, but no verified ABI/Solidity or independently pinned chain state. See assets/contracts/book-source-evidence.json.",
+          "evidence_kind": "publisher_interface_and_unpinned_explorer_runtime",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",

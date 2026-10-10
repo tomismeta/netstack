@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "source_id": "netnet-predict-runtime-depth-20261010",
+  "observed_on": "2026-10-10",
+  "chain_id": 4663,
+  "evidence_kind": "explorer_returned_runtime_not_pinned_rpc",
+  "verified_solidity_obtained": false,
+  "verified_abi_obtained": false,
+  "full_audit": false,
+  "runtime": {
+    "desk": {
+      "address": "0x7ef9528408d99f98056922291048f0710001e015",
+      "runtime_bytes": 18317,
+      "runtime_keccak256": "0xe7a63f394ad5aaf5f737f49508c136ea5db2ecc90d3019f53215d3b3d6ad2c43",
+      "runtime_sha256": "5b74e7081cb89ea0f3b0f959a0722fd4e4e228fc9a7331a6f5d51c084bf8a649"
+    },
+    "house": {
+      "address": "0xb488368902b1cbd7533f1536c3f860065398d3e9",
+      "runtime_bytes": 5534,
+      "runtime_keccak256": "0x23b13523c73c5eeb691d96744f9cdd96eb32eca5668310798eb605ca4c75c65e"
+    },
+    "outcome": {
+      "runtime_bytes": 1993,
+      "runtime_keccak256": "0x1e885071188ec8e93373085aafb1569fae587912b48aa61ffd2564538b7718c7",
+      "runtime_sha256": "a1fe99eca8fd6f7986dcd23fcb36e97f308d1276af6073c1f0bafdae9a670122",
+      "immutable_desk": "0x7ef9528408d99f98056922291048f0710001e015"
+    }
+  },
+  "source_urls": [
+    "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x7EF9528408D99f98056922291048F0710001e015",
+    "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xb488368902b1CbD7533F1536C3F860065398D3e9",
+    "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xE55AEe500Ef58D164cF5c04F24bCB041f315fEe6",
+    "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xb1A1E14c586215235F64166FbC093b8d28Fce5DB",
+    "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x7185eD82f9e4Ae9a3fFF0Ae072eaF83BBA969AbC",
+    "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x414b1637de64d91223Df88f9f060fd1983d0E593",
+    "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x583e00F04CcA3e42B8D20B5e67ba6e9e0B454C3F",
+    "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x07431db5F53C2cC14a80755A010A00a09785ad39",
+    "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x64eC5c92eC336F9bc0AE2dCFf5acae91B58437AD",
+    "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x04f999c0BCA1579f46e2cC6f19fe58f462Fd07eC"
+  ],
+  "source_response_fields": [
+    "creation_bytecode",
+    "creation_status",
+    "deployed_bytecode",
+    "implementations",
+    "proxy_type",
+    "conflicting_implementations"
+  ],
+  "source_limit": "Responses exposed bytecode, not verified Solidity/source ABI. Exact runtime paths reviewed with publisher ABI labels; no compiler equivalence or exhaustive symbolic execution. Explorer proxy_type=null/implementations=[] does not audit dependencies. Canonical RPC denied403 in current session; no live state or total obtained.",
+  "dependencies": {
+    "owner": "0x3bb7a23316f82c0e984fa2e784846d8928a35f42",
+    "initial_grader": "0x3bb7a23316f82c0e984fa2e784846d8928a35f42",
+    "current_grader": null,
+    "usdg": "0x5fc5360d0400a0fd4f2af552add042d716f1d168",
+    "net": "0xca9c78dd337a67f6e0077f65f5e9218719d30edf",
+    "router": "0x89e5db8b5aa49aa85ac63f691524311aeb649eba",
+    "treasury": "0x04822ea321a0dee6f40656172f29312104855d66",
+    "sleeve": "0x498752d5fa0600cbd613074c151abe15b3fec7cb",
+    "limit": "Immutable identity evidence only. Current grader, Safe signers, router/token/Treasury/Sleeve implementations and exact print ledger not recovered as same-block dependency closure."
+  },
+  "accounting": {
+    "fee_split": "0x2865..0x2c76: floor(fee/2) joins deferred NET budget; fee-floor(fee/2) remains vaultFees. Successful retry netSpentUsdg is attributed to current series even when prior pending is included; NetBought is not intrinsically series-tagged.",
+    "settlement": "0x2dd1..0x312d: convert long mark to raw USDG payout; reserve each side with ceil(outstanding*payout/1e18); prize=floor(vaultFees*1000/10000); return book-reserve+vaultFees-prize to House, zero book/vaultFees and call House settle. Prior prizeCarry and void treatment remain distinct.",
+    "rounding": "Buy/sell curve paths contain conservative +/-1 integer adjustments and full-precision mulDiv; do not substitute frontend float curve for a quote. Redemption and House per-account claims floor; aggregate settlement liability reserves can differ from summed per-holder payout.",
+    "lazy_deposit": "House0x10c7..0x1289 emits Deposited on matured queue synchronization without a new transfer. Counting every Deposited.usdg plus DepositQueued.usdg double-counts principal. Receipt order distinguishes direct idle deposit cash from synchronization."
+  },
+  "print_methodology": {
+    "publisher_definition_review": "2026-10-07",
+    "definition": "Treasury plus Reports Sleeve part-for-part, live Rialto one-share quotes with Reports fallback, NET market/index; earlier September25 exclusions/frozen House claim are historical only.",
+    "independent_exact_print_supported": false,
+    "missing": [
+      "published script URL/version",
+      "print block/hash",
+      "constituent and liability ledger",
+      "Rialto quote/fallback ledger",
+      "actual grader submission reconciliation"
+    ],
+    "core_pol_reconstruction_supported": false,
+    "core_pol_discrepancy": "Existing18432.08USDG blocker unchanged."
+  },
+  "dispatchers": {
+    "desk": {
+      "matched_functions": 33,
+      "unmatched_selectors": [],
+      "limit": "Main dispatcher only; selector match not itself semantic proof."
+    },
+    "house": {
+      "matched_functions": 27,
+      "unmatched_selectors": []
+    },
+    "outcome": {
+      "matched_functions": 12,
+      "unmatched_selectors": []
+    }
+  },
+  "function_evidence": {
+    "desk": {
+      "barred": {
+        "locator": "0x034b..0x036d",
+        "authority": "Public mapping getter; slot2 address key.",
+        "accounting": "Constructor-populated buy exclusion. No setter appears among the 33 matched dispatcher branches; not a general sell/redeem freeze."
+      },
+      "buy": {
+        "locator": "0x05ae..0x0989",
+        "authority": "Public, reentrancy guard; not halted/not barred; nonzero gross amount >= minTicket; current open series and before close; minTokensOut.",
+        "accounting": "Pulls gross USDG; mints selected outcome to caller; book grows by gross minus rounded fee and volume grows by gross. Post absolute skew increase is disallowed after lastCallTime; equality is not rejected by that comparison. Fee allocator also attempts deferred NET routing."
+      },
+      "feesPaid": {
+        "locator": "0x0240..0x0269;0x2865..0x28b6",
+        "authority": "Public getter of slot6[series][account].",
+        "accounting": "Accumulates both buy and sell fees; does not transfer with outcome tokens and is not a current holding or net revenue."
+      },
+      "grade": {
+        "locator": "0x098a..0x0b63;0x2dd1..0x312d",
+        "authority": "Current slot0 grader only; reentrancy guard; current open series, timestamp strictly greater than printTime.",
+        "accounting": "Records supplied print after numeric bounds using line and Treasury rfv dependency; compares print > line (tie is LOWER), binary long payout via settlement. Bounds do not reconstruct Sleeve/Reports, prove print truth or provide a dispute oracle."
+      },
+      "grader": {
+        "locator": "0x02d7..0x02e8",
+        "authority": "Public getter, mutable slot0 low160.",
+        "accounting": "Current authority for grade; initial constructor identity is not current role evidence."
+      },
+      "guess": {
+        "locator": "0x1894..0x1a26",
+        "authority": "Public current-open-series path, before close; fee eligibility and one-guess flag.",
+        "accounting": "Prize-only guess state; not a wager or print challenge. Stores uint128 guess and monotonic guess order; upper input conversion/eligibility exact boundary should not be inferred from UI alone."
+      },
+      "guessOf": {
+        "locator": "0x037d..0x03fd",
+        "authority": "Public slot5[series][account] getter.",
+        "accounting": "Packed uint128 value, uint64 order, bool entered; no payout or token ownership implied."
+      },
+      "halted": {
+        "locator": "0x045c..0x046e",
+        "authority": "Public slot0 flag getter.",
+        "accounting": "New-buy gate; sell/redeem branches do not read this flag."
+      },
+      "markPrice": {
+        "locator": "0x11d0..0x121d;0x327e..0x333b",
+        "authority": "Public getter; current series only.",
+        "accounting": "Computes current open-series curve mark, otherwise returns lastMarkWad. Not a historical quote, Treasury value or posted print."
+      },
+      "minTicket": {
+        "locator": "0x0557..0x055f",
+        "authority": "Public slot1 getter.",
+        "accounting": "Minimum gross raw USDG for buy; not frontend dust minimum or minimum sell."
+      },
+      "net": {
+        "locator": "0x046f..0x0495",
+        "authority": "Public immutable getter.",
+        "accounting": "NET destination token of fee-funded router swap; not automatically burned."
+      },
+      "open": {
+        "locator": "0x0b64..0x11cf",
+        "authority": "Immutable owner only, reentrancy guard; prior series and schedule guards.",
+        "accounting": "Calls House fund, increments series, sets calendar/line/today fields, deploys distinct HIGHER/LOWER tokens. Funding is real USDG; virtual liquidity increases curve backing without a cash transfer. Treasury rfv threshold is not a full TrueRFV print."
+      },
+      "owner": {
+        "locator": "0x0411..0x0437",
+        "authority": "Public immutable getter.",
+        "accounting": "Authority for open/setGrader/setHalted/setMinTicket; no transferOwnership selector found. Safe implementation/signers still require separate evidence."
+      },
+      "payPrize": {
+        "locator": "0x12d1..0x1551",
+        "authority": "Public resolved-series path; unpaid prize and >= settledAt+86400.",
+        "accounting": "Marks prize paid once. Sends prize to proposed bestGuesser or rolls it into prizeCarry if none; rollover is not cash. This does not arbitrate market settlement."
+      },
+      "pendingNetUsdg": {
+        "locator": "0x0501..0x0509;0x2865..0x2c76",
+        "authority": "Public slot9 getter.",
+        "accounting": "Deferred fee-funded NET swap cash. Later successful fee allocator spends prior pending plus new portion; cross-series sum cannot be allocated by NetBought alone."
+      },
+      "prizeCarry": {
+        "locator": "0x0438..0x0440",
+        "authority": "Public slot8 getter.",
+        "accounting": "Rolled unpaid prize accounting, overlapping reserved custody. Not extra income to add to balance."
+      },
+      "proposeWinner": {
+        "locator": "0x15e3..0x1893",
+        "authority": "Public resolved-series and unpaid-prize path; nominated account must have eligible stored guess.",
+        "accounting": "Accepts a guess not above print and improving stored eligible value, using earlier guess order for ties. Updates prize recipient only; cannot change printWad or outcome payout."
+      },
+      "quoteBuy": {
+        "locator": "0x1ab4..0x1b33;0x257c..0x283e",
+        "authority": "Public view of current open series.",
+        "accounting": "Returns modeled tokens and rounded fee using current book curve. Does not execute transfer or prove buy-specific halt/bar/account/slippage/clock acceptance; no series-ID argument."
+      },
+      "quoteSell": {
+        "locator": "0x1552..0x15e2;0x3368..0x342e",
+        "authority": "Public view of current open series.",
+        "accounting": "Returns net USDG and rounded fee for burning selected tokens. Quote is not a fill or an account balance/allowance check; no series-ID argument."
+      },
+      "redeem": {
+        "locator": "0x2150..0x23e4",
+        "authority": "Public holder path, status resolved or voided, nonzero tokens; reentrancy guard.",
+        "accounting": "Desk burns caller outcome without allowance then floor(tokens*payout/1e18) raw USDG, decrements reservedUsdg and transfers positive payout. LOWER uses 1e6-longPayoutUsdg. Tuple longOut/shortOut are not decremented here; token supply is remaining claims."
+      },
+      "reservedUsdg": {
+        "locator": "0x04e5..0x04ed;0x2dd1..0x312d",
+        "authority": "Public slot7 getter.",
+        "accounting": "Aggregate retained settlement payouts/prizes; settlement rounds each side reserve upward, individual redemption rounds downward. Not disjoint from prizeCarry; rounding dust remains possible."
+      },
+      "router": {
+        "locator": "0x0560..0x0586;0x2865..0x2c76",
+        "authority": "Public immutable getter.",
+        "accounting": "Fee allocator approves exact pending USDG and calls swapExactTokensForTokensSupportingFeeOnTransferTokens with path USDG/NET, zero minOut, Sleeve recipient, current timestamp. Catch/defer is not a successful NET purchase."
+      },
+      "sell": {
+        "locator": "0x1e6c..0x214f",
+        "authority": "Public, reentrancy guard; nonzero tokens, current open series and before close, minUsdgOut.",
+        "accounting": "Burns caller outcome through privileged Desk token call; reduces book by gross curve value, increments volume by gross sell value, transfers gross minus fee to caller. No buy halt/barred gate on this branch."
+      },
+      "series": {
+        "locator": "0x1b34..0x1dbb",
+        "authority": "Public slot4 series mapping getter.",
+        "accounting": "All 26 fields preserved. Book/exposure/fee/reserve/prize values differ; settled stored exposure is not remaining token supply. Zero tuple for unused ID is not a discovered active series."
+      },
+      "seriesCount": {
+        "locator": "0x04a9..0x04b1",
+        "authority": "Public slot3 getter.",
+        "accounting": "Monotonic selected-Desk series sequence advanced by open; discover 1..count at pinned block, never historical seed inventory."
+      },
+      "setGrader": {
+        "locator": "0x121e..0x12d0",
+        "authority": "Immutable owner only; nonzero address.",
+        "accounting": "Changes mutable grader immediately in this runtime branch; numeric print bounds remain separate from honest grading."
+      },
+      "setHalted": {
+        "locator": "0x1dbc..0x1e6b",
+        "authority": "Immutable owner only.",
+        "accounting": "Sets new-buy halt; not a global token-transfer or redemption pause."
+      },
+      "setMinTicket": {
+        "locator": "0x23e5..0x2462",
+        "authority": "Immutable owner only.",
+        "accounting": "Updates raw USDG buy threshold. Nonzero buy guard still applies if threshold is zero."
+      },
+      "sleeve": {
+        "locator": "0x0285..0x02c3",
+        "authority": "Public immutable getter.",
+        "accounting": "Recipient of fee-funded NET acquisition; does not prove Sleeve constituent valuation or beneficial ownership."
+      },
+      "treasury": {
+        "locator": "0x02e9..0x030f",
+        "authority": "Public immutable getter.",
+        "accounting": "rfv() dependency for open/grade numeric checks; Treasury Core POL discrepancy remains unresolved and is not repaired by Predict accounting."
+      },
+      "usdg": {
+        "locator": "0x0530..0x0556",
+        "authority": "Public immutable getter.",
+        "accounting": "USDG cash token. Runtime assumes 1e6 payout unit; collector independently checks decimals, never assumes USD parity."
+      },
+      "vault": {
+        "locator": "0x0587..0x05ad",
+        "authority": "Public immutable getter.",
+        "accounting": "House funding/settlement counterparty, not an ERC20 LP or outcome token."
+      },
+      "void": {
+        "locator": "0x1a27..0x1ab3;0x2dd1..0x312d",
+        "authority": "Permissionless current-open-series path after timestamp strictly greater than printTime+259200; reentrancy guard.",
+        "accounting": "Settles using stored lastMarkWad, not a binary fresh winner; prize allocation rolls forward. Liveness remedy for ungraded market, not correction of a posted print."
+      }
+    },
+    "house": {
+      "activeAssets": {
+        "locator": "0x01d8..0x01e0",
+        "authority": "Public slot3 getter.",
+        "accounting": "Idle active accounting USDG; fund resets it to zero while sending capital to Desk. Zero while live does not imply no capital."
+      },
+      "assetsOf": {
+        "locator": "0x05c9..0x05f3",
+        "authority": "Public view.",
+        "accounting": "floor(sharesOf(account)*sharePriceWad()/1e18); sharesOf excludes matured notices but includes unmatured notices and eligible matured joins. Not liquid withdrawal cash."
+      },
+      "cancelDeposit": {
+        "locator": "0x05f4..0x0741",
+        "authority": "Caller account only after lazy sync; must still have pending principal.",
+        "accounting": "Deletes unprocessed pending, subtracts totalPending, returns raw USDG. A matured deposit may synchronize to shares instead and cease to be cancellable."
+      },
+      "cancelWithdraw": {
+        "locator": "0x089b..0x09a8",
+        "authority": "Caller account only; nonzero unmatured notice after sync.",
+        "accounting": "Subtracts generation/series noticed tally, restores free internal shares, clears notice. No USDG payment."
+      },
+      "claimWithdraw": {
+        "locator": "0x03f0..0x05ba",
+        "authority": "Caller account only; nonzero matured notice after sync.",
+        "accounting": "Clears notice, floors shares*stored exitPrice/1e18, decrements totalClaimable, transfers positive USDG. Zero exit price can mean real zero payout; failed read is unknown."
+      },
+      "deposit": {
+        "locator": "0x0ce1..0x0ef8",
+        "authority": "Public caller, wired and nonzero USDG; lazy account sync then transferFrom.",
+        "accounting": "Idle: floor USDG*1e18/price shares, activeAssets and totalShares grow. Live: records current series pending and totalPending. Receipt must distinguish direct Deposited from lazy-sync Deposited emitted before new transfer."
+      },
+      "desk": {
+        "locator": "0x031d..0x034b",
+        "authority": "Public packed slot0 getter.",
+        "accounting": "One-shot wired funding/settlement authority; current getter is not deployment signer evidence."
+      },
+      "exitPriceWad": {
+        "locator": "0x02e3..0x0301",
+        "authority": "Public slot6[series] getter.",
+        "accounting": "Struck exit raw USDG per1e18 shares; floor conversion to individual USDG, zero is distinct from unavailable."
+      },
+      "fund": {
+        "locator": "0x0b82..0x0ce0",
+        "authority": "Wired Desk caller only.",
+        "accounting": "Sets live, increments House seriesCount, zeros activeAssets, sends that amount to Desk and emits Funded. Not a depositor cash inflow or trade."
+      },
+      "generation": {
+        "locator": "0x01cf..0x01d7;0x09a9..0x0b81",
+        "authority": "Public slot9 getter.",
+        "accounting": "Incremented on zero struck exit price with remaining shares; old active share basis is wiped lazily. Does not replace the House address."
+      },
+      "generationStartSeries": {
+        "locator": "0x034c..0x0354",
+        "authority": "Public slot10 getter.",
+        "accounting": "Reset series boundary used to exclude old pending joins; historical return calculations must not bridge it."
+      },
+      "joinPriceWad": {
+        "locator": "0x0355..0x0373",
+        "authority": "Public slot7[series] getter.",
+        "accounting": "Join price stored at settle: struck exit price when nonzero, otherwise initial1e6 raw USDG scale; queue conversion floors to shares."
+      },
+      "live": {
+        "locator": "0x02d0..0x02e2",
+        "authority": "Public packed slot0 bit168 getter.",
+        "accounting": "Controls deposit queue and struck price behavior, not Desk buy acceptance or wall-clock maturity."
+      },
+      "noticeOf": {
+        "locator": "0x0250..0x028a",
+        "authority": "Public slot14[account] raw getter.",
+        "accounting": "Raw shares/series can persist until claim/cancel/sync; maturity is accounting predicate. Matured claims can survive a generation reset."
+      },
+      "noticedShares": {
+        "locator": "0x028b..0x02b4;0x0742..0x089a;0x09a9..0x0b81",
+        "authority": "Public slot8 nested mapping getter.",
+        "accounting": "Exact key order is (generation,paidAtSeries): requestWithdraw writes slot8[currentGeneration][seriesCount+1]; settle consumes slot8[currentGeneration][seriesCount]. No account enumeration implied."
+      },
+      "pendingOf": {
+        "locator": "0x037d..0x03a2",
+        "authority": "Public slot13[account] raw getter.",
+        "accounting": "Raw USDG/series pending can remain after settlement, already counted via sharesOf; not additive to active shares after maturity."
+      },
+      "requestWithdraw": {
+        "locator": "0x0742..0x089a",
+        "authority": "Caller account only, nonzero shares, available free balance after sync; same next-series notice can grow.",
+        "accounting": "Moves free shares into notice for seriesCount+1 and generation keyed aggregate. sharesOf includes unmatured noticed shares; not an instant withdrawal."
+      },
+      "seriesCount": {
+        "locator": "0x0374..0x037c",
+        "authority": "Public slot1 getter.",
+        "accounting": "Incremented by fund, not by settle. At idle current series is settled; live current series is not."
+      },
+      "settle": {
+        "locator": "0x09a9..0x0b81",
+        "authority": "Wired Desk caller only.",
+        "accounting": "Uses supplied returned USDG (does not pull tokens itself). exit=floor(returned*1e18/totalShares); removes noticed shares and floors aggregate exit reserve; active=returned-exitReserve. Handles zero-price reset; then converts totalPending at join price and clears aggregate pending. Receipt must prove prior Desk transfer."
+      },
+      "sharePriceWad": {
+        "locator": "0x1364..0x13ef",
+        "authority": "Public view.",
+        "accounting": "Live uses prior join price or initial1e6; idle with shares uses floor(activeAssets*1e18/totalShares), otherwise initial1e6. Not a probability WAD or live equity mark."
+      },
+      "sharesOf": {
+        "locator": "0x0ef9..0x101d",
+        "authority": "Public generation-aware view.",
+        "accounting": "Current-generation free shares plus unmatured noticed shares plus eligible settled pending conversion; excludes matured notice claims. Old active shares vanish across reset; no ERC20 transferability."
+      },
+      "totalClaimable": {
+        "locator": "0x0234..0x023c",
+        "authority": "Public slot5 getter.",
+        "accounting": "Aggregate matured USDG claim reserve; aggregate floor versus per-account floor creates dust, not extra owner-attributed claims."
+      },
+      "totalPending": {
+        "locator": "0x022b..0x0233",
+        "authority": "Public slot4 getter.",
+        "accounting": "Only not-yet-processed queued USDG; resets at settle even if individual raw pending records remain."
+      },
+      "totalShares": {
+        "locator": "0x0218..0x0220",
+        "authority": "Public slot2 getter.",
+        "accounting": "Aggregate active share basis including unprocessed live notices, excluding shares removed at settlement; generation and rounding needed for owner sums."
+      },
+      "usdg": {
+        "locator": "0x03a3..0x03c9",
+        "authority": "Public immutable getter.",
+        "accounting": "USDG denomination, not proof of dollar parity; arithmetic initial price is1e6 raw."
+      },
+      "wire": {
+        "locator": "0x101e..0x10c6",
+        "authority": "Immutable deployer0xcfbd7e12a0f154a45576a73c1e409200068507b9 only; once, nonzero Desk.",
+        "accounting": "Locks Desk authority into packed slot0. No rewire or arbitrary sweep selector found in this exact dispatcher; not a full dependency audit."
+      },
+      "wired": {
+        "locator": "0x01fc..0x0217",
+        "authority": "Public slot0 lowbyte getter.",
+        "accounting": "Indicates wire used; collector still compares actual Desk/USDG identities."
+      }
+    }
+  }
+}

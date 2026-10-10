@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0xb078cc304a0b264c5f3680dc0488954accd02e87",
+  "contract_record": "assets/addresses/contracts/spcx-staking-and-aapl-coin-morpho-oracles.json",
+  "chain_id": 4663,
+  "address": "0xB078cc304A0B264C5F3680DC0488954ACcd02E87",
+  "generation": "staking",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal Jr, Unicode character offsets[265629,267586); consumer binding to staking",
+      "observed_on": "2026-10-07"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 11,
+    "implementation": "unreviewed",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned code, storage, current permissions and financial reconciliation.",
+      "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+    ],
+    "literal_abi_sha256": "75e8aa8a8edebd01aa8aa73e323b07c2a4396908dd11332a2f7924484497de5b",
+    "literal_character_range": [
+      265629,
+      267586
+    ]
+  },
+  "functions": [
+    {
+      "name": "enable",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "enable()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Jr, Unicode character offsets[265629,267586); consumer binding to staking; ABI entry[0]"
+      },
+      "selector": "0xa3907d71",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface enable(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "enabled",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "enabled()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Jr, Unicode character offsets[265629,267586); consumer binding to staking; ABI entry[1]"
+      },
+      "selector": "0x238dafe0",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface enabled(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "epoch",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "length",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "number",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "end",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "distribute",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "epoch()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Jr, Unicode character offsets[265629,267586); consumer binding to staking; ABI entry[2]"
+      },
+      "selector": "0x900cf0cf",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface epoch(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "rebase",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "rebase()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Jr, Unicode character offsets[265629,267586); consumer binding to staking; ABI entry[3]"
+      },
+      "selector": "0xaf14052c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface rebase(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "stake",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "stake(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Jr, Unicode character offsets[265629,267586); consumer binding to staking; ABI entry[4]"
+      },
+      "selector": "0xadc9772e",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface stake(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "totalStaked",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "totalStaked()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Jr, Unicode character offsets[265629,267586); consumer binding to staking; ABI entry[5]"
+      },
+      "selector": "0x817b1cd2",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface totalStaked(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "unstake",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "unstake(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Jr, Unicode character offsets[265629,267586); consumer binding to staking; ABI entry[6]"
+      },
+      "selector": "0xc2a672e0",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface unstake(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "warmupEpochs",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "warmupEpochs()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Jr, Unicode character offsets[265629,267586); consumer binding to staking; ABI entry[7]"
+      },
+      "selector": "0xa6082d5b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface warmupEpochs(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "Rebased",
+      "inputs": [
+        {
+          "name": "epoch",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "distributed",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Rebased(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Jr, Unicode character offsets[265629,267586); consumer binding to staking; ABI entry[8]"
+      },
+      "topic0": "0x8d01b778e641f65fc8a5cae34cc83e082ab8b2149b3c1bb3925913116fe4633f"
+    },
+    {
+      "name": "Staked",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Staked(address,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Jr, Unicode character offsets[265629,267586); consumer binding to staking; ABI entry[9]"
+      },
+      "topic0": "0x5dac0c1b1112564a045ba943c9d50270893e8e826c49be8e7073adc713ab7bd7"
+    },
+    {
+      "name": "Unstaked",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Unstaked(address,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Jr, Unicode character offsets[265629,267586); consumer binding to staking; ABI entry[10]"
+      },
+      "topic0": "0xd8654fcc8cf5b36d30b3f5e4688fc78118e6d68de60b9994e09902268b57c3e3"
+    }
+  ],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": []
+}

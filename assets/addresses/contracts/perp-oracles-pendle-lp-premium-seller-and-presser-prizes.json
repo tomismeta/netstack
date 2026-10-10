@@ -88,8 +88,15 @@
           "locator": "Contract addresses / PremiumSeller",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-premium-seller-implementation-20261010",
+          "locator": "Explorer address creation_transaction_hash; transaction result=success status=ok created_contract=canonical seller; block_number=11439688; creation_block_hash=0xa8a1a4768b0db740643e05b547c6ac9c6cde8a779572887bda4df390997d525f; creation_timestamp=2026-07-16T17:32:50.000000Z",
+          "evidence_kind": "explorer_creation_identity_not_independent_rpc",
+          "observed_on": "2026-10-10"
         }
-      ]
+      ],
+      "deployment_transaction_hash": "0xbc4e2476b101f79753191364a4bc83fe6ff053c49998c48674c97521149f3c3e"
     },
     {
       "id": "robinhood-0x117074c7b7b6acd290f7a031efe76dbfb0383e80",

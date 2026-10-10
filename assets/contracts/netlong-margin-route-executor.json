@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x2d96bbf7859520ac6ecd2987a69e334b57de9de6",
+  "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+  "chain_id": 4663,
+  "address": "0x2D96BbF7859520Ac6EcD2987a69e334b57de9de6",
+  "generation": "netlong-margin-route-executor",
+  "provenance": [
+    {
+      "source_id": "netlong-margin-route-executor-explorer-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x2D96BbF7859520Ac6EcD2987a69e334b57de9de6",
+      "observed_on": "2026-10-10",
+      "locator": "Complete explorer smart-contract response; source/ABI fields and deployed_bytecode where supplied"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "abi_not_obtained",
+    "supplied_entry_count": 0,
+    "implementation": "targeted_static_runtime_review_with_explicit_unresolved_dispatchers",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+      "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+      "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+    ],
+    "runtime_dispatcher_count": 15,
+    "runtime_unresolved_signature_count": 11
+  },
+  "runtime_identity": {
+    "byte_count": 8922,
+    "sha256": "aa2b03e1ce2e62c8cd81e986c828ae70b37be14a72c8baeade96d140d3f4dfc4",
+    "keccak256": "0x66e91e5ce9494fb5e98c72a973ffd77f76d7dde6ae0152876cc22004aec8ae0b",
+    "evidence_kind": "explorer_indexed_unpinned_runtime",
+    "proxy_type": null,
+    "explorer_is_verified": null,
+    "explorer_is_fully_verified": null,
+    "verified_twin_address": null
+  },
+  "functions": [],
+  "events": [],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": [],
+  "runtime_review": [
+    {
+      "scope": "authority and adapters",
+      "pcs": [
+        "0x02ed-0x06c5",
+        "0x06c5-0x0879",
+        "0x0879-0x0f08"
+      ],
+      "detail": "execute selector0x9aefaff8 is Desk-only and reentrancy guarded. Route kind resolves registry/fixed/canonical adapters, barred targets and input/output-token-as-target blocked. V3 callback authenticates active pool slot before paying positive delta; canonical V3 pool identity validated against factory. Caller supplied arbitrary route cannot override Desk settlement caller policy."
+    },
+    {
+      "scope": "external route risk",
+      "pcs": [
+        "0x1167"
+      ],
+      "detail": "Executor and SettleLib use balance differences, not nominal router output only. Full return,allowance reset,partial-spend and route-kind branch equivalence are not exhaustively certified without source."
+    },
+    {
+      "scope": "WETH/USDG bridge dependency",
+      "pcs": [
+        "0x011b"
+      ],
+      "detail": "Direct immutable0x69bf... is WETH/USDG UniswapV3Pool, not a router. Runtime token0=WETH,token1=USDG,factory0x1f7d...,fee500,tickSpacing10; separate source/ABI catalog provided."
+    }
+  ],
+  "source_files": [],
+  "runtime_dispatch": [
+    {
+      "selector": "0x06abb3e2",
+      "entry_pc": "0xf4",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x0ca32fe3",
+      "entry_pc": "0x113",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x1871b646",
+      "entry_pc": "0x11b",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x2a3930a8",
+      "entry_pc": "0x15a",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x2e2326d5",
+      "entry_pc": "0x162",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x4d6af654",
+      "entry_pc": "0x19d",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x54071b9b",
+      "entry_pc": "0x1d2",
+      "candidate_signature": "rialtoRegistry()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x5ad2dfd6",
+      "entry_pc": "0x1f9",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x734eb52f",
+      "entry_pc": "0x20c",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x7381382b",
+      "entry_pc": "0x214",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x7c887c59",
+      "entry_pc": "0x23b",
+      "candidate_signature": "v3Factory()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x9aefaff8",
+      "entry_pc": "0x262",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xc12b293c",
+      "entry_pc": "0x28a",
+      "candidate_signature": "desk()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xf5b91b7b",
+      "entry_pc": "0x2b1",
+      "candidate_signature": "usdg()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xfa461e33",
+      "entry_pc": "0x2d8",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    }
+  ]
+}

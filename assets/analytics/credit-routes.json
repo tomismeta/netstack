@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "workflow": "references/credit-analytics.md",
+  "interface": "assets/analytics/credit-interface.json",
+  "source_id": "netnet-credit-implementation-20261010",
+  "reviewed_on": "2026-10-10",
+  "vault": {
+    "file": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+    "id": "robinhood-0x99347d5f70d3838763f6bddcf80304c8aa953b57"
+  },
+  "router": {
+    "file": "assets/addresses/contracts/coinflip-router-coin-token-and-credit-routers.json",
+    "id": "robinhood-0xaff662814aa7cc80ac1577e03e123358cacc6a97"
+  },
+  "adapter": {
+    "file": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+    "id": "robinhood-0xf0eef247585b184836915e80f984246d981c55c4"
+  },
+  "loopback": {
+    "file": "assets/addresses/contracts/turbo-deployments-and-adapters.json",
+    "id": "robinhood-0x4638617808e3f1cf237c0d33ae818126d5c77e17"
+  },
+  "morpho": {
+    "file": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+    "id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010"
+  },
+  "irm": {
+    "file": "assets/addresses/contracts/aapl-token-pool-and-interest-rate-model.json",
+    "id": "robinhood-0x2bd3d5965b26b51814ac95127b2b80dd6ccc0fa1"
+  },
+  "oracle": {
+    "file": "assets/addresses/contracts/loopback-oracle.json",
+    "id": "robinhood-0xcde9599059f8ae6d6b9f33a0af7877827ec75f16"
+  },
+  "usdg": {
+    "file": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+    "id": "robinhood-0x5fc5360d0400a0fd4f2af552add042d716f1d168"
+  }
+}

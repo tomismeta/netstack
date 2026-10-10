@@ -64,6 +64,31 @@ def series_id(text):
         raise argparse.ArgumentTypeError("must be a positive uint256 series ID")
     return int(text)
 
+def market_query(text):
+    if not re.fullmatch(r"0x[0-9a-fA-F]{40}|[A-Za-z0-9][A-Za-z0-9._-]{0,63}", text):
+        raise argparse.ArgumentTypeError("must be a market symbol or 20-byte hexadecimal address")
+    return text
+
+def bounded_count(text, maximum):
+    value = series_id(text)
+    if value > maximum:
+        raise argparse.ArgumentTypeError("enumeration limit exceeds the supported bound")
+    return value
+
+
+def historical_block(text):
+    value = block_spec(text)
+    if value == "latest-2":
+        raise argparse.ArgumentTypeError("must be an explicit nonnegative block number")
+    return int(value)
+
+
+def account_address(text):
+    if not re.fullmatch(r"0x[0-9a-fA-F]{40}", text):
+        raise argparse.ArgumentTypeError("must be a 20-byte hexadecimal address")
+    return text.lower()
+
+
 
 
 def parser():
@@ -75,7 +100,12 @@ def parser():
                                ("predict", "selected Predict Desk series and observed trading flows"),
                                ("house", "selected House Vault accounts, queues and observed cash flows"),
                                ("rfv", "reconciled Core RFV and RPC-backed Sleeve asset accounting"),
-                               ("advance", "NET Advance positions, holders, totals, capacity and parameters")):
+                               ("advance", "NET Advance positions, holders, totals, capacity and parameters"),
+                               ("netlong", "discovered futures OI and real-token margin debt/exposure"),
+                               ("premiumseller", "fresh PremiumSeller NET sales, realized prices and Treasury USDG remittances"),
+                               ("sleeve-bonds", "Sleeve bond inventory, subscription flows and claims"),
+                               ("credit", "Credit vault, allocation and Loopback lending evidence"),
+                               ("book", "THE BOOK market, wager and settlement evidence")):
         child = commands.add_parser(command, help=help_text, description=help_text)
         child.add_argument("--deadline", type=positive_seconds, default=120.0, metavar="SECONDS",
                            help="whole-process walltime, including a 2-second serialization reserve (default: 120; maximum: 600)")
@@ -84,6 +114,9 @@ def parser():
         if command == "lp":
             child.add_argument("--since-days", type=positive_days, default=7.0, metavar="DAYS",
                                help="exact historical fee interval ending at the pinned block (default: 7)")
+        elif command == "premiumseller":
+            child.add_argument("--since-days", type=positive_days, default=None, metavar="DAYS",
+                               help="historical window ending at the pinned block (default: full deployment history)")
         else:
             child.set_defaults(since_days=None)
         if command == "predict":
@@ -94,10 +127,40 @@ def parser():
                                help="offline Desk/Zap catalog provenance; no RPC calls")
             child.add_argument("--view", choices=("positions", "holders", "totals", "capacity", "params"), default="totals",
                                help="requested pinned evidence view (default: totals); capacity/params do not enumerate positions")
+        if command == "netlong":
+            child.add_argument("--product", choices=("all", "futures", "margin"), default="all",
+                               help="discover both product families or one selected family (default: all)")
+            child.add_argument("--market", type=market_query, metavar="SYMBOL_OR_ADDRESS",
+                               help="one unambiguous symbol, futures desk address or margin token address")
+        if command == "credit":
+            child.add_argument("--account", type=account_address,
+                               help="public account whose Credit shares and market positions should be inspected")
+            child.add_argument("--max-markets", type=lambda text: bounded_count(text, 256), default=32, metavar="COUNT",
+                               help="market enumeration limit (default: 32; maximum: 256)")
+            child.add_argument("--max-adapters", type=lambda text: bounded_count(text, 128), default=16, metavar="COUNT",
+                               help="adapter enumeration limit (default: 16; maximum: 128)")
+        if command == "sleeve-bonds":
+            child.add_argument("--account", type=account_address,
+                               help="public account whose bond notes should be inspected")
+            child.add_argument("--history", action="store_true",
+                               help="include bounded deployment-to-snapshot bond event history")
+            child.add_argument("--max-notes", type=lambda text: bounded_count(text, 4096), default=128, metavar="COUNT",
+                               help="per-account note enumeration limit (default: 128; maximum: 4096)")
+        if command == "book":
+            child.add_argument("--market-id", dest="market_ids", type=series_id, action="append", default=[], metavar="ID",
+                               help="inspect a specific market; repeat for additional markets")
+            child.add_argument("--bet-id", dest="bet_ids", type=series_id, action="append", default=[], metavar="ID",
+                               help="inspect a specific bet; repeat for additional bets")
+            child.add_argument("--max-markets", type=lambda text: bounded_count(text, 128), default=8, metavar="COUNT",
+                               help="recent-market enumeration limit (default: 8; maximum: 128)")
+            child.add_argument("--max-bets", type=lambda text: bounded_count(text, 512), default=32, metavar="COUNT",
+                               help="recent-bet enumeration limit (default: 32; maximum: 512)")
+            child.add_argument("--from-block", type=historical_block, metavar="BLOCK",
+                               help="opt into event/receipt history from this block through the snapshot")
         if command == "rfv":
             child.add_argument("--scope", choices=("core", "reports", "net-assets"), default="core",
                                help="Core reserves, publisher Reports composition, or adjusted net assets (default: core)")
-        if command in ("rfv", "advance"):
+        if command in ("rfv", "advance", "netlong", "premiumseller", "sleeve-bonds", "credit", "book"):
             child.add_argument("--detail", choices=("summary", "full"), default="full",
                                help="stdout evidence detail (default: full); --output always preserves full checkpoints")
         child.add_argument("--json", action="store_true", help="emit machine-readable JSON (also the default)")
@@ -118,6 +181,16 @@ def _provenance(ctx):
     modules = ["analytics.py", "netstack_core.py"]
     if ctx.command == "advance":
         modules.extend(("netstack_advance.py", "netstack_output.py"))
+    elif ctx.command == "netlong":
+        modules.append("netstack_netlong.py")
+    elif ctx.command == "premiumseller":
+        modules.append("netstack_premiumseller.py")
+    elif ctx.command == "sleeve-bonds":
+        modules.append("netstack_sleeve_bonds.py")
+    elif ctx.command == "credit":
+        modules.append("netstack_credit.py")
+    elif ctx.command == "book":
+        modules.append("netstack_book.py")
     else:
         modules.extend(("netstack_reserves.py", "netstack_sleeve.py", "netstack_v4.py", "netstack_discovery.py", "netstack_methodology.py", "netstack_output.py") if ctx.command == "rfv"
                        else ("netstack_lp.py",) if ctx.command == "lp" else ("netstack_markets.py",))
@@ -225,12 +298,37 @@ def main(argv=None):
                     from netstack_reserves import run
                 elif args.command == "advance":
                     from netstack_advance import run
+                elif args.command == "netlong":
+                    from netstack_netlong import run
+                elif args.command == "premiumseller":
+                    from netstack_premiumseller import run
+                elif args.command == "sleeve-bonds":
+                    from netstack_sleeve_bonds import run
+                elif args.command == "credit":
+                    from netstack_credit import run
+                elif args.command == "book":
+                    from netstack_book import run
                 else:
                     from netstack_markets import run_house as run
                 run(ctx, args)
                 ctx.check()
                 ctx.recheck()
-            requested = result["coverage"].get("requested_scope") if args.command in ("rfv", "advance") else None
+                if args.command == "premiumseller":
+                    from netstack_premiumseller import prepare_result
+                    prepare_result(result)
+                elif args.command == "sleeve-bonds":
+                    from netstack_sleeve_bonds import prepare_result
+                    prepare_result(result)
+                elif args.command == "credit":
+                    from netstack_credit import prepare_result
+                    prepare_result(result)
+                elif args.command == "book":
+                    from netstack_book import prepare_result
+                    prepare_result(result)
+                elif args.command in ("predict", "house"):
+                    from netstack_markets import prepare_result
+                    prepare_result(result)
+            requested = result["coverage"].get("requested_scope")
             incomplete = (not requested.get("collection_complete", False) if requested is not None
                           else bool(result["errors"] or _pending_coverage(result["coverage"])))
             if incomplete:
@@ -261,11 +359,11 @@ def main(argv=None):
         result["stopping_reason"] = "fatal_error"
         exit_code = 1
     # A useful partial collection can still confirm B when retrieval failed
-    # without cancellation or permission denial. Never restart after a stop.
+    # without cancellation or a permission/integrity failure. Never restart after a stop.
     if (ctx is not None and ctx.block is not None and ctx._stopped is None
             and ctx._terminal_error is None
             and result["snapshot"].get("recheck_status") == "not_performed"
-            and not any(isinstance(error, dict) and error.get("kind") == "permission"
+            and not any(isinstance(error, dict) and error.get("kind") in ("permission", "integrity")
                         for error in result["errors"])):
         try:
             ctx.recheck()
@@ -305,12 +403,27 @@ def main(argv=None):
         exit_code = 2
         # Reuse a valid aggregate body without repeating expensive serialization.
         text = ctx.partial_json(ctx._stopped or "deadline_exhausted") if ctx is not None else serialize_result(result)
-    if args.command in ("rfv", "advance") and args.detail == "summary":
+    if args.command in ("rfv", "advance", "netlong", "premiumseller", "sleeve-bonds", "credit", "book") and args.detail == "summary":
         try:
             # Finalization can reuse an older valid checkpoint or add an output
             # error. Project exactly that document, not the mutable ctx.result.
             if args.command == "advance":
                 text = summarize_advance(text, checkpoint_status, args.output)
+            elif args.command == "netlong":
+                from netstack_netlong import summarize
+                text = summarize(text, checkpoint_status)
+            elif args.command == "premiumseller":
+                from netstack_premiumseller import summarize
+                text = summarize(text, checkpoint_status)
+            elif args.command == "sleeve-bonds":
+                from netstack_sleeve_bonds import summarize
+                text = summarize(text, checkpoint_status)
+            elif args.command == "credit":
+                from netstack_credit import summarize
+                text = summarize(text, checkpoint_status)
+            elif args.command == "book":
+                from netstack_book import summarize
+                text = summarize(text, checkpoint_status)
             else:
                 text = summarize_rfv(text, checkpoint_status)
         except (StopRun, KeyboardInterrupt) as exc:

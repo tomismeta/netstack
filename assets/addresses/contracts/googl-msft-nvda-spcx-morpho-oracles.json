@@ -35,6 +35,13 @@
           "locator": "googlOracle.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-credit-implementation-20261010-credit-oracle-googl",
+          "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x12Ec3474D1e321e0aAB065278B97FBC7eDa5F424",
+          "locator": "Explorer ABI/source/runtime identity; unpinned, no financial state",
+          "evidence_kind": "explorer_runtime_only",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED"
@@ -74,6 +81,13 @@
           "locator": "msftOracle.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-credit-implementation-20261010-credit-oracle-msft",
+          "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xcb9a035fe0e8f321e36286405fEBC70dE42DB34e",
+          "locator": "Explorer ABI/source/runtime identity; unpinned, no financial state",
+          "evidence_kind": "explorer_runtime_only",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED"
@@ -113,6 +127,13 @@
           "locator": "nvdaOracle.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-credit-implementation-20261010-credit-oracle-nvda",
+          "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xED29D310cfa91778A5850538DA28ed42234Cb78c",
+          "locator": "Explorer ABI/source/runtime identity; unpinned, no financial state",
+          "evidence_kind": "explorer_runtime_only",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED"
@@ -152,6 +173,13 @@
           "locator": "spcxOracle.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-credit-implementation-20261010-credit-oracle-spcx",
+          "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x872F9D8955B34e841227a92dE755cd63042Ab7A5",
+          "locator": "Explorer ABI/source/runtime identity; unpinned, no financial state",
+          "evidence_kind": "explorer_runtime_only",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED"

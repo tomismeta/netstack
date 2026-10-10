@@ -1,0 +1,2757 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0xde9df88aba59b644d4d7f6305e52ab982a3cfcac",
+  "contract_record": "assets/addresses/contracts/advance-desk-and-zap.json",
+  "chain_id": 4663,
+  "address": "0xDe9df88ABA59b644D4d7f6305e52aB982A3cFCac",
+  "generation": "advance-desk",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk",
+      "observed_on": "2026-10-07"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 95,
+    "implementation": "targeted_explorer_runtime_review",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned code, storage, current permissions and financial reconciliation.",
+      "Compiler/source equivalence and exhaustive implementation/function reachability audit.",
+      "Existing September26 runtime conditional findings remain valid at their stated scope; October7 explorer hashes match, but no fresh pinned live dependency state."
+    ],
+    "literal_abi_sha256": "c71d23c22cfd0e776c5bb605781e2df682e251a8188d0a159eaa96e13dda94b8",
+    "literal_character_range": [
+      1019855,
+      1034368
+    ],
+    "dispatcher_evidence": {
+      "source_id": "netnet-advance-desk-implementation-20261007",
+      "method": "PUSH4/EQ/PUSH2/JUMPI dispatcher patterns within first850 bytes; not exhaustive symbolic execution. Selectors alone do not identify absent names, outputs or permissions.",
+      "observed_selector_count": 54,
+      "unmatched_dispatcher_selectors": [],
+      "interface_selectors_not_seen_in_pattern": [
+        "0x01522b1e",
+        "0x046f7da2",
+        "0x05b918fe"
+      ]
+    }
+  },
+  "functions": [
+    {
+      "name": "ADVANCE_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "ADVANCE_BPS()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[1]"
+      },
+      "selector": "0xe9bdd3e6",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface ADVANCE_BPS(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x7d7",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "FEE_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "FEE_BPS()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[2]"
+      },
+      "selector": "0xbf333f2c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface FEE_BPS(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x699",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "MARK_SCALE",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MARK_SCALE()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[3]"
+      },
+      "selector": "0x1c841edd",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface MARK_SCALE(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x448",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "MAX_ADVANCE_PER_POSITION",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MAX_ADVANCE_PER_POSITION()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[4]"
+      },
+      "selector": "0x80c160cd",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface MAX_ADVANCE_PER_POSITION(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x5b5",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "MIN_LOCK_NET",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MIN_LOCK_NET()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[5]"
+      },
+      "selector": "0x9acfd687",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface MIN_LOCK_NET(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x5ec",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "TERM",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "TERM()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[6]"
+      },
+      "selector": "0x5ea25e28",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface TERM(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x558",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "TREASURY_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "TREASURY_BPS()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[7]"
+      },
+      "selector": "0x4c25d197",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface TREASURY_BPS(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x518",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "advanceOf",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "advanceOf(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[8]"
+      },
+      "selector": "0xcc435fbc",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface advanceOf(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x6bd",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "buy",
+      "inputs": [
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "minWs",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "wsOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "buy(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[9]"
+      },
+      "selector": "0xd6febde8",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface buy(uint256,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x73d",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "buyPrice",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "buyPrice()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[10]"
+      },
+      "selector": "0x8620410b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface buyPrice(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x5dc",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "capacity",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "capacity()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[11]"
+      },
+      "selector": "0x5cfc1a51",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-desk; capacity"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "Public view."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "capacity returns unallocated in analyzed runtime. Open requires unallocated >= A+T, subtracts A+T and adds only T to escrowed. Treasury reserve is additional to the full advance, not a deduction from its proceeds and not the entire nominal 15% uplift. Raw Desk USDG balance is neither capacity nor maximum immediately lendable advance."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x550",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "close",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "close(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[12]"
+      },
+      "selector": "0x0aebeb4e",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-desk; close"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "Unpaid position requires maturity; any caller then. Paid early close requires owner; ordinary full repay finalizes immediately."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "For unpaid matured close, after attempted staking catch-up, M=floor(currentIndex*oraclePrice/10^21), U=owed-paid and W=wsLocked. taken=min(ceil(U*10^18/M),W); covered=min(U,floor(taken*M/10^18)); paid+=covered. Shortfall is emitted if still unpaid, but position closes, wsLocked becomes zero and all original lock leaves lockedTotal. Taken wsNET remains in Desk inventory; remainder returns to owner. No USDG collection or AMM sale occurs on this path; covered is this close's valuation increment, not cumulative paid."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x3b7",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "cushionPrice",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "cushionPrice(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[13]"
+      },
+      "selector": "0xd4479f82",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface cushionPrice(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x6dc",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "deployer",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "deployer()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[14]"
+      },
+      "selector": "0xd5f39488",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface deployer(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x716",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "escrowed",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "escrowed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[15]"
+      },
+      "selector": "0x01522b1e",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface escrowed(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "fund",
+      "inputs": [
+        {
+          "name": "usdgAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "fund(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[16]"
+      },
+      "selector": "0xca1d209d",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface fund(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x6aa",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "halt",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "halt()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[17]"
+      },
+      "selector": "0x5ed7ca5b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface halt(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x562",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "halted",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "halted()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[18]"
+      },
+      "selector": "0xb9b8af0b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface halted(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x686",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "house",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "house()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[19]"
+      },
+      "selector": "0xff9b3acf",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface house(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x946",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "inventory",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "inventory()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[20]"
+      },
+      "selector": "0x15d52a5c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface inventory(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x401",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "inventoryCostUsdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "inventoryCostUsdg()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[21]"
+      },
+      "selector": "0xdc245ddb",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface inventoryCostUsdg(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x79e",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "inventoryNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "inventoryNet()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[22]"
+      },
+      "selector": "0x730c58d1",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface inventoryNet(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x5a4",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "lockedTotal",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "lockedTotal()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[23]"
+      },
+      "selector": "0xf145c73b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface lockedTotal(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x81b",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "mark",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "mark()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[24]"
+      },
+      "selector": "0x8c0d0c29",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-desk; mark"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "Public view; dependency freshness not established."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "pF.clock reads sNET.index. Analyzed Desk uses floor(wsAmount*index/10^18) for principal NET and scales index times oracle price by 10^21 for close mark. Open uses the lower nonzero spot/oracle price before index scaling. External oracle validity, token decimals and staking behavior are not established by Desk analysis alone; current index and decimals require fresh reads."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x5e4",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "maxAdvance",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "maxAdvance()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[25]"
+      },
+      "selector": "0xc668e935",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface maxAdvance(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x6a2",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "netIsToken0",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "netIsToken0()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[26]"
+      },
+      "selector": "0x0f0964aa",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface netIsToken0(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x3ca",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "open",
+      "inputs": [
+        {
+          "name": "wsAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "destination",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "minAdvance",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "open(uint256,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[27]"
+      },
+      "selector": "0xb6147ed5",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-desk; open"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "Open requires capacity and halt gates; openFor additionally configured Zap authorization; see scoped runtime record."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "Opened.advance and advanceOf(id) record original USDG advance A, transferred in full to destination at open. With Q=10^18 and B=10000, A=floor(wsAmount*(openMark*4000)/(Q*B)), O=floor(A*11500/B), T=floor(A*500/B), returned fee=O-A-T. Residual fee is not always floor(A*1000/B). No inversion of owed or division by a fee multiplier."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x66b",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "openFor",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "wsAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "destination",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "minAdvance",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "openFor(address,uint256,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[28]"
+      },
+      "selector": "0x30290a96",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-desk; openFor"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "Open requires capacity and halt gates; openFor additionally configured Zap authorization; see scoped runtime record."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "Opened.advance and advanceOf(id) record original USDG advance A, transferred in full to destination at open. With Q=10^18 and B=10000, A=floor(wsAmount*(openMark*4000)/(Q*B)), O=floor(A*11500/B), T=floor(A*500/B), returned fee=O-A-T. Residual fee is not always floor(A*1000/B). No inversion of owed or division by a fee multiplier."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x4a6",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "openMark",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "openMark()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[29]"
+      },
+      "selector": "0x05b918fe",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface openMark(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "pair",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IUniswapV2Pair"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pair()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[30]"
+      },
+      "selector": "0xa8aa1b31",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface pair(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x61d",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "pairOracle",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IAdvanceOracle"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pairOracle()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[31]"
+      },
+      "selector": "0xb1b9a7c5",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface pairOracle(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x644",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "payTreasury",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "payTreasury()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[32]"
+      },
+      "selector": "0x268bd3aa",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-desk; payTreasury"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "Permissionless and not halted; actual failed transfer can revert."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "At finalization, T=floor(originalAdvance*500/10000), O=original owed and P=final paid including collateral coverage. treasuryDue=min(T,floor(T*P/O)); escrowed-=T; unallocated+=T-treasuryDue. Cash comes from reserve funded at open, not a sale of taken collateral. A reverted Treasury token call or canonical false defers due to treasuryOwed; malformed/empty successful returndata can revert the whole close. payTreasury is permissionless while halted but strict: failed transfer reverts, preserving debt on real EVM rollback. Other strict transfers, including owner collateral return, can also revert finalization."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x49e",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "position",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct IAdvanceDesk.Position",
+          "components": [
+            {
+              "name": "owner",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "destination",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "openedAt",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "closed",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "wsLocked",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "principalNet",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "owed",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "paid",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "position(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[33]"
+      },
+      "selector": "0xf7a95a9e",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-desk; position"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "Public getter; discover position IDs rather than inventing a contiguous universe."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "Eight-field tuple: owner,destination,openedAt uint64,closed bool,wsLocked,principalNet,owed,paid. In analyzed runtime, paid combines actual USDG repayment receipts with collateral mark-valuation coverage on close; it is not cash recovery, voluntary repayment, realized revenue or profit."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x84b",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "positionCount",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "positionCount()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[34]"
+      },
+      "selector": "0xe7702d05",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface positionCount(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x7cf",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "positionCountOf",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "positionCountOf(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[35]"
+      },
+      "selector": "0xd94b910e",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface positionCountOf(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x763",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "positionsOf",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "offset",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "limit",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ids",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "positionsOf(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[36]"
+      },
+      "selector": "0xdc9d54ef",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface positionsOf(address,uint256,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x7a6",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "positionsOf",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "positionsOf(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[37]"
+      },
+      "selector": "0xf867d46b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface positionsOf(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x933",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "previewClose",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "wsTaken",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdgCovered",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "wsReturned",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "shortfall",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "previewClose(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[38]"
+      },
+      "selector": "0x39599487",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-desk; previewClose"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "Public projection, not caller authorization or executable outcome."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "previewClose is an informational projection, not permission or executable-outcome proof: it uses projectedIndex rather than close's actual index after catch-up and does not enforce maturity or caller authorization or finalize. Actual catch-up tries up to eight rebases; failed/no-progress rebase can return early, while eight advancing iterations still leaving an epoch due revert EpochsDue. Oracle/dependency errors or zero mark can prevent closing."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x4b9",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "priceScale",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "priceScale()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[39]"
+      },
+      "selector": "0xa0fbddaf",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface priceScale(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x5f6",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "projectedIndex",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "i",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "projectedIndex()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[40]"
+      },
+      "selector": "0xb72e1c38",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface projectedIndex(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x67e",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "quote",
+      "inputs": [
+        {
+          "name": "wsAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "advance",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "fee",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "treasuryShare",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "owed",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "markPerWs",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "quote(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[41]"
+      },
+      "selector": "0xed1bd76c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface quote(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x7e0",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "repay",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdgAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "repay(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[42]"
+      },
+      "selector": "0xd8aed145",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-desk; repay"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "Permissionless for existing nonclosed position."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "repay caps requested USDG to owed-paid, pulls exactly that amount from caller with strict true return and exact balance-increase checks, adds it to paid and unallocated, and emits Repaid.usdg. Any caller may repay before maturity or while halted; full repayment automatically finalizes with zero collateral take and all collateral returned to recorded owner. Partial repayment releases no collateral. Closed positions cannot be repaid."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x750",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "resume",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "resume()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[43]"
+      },
+      "selector": "0x046f7da2",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface resume(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "sNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IAdvanceSNet"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "sNet()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[44]"
+      },
+      "selector": "0x1adb8eb6",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface sNet(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x409",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "setZap",
+      "inputs": [
+        {
+          "name": "zap_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setZap(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[45]"
+      },
+      "selector": "0x6593c2c9",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface setZap(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x591",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "skim",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "ws",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdgAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "skim()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[46]"
+      },
+      "selector": "0x1dd19cb4",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface skim(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x46f",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "spotNetUsdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "spotNetUsdg()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[47]"
+      },
+      "selector": "0x516dc7c3",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface spotNetUsdg(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x548",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "staking",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IAdvanceStaking"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "staking()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[48]"
+      },
+      "selector": "0x4cf088d9",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface staking(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x521",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "treasury",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "treasury()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[49]"
+      },
+      "selector": "0x61d027b3",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface treasury(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x56a",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "treasuryOwed",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "treasuryOwed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[50]"
+      },
+      "selector": "0x75c3fc13",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface treasuryOwed(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x5ac",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "unallocated",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "unallocated()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[51]"
+      },
+      "selector": "0xdf1c455c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface unallocated(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x7c6",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "unlockAt",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "unlockAt(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[52]"
+      },
+      "selector": "0x3d71a4eb",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface unlockAt(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x4ec",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdg()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[53]"
+      },
+      "selector": "0xf5b91b7b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface usdg(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x824",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "withdrawInventory",
+      "inputs": [
+        {
+          "name": "ws",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "withdrawInventory(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[54]"
+      },
+      "selector": "0x083893e1",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-desk; withdrawInventory"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "House-only; lockedTotal not withdrawable through this entrypoint."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "Settlement reclassifies taken wsNET to Desk inventory, not an immediate transfer to House. House-only withdrawInventory cannot withdraw lockedTotal through that path and is not halted. inventoryCostUsdg marks current inventory using buyPrice, not historical book cost. Buy collects actual USDG and is halted with new opens."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x3a4",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "withdrawUsdg",
+      "inputs": [
+        {
+          "name": "usdgAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "withdrawUsdg(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[55]"
+      },
+      "selector": "0xdbacf68a",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface withdrawUsdg(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x78b",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "wsNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "wsNet()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[56]"
+      },
+      "selector": "0xd52014e3",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface wsNet(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x6ef",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "zap",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "zap()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[57]"
+      },
+      "selector": "0x262d6152",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface zap(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-desk-implementation-20261007",
+        "entry_offset": "0x48c",
+        "scope": "selector/branch identity only"
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "Bought",
+      "inputs": [
+        {
+          "name": "buyer",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "wsOut",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "treasuryUsdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Bought(address,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[58]"
+      },
+      "topic0": "0xedba86fd2b22962d534e70ad9b0ff8730de46f636146f2bab6a72cbb1ebbcc53"
+    },
+    {
+      "name": "Closed",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "wsTaken",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdgCovered",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "wsReturned",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Closed(uint256,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[59]"
+      },
+      "topic0": "0xf24c64885f2398a320c41d4eb1531c9b2440ba4e78edfc733536609a4a2a1b1b"
+    },
+    {
+      "name": "Funded",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Funded(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[60]"
+      },
+      "topic0": "0x5af8184bef8e4b45eb9f6ed7734d04da38ced226495548f46e0c8ff8d7d9a524"
+    },
+    {
+      "name": "Halted",
+      "inputs": [],
+      "anonymous": false,
+      "signature": "Halted()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[61]"
+      },
+      "topic0": "0x1ee9080f6b55ca44ce58681c8162e6c1ac1c47e1da791a4a1c1ec6186d8af1f3"
+    },
+    {
+      "name": "InventoryWithdrawn",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "InventoryWithdrawn(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[62]"
+      },
+      "topic0": "0xb5df3ccf963ecbbbf5293d96cdfc983ca47ec7b1b05acdf4637007bad1011e58"
+    },
+    {
+      "name": "Opened",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "owner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "destination",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "wsLocked",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "principalNet",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "advance",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "owed",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Opened(uint256,address,address,uint256,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[63]"
+      },
+      "topic0": "0xaf786ebe958b6933283a52edc3ed28ff73b1359d5c54110f3b05df4f34706867"
+    },
+    {
+      "name": "Repaid",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "payer",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Repaid(uint256,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[64]"
+      },
+      "topic0": "0xd7e0ec76b1d4528064c83f86d869783dfd06db26b2b5624bde17d4b99f80dd97"
+    },
+    {
+      "name": "Resumed",
+      "inputs": [],
+      "anonymous": false,
+      "signature": "Resumed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[65]"
+      },
+      "topic0": "0x62451d457bc659158be6e6247f56ec1df424a5c7597f71c20c2bc44e0965c8f9"
+    },
+    {
+      "name": "Shortfall",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Shortfall(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[66]"
+      },
+      "topic0": "0xb4e2002fc4bd48a9977002fe0cc9f7916bd93485b3eee5b16739e9c260363656"
+    },
+    {
+      "name": "Skimmed",
+      "inputs": [
+        {
+          "name": "caller",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Skimmed(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[67]"
+      },
+      "topic0": "0x49cf9aded2ad8e7065fe6c416c8f2eed2d5515ab396ffcd96cc9d12f23c52567"
+    },
+    {
+      "name": "TakeSplit",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "yieldWs",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "principalWs",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "TakeSplit(uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[68]"
+      },
+      "topic0": "0xc7e15f31d8d55bc7ecbed376b19e80253eb5d2092a9914c255fed4ef0c6cff5b"
+    },
+    {
+      "name": "TreasuryDeferred",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "TreasuryDeferred(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[69]"
+      },
+      "topic0": "0x79b9c59087a56407268a4c65c43003f196c5de7bdc3fb25f8ac4e410fec43522"
+    },
+    {
+      "name": "TreasuryPaid",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "TreasuryPaid(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[70]"
+      },
+      "topic0": "0x881b2c051ab6aba13f99c2d375e2f48efce117a350c7034afa9805837e9f0e5e"
+    },
+    {
+      "name": "UsdgWithdrawn",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "UsdgWithdrawn(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[71]"
+      },
+      "topic0": "0x041e3061e16a02c9db969d73dea66636b381fef99e5fe9580bc0cad7ab537bc1"
+    },
+    {
+      "name": "ZapSet",
+      "inputs": [
+        {
+          "name": "zap",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false,
+      "signature": "ZapSet(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[72]"
+      },
+      "topic0": "0x5b9fcb9a92edadf4d234a84511ad4c1e32248925ffad435fdf02aefb29bd730f"
+    }
+  ],
+  "errors": [
+    {
+      "name": "AboveMaxAdvance",
+      "inputs": [
+        {
+          "name": "cap",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "AboveMaxAdvance(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[73]"
+      },
+      "selector": "0x0a9a3083"
+    },
+    {
+      "name": "AdvanceBelowMin",
+      "inputs": [
+        {
+          "name": "advance",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "minAdvance",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "AdvanceBelowMin(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[74]"
+      },
+      "selector": "0x25c9afee"
+    },
+    {
+      "name": "AlreadyClosed",
+      "inputs": [],
+      "signature": "AlreadyClosed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[75]"
+      },
+      "selector": "0x9acb7e52"
+    },
+    {
+      "name": "BelowMinLock",
+      "inputs": [
+        {
+          "name": "minNet",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "BelowMinLock(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[76]"
+      },
+      "selector": "0x340661de"
+    },
+    {
+      "name": "DeskHalted",
+      "inputs": [],
+      "signature": "DeskHalted()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[77]"
+      },
+      "selector": "0x32942cd8"
+    },
+    {
+      "name": "EpochsDue",
+      "inputs": [],
+      "signature": "EpochsDue()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[78]"
+      },
+      "selector": "0xa37bc9b1"
+    },
+    {
+      "name": "ExceedsUnallocated",
+      "inputs": [
+        {
+          "name": "available",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "ExceedsUnallocated(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[79]"
+      },
+      "selector": "0x0a7d1b87"
+    },
+    {
+      "name": "InsufficientCapacity",
+      "inputs": [
+        {
+          "name": "available",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "InsufficientCapacity(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[80]"
+      },
+      "selector": "0xcd11ba5a"
+    },
+    {
+      "name": "InsufficientInventory",
+      "inputs": [
+        {
+          "name": "available",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "InsufficientInventory(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[81]"
+      },
+      "selector": "0x8ada068e"
+    },
+    {
+      "name": "InvalidConfig",
+      "inputs": [],
+      "signature": "InvalidConfig()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[82]"
+      },
+      "selector": "0x35be3ac8"
+    },
+    {
+      "name": "MulDivOverflow",
+      "inputs": [],
+      "signature": "MulDivOverflow()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[83]"
+      },
+      "selector": "0x49248f77"
+    },
+    {
+      "name": "NoPosition",
+      "inputs": [],
+      "signature": "NoPosition()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[84]"
+      },
+      "selector": "0xabf0f034"
+    },
+    {
+      "name": "NotHouse",
+      "inputs": [],
+      "signature": "NotHouse()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[85]"
+      },
+      "selector": "0x890a15a7"
+    },
+    {
+      "name": "NotMatured",
+      "inputs": [
+        {
+          "name": "unlockAt",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "signature": "NotMatured(uint64)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[86]"
+      },
+      "selector": "0x605ecdae"
+    },
+    {
+      "name": "NotOwner",
+      "inputs": [],
+      "signature": "NotOwner()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[87]"
+      },
+      "selector": "0x30cd7471"
+    },
+    {
+      "name": "NotZap",
+      "inputs": [],
+      "signature": "NotZap()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[88]"
+      },
+      "selector": "0x40412b5a"
+    },
+    {
+      "name": "Reentrancy",
+      "inputs": [],
+      "signature": "Reentrancy()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[89]"
+      },
+      "selector": "0xab143c06"
+    },
+    {
+      "name": "Slippage",
+      "inputs": [
+        {
+          "name": "got",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "min",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "Slippage(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[90]"
+      },
+      "selector": "0x2746152a"
+    },
+    {
+      "name": "TransferFailed",
+      "inputs": [],
+      "signature": "TransferFailed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[91]"
+      },
+      "selector": "0x90b8ec18"
+    },
+    {
+      "name": "ZapAlreadySet",
+      "inputs": [],
+      "signature": "ZapAlreadySet()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[92]"
+      },
+      "selector": "0x01f35f48"
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "signature": "ZeroAddress()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[93]"
+      },
+      "selector": "0xd92e233d"
+    },
+    {
+      "name": "ZeroAmount",
+      "inputs": [],
+      "signature": "ZeroAmount()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[94]"
+      },
+      "selector": "0x1f2a2005"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "c",
+          "type": "tuple",
+          "internalType": "struct AdvanceDesk.DeskConfig",
+          "components": [
+            {
+              "name": "usdg",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "sNet",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "staking",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "wsNet",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "pairOracle",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "treasury",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "house",
+              "type": "address",
+              "internalType": "address"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal aw, Unicode character offsets[1019855,1034368); consumer binding to advance-desk; ABI entry[0]"
+      }
+    }
+  ],
+  "retained_evidence": "assets/analytics/advance-interface.json"
+}

@@ -1,0 +1,1701 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0xf0eef247585b184836915e80f984246d981c55c4",
+  "contract_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+  "chain_id": 4663,
+  "address": "0xf0eeF247585b184836915e80f984246d981c55C4",
+  "generation": "market-adapter",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal BM, Unicode character offsets[388674,389133); consumer binding to market-adapter",
+      "observed_on": "2026-10-07"
+    },
+    {
+      "source_id": "netnet-credit-implementation-20261010-market-adapter",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xf0eeF247585b184836915e80f984246d981c55C4",
+      "observed_on": "2026-10-10",
+      "locator": "src/adapters/MorphoMarketV1AdapterV2.sol"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_obtained_explorer_abi",
+    "supplied_entry_count": 55,
+    "implementation": "targeted_source_review",
+    "pinned_state": "not_obtained",
+    "dispatcher_evidence": {
+      "method": "PUSH4 EQ PUSHn JUMPI byte-pattern; incomplete and not semantic reachability proof",
+      "observed_selector_count": 27,
+      "unmatched_dispatcher_selectors": []
+    },
+    "missing_evidence": [
+      "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+      "Independent compiler equivalence and exhaustive function reachability."
+    ]
+  },
+  "functions": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        }
+      ],
+      "name": "abdicate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "abdicate(bytes4)",
+      "selector": "0xb2e32848",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:148"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "Abdicate",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined abdicate operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        }
+      ],
+      "name": "abdicated",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "abdicated(bytes4)",
+      "selector": "0xe470b8bc",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads abdicated state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "adapterId",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "adapterId()",
+      "selector": "0x5fb86b01",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads adapterId state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "adaptiveCurveIrm",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "adaptiveCurveIrm()",
+      "selector": "0x399e3a50",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads adaptiveCurveIrm state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "allocate",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "int256",
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "allocate(bytes,uint256,bytes4,address)",
+      "selector": "0x1eadd778",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:180"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == parentVault",
+          "marketParams.loanToken == asset",
+          "marketParams.irm == adaptiveCurveIrm",
+          "mintedShares >= assets"
+        ],
+        "internal_and_dependency_calls": [
+          "Allocate",
+          "IMorpho",
+          "IrmMismatch",
+          "LoanAssetMismatch",
+          "SharePriceAboveOne",
+          "Unauthorized",
+          "allocation",
+          "decode",
+          "expectedSupplyAssets",
+          "id",
+          "ids",
+          "item",
+          "supply",
+          "unwrap",
+          "updateList"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Vault-only supply; requires matching asset/adaptive IRM and mintedShares>=assets; updates internal shares and indexed markets; returns delta from recorded vault allocation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "loanToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "collateralToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "irm",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lltv",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct MarketParams",
+          "name": "marketParams",
+          "type": "tuple"
+        }
+      ],
+      "name": "allocation",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "allocation((address,address,address,address,uint256))",
+      "selector": "0x99ee14c3",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:262"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "IVaultV2",
+          "allocation",
+          "encode",
+          "keccak256"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined allocation operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "asset",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "asset()",
+      "selector": "0x38d52e0f",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads asset state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "marketId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "burnShares",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "burnShares(bytes32)",
+      "selector": "0x3b2de5ac",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:161"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "BurnShares",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Timelocked write sets internal shares zero irreversibly; donated/burned shares not recoverable; deallocate0 updates vault allocation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "deallocate",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "int256",
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "deallocate(bytes,uint256,bytes4,address)",
+      "selector": "0x4e45f1ff",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:206"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == parentVault",
+          "marketParams.loanToken == asset",
+          "marketParams.irm == adaptiveCurveIrm"
+        ],
+        "internal_and_dependency_calls": [
+          "Deallocate",
+          "IMorpho",
+          "IrmMismatch",
+          "LoanAssetMismatch",
+          "Unauthorized",
+          "allocation",
+          "decode",
+          "expectedSupplyAssets",
+          "id",
+          "ids",
+          "item",
+          "unwrap",
+          "updateList",
+          "withdraw"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Vault-only withdraw; matching asset/adaptive IRM; burn shares rounded up for requested assets; returns updated allocation delta."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newDuration",
+          "type": "uint256"
+        }
+      ],
+      "name": "decreaseTimelock",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "decreaseTimelock(bytes4,uint256)",
+      "selector": "0x5c1a1a4f",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:137"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [
+          "selector != IMorphoMarketV1AdapterV2.decreaseTimelock.selector",
+          "newDuration <= timelock[selector]"
+        ],
+        "internal_and_dependency_calls": [
+          "AutomaticallyTimelocked",
+          "DecreaseTimelock",
+          "TimelockNotDecreasing",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined decreaseTimelock operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "executableAt",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "executableAt(bytes)",
+      "selector": "0x8639fb07",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads executableAt state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "marketId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "expectedSupplyAssets",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "expectedSupplyAssets(bytes32)",
+      "selector": "0x99f7e861",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:250"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "expectedMarketBalances",
+          "toAssetsDown"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Adapter internal supplyShares converted down using expected accrued market supply including pending Morpho fee dilution; ignores donated external supply shares."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "factory",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "factory()",
+      "selector": "0xc45a0155",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads factory state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "loanToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "collateralToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "irm",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lltv",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct MarketParams",
+          "name": "marketParams",
+          "type": "tuple"
+        }
+      ],
+      "name": "ids",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "ids((address,address,address,address,uint256))",
+      "selector": "0xcc3802bf",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:267"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "encode",
+          "keccak256"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Three cap IDs: keccak(abi.encode(\"this\",adapter)); keccak(abi.encode(\"collateralToken\",collateral)); keccak(abi.encode(\"this/marketParams\",adapter,params))."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newDuration",
+          "type": "uint256"
+        }
+      ],
+      "name": "increaseTimelock",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "increaseTimelock(bytes4,uint256)",
+      "selector": "0x47966291",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:128"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [
+          "selector != IMorphoMarketV1AdapterV2.decreaseTimelock.selector",
+          "newDuration >= timelock[selector]"
+        ],
+        "internal_and_dependency_calls": [
+          "AutomaticallyTimelocked",
+          "IncreaseTimelock",
+          "TimelockNotIncreasing",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined increaseTimelock operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "marketIds",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "marketIds(uint256)",
+      "selector": "0x779a9683",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Current nonzero allocation list; removed markets may retain residual external shares."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "marketIdsLength",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "marketIdsLength()",
+      "selector": "0xace48b45",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:67"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined marketIdsLength operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "morpho",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "morpho()",
+      "selector": "0xd8fbc833",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads morpho state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "parentVault",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "parentVault()",
+      "selector": "0x0fe36536",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads parentVault state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "realAssets",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "realAssets()",
+      "selector": "0x56c07573",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:275"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "expectedSupplyAssets"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Sum expectedSupplyAssets over currently indexed marketIds; no idle token balance included."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "revoke",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "revoke(bytes)",
+      "selector": "0x0b467b9b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:111"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == IVaultV2(parentVault).curator() || IVaultV2(parentVault).isSentinel(msg.sender)",
+          "executableAt[data] != 0"
+        ],
+        "internal_and_dependency_calls": [
+          "DataNotTimelocked",
+          "IVaultV2",
+          "Revoke",
+          "Unauthorized",
+          "curator",
+          "isSentinel",
+          "item"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined revoke operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newSkimRecipient",
+          "type": "address"
+        }
+      ],
+      "name": "setSkimRecipient",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setSkimRecipient(address)",
+      "selector": "0x2b30997b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:154"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "SetSkimRecipient",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setSkimRecipient operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "skim",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "skim(address)",
+      "selector": "0xbc25cf77",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:172"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == skimRecipient"
+        ],
+        "internal_and_dependency_calls": [
+          "IERC20",
+          "Skim",
+          "Unauthorized",
+          "balanceOf",
+          "safeTransfer"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Only skimRecipient may transfer adapter token balance to itself; rewards are not automatically depositor income."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "skimRecipient",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "skimRecipient()",
+      "selector": "0x388af5b5",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads skimRecipient state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "submit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "submit(bytes)",
+      "selector": "0xef7fa71b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol:88"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == IVaultV2(parentVault).curator()",
+          "executableAt[data] == 0"
+        ],
+        "internal_and_dependency_calls": [
+          "DataAlreadyPending",
+          "IVaultV2",
+          "Submit",
+          "Unauthorized",
+          "curator",
+          "item"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined submit operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "marketId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "supplyShares",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "supplyShares(bytes32)",
+      "selector": "0x6ead54d8",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Internal accounted lending shares, distinct from singleton position shares and donations."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        }
+      ],
+      "name": "timelock",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "timelock(bytes4)",
+      "selector": "0xe78ab14e",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads timelock state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    }
+  ],
+  "events": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        }
+      ],
+      "name": "Abdicate",
+      "type": "event",
+      "signature": "Abdicate(bytes4)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI event Abdicate; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xa8480b135a28741e8c059528bf8f82de70278485fb86bfc816a183801f0a8570"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "Accept",
+      "type": "event",
+      "signature": "Accept(bytes4,bytes)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI event Accept; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x29aa42fc192ff77ef42105abba283197ac841341e196e417a7fc2784cdc4e5fb"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "marketId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newAllocation",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "mintedShares",
+          "type": "uint256"
+        }
+      ],
+      "name": "Allocate",
+      "type": "event",
+      "signature": "Allocate(bytes32,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI event Allocate; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x67bd2993814767565e883edd1e76edf105cdd33766384ca8495e53562e20bea7"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "marketId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "supplyShares",
+          "type": "uint256"
+        }
+      ],
+      "name": "BurnShares",
+      "type": "event",
+      "signature": "BurnShares(bytes32,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI event BurnShares; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x82234a83a62d451b7758221f55cd21fe22d35d7798bdfea8a44168fd355880cb"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "marketId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newAllocation",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "burnedShares",
+          "type": "uint256"
+        }
+      ],
+      "name": "Deallocate",
+      "type": "event",
+      "signature": "Deallocate(bytes32,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI event Deallocate; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xc3505702fbdd1c334673aa66559f4546d749681c4d2509c99c07fabf01b3227f"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newDuration",
+          "type": "uint256"
+        }
+      ],
+      "name": "DecreaseTimelock",
+      "type": "event",
+      "signature": "DecreaseTimelock(bytes4,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI event DecreaseTimelock; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x488e0bfafe0a9580c2271bee1f563a47d309f0105ca950ea525d909b43b36daf"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newDuration",
+          "type": "uint256"
+        }
+      ],
+      "name": "IncreaseTimelock",
+      "type": "event",
+      "signature": "IncreaseTimelock(bytes4,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI event IncreaseTimelock; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xed380a7a1f0afc99b313ac7d9f1e52e44430d32b4639c7993bd0021974e30c0e"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "Revoke",
+      "type": "event",
+      "signature": "Revoke(address,bytes4,bytes)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI event Revoke; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x70521cf6a7c2458c5ad406081ad7b3bc4afd31b01b586a157a9780fcee6a77cb"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newSkimRecipient",
+          "type": "address"
+        }
+      ],
+      "name": "SetSkimRecipient",
+      "type": "event",
+      "signature": "SetSkimRecipient(address)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI event SetSkimRecipient; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x2e7908865670e21b9779422cadf5f1cba271a62bb95c71eaaf615c0a1c48ebee"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        }
+      ],
+      "name": "Skim",
+      "type": "event",
+      "signature": "Skim(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI event Skim; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x5e99aaf6d3588fb2497fde044168e8c046704a3223559cfe107f8f94b42cefdd"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "executableAt",
+          "type": "uint256"
+        }
+      ],
+      "name": "Submit",
+      "type": "event",
+      "signature": "Submit(bytes4,bytes,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI event Submit; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x8b18afeb361b83b025999ed5b42f1d90c68aaa5a0fd49c015f04c3b8b81e80eb"
+    }
+  ],
+  "errors": [
+    {
+      "inputs": [],
+      "name": "Abdicated",
+      "type": "error",
+      "signature": "Abdicated()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error Abdicated; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x281df4aa"
+    },
+    {
+      "inputs": [],
+      "name": "ApproveReturnedFalse",
+      "type": "error",
+      "signature": "ApproveReturnedFalse()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error ApproveReturnedFalse; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x7d577764"
+    },
+    {
+      "inputs": [],
+      "name": "ApproveReverted",
+      "type": "error",
+      "signature": "ApproveReverted()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error ApproveReverted; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x7cceae25"
+    },
+    {
+      "inputs": [],
+      "name": "AutomaticallyTimelocked",
+      "type": "error",
+      "signature": "AutomaticallyTimelocked()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error AutomaticallyTimelocked; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x07e895b1"
+    },
+    {
+      "inputs": [],
+      "name": "DataAlreadyPending",
+      "type": "error",
+      "signature": "DataAlreadyPending()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error DataAlreadyPending; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xd91ff208"
+    },
+    {
+      "inputs": [],
+      "name": "DataNotTimelocked",
+      "type": "error",
+      "signature": "DataNotTimelocked()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error DataNotTimelocked; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x1ea942a8"
+    },
+    {
+      "inputs": [],
+      "name": "IrmMismatch",
+      "type": "error",
+      "signature": "IrmMismatch()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error IrmMismatch; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x6a7ca6c7"
+    },
+    {
+      "inputs": [],
+      "name": "LoanAssetMismatch",
+      "type": "error",
+      "signature": "LoanAssetMismatch()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error LoanAssetMismatch; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x58ec95f2"
+    },
+    {
+      "inputs": [],
+      "name": "NoCode",
+      "type": "error",
+      "signature": "NoCode()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error NoCode; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xf046a714"
+    },
+    {
+      "inputs": [],
+      "name": "SharePriceAboveOne",
+      "type": "error",
+      "signature": "SharePriceAboveOne()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error SharePriceAboveOne; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xff8d32ad"
+    },
+    {
+      "inputs": [],
+      "name": "TimelockNotDecreasing",
+      "type": "error",
+      "signature": "TimelockNotDecreasing()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error TimelockNotDecreasing; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x17e0a21c"
+    },
+    {
+      "inputs": [],
+      "name": "TimelockNotExpired",
+      "type": "error",
+      "signature": "TimelockNotExpired()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error TimelockNotExpired; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x621e25c3"
+    },
+    {
+      "inputs": [],
+      "name": "TimelockNotIncreasing",
+      "type": "error",
+      "signature": "TimelockNotIncreasing()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error TimelockNotIncreasing; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x470f70c2"
+    },
+    {
+      "inputs": [],
+      "name": "TransferReturnedFalse",
+      "type": "error",
+      "signature": "TransferReturnedFalse()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error TransferReturnedFalse; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x2f0470fc"
+    },
+    {
+      "inputs": [],
+      "name": "TransferReverted",
+      "type": "error",
+      "signature": "TransferReverted()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error TransferReverted; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xace2a47e"
+    },
+    {
+      "inputs": [],
+      "name": "Unauthorized",
+      "type": "error",
+      "signature": "Unauthorized()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "Explorer ABI error Unauthorized; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x82b42900"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_parentVault",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_morpho",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_adaptiveCurveIrm",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-market-adapter",
+        "locator": "src/adapters/MorphoMarketV1AdapterV2.sol: constructor; explorer decoded_constructor_args"
+      }
+    }
+  ],
+  "runtime_evidence": {
+    "source_id": "netnet-credit-implementation-20261010-market-adapter",
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xf0eeF247585b184836915e80f984246d981c55C4",
+    "observed_on": "2026-10-10",
+    "source_status": "explorer_verified_source_obtained",
+    "source_file": "src/adapters/MorphoMarketV1AdapterV2.sol",
+    "source_sha256": "f2c10a8c14434246257baf4f31f40385acb5c56cf4f3d8e5ee61a7427623b818",
+    "runtime_sha256": "d4ff26a66e2c453c9d2d74f2f39ed86c8be0ca04ff1b85f8260b138919856931",
+    "runtime_bytes": 11784,
+    "runtime_observation": "unpinned_explorer_response",
+    "compiler_version": "v0.8.28+commit.7893614a",
+    "proxy_type": null,
+    "implementations": [],
+    "additional_sources": [
+      {
+        "file_path": "lib/morpho-blue-irm/lib/morpho-blue/src/interfaces/IMorpho.sol",
+        "sha256": "8fcdf6278afd39146333380afe2054d66e2c4fd7e8aa90fbd746cd947d4d42ea"
+      },
+      {
+        "file_path": "lib/morpho-blue-irm/lib/morpho-blue/src/interfaces/IIrm.sol",
+        "sha256": "3ba6e6164cd0ed25d2b1d8d3766667ef016712705fe30094a97fe3801d14e915"
+      },
+      {
+        "file_path": "lib/morpho-blue-irm/lib/morpho-blue/src/libraries/ErrorsLib.sol",
+        "sha256": "0a54375182b5cfbb4f1101da4900c45ee96ba74962853168daf0d6281580666c"
+      },
+      {
+        "file_path": "lib/morpho-blue-irm/lib/morpho-blue/src/libraries/MathLib.sol",
+        "sha256": "2c6728d1bc8f5db81f2a7946f226c3c4a8cffe4134c55450ca445b05727011bc"
+      },
+      {
+        "file_path": "lib/morpho-blue-irm/lib/morpho-blue/src/libraries/SharesMathLib.sol",
+        "sha256": "4580deb1b1a3f2ea0b60f2305708428975613d1e94d404d647bcc573a7b2a2f0"
+      },
+      {
+        "file_path": "lib/morpho-blue-irm/lib/morpho-blue/src/libraries/UtilsLib.sol",
+        "sha256": "9d0c8a0855b2f9e9f92111cdf32bdbbd1ff97b7584f0f958b695f2c4cb0d1b34"
+      },
+      {
+        "file_path": "lib/morpho-blue-irm/src/adaptive-curve-irm/interfaces/IAdaptiveCurveIrm.sol",
+        "sha256": "9112f11e85dd88dc13584fe5386f09e6947d99a67c1a1beb8e853212a2a21064"
+      },
+      {
+        "file_path": "lib/morpho-blue-irm/src/adaptive-curve-irm/libraries/ConstantsLib.sol",
+        "sha256": "63abf640bd64295e39b7b32f22159e49927c2156c9445b17fd856f447f634afa"
+      },
+      {
+        "file_path": "lib/morpho-blue-irm/src/adaptive-curve-irm/libraries/ExpLib.sol",
+        "sha256": "dfb80c3de40a2a4ab5d814fe00b0b21b5af13f5248785d37d4e97910bb8a9773"
+      },
+      {
+        "file_path": "lib/morpho-blue-irm/src/adaptive-curve-irm/libraries/MathLib.sol",
+        "sha256": "5f510a2c6b2e069fa1d310c34526093bf792175a56ab636dfc73665a424d163d"
+      },
+      {
+        "file_path": "lib/morpho-blue-irm/src/adaptive-curve-irm/libraries/UtilsLib.sol",
+        "sha256": "c30953f0149cc33f4f44f00a15ab90120f2e6ce70a8f447f33bcdff1dc3b14f6"
+      },
+      {
+        "file_path": "lib/morpho-blue-irm/src/adaptive-curve-irm/libraries/periphery/AdaptiveCurveIrmLib.sol",
+        "sha256": "d263041dd4172e08d62ec443a49f5932955c0ec26308b2b04880d97e6dbbf089"
+      },
+      {
+        "file_path": "lib/morpho-blue/src/interfaces/IMorpho.sol",
+        "sha256": "8fcdf6278afd39146333380afe2054d66e2c4fd7e8aa90fbd746cd947d4d42ea"
+      },
+      {
+        "file_path": "lib/morpho-blue/src/libraries/MarketParamsLib.sol",
+        "sha256": "94af290e2a2094b8547b925449484d247bce87cce4fed8902ecf82dd2b49242e"
+      },
+      {
+        "file_path": "lib/morpho-blue/src/libraries/MathLib.sol",
+        "sha256": "2c6728d1bc8f5db81f2a7946f226c3c4a8cffe4134c55450ca445b05727011bc"
+      },
+      {
+        "file_path": "lib/morpho-blue/src/libraries/SharesMathLib.sol",
+        "sha256": "4580deb1b1a3f2ea0b60f2305708428975613d1e94d404d647bcc573a7b2a2f0"
+      },
+      {
+        "file_path": "src/adapters/interfaces/IMorphoMarketV1AdapterV2.sol",
+        "sha256": "57a2dd16cc45f9491724448a1355d301cae5a49af957dfdbd20f3269fb709e3d"
+      },
+      {
+        "file_path": "src/interfaces/IAdapter.sol",
+        "sha256": "30e47594e7a91d177c63b68b63c661353c20b92bb0fc48e605893d7d2c13478e"
+      },
+      {
+        "file_path": "src/interfaces/IERC20.sol",
+        "sha256": "1d9682ff2ea29e80e60e748b88cf47a01b7606a845ed9323b0f303be767051df"
+      },
+      {
+        "file_path": "src/interfaces/IERC2612.sol",
+        "sha256": "2b4f6d51f3965e4a8b1d85caaee959f8a4fe8bf6c97ad33c4da1a717f91868cb"
+      },
+      {
+        "file_path": "src/interfaces/IERC4626.sol",
+        "sha256": "3c8aa467fe38da6f97b85378e97dae39914497d6326564d70ae51faf75c8538a"
+      },
+      {
+        "file_path": "src/interfaces/IVaultV2.sol",
+        "sha256": "d4b323a5e74305414e89e745a7187d82ec956230d7775f55024477e758070eaf"
+      },
+      {
+        "file_path": "src/libraries/ErrorsLib.sol",
+        "sha256": "9fb67dda5d82cee68fb3bb6dfe6bf286d81486c98a37102efeae13d8e1dedf7d"
+      },
+      {
+        "file_path": "src/libraries/SafeERC20Lib.sol",
+        "sha256": "1d41dfba079af0490bdecfa235a1b172bd6f7a93980b94ef2e56081d4501fdaa"
+      }
+    ],
+    "constructor_bindings": [
+      [
+        "0x99347d5F70D3838763f6Bddcf80304C8aa953B57",
+        {
+          "internalType": "address",
+          "name": "_parentVault",
+          "type": "address"
+        }
+      ],
+      [
+        "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+        {
+          "internalType": "address",
+          "name": "_morpho",
+          "type": "address"
+        }
+      ],
+      [
+        "0x2BD3d5965B26B51814AC95127B2b80dD6CcC0fa1",
+        {
+          "internalType": "address",
+          "name": "_adaptiveCurveIrm",
+          "type": "address"
+        }
+      ]
+    ],
+    "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+  }
+}

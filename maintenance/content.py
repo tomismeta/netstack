@@ -161,6 +161,105 @@ def _version(files):
     return version
 
 
+def _catalog_type(item, depth=0):
+    """Canonical ABI types for descriptive inventories, not the read-call encoder."""
+    _require(depth <= 8 and isinstance(item, dict) and isinstance(item.get("type"), str),
+             "contract catalog", "malformed ABI type")
+    kind = item["type"]
+    array = re.search(r"\[([0-9]*)\]$", kind)
+    if array:
+        size = array[1]
+        _require(not size or (len(size) <= 78 and int(size) > 0 and str(int(size)) == size),
+                 "contract catalog", "invalid fixed array size")
+        return _catalog_type(dict(item, type=kind[:array.start()]), depth + 1) + array[0]
+    if kind == "tuple":
+        components = item.get("components")
+        _require(isinstance(components, list) and len(components) <= 128,
+                 "contract catalog", "invalid tuple components")
+        return "(" + ",".join(_catalog_type(part, depth + 1) for part in components) + ")"
+    if kind == "function":
+        return kind
+    return _canonical_type(item)
+
+
+def _contract_catalog(documents, contracts):
+    path = "assets/contracts/catalog.json"
+    if path not in documents:
+        _require(not any(p.startswith("assets/contracts/") for p in documents),
+                 path, "function inventory requires its coverage ledger")
+        return
+    ledger = documents[path]
+    canonical = {row["id"]: row for row in contracts}
+    seen, detailed = set(), set()
+    for row in _rows(ledger, "contracts", path):
+        identity = row.get("contract_id")
+        _require(identity in canonical and identity not in seen, path,
+                 "unknown or duplicate function-catalog contract")
+        seen.add(identity)
+        expected = canonical[identity]
+        _require(row.get("chain_id") == expected["chain_id"]
+                 and _hex(row.get("address"), 20, path) == expected["address"].lower(),
+                 path, "function-catalog identity mismatch")
+        _require(isinstance(row.get("interface_status"), str) and row["interface_status"],
+                 path, "missing interface coverage status")
+        target = row.get("catalog_path")
+        if target is None:
+            _require(bool(row.get("missing_evidence")), path, "uncatalogued contract needs an evidence gap")
+            continue
+        _require(isinstance(target, str) and target.startswith("assets/contracts/")
+                 and target != path and target in documents and target not in detailed,
+                 path, "missing or duplicate detailed function catalog")
+        detailed.add(target)
+        doc = documents[target]
+        _require(doc.get("contract_id") == identity
+                 and doc.get("contract_record") == row.get("contract_record")
+                 and doc.get("chain_id") == row["chain_id"]
+                 and _hex(doc.get("address"), 20, target) == expected["address"].lower(),
+                 target, "detailed catalog does not match coverage ledger")
+        _require(bool(doc.get("provenance")) and isinstance(doc.get("completeness"), dict)
+                 and bool(doc["completeness"]), target, "missing catalog provenance or completeness")
+        for group in ("functions", "events", "errors"):
+            signatures = set()
+            for item in _rows(doc, group, target):
+                sig = item.get("signature")
+                _require(isinstance(sig, str) and "(" in sig, target, "missing catalog signature")
+                name = item.get("name", sig.split("(", 1)[0])
+                _require(isinstance(name, str) and re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name),
+                         target, "invalid catalog entry name")
+                inputs = item.get("inputs")
+                _require(isinstance(inputs, list) and len(inputs) <= 128, target, "invalid catalog inputs")
+                derived = name + "(" + ",".join(_catalog_type(arg) for arg in inputs) + ")"
+                _require(sig == derived and sig not in signatures, target,
+                         "incorrect or duplicate catalog signature")
+                signatures.add(sig)
+                digest = keccak256(sig.encode("ascii"))
+                key, size = ("topic0", 32) if group == "events" else ("selector", 4)
+                _require(_hex(item.get(key), size, target) == "0x" + digest[:size].hex(),
+                         target, "catalog selector/topic does not match signature")
+                _require(isinstance(item.get("evidence"), dict)
+                         and bool(item["evidence"].get("source_id")), target, "missing entry evidence")
+                if group == "functions":
+                    _require(item.get("stateMutability") in ("pure", "view", "nonpayable", "payable"),
+                             target, "invalid descriptive function mutability")
+                    _require(isinstance(item.get("outputs"), list), target, "missing catalog outputs")
+                    for output in item["outputs"]:
+                        _catalog_type(output)
+                    for meaning in ("permissions", "economic_meaning"):
+                        claim = item.get(meaning)
+                        _require(isinstance(claim, dict) and bool(claim.get("status"))
+                                 and bool(claim.get("detail")), target, "missing qualified function meaning")
+                elif group == "events":
+                    _require(type(item.get("anonymous")) is bool
+                             and all(type(arg.get("indexed")) is bool for arg in inputs),
+                             target, "invalid catalog event indexing")
+                    _require(sum(arg["indexed"] for arg in inputs) <= (4 if item["anonymous"] else 3),
+                             target, "too many indexed catalog event fields")
+    _require(seen == set(canonical), path, "function coverage ledger omits canonical contracts")
+    for target, doc in documents.items():
+        if target.startswith("assets/contracts/") and target != path and "functions" in doc:
+            _require(target in detailed, target, "detailed function catalog missing from coverage ledger")
+
+
 def verify_content(files):
     """Validate a POSIX-relative-path -> bytes mapping; raise ValueError on drift.
 
@@ -383,6 +482,7 @@ def _verify_content(files):
                              path, "invalid event indexing")
                     _require(sum(i["indexed"] for i in item["inputs"]) <= (4 if item["anonymous"] else 3), path, "too many indexed event fields")
                 abi_count += 1
+    _contract_catalog(documents, contracts)
 
     promoted = [row for row in candidates if "canonical_record" in row]
     for row in candidates:
@@ -424,7 +524,7 @@ def _verify_content(files):
         "publisher_explicit_equity_feed_candidates": sum(row["price_feed"].get("classification_status") == "publisher_explicit_equity" for row in rwa),
         "rwa_candidates_with_incomplete_classification": incomplete, "incomplete_classification_feed_candidates": incomplete,
         "rwa_candidates_without_exact_token_relationship": unmapped, "rwa_feed_candidates_without_exact_token_relationship": unmapped,
-        "v4_pool_identifiers": len(pools), "fixed_block_identity_observed_v4_positions": sum(len(row.get("observed_positions", [])) for row in pools),
+        "v4_pool_identifiers": len(pools),
         "discovery_candidates_baseline_missing": len(candidates), "discovery_candidates_now_canonical": len(promoted),
         "discovery_candidates_outside_canonical_inventory": len(candidates) - len(promoted),
         "contract_records_by_provenance_source_overlapping": dict(Counter(source for row in contracts for source in {p["source_id"] for p in row.get("provenance", [])})),

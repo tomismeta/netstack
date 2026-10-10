@@ -1,0 +1,465 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x90f5b57a7236a1447ce786b1ebe42433e55d9fd0",
+  "contract_record": "assets/addresses/contracts/netlong-futures.json",
+  "chain_id": 4663,
+  "address": "0x90f5B57A7236A1447Ce786B1ebE42433e55D9fD0",
+  "generation": "netlong-futures-oracle",
+  "provenance": [
+    {
+      "source_id": "netnet-trading-entry-20261010",
+      "url": "https://trading.netnet.capital/assets/index-BViJKZuW.js",
+      "sha256": "b62b66a56fbaa9d7b387761108e99e72633369c14f3a8ad6fda8444ba9be70bc",
+      "locator": "Literal j9, Unicode character offsets[611443,612819)",
+      "observed_on": "2026-10-10"
+    },
+    {
+      "source_id": "netlong-futures-explorer-20261010-oracle",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x90f5B57A7236A1447Ce786B1ebE42433e55D9fD0",
+      "observed_on": "2026-10-10",
+      "locator": "Explorer-reported deployed_bytecode and creation_bytecode; no source_code or abi fields"
+    }
+  ],
+  "execution_authority": false,
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 12,
+    "implementation": "material_runtime_paths_reviewed_source_unavailable",
+    "pinned_state": "not_obtained_rpc_denied",
+    "missing_evidence": [
+      "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+      "Compiler rebuild/source-runtime equivalence.",
+      "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
+    ],
+    "literal_character_range": [
+      611443,
+      612819
+    ],
+    "resolved_literal_abi_sha256": "efa103fed6a861bc3f32df0266800887e40368c7f937c10ea613ec408741ec88"
+  },
+  "runtime_evidence": {
+    "sha256": "5a5fbec31d6c98340aafa033212d76761262a9f57ba101ec17495e3fcf813b84",
+    "byte_length": 3065,
+    "bytecode_origin": "explorer_reported_not_rpc_pinned",
+    "selector_comparison": "Compiler dispatcher PUSH3/PUSH4 EQ PUSH2 JUMPI targets; selector presence is not full semantic equivalence.",
+    "source_verification": {
+      "is_verified": false,
+      "is_fully_verified": false,
+      "is_partially_verified": false,
+      "local_compilation_performed": false
+    },
+    "dispatch_function_count": 16,
+    "unrepresented_dispatch_selectors": [
+      {
+        "selector": "0xb1b9a7c5",
+        "entry_pc": "0x26c",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xa8aa1b31",
+        "entry_pc": "0x21b",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x516dc7c3",
+        "entry_pc": "0x1cc",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x61d027b3",
+        "entry_pc": "0x1d4",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x0f0964aa",
+        "entry_pc": "0xff",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x1adb8eb6",
+        "entry_pc": "0x145",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      }
+    ],
+    "creation_template_comparison": {
+      "runtime_bytes": 3065,
+      "embedded_template_sha256": "6e4539298436818079ef83baea1d3f50c8350d2e3746cd9e5defd050cc4af6de",
+      "immutable_word_offsets": [
+        260,
+        330,
+        473,
+        544,
+        625,
+        706,
+        943,
+        1103,
+        1233,
+        1441,
+        1576,
+        1721,
+        1849,
+        2092
+      ],
+      "normalization_matches_creation_template": true,
+      "constructor_runtime_offset": 700
+    }
+  },
+  "functions": [
+    {
+      "name": "marks",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "twapWad",
+          "type": "uint256"
+        },
+        {
+          "name": "spotWad",
+          "type": "uint256"
+        },
+        {
+          "name": "floorWad",
+          "type": "uint256"
+        },
+        {
+          "name": "index",
+          "type": "uint256"
+        },
+        {
+          "name": "twapLive",
+          "type": "bool"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal j9, Unicode character offsets[611443,612819); ABI entry[0]"
+      },
+      "signature": "marks()",
+      "selector": "0x3c84c5a5",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Tries pairOracle.twapNetUsdg; positive return sets twapLive=true, otherwise uses cached lastTwapWad with false. Returns raw reserve spot, Treasury backing floor and sNET index; index raw9, NET USD prices WAD. Does not update cache and does not promise price freshness merely because cache exists."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x184"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "boundedMarks",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "twapRef",
+          "type": "uint256"
+        },
+        {
+          "name": "spotBounded",
+          "type": "uint256"
+        },
+        {
+          "name": "index",
+          "type": "uint256"
+        },
+        {
+          "name": "twapLive",
+          "type": "bool"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal j9, Unicode character offsets[611443,612819); ABI entry[1]"
+      },
+      "signature": "boundedMarks()",
+      "selector": "0xad3f739b",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Requires nonzero live-or-cached twapRef. Clamps spot between floor(twapRef*9700/10000) and floor(twapRef*10300/10000); zero spot uses twapRef. Returns index and original twapLive. Bound is versus TWAP, not Treasury floor."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x242"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "lastTwapWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal j9, Unicode character offsets[611443,612819); ABI entry[2]"
+      },
+      "signature": "lastTwapWad()",
+      "selector": "0x728f3255",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Storage slot0 cached successful positive pair TWAP in USD per NET1e18; not a new observation. Cache has no read-path expiry limit in observed oracle runtime."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x203"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "lastTwapAt",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal j9, Unicode character offsets[611443,612819); ABI entry[3]"
+      },
+      "signature": "lastTwapAt()",
+      "selector": "0xf16f26a3",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Slot1 timestamp when poke succeeded, not necessarily the observation timestamp of underlying pair cumulative-price window."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x293"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "poke",
+      "stateMutability": "nonpayable",
+      "inputs": [],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal j9, Unicode character offsets[611443,612819); ABI entry[4]"
+      },
+      "signature": "poke()",
+      "selector": "0x18178358",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Attempts pairOracle TWAP; catches failed read and ignores zero. Successful positive price updates lastTwapWad and lastTwapAt=now, emits Poked. Does not itself call pairOracle.checkpoint or make a stale underlying window fresh."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x13b"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "usablePerWsWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal j9, Unicode character offsets[611443,612819); ABI entry[6]"
+      },
+      "signature": "usablePerWsWad()",
+      "selector": "0x8a63c08d",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read; live TWAP required"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Collateral credit uses index*min(2*floor,max(floor,85%*min(twapRef,spotBounded)))/1e9, with integer-floor multiplication/division. Requires live TWAP even though marks can expose cache. Not raw collateral liquidation value."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x213"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "creditPerWsWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal j9, Unicode character offsets[611443,612819); ABI entry[7]"
+      },
+      "signature": "creditPerWsWad()",
+      "selector": "0xca2a4c6d",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Alias dispatcher to same body as lossPerWsWad: min(twapRef,spotBounded)*index/1e9. Name does not imply equality to stricter usablePerWsWad margin credit."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x1b6"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "payoutPerWsWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal j9, Unicode character offsets[611443,612819); ABI entry[8]"
+      },
+      "signature": "payoutPerWsWad()",
+      "selector": "0x818adb01",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "max(twapRef,spotBounded)*index/1e9; positive trader USD PnL divided by higher wsNET price yields fewer wsNET. Cached TWAP may be used; zero reference reverts."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x20b"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "lossPerWsWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal j9, Unicode character offsets[611443,612819); ABI entry[9]"
+      },
+      "signature": "lossPerWsWad()",
+      "selector": "0x4d520f35",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "min(twapRef,spotBounded)*index/1e9; negative USD PnL/fees divided by lower wsNET price consumes more wsNET. Same bytecode target as creditPerWsWad."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x1b6"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "floorPerWsWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal j9, Unicode character offsets[611443,612819); ABI entry[10]"
+      },
+      "signature": "floorPerWsWad()",
+      "selector": "0x701c2d3f",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Treasury floorWad*sNET.index/1e9, independent of spot/TWAP availability; capacity values wsNET at backing floor. External Treasury/index calls can still revert."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x1fb"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    }
+  ],
+  "events": [
+    {
+      "name": "Poked",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "twapWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "at",
+          "type": "uint64",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal j9, Unicode character offsets[611443,612819); ABI entry[5]"
+      },
+      "signature": "Poked(uint256,uint64)",
+      "topic0": "0x3fe0c7fccd9423e4cfcfb284f3d3ebabc5f0411472ad1cd648bfb00fcaff7e68"
+    }
+  ],
+  "errors": [
+    {
+      "name": "MarginOracleDown",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal j9, Unicode character offsets[611443,612819); ABI entry[11]"
+      },
+      "signature": "MarginOracleDown()",
+      "selector": "0x572551e6",
+      "publisher_message": "The NET price oracle is down. Closes continue; liquidations and opens wait.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": []
+}

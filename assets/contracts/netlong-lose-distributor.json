@@ -1,0 +1,385 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x1dedda4de44f406fd25cdd3a22abb8e524368719",
+  "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+  "chain_id": 4663,
+  "address": "0x1DEdDa4dE44f406FD25CdD3A22ABb8e524368719",
+  "generation": "netlong-lose-distributor",
+  "provenance": [
+    {
+      "source_id": "netlong-lose-distributor-explorer-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x1DEdDa4dE44f406FD25CdD3A22ABb8e524368719",
+      "observed_on": "2026-10-10",
+      "locator": "Complete explorer smart-contract response; source/ABI fields and deployed_bytecode where supplied"
+    },
+    {
+      "source_id": "netnet-trading-entry-20261010",
+      "url": "https://trading.netnet.capital/assets/index-BViJKZuW.js",
+      "sha256": "b62b66a56fbaa9d7b387761108e99e72633369c14f3a8ad6fda8444ba9be70bc",
+      "observed_on": "2026-10-10",
+      "locator": "Literal m8 Unicode character range [825552, 825881]; bound consumer; not full contract ABI"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_partial_contract_abi",
+    "supplied_entry_count": 5,
+    "implementation": "targeted_static_runtime_review_with_explicit_unresolved_dispatchers",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+      "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+      "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+    ],
+    "runtime_dispatcher_count": 22,
+    "runtime_unresolved_signature_count": 4
+  },
+  "runtime_identity": {
+    "byte_count": 3011,
+    "sha256": "5a98ea91c13d3fc733f0120116245b2d83355eb9d0031329276d2039e49a2288",
+    "keccak256": "0x5539df35555fbad6ef774551682a9c5977c04b2f65b78268aeb3d87619696318",
+    "evidence_kind": "explorer_indexed_unpinned_runtime",
+    "proxy_type": null,
+    "explorer_is_verified": null,
+    "explorer_is_fully_verified": null,
+    "verified_twin_address": null
+  },
+  "functions": [
+    {
+      "name": "TOTAL_SUPPLY",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "TOTAL_SUPPLY()",
+      "selector": "0x902d55a5",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[0]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Original fixed token issuance constant1e27, not curve allocation."
+      }
+    },
+    {
+      "name": "lossesToDate",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "lossesToDate()",
+      "selector": "0x9d6b039d",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[1]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Aggregate qualifying reported USD losses WAD; subminimum reports are not accumulated; not every protocol/trader/lender loss."
+      }
+    },
+    {
+      "name": "released",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "released()",
+      "selector": "0x96132521",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[2]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Cumulative distributor transfers ledger, not current user balances nor current totalSupply."
+      }
+    },
+    {
+      "name": "quote",
+      "inputs": [
+        {
+          "name": "lossUsdWad",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "quote(uint256)",
+      "selector": "0xed1bd76c",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[3]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "If loss<1e18 returns0; else cumulativeAt(lossesToDate+loss)-cumulativeAt(lossesToDate). Does not reserve rewards or prove desk eligibility."
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "LossRecorded",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "desk",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "lossUsdWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "minted",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "lossesToDate",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "anonymous": false,
+      "signature": "LossRecorded(address,address,uint256,uint256,uint256)",
+      "topic0": "0x4b0fc5b5a0da4814cbdd6e08025642da8478fd57732b8949b56cb7ce1efc4225",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[4]"
+      },
+      "semantics": {
+        "status": "publisher_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": []
+      }
+    }
+  ],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": [],
+  "runtime_review": [
+    {
+      "scope": "finite issuance vs release",
+      "pcs": [
+        "0x034a-0x037a",
+        "0x04b6-0x04cd",
+        "0x078b-0x0962"
+      ],
+      "detail": "CURVE_SUPPLY=TOTAL_SUPPLY-TOTAL_SUPPLY/10=9e26. record(address,uint256)0xc6685617 requires isDesk(msg.sender),nonzero trader,loss>=immutable1e18. It updates aggregate losses/releases and calls LOSE.transfer; no token mint call. Zero marginal release possible from flooring."
+    },
+    {
+      "scope": "curve and rounding",
+      "pcs": [
+        "0x04cd-0x0648",
+        "0x0648-0x06d2",
+        "0x0962-0x09b5"
+      ],
+      "detail": "Let C=9e26,L0=1e24 USDWad,K=5e24 USDWad. F(L)=floor(C*L/(L0+K)) forL<=L0; else floor(C*L0/(L0+K))+floor(floor(C*K/(L0+K))*(L-L0)/(K+L-L0)). Transfer=F(old+loss)-F(old); min report1e18 ignores smaller reports entirely. Rate=150e18 through L0 then floor(150e18*K^2/(K+L-L0)^2); checked intermediate square overflow can revert extreme inputs. Finite curve allocation asymptote900m distinct from1b issuance."
+    },
+    {
+      "scope": "registration",
+      "pcs": [
+        "0x037a-0x04b6",
+        "0x06d2-0x078b"
+      ],
+      "detail": "Registrar-only desk additions before sealBy, nonzero/duplicate guard; seal branch permits registrar or postdeadline caller and zeroes registrar. Existing desk membership has no removal branch found in22-selector runtime, but no complete source ABI available."
+    }
+  ],
+  "source_files": [],
+  "runtime_dispatch": [
+    {
+      "selector": "0x91fd86c6",
+      "entry_pc": "0x17d",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x1e4c7292",
+      "entry_pc": "0x17d",
+      "candidate_signature": "CURVE_SUPPLY()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x2881d733",
+      "entry_pc": "0x198",
+      "candidate_signature": "registerDesk(address)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x2b20e397",
+      "entry_pc": "0x1ad",
+      "candidate_signature": "registrar()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x3aa6f161",
+      "entry_pc": "0x1d7",
+      "candidate_signature": "SLEEVE_ALLOCATION()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x401e45ad",
+      "entry_pc": "0x1df",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x47d0a311",
+      "entry_pc": "0x1f0",
+      "candidate_signature": "deskCount()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x49d583cb",
+      "entry_pc": "0x1f9",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x5169a541",
+      "entry_pc": "0x20b",
+      "candidate_signature": "lose()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x659621b5",
+      "entry_pc": "0x232",
+      "candidate_signature": "r0()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x684abad2",
+      "entry_pc": "0x241",
+      "candidate_signature": "cumulativeAt(uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x85a82a0e",
+      "entry_pc": "0x254",
+      "candidate_signature": "rateAt(uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x8d73d86a",
+      "entry_pc": "0x267",
+      "candidate_signature": "R0()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x902d55a5",
+      "entry_pc": "0x277",
+      "candidate_signature": "TOTAL_SUPPLY()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x96132521",
+      "entry_pc": "0x28a",
+      "candidate_signature": "released()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x9a8ec2de",
+      "entry_pc": "0x293",
+      "candidate_signature": "sealBy()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x9cf34d46",
+      "entry_pc": "0x2ba",
+      "candidate_signature": "minLossUsdWad()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x9d6b039d",
+      "entry_pc": "0x2e1",
+      "candidate_signature": "lossesToDate()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xb89601cd",
+      "entry_pc": "0x2ea",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xc6685617",
+      "entry_pc": "0x2f2",
+      "candidate_signature": "record(address,uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xd8d066e4",
+      "entry_pc": "0x305",
+      "candidate_signature": "isDesk(address)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xed1bd76c",
+      "entry_pc": "0x337",
+      "candidate_signature": "quote(uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    }
+  ]
+}

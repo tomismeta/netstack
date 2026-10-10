@@ -1,21 +1,24 @@
 {
   "schema_version": 1,
   "source_id": "netnet-core-reserves-interface-20260925",
-  "reviewed_on": "2026-09-25",
-  "scope": "Read-only Treasury RFV reconciliation. Source bundles and documentation establish interface and methodology only, not deployed implementation equivalence. No website balances, prices or displayed totals are numerical inputs.",
+  "reviewed_on": "2026-10-07",
+  "scope": "Read-only Treasury RFV diagnostics. User validation establishes subtract-floored Morpho haircut; documented POL remains a known-wrong deployed reconstruction and cannot certify Core or downstream totals. No website numeric inputs.",
   "provenance": [
     {"url":"https://app.netnet.capital/assets/index-BssLYnjl.js","locator":"Treasury getters and live RFV consumer inspected in the recorded ecosystem audit","scope":"Historical interface evidence; URL returned 404 on the later same-day recheck."},
     {"url":"https://app.netnet.capital/assets/index-hABaJsIB.js","locator":"Treasury ABI fr; live consumer rfv/liquidUsdg/morphoAssets/backingPerToken; to=200; ERC-4626 convertToAssets","scope":"Current app asset statically inspected 2026-09-25, never executed. Consumer derives POL by subtraction; this collector independently reconstructs POL from RPC reserves and LP ownership."},
     {"url":"https://docs.netnet.capital/treasury","locator":"Sections 1-3 and 5-6","scope":"USDG reserve units, 2% documented Morpho haircut, 2*sqrt(x*y)*LP share convention, total NET supply denominator, exclusion of Sleeve from Core RFV."},
-    {"url":"https://eips.ethereum.org/EIPS/eip-4626","locator":"asset, balanceOf, convertToAssets","scope":"Standard read interface. asset identity is checked against canonical USDG at the pinned block; no redemption or liquidity guarantee."}
+    {"url":"https://eips.ethereum.org/EIPS/eip-4626","locator":"asset, balanceOf, convertToAssets","scope":"Standard read interface. asset identity is checked against canonical USDG at the pinned block; no redemption or liquidity guarantee."},
+    {"url":"https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x04822ea321a0dee6f40656172f29312104855d66","source_id":"netnet-treasury-accounting-conflict-20261007","locator":"Treasury.sol rfv/polRfv; returned runtime6157 bytes sha256d82c547c353a49760e798a14526e42048194538ba7cd7f5802d1f87aaac92af5","scope":"Explorer claims is_verified/is_fully_verified, but source and returned runtime encode multiply9800/divide10000 and documented geometric POL. Conflicts with user validation. Not pinned RPC runtime; do not overrule validated deployed semantics or claim this source repairs POL."}
   ],
   "methodology": {
     "treasury_value_decimals": 18,
     "morpho_haircut_bps": 200,
     "bps_denominator": 10000,
-    "parameter_status": "Documented methodology, not a deployed parameter read. The published Treasury interface has no Morpho haircut getter. Equality at a snapshot is observed reconciliation, not proof of code equivalence or immutable policy.",
-    "pol_integer_order": "x=floor(usdgReserveRaw*10^18/10^usdgDecimals); y=floor(netReserveRaw*10^18/10^netDecimals); root=isqrt(x*y); polWad=floor(2*root*treasuryLpRaw/totalLpRaw)",
-    "rfv_integer_order": "cashWad + floor(grossMorphoWad*9800/10000) + polWad",
+    "parameter_status": "User validation establishes deployed M-floor(M*200/10000); original block/raw/runtime packet unrecovered. Current explorer source/runtime conflicts, so its verified label is not applicability proof.",
+    "pol_reconstruction_supported": false,
+    "pol_reconstruction_limit": "Release blocker: documented POL underreproduced user-validated on-chain RFV by18432.08 USDG. Original block/hash/raw inputs and applicable runtime were not recovered from repository/current-project archive. October7 explorer source/runtime conflicts with validated haircut; approved RPC read attempt403. No balancing constant, rerun-to-confirm, or claimed validation-block reconciliation.",
+    "pol_integer_order": "HISTORICAL DOCUMENTED CANDIDATE ONLY: x=floor(usdgReserveRaw*10^18/10^usdgDecimals); y=floor(netReserveRaw*10^18/10^netDecimals); root=isqrt(x*y); polWad=floor(2*root*treasuryLpRaw/totalLpRaw)",
+    "rfv_integer_order": "cashWad + grossMorphoWad - floor(grossMorphoWad*200/10000) + polWad; total remains unsupported until exact deployed POL is established",
     "nav_integer_order": "floor(rfvWad*10^netDecimals/totalNetSupplyRaw)"
   },
   "treasury_abi": [

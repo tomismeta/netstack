@@ -1,0 +1,465 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x64ec5c92ec336f9bc0ae2dcff5acae91b58437ad",
+  "contract_record": "assets/addresses/contracts/predict-series-4-outcomes.json",
+  "chain_id": 4663,
+  "address": "0x64eC5c92eC336F9bc0AE2dCFf5acae91B58437AD",
+  "generation": "predict-outcome-1993",
+  "series_id": 4,
+  "source_evidence": "assets/contracts/predict-source-evidence.json",
+  "runtime_evidence": {
+    "runtime_bytes": 1993,
+    "runtime_keccak256": "0x1e885071188ec8e93373085aafb1569fae587912b48aa61ffd2564538b7718c7",
+    "runtime_sha256": "a1fe99eca8fd6f7986dcd23fcb36e97f308d1276af6073c1f0bafdae9a670122",
+    "immutable_desk": "0x7ef9528408d99f98056922291048f0710001e015"
+  },
+  "completeness": {
+    "implementation": "targeted_exact_runtime_review",
+    "verified_source_obtained": false,
+    "pinned_state": "not_obtained",
+    "unmatched_dispatcher_selectors": [],
+    "missing_evidence": [
+      "Fresh pinned runtime and series association for every queried token.",
+      "Compiler/source equivalence and full implementation audit.",
+      "Transfer-to-zero versus privileged burn transaction attribution."
+    ]
+  },
+  "provenance": [
+    {
+      "source_id": "netnet-predict-runtime-depth-20261010",
+      "observed_on": "2026-10-10",
+      "locator": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x64eC5c92eC336F9bc0AE2dCFf5acae91B58437AD deployed_bytecode; exact1993-byte runtime independently obtained for this address; reconstructed parameter labels, runtime-supported types/indexing."
+    }
+  ],
+  "discovery_policy": "Deployment identities only, never collection seeds. Pin Desk series tuple and dynamically discover every requested outcome. A future differing runtime is an unknown variant, not licensed by ERC20-like names.",
+  "functions": [
+    {
+      "name": "name",
+      "signature": "name()",
+      "selector": "0x06fdde03",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "1993-byte outcome runtime 0x0223..0x02ad",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public"
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Stored name, no settlement authority."
+      }
+    },
+    {
+      "name": "symbol",
+      "signature": "symbol()",
+      "selector": "0x95d89b41",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "1993-byte outcome runtime 0x0474..0x0480",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public"
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Stored symbol, not series identity proof."
+      }
+    },
+    {
+      "name": "decimals",
+      "signature": "decimals()",
+      "selector": "0x313ce567",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "1993-byte outcome runtime 0x013e..0x0157",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public"
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Constant18 in this exact runtime."
+      }
+    },
+    {
+      "name": "totalSupply",
+      "signature": "totalSupply()",
+      "selector": "0x18160ddd",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "1993-byte outcome runtime 0x0114..0x012a",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public"
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Slot2 minted less privileged burns; transfers to zero do not reduce supply."
+      }
+    },
+    {
+      "name": "balanceOf",
+      "signature": "balanceOf(address)",
+      "selector": "0x70a08231",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "1993-byte outcome runtime 0x016d..0x018b",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public"
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Slot3 account units; exposure not cumulative wagers or cost basis."
+      }
+    },
+    {
+      "name": "allowance",
+      "signature": "allowance(address,address)",
+      "selector": "0xdd62ed3e",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "1993-byte outcome runtime 0x01f9..0x0222",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public"
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Slot4 owner/spender allowance. Desk burn does not consume allowance."
+      }
+    },
+    {
+      "name": "approve",
+      "signature": "approve(address,uint256)",
+      "selector": "0x095ea7b3",
+      "inputs": [
+        {
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "1993-byte outcome runtime 0x02ae..0x0319",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Caller sets own allowance"
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Emits Approval; not a transfer, payout or Desk approval requirement for burn."
+      }
+    },
+    {
+      "name": "transfer",
+      "signature": "transfer(address,uint256)",
+      "selector": "0xa9059cbb",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "1993-byte outcome runtime 0x055b..0x0638",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Caller available balance"
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Moves balances; no zero-recipient guard observed. Transfer(to=zero) emits zero-address destination but is not privileged supply burn."
+      }
+    },
+    {
+      "name": "transferFrom",
+      "signature": "transferFrom(address,address,uint256)",
+      "selector": "0x23b872dd",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "1993-byte outcome runtime 0x031a..0x03a3",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Allowance and sender balance; maxuint allowance remains unchanged"
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Moves balances; finite allowance decremented. Not a Desk redemption."
+      }
+    },
+    {
+      "name": "desk",
+      "signature": "desk()",
+      "selector": "0xc12b293c",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "1993-byte outcome runtime 0x01ba..0x01f8",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public immutable getter"
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Immutable PredictDesk owner of mint/burn capability."
+      }
+    },
+    {
+      "name": "mint",
+      "signature": "mint(address,uint256)",
+      "selector": "0x40c10f19",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "1993-byte outcome runtime 0x03a4..0x0473",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Immutable Desk only"
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Increases totalSupply and recipient balance; emits Transfer from zero."
+      }
+    },
+    {
+      "name": "burn",
+      "signature": "burn(address,uint256)",
+      "selector": "0x9dc29fac",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "1993-byte outcome runtime 0x0481..0x055a",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Immutable Desk only; holder balance"
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Decreases holder balance and totalSupply; emits Transfer to zero. Caller allowance not required; payout logic lives in Desk, not token."
+      }
+    }
+  ],
+  "events": [
+    {
+      "type": "event",
+      "name": "Transfer",
+      "signature": "Transfer(address,address,uint256)",
+      "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "Outcome runtime mint topic PUSH32 at0x0443 and common LOG3 at0x0470; burn topic PUSH32 at0x0534 jumps to0x0468; transfer helper topic PUSH32 at0x05fc,value MSTORE0x0626,LOG3 at0x0634. Topics1/2 from/to; one32-byte amount.",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "meaning": "Balance movement; zero endpoint alone does not prove privileged mint/burn in this runtime."
+    },
+    {
+      "type": "event",
+      "name": "Approval",
+      "signature": "Approval(address,address,uint256)",
+      "topic0": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "spender",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "Outcome approve0x02ae..0x0319: topic PUSH32 at0x02da,value MSTORE0x0302,LOG3 at0x0310. Topics1/2 caller(owner)/spender; one32-byte allowance.",
+        "kind": "runtime_interface_reconstruction_not_verified_source_ABI"
+      },
+      "meaning": "Allowance change, not a wager or payout."
+    }
+  ],
+  "errors": []
+}

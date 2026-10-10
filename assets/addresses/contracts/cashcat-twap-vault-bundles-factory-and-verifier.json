@@ -92,7 +92,9 @@
       "chain_id": 4663,
       "address": "0xcE73c8ad08CBDEaCa6078BF0627C8fe0a9a536E7",
       "role": "verifierProxy",
-      "aliases": [],
+      "aliases": [
+        "NetLong Futures stream verifier gateway"
+      ],
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
@@ -102,6 +104,12 @@
           "locator": "verifierProxy.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+          "locator": "Current BTC/ETH/SOL constructor arg2 and immutable getter; gateway source reviewed, explorer partial verification.",
+          "evidence_kind": "explorer_runtime_and_source_review_not_pinned_state",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED"

@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "workflow": "references/netlong-analytics.md",
+  "interface": "assets/analytics/netlong-interface.json",
+  "source_id": "netnet-trading-entry-20261010",
+  "reviewed_on": "2026-10-10",
+  "scope": "Current selected vault and margin program only. Enumerate markets from on-chain registries; named futures labels are metadata, not discovery filters. Do not merge futures OI with margin debt/exposure.",
+  "vault": {
+    "file": "assets/addresses/contracts/netlong-futures.json",
+    "id": "robinhood-0x50dc51ce9e633bed99d1d826fa0e2caac3183bf6"
+  },
+  "oracle": {
+    "file": "assets/addresses/contracts/netlong-futures.json",
+    "id": "robinhood-0x90f5b57a7236a1447ce786b1ebe42433e55d9fd0"
+  },
+  "margin": {
+    "file": "assets/addresses/contracts/netlong-margin-and-lose.json",
+    "id": "robinhood-0xe1685b19367e066af3e499dd4b0e51866b762c84"
+  },
+  "pot": {
+    "file": "assets/addresses/contracts/netlong-margin-and-lose.json",
+    "id": "robinhood-0x068904944fcf4a18ab40ca112f385faa430f60f2"
+  },
+  "twap": {
+    "file": "assets/addresses/contracts/netlong-margin-and-lose.json",
+    "id": "robinhood-0x2ff4b46b6bf08ecaf0c374676b9a5baa15524311"
+  },
+  "btc": {
+    "file": "assets/addresses/contracts/netlong-futures.json",
+    "id": "robinhood-0xca728e8ee6c8d59c1a3abdf1dea43f2f4a63c575"
+  },
+  "eth": {
+    "file": "assets/addresses/contracts/netlong-futures.json",
+    "id": "robinhood-0x8784014a4cafec70bbc2ae678c59bbe64dbe7858"
+  },
+  "sol": {
+    "file": "assets/addresses/contracts/netlong-futures.json",
+    "id": "robinhood-0x87b14a8e5304e35b0cbddaba3454587b85ff2470"
+  },
+  "net": {
+    "file": "assets/addresses/contracts/netlong-futures.json",
+    "id": "robinhood-0x77d247ec5e2094e8226bcc1a5b8bfb8a903bb00f"
+  },
+  "usdg": {
+    "file": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+    "id": "robinhood-0x5fc5360d0400a0fd4f2af552add042d716f1d168"
+  },
+  "futures_labels": [
+    {
+      "route": "btc",
+      "symbol": "BTC",
+      "source_id": "netnet-trading-entry-20261010"
+    },
+    {
+      "route": "eth",
+      "symbol": "ETH",
+      "source_id": "netnet-trading-entry-20261010"
+    },
+    {
+      "route": "sol",
+      "symbol": "SOL",
+      "source_id": "netnet-trading-entry-20261010"
+    },
+    {
+      "route": "net",
+      "symbol": "NET",
+      "source_id": "netnet-trading-entry-20261010"
+    }
+  ]
+}

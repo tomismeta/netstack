@@ -10,7 +10,7 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from netstack_core import RpcError, keccak256
 from netstack_sleeve import (Collector, FAMILIES, WAD, Q128, MOD256, accrued_owed, accrued_market,
-                            book_exposure, book_claim, debt_assets, feed_valid, predict_claims, settled)
+                            advance_receivable, book_exposure, book_claim, debt_assets, feed_valid, predict_claims, settled)
 
 A = "0x" + "11" * 20
 B = "0x" + "22" * 20
@@ -23,6 +23,15 @@ class AccountingBoundaries(unittest.TestCase):
         self.assertEqual(debt_assets(0, 100, 10**6), 0)
         self.assertEqual(debt_assets(1, 0, 0), 1)
         self.assertEqual(debt_assets(10**6, 100, 10**6), 51)
+
+    def test_advance_principal_floors_each_remaining_open_balance(self):
+        position = {"closed": False, "owed": 11501, "paid": 1}
+        self.assertEqual(advance_receivable(position), (10000, 1000))
+        self.assertEqual(advance_receivable(dict(position, closed=True)), (0, 0))
+        self.assertEqual(advance_receivable(dict(position, paid=11501)), (0, 0))
+        small = {"closed": False, "owed": 2, "paid": 0}
+        self.assertEqual(2 * advance_receivable(small)[0], 2)
+        self.assertEqual(4 * 10000 // 11500, 3)
 
     def test_fee_accrual_uses_lower_inclusive_upper_exclusive_and_wraps(self):
         self.assertEqual(accrued_owed(1, 0, 0, 10, 100*Q128, 20*Q128, 30*Q128, 0, 7), (57, 50))
@@ -339,11 +348,13 @@ class SleeveLedger(unittest.TestCase):
                  "positionCount": 12, "halted": False}
         if missing:
             state[missing] = None
-        with patch.object(c, "many", side_effect=lambda specs: [state[method] for _, _, method, _ in specs]):
+        position = {"owner": c.owner, "closed": False, "owed": 575_000, "paid": 0}
+        with patch.object(c, "many", side_effect=lambda specs: [state[method] for _, _, method, _ in specs]), \
+                patch.object(c, "read", return_value=position):
             c.advance()
         c.methodology["selection_policy"]["advance"] = {
             "desk": c.families["advance"]["contract"],
-            "principal_fields": ["unallocated", "escrowed", "inventory"],
+            "principal_fields": ["unallocated", "receivable", "inventory"],
             "usdg_decimals": 6, "wsnet_decimals": 18}
 
     def test_advance_publisher_reserves_do_not_become_economic_assets_or_historical_recipe(self):
@@ -577,6 +588,84 @@ class SleeveLedger(unittest.TestCase):
             else:
                 self.assertEqual(f["obligations"]["decided_unsettled_payouts_raw"], "20")
                 self.assertEqual(f["obligations"]["house_after_decided_settlement_raw"], "94")
+
+    def advance_snapshot(self, missing=None, count=2):
+        c = self.collector()
+        c.register(c.wsnet, "test")["decimals"] = 18
+        c.register(c.snet, "test")["decimals"] = 9
+        c.net_mark, c.index = Fraction(5), 2 * 10**9
+        state = {"house": A, "usdg": B, "wsNet": c.wsnet, "sNet": c.snet,
+                 "capacity": 7_000_000, "unallocated": 7_000_000, "escrowed": 3_000_000,
+                 "inventory": WAD, "inventoryNet": 2 * 10**9, "lockedTotal": 999 * WAD,
+                 "positionCount": count, "halted": False}
+        observed = []
+        def read(address, abi, method, args=()):
+            if method == "position":
+                observed.append(args[0])
+                return None if args[0] == missing else {
+                    "owner": A, "closed": False, "owed": 1_150_001, "paid": 1}
+            return state[method]
+        c.read = read
+        c.many = lambda specs: [read(*spec) for spec in specs]
+        c.advance()
+        c.methodology["selection_policy"]["advance"] = {
+            "desk": c.families["advance"]["contract"],
+            "principal_fields": ["unallocated", "receivable", "inventory"],
+            "usdg_decimals": 6, "wsnet_decimals": 18}
+        for family in FAMILIES:
+            if family != "advance":
+                c.finish(family, True)
+        return c, observed
+
+    def test_current_advance_counts_principal_not_escrow_or_locked_collateral(self):
+        c, observed = self.advance_snapshot()
+        c.publish()
+        metrics = c.ctx.result["metrics"]
+        self.assertEqual(observed, [1, 2])
+        self.assertEqual(metrics["component_summary"]["advance"]["publisher"]["contribution_wad"], str(19 * WAD))
+        self.assertEqual(metrics["reports_true_rfv"]["value_wad"], str(119 * WAD))
+        escrow = next(r for r in c.families["advance"]["rows"] if r["getter"] == "escrowed")
+        self.assertFalse(escrow["included_in_reports"])
+        self.assertIsNone(metrics["adjusted_net_assets"]["value_wad"])
+        # Selecting the retained dated recipe changes only its explicit perimeter.
+        c.methodology["selection_policy"]["advance"]["principal_fields"] = ["unallocated", "escrowed", "inventory"]
+        c.publish()
+        self.assertEqual(metrics["reports_true_rfv"]["value_wad"], str(120 * WAD))
+
+    def test_missing_or_bounded_advance_position_cannot_silently_lower_total(self):
+        for missing, count in ((2, 2), (None, 129)):
+            c, observed = self.advance_snapshot(missing=missing, count=count)
+            c.publish()
+            family = c.families["advance"]
+            self.assertFalse(family["position_coverage"]["collection_complete"])
+            self.assertIsNone(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"])
+            receivable = next(r for r in family["rows"] if r["getter"] == "receivable")
+            self.assertIsNone(receivable["quantity_raw"])
+            self.assertEqual(len(observed), min(count, 128))
+            self.assertGreater(int(family["observed_principal_receivable_raw"]), 0)
+
+    def test_loopback_posted_wsnet_and_stored_debt_enter_current_selection_once(self):
+        c = self.collector()
+        c.register(c.wsnet, "morpho_collateral")["decimals"] = 18
+        c.register(c.snet, "test")["decimals"] = 9
+        c.net_mark, c.index = Fraction(5), 2 * 10**9
+        collateral = c.quantity("credit", c.wsnet, 2 * WAD, "Posted collateral",
+                                extra={"market_id": "loopback"})
+        debt = c.quantity("credit", B, 6_000_000, "Stored-share debt", sign=-1,
+                          extra={"market_id": "loopback"})
+        c.families["credit"]["stored_position_valuation_complete"]["loopback"] = True
+        for family in FAMILIES:
+            c.finish(family, True)
+        c.publish()
+        self.assertEqual(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"], str(100 * WAD))
+        c.methodology["selection_policy"]["credit"]["market_ids"].append("loopback")
+        c.publish()
+        self.assertEqual(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"], str(114 * WAD))
+        self.assertTrue(collateral["included_in_reports"])
+        self.assertTrue(debt["included_in_reports"])
+        c.families["credit"]["stored_position_valuation_complete"]["loopback"] = False
+        c.publish()
+        self.assertIsNone(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"])
 
     def test_permission_denial_is_terminal_not_optional_missing_balance(self):
         c = self.collector()

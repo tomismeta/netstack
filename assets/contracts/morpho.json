@@ -1,0 +1,1752 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010",
+  "contract_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+  "chain_id": 4663,
+  "address": "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+  "generation": "morpho",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal mt, Unicode character offsets[368793,373440); consumer binding to morpho",
+      "observed_on": "2026-10-07"
+    },
+    {
+      "source_id": "netnet-credit-implementation-20261010-morpho",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+      "observed_on": "2026-10-10",
+      "locator": "src/Morpho.sol"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_obtained_explorer_abi",
+    "supplied_entry_count": 29,
+    "implementation": "targeted_source_review",
+    "pinned_state": "not_obtained",
+    "dispatcher_evidence": {
+      "method": "PUSH4 EQ PUSHn JUMPI byte-pattern; incomplete and not semantic reachability proof",
+      "observed_selector_count": 28,
+      "unmatched_dispatcher_selectors": []
+    },
+    "missing_evidence": [
+      "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+      "Independent compiler equivalence and exhaustive function reachability."
+    ]
+  },
+  "functions": [
+    {
+      "inputs": [],
+      "name": "DOMAIN_SEPARATOR",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "DOMAIN_SEPARATOR()",
+      "selector": "0x3644e515",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads DOMAIN_SEPARATOR state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "loanToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "collateralToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "irm",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lltv",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct MarketParams",
+          "name": "marketParams",
+          "type": "tuple"
+        }
+      ],
+      "name": "accrueInterest",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "accrueInterest((address,address,address,address,uint256))",
+      "selector": "0x151c1ade",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:474"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "market[id].lastUpdate != 0"
+        ],
+        "internal_and_dependency_calls": [
+          "_accrueInterest",
+          "id"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Public; per-second IRM average rate with three Taylor terms, floor interest; feeAmount=floor(interest*fee/WAD); mint floor fee shares to singleton feeRecipient, no cash transfer."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "loanToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "collateralToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "irm",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lltv",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct MarketParams",
+          "name": "marketParams",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        }
+      ],
+      "name": "borrow",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "borrow((address,address,address,address,uint256),uint256,uint256,address,address)",
+      "selector": "0x50d8cd4b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:235"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "market[id].lastUpdate != 0",
+          "UtilsLib.exactlyOneZero(assets, shares)",
+          "receiver != address(0)",
+          "_isSenderAuthorized(onBehalf)",
+          "_isHealthy(marketParams, id, onBehalf)",
+          "market[id].totalBorrowAssets <= market[id].totalSupplyAssets"
+        ],
+        "internal_and_dependency_calls": [
+          "Borrow",
+          "IERC20",
+          "_accrueInterest",
+          "_isHealthy",
+          "_isSenderAuthorized",
+          "exactlyOneZero",
+          "id",
+          "safeTransfer",
+          "toAssetsDown",
+          "toSharesUp",
+          "toUint128"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Authorized borrower/operator; exact one assets/shares nonzero; asset-specified debt shares round up, share-specified assets down; fresh health and liquidity checks."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "loanToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "collateralToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "irm",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lltv",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct MarketParams",
+          "name": "marketParams",
+          "type": "tuple"
+        }
+      ],
+      "name": "createMarket",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "createMarket((address,address,address,address,uint256))",
+      "selector": "0x8c1358a2",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:150"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "isIrmEnabled[marketParams.irm]",
+          "isLltvEnabled[marketParams.lltv]",
+          "market[id].lastUpdate == 0"
+        ],
+        "internal_and_dependency_calls": [
+          "CreateMarket",
+          "IIrm",
+          "borrowRate",
+          "id"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Permissionless only enabled IRM/LLTV; ID hashes five market parameters; creation not listing or Credit activation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "irm",
+          "type": "address"
+        }
+      ],
+      "name": "enableIrm",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "enableIrm(address)",
+      "selector": "0x5a64f51e",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:104"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Owner-only.",
+        "direct_source_guards": [
+          "!isIrmEnabled[irm]"
+        ],
+        "internal_and_dependency_calls": [
+          "EnableIrm"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined enableIrm operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "lltv",
+          "type": "uint256"
+        }
+      ],
+      "name": "enableLltv",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "enableLltv(uint256)",
+      "selector": "0x4d98a93b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:113"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Owner-only.",
+        "direct_source_guards": [
+          "!isLltvEnabled[lltv]",
+          "lltv < WAD"
+        ],
+        "internal_and_dependency_calls": [
+          "EnableLltv"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined enableLltv operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "slots",
+          "type": "bytes32[]"
+        }
+      ],
+      "name": "extSloads",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "res",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "extSloads(bytes32[])",
+      "selector": "0x7784c685",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:544"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "add",
+          "mstore",
+          "mul",
+          "sload"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined extSloads operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "feeRecipient",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "feeRecipient()",
+      "selector": "0x46904840",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads feeRecipient state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "flashLoan",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "flashLoan(address,uint256,bytes)",
+      "selector": "0xe0232b42",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:422"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "assets != 0"
+        ],
+        "internal_and_dependency_calls": [
+          "FlashLoan",
+          "IERC20",
+          "IMorphoFlashLoanCallback",
+          "onMorphoFlashLoan",
+          "safeTransfer",
+          "safeTransferFrom"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Permissionless callback transfers token then pulls exact assets back; no explicit flash fee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "Id",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "idToMarketParams",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "loanToken",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "collateralToken",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "oracle",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "irm",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lltv",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "idToMarketParams(bytes32)",
+      "selector": "0x2c3c9157",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads idToMarketParams state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "isAuthorized",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isAuthorized(address,address)",
+      "selector": "0x65e4ad9e",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads isAuthorized state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "isIrmEnabled",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isIrmEnabled(address)",
+      "selector": "0xf2b863ce",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads isIrmEnabled state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "isLltvEnabled",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isLltvEnabled(uint256)",
+      "selector": "0xb485f3b8",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads isLltvEnabled state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "loanToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "collateralToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "irm",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lltv",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct MarketParams",
+          "name": "marketParams",
+          "type": "tuple"
+        },
+        {
+          "internalType": "address",
+          "name": "borrower",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "seizedAssets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "repaidShares",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "liquidate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "liquidate((address,address,address,address,uint256),address,uint256,uint256,bytes)",
+      "selector": "0xd8eabcb8",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:347"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "market[id].lastUpdate != 0",
+          "UtilsLib.exactlyOneZero(seizedAssets, repaidShares)",
+          "!_isHealthy(marketParams, id, borrower, collateralPrice)"
+        ],
+        "internal_and_dependency_calls": [
+          "IERC20",
+          "IMorphoLiquidateCallback",
+          "IOracle",
+          "Liquidate",
+          "_accrueInterest",
+          "_isHealthy",
+          "exactlyOneZero",
+          "id",
+          "min",
+          "mulDivDown",
+          "mulDivUp",
+          "onMorphoLiquidate",
+          "price",
+          "safeTransfer",
+          "safeTransferFrom",
+          "toAssetsDown",
+          "toAssetsUp",
+          "toSharesUp",
+          "toUint128",
+          "wDivDown",
+          "wDivUp",
+          "wMulDown",
+          "zeroFloorSub"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Permissionless only unhealthy after accrual/oracle; incentive min(1.15,1/(1-0.3*(1-lltv))); repayment assets up, selected seized collateral quote up or repayment-selected collateral down; collateral exhaustion writes bad debt off supply assets."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "Id",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "market",
+      "outputs": [
+        {
+          "internalType": "uint128",
+          "name": "totalSupplyAssets",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "totalSupplyShares",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "totalBorrowAssets",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "totalBorrowShares",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "lastUpdate",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "fee",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "market(bytes32)",
+      "selector": "0x5c60e39a",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Stored six-field market balances, lastUpdate and fee; MUST accrue interest for current debt/health."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "nonce",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "nonce(address)",
+      "selector": "0x70ae92d2",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads nonce state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "owner()",
+      "selector": "0x8da5cb5b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads owner state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "Id",
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "position",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "supplyShares",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint128",
+          "name": "borrowShares",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "collateral",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "position(bytes32,address)",
+      "selector": "0x93c52062",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Stored supplyShares, borrowShares, raw collateral; neither supply nor debt assets are directly returned."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "loanToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "collateralToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "irm",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lltv",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct MarketParams",
+          "name": "marketParams",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "repay",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "repay((address,address,address,address,uint256),uint256,uint256,address,bytes)",
+      "selector": "0x20b76e81",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:269"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "market[id].lastUpdate != 0",
+          "UtilsLib.exactlyOneZero(assets, shares)",
+          "onBehalf != address(0)"
+        ],
+        "internal_and_dependency_calls": [
+          "IERC20",
+          "IMorphoRepayCallback",
+          "Repay",
+          "_accrueInterest",
+          "exactlyOneZero",
+          "id",
+          "onMorphoRepay",
+          "safeTransferFrom",
+          "toAssetsUp",
+          "toSharesDown",
+          "toUint128",
+          "zeroFloorSub"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Permissionless onBehalf repayment; asset-specified shares down, share-specified assets up; zero-floor remaining debt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "authorized",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "newIsAuthorized",
+          "type": "bool"
+        }
+      ],
+      "name": "setAuthorization",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setAuthorization(address,bool)",
+      "selector": "0xeecea000",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:437"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "newIsAuthorized != isAuthorized[msg.sender][authorized]"
+        ],
+        "internal_and_dependency_calls": [
+          "SetAuthorization"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setAuthorization operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "authorizer",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "authorized",
+              "type": "address"
+            },
+            {
+              "internalType": "bool",
+              "name": "isAuthorized",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "nonce",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Authorization",
+          "name": "authorization",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint8",
+              "name": "v",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "r",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "s",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct Signature",
+          "name": "signature",
+          "type": "tuple"
+        }
+      ],
+      "name": "setAuthorizationWithSig",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setAuthorizationWithSig((address,address,bool,uint256,uint256),(uint8,bytes32,bytes32))",
+      "selector": "0x8069218f",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:446"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "block.timestamp <= authorization.deadline",
+          "authorization.nonce == nonce[authorization.authorizer]++",
+          "signatory != address(0) && authorization.authorizer == signatory"
+        ],
+        "internal_and_dependency_calls": [
+          "IncrementNonce",
+          "SetAuthorization",
+          "concat",
+          "ecrecover",
+          "encode",
+          "keccak256"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Deadline, nonce and recovered authorizer checked; sets spender permission, not a fee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "loanToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "collateralToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "irm",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lltv",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct MarketParams",
+          "name": "marketParams",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newFee",
+          "type": "uint256"
+        }
+      ],
+      "name": "setFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setFee((address,address,address,address,uint256),uint256)",
+      "selector": "0x2b4f013c",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:123"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Owner-only.",
+        "direct_source_guards": [
+          "market[id].lastUpdate != 0",
+          "newFee != market[id].fee",
+          "newFee <= MAX_FEE"
+        ],
+        "internal_and_dependency_calls": [
+          "SetFee",
+          "_accrueInterest",
+          "id"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Owner only; accrue old fee first; max0.25WAD."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newFeeRecipient",
+          "type": "address"
+        }
+      ],
+      "name": "setFeeRecipient",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setFeeRecipient(address)",
+      "selector": "0xe74b981b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:139"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Owner-only.",
+        "direct_source_guards": [
+          "newFeeRecipient != feeRecipient"
+        ],
+        "internal_and_dependency_calls": [
+          "SetFeeRecipient"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setFeeRecipient operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "setOwner",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setOwner(address)",
+      "selector": "0x13af4035",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:95"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Owner-only.",
+        "direct_source_guards": [
+          "newOwner != owner"
+        ],
+        "internal_and_dependency_calls": [
+          "SetOwner"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setOwner operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "loanToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "collateralToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "irm",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lltv",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct MarketParams",
+          "name": "marketParams",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "supply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "supply((address,address,address,address,uint256),uint256,uint256,address,bytes)",
+      "selector": "0xa99aad89",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:169"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "market[id].lastUpdate != 0",
+          "UtilsLib.exactlyOneZero(assets, shares)",
+          "onBehalf != address(0)"
+        ],
+        "internal_and_dependency_calls": [
+          "IERC20",
+          "IMorphoSupplyCallback",
+          "Supply",
+          "_accrueInterest",
+          "exactlyOneZero",
+          "id",
+          "onMorphoSupply",
+          "safeTransferFrom",
+          "toAssetsUp",
+          "toSharesDown",
+          "toUint128"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Permissionless onBehalf supply; asset-specified shares down, share-specified required assets up."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "loanToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "collateralToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "irm",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lltv",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct MarketParams",
+          "name": "marketParams",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "supplyCollateral",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "supplyCollateral((address,address,address,address,uint256),uint256,address,bytes)",
+      "selector": "0x238d6579",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:303"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "market[id].lastUpdate != 0",
+          "assets != 0",
+          "onBehalf != address(0)"
+        ],
+        "internal_and_dependency_calls": [
+          "IERC20",
+          "IMorphoSupplyCollateralCallback",
+          "SupplyCollateral",
+          "id",
+          "onMorphoSupplyCollateral",
+          "safeTransferFrom",
+          "toUint128"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Adds collateral without accruing interest; optional callback before transfer."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "loanToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "collateralToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "irm",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lltv",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct MarketParams",
+          "name": "marketParams",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "withdraw((address,address,address,address,uint256),uint256,uint256,address,address)",
+      "selector": "0x5c2bea49",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:200"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "market[id].lastUpdate != 0",
+          "UtilsLib.exactlyOneZero(assets, shares)",
+          "receiver != address(0)",
+          "_isSenderAuthorized(onBehalf)",
+          "market[id].totalBorrowAssets <= market[id].totalSupplyAssets"
+        ],
+        "internal_and_dependency_calls": [
+          "IERC20",
+          "Withdraw",
+          "_accrueInterest",
+          "_isSenderAuthorized",
+          "exactlyOneZero",
+          "id",
+          "safeTransfer",
+          "toAssetsDown",
+          "toSharesUp",
+          "toUint128"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Authorized owner/operator; assets burn shares up, shares return assets down; cannot withdraw borrowed liquidity."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "loanToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "collateralToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "oracle",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "irm",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lltv",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct MarketParams",
+          "name": "marketParams",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        }
+      ],
+      "name": "withdrawCollateral",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "withdrawCollateral((address,address,address,address,uint256),uint256,address,address)",
+      "selector": "0x8720316d",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol:323"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "market[id].lastUpdate != 0",
+          "assets != 0",
+          "receiver != address(0)",
+          "_isSenderAuthorized(onBehalf)",
+          "_isHealthy(marketParams, id, onBehalf)"
+        ],
+        "internal_and_dependency_calls": [
+          "IERC20",
+          "WithdrawCollateral",
+          "_accrueInterest",
+          "_isHealthy",
+          "_isSenderAuthorized",
+          "id",
+          "safeTransfer",
+          "toUint128"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Authorized; accrues and checks remaining position health."
+      }
+    }
+  ],
+  "events": [],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-morpho",
+        "locator": "src/Morpho.sol: constructor; explorer decoded_constructor_args"
+      }
+    }
+  ],
+  "runtime_evidence": {
+    "source_id": "netnet-credit-implementation-20261010-morpho",
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+    "observed_on": "2026-10-10",
+    "source_status": "explorer_verified_source_obtained",
+    "source_file": "src/Morpho.sol",
+    "source_sha256": "1b7b966f12d47ed015695d51cc50d31d44369d942fea0ebac923955588e8bd5f",
+    "runtime_sha256": "49a0d9bf03de19d7dad859819e7f8986b3329b3ee7c75da1b516661583ed7a76",
+    "runtime_bytes": 15582,
+    "runtime_observation": "unpinned_explorer_response",
+    "compiler_version": "v0.8.19+commit.7dd6d404",
+    "proxy_type": null,
+    "implementations": [],
+    "additional_sources": [
+      {
+        "file_path": "src/interfaces/IERC20.sol",
+        "sha256": "6e2b44aa15626cde7e33adc20c8a424ba91aaec47fab9170efaeea54104e565d"
+      },
+      {
+        "file_path": "src/interfaces/IOracle.sol",
+        "sha256": "757c9870385af7a880cb12ae47b4aba8a936bab4a7bdeff50647d605237fc178"
+      },
+      {
+        "file_path": "src/interfaces/IIrm.sol",
+        "sha256": "3ba6e6164cd0ed25d2b1d8d3766667ef016712705fe30094a97fe3801d14e915"
+      },
+      {
+        "file_path": "src/interfaces/IMorpho.sol",
+        "sha256": "8fcdf6278afd39146333380afe2054d66e2c4fd7e8aa90fbd746cd947d4d42ea"
+      },
+      {
+        "file_path": "src/interfaces/IMorphoCallbacks.sol",
+        "sha256": "3fa10015bd49e04e3c14e63bcf0abefb3ebac5759b030d32784cb1bd4773e0c4"
+      },
+      {
+        "file_path": "src/libraries/ConstantsLib.sol",
+        "sha256": "d450cc5f56d70f6460ed81c5e2e7a294f5b7644307a4c742754e0d41a8789567"
+      },
+      {
+        "file_path": "src/libraries/ErrorsLib.sol",
+        "sha256": "0a54375182b5cfbb4f1101da4900c45ee96ba74962853168daf0d6281580666c"
+      },
+      {
+        "file_path": "src/libraries/EventsLib.sol",
+        "sha256": "c267b23c5a3086ed00a712b841ef12b674be508ac8b8cf2e3f289ae09bd1677a"
+      },
+      {
+        "file_path": "src/libraries/MarketParamsLib.sol",
+        "sha256": "94af290e2a2094b8547b925449484d247bce87cce4fed8902ecf82dd2b49242e"
+      },
+      {
+        "file_path": "src/libraries/MathLib.sol",
+        "sha256": "2c6728d1bc8f5db81f2a7946f226c3c4a8cffe4134c55450ca445b05727011bc"
+      },
+      {
+        "file_path": "src/libraries/SafeTransferLib.sol",
+        "sha256": "bee3d6375591947edc45a28f46569e969df9ab434b91530e5bb4560aa61e3675"
+      },
+      {
+        "file_path": "src/libraries/SharesMathLib.sol",
+        "sha256": "4580deb1b1a3f2ea0b60f2305708428975613d1e94d404d647bcc573a7b2a2f0"
+      },
+      {
+        "file_path": "src/libraries/UtilsLib.sol",
+        "sha256": "9d0c8a0855b2f9e9f92111cdf32bdbbd1ff97b7584f0f958b695f2c4cb0d1b34"
+      }
+    ],
+    "constructor_bindings": [
+      [
+        "0xC67335D90Eb297407f998bFb75DbAAC8bebDdd2b",
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ]
+    ],
+    "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+  }
+}

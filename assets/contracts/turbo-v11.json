@@ -1,0 +1,3777 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x757122439420900ca44a80c390d586011fd72c8a",
+  "contract_record": "assets/addresses/contracts/turbo-deployments-and-adapters.json",
+  "chain_id": 4663,
+  "address": "0x757122439420900ca44A80c390d586011FD72C8a",
+  "generation": "v1.1",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11",
+      "observed_on": "2026-10-07"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 142,
+    "implementation": "unreviewed",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned code, storage, current permissions and financial reconciliation.",
+      "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+    ],
+    "literal_abi_sha256": "ef82362357ad09e03d7d0f22005cb8ce278318947b9a108e95ec5ca4460a2a35",
+    "literal_character_range": [
+      317441,
+      344093
+    ]
+  },
+  "functions": [
+    {
+      "name": "CARD_TARGET_USD_WAD",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "CARD_TARGET_USD_WAD()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[1]"
+      },
+      "selector": "0xc81f5c94",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface CARD_TARGET_USD_WAD(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "MAX_CONVERT_DEV_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MAX_CONVERT_DEV_BPS()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[2]"
+      },
+      "selector": "0x9353a22d",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface MAX_CONVERT_DEV_BPS(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "allSalesHalted",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "allSalesHalted()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[3]"
+      },
+      "selector": "0xc68abad2",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface allSalesHalted(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "asset0",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "asset0()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[4]"
+      },
+      "selector": "0xc509b6a2",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface asset0(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "asset1",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "asset1()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[5]"
+      },
+      "selector": "0x7cd5f3f9",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface asset1(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "asset2",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "asset2()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[6]"
+      },
+      "selector": "0xe9423bf2",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface asset2(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "balanceOf",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "balanceOf(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[7]"
+      },
+      "selector": "0x00fdd58e",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface balanceOf(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "balanceOfBatch",
+      "inputs": [
+        {
+          "name": "owners",
+          "type": "address[]",
+          "internalType": "address[]"
+        },
+        {
+          "name": "ids",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "balances",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "balanceOfBatch(address[],uint256[])",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[8]"
+      },
+      "selector": "0x4e1273f4",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface balanceOfBatch(address[],uint256[]). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "basisOf",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "wallet",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "costUsdgRaw",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "count",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "basisOf(uint256,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[9]"
+      },
+      "selector": "0x66372a4a",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface basisOf(uint256,address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "bookOf",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct ITurboDesk.AssetBook",
+          "components": [
+            {
+              "name": "potUnits",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "reservedUnits",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "putPotUsdg",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "putReservedUsdg",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "premiumUsdg",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "feeManagerTok",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "feeSleeveTok",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "bookOf(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[10]"
+      },
+      "selector": "0x672eff50",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface bookOf(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "buy",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "count",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "maxPriceUsdg",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "paidUsdgRaw",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "buy(uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[11]"
+      },
+      "selector": "0x40993b26",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface buy(uint256,uint256,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "cashOut",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "count",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "minOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "paidOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "cashOut(uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[12]"
+      },
+      "selector": "0x77e8a3cc",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface cashOut(uint256,uint256,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "claimExpiry",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "count",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "paidOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "claimExpiry(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[13]"
+      },
+      "selector": "0xf33e3c5e",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface claimExpiry(uint256,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "clearKnock",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "clearKnock(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[14]"
+      },
+      "selector": "0xfdc27494",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface clearKnock(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "convertPremiums",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "minTokensOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "swapCalldata",
+          "type": "bytes",
+          "internalType": "bytes"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "tokensOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "convertPremiums(address,uint256,bytes)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[15]"
+      },
+      "selector": "0x8b244c66",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface convertPremiums(address,uint256,bytes). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "convertSleeveFees",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "minTokensOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "swapCalldata",
+          "type": "bytes",
+          "internalType": "bytes"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "tokensOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "convertSleeveFees(address,uint256,bytes)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[16]"
+      },
+      "selector": "0xd998a9a2",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface convertSleeveFees(address,uint256,bytes). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "createSeries",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "side",
+          "type": "uint8",
+          "internalType": "enum ITurboDesk.Side"
+        },
+        {
+          "name": "strikeWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "unitsPerCard",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "expiry",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "maxCards",
+          "type": "uint32",
+          "internalType": "uint32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "createSeries(address,uint8,uint256,uint256,uint64,uint32)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[17]"
+      },
+      "selector": "0xe903b961",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface createSeries(address,uint8,uint256,uint256,uint64,uint32). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "depositHouse",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "depositHouse(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[18]"
+      },
+      "selector": "0xb487e242",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface depositHouse(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "depositPutPot",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "usdgRaw",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "depositPutPot(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[19]"
+      },
+      "selector": "0xcbcd6d7c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface depositPutPot(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "feedAdapter",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ITurboFeedAdapter"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "feedAdapter()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[20]"
+      },
+      "selector": "0x569adb39",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface feedAdapter(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "haltSales",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "haltSales(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[21]"
+      },
+      "selector": "0xac50a5f2",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface haltSales(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "halter",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "halter()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[22]"
+      },
+      "selector": "0xb0e73c14",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface halter(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "isApprovedForAll",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isApprovedForAll(address,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[23]"
+      },
+      "selector": "0xe985e9c5",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface isApprovedForAll(address,address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "liquidate",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "roundId",
+          "type": "uint80",
+          "internalType": "uint80"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "liquidate(uint256,uint80)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[24]"
+      },
+      "selector": "0xf6e820f9",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface liquidate(uint256,uint80). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "liquidateKnock",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "liquidateKnock(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[25]"
+      },
+      "selector": "0x40e2aff9",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface liquidateKnock(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "manager",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "manager()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[26]"
+      },
+      "selector": "0x481c6a75",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface manager(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "markAge",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "markAge(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[27]"
+      },
+      "selector": "0x20616477",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface markAge(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "markVoid",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "markVoid(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[28]"
+      },
+      "selector": "0x36968615",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface markVoid(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "offHoursWindowLeft",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "offHoursWindowLeft(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[29]"
+      },
+      "selector": "0xcdef72b2",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface offHoursWindowLeft(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "quoteBuy",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "count",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "totalUsdgRaw",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "rung",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "markWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "quoteBuy(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[30]"
+      },
+      "selector": "0xf998a865",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface quoteBuy(uint256,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "quoteCashOut",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "count",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "holder",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "netOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "perfFee",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "rung",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "markWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "quoteCashOut(uint256,uint256,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[31]"
+      },
+      "selector": "0xed6402a6",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface quoteCashOut(uint256,uint256,address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "recordDrift",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "recordDrift(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[32]"
+      },
+      "selector": "0x67323f5f",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface recordDrift(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "recordKnock",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "recordKnock(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[33]"
+      },
+      "selector": "0x6a29ec48",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface recordKnock(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "refund",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "count",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "refunded",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "refund(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[34]"
+      },
+      "selector": "0x5af36e3e",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface refund(uint256,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "resumeSales",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "resumeSales(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[35]"
+      },
+      "selector": "0x332ed676",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface resumeSales(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "routerSource",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "routerSource()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[36]"
+      },
+      "selector": "0x38ac6813",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface routerSource(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "rung2Available",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ok",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "twapWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "rung2Available(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[37]"
+      },
+      "selector": "0xc33446db",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface rung2Available(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "safeBatchTransferFrom",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "ids",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        },
+        {
+          "name": "amounts",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        },
+        {
+          "name": "data",
+          "type": "bytes",
+          "internalType": "bytes"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[38]"
+      },
+      "selector": "0x2eb2c2d6",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface safeBatchTransferFrom(address,address,uint256[],uint256[],bytes). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "safeTransferFrom",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "data",
+          "type": "bytes",
+          "internalType": "bytes"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "safeTransferFrom(address,address,uint256,uint256,bytes)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[39]"
+      },
+      "selector": "0xf242432a",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface safeTransferFrom(address,address,uint256,uint256,bytes). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "seriesCount",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "seriesCount()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[40]"
+      },
+      "selector": "0xd7f2c0ef",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface seriesCount(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "seriesLive",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "rung",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "markWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "haircutBps",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "effLeverageWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "distanceBps",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "seriesLive(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[41]"
+      },
+      "selector": "0x80f5bd6c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface seriesLive(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "seriesOf",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct ITurboDesk.Series",
+          "components": [
+            {
+              "name": "asset",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "side",
+              "type": "uint8",
+              "internalType": "enum ITurboDesk.Side"
+            },
+            {
+              "name": "state",
+              "type": "uint8",
+              "internalType": "enum ITurboDesk.SeriesState"
+            },
+            {
+              "name": "salesHalted",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "expiry",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "createdAt",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "maxCards",
+              "type": "uint32",
+              "internalType": "uint32"
+            },
+            {
+              "name": "sold",
+              "type": "uint32",
+              "internalType": "uint32"
+            },
+            {
+              "name": "outstanding",
+              "type": "uint32",
+              "internalType": "uint32"
+            },
+            {
+              "name": "strikeWad",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "unitsPerCard",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "baseUiMultiplier",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "listLeverageWad",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "premiumUsdgRaw",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "settleMarkWad",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "settlePerCard",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "liqRoundId",
+              "type": "uint80",
+              "internalType": "uint80"
+            },
+            {
+              "name": "settleRoundId",
+              "type": "uint80",
+              "internalType": "uint80"
+            },
+            {
+              "name": "knockCheckpointAt",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "driftOnsetAt",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "offHoursWindowId",
+              "type": "uint80",
+              "internalType": "uint80"
+            },
+            {
+              "name": "soldInWindow",
+              "type": "uint32",
+              "internalType": "uint32"
+            },
+            {
+              "name": "windowCapCards",
+              "type": "uint32",
+              "internalType": "uint32"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "seriesOf(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[42]"
+      },
+      "selector": "0xe870b591",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface seriesOf(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "servingRung",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "rung",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "markWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "servingRung(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[43]"
+      },
+      "selector": "0x20e1cd83",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface servingRung(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "setApprovalForAll",
+      "inputs": [
+        {
+          "name": "operator",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "approved",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setApprovalForAll(address,bool)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[44]"
+      },
+      "selector": "0xa22cb465",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface setApprovalForAll(address,bool). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "settle",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "roundId",
+          "type": "uint80",
+          "internalType": "uint80"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "settle(uint256,uint80)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[45]"
+      },
+      "selector": "0xf5417124",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface settle(uint256,uint80). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "skim",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "skim(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[46]"
+      },
+      "selector": "0xbc25cf77",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface skim(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "sleeve",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "sleeve()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[47]"
+      },
+      "selector": "0x55e28b9c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface sleeve(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "supportsInterface",
+      "inputs": [
+        {
+          "name": "interfaceId",
+          "type": "bytes4",
+          "internalType": "bytes4"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "pure",
+      "signature": "supportsInterface(bytes4)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[48]"
+      },
+      "selector": "0x01ffc9a7",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface supportsInterface(bytes4). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "sweepFees",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "sweepFees()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[49]"
+      },
+      "selector": "0xd113b95c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface sweepFees(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "unrealizedProfitUsdWad",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "wallet",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "int256",
+          "internalType": "int256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "unrealizedProfitUsdWad(uint256,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[50]"
+      },
+      "selector": "0x17b1ec57",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface unrealizedProfitUsdWad(uint256,address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "uri",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "string",
+          "internalType": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "uri(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[51]"
+      },
+      "selector": "0x0e89341c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface uri(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdg()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[52]"
+      },
+      "selector": "0xf5b91b7b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface usdg(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "usdgFees",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct ITurboDesk.UsdgFees",
+          "components": [
+            {
+              "name": "feeManager",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "feeSleeve",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdgFees()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[53]"
+      },
+      "selector": "0x4d0e487b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface usdgFees(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "withdrawHouse",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "withdrawHouse(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[54]"
+      },
+      "selector": "0x1d459a95",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface withdrawHouse(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "withdrawPutPot",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "usdgRaw",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "withdrawPutPot(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[55]"
+      },
+      "selector": "0x6237852f",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface withdrawPutPot(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "ApprovalForAll",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "operator",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "approved",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        }
+      ],
+      "anonymous": false,
+      "signature": "ApprovalForAll(address,address,bool)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[56]"
+      },
+      "topic0": "0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31"
+    },
+    {
+      "name": "CardsBought",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "buyer",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "count",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "rung",
+          "type": "uint8",
+          "indexed": false,
+          "internalType": "uint8"
+        },
+        {
+          "name": "markWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "premiumUsdgRaw",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "feeUsdgRaw",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "CardsBought(uint256,address,uint256,uint8,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[57]"
+      },
+      "topic0": "0x0ce7137795a09ae6172778c360df4ea24d99d16b468892a2a679cc27cb767c71"
+    },
+    {
+      "name": "CardsCashedOut",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "holder",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "count",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "rung",
+          "type": "uint8",
+          "indexed": false,
+          "internalType": "uint8"
+        },
+        {
+          "name": "markWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "payoutGross",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "perfFee",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "CardsCashedOut(uint256,address,uint256,uint8,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[58]"
+      },
+      "topic0": "0x112bc940a654cb254a35f08d478a33251fd659a6d328aedb934f99540a5b2968"
+    },
+    {
+      "name": "DriftCleared",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "multiplier",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "DriftCleared(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[59]"
+      },
+      "topic0": "0xe838aa18dab3b9f41afbb16b174be8ab19f828ac5296bd915a37bbc91dfb9917"
+    },
+    {
+      "name": "DriftRecorded",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "multiplier",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "at",
+          "type": "uint64",
+          "indexed": false,
+          "internalType": "uint64"
+        }
+      ],
+      "anonymous": false,
+      "signature": "DriftRecorded(uint256,uint256,uint64)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[60]"
+      },
+      "topic0": "0xcff8dcd59726775a3ebeeac58ffa28b678635f348ce5ddc73279ac3da9efd85a"
+    },
+    {
+      "name": "ExpiryClaimed",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "holder",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "count",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "payoutGross",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "perfFee",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "ExpiryClaimed(uint256,address,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[61]"
+      },
+      "topic0": "0xc518f9ab012c9447a27389f9e6db2600c21fcc4fcbb9e2f4deb6306f8094d132"
+    },
+    {
+      "name": "FeesSwept",
+      "inputs": [
+        {
+          "name": "caller",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "managerUsdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "sleeveUsdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "FeesSwept(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[62]"
+      },
+      "topic0": "0x3661bac89c3ea626ca01b086d5318887ed39ba827c11d06622e519fbad882c22"
+    },
+    {
+      "name": "HouseDeposited",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "pot",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "HouseDeposited(address,address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[63]"
+      },
+      "topic0": "0xa015bf6887efdaeea87d6b90a1dc6767a308062758f3641cce264198b8b9cf57"
+    },
+    {
+      "name": "HouseWithdrawn",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "pot",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "HouseWithdrawn(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[64]"
+      },
+      "topic0": "0x6b6d02966b2e189f29bb7c3e5c74cb79c747bcb62ee85a88cebb73558e42f772"
+    },
+    {
+      "name": "KnockCleared",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "twapWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "KnockCleared(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[65]"
+      },
+      "topic0": "0x52ddd26ba9b031e6b48eff57e99edf84cf5cbb93e7968fa710ce8e38210ca92d"
+    },
+    {
+      "name": "KnockRecorded",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "at",
+          "type": "uint64",
+          "indexed": false,
+          "internalType": "uint64"
+        },
+        {
+          "name": "twapWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "KnockRecorded(uint256,uint64,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[66]"
+      },
+      "topic0": "0x64561606a3bc3a9c2d27a9484176326837aa5e6ce7cce982e074d073336eb15c"
+    },
+    {
+      "name": "PremiumsConverted",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "tokensOut",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "PremiumsConverted(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[67]"
+      },
+      "topic0": "0xbbf482d61c0bd6d18018dd20b133d69c1b282565a0578c3dfb1201f5e59ff9b3"
+    },
+    {
+      "name": "PutPotDeposited",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "pot",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "PutPotDeposited(address,address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[68]"
+      },
+      "topic0": "0x7023bda93065911e3d0d5047cb69955134ce636d1b9906ec2db17468a0ef5a98"
+    },
+    {
+      "name": "PutPotWithdrawn",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "pot",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "PutPotWithdrawn(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[69]"
+      },
+      "topic0": "0xd103de7cb2e2e7e19ba4777364e4be06f690a611ec5d55ae8f146892872a7cd9"
+    },
+    {
+      "name": "Refunded",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "holder",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "count",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Refunded(uint256,address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[70]"
+      },
+      "topic0": "0x279ac10417b4a21068fc6d3150dd2e5fc45320cb722f60a07d37a113a3bf3acd"
+    },
+    {
+      "name": "SalesHaltSet",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "halted",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        },
+        {
+          "name": "by",
+          "type": "address",
+          "indexed": false,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false,
+      "signature": "SalesHaltSet(uint256,bool,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[71]"
+      },
+      "topic0": "0x81682fb93bc1d2283f75e89b0724b1493fbdc0d4d3fa9ee00742907adbb3625d"
+    },
+    {
+      "name": "SeriesCreated",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "asset",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "side",
+          "type": "uint8",
+          "indexed": false,
+          "internalType": "enum ITurboDesk.Side"
+        },
+        {
+          "name": "strikeWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "unitsPerCard",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "expiry",
+          "type": "uint64",
+          "indexed": false,
+          "internalType": "uint64"
+        },
+        {
+          "name": "maxCards",
+          "type": "uint32",
+          "indexed": false,
+          "internalType": "uint32"
+        },
+        {
+          "name": "listLeverageWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "listMarkWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "SeriesCreated(uint256,address,uint8,uint256,uint256,uint64,uint32,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[72]"
+      },
+      "topic0": "0x25d8f44fcee30cfff9d60acb1cb2a164e7c6f39eaa788f76ac854a3e346deb02"
+    },
+    {
+      "name": "SeriesKnocked",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "roundId",
+          "type": "uint80",
+          "indexed": false,
+          "internalType": "uint80"
+        },
+        {
+          "name": "reservationReleased",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "SeriesKnocked(uint256,uint80,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[73]"
+      },
+      "topic0": "0xfa21e8e0106f2c9ee18aa6c05a8956733e0b816d36fcf29bc6a073304d1a02ae"
+    },
+    {
+      "name": "SeriesSettled",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "roundId",
+          "type": "uint80",
+          "indexed": false,
+          "internalType": "uint80"
+        },
+        {
+          "name": "settleMarkWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "settlePerCard",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "SeriesSettled(uint256,uint80,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[74]"
+      },
+      "topic0": "0x6f21650e38aad89ff523b08ae9c83f9feb80cc9e1adad4ab1b2defc24889cf4c"
+    },
+    {
+      "name": "SeriesVoided",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "lastMarkWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "SeriesVoided(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[75]"
+      },
+      "topic0": "0x32d2114174db72b9ff47984e003ac736e280a3d8a7fe6a4830a426305f00bbe2"
+    },
+    {
+      "name": "Skimmed",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Skimmed(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[76]"
+      },
+      "topic0": "0xb0477b3d4d588e76d76df1c6cf069311c9dc4f742f19d0f74a70f58803d0768f"
+    },
+    {
+      "name": "SleeveFeesConverted",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "tokensOut",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "SleeveFeesConverted(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[77]"
+      },
+      "topic0": "0x9bd7ff28eef607ecae6390c69e657653eea225aa3abd80834e6afb38743cdda5"
+    },
+    {
+      "name": "TokenFeesSwept",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "managerTok",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "sleeveTok",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "TokenFeesSwept(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[78]"
+      },
+      "topic0": "0x14ea4c73e08a6fac4d235d86d05fa3dccbdad6dabac9e53bf484b1162df312c5"
+    },
+    {
+      "name": "TransferBatch",
+      "inputs": [
+        {
+          "name": "operator",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "ids",
+          "type": "uint256[]",
+          "indexed": false,
+          "internalType": "uint256[]"
+        },
+        {
+          "name": "values",
+          "type": "uint256[]",
+          "indexed": false,
+          "internalType": "uint256[]"
+        }
+      ],
+      "anonymous": false,
+      "signature": "TransferBatch(address,address,address,uint256[],uint256[])",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[79]"
+      },
+      "topic0": "0x4a39dc06d4c0dbc64b70af90fd698a233a518aa5d07e595d983b8c0526c8f7fb"
+    },
+    {
+      "name": "TransferSingle",
+      "inputs": [
+        {
+          "name": "operator",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "value",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "TransferSingle(address,address,address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[80]"
+      },
+      "topic0": "0xc3d58168c5ae7397731d063d5bbf3d657854427343f4c083240f7aacaa2d0f62"
+    },
+    {
+      "name": "URI",
+      "inputs": [
+        {
+          "name": "value",
+          "type": "string",
+          "indexed": false,
+          "internalType": "string"
+        },
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "URI(string,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[81]"
+      },
+      "topic0": "0x6bb7ff708619ba0610cba295a58592e0451dee2622938c8755667688daf3529b"
+    }
+  ],
+  "errors": [
+    {
+      "name": "BadLeverage",
+      "inputs": [
+        {
+          "name": "leverageWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "BadLeverage(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[82]"
+      },
+      "selector": "0x4957c36b"
+    },
+    {
+      "name": "BadSeriesState",
+      "inputs": [],
+      "signature": "BadSeriesState()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[83]"
+      },
+      "selector": "0xf3cfd509"
+    },
+    {
+      "name": "BadStrike",
+      "inputs": [],
+      "signature": "BadStrike()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[84]"
+      },
+      "selector": "0x487bca9a"
+    },
+    {
+      "name": "BadTenor",
+      "inputs": [],
+      "signature": "BadTenor()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[85]"
+      },
+      "selector": "0x575129b1"
+    },
+    {
+      "name": "BelowOperatingFloor",
+      "inputs": [
+        {
+          "name": "remaining",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "floor",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "BelowOperatingFloor(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[86]"
+      },
+      "selector": "0xb0b008c1"
+    },
+    {
+      "name": "ChainlinkProvesAlive",
+      "inputs": [],
+      "signature": "ChainlinkProvesAlive()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[87]"
+      },
+      "selector": "0x28a93e73"
+    },
+    {
+      "name": "CheckpointExists",
+      "inputs": [
+        {
+          "name": "recordedAt",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "signature": "CheckpointExists(uint64)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[88]"
+      },
+      "selector": "0x630c83cb"
+    },
+    {
+      "name": "CoverageFloor",
+      "inputs": [],
+      "signature": "CoverageFloor()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[89]"
+      },
+      "selector": "0x09e43250"
+    },
+    {
+      "name": "DriftGraceNotStarted",
+      "inputs": [],
+      "signature": "DriftGraceNotStarted()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[90]"
+      },
+      "selector": "0xf82b733c"
+    },
+    {
+      "name": "FreshMarkRequired",
+      "inputs": [
+        {
+          "name": "updatedAt",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "maxAge",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "FreshMarkRequired(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[91]"
+      },
+      "selector": "0x10547112"
+    },
+    {
+      "name": "GraceNotElapsed",
+      "inputs": [
+        {
+          "name": "quietSeconds",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "grace",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "GraceNotElapsed(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[92]"
+      },
+      "selector": "0xfa3b13ad"
+    },
+    {
+      "name": "InsufficientBalance",
+      "inputs": [],
+      "signature": "InsufficientBalance()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[93]"
+      },
+      "selector": "0xf4d678b8"
+    },
+    {
+      "name": "InsufficientPot",
+      "inputs": [
+        {
+          "name": "needed",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "free",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "InsufficientPot(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[94]"
+      },
+      "selector": "0xe8862d1d"
+    },
+    {
+      "name": "InvalidConfig",
+      "inputs": [],
+      "signature": "InvalidConfig()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[95]"
+      },
+      "selector": "0x35be3ac8"
+    },
+    {
+      "name": "InvalidRound",
+      "inputs": [
+        {
+          "name": "roundId",
+          "type": "uint80",
+          "internalType": "uint80"
+        }
+      ],
+      "signature": "InvalidRound(uint80)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[96]"
+      },
+      "selector": "0x9b5ce7f7"
+    },
+    {
+      "name": "KnockCheckpointPending",
+      "inputs": [
+        {
+          "name": "recordedAt",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "signature": "KnockCheckpointPending(uint64)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[97]"
+      },
+      "selector": "0xd4d93210"
+    },
+    {
+      "name": "LengthMismatch",
+      "inputs": [],
+      "signature": "LengthMismatch()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[98]"
+      },
+      "selector": "0xff633a38"
+    },
+    {
+      "name": "LeverageDrifted",
+      "inputs": [
+        {
+          "name": "effectiveWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "floorWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "LeverageDrifted(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[99]"
+      },
+      "selector": "0x290c1709"
+    },
+    {
+      "name": "MarkThroughStrike",
+      "inputs": [
+        {
+          "name": "markWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "strikeWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "MarkThroughStrike(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[100]"
+      },
+      "selector": "0x9505066a"
+    },
+    {
+      "name": "MarketClosed",
+      "inputs": [],
+      "signature": "MarketClosed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[101]"
+      },
+      "selector": "0x0b5f6bf0"
+    },
+    {
+      "name": "MinOutNotMet",
+      "inputs": [],
+      "signature": "MinOutNotMet()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[102]"
+      },
+      "selector": "0x81efc143"
+    },
+    {
+      "name": "NoCheckpoint",
+      "inputs": [],
+      "signature": "NoCheckpoint()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[103]"
+      },
+      "selector": "0x5973885c"
+    },
+    {
+      "name": "NoDriftChange",
+      "inputs": [],
+      "signature": "NoDriftChange()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[104]"
+      },
+      "selector": "0x2c719a36"
+    },
+    {
+      "name": "NoOpenPositions",
+      "inputs": [],
+      "signature": "NoOpenPositions()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[105]"
+      },
+      "selector": "0xf0c0e210"
+    },
+    {
+      "name": "NotAuthorized",
+      "inputs": [],
+      "signature": "NotAuthorized()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[106]"
+      },
+      "selector": "0xea8e4eb5"
+    },
+    {
+      "name": "NotBreached",
+      "inputs": [],
+      "signature": "NotBreached()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[107]"
+      },
+      "selector": "0x4f19fb95"
+    },
+    {
+      "name": "NotFirstRoundAfterExpiry",
+      "inputs": [
+        {
+          "name": "roundId",
+          "type": "uint80",
+          "internalType": "uint80"
+        }
+      ],
+      "signature": "NotFirstRoundAfterExpiry(uint80)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[108]"
+      },
+      "selector": "0x5137b74a"
+    },
+    {
+      "name": "NotHalter",
+      "inputs": [],
+      "signature": "NotHalter()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[109]"
+      },
+      "selector": "0x8362e95b"
+    },
+    {
+      "name": "NotManager",
+      "inputs": [],
+      "signature": "NotManager()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[110]"
+      },
+      "selector": "0xc0fc8a8a"
+    },
+    {
+      "name": "NothingToConvert",
+      "inputs": [],
+      "signature": "NothingToConvert()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[111]"
+      },
+      "selector": "0x3019b3f8"
+    },
+    {
+      "name": "OffHoursWindowCap",
+      "inputs": [
+        {
+          "name": "requested",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "left",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "OffHoursWindowCap(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[112]"
+      },
+      "selector": "0x3d4d9338"
+    },
+    {
+      "name": "OracleValueTooLow",
+      "inputs": [],
+      "signature": "OracleValueTooLow()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[113]"
+      },
+      "selector": "0xaca70354"
+    },
+    {
+      "name": "PayoutExceedsReservation",
+      "inputs": [],
+      "signature": "PayoutExceedsReservation()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[114]"
+      },
+      "selector": "0xde09364d"
+    },
+    {
+      "name": "PersistNotMet",
+      "inputs": [
+        {
+          "name": "recordedAt",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "signature": "PersistNotMet(uint64)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[115]"
+      },
+      "selector": "0x5a6ac999"
+    },
+    {
+      "name": "RecentRoundBreached",
+      "inputs": [
+        {
+          "name": "roundId",
+          "type": "uint80",
+          "internalType": "uint80"
+        }
+      ],
+      "signature": "RecentRoundBreached(uint80)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[116]"
+      },
+      "selector": "0x6c6afacc"
+    },
+    {
+      "name": "Reentrancy",
+      "inputs": [],
+      "signature": "Reentrancy()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[117]"
+      },
+      "selector": "0xab143c06"
+    },
+    {
+      "name": "RoundBeforeCreation",
+      "inputs": [
+        {
+          "name": "roundId",
+          "type": "uint80",
+          "internalType": "uint80"
+        }
+      ],
+      "signature": "RoundBeforeCreation(uint80)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[118]"
+      },
+      "selector": "0x35f8269d"
+    },
+    {
+      "name": "RoundBeforeExpiry",
+      "inputs": [
+        {
+          "name": "roundId",
+          "type": "uint80",
+          "internalType": "uint80"
+        }
+      ],
+      "signature": "RoundBeforeExpiry(uint80)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[119]"
+      },
+      "selector": "0x6b51da1e"
+    },
+    {
+      "name": "RoundNotBeforeExpiry",
+      "inputs": [
+        {
+          "name": "roundId",
+          "type": "uint80",
+          "internalType": "uint80"
+        }
+      ],
+      "signature": "RoundNotBeforeExpiry(uint80)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[120]"
+      },
+      "selector": "0x22665cc5"
+    },
+    {
+      "name": "RoundOffSession",
+      "inputs": [
+        {
+          "name": "roundId",
+          "type": "uint80",
+          "internalType": "uint80"
+        }
+      ],
+      "signature": "RoundOffSession(uint80)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[121]"
+      },
+      "selector": "0xa1f09265"
+    },
+    {
+      "name": "RouterUnavailable",
+      "inputs": [],
+      "signature": "RouterUnavailable()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[122]"
+      },
+      "selector": "0xcd7f3c68"
+    },
+    {
+      "name": "Rung2NotServing",
+      "inputs": [],
+      "signature": "Rung2NotServing()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[123]"
+      },
+      "selector": "0x1fcb7cba"
+    },
+    {
+      "name": "Rung2Unavailable",
+      "inputs": [],
+      "signature": "Rung2Unavailable()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[124]"
+      },
+      "selector": "0x58ee1500"
+    },
+    {
+      "name": "SalesHalted",
+      "inputs": [],
+      "signature": "SalesHalted()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[125]"
+      },
+      "selector": "0xdf61af6d"
+    },
+    {
+      "name": "SeriesExpired",
+      "inputs": [],
+      "signature": "SeriesExpired()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[126]"
+      },
+      "selector": "0x5bc42434"
+    },
+    {
+      "name": "SeriesSoldOut",
+      "inputs": [],
+      "signature": "SeriesSoldOut()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[127]"
+      },
+      "selector": "0xac4c4166"
+    },
+    {
+      "name": "SessionRequired",
+      "inputs": [],
+      "signature": "SessionRequired()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[128]"
+      },
+      "selector": "0x63271533"
+    },
+    {
+      "name": "SettleWalkTooDeep",
+      "inputs": [],
+      "signature": "SettleWalkTooDeep()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[129]"
+      },
+      "selector": "0xb5ca3fc7"
+    },
+    {
+      "name": "SkimUnderflow",
+      "inputs": [],
+      "signature": "SkimUnderflow()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[130]"
+      },
+      "selector": "0x44711fb0"
+    },
+    {
+      "name": "SlippageExceeded",
+      "inputs": [
+        {
+          "name": "actual",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "bound",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "SlippageExceeded(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[131]"
+      },
+      "selector": "0x71c4efed"
+    },
+    {
+      "name": "SwapFailed",
+      "inputs": [],
+      "signature": "SwapFailed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[132]"
+      },
+      "selector": "0x81ceff30"
+    },
+    {
+      "name": "TransferFailed",
+      "inputs": [],
+      "signature": "TransferFailed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[133]"
+      },
+      "selector": "0x90b8ec18"
+    },
+    {
+      "name": "UiMultiplierDrift",
+      "inputs": [
+        {
+          "name": "got",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "snapshot",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "UiMultiplierDrift(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[134]"
+      },
+      "selector": "0xb8afc3c3"
+    },
+    {
+      "name": "UnexpectedInflow",
+      "inputs": [],
+      "signature": "UnexpectedInflow()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[135]"
+      },
+      "selector": "0xbfd36374"
+    },
+    {
+      "name": "UnknownAsset",
+      "inputs": [
+        {
+          "name": "asset",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "signature": "UnknownAsset(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[136]"
+      },
+      "selector": "0xad61e2ba"
+    },
+    {
+      "name": "UnknownSeries",
+      "inputs": [
+        {
+          "name": "seriesId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "UnknownSeries(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[137]"
+      },
+      "selector": "0x8fbcdbab"
+    },
+    {
+      "name": "UnsafeRecipient",
+      "inputs": [],
+      "signature": "UnsafeRecipient()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[138]"
+      },
+      "selector": "0x3da63931"
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "signature": "ZeroAddress()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[139]"
+      },
+      "selector": "0xd92e233d"
+    },
+    {
+      "name": "ZeroCount",
+      "inputs": [],
+      "signature": "ZeroCount()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[140]"
+      },
+      "selector": "0x047b9cec"
+    },
+    {
+      "name": "ZeroValueCard",
+      "inputs": [],
+      "signature": "ZeroValueCard()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[141]"
+      },
+      "selector": "0xa2a0dea4"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "c",
+          "type": "tuple",
+          "internalType": "struct TurboDesk.DeskConfig",
+          "components": [
+            {
+              "name": "usdg",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "feedAdapter",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "routerSource",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "manager",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "sleeve",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "halter",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "assets",
+              "type": "address[3]",
+              "internalType": "address[3]"
+            },
+            {
+              "name": "feeds",
+              "type": "address[3]",
+              "internalType": "address[3]"
+            },
+            {
+              "name": "pools",
+              "type": "address[3]",
+              "internalType": "address[3]"
+            },
+            {
+              "name": "minPoolDepthUsdWad",
+              "type": "uint256[3]",
+              "internalType": "uint256[3]"
+            },
+            {
+              "name": "minOperatingPot",
+              "type": "uint256[3]",
+              "internalType": "uint256[3]"
+            },
+            {
+              "name": "minOperatingPutPot",
+              "type": "uint256[3]",
+              "internalType": "uint256[3]"
+            },
+            {
+              "name": "maxConvertDevBps",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "cardTargetUsdWad",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ha, Unicode character offsets[317441,344093); consumer binding to turbo-v11; ABI entry[0]"
+      }
+    }
+  ]
+}

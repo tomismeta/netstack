@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "observed_on": "2026-10-10",
+  "source_id": "netnet-book-interfaces-20261010",
+  "publisher": {
+    "url": "https://play.netnet.capital/assets/sportsbook-live-BuQ1LO4q.js",
+    "sha256": "994aeb2cfd1fb5c684a0f6023dccd057d9740956dde35e66dfd5a9b796e1faf8",
+    "entry_url": "https://play.netnet.capital/assets/book-entry-B32Mj9Na.js",
+    "entry_sha256": "e877f73ecc00d7f0386d2791e31fc80e296160ff69bd553cd88ced46f7d634f8",
+    "discovery_url": "https://play.netnet.capital/assets/index-r5d6-Bbh.js",
+    "discovery_sha256": "7af57fc00a2aed9b6aa4d5948c4522d23ca799e2f58d0f51a6436b46be01dbcc",
+    "method": "Static literal parsing without executing downloaded JavaScript; character offsets refer to decoded UTF-8 text."
+  },
+  "contracts": {
+    "desk": {
+      "address": "0x3174dE69a84c53F82F6B6Dca5C64E705cFFe8Dd6",
+      "chain_id": 4663,
+      "explorer_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x3174dE69a84c53F82F6B6Dca5C64E705cFFe8Dd6",
+      "source_available": false,
+      "abi_available_from_explorer": false,
+      "publisher_abi_literal": "Ht",
+      "publisher_abi_character_range": [
+        557,
+        19045
+      ],
+      "publisher_abi_sha256": "647e10b27f493727fbf7858d9b255d342dc927b3cfa7e7eab80fb8e002189444",
+      "publisher_entry_count": 103,
+      "function_count": 56,
+      "event_count": 18,
+      "error_count": 28,
+      "runtime_bytes": 18870,
+      "runtime_sha256": "a2475469b7b2c38b0169f921a717a33afc61002145730b3083cd06207a2ef610",
+      "creation_bytecode_sha256": "0bf8f8a033a98d4dee02bf37c80725d5be1dbd342cb40e10722129e4ffa76770",
+      "dispatcher": {
+        "0xeee97751": {
+          "compare_offset": "0x4b",
+          "entry_offset": "0x85e"
+        },
+        "0xf250b449": {
+          "compare_offset": "0x56",
+          "entry_offset": "0x87e"
+        },
+        "0xf32cea06": {
+          "compare_offset": "0x61",
+          "entry_offset": "0x891"
+        },
+        "0xfea5d7f5": {
+          "compare_offset": "0x6c",
+          "entry_offset": "0x8b8"
+        },
+        "0xdb92b877": {
+          "compare_offset": "0x7b",
+          "entry_offset": "0x843"
+        },
+        "0xe53856aa": {
+          "compare_offset": "0x86",
+          "entry_offset": "0x84c"
+        },
+        "0xec979082": {
+          "compare_offset": "0x91",
+          "entry_offset": "0x855"
+        },
+        "0xcf094497": {
+          "compare_offset": "0xab",
+          "entry_offset": "0x7ee"
+        },
+        "0xd456e24f": {
+          "compare_offset": "0xb6",
+          "entry_offset": "0x7f7"
+        },
+        "0xd52014e3": {
+          "compare_offset": "0xc1",
+          "entry_offset": "0x80a"
+        },
+        "0xd80bb0d9": {
+          "compare_offset": "0xcc",
+          "entry_offset": "0x830"
+        },
+        "0xc23cc8b1": {
+          "compare_offset": "0xdb",
+          "entry_offset": "0x7a0"
+        },
+        "0xc2fff4a5": {
+          "compare_offset": "0xe6",
+          "entry_offset": "0x7b4"
+        },
+        "0xc8fdeb22": {
+          "compare_offset": "0xf1",
+          "entry_offset": "0x7db"
+        },
+        "0xb9b8af0b": {
+          "compare_offset": "0x116",
+          "entry_offset": "0x749"
+        },
+        "0xbb2d3618": {
+          "compare_offset": "0x121",
+          "entry_offset": "0x75c"
+        },
+        "0xbfe10928": {
+          "compare_offset": "0x12c",
+          "entry_offset": "0x770"
+        },
+        "0xbfe50788": {
+          "compare_offset": "0x137",
+          "entry_offset": "0x797"
+        },
+        "0xa5f1e282": {
+          "compare_offset": "0x146",
+          "entry_offset": "0x70f"
+        },
+        "0xa94b5cc5": {
+          "compare_offset": "0x151",
+          "entry_offset": "0x72e"
+        },
+        "0xb6b55f25": {
+          "compare_offset": "0x15c",
+          "entry_offset": "0x736"
+        },
+        "0x8e0e019d": {
+          "compare_offset": "0x176",
+          "entry_offset": "0x692"
+        },
+        "0x92e769ef": {
+          "compare_offset": "0x181",
+          "entry_offset": "0x6b2"
+        },
+        "0x9470b0bd": {
+          "compare_offset": "0x18c",
+          "entry_offset": "0x6c5"
+        },
+        "0x9c5a8585": {
+          "compare_offset": "0x197",
+          "entry_offset": "0x6d8"
+        },
+        "0x8ae7ca1c": {
+          "compare_offset": "0x1a6",
+          "entry_offset": "0x663"
+        },
+        "0x8be3111d": {
+          "compare_offset": "0x1b1",
+          "entry_offset": "0x676"
+        },
+        "0x8df82800": {
+          "compare_offset": "0x1bc",
+          "entry_offset": "0x67f"
+        },
+        "0x6fcc5628": {
+          "compare_offset": "0x1ec",
+          "entry_offset": "0x5c7"
+        },
+        "0x70a08231": {
+          "compare_offset": "0x1f7",
+          "entry_offset": "0x5e7"
+        },
+        "0x7aa153a2": {
+          "compare_offset": "0x202",
+          "entry_offset": "0x606"
+        },
+        "0x8086b8ba": {
+          "compare_offset": "0x20d",
+          "entry_offset": "0x619"
+        },
+        "0x63e3e9a5": {
+          "compare_offset": "0x21c",
+          "entry_offset": "0x579"
+        },
+        "0x67a539ea": {
+          "compare_offset": "0x227",
+          "entry_offset": "0x58c"
+        },
+        "0x6dfedb11": {
+          "compare_offset": "0x232",
+          "entry_offset": "0x595"
+        },
+        "0x5ba3107b": {
+          "compare_offset": "0x24c",
+          "entry_offset": "0x539"
+        },
+        "0x5bc05526": {
+          "compare_offset": "0x257",
+          "entry_offset": "0x54c"
+        },
+        "0x5ea2145b": {
+          "compare_offset": "0x262",
+          "entry_offset": "0x55e"
+        },
+        "0x5ed7ca5b": {
+          "compare_offset": "0x26d",
+          "entry_offset": "0x571"
+        },
+        "0x4cf088d9": {
+          "compare_offset": "0x27c",
+          "entry_offset": "0x4ec"
+        },
+        "0x4e1ca120": {
+          "compare_offset": "0x287",
+          "entry_offset": "0x513"
+        },
+        "0x56e7a607": {
+          "compare_offset": "0x292",
+          "entry_offset": "0x526"
+        },
+        "0x4082aaaf": {
+          "compare_offset": "0x2b7",
+          "entry_offset": "0x48c"
+        },
+        "0x40e58ee5": {
+          "compare_offset": "0x2c2",
+          "entry_offset": "0x49f"
+        },
+        "0x443ec87d": {
+          "compare_offset": "0x2cd",
+          "entry_offset": "0x4b2"
+        },
+        "0x481c6a75": {
+          "compare_offset": "0x2d8",
+          "entry_offset": "0x4c5"
+        },
+        "0x2e1a7d4d": {
+          "compare_offset": "0x2e7",
+          "entry_offset": "0x45d"
+        },
+        "0x2f4f21e2": {
+          "compare_offset": "0x2f2",
+          "entry_offset": "0x470"
+        },
+        "0x3174ef62": {
+          "compare_offset": "0x2fd",
+          "entry_offset": "0x483"
+        },
+        "0x1adb8eb6": {
+          "compare_offset": "0x317",
+          "entry_offset": "0x3cb"
+        },
+        "0x1dd19cb4": {
+          "compare_offset": "0x322",
+          "entry_offset": "0x40a"
+        },
+        "0x23218411": {
+          "compare_offset": "0x32d",
+          "entry_offset": "0x420"
+        },
+        "0x233ac008": {
+          "compare_offset": "0x338",
+          "entry_offset": "0x433"
+        },
+        "0x00e4d7db": {
+          "compare_offset": "0x347",
+          "entry_offset": "0x36a"
+        },
+        "0x046f7da2": {
+          "compare_offset": "0x351",
+          "entry_offset": "0x395"
+        },
+        "0x07ee5cbe": {
+          "compare_offset": "0x35c",
+          "entry_offset": "0x39f"
+        }
+      },
+      "unmatched_dispatcher_selectors": [],
+      "interface_selectors_not_seen": [],
+      "dispatcher_method": "Decode opcode widths then PUSH3/PUSH4, EQ, PUSH2, JUMPI within prefix ending at 0x366. PUSH3 is padded to four bytes (quoteFee has leading zero)."
+    },
+    "zap": {
+      "address": "0xC866E4f53f1439d85171a06395ce37b887D16Fa1",
+      "chain_id": 4663,
+      "explorer_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xC866E4f53f1439d85171a06395ce37b887D16Fa1",
+      "source_available": false,
+      "abi_available_from_explorer": false,
+      "publisher_abi_literal": "Ft",
+      "publisher_abi_character_range": [
+        19049,
+        21090
+      ],
+      "publisher_abi_sha256": "4f3208bbc3e66ae4117c02955b94aa70350db7bac8084e5213136668b9d25521",
+      "publisher_entry_count": 21,
+      "function_count": 12,
+      "event_count": 0,
+      "error_count": 9,
+      "unresolved_event_like_constants": [
+        {"push_offset":"0x69a","constant":"0x584142d236bf007997db65fa5858802294649e2d5f26935ef48398f1814ff0a2"},
+        {"push_offset":"0x90d","constant":"0xf40e62c4720daf24c9ac86d9557430d36ad9646acc69de058ff9c7421314c4ec"},
+        {"push_offset":"0xf1e","constant":"0xef0b95223017f8024b9e7d0b86407f4e9b4ea6798a5756c09c9544e7aa46454b"},
+        {"push_offset":"0x1213","constant":"0x01dec73b6f9aa25216f125304c1229d8799be0460ca8c5c843f811bd77762d5a"}
+      ],
+      "unresolved_event_limit": "Instruction-boundary PUSH32 constants in four conversion paths, distinct from zero-padded immutables. Names/signatures/indexing are unavailable; not a decoded event catalog or exhaustive path audit.",
+      "runtime_bytes": 6124,
+      "runtime_sha256": "7c7efe430e62fff63259c27c3639e8c15bd461fe5ef76b3a2d3dc6c584ca13c2",
+      "creation_bytecode_sha256": "47ff73dbabc25c00305b3240e4ad3a39847eb2f3ae2792244c700d7e27d79937",
+      "dispatcher": {
+        "0xf5b91b7b": {
+          "compare_offset": "0x35",
+          "entry_offset": "0x221"
+        },
+        "0xf887ea40": {
+          "compare_offset": "0x40",
+          "entry_offset": "0x248"
+        },
+        "0xfe56c954": {
+          "compare_offset": "0x4b",
+          "entry_offset": "0x26f"
+        },
+        "0xc12b293c": {
+          "compare_offset": "0x5a",
+          "entry_offset": "0x1ac"
+        },
+        "0xc2fff4a5": {
+          "compare_offset": "0x65",
+          "entry_offset": "0x1d3"
+        },
+        "0xd52014e3": {
+          "compare_offset": "0x70",
+          "entry_offset": "0x1fa"
+        },
+        "0x4cf088d9": {
+          "compare_offset": "0x8a",
+          "entry_offset": "0x14b"
+        },
+        "0x58acb6ab": {
+          "compare_offset": "0x95",
+          "entry_offset": "0x172"
+        },
+        "0x6a980fa4": {
+          "compare_offset": "0xa0",
+          "entry_offset": "0x185"
+        },
+        "0x0d036451": {
+          "compare_offset": "0xaf",
+          "entry_offset": "0xd3"
+        },
+        "0x1adb8eb6": {
+          "compare_offset": "0xba",
+          "entry_offset": "0xf9"
+        },
+        "0x23b2f8ee": {
+          "compare_offset": "0xc5",
+          "entry_offset": "0x138"
+        }
+      },
+      "unmatched_dispatcher_selectors": [],
+      "interface_selectors_not_seen": [],
+      "dispatcher_method": "Decode opcode widths then PUSH3/PUSH4, EQ, PUSH2, JUMPI within prefix ending at 0xcf. PUSH3 is padded to four bytes (quoteFee has leading zero)."
+    }
+  },
+  "limits": [
+    "Exact-address explorer returned creation/runtime bytecode, implementations=[] and proxy_type=null, but no ABI or Solidity source. This is not verified source or independent chain-pinned runtime.",
+    "All detected entry selectors match publisher ABI, not exhaustive implementation equivalence or security review. Event topics and errors are publisher interface claims.",
+    "Canonical RPC permission denied HTTP403/error1010 earlier in session; no retry or alternate RPC. No current financial state, history, balances, authorities or holdings stored."
+  ]
+}

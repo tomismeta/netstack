@@ -18,6 +18,23 @@
     "helper_support": "No quote engine or quote CLI; independently validated supplemental read-only quote research is described in references/predict-analytics.md",
     "source_reachability": "September 18 asset URL returned 404; Blockscout Desk smart-contract API returned bytecode but no verified Solidity/source ABI."
   },
+  "runtime_review": {
+    "source_id": "netnet-predict-runtime-depth-20261010",
+    "observed_on": "2026-10-10",
+    "evidence_asset": "assets/contracts/predict-source-evidence.json",
+    "outcome_catalogs": [
+      "assets/contracts/predict-outcome-series-1-higher.json",
+      "assets/contracts/predict-outcome-series-1-lower.json",
+      "assets/contracts/predict-outcome-series-2-higher.json",
+      "assets/contracts/predict-outcome-series-2-lower.json",
+      "assets/contracts/predict-outcome-series-3-higher.json",
+      "assets/contracts/predict-outcome-series-3-lower.json",
+      "assets/contracts/predict-outcome-series-4-higher.json",
+      "assets/contracts/predict-outcome-series-4-lower.json"
+    ],
+    "scope": "Exact runtime-bound authority/accounting review, not verified Solidity or pinned financial state. Catalogs retain every obtained publisher function. Collector binds Desk/House/outcome runtime identities before applying reviewed semantics.",
+    "print_limit": "No independent exact TrueRFV print: actual versioned valuation script, block and constituent/quote/fallback ledger remain missing. October7 publisher definition is distinct from historical September25 rules."
+  },
   "display_units": "todayWad/lineWad/printWad: raw/1e18 is millions of displayed dollars, raw/1e12 is dollars. Probability marks use raw/1e18. Confirm token decimals.",
   "abi": [
     {"type":"function","name":"barred","inputs":[{"name":"","type":"address"}],"outputs":[{"name":"","type":"bool"}],"stateMutability":"view"},

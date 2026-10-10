@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "skill": "netstack",
-  "observed_on": "2026-09-26",
+  "observed_on": "2026-10-10",
   "chain_id": 4663,
   "scope": "Canonical contracts and separately attributed public roles, scoped fixed-block identity observations, and a separate bounded indexed-creation discovery inventory; not an audit or independently verified live deployment universe.",
   "source_catalog": "assets/sources.json",
@@ -15,6 +15,10 @@
     }
   },
   "record_notes": {
+    "contract_capabilities": "assets/contracts/catalog.json covers every canonical identity with catalogued/partial/unreviewed status. Descriptive write signatures are not wallet tooling or execution artifacts. Full supplied ABI, dispatcher matches, reviewed source/runtime branches, pinned current state and audit are distinct evidence levels; selectors do not establish missing names or permission rules.",
+    "netlong_generations": "Current wsNET futures and USDG-financed NetLong margin loans have separate desks, vault/pot and accounting. The older tNET Futures manual is not their deployed specification. New market discovery reads registries at the observation block; publisher ticker menus and constructor-time configuration are not current listings or permissions.",
+    "netlong_dependencies": "Publisher ABIs, explorer bytecode, explorer-labeled source and verified-twin source are distinct. A twin's source is not the target's independently reproduced verification. Immutable runtime fingerprints qualify only the reviewed code template; current mutable roles, dependencies and parameters still need same-block reads.",
+    "historical_publisher_dependencies": "Three newly catalogued historical dependency addresses are separately attributed to dated app narratives, not new products, current adapter/router aliases or live wiring observations. The preexisting49 unresolved discovery candidates remain unchanged.",
     "publisher_verification_claim": "An attributed publisher label, not independent live-chain verification by this package. Preserve live_chain_verification_status and lifecycle limits.",
     "fixed_block_market_identity": "A market's observation records only the named getter results, chain, block/hash/time and identity-hash check. It does not promote singleton/dependency contract records to live-chain-verified status or establish balances, oracle safety, liquidity, permissions or continued availability. Market IDs remain separate from chain/address counts.",
     "indexed_receipt_evidence": "A successful explorer-indexed creation or trade corroborates only that indexed event and identity. It is not a direct fixed-block RPC audit, verified Solidity source, complete authority review, current activation check or proof of later settlement.",
@@ -23,18 +27,29 @@
     "netnet_use_evidence": "Directory inclusion alone does not establish NetNet use. Preserve recorded registry/local provenance and status; an empty consumer_policies list means not recorded, not unused. No exhaustive consumer list or exact-token relationship is inferred.",
     "public_role_addresses": "Published or explicitly explorer-discovered operational roles, not proof of control, beneficial ownership or personal identity. An explorer-reported EOA is attributed metadata, not a current code audit.",
     "discovery_inventory": "53 baseline-missing indexed creations are separate candidates, not 53 active products. Four now point to canonical roles; ten historically named and39 unclassified candidates remain outside canonical counts. Shared deployer/time does not prove role, successor identity or activity.",
-    "v4_pool_and_position_identity": "V4 pool IDs are bytes32 hashes of complete PoolKeys, not addresses, transaction hashes or NFT IDs. PoolManager and PositionManager are distinct canonical contracts. Fixed-block ownership/cardinality observations do not establish current ownership, source equivalence or balance-sheet value.",
+    "v4_pool_and_position_identity": "V4 pool IDs are bytes32 hashes of complete PoolKeys, not addresses, transaction hashes or NFT IDs. PoolManager and PositionManager are distinct canonical contracts. Retain pool identity and method provenance, not NFT IDs, ownership/cardinality observations or mint activity. Discover positions and ownership fresh for each requested observation.",
     "advance_identity": "AdvanceDesk and AdvanceZap have separate canonical roles. September26 explorer indexed creations corroborate September25 date/block; matching transaction raw input/creation bytecode and independent RLP CREATE derivation resolve the publisher's swapped diary labels at explorer-evidence level. Targeted deployed-bytecode analysis supports explicitly scoped conditional mechanics, not independently pinned RPC code/state, verified Solidity, real dependency execution or a full audit. Publisher ABI names remain labels; runtime branch evidence is separately attributed in advance-interface.json and advance-routes.json. Position IDs/counts must be discovered fresh, never seeded from dated examples."
   },
   "known_discrepancies": [
+    {
+      "topic": "Trading documentation and LOSE execution semantics",
+      "source_ids": ["netnet-trading-entry-20261010", "netnet-docs-net-long", "netnet-docs-lose", "netnet-docs-futures", "netnet-docs-official-channels"],
+      "detail": "October10 current terminal uses wsNET futures and token-backed USDG loans, while Futures/Official Channels retain tNET test-generation descriptions. LOSE standalone page only says Don't lose. NetLong's minted/same-transaction language conflicts with fixed deployment issuance, allocation-funded distribution and a best-effort settlement hook. The UI release-rate formula uses total issuance rather than distributor allocation. Consult generation-specific runtime evidence and fresh state, not UI arithmetic or legacy parameters."
+    },
+    {
+      "topic": "V4 publisher promotion versus position inventory",
+      "source_ids": ["netnet-contract-interfaces-20261007", "netnet-v4-position-identity-20260925"],
+      "detail": "October7 registry promotes PositionManager with September25 attribution. This supersedes the old unpromoted UI label, not fresh ownership discovery. Publisher allowlists are not full current NFT inventories; no position IDs or ownership snapshots are packaged."
+    },
     {
       "topic": "RWA Desk generation",
       "source_ids": [
         "netnet-docs-official-channels",
         "netnet-app-registry-asset",
+        "netnet-contract-interfaces-20261007",
         "local-contract-registry"
       ],
-      "detail": "Official Channels still lists 0x99B6eE6eDe47d9a8a9bfd03F728a99B789df1961 as RwaDesk. The public app registry and local definitions identify it as V1 superseded by V2 0xa84efC3136BF1Bb89ade9E5BE6Ab32cb1A04f08D on 2026-08-27. Both addresses are retained; current status is publisher/local-reported, not live verified."
+      "detail": "Official Channels retains V1 0x99B6eE6eDe47d9a8a9bfd03F728a99B789df1961. Historical V2 is 0xa84efC3136BF1Bb89ade9E5BE6Ab32cb1A04f08D. October7 app assigns current rwaDesk to SleeveBondDesk0x732b3D1d3E8912CaE75164FA14a6E1c4C64615B3, indexed September30 deployment. Preserve all three identities and generation-specific claims; no-fee successor mechanics do not apply retroactively. September28 announcement and September30 receipt are distinct events."
     },
     {
       "topic": "TURBO generations and deployment date",
@@ -66,9 +81,11 @@
       "topic": "LP Zap deployment versus public app availability",
       "source_ids": [
         "netnet-app-registry-20260918",
+        "netnet-contract-interfaces-20261007",
+        "netnet-lp-zap-exemption-20261007",
         "netnet-lp-zap-deployment"
       ],
-      "detail": "The September 16 indexed creation corroborates the LP Zap address. On September 18 the app registry still labels it PLACEHOLDER and its Add liquidity panel gates the one-transaction route pending levy exemption, offering direct Uniswap provision instead. PLACEHOLDER does not mean undeployed; registry promotion and current on-chain exemption are not independently established."
+      "detail": "September18 PLACEHOLDER and UI gate remain historical. October7 registry labels LPZap HUMAN-VERIFIED and attributes exemption/promotion to September19; successful NET TaxExemptAdded log at block67004892 corroborates the historical event. Current isTaxExempt/taxLegs and live UI execution remain unobserved; publisher promotion is not a pinned financial or permission snapshot."
     },
     {
       "topic": "Predict launch versus historical NAV Pool proposal",
@@ -93,9 +110,9 @@
     "source_content_reviews": "sources.json#/sources",
     "scope": "Address-specific counts only. Source inventory, extraction boundaries, gaps and content-review status are maintained in the linked source catalog, not duplicated here.",
     "counts": {
-      "contract_records_unique_by_chain_and_address": 195,
-      "named_contract_records_excluding_underlying_feeds": 158,
-      "public_role_address_records": 11,
+      "contract_records_unique_by_chain_and_address": 232,
+      "named_contract_records_excluding_underlying_feeds": 195,
+      "public_role_address_records": 12,
       "trusted_product_mark_relationships": 6,
       "morpho_market_identifiers": 7,
       "fixed_block_identity_observed_morpho_markets": 1,
@@ -105,12 +122,11 @@
       "incomplete_classification_feed_candidates": 2,
       "rwa_feed_candidates_without_exact_token_relationship": 29,
       "v4_pool_identifiers": 3,
-      "fixed_block_identity_observed_v4_positions": 2,
       "discovery_candidates_baseline_missing": 53,
       "discovery_candidates_now_canonical": 4,
       "discovery_candidates_outside_canonical_inventory": 49
     },
-    "contract_count_composition": "158 named contract records + 37 underlying price-feed contract records = 195 unique chain/address pairs. Feed records are included in the total, not an additional 37 addresses.",
+    "contract_count_composition": "195 named contract records +37 underlying price-feed contracts =232 unique chain/address pairs. Includes26 new current/dependency/superseded NetLong-family identities; feed records are not an additional bucket.",
     "live_chain_verified_contracts": 0
   }
 }

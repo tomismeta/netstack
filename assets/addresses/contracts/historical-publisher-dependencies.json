@@ -1,0 +1,61 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x44abc1d6ccff2696d98890b92e2157af242179c2",
+      "chain_id": 4663,
+      "address": "0x44ABc1d6cCFF2696d98890B92E2157AF242179c2",
+      "role": "STEAKUSDG historical adapter",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "historical_publisher_dependency_only",
+      "lifecycle_notes": "Historical dependency address attributed to publisher narrative dated 2026-07-22; observed in October7 chain4663 app registry. No current wiring, source equivalence, ownership or activation inferred. Not a new NetNet product and not an alias of current adapter/router records.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-contract-interfaces-20261007",
+          "locator": "morphoBlue.source: morphoUsdgVault.adapters(0) and adapter.morpho()",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xc5b8a6c5fdf14f9744db1c8595f49e42ce23031a",
+      "chain_id": 4663,
+      "address": "0xC5b8A6C5fDF14f9744dB1C8595f49E42Ce23031a",
+      "role": "Third-party NVDA historical MorphoChainlinkOracleV2",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "historical_publisher_dependency_only",
+      "lifecycle_notes": "Historical dependency address attributed to publisher narrative dated 2026-09-09; observed in October7 chain4663 app registry. No current wiring, source equivalence, ownership or activation inferred. Not a new NetNet product and not an alias of current adapter/router records.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-contract-interfaces-20261007",
+          "locator": "usdgUsdFeed.source: QUOTE_FEED_1 of third-party NVDA oracle",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xc94135b63772b91d79d0a2daab2a8801f32359bd",
+      "chain_id": 4663,
+      "address": "0xC94135b63772b91D79d0A2DaAb2a8801f32359bD",
+      "role": "Rialto historical resolved taker router",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "historical_publisher_dependency_only",
+      "lifecycle_notes": "Historical dependency address attributed to publisher narrative dated 2026-08-27; observed in October7 chain4663 app registry. No current wiring, source equivalence, ownership or activation inferred. Not a new NetNet product and not an alias of current adapter/router records.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-contract-interfaces-20261007",
+          "locator": "rwaDeskRouterSource.source: router() resolved taker router",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-07"
+        }
+      ]
+    }
+  ]
+}

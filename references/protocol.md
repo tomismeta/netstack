@@ -2,7 +2,7 @@
 
 **Source snapshot:** official pages linked below were read on **2026-09-10**. This is an offline explanation of published mechanics, not a contract audit or a fresh chain-state report. Parameters described as immutable are the documentation's claims about that deployment; several pages also label values as pre-deployment defaults. No balances, current rates, oracle health, permissions or available capacity were independently verified here. The [packaged address index](../assets/address-index.json) and [Official Channels](https://docs.netnet.capital/official-channels) are identity starting points, not prerequisites or exhaustive allowlists; establish exact chain-qualified identities with applicable evidence rather than token symbols alone.
 
-This unpublished working update also incorporates separately dated original announcements through **2026-09-12**. They do not amend the documented Core formulas or independently establish deployed changes.
+October 7 refreshes current RWA subscription and Predict/Reports boundaries while preserving older announcements as history. Core's known Morpho/POL correction requirements are qualified below; no current-state or full deployed-source audit is claimed.
 
 **Questions answered:** What does NET represent? Why do staked balances grow? What belongs in backing? How can reserves rise while backing per token falls? What do bonds, buybacks, fees and management options do? What does “no governance” actually cover?
 
@@ -40,15 +40,15 @@ Emission APR annualizes a current token-unit rate; APY compounds it under assume
 
 ```text
 RFV = liquid Treasury USDG
-    + Morpho gross position assets × 0.98
+    + M − floor(M × 200 / 10000), where M = gross Morpho USDG wad
     + Treasury POL RFV
 NAV = RFV / total NET supply
 
-POL RFV = 2 × sqrt(pool USDG reserves × pool NET reserves)
-        × Treasury share of the pool's LP supply
+Documented POL candidate = 2 × sqrt(pool USDG reserves × pool NET reserves)
+                         × Treasury share of LP supply
 ```
 
-Apply the **2% Morpho haircut once**, to the gross USDG-denominated position assets, not to raw vault-share units and not again to a number already reported net of haircut. Gross assets include the position's asset value rather than only historical deposit principal. Use consistent scales and contract rounding before summing components. These equations express the published valuation convention, not realizable liquidation proceeds. [Treasury §§2–3](https://docs.netnet.capital/treasury).
+Apply the **2% Morpho haircut once** as `M - floor(M*200/10000)`, the deployed integer order established by the user's validation, not `floor(M*9800/10000)`. `M` is normalized gross USDG assets, not raw vault shares. **The documented POL candidate is not validated deployed arithmetic:** it underreproduced the user's on-chain RFV by 18,432.08 USDG. The original validation block/raw/runtime packet remains unrecovered; the current explorer source/runtime conflicts with the validated haircut. The helper retains diagnostic quantities but cannot certify Core or dependent totals until applicable POL evidence resolves the discrepancy. See [exact evidence limits](reserve-analytics.md#evidence-boundaries); no balancing constant is used.
 
 POL is protocol-owned liquidity: Treasury-held LP tokens represent a proportional pool claim. The geometric-mean rule values the NET leg at the documented **1 USDG floor**, not at market spot; it is not the spot-marked sum of the two reserves. For an ordinary constant-product swap, the product is preserved before fees and can grow with fees, which is why the docs use this rule instead of a manipulable spot mark. That limited property is not proof against arbitrary contract failure, removal of assets, sustained oracle distortion or stablecoin loss. LP supplied as consideration for standard bonds uses the same convention. [Treasury §3](https://docs.netnet.capital/treasury), [mechanism §5](https://docs.netnet.capital/mechanism), [risks](https://docs.netnet.capital/risks).
 
@@ -79,12 +79,14 @@ Sources: [Treasury §3](https://docs.netnet.capital/treasury), [mechanism §§2,
 | Distributor epoch mint | New NET funds rebases. It may dilute NAV above the floor and is constrained by the premium gate and RFV headroom. |
 | pTEAM exercise | Management pays 1 USDG for each new NET; this adds reserve principal but can dilute NAV when pre-exercise NAV exceeds the strike. |
 | Inverse bond / Buyback Program | Treasury pays USDG for NET that is burned, at documented `NAV × 0.985`. A below-NAV burn can raise NAV while reducing total RFV. Capacity is documented as 1% of liquid non-Morpho reserves per 8-hour epoch, with no rollover; valid oracle inputs are still required. |
-| PremiumSeller | Above the documented 2× NAV TWAP threshold, a bounded clip of newly minted NET is sold to the canonical pool and USDG swept to Treasury. Clip/slippage/interval bounds and a working oracle constrain availability; this is not an unrestricted Treasury ask. |
-| RWA subscription | Transfers existing Desk inventory, not a new mint at purchase. Historical pTEAM-funded and September 12 announced bought-NET inventory have distinct provenance; do not carry the old remittance formula into the new path. See [Products](products.md#september-12-manager-funded-bid-and-bought-net-inventory). |
+| PremiumSeller | TWAP must strictly exceed 2× the Treasury backing getter; each execution mints and sells a clip of 25 bps of the pool's NET reserve, at least one hour apart. Only the seller's new USDG swap balance delta goes to Treasury, not preexisting USDG. The 99%-of-TWAP minimum is not a guarantee that realized price exceeds 2× NAV. [Source mechanics](premium-seller-contracts.md), [fresh accounting](premium-seller-analytics.md). |
+| RWA subscription | Current October 7 docs: 100% USDG buys equity for the Sleeve, zero Treasury remittance; existing bought NET vests to the subscriber, no mint and no direct RFV/NAV change. Only unsold inventory may return to Sleeve. Historical pTEAM/remitting and announced bought-inventory paths remain generation-scoped. See [Products](products.md#current-bought-inventory-desk-all-equity-no-treasury-fee). |
 
 Sources: [mechanism §§4–5](https://docs.netnet.capital/mechanism), [Treasury §4](https://docs.netnet.capital/treasury), [team](https://docs.netnet.capital/team), [RWA Desk](https://docs.netnet.capital/rwa-desk).
 
 **Manager policy is separate:** the September 12 **Manager-funded 2× NAV bid** announces purchases for Desk redistribution, not PremiumSeller issuance, inverse-bond burns or Loopback collateral valuation. It adds neither automatic redemption nor the Manager's balance sheet to RFV; execution and backing accretion remain unverified. See [Products: announcement, limits and inventory generations](products.md#september-12-manager-funded-bid-and-bought-net-inventory).
+
+Current RWA disclosure also describes collateralizing acquired equity and borrowing USDG for later NET inventory purchases. **Credit-funded recycling is leverage:** borrowed cash is not income, avoiding issuance is not burning, and temporarily reducing float is not a permanent supply cut. Taxed NET purchases may separately generate Core fee inflows, but the current Desk subscription itself pays Treasury nothing. Do not infer higher net assets or NAV from gross recycled volume.
 
 The **1 USDG-per-NET reserve-floor invariant is not guaranteed cash redemption**, an exchange-price peg or unlimited exit liquidity. Inverse bonds have capacity, spread and oracle restrictions. USDG can depeg; reserve assets and contracts can fail; L2 outages can halt settlement. Read the documentation's “global accretion” claim as a reported contract/test invariant with two named NAV-diluting exceptions—epoch issuance and pTEAM exercise—not an independently audited guarantee of economic gains or protection from external loss. [Mechanism §4](https://docs.netnet.capital/mechanism), [risks §§1,5–6,9–11](https://docs.netnet.capital/risks).
 

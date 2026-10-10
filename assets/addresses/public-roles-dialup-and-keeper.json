@@ -54,15 +54,30 @@
       "address": "0xc73177390Fb65f733F9c7B286C29fb9FAa358213",
       "role": "keeper",
       "status": "publicly_published_role_only",
-      "account_kind": "unverified",
+      "account_kind": "reported_no_deployed_code",
       "ownership_status": "not_verified_no_legal_person_attribution",
-      "live_chain_verification_status": "not_performed",
+      "live_chain_verification_status": "reported_code_reads_not_independently_reproduced",
+      "lifecycle_notes": "User-supplied research reports eth_getCode == 0x on October 2 and 3, 2026. This is dated identity provenance for an address with no reported deployed code, not conclusive EOA proof, current code verification or ownership attribution. The published keeper and rialtoIntegratorOwner roles name distinct addresses; do not conflate them or infer exclusive duties from their labels. Obtain fresh, block-qualified evidence for balances, transactions and actual operational authority. No wallet activity history is retained in this entry or its supporting sources.",
       "provenance": [
         {
           "source_id": "netnet-play-registry-asset",
           "locator": "keeper.address",
           "evidence_kind": "public_publisher_role_registry",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "keeper-eoa-verification-20261002",
+          "locator": "Reported October 2 eth_getCode == 0x; code observation only",
+          "evidence_kind": "user_reported_code_observation",
+          "observed_on": "2026-10-02",
+          "reported_on": "2026-10-07"
+        },
+        {
+          "source_id": "keeper-eoa-verification-20261003",
+          "locator": "Reported October 3 eth_getCode == 0x; code observation only",
+          "evidence_kind": "user_reported_code_observation",
+          "observed_on": "2026-10-03",
+          "reported_on": "2026-10-07"
         }
       ]
     }

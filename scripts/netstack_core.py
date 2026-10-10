@@ -127,7 +127,7 @@ def load_json(relative_path):
 
 
 def resolve_routes(workflow):
-    if workflow not in ("liquidity", "predict", "reserves", "sleeve", "v4", "advance"):
+    if workflow not in ("liquidity", "predict", "reserves", "sleeve", "v4", "advance", "netlong", "premiumseller", "sleeve-bonds", "credit", "book"):
         raise RpcError("Unknown canonical route set", kind="input")
     route = load_json("assets/analytics/" + workflow + "-routes.json")
     resolved = {"_route": route}
@@ -395,7 +395,7 @@ def _validated_log(log):
     if not isinstance(log, dict) or log.get("removed", False) is not False:
         raise RpcError("Removed or malformed event log", kind="integrity")
     topics = log.get("topics")
-    if not isinstance(topics, list) or not 1 <= len(topics) <= 4:
+    if not isinstance(topics, list) or len(topics) > 4:
         raise RpcError("Malformed event topics", kind="integrity")
     data = _hex(log.get("data"))
     if len(data) > 2 + MAX_ABI_BYTES * 2:
@@ -408,6 +408,8 @@ def _validated_log(log):
 
 def decode_event(log, abi):
     normalized = _validated_log(log)
+    if not normalized["topics"]:
+        return None
     candidates = [item for item in abi if item.get("type") == "event" and not item.get("anonymous", False)
                   and topic(item) == normalized["topics"][0]]
     if not candidates:
@@ -454,6 +456,21 @@ def serialize_result(result):
     if result.get("command") == "advance":
         # Lazy import avoids a module cycle; every saved/printed body shares this contract.
         from netstack_advance import prepare_result
+        prepare_result(result)
+    elif result.get("command") == "premiumseller":
+        from netstack_premiumseller import prepare_result
+        prepare_result(result)
+    elif result.get("command") == "sleeve-bonds":
+        from netstack_sleeve_bonds import prepare_result
+        prepare_result(result)
+    elif result.get("command") == "credit":
+        from netstack_credit import prepare_result
+        prepare_result(result)
+    elif result.get("command") == "book":
+        from netstack_book import prepare_result
+        prepare_result(result)
+    elif result.get("command") in ("predict", "house"):
+        from netstack_markets import prepare_result
         prepare_result(result)
     return json.dumps(json_safe(result), ensure_ascii=True, allow_nan=False, separators=(",", ":")) + "\n"
 
@@ -509,7 +526,7 @@ class _FixedHTTPSConnection(http.client.HTTPSConnection):
 
 class Context:
     def __init__(self, command, deadline=120, output=None):
-        if command not in ("lp", "predict", "house", "rfv", "advance"):
+        if command not in ("lp", "predict", "house", "rfv", "advance", "netlong", "premiumseller", "sleeve-bonds", "credit", "book"):
             raise RpcError("Unknown analytics command", kind="input")
         if not isinstance(deadline, (int, float)) or not math.isfinite(deadline) or not 0 < deadline <= 600:
             raise RpcError("Deadline must be positive and at most 600 seconds", kind="input")
@@ -542,7 +559,8 @@ class Context:
         self._members = self._rows = self._raw_bytes = self._recoveries = 0
         self._retry_not_before = 0.0
         self._retry_wait_seconds = 0.0
-        self._member_limit = 750 if command in ("rfv", "advance") else 250
+        self._member_limit = (4000 if command in ("premiumseller", "sleeve-bonds") else
+                              750 if command in ("rfv", "advance", "netlong", "credit", "book", "predict", "house") else 250)
         self._row_limit = 50000 if command == "lp" else 10000
         self._allowed = None
         self._last_body = serialize_result(self.result)
@@ -744,6 +762,16 @@ class Context:
             allowed = {}
             if self.command == "advance":
                 filenames = ("advance-interface.json",)
+            elif self.command == "netlong":
+                filenames = ("netlong-interface.json",)
+            elif self.command == "premiumseller":
+                filenames = ("premiumseller-interface.json",)
+            elif self.command == "sleeve-bonds":
+                filenames = ("sleeve-bonds-interface.json",)
+            elif self.command == "credit":
+                filenames = ("credit-interface.json",)
+            elif self.command == "book":
+                filenames = ("book-interface.json",)
             else:
                 filenames = ("v2-interface.json", "predict-interface.json", "house-interface.json")
                 if self.command == "rfv":
@@ -1278,7 +1306,7 @@ class Context:
             raise RpcError("Creation record address mismatch", kind="integrity")
         if record is not None and (record.get("deployment_transaction_hash") or any("block_number=" in str(p.get("locator", "")) for p in record.get("provenance", []) if isinstance(p, dict))):
             return self.deployment(record)
-        if self.command != "lp":
+        if self.command not in ("lp", "netlong"):
             raise RpcError("A canonical recorded deployment boundary is required", kind="unavailable")
         if self.code(address) == "0x":
             raise RpcError("Contract has no code at pinned block", kind="integrity")
@@ -1396,8 +1424,8 @@ class Context:
                     self._observe_log(log)
                     if (address is not None and log["address"] != address) or not left <= log["blockNumber"] <= right:
                         raise RpcError("Wrong emitter or out-of-range event log", kind="integrity")
-                    if log["topics"][0] not in selectors:
-                        name = log["topics"][0]
+                    if not log["topics"] or log["topics"][0] not in selectors:
+                        name = log["topics"][0] if log["topics"] else "<anonymous>"
                         coverage["unknown_topics"][name] = coverage["unknown_topics"].get(name, 0) + 1
                         raise RpcError("Unknown or unrequested event topic", kind="integrity")
                     for position, wanted in enumerate(topics):

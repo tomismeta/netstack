@@ -1,0 +1,880 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0xce73c8ad08cbdeaca6078bf0627c8fe0a9a536e7",
+  "contract_record": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json",
+  "chain_id": 4663,
+  "address": "0xcE73c8ad08CBDEaCa6078BF0627C8fe0a9a536E7",
+  "generation": "netlong-futures-stream-verifier",
+  "provenance": [
+    {
+      "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xcE73c8ad08CBDEaCa6078BF0627C8fe0a9a536E7",
+      "observed_on": "2026-10-10",
+      "locator": "Explorer-reported deployed_bytecode and creation_bytecode; partially verified source+ABI"
+    }
+  ],
+  "execution_authority": false,
+  "completeness": {
+    "supplied_interface": "complete_explorer_partial_verification_abi",
+    "supplied_entry_count": 30,
+    "implementation": "all_available_source_functions_reviewed_explorer_partial_verification_only",
+    "pinned_state": "not_obtained_rpc_denied",
+    "missing_evidence": [
+      "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+      "Compiler rebuild/source-runtime equivalence."
+    ]
+  },
+  "runtime_evidence": {
+    "sha256": "246be742ffcc522f72309f1f42c77817af4d6f823969ce9e5763f2a9327ca231",
+    "byte_length": 7009,
+    "bytecode_origin": "explorer_reported_not_rpc_pinned",
+    "selector_comparison": "Compiler dispatcher PUSH3/PUSH4 EQ PUSH2 JUMPI targets; selector presence is not full semantic equivalence.",
+    "source_verification": {
+      "is_verified": true,
+      "is_fully_verified": false,
+      "is_partially_verified": true,
+      "local_compilation_performed": false
+    },
+    "dispatch_function_count": 14,
+    "unrepresented_dispatch_selectors": []
+  },
+  "functions": [
+    {
+      "inputs": [],
+      "name": "acceptOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[16]"
+      },
+      "signature": "acceptOwnership()",
+      "selector": "0x79ba5097",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "pending owner only"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "ConfirmedOwnerWithProposal.sol:31-40. Caller must equal stored pending owner; replaces owner, clears proposal, emits OwnershipTransferred. No timelock; proposal to zero cannot be accepted."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x1ce"
+      },
+      "source_gap": null
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "configDigest",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getVerifier",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[17]"
+      },
+      "signature": "getVerifier(bytes32)",
+      "selector": "0xeeb7b248",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "VerifierProxy.sol:205-207. Returns address for bytes32 configDigest; zero means unmapped. Exact config currently used by report must be queried, not inferred from proxy address."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x27b"
+      },
+      "source_gap": null
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "verifierAddress",
+          "type": "address"
+        }
+      ],
+      "name": "initializeVerifier",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[18]"
+      },
+      "signature": "initializeVerifier(address)",
+      "selector": "0x8c2a4d53",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "owner only; nonzero ERC165-conforming target"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "VerifierProxy.sol:169-174 and106-109. Sets initialized permission for a verifier after supportsInterface(verify.selector); duplicate initialization reverts. Interface claim is not a cryptographic implementation audit."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x1e3"
+      },
+      "source_gap": null
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[19]"
+      },
+      "signature": "owner()",
+      "selector": "0x8da5cb5b",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "ConfirmedOwnerWithProposal.sol:43-45. Current administrative owner; deployment caller was initial owner, but fresh state not obtained."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x203"
+      },
+      "source_gap": null
+    },
+    {
+      "inputs": [],
+      "name": "s_accessController",
+      "outputs": [
+        {
+          "internalType": "contract AccessControllerInterface",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[20]"
+      },
+      "signature": "s_accessController()",
+      "selector": "0x94ba2846",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "VerifierProxy.sol:85-86. Mutable access-controller dependency; zero disables gateway access checks. Constructor argument zero is historical only."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x22e"
+      },
+      "source_gap": null
+    },
+    {
+      "inputs": [],
+      "name": "s_feeManager",
+      "outputs": [
+        {
+          "internalType": "contract IVerifierFeeManager",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[21]"
+      },
+      "signature": "s_feeManager()",
+      "selector": "0x38416b5b",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "VerifierProxy.sol:88-89. Mutable fee/billing dependency. Nonzero means report verification first invokes external billing with msg.value; current value unresolved."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x13a"
+      },
+      "source_gap": null
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract AccessControllerInterface",
+          "name": "accessController",
+          "type": "address"
+        }
+      ],
+      "name": "setAccessController",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[22]"
+      },
+      "signature": "setAccessController(address)",
+      "selector": "0xf08391d8",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "owner only"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "VerifierProxy.sol:210-214. Replaces controller, including zero, without interface validation or timelock. Can immediately admit/block desk report verification."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x2be"
+      },
+      "source_gap": null
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IVerifierFeeManager",
+          "name": "feeManager",
+          "type": "address"
+        }
+      ],
+      "name": "setFeeManager",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[23]"
+      },
+      "signature": "setFeeManager(address)",
+      "selector": "0x472d35b9",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "owner only"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "VerifierProxy.sol:217-228. Requires nonzero and support for single/bulk processFee selectors, then replaces manager and emits FeeManagerSet. Can change economics and failure behavior for immutable-bound desks."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x18c"
+      },
+      "source_gap": null
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "currentConfigDigest",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "newConfigDigest",
+          "type": "bytes32"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "addr",
+              "type": "address"
+            },
+            {
+              "internalType": "uint64",
+              "name": "weight",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct Common.AddressAndWeight[]",
+          "name": "addressesAndWeights",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "setVerifier",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[24]"
+      },
+      "signature": "setVerifier(bytes32,bytes32,(address,uint64)[])",
+      "selector": "0xb011b247",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "initialized verifier only; new digest unmapped"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "VerifierProxy.sol:177-194. Maps newConfigDigest to msg.sender; currentConfigDigest is event context, not a requirement to own/replace previous mapping. Nonempty recipient list requires feeManager and forwards fee recipients; no local weight validation."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x25b"
+      },
+      "source_gap": null
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[25]"
+      },
+      "signature": "transferOwnership(address)",
+      "selector": "0xf2fde38b",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "owner only"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "ConfirmedOwnerWithProposal.sol:26-28,48-55. Stages any address other than caller as pending owner; emits request, leaves current owner unchanged. Zero proposal cancels acceptability rather than renouncing ownership."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x2de"
+      },
+      "source_gap": null
+    },
+    {
+      "inputs": [],
+      "name": "typeAndVersion",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[26]"
+      },
+      "signature": "typeAndVersion()",
+      "selector": "0x181f5a77",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "public pure"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "VerifierProxy.sol:119-121. Returns fixed VerifierProxy 2.0.0 string; not live implementation certification."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0xe2"
+      },
+      "source_gap": null
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "configDigest",
+          "type": "bytes32"
+        }
+      ],
+      "name": "unsetVerifier",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[27]"
+      },
+      "signature": "unsetVerifier(bytes32)",
+      "selector": "0x6e914094",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "owner only"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "VerifierProxy.sol:197-202. Deletes an existing digest mapping and emits VerifierUnset; missing mapping reverts. Can make reports for that digest unavailable immediately."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x1ae"
+      },
+      "source_gap": null
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "payload",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "parameterPayload",
+          "type": "bytes"
+        }
+      ],
+      "name": "verify",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "payable",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[28]"
+      },
+      "signature": "verify(bytes,bytes)",
+      "selector": "0xf7e83aee",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "access controller permits caller, unless controller zero"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "VerifierProxy.sol:124-136,159-166. Payable. Bills optional fee manager before extracting first32 payload bytes as config digest and calling mapped verifier.verify(payload,msg.sender). Returns verified report bytes, but proxy does not itself check feed ID, report age or price sign; desk decoding enforces these separately. Revert rolls back billing."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x2fe"
+      },
+      "source_gap": null
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes[]",
+          "name": "payloads",
+          "type": "bytes[]"
+        },
+        {
+          "internalType": "bytes",
+          "name": "parameterPayload",
+          "type": "bytes"
+        }
+      ],
+      "name": "verifyBulk",
+      "outputs": [
+        {
+          "internalType": "bytes[]",
+          "name": "verifiedReports",
+          "type": "bytes[]"
+        }
+      ],
+      "stateMutability": "payable",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[29]"
+      },
+      "signature": "verifyBulk(bytes[],bytes)",
+      "selector": "0xf873a61c",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "same access check as single verify"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "VerifierProxy.sol:139-157. Payable optional bulk billing then unbounded-in-source payload loop using identical digest routing, returns array of bytes. Any element failure reverts whole operation; runtime collector must never execute this write-capable interface."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x311"
+      },
+      "source_gap": null
+    }
+  ],
+  "events": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "oldAccessController",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newAccessController",
+          "type": "address"
+        }
+      ],
+      "name": "AccessControllerSet",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[9]"
+      },
+      "signature": "AccessControllerSet(address,address)",
+      "topic0": "0x953e92b1a6442e9c3242531154a3f6f6eb00b4e9c719ba8118fa6235e4ce89b6"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "oldFeeManager",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newFeeManager",
+          "type": "address"
+        }
+      ],
+      "name": "FeeManagerSet",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[10]"
+      },
+      "signature": "FeeManagerSet(address,address)",
+      "topic0": "0x04628abcaa6b1674651352125cb94b65b289145bc2bc4d67720bb7d966372f03"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferRequested",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[11]"
+      },
+      "signature": "OwnershipTransferRequested(address,address)",
+      "topic0": "0xed8889f560326eb138920d842192f0eb3dd22b4f139c87a2c57538e05bae1278"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[12]"
+      },
+      "signature": "OwnershipTransferred(address,address)",
+      "topic0": "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "verifierAddress",
+          "type": "address"
+        }
+      ],
+      "name": "VerifierInitialized",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[13]"
+      },
+      "signature": "VerifierInitialized(address)",
+      "topic0": "0x1f2cd7c97f4d801b5efe26cc409617c1fd6c5ef786e79aacb90af40923e4e8e9"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "oldConfigDigest",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "newConfigDigest",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "verifierAddress",
+          "type": "address"
+        }
+      ],
+      "name": "VerifierSet",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[14]"
+      },
+      "signature": "VerifierSet(bytes32,bytes32,address)",
+      "topic0": "0xbeb513e532542a562ac35699e7cd9ae7d198dcd3eee15bada6c857d28ceaddcf"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "configDigest",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "verifierAddress",
+          "type": "address"
+        }
+      ],
+      "name": "VerifierUnset",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[15]"
+      },
+      "signature": "VerifierUnset(bytes32,address)",
+      "topic0": "0x11dc15c4b8ac2b183166cc8427e5385a5ece8308217a4217338c6a7614845c4c"
+    }
+  ],
+  "errors": [
+    {
+      "inputs": [],
+      "name": "AccessForbidden",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[1]"
+      },
+      "signature": "AccessForbidden()",
+      "selector": "0xef67f5d8"
+    },
+    {
+      "inputs": [],
+      "name": "BadVerification",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[2]"
+      },
+      "signature": "BadVerification()",
+      "selector": "0x4df18f07"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "configDigest",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "verifier",
+          "type": "address"
+        }
+      ],
+      "name": "ConfigDigestAlreadySet",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[3]"
+      },
+      "signature": "ConfigDigestAlreadySet(bytes32,address)",
+      "selector": "0x375d1fe6"
+    },
+    {
+      "inputs": [],
+      "name": "FeeManagerInvalid",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[4]"
+      },
+      "signature": "FeeManagerInvalid()",
+      "selector": "0x82389419"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "verifier",
+          "type": "address"
+        }
+      ],
+      "name": "VerifierAlreadyInitialized",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[5]"
+      },
+      "signature": "VerifierAlreadyInitialized(address)",
+      "selector": "0x4e01ccfd"
+    },
+    {
+      "inputs": [],
+      "name": "VerifierInvalid",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[6]"
+      },
+      "signature": "VerifierInvalid()",
+      "selector": "0x75b0527a"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "configDigest",
+          "type": "bytes32"
+        }
+      ],
+      "name": "VerifierNotFound",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[7]"
+      },
+      "signature": "VerifierNotFound(bytes32)",
+      "selector": "0xb151802b"
+    },
+    {
+      "inputs": [],
+      "name": "ZeroAddress",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[8]"
+      },
+      "signature": "ZeroAddress()",
+      "selector": "0xd92e233d"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract AccessControllerInterface",
+          "name": "accessController",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "locator": "Explorer supplied ABI; full available Solidity dependency sources; ABI entry[0]"
+      }
+    }
+  ],
+  "source_review": {
+    "main_file": "src/v0.8/llo-feeds/v0.5.0/VerifierProxy.sol",
+    "main_source_sha256": "79bae04c77527ff945597d180513058f0f063d6f9cb3b9028d7257707d74ba19",
+    "main_lines_reviewed": [
+      1,
+      229
+    ],
+    "additional_sources": [
+      {
+        "file_path": "node_modules/@openzeppelin/contracts@4.8.3/interfaces/IERC165.sol",
+        "sha256": "410e40cd79f1b82bb6bbab95fa4279252cae6e3962b0bff46ab4855f6de91d35",
+        "review": "complete_available_file"
+      },
+      {
+        "file_path": "src/v0.8/shared/interfaces/AccessControllerInterface.sol",
+        "sha256": "bad9923ae2642a14595770f24fe00f545cb01860cfc81bf8fccb27045f96d94d",
+        "review": "complete_available_file"
+      },
+      {
+        "file_path": "src/v0.8/shared/interfaces/IOwnable.sol",
+        "sha256": "2594a249d2736701f12134534377593bbd79abbc01b160692badaa9434760e2e",
+        "review": "complete_available_file"
+      },
+      {
+        "file_path": "src/v0.8/shared/interfaces/ITypeAndVersion.sol",
+        "sha256": "0ce58a47faac1ffa3891ac84f86dcc7d0c524e885f52d6984e2fc5c406b467f1",
+        "review": "complete_available_file"
+      },
+      {
+        "file_path": "node_modules/@openzeppelin/contracts@4.8.3/utils/introspection/IERC165.sol",
+        "sha256": "701e025d13ec6be09ae892eb029cd83b3064325801d73654847a5fb11c58b1e5",
+        "review": "complete_available_file"
+      },
+      {
+        "file_path": "src/v0.8/llo-feeds/libraries/Common.sol",
+        "sha256": "dd22f36fbd5d4530ea8935fbca6a21ffa2b210bc8539eb100e7f367c9fb9b396",
+        "review": "complete_available_file"
+      },
+      {
+        "file_path": "src/v0.8/llo-feeds/v0.5.0/interfaces/IVerifier.sol",
+        "sha256": "cb3735b0e395f6bc2c0b1c57d75949e9a1d5a05e9d04498c58214f0c9cd77735",
+        "review": "complete_available_file"
+      },
+      {
+        "file_path": "src/v0.8/llo-feeds/v0.5.0/interfaces/IVerifierFeeManager.sol",
+        "sha256": "dccc1a8b8ef744568cc68c46b16281228956208966fb9f81be429cc1ee543c70",
+        "review": "complete_available_file"
+      },
+      {
+        "file_path": "src/v0.8/llo-feeds/v0.5.0/interfaces/IVerifierProxy.sol",
+        "sha256": "5c8845ea1c22eb1a768b132f4e34498808d7e60cada88e312e14201a9f2f80af",
+        "review": "complete_available_file"
+      },
+      {
+        "file_path": "src/v0.8/shared/access/ConfirmedOwner.sol",
+        "sha256": "cfd38ea9f2f06cc1570cbb98565964dbcb50f313345c6f1a3f6fae15c3ff61cf",
+        "review": "complete_available_file"
+      },
+      {
+        "file_path": "src/v0.8/shared/access/ConfirmedOwnerWithProposal.sol",
+        "sha256": "f00a24004afb0dfa0b2608814747683346c5aef216e090bf3f5dac30ddf58741",
+        "review": "complete_available_file"
+      }
+    ],
+    "compiler_version": "v0.8.19+commit.7dd6d404",
+    "verification_limit": "Explorer explicitly says partial=true/full=false; source was read, not independently compiled."
+  }
+}

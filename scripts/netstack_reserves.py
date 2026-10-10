@@ -31,7 +31,16 @@ def _wad(raw, decimals):
     return raw * WAD // 10**decimals
 
 
+def _morpho_counted(gross, haircut_bps=200, bps=10000):
+    """Deployed order established by the user's validation: subtract floored loss."""
+    _unsigned(gross)
+    if not 0 <= haircut_bps <= bps or bps <= 0:
+        raise RpcError("Invalid Morpho haircut policy", kind="package")
+    return gross - gross * haircut_bps // bps
+
+
 def _pol(usdg_raw, net_raw, usdg_decimals, net_decimals, held, supply):
+    """Historical documented POL candidate, not validated deployed arithmetic."""
     x, y = _wad(usdg_raw, usdg_decimals), _wad(net_raw, net_decimals)
     _unsigned(held)
     _unsigned(supply)
@@ -129,7 +138,7 @@ def run(ctx, args):
     coverage["core_rfv"] = {"collection_complete": False, "scope": "canonical formula endpoints"}
     ctx.result["not_proven"].extend([
         "Core RFV does not enumerate unrecognized Treasury holdings or accidental transfers; outside-formula inventory is separate.",
-        "Published interfaces and matching snapshot arithmetic do not prove deployed source equivalence or immutable policy. The 200 bps Morpho haircut is documented methodology, not a live parameter read.",
+        "The user's deployment validation establishes the 200 bps subtract-floored haircut. The documented POL candidate is known not to reproduce deployed RFV; applicable runtime and the original validation packet remain missing.",
         "Core RFV is USDG-denominated accounting, not a redemption, solvency, USD peg or liquidity guarantee. LP look-through is memo only and must not be added again.",
     ])
     reads = _Reads(ctx, report)
@@ -190,7 +199,7 @@ def run(ctx, args):
     gross = calculate("morpho_gross", _wad, assets, ud) if asset == usdg else None
     policy = source["methodology"]
     haircut_bps, bps = policy["morpho_haircut_bps"], policy["bps_denominator"]
-    counted = None if gross is None else gross * (bps - haircut_bps) // bps
+    counted = None if gross is None else _morpho_counted(gross, haircut_bps, bps)
     component("morpho", counted, ["vault.asset", "vault.treasury_shares", "vault.convertToAssets", "usdg.decimals"],
               gross_wad=_raw(gross), gross_usdg=None if gross is None else amount(gross, 18),
               assets_raw=_raw(assets), asset_decimals=ud, shares_raw=_raw(shares), share_decimals=vd,
@@ -225,7 +234,7 @@ def run(ctx, args):
     reported_nav = calculate("reported_nav", _nav, tv["rfv"], supply, nd)
     report["assembled"] = {"rfv_wad": _raw(assembled), "rfv_usdg": None if assembled is None else amount(assembled, 18),
                            "nav_wad": _raw(nav), "nav_usdg_per_net": None if nav is None else amount(nav, 18),
-                           "basis": "independent canonical endpoint calculation; inspect relationships and reconciliation before use"}
+                           "basis": "canonical endpoint calculation using documented POL candidate; not certified deployed RFV while methodology.pol_reconstruction_supported is false"}
     lp_usdg_raw = memo.get("usdg", {}).get("raw")
     own_net_pol_raw = memo.get("net", {}).get("raw")
     if pol == 0 and held == 0:
@@ -244,7 +253,11 @@ def run(ctx, args):
         compare(report["reconciliation"], getter, tv[getter], expected,
                 "USDG per NET wad" if getter == "backingPerToken" else "USDG wad")
     compare(report["reconciliation"], "backing_from_reported_rfv", tv["backingPerToken"], reported_nav, "USDG per NET wad")
-    complete = (code_ok and all(row["status"] == "match" for row in report["relationships"].values())
+    pol_supported = policy.get("pol_reconstruction_supported") is True
+    report["pol_reconstruction_supported"] = pol_supported
+    if not pol_supported:
+        _problem(ctx, "pol_methodology", policy["pol_reconstruction_limit"])
+    complete = (pol_supported and code_ok and all(row["status"] == "match" for row in report["relationships"].values())
                 and all(row["status"] == "match" for row in report["reconciliation"].values())
                 and all(row["status"] == "observed" for row in report["reads"].values()))
     report["status"] = "reconciled" if complete else "partial"

@@ -1,6 +1,27 @@
 {
   "contracts": [
     {
+      "role": "LOSE (LOSER) fixed-issuance transfer-tax token",
+      "aliases": [
+        "loseToken"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "LOSE qualifying-loss distributor",
+      "aliases": [
+        "loseDistributor"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "LOSE/USDG Uniswap V2 pair",
+      "aliases": [
+        "losePair"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
       "role": "LoopbackOracle",
       "aliases": [],
       "file": "assets/addresses/contracts/loopback-oracle.json"

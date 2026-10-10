@@ -1,0 +1,1613 @@
+{
+  "predict_depth": {
+    "observed_on": "2026-10-10",
+    "source_id": "netnet-predict-runtime-depth-20261010",
+    "source_evidence": "assets/contracts/predict-source-evidence.json",
+    "runtime": {
+      "desk": {
+        "address": "0x7ef9528408d99f98056922291048f0710001e015",
+        "runtime_bytes": 18317,
+        "runtime_keccak256": "0xe7a63f394ad5aaf5f737f49508c136ea5db2ecc90d3019f53215d3b3d6ad2c43",
+        "runtime_sha256": "5b74e7081cb89ea0f3b0f959a0722fd4e4e228fc9a7331a6f5d51c084bf8a649"
+      },
+      "house": {
+        "address": "0xb488368902b1cbd7533f1536c3f860065398d3e9",
+        "runtime_bytes": 5534,
+        "runtime_keccak256": "0x23b13523c73c5eeb691d96744f9cdd96eb32eca5668310798eb605ca4c75c65e"
+      },
+      "outcome": {
+        "runtime_bytes": 1993,
+        "runtime_keccak256": "0x1e885071188ec8e93373085aafb1569fae587912b48aa61ffd2564538b7718c7",
+        "runtime_sha256": "a1fe99eca8fd6f7986dcd23fcb36e97f308d1276af6073c1f0bafdae9a670122",
+        "immutable_desk": "0x7ef9528408d99f98056922291048f0710001e015"
+      }
+    },
+    "functions_reviewed": {
+      "desk": 33,
+      "house": 27,
+      "outcome_variant": 12
+    },
+    "unmatched_main_dispatcher_selectors": {
+      "desk": [],
+      "house": [],
+      "outcome": []
+    },
+    "full_validation": false,
+    "verified_source_obtained": false,
+    "pinned_live_state_obtained": false,
+    "material_findings": [
+      "House Deposited may be lazy synchronization with no new cash; never sum queued and synchronized principal.",
+      "Outcome transfer-to-zero can leave totalSupply unchanged; zero endpoint is not proof of privileged burn.",
+      "Desk fee counters track gross buys/sells and fees; deferred NET spend can cross series.",
+      "Grade chooses HIGHER only above line; void uses stored mark after strictly72hours; prize proposal selects eligible non-overshooting guess, not print arbitration.",
+      "Matured House notices survive generation reset; assetsOf excludes matured claims."
+    ],
+    "remaining_blockers": [
+      "Canonical RPC denied403; no live totals or pinned dependency closure.",
+      "Verified Solidity/source ABI unavailable from obtained explorer responses.",
+      "Print script/version, print block/hash and constituent/liability/quote/fallback ledger unavailable.",
+      "Core18432.08USDG POL mismatch remains; pol_reconstruction_supported=false."
+    ]
+  },
+  "book": {
+    "observed_on": "2026-10-10",
+    "status": "publisher_interface_and_unpinned_runtime_dispatcher_reviewed",
+    "catalog_paths": [
+      "assets/contracts/sports-book-desk.json",
+      "assets/contracts/sports-book-zap.json"
+    ],
+    "source_evidence_path": "assets/contracts/book-source-evidence.json",
+    "counts": {
+      "desk": {
+        "function": 56,
+        "event": 18,
+        "error": 28,
+        "constructor": 1
+      },
+      "zap": {
+        "function": 12,
+        "event": 0,
+        "error": 9,
+        "constructor": 0
+      }
+    },
+    "unmatched_dispatcher_selectors": {
+      "desk": [],
+      "zap": []
+    },
+    "interface_selectors_not_seen": {
+      "desk": [],
+      "zap": []
+    },
+    "verified_source_available": false,
+    "independently_pinned_runtime": false,
+    "rpc_blocker": "Already observed HTTP403/error1010; no retry/alternate RPC or financial observation.",
+    "unknown_interfaces": [
+      "Zap constructor/event declarations unavailable; runtime event-like constants not given guessed signatures."
+    ],
+    "financial_state_packaged": false
+  },
+  "schema_version": 1,
+  "observed_on": "2026-10-07",
+  "scope": "Targeted source/explorer-runtime analysis and exact unresolved fixed-block questions. No live financial observations, security audit, complete implementation verification or execution warranty.",
+  "updated_on": "2026-10-10",
+  "observation_scope": "Original priority observations retain October7. NetLong, PremiumSeller and the Sleeve/Credit/Book/Predict depth additions carry October10 dates; superseded Sleeve/Credit observations remain explicitly dated in prior_observations. No blanket freshness promotion or live validation.",
+  "premiumseller": {
+    "contract_id": "robinhood-0x346e1a31171a0f7ac73909010b5435768d3b5462",
+    "contract_record": "assets/addresses/contracts/perp-oracles-pendle-lp-premium-seller-and-presser-prizes.json",
+    "source_id": "netnet-premium-seller-implementation-20261010",
+    "observed_on": "2026-10-10",
+    "runtime_bytes": 3908,
+    "runtime_sha256": "e221c12443a8c1c39a7921d53341c8b689546777ccbc990a2e68ae8aa2e4a067",
+    "runtime_keccak256": "0x9ac99a39b1ed3273deea3853c57e91f678b851cbb373aa088b9dc6c87473c504",
+    "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+    "explorer_proxy_type": null,
+    "explorer_implementations": [],
+    "full_validation": false,
+    "status": "complete_obtained_source_review_unpinned",
+    "source_evidence_path": "assets/contracts/premium-seller-source-evidence.json",
+    "interface_count": 21,
+    "function_count": 13,
+    "detected_dispatcher_count": 13,
+    "missing_interface_selectors": [],
+    "findings": [
+      "Permissionless execute: finalized genesis,TWAP strictly>2*backing,>=1h spacing,positive floor(poolNET*25/10000) clip; no owner/setter surface.",
+      "Ordered99%TWAP floor is applied to gross mintedNET, not poolactualinput; rounded execution floor does not guarantee realized>2*backing or>2USDG.",
+      "PremiumSold output is net-new sellerUSDG balance delta, not all cash; transfer request to Treasury needs receipt-level attribution for confirmed delivery.",
+      "NET minted amount can differ from poolactualinput under conditional500bps tax; no current exemption asserted.",
+      "Treasury.mintNet and NET.mint check auth/wiring but no RFV/supply cap; protocol invariant prose is not enforcement evidence.",
+      "active() is incomplete present eligibility, not historical activity/liveness; lastExecuteAt is historicalindicator and empty filtered logs cannot establish unavailable,inactive or never-used.",
+      "USDG proxy implementation/history unpinned; fixed selleraddress/dependencies do not freeze external token behavior."
+    ],
+    "missing_evidence": [
+      "Independently pinned runtime, constructor/deployment receipt and block hash, dependency storage/code and current permissions; explorer metadata is provider evidence, not an independent chain pin.",
+      "Independent compiler rebuild and source-to-bytecode equivalence or exhaustive path/security audit; dispatcher and immutable matches do not establish these.",
+      "Router, pair and oracle implementation equivalence; USDG is an upgradeable ERC1967 proxy whose current and historical implementation/storage are not pinned here.",
+      "Fresh receipt/log reconciliation and complete historical coverage; no sale totals, activity roster, eligibility or financial state is stored in this package."
+    ],
+    "reconciliation": {
+      "status": "not_observed_missing_pinned_state",
+      "required_reads": [
+        "Pinned chain/block/hash plus exact sellercode and dependency getter/decimals correspondence.",
+        "Creation receipt and canonical header; bounded freshPremiumSold logs including explicit gaps/limits and receipt rechecks.",
+        "Successful same-transaction NETmint/TreasuryNetMinted/pairSwap/NETtransfer/USDGseller-to-TreasuryTransfer attribution, event amount matching and ambiguity handling.",
+        "lastExecuteAt vs obtained latestevent consistency; empty-provider-history contradiction must remain unavailable/incomplete rather than0lifetime."
+      ],
+      "missing_result": "No current eligibility, historic total sales, total proceeds, realized prices, Treasury receipt totals or lifetime completeness asserted."
+    }
+  },
+  "netlong": {
+    "observed_on": "2026-10-10",
+    "scope": "Current wsNET futures, token-financed margin and LOSE; superseded identities remain unreviewed. Runtime/ABI/source attribution and live validation are separate.",
+    "access": {
+      "url": "https://rpc.mainnet.chain.robinhood.com",
+      "method": "eth_chainId",
+      "observed_on": "2026-10-10",
+      "http_status": 403,
+      "response": "error code: 1010",
+      "retry_or_alternate_route": false
+    },
+    "verified_twin_qualification": {
+      "contract_id": "robinhood-0x718b03bcc00b1a585e6aa58c5d081170bee93b6e",
+      "claim": "Independent retrieval of explorer verified twin corroborates identical indexed deployed runtime; full source/ABI semantics attributed to twin, not independent compilation or live pinned validation."
+    },
+    "contracts": [
+      {
+        "contract_id": "robinhood-0xca728e8ee6c8d59c1a3abdf1dea43f2f4a63c575",
+        "contract_record": "assets/addresses/contracts/netlong-futures.json",
+        "source_id": "netlong-futures-explorer-20261010-btc",
+        "observed_on": "2026-10-10",
+        "runtime_bytes": 23475,
+        "runtime_keccak256": "0xa3dc16410158de687e42a9ab78e6c3d0fa12cdeffe879545cc33a5cf1b13bcde",
+        "runtime_sha256": "67d24d59d2be5eed24188df2d1711c8161851d3741edd73813f2b1b5510206b3",
+        "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+        "explorer_proxy_type": null,
+        "explorer_implementations": [],
+        "proxy_limit": "Explorer metadata is not an independent proxy/storage audit. Immutable-bound verifier gateway has mutable access, fees and config routing; current targets unresolved.",
+        "full_validation": false,
+        "source_status": "No Solidity/ABI in explorer response; complete publisher literal or explicitly partial runtime reconstruction, material runtime review only.",
+        "source_evidence_path": "assets/contracts/netlong-futures-btc.json",
+        "missing_interface_selectors": [
+          "0x9d61e2bf"
+        ],
+        "reconciliation": {
+          "status": "not_observed_missing_pinned_state",
+          "required_reads": [
+            "Block number/hash/timestamp and same-block code; current dependency/authority bindings.",
+            "Bounded vault desk registry and complete current position discovery, no static user roster.",
+            "Desk long/short stored OI vs summed remaining position size; explicitly scoped marks for marked notional.",
+            "Vault physical wsNET vs free/locked/reserve/owed/redemption liabilities and LP equity, episode funding and claim accumulators."
+          ],
+          "missing_result": "No current holdings, OI, positions, authority roster or financial coverage ratio asserted."
+        },
+        "findings_location": "assets/contracts/netlong-futures-btc.json#/functions",
+        "review_depth": "Material runtime paths or obtained source functions; see per-function evidence and gaps. Not exhaustive bytecode/source verification."
+      },
+      {
+        "contract_id": "robinhood-0x8784014a4cafec70bbc2ae678c59bbe64dbe7858",
+        "contract_record": "assets/addresses/contracts/netlong-futures.json",
+        "source_id": "netlong-futures-explorer-20261010-eth",
+        "observed_on": "2026-10-10",
+        "runtime_bytes": 23475,
+        "runtime_keccak256": "0xfd1a382c46e6d48f438bc55dfd285f53ff9836a66209e89dee122dff58e769bd",
+        "runtime_sha256": "b99ca3da4b44d9bae05630494bb285a74c82cb49b3b1c0cfd088c9ff8e6d678d",
+        "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+        "explorer_proxy_type": null,
+        "explorer_implementations": [],
+        "proxy_limit": "Explorer metadata is not an independent proxy/storage audit. Immutable-bound verifier gateway has mutable access, fees and config routing; current targets unresolved.",
+        "full_validation": false,
+        "source_status": "No Solidity/ABI in explorer response; complete publisher literal or explicitly partial runtime reconstruction, material runtime review only.",
+        "source_evidence_path": "assets/contracts/netlong-futures-eth.json",
+        "missing_interface_selectors": [
+          "0x9d61e2bf"
+        ],
+        "reconciliation": {
+          "status": "not_observed_missing_pinned_state",
+          "required_reads": [
+            "Block number/hash/timestamp and same-block code; current dependency/authority bindings.",
+            "Bounded vault desk registry and complete current position discovery, no static user roster.",
+            "Desk long/short stored OI vs summed remaining position size; explicitly scoped marks for marked notional.",
+            "Vault physical wsNET vs free/locked/reserve/owed/redemption liabilities and LP equity, episode funding and claim accumulators."
+          ],
+          "missing_result": "No current holdings, OI, positions, authority roster or financial coverage ratio asserted."
+        },
+        "findings_location": "assets/contracts/netlong-futures-eth.json#/functions",
+        "review_depth": "Material runtime paths or obtained source functions; see per-function evidence and gaps. Not exhaustive bytecode/source verification."
+      },
+      {
+        "contract_id": "robinhood-0x87b14a8e5304e35b0cbddaba3454587b85ff2470",
+        "contract_record": "assets/addresses/contracts/netlong-futures.json",
+        "source_id": "netlong-futures-explorer-20261010-sol",
+        "observed_on": "2026-10-10",
+        "runtime_bytes": 23475,
+        "runtime_keccak256": "0xb46910416d77985df373d6d0578fc533c8415b183ff53af07f2ced7c0a27ca33",
+        "runtime_sha256": "55b6766da22bc83cf55e5782935bb2498b67a5d40fe4ad5ec9ecb1b612236a6f",
+        "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+        "explorer_proxy_type": null,
+        "explorer_implementations": [],
+        "proxy_limit": "Explorer metadata is not an independent proxy/storage audit. Immutable-bound verifier gateway has mutable access, fees and config routing; current targets unresolved.",
+        "full_validation": false,
+        "source_status": "No Solidity/ABI in explorer response; complete publisher literal or explicitly partial runtime reconstruction, material runtime review only.",
+        "source_evidence_path": "assets/contracts/netlong-futures-sol.json",
+        "missing_interface_selectors": [
+          "0x9d61e2bf"
+        ],
+        "reconciliation": {
+          "status": "not_observed_missing_pinned_state",
+          "required_reads": [
+            "Block number/hash/timestamp and same-block code; current dependency/authority bindings.",
+            "Bounded vault desk registry and complete current position discovery, no static user roster.",
+            "Desk long/short stored OI vs summed remaining position size; explicitly scoped marks for marked notional.",
+            "Vault physical wsNET vs free/locked/reserve/owed/redemption liabilities and LP equity, episode funding and claim accumulators."
+          ],
+          "missing_result": "No current holdings, OI, positions, authority roster or financial coverage ratio asserted."
+        },
+        "findings_location": "assets/contracts/netlong-futures-sol.json#/functions",
+        "review_depth": "Material runtime paths or obtained source functions; see per-function evidence and gaps. Not exhaustive bytecode/source verification."
+      },
+      {
+        "contract_id": "robinhood-0x77d247ec5e2094e8226bcc1a5b8bfb8a903bb00f",
+        "contract_record": "assets/addresses/contracts/netlong-futures.json",
+        "source_id": "netlong-futures-explorer-20261010-net",
+        "observed_on": "2026-10-10",
+        "runtime_bytes": 20666,
+        "runtime_keccak256": "0x9fb16f1b86aed7aac8a45f8bfd918a9cd94becfa84b3ca7e4b8cc94ef43cb4d9",
+        "runtime_sha256": "2269f9f3b704f747eab1dd18f6813b62d36592b239b5a027e66477e6c93c037a",
+        "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+        "explorer_proxy_type": null,
+        "explorer_implementations": [],
+        "proxy_limit": "Explorer metadata is not an independent proxy/storage audit. Immutable-bound verifier gateway has mutable access, fees and config routing; current targets unresolved.",
+        "full_validation": false,
+        "source_status": "No Solidity/ABI in explorer response; complete publisher literal or explicitly partial runtime reconstruction, material runtime review only.",
+        "source_evidence_path": "assets/contracts/netlong-futures-net.json",
+        "missing_interface_selectors": [
+          "0x9d61e2bf"
+        ],
+        "reconciliation": {
+          "status": "not_observed_missing_pinned_state",
+          "required_reads": [
+            "Block number/hash/timestamp and same-block code; current dependency/authority bindings.",
+            "Bounded vault desk registry and complete current position discovery, no static user roster.",
+            "Desk long/short stored OI vs summed remaining position size; explicitly scoped marks for marked notional.",
+            "Vault physical wsNET vs free/locked/reserve/owed/redemption liabilities and LP equity, episode funding and claim accumulators."
+          ],
+          "missing_result": "No current holdings, OI, positions, authority roster or financial coverage ratio asserted."
+        },
+        "findings_location": "assets/contracts/netlong-futures-net.json#/functions",
+        "review_depth": "Material runtime paths or obtained source functions; see per-function evidence and gaps. Not exhaustive bytecode/source verification."
+      },
+      {
+        "contract_id": "robinhood-0x50dc51ce9e633bed99d1d826fa0e2caac3183bf6",
+        "contract_record": "assets/addresses/contracts/netlong-futures.json",
+        "source_id": "netlong-futures-explorer-20261010-vault",
+        "observed_on": "2026-10-10",
+        "runtime_bytes": 17874,
+        "runtime_keccak256": "0x02670852e43315cbb29a326f49e2a056b34b6cda9b6baa190edb1ea4ca792926",
+        "runtime_sha256": "cdf15f1c649e2b46728ac5d9c9a41662147d02c8ecd3f131fa9515599c0801dd",
+        "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+        "explorer_proxy_type": null,
+        "explorer_implementations": [],
+        "proxy_limit": "Explorer metadata is not an independent proxy/storage audit. Immutable-bound verifier gateway has mutable access, fees and config routing; current targets unresolved.",
+        "full_validation": false,
+        "source_status": "No Solidity/ABI in explorer response; complete publisher literal or explicitly partial runtime reconstruction, material runtime review only.",
+        "source_evidence_path": "assets/contracts/netlong-futures-vault.json",
+        "missing_interface_selectors": [
+          "0xfaa20b9c",
+          "0xf29ebf61",
+          "0xd52014e3",
+          "0xc2fff4a5",
+          "0xcb71faa8",
+          "0xcf70cb69",
+          "0xb89601cd",
+          "0xaf54aa86",
+          "0x7dc0d1d0",
+          "0x4f0b47fe",
+          "0x4cf088d9",
+          "0x2b20e397",
+          "0x2f45580c",
+          "0x262d6152",
+          "0x21e9ec8a",
+          "0x1adb8eb6"
+        ],
+        "reconciliation": {
+          "status": "not_observed_missing_pinned_state",
+          "required_reads": [
+            "Block number/hash/timestamp and same-block code; current dependency/authority bindings.",
+            "Bounded vault desk registry and complete current position discovery, no static user roster.",
+            "Desk long/short stored OI vs summed remaining position size; explicitly scoped marks for marked notional.",
+            "Vault physical wsNET vs free/locked/reserve/owed/redemption liabilities and LP equity, episode funding and claim accumulators."
+          ],
+          "missing_result": "No current holdings, OI, positions, authority roster or financial coverage ratio asserted."
+        },
+        "findings_location": "assets/contracts/netlong-futures-vault.json#/functions",
+        "review_depth": "Material runtime paths or obtained source functions; see per-function evidence and gaps. Not exhaustive bytecode/source verification."
+      },
+      {
+        "contract_id": "robinhood-0x90f5b57a7236a1447ce786b1ebe42433e55d9fd0",
+        "contract_record": "assets/addresses/contracts/netlong-futures.json",
+        "source_id": "netlong-futures-explorer-20261010-oracle",
+        "observed_on": "2026-10-10",
+        "runtime_bytes": 3065,
+        "runtime_keccak256": "0x9341058b6fd404e188658d0683f363959e3d049426c127131c5f1db39be503c8",
+        "runtime_sha256": "5a5fbec31d6c98340aafa033212d76761262a9f57ba101ec17495e3fcf813b84",
+        "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+        "explorer_proxy_type": null,
+        "explorer_implementations": [],
+        "proxy_limit": "Explorer metadata is not an independent proxy/storage audit. Immutable-bound verifier gateway has mutable access, fees and config routing; current targets unresolved.",
+        "full_validation": false,
+        "source_status": "No Solidity/ABI in explorer response; complete publisher literal or explicitly partial runtime reconstruction, material runtime review only.",
+        "source_evidence_path": "assets/contracts/netlong-futures-oracle.json",
+        "missing_interface_selectors": [
+          "0xb1b9a7c5",
+          "0xa8aa1b31",
+          "0x516dc7c3",
+          "0x61d027b3",
+          "0x0f0964aa",
+          "0x1adb8eb6"
+        ],
+        "reconciliation": {
+          "status": "not_observed_missing_pinned_state",
+          "required_reads": [
+            "Current owner/permissions/dependencies at pinned block; validate report/feed availability and precise state-dependent branches."
+          ],
+          "missing_result": "No current holdings, OI, positions, authority roster or financial coverage ratio asserted."
+        },
+        "findings_location": "assets/contracts/netlong-futures-oracle.json#/functions",
+        "review_depth": "Material runtime paths or obtained source functions; see per-function evidence and gaps. Not exhaustive bytecode/source verification."
+      },
+      {
+        "contract_id": "robinhood-0x56a8816132579c6c080e65147682da2d6d20efb0",
+        "contract_record": "assets/addresses/contracts/netlong-futures.json",
+        "source_id": "netlong-futures-explorer-20261010-fee-router",
+        "observed_on": "2026-10-10",
+        "runtime_bytes": 2903,
+        "runtime_keccak256": "0x831737401f72615f91a8d35d2229b8a38a96845211e630548ec61b76cb8dc57c",
+        "runtime_sha256": "a0c0fdc91eda54cbeb18f7097ec12d7390ee1fc45fe7790c31ef520b8d1be85f",
+        "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+        "explorer_proxy_type": null,
+        "explorer_implementations": [],
+        "proxy_limit": "Explorer metadata is not an independent proxy/storage audit. Immutable-bound verifier gateway has mutable access, fees and config routing; current targets unresolved.",
+        "full_validation": false,
+        "source_status": "No Solidity/ABI in explorer response; complete publisher literal or explicitly partial runtime reconstruction, material runtime review only.",
+        "source_evidence_path": "assets/contracts/netlong-futures-fee-router.json",
+        "missing_interface_selectors": [
+          "0xdeadbc14",
+          "0x63f7324a",
+          "0x186f0354"
+        ],
+        "reconciliation": {
+          "status": "not_observed_missing_pinned_state",
+          "required_reads": [
+            "Current owner/permissions/dependencies at pinned block; validate report/feed availability and precise state-dependent branches."
+          ],
+          "missing_result": "No current holdings, OI, positions, authority roster or financial coverage ratio asserted."
+        },
+        "findings_location": "assets/contracts/netlong-futures-fee-router.json#/functions",
+        "review_depth": "Material runtime paths or obtained source functions; see per-function evidence and gaps. Not exhaustive bytecode/source verification."
+      },
+      {
+        "contract_id": "robinhood-0xce73c8ad08cbdeaca6078bf0627c8fe0a9a536e7",
+        "contract_record": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json",
+        "source_id": "netlong-futures-explorer-20261010-stream-verifier",
+        "observed_on": "2026-10-10",
+        "runtime_bytes": 7009,
+        "runtime_keccak256": "0x4bd86e898b2952f6f0d20fee037accf52490dbdd9279345cd4b0a7161b5c022b",
+        "runtime_sha256": "246be742ffcc522f72309f1f42c77817af4d6f823969ce9e5763f2a9327ca231",
+        "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+        "explorer_proxy_type": null,
+        "explorer_implementations": [],
+        "proxy_limit": "Explorer metadata is not an independent proxy/storage audit. Immutable-bound verifier gateway has mutable access, fees and config routing; current targets unresolved.",
+        "full_validation": false,
+        "source_status": "All available main/inherited/imported source read; explorer partial=true/full=false; no independent compiler rebuild.",
+        "source_evidence_path": "assets/contracts/netlong-futures-stream-verifier.json",
+        "missing_interface_selectors": [],
+        "reconciliation": {
+          "status": "not_observed_missing_pinned_state",
+          "required_reads": [
+            "Current owner/permissions/dependencies at pinned block; validate report/feed availability and precise state-dependent branches."
+          ],
+          "missing_result": "No current holdings, OI, positions, authority roster or financial coverage ratio asserted."
+        },
+        "findings_location": "assets/contracts/netlong-futures-stream-verifier.json#/functions",
+        "review_depth": "Material runtime paths or obtained source functions; see per-function evidence and gaps. Not exhaustive bytecode/source verification."
+      },
+      {
+        "contract_id": "robinhood-0x9cc4e5fc9149eeae154273c52292f3bb350233fb",
+        "contract_record": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json",
+        "source_id": "netlong-futures-explorer-20261010-tape-verifier",
+        "observed_on": "2026-10-10",
+        "runtime_bytes": 2599,
+        "runtime_keccak256": "0xf0f42ab0932a1679b5f24c83a1a1a091ee709ca738fe6e861e5168799eb98c4b",
+        "runtime_sha256": "b29bbe85c561c35d60eafe8885c951cbfc5d6bdd9dbb9b8f94cfd894d18f3caa",
+        "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+        "explorer_proxy_type": null,
+        "explorer_implementations": [],
+        "proxy_limit": "Explorer metadata is not an independent proxy/storage audit. Immutable-bound verifier gateway has mutable access, fees and config routing; current targets unresolved.",
+        "full_validation": false,
+        "source_status": "No Solidity/ABI in explorer response; complete publisher literal or explicitly partial runtime reconstruction, material runtime review only.",
+        "source_evidence_path": "assets/contracts/netlong-futures-tape-verifier.json",
+        "missing_interface_selectors": [
+          "0xacb8cc49",
+          "0xae3c9941",
+          "0xd386b557",
+          "0x9d0c69f2",
+          "0x796f077b"
+        ],
+        "reconciliation": {
+          "status": "not_observed_missing_pinned_state",
+          "required_reads": [
+            "Current owner/permissions/dependencies at pinned block; validate report/feed availability and precise state-dependent branches."
+          ],
+          "missing_result": "No current holdings, OI, positions, authority roster or financial coverage ratio asserted."
+        },
+        "findings_location": "assets/contracts/netlong-futures-tape-verifier.json#/functions",
+        "review_depth": "Material runtime paths or obtained source functions; see per-function evidence and gaps. Not exhaustive bytecode/source verification."
+      },
+      {
+        "contract_id": "robinhood-0xe1685b19367e066af3e499dd4b0e51866b762c84",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-margin-desk.json",
+        "source_ids": [
+          "netlong-margin-desk-explorer-20261010",
+          "netnet-trading-entry-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "targeted_runtime_review_incomplete_source",
+        "runtime_identity": {
+          "byte_count": 24403,
+          "sha256": "17b0806d172eab539e3fd362416666284dfb8656d2b93ec5b73e75cf4593555f",
+          "keccak256": "0xa74be8a609bdb8472728ecea5b5f10b0695f5a016b80ceecec422ab2491d67e7",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": null,
+          "explorer_is_fully_verified": null,
+          "verified_twin_address": null
+        },
+        "findings": [
+          {
+            "scope": "dependency pins and enumeration",
+            "pcs": [
+              "0x497",
+              "0x534",
+              "0xa77",
+              "0xab1",
+              "0xbf8",
+              "0xcde",
+              "0xd0d",
+              "0x812"
+            ],
+            "detail": "Direct immutable getters pin TWAP source,pot,shared oracle,LOSE distributor,executor,fee router,USDG. nextPositionId reads slot6 initialized to1 in creation; ids are not proof of active positions."
+          },
+          {
+            "scope": "buy transition",
+            "pcs": [
+              "0x2f00-0x35c0"
+            ],
+            "detail": "State1 pending request; deadline/freshness guards; pot lend called only in executeBuy; fee= floor(loanUsdg*25/10000), spend=loan-fee; actual received units measured and TWAP/trader-price floor checked; position debt/shares initialized after fill. Unknown all edge predicates remain non-certified."
+          },
+          {
+            "scope": "units and debt",
+            "pcs": [
+              "0x20fa",
+              "0x3ca0-0x3d4b",
+              "0x4b97-0x4bca",
+              "0x2038-0x20fa"
+            ],
+            "detail": "unitsOf is zero for zero shares or listing totalShares, otherwise floor(shares*(balanceOf(desk)+1)/(totalShares+1e6)); debtUsdg delegates scaled-debt conversion, zero before funded buy. Entry/reserved listing notional is not current marked exposure."
+          },
+          {
+            "scope": "linked implementation boundary",
+            "pcs": [
+              "0x21e7-0x2265",
+              "0x32ca-0x335a"
+            ],
+            "detail": "DELEGATECALL uses hardcoded SettleLib0x39Ce... and ListerLib0xA8Ad...; libraries operate on Desk storage. Neither publisher interface nor no-proxy metadata proves complete dependency safety."
+          }
+        ],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+          "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0x068904944fcf4a18ab40ca112f385faa430f60f2",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-margin-lending-account.json",
+        "source_ids": [
+          "netlong-margin-lending-account-explorer-20261010",
+          "netnet-trading-entry-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "targeted_runtime_review_incomplete_source",
+        "runtime_identity": {
+          "byte_count": 11043,
+          "sha256": "53a8f0a67f812441c293d9cd7b42db7c2532e18328487eea8ffc6562c38811e7",
+          "keccak256": "0xc4b995de0c7112076b487025a7ea658bba2db500f71770fd4998f0e0292704e9",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": null,
+          "explorer_is_fully_verified": null,
+          "verified_twin_address": null
+        },
+        "findings": [
+          {
+            "scope": "cash,equity,share math",
+            "pcs": [
+              "0x0fc6-0x1104",
+              "0x1104-0x1318",
+              "0x0805-0x0a65"
+            ],
+            "detail": "idle=max(balance-insuranceUsdg-fundedWithdrawalReserve,0). Equity adds principal, lender net accrued interest, heldWs-insuranceWs valued at credit, then subtracts dated owed and clips0. Virtual1 asset/1e6 shares floors deposits and withdrawal value. Shares not a fungible ERC20 interface."
+          },
+          {
+            "scope": "interest index",
+            "pcs": [
+              "0x1318-0x156f",
+              "0x1a9c-0x1bbd",
+              "0x22bb-0x2388"
+            ],
+            "detail": "Rate uses principal/(principal+idle), kink80%,annual4/20/60%. Current index=storedIndex+floor(storedIndex*rate*elapsed/(1e18*31536000)); debt converts scaled units with ceil. Accrual updates index/timestamp, not continuously compounded per-block snapshots. Interest70% lenders,20% feeRouter,10% insurance at realization; projected lender interest excludes both cuts."
+          },
+          {
+            "scope": "repayment and impaired debt",
+            "pcs": [
+              "0x0bec-0x0fc6"
+            ],
+            "detail": "Desk-only repayment retires principal/scaled debt; realized shortfall draws USDG insurance then converts required insuranceWs by rounded-up credit and decreases that insurance subset, leaving residual loss to equity. Seized wsNET remains asset custody, not sold cash; insolvency is not repaired by reporting custody as USDG."
+          },
+          {
+            "scope": "queued withdrawals and permission",
+            "pcs": [
+              "0x244b-0x29a0",
+              "0x1e61-0x216f"
+            ],
+            "detail": "Dated withdrawals join cohort/index accounting, funded pro rata as idle arrives, reserved separately from unfunded owed; lend denied while unfunded owed>0. claim(account) pays only account and clips cash. buyHeldWs is ADMIN-only and excludes insuranceWs, despite unrestricted-looking frontend action."
+          }
+        ],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+          "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0x56ae9dd336525a9c29a10e80963ccbcaf4b3cfa0",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-margin-fee-router.json",
+        "source_ids": [
+          "netlong-margin-fee-router-explorer-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "targeted_runtime_review_incomplete_source",
+        "runtime_identity": {
+          "byte_count": 5390,
+          "sha256": "5b55167c5c5fb24ac73a6eb44b71e38a8b305197508b8356752dddb0bd014aff",
+          "keccak256": "0xd5da83c23fdf26415a4913551cbf2e82006f3e50be0c1492ff4bf9f6d8a6ece1",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": null,
+          "explorer_is_fully_verified": null,
+          "verified_twin_address": null
+        },
+        "findings": [
+          {
+            "scope": "fee processing and permissions",
+            "pcs": [
+              "0x0379-0x0754",
+              "0x0a45-0x0ed5"
+            ],
+            "detail": "Processes received USDG into measured NET output through registry/canonical route. Supplied/custom route restricted by authorization path; default canonical path differs. Verifies spent USDG/output delta and minimum output. Current immutable mode false at0x0b30 selects NET burn(uint256)0x42966c68 at0x0df7; alternate compiled staking/insurance-ws branch is unreachable with this pin. USDG is not simply deposited to Treasury."
+          }
+        ],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+          "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0x2ff4b46b6bf08ecaf0c374676b9a5baa15524311",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-margin-twap-source.json",
+        "source_ids": [
+          "netlong-margin-twap-source-explorer-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "targeted_runtime_review_incomplete_source",
+        "runtime_identity": {
+          "byte_count": 10666,
+          "sha256": "10d9e45363bb04e8445efff63d67d466d1ed0753e33f861212fd921cec093d42",
+          "keccak256": "0x2cbce668df1915bc7ae7167f4e667ef816049d4907ed454645ee11e95af474fa",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": null,
+          "explorer_is_fully_verified": null,
+          "verified_twin_address": null
+        },
+        "findings": [
+          {
+            "scope": "registry and price/depth boundaries",
+            "pcs": [
+              "0x0451-0x0516",
+              "0x06f5-0x126b"
+            ],
+            "detail": "Runtime pins NET/USDG pair, V3 factory,WETH,USDG,PairOracle,ETH/USD feed and V4 PoolManager; MAX_DEPTH_POOLS8. Lister full marks selector0xf84ac2d1 and spot-only0xc6e2aaee; quoteWETH and decimal conversion paths distinct. Complete source/ABI unavailable: exhaustive V3 tick-depth/V4 hook validation,oracle freshness/negative tick rounding and every arithmetic path remain missing; do not treat TVL as within1% depth."
+          }
+        ],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+          "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0x2d96bbf7859520ac6ecd2987a69e334b57de9de6",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-margin-route-executor.json",
+        "source_ids": [
+          "netlong-margin-route-executor-explorer-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "targeted_runtime_review_incomplete_source",
+        "runtime_identity": {
+          "byte_count": 8922,
+          "sha256": "aa2b03e1ce2e62c8cd81e986c828ae70b37be14a72c8baeade96d140d3f4dfc4",
+          "keccak256": "0x66e91e5ce9494fb5e98c72a973ffd77f76d7dde6ae0152876cc22004aec8ae0b",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": null,
+          "explorer_is_fully_verified": null,
+          "verified_twin_address": null
+        },
+        "findings": [
+          {
+            "scope": "authority and adapters",
+            "pcs": [
+              "0x02ed-0x06c5",
+              "0x06c5-0x0879",
+              "0x0879-0x0f08"
+            ],
+            "detail": "execute selector0x9aefaff8 is Desk-only and reentrancy guarded. Route kind resolves registry/fixed/canonical adapters, barred targets and input/output-token-as-target blocked. V3 callback authenticates active pool slot before paying positive delta; canonical V3 pool identity validated against factory. Caller supplied arbitrary route cannot override Desk settlement caller policy."
+          },
+          {
+            "scope": "external route risk",
+            "pcs": [
+              "0x1167"
+            ],
+            "detail": "Executor and SettleLib use balance differences, not nominal router output only. Full return,allowance reset,partial-spend and route-kind branch equivalence are not exhaustively certified without source."
+          },
+          {
+            "scope": "WETH/USDG bridge dependency",
+            "pcs": [
+              "0x011b"
+            ],
+            "detail": "Direct immutable0x69bf... is WETH/USDG UniswapV3Pool, not a router. Runtime token0=WETH,token1=USDG,factory0x1f7d...,fee500,tickSpacing10; separate source/ABI catalog provided."
+          }
+        ],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+          "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0xa8ad2540af00381b8acd7e41fa6fdb7e0a1fd048",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-margin-lister-lib.json",
+        "source_ids": [
+          "netlong-margin-lister-lib-explorer-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "targeted_runtime_review_incomplete_source",
+        "runtime_identity": {
+          "byte_count": 11041,
+          "sha256": "89fee49c841b5587cebe1c8118cee5d867946206e0a8bbe2b31dfc47761bef32",
+          "keccak256": "0xd176908ca2498d7af5f1d7c1222d3ccc444a94b53001b87cdfc8741e42f1a3d9",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": null,
+          "explorer_is_fully_verified": null,
+          "verified_twin_address": null
+        },
+        "findings": [
+          {
+            "scope": "every dispatcher branch",
+            "selectors": [
+              "0x186ae923",
+              "0x338dbffe",
+              "0x5d41b25c",
+              "0x7073c658",
+              "0x711700bb",
+              "0x8feca260",
+              "0xa17e6b57",
+              "0xd2edc0f2",
+              "0xf0f29f21",
+              "0xf3e6b51a"
+            ],
+            "detail": "Source/ABI unavailable. Branches traced by their ABI decoder/storage/calls: open-check0x027f,depth0x065f,tokenCap0x0707,params0x0767,list0x0801,quote0x0cde,Safe ceilings0x0fa0,marks0x10e6,liquidation thresholds0x126a,measurement0x13b5. Signature/storage-reference tuple types not reconstructed as a complete ABI."
+          },
+          {
+            "scope": "listing and depth manipulation constraints",
+            "pcs": [
+              "0x0801-0x0cde",
+              "0x1887-0x1c48"
+            ],
+            "detail": "Rejects USDG/wsNET listing; requires decimals<=18, canonical mark-pool lookup and usable marks; changing mark pool/quote basis while totalShares nonzero reverts. Depth pool count bounded by source MAX_DEPTH_POOLS(8), duplicates and mark-pool duplication rejected, each source pool identity validated. No timelock proved; Desk controls authority."
+          },
+          {
+            "scope": "measured bounds",
+            "pcs": [
+              "0x13b5-0x16b2",
+              "0x17a7-0x1887",
+              "0x1c85-0x1d69"
+            ],
+            "detail": "Effective depth=min(submitted depth,source measured depth), halved if ownerRisk. Formula leverage=clamp(floor(9000*1e18/(3*sigmaHBps+200)),1.2e18,10e18), then nonzero Safe ceiling. slipBps=floor(1000*1e18/L), maintenance=slip+200. tokenCap=min(floor(depth*slip/10000),250000e18,nonzero safeCap); positionCap=min(floor(tokenCap/4),50000e18). Open uses freshness21600s/probe flag, existing-position and lending guards. Probe boolean and volatility submissions are keeper inputs, not autonomous proof that a token cannot blacklist/upgrade."
+          },
+          {
+            "scope": "marks fallback and quotes",
+            "pcs": [
+              "0x10e6-0x13b5",
+              "0x0cde-0x0fa0"
+            ],
+            "detail": "Tries full TWAP+spot source first; then spot-only; then zero, preserving twapLive=false. Quote derives margin credit, whole leveraged notional, rounded-up loan USDG, opening fee25bps and min units; no guarantee of execution. Lender oracle-credit fallback not equivalent to healthy token TWAP."
+          }
+        ],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+          "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0x39ce3cf58d65c96c86803556e4091f735efdab17",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-margin-settle-lib.json",
+        "source_ids": [
+          "netlong-margin-settle-lib-explorer-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "targeted_runtime_review_incomplete_source",
+        "runtime_identity": {
+          "byte_count": 10741,
+          "sha256": "a484f98a1ed21f3c57a0dae8573b16834a583134a1a04998318a982fa33dbf3f",
+          "keccak256": "0xd0a7e3d2aa7910d119e66ae842842b02717106d99c3136e33bb7867d05e56d78",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": null,
+          "explorer_is_fully_verified": null,
+          "verified_twin_address": null
+        },
+        "findings": [
+          {
+            "scope": "all six dispatcher branches",
+            "selectors": [
+              "0x0a48f8df",
+              "0x15cc3924",
+              "0x19525d50",
+              "0x272d3cbf",
+              "0x36f4c3b4",
+              "0xf6ec3430"
+            ],
+            "detail": "Source/ABI unavailable. Bodies traced: sell/settle0x0172,buy leg0x0970,route selection0x09b2,surplus sweep0x0b43,remove-margin0x0d21,zero-unit impaired exit0x10b2. Mutating library entries have Solidity delegatecall-context guards. Full parameter names/storage layout are not attested."
+          },
+          {
+            "scope": "tax-token/rebase execution",
+            "pcs": [
+              "0x14a2-0x16ec"
+            ],
+            "detail": "Pro-rata units use virtual+1 assets/+1e6 shares; token transferred to executor, output measured by destination balance delta and capped against executor returned amount. Tax/rebase changes are not hidden by nominal amounts."
+          },
+          {
+            "scope": "settlement waterfall",
+            "pcs": [
+              "0x0172-0x0962",
+              "0x16ec-0x196c",
+              "0x196c-0x1b35",
+              "0x1b35-0x1dc5"
+            ],
+            "detail": "Close fee25bps of proceeds; liquidation-reason branches additionally100bps penalty, half floor50% insurance and remainder feeRouter. Net liquidation proceeds retire debt; voluntary partial sales retire proportional debt. Full sale/voluntary shortfall may seize posted wsNET with ceil credit conversion capped to margin. Uncovered voluntary exit reverts. Pot receives wsNET, no wsNET market sale. Retires notional/cap shares proportionally; loss to pot not all attributed to borrower."
+          },
+          {
+            "scope": "route authority and delay",
+            "pcs": [
+              "0x09b2-0x0b43"
+            ],
+            "detail": "Lister may supply route; trader route allowed only for borrower-directed branch. Others use canonical pool route; non-trader borrower-close fallback has600-second last-touch check. Do not confuse this route fallback delay with documented300-second under-maintenance persistence."
+          },
+          {
+            "scope": "LOSE eligibility and failure",
+            "pcs": [
+              "0x2133-0x2262"
+            ],
+            "detail": "Calls distributor record(trader,credited seized-margin USDG*1e12) only for nonzero actual credited borrower loss; pot uncovered shortfall excluded. Low-level CALL failure emits failure event and does not revert settlement. No claim retry or backfill guarantee established."
+          }
+        ],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+          "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0xf4d567e3c0b7b24bd2f379db8249701a6f929e93",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-lose-token.json",
+        "source_ids": [
+          "netlong-lose-token-explorer-20261010",
+          "netnet-trading-entry-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "targeted_runtime_review_incomplete_source",
+        "runtime_identity": {
+          "byte_count": 7114,
+          "sha256": "406bc227778a52024751062ee0eda1145174287cce811fa1ff5977a9dae4b519",
+          "keccak256": "0x1559df4c463a450bcad64ee2c6af61111ba47868db0fd3e04bd7ae33dc660c48",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": null,
+          "explorer_is_fully_verified": null,
+          "verified_twin_address": null
+        },
+        "findings": [
+          {
+            "scope": "issuance",
+            "pcs": [
+              "creation0x03fa-0x058f"
+            ],
+            "detail": "Constructor mints1e27 raw units (1b at18decimals),10% Sleeve and90% distributor, creates/resolves USDG pair and approves router for own levy inventory. This is durable issuance mechanics, not retained live balances."
+          },
+          {
+            "scope": "transfer tax",
+            "pcs": [
+              "0x0cd5-0x1026"
+            ],
+            "detail": "Transfers FROM immutable distributor or FROM token itself bypass tax and early update path. Other transfers: if neither endpoint isPool, ordinary transfer; otherwise floor(amount*200/10000) burned and floor(amount*300/10000) credited to token levy balance, recipient gets remainder. No extra fee just because both endpoints pools. Sender/receiver zero rejected; allowance infinite sentinel supported."
+          },
+          {
+            "scope": "pool registry authority",
+            "pcs": [
+              "0x06d3-0x07f3"
+            ],
+            "detail": "setPool(address,bool)0x20bec12c requires fixed Safe,nonzero target and cannot toggle canonical pair; other pools can be flagged/unflagged immediately. No arbitrary user exemption setter identified; distributor/token-sender exceptions are hardcoded."
+          },
+          {
+            "scope": "conversion and manipulation limits",
+            "pcs": [
+              "0x08bd-0x0b6f",
+              "0x10eb-0x11af",
+              "0x137e-0x1640"
+            ],
+            "detail": "Explicit conversion requires nonzero levy amount<=own balance and<=swapThreshold, adequate canonical USDG reserve,live stored TWAP quote and user minimum at least quoted slippage floor; router sends USDG to fixed Sleeve. Automatic conversion only on non-pool-origin transfer,not already inSwap,levy balance>threshold; caps chunk to threshold, skips low reserve/unavailable quote and catches router failure. Stored cumulative TWAP update min1800s; slippage300bps; threshold250000e18; minUSDGreserve1e9 raw($1000). These caps do not guarantee liquidity or absence of manipulation."
+          }
+        ],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+          "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0x1dedda4de44f406fd25cdd3a22abb8e524368719",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-lose-distributor.json",
+        "source_ids": [
+          "netlong-lose-distributor-explorer-20261010",
+          "netnet-trading-entry-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "targeted_runtime_review_incomplete_source",
+        "runtime_identity": {
+          "byte_count": 3011,
+          "sha256": "5a98ea91c13d3fc733f0120116245b2d83355eb9d0031329276d2039e49a2288",
+          "keccak256": "0x5539df35555fbad6ef774551682a9c5977c04b2f65b78268aeb3d87619696318",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": null,
+          "explorer_is_fully_verified": null,
+          "verified_twin_address": null
+        },
+        "findings": [
+          {
+            "scope": "finite issuance vs release",
+            "pcs": [
+              "0x034a-0x037a",
+              "0x04b6-0x04cd",
+              "0x078b-0x0962"
+            ],
+            "detail": "CURVE_SUPPLY=TOTAL_SUPPLY-TOTAL_SUPPLY/10=9e26. record(address,uint256)0xc6685617 requires isDesk(msg.sender),nonzero trader,loss>=immutable1e18. It updates aggregate losses/releases and calls LOSE.transfer; no token mint call. Zero marginal release possible from flooring."
+          },
+          {
+            "scope": "curve and rounding",
+            "pcs": [
+              "0x04cd-0x0648",
+              "0x0648-0x06d2",
+              "0x0962-0x09b5"
+            ],
+            "detail": "Let C=9e26,L0=1e24 USDWad,K=5e24 USDWad. F(L)=floor(C*L/(L0+K)) forL<=L0; else floor(C*L0/(L0+K))+floor(floor(C*K/(L0+K))*(L-L0)/(K+L-L0)). Transfer=F(old+loss)-F(old); min report1e18 ignores smaller reports entirely. Rate=150e18 through L0 then floor(150e18*K^2/(K+L-L0)^2); checked intermediate square overflow can revert extreme inputs. Finite curve allocation asymptote900m distinct from1b issuance."
+          },
+          {
+            "scope": "registration",
+            "pcs": [
+              "0x037a-0x04b6",
+              "0x06d2-0x078b"
+            ],
+            "detail": "Registrar-only desk additions before sealBy, nonzero/duplicate guard; seal branch permits registrar or postdeadline caller and zeroes registrar. Existing desk membership has no removal branch found in22-selector runtime, but no complete source ABI available."
+          }
+        ],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+          "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0x718b03bcc00b1a585e6aa58c5d081170bee93b6e",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-lose-pair.json",
+        "source_ids": [
+          "netlong-lose-pair-explorer-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "source_reviewed_unpinned",
+        "runtime_identity": {
+          "byte_count": 11293,
+          "sha256": "8b5db55fa9ab3b9527508d4abe0b39eb588bf310270c8e04b3f38214e8ba63b4",
+          "keccak256": "0x5b83bdbcc56b2e630f2807bbadd2b0c21619108066b92a58de081261089e9ce5",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": false,
+          "explorer_is_fully_verified": false,
+          "verified_twin_address": "0xb9C67A370D6c2E1426Df424E53430408aCe21A08"
+        },
+        "findings": [],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0x39dbed3a2bd333467115de45665cc57f813c4571",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-margin-pons-token.json",
+        "source_ids": [
+          "netlong-margin-pons-token-explorer-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "source_reviewed_unpinned",
+        "runtime_identity": {
+          "byte_count": 5274,
+          "sha256": "18e3132e9f41d6d68d7cd0ce244bbdd87f46e8ac176513a7bb079c3b87e53376",
+          "keccak256": "0x16c3d3ede897688ddff79262606f13bead398332e65001f192460fbac4e1fb85",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": true,
+          "explorer_is_fully_verified": false,
+          "verified_twin_address": null
+        },
+        "findings": [],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0x020bfc650a365f8bb26819deaabf3e21291018b4",
+        "contract_record": "assets/addresses/contracts/cashcat-climb-and-coinflip.json",
+        "source_evidence_path": "assets/contracts/netlong-margin-cashcat-token.json",
+        "source_ids": [
+          "netlong-margin-cashcat-token-explorer-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "source_reviewed_unpinned",
+        "runtime_identity": {
+          "byte_count": 4830,
+          "sha256": "224b54d0c42295f65953edd380ab828d3aa3dddb11c9b0ea7922a84875432017",
+          "keccak256": "0x725781ccca82a0bf9b1f8920b2fe58ea1e4facf46d0db9f50226d6409de890fe",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": true,
+          "explorer_is_fully_verified": false,
+          "verified_twin_address": null
+        },
+        "findings": [],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0x2e8c31162b855a2ffa90f6f8634643ad6f111e18",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-margin-ai-token.json",
+        "source_ids": [
+          "netlong-margin-ai-token-explorer-20261010",
+          "netlong-margin-ai-implementation-explorer-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "source_reviewed_unpinned",
+        "runtime_identity": {
+          "byte_count": 44,
+          "sha256": "006870377d147cf66d7e15949f19a89773097d4806b67f9743a01e440e48d4fb",
+          "keccak256": "0xf10f86b05965a827a332e6c73086f18026fbe3917f4bffbec3f938b3b5397b56",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": "eip1167",
+          "explorer_is_verified": null,
+          "explorer_is_fully_verified": null,
+          "verified_twin_address": null
+        },
+        "findings": [],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0x3be8b97fd0e713b5abe0649fa830223b6b4bc599",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-margin-ai-implementation.json",
+        "source_ids": [
+          "netlong-margin-ai-implementation-explorer-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "source_reviewed_unpinned",
+        "runtime_identity": {
+          "byte_count": 13927,
+          "sha256": "0706fe921e1dbdae7b9c46e28a278c14caab0cd86128d6b46f0832287079f33f",
+          "keccak256": "0x67a382a66d2b14a7032698e11c9ae4432435d2c803429d5c660692289ad10e12",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": true,
+          "explorer_is_fully_verified": false,
+          "verified_twin_address": null
+        },
+        "findings": [],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+        ]
+      },
+      {
+        "contract_id": "robinhood-0x69bfaf19c9f377bb306a89aed9f6b07e2c1a8d9a",
+        "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+        "source_evidence_path": "assets/contracts/netlong-margin-weth-usdg-pool.json",
+        "source_ids": [
+          "netlong-margin-weth-usdg-pool-explorer-20261010"
+        ],
+        "observed_on": "2026-10-10",
+        "full_validation": false,
+        "status": "source_reviewed_unpinned",
+        "runtime_identity": {
+          "byte_count": 22142,
+          "sha256": "55f9b1ba469661359360eea621b92a44d00924d68d452f29e04d1d4c2e587bf2",
+          "keccak256": "0x74a16c3b1b4ac8903c54a9edad666d4c87512cb78ed0723538acd84d1b56c5b5",
+          "evidence_kind": "explorer_indexed_unpinned_runtime",
+          "proxy_type": null,
+          "explorer_is_verified": true,
+          "explorer_is_fully_verified": false,
+          "verified_twin_address": null
+        },
+        "findings": [],
+        "missing_evidence": [
+          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+        ]
+      }
+    ]
+  },
+  "access": {
+    "rpc_url": "https://rpc.mainnet.chain.robinhood.com",
+    "attempted_method": "eth_chainId",
+    "result": "HTTP403 Forbidden",
+    "block_number": null,
+    "block_hash": null,
+    "block_timestamp": null,
+    "financial_values_recorded": false,
+    "limits": "No chain ID response/head was obtained, hence no pinned eth_getCode, storage or balances. Specialized public explorer retrieval succeeded independently; not a replacement for pinned RPC.",
+    "metadata_recovery": [
+      {
+        "contract": "sleeve",
+        "url": "https://ipfs.io/ipfs/QmZNj8tUYQZk1PpFwEEwTCK9CgWWwfDnwVf6UiF5hwyPzk",
+        "result": "HTTP429; no source recovered"
+      },
+      {
+        "contract": "predict",
+        "url": "https://ipfs.io/ipfs/QmQKxpQiRzz4cE5eYUyz78HXgGvGpSHosNmH48WamZuZN2",
+        "result": "HTTP429; no source recovered"
+      },
+      {
+        "contract": "credit",
+        "url": "https://ipfs.io/ipfs/QmUScvDa2X5EA9xrN4ynEMejQaQB2GgbMhJusqQV2FPs9U",
+        "result": "HTTP429; no source recovered"
+      },
+      {
+        "contract": "vault",
+        "url": "https://ipfs.io/ipfs/QmP3LjWCNjJyNRsAr29UJfEuhQEyKcmQWm2EJPjk1rhouJ",
+        "result": "HTTP429; no source recovered"
+      }
+    ]
+  },
+  "retained_advance_evidence": {
+    "path": "assets/analytics/advance-interface.json",
+    "scope": "September26 conditional runtime/isolated synthetic execution findings retained, not downgraded to ABI-only or inflated into live validation. Both October7 explorer runtime hashes match that analysis. No new isolated simulation run in this refresh."
+  },
+  "genesis": {
+    "contract_id": "robinhood-0x575b7b7c97ef3e21c82daeb427899d583e1e913f",
+    "contract_record": "assets/addresses/contracts/general-adapter-genesis-bond-and-googl.json",
+    "source_id": "netnet-genesis-implementation-20261007",
+    "runtime_bytes": 6585,
+    "runtime_keccak256": "0x81aa1530a6c98ba2a4190dd6f47d9007d093cd1f470b4100dccc1159f68b8324",
+    "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+    "explorer_proxy_type": null,
+    "explorer_implementations": [],
+    "proxy_limit": "Explorer null/empty implementation metadata is not an independent proxy/storage audit; dependencies may be upgradeable.",
+    "full_validation": false,
+    "source_status": "Explorer reports is_verified=true,is_fully_verified=true,verified_at2026-07-16T20:33:26.307524Z; source/main+Wired+Constants reviewed, not independently recompiled or fixed-block bytecode matched.",
+    "source_main_sha256": "4d0e53b72c839e08c5acf9e2272742a5858da2f2e563161d635bf44c25d9c575",
+    "source_evidence_path": "assets/contracts/genesis-source-evidence.json",
+    "findings": [
+      {
+        "status": "source_reviewed",
+        "detail": "Records actual successful transferFrom and per-account purchasedRaw, raisedRaw and append-only registry; best-effort certificate failure does not undo registry. Source uses Constants50k hard cap/2k wallet/15k minimum, not stale interface comments300k/10k.",
+        "permission": "Any caller while wired, not finalized and within deadline/caps; spends caller USDG.",
+        "function": "purchase"
+      },
+      {
+        "status": "source_reviewed",
+        "detail": "Atomically sends floor(raisedRaw*7000/10000) USDG to Treasury, remainder to pair; Treasury mints NET for POL and bonders, pair LP to Treasury; enables staking/bonds/tax and checkpoints oracle. Any reverting dependency reverts finalization.",
+        "permission": "Permissionless once hard cap reached, or strictly after deadline with minimum raise, and wired; once only.",
+        "function": "finalize"
+      },
+      {
+        "status": "source_reviewed",
+        "detail": "Returns0 for zero claimable; increments claimedNet then transfers NET to caller. Five-day linear vest, floor(total*elapsed/432000) until fully vested; total purchased minus claimed remains custody liability.",
+        "permission": "Caller claims own purchased entitlement after finalized; no administrator arbitrary beneficiary.",
+        "function": "claim"
+      },
+      {
+        "status": "source_reviewed",
+        "detail": "Zeros caller purchasedRaw before refund transfer. raisedRaw and append-only registry are not decremented; registry sums are historical gross subscriptions, not remaining refund custody.",
+        "permission": "Caller only for own purchase, not finalized, strictly after deadline below minimum raise.",
+        "function": "refund"
+      },
+      {
+        "status": "source_reviewed",
+        "detail": "Sets BondDepository and certificate; not perpetual governance. Current wired state not read.",
+        "permission": "Wired.wiring: immutable deployer only, once, nonzero addresses.",
+        "function": "wire"
+      },
+      {
+        "status": "source_reviewed",
+        "detail": "floor(purchasedRaw[account]*usdgWadFactor*1e9/3e18) NET base units; aggregate floor per account, not per registry row.",
+        "permission": "Public view; no caller restriction.",
+        "function": "purchasedNetOf"
+      },
+      {
+        "status": "source_reviewed",
+        "detail": "Zero before finalized; vested(total,elapsed)-claimedNet. Nonzero entitlement is not successful transfer or adequate custody proof.",
+        "permission": "Public view; no caller restriction.",
+        "function": "claimableNetOf"
+      },
+      {
+        "status": "source_reviewed",
+        "detail": "Cumulative successfully committed claim amount in NET base units; distinguish paid from purchased and claimable.",
+        "permission": "Public getter.",
+        "function": "claimedNet"
+      },
+      {
+        "status": "source_reviewed",
+        "detail": "PurchaseRecord(purchaser,usdgAmountWad,timestamp). Multiple purchases per account; deduplicate purchasers for entitlement reconciliation, not registry rows.",
+        "permission": "Public index getter; out-of-range reverts.",
+        "function": "registryAt"
+      },
+      {
+        "status": "source_reviewed",
+        "detail": "raisedRaw*usdgWadFactor in WAD USDG; not NET balance or remaining refundable principal.",
+        "permission": "Public view.",
+        "function": "totalRaised"
+      }
+    ],
+    "reconciliation": {
+      "status": "not_observed_missing_pinned_state",
+      "required_reads": [
+        "finalized(),finalizeTime(),saleStart(),saleDeadline(),wired(),raisedRaw(),totalRaised(),registryLength() at one block with hash/time",
+        "Bound every registryAt index0..length-1; deduplicate purchaser addresses, preserve repeated purchase records",
+        "For each unique purchaser: purchasedRaw,purchasedNetOf,claimedNet,claimableNetOf; NET.balanceOf(GenesisBond),USDG.balanceOf(GenesisBond), token decimals at same block",
+        "Complete Purchased/Refunded/Finalized/Claimed logs to snapshot with receipt/transfer reconciliation; source/current runtime equality and current dependency permissions"
+      ],
+      "equations": [
+        "Per-account entitlement=floor(purchasedRaw*usdgWadFactor*1e9/3e18), using proven decimals/factor; do not sum individually rounded registry entries instead.",
+        "After verified full vest: remaining liability=sum(purchasedNetOf-claimedNet). At earlier timestamp split currently claimable from still unvested.",
+        "Coverage=NET custody minus remaining liability; negative implies deficit, positive is surplus not proven profit; donated NET and rounding can cause residuals.",
+        "Claims paid=sum(claimedNet) only after reconciling actual committed claim events/transfers. Purchased entitlement is not paid.",
+        "Refund path zeros purchasedRaw but preserves raisedRaw and registry; historical gross proceeds need refund reconciliation, not assumed current cash."
+      ],
+      "missing_result": "No current finalized flag, timestamp, registry count, account entitlement total, paid total, custody balance or coverage ratio asserted."
+    }
+  },
+  "sleeve": {
+    "observed_on": "2026-10-10",
+    "contract_id": "robinhood-0x732b3d1d3e8912cae75164fa14a6e1c4c64615b3",
+    "contract_record": "assets/addresses/contracts/sleeve-bond-desk.json",
+    "source_id": "netnet-sleeve-bond-runtime-20261010",
+    "runtime_bytes": 13092,
+    "runtime_sha256": "a9530676de951374979dd16ca5ce237fc80f7ff8c18849370cd842bca6272c02",
+    "runtime_keccak256": "0x81819a806cd7010bc8cd748b30c3d876aac11af8f03728fe5f46ba0bf92877fe",
+    "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+    "full_validation": false,
+    "source_status": "DeskSolidity/fullABI unavailable;37publisherfunctions+4unnamed runtimebranches reviewed. DependencyRouterSource partialverifiedsource;currentfeedadapterruntimeonly.",
+    "missing_interface_selectors": [
+      "0x083893e1",
+      "0x14ae9e4e",
+      "0x5ea8cd12",
+      "0xb8fea0a1"
+    ],
+    "unnamed_branch_findings": [
+      {
+        "selector": "0x083893e1",
+        "entry_offset": "0x02ec",
+        "body_range": "0x0ce7-0x0f8d",
+        "abi_status": "name_not_obtained_not_callable",
+        "observed_shape": "one uint256 input; no output",
+        "permissions": "caller equals manager OR Sleeve",
+        "effects": "Nonreentrant; require amount<=inventory; subtract inventory; NET.transfer(fixedSleeve,amount); check NET balance>=inventory+owedNet; emit unidentified two-word event topic0x2c00ca3d52bd7dddf904d5cec45258352cc35234b97a3b1de12ce3c30502697a. No note cancellation."
+      },
+      {
+        "selector": "0x14ae9e4e",
+        "entry_offset": "0x0301",
+        "body_range": "0x0301-0x0328",
+        "abi_status": "name_not_obtained_not_callable",
+        "observed_shape": "one address input; one uint256 output",
+        "permissions": "public read",
+        "effects": "mapping(address=>uint256) slot9; incremented for each note, decremented on fully claimed note; active rather than lifetime note count."
+      },
+      {
+        "selector": "0x5ea8cd12",
+        "entry_offset": "0x0428",
+        "body_range": "0x1054-0x10d1",
+        "abi_status": "name_not_obtained_not_callable",
+        "observed_shape": "one uint256 input; no output",
+        "permissions": "manager only",
+        "effects": "Sets slot4; bond requires discounted price>=slot4 independently of backing-premium guard. Emits unidentified event topic0x5458182db4020e94853c0d5c5cce048c4e1634ccde3542a2041f7ac4f9810200."
+      },
+      {
+        "selector": "0xb8fea0a1",
+        "entry_offset": "0x05ce",
+        "body_range": "0x05ce-0x05d6",
+        "abi_status": "name_not_obtained_not_callable",
+        "observed_shape": "no input; one uint256 output",
+        "permissions": "public read",
+        "effects": "Returns slot4 additional price floor (WAD)."
+      }
+    ],
+    "findings": [
+      {
+        "range": "0x0752-0x0ce6",
+        "path": "subscription",
+        "detail": "Nonreentrant,halt=false,recipient neither zero nor desk; third-party note-spray guard uses slot9 active counter. Refresh backing HWM; discounted oracle price must<=caller max and>=both floor(HWM*1.2e18/1e18) and slot4. Gross NET payout=floor((USDG6*1e12)*1e9/priceWad),nonzero and>=1e7NET9,<=inventory. Reserve inventory; pull USDG; route; append note; increase active count and global owedNet; emit DeskBond with literal0fee."
+      },
+      {
+        "range": "0x204c-0x2887",
+        "path": "equity routing",
+        "detail": "Resolve active selected token feed, live routerSource.router(), require nonzero router; record desk and Sleeve equity balances. Approve full usdgIn to router; execute caller bytes; measure desk equity delta; oracle-check it; transfer that delta to Sleeve; measure Sleeve equity delta>=minRwaOut. Transfer any USDG above pre-subscription baseline to Sleeve, require exact USDG baseline restored; clear router allowance; require exact desk equity baseline restored. DeskBond.rwaOut is measured Sleeve receipt delta,not gross transfer."
+      },
+      {
+        "range": "0x2c47-0x2d7e",
+        "path": "oracle value guard",
+        "detail": "priceWad(feed,token); floor(desk equity raw18*unitPriceWad/1e18)>=floor(usdgIn*1e12*(10000-MAX_ORACLE_DEV_BPS)/10000). This is a downside mark test, not optimal quote proof. Raw18 is contract arithmetic assumption; fresh token metadata/scaled UI still separate."
+      },
+      {
+        "range": "0x1801-0x1875;0x1ba5-0x1c5b;0x2888-0x2ab2",
+        "path": "claims",
+        "detail": "msg.sender-owned notes; all or requested ids; floor(payout*(timestamp-start)/(end-start)) before end,full payout at/after end; subtract claimed,update per-note claimed,decrement active counter once fully claimed; emit per positive claim; decrease global owedNet by total; transfer gross NET to supplied receiver. No halt guard or USDG refund. Fee-on-transfer receiver net can differ."
+      },
+      {
+        "range": "0x10d2-0x148c;0x1907-0x1b9a",
+        "path": "inventory and surplus",
+        "detail": "Manager or Sleeve deposit credits measured NET balance increase and checks current inventory cap plus aggregate coverage. Permissionless skim routes only NET surplus above inventory+owedNet,or all other token balance,to Sleeve. Four-selector review separately proves unsold withdrawal limited to inventory."
+      },
+      {
+        "range": "0x1538-0x1800;0x2b75-0x2c46",
+        "path": "menu",
+        "detail": "Manager replaces entries; active entry token/feed nonzero,canonical mapping match,active duplicate tokens rejected; all entry weights total10000. Subscription scans active entries for supplied token. No code selecting most-underweight custody position."
+      }
+    ],
+    "source_evidence": "assets/contracts/sleeve-bond-source-evidence.json",
+    "current_missing": [
+      "Exact current Safe owners/threshold/modules,NET minter allowlist and current registry router.",
+      "Live runtime/storage/financial totals or independent receipts at confirmed snapshot.",
+      "Independent contract source compiler equivalence,all external dependency implementations and historical change audit."
+    ],
+    "no_financial_history_cache": true,
+    "prior_observations": [
+      {
+        "contract_id": "robinhood-0x732b3d1d3e8912cae75164fa14a6e1c4c64615b3",
+        "contract_record": "assets/addresses/contracts/sleeve-bond-desk.json",
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "runtime_bytes": 13092,
+        "runtime_keccak256": "0x81819a806cd7010bc8cd748b30c3d876aac11af8f03728fe5f46ba0bf92877fe",
+        "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+        "explorer_proxy_type": null,
+        "explorer_implementations": [],
+        "proxy_limit": "Explorer null/empty implementation metadata is not an independent proxy/storage audit; dependencies may be upgradeable.",
+        "full_validation": false,
+        "source_status": "No Solidity/ABI in explorer response; app reuses37-function Oa RwaDesk interface.41 dispatcher selectors observed: four lack this generation-bound ABI.",
+        "missing_interface_selectors": [
+          "0x083893e1",
+          "0x14ae9e4e",
+          "0x5ea8cd12",
+          "0xb8fea0a1"
+        ],
+        "findings": [
+          {
+            "status": "conditional_runtime",
+            "detail": "Runtime0x0752..0x0ce7 decrements inventory, pulls subscription USDG, calls conversion0x204c, records NET vesting liability; DeskBond fee field is literal zero. This is inventory-backed, not a NET-mint call path. External router/dependencies not audited.",
+            "permission": "No manager-only check on entry; halt/recipient/minimum/inventory and downstream oracle/menu checks apply.",
+            "function": "bond"
+          },
+          {
+            "status": "conditional_runtime",
+            "detail": "Measures actual NET balance increase, adds to inventory bounded by inventoryMax; checks inventory+owedNet against NET custody. No mint in this entrypoint.",
+            "permission": "Only fixed Sleeve or manager, runtime0x10d2..0x1152.",
+            "function": "depositInventory"
+          },
+          {
+            "status": "conditional_runtime",
+            "detail": "Adjusts future subscription discount, not retroactive notes.",
+            "permission": "Fixed manager only, runtime0x1d7f; cap enforced.",
+            "function": "setDiscount"
+          },
+          {
+            "status": "conditional_runtime",
+            "detail": "Caps inventory accounting, not evidence of actual deposited inventory.",
+            "permission": "Fixed manager only, runtime0x0f8e; hard cap enforced.",
+            "function": "setInventoryMax"
+          },
+          {
+            "status": "conditional_runtime",
+            "detail": "Checks active feed identity, nonduplicate tokens and total weights10000 before replacing menu; no current menu read obtained.",
+            "permission": "Fixed manager only, runtime0x1538.",
+            "function": "setMenu"
+          },
+          {
+            "status": "conditional_runtime",
+            "detail": "Controls new bond entry halt. Does not itself prove current halted state.",
+            "permission": "Fixed manager only, runtime0x1ed0.",
+            "function": "setHalt"
+          },
+          {
+            "status": "conditional_runtime",
+            "detail": "Accumulates vested note payout, decreases owedNet and transfers NET. Inventory withdrawals must not consume owed notes; live balances and legacy per-generation claimability unresolved.",
+            "permission": "Uses caller notes, runtime0x1801 /0x1ba5; destination is supplied recipient.",
+            "function": "redeem"
+          },
+          {
+            "status": "conditional_runtime",
+            "detail": "Transfers surplus to fixed Sleeve; for NET retains inventory+owedNet. Permissionless trigger does not grant caller ownership of funds.",
+            "permission": "Entry0x1907 has reentrancy guard but no caller authority gate in inspected path.",
+            "function": "skim"
+          }
+        ],
+        "conversion_remittance": {
+          "status": "conditional_runtime",
+          "locator": "runtime0x204c..0x2888",
+          "detail": "Resolves routerSource.router(), approves subscription amount, calls supplied route bytes at that router, measures RWA balance delta, checks minimum/oracle deviation, transfers RWA to immutable Sleeve and measures final recipient delta. Remaining subscription USDG is transferred to Sleeve, then Desk USDG must equal its pre-subscription balance; allowance reset to0 and RWA residue equality enforced. DeskBond event fee argument is zero. No call to Treasury.mintNet/NET.mint in inspected subscription/inventory/claim path; external router/dependency behavior remains outside proof. Inventory is spent and owedNet recorded, not minted on purchase.",
+          "limits": "Static branch review, no non-broadcasting simulation of new desk, no source equivalence or complete route-payload/dependency audit. Historical launch caps not current inventory."
+        },
+        "authority_snippets": [
+          {
+            "locator": "inventory withdrawal entry0x0ce7..0x0d67, exposed selector0x083893e1 has no Oa name",
+            "disassembly": "0x0ce7 JUMPDEST\n0x0ce8 CALLER\n0x0ce9 PUSH1 0x01\n0x0ceb PUSH1 0x01\n0x0ced PUSH1 0xa0\n0x0cef SHL\n0x0cf0 SUB\n0x0cf1 PUSH32 0x000000000000000000000000498752d5fa0600cbd613074c151abe15b3fec7cb\n0x0d12 AND\n0x0d13 EQ\n0x0d14 DUP1\n0x0d15 ISZERO\n0x0d16 SWAP1\n0x0d17 PUSH2 0x0d49\n0x0d1a JUMPI\n0x0d1b POP\n0x0d1c CALLER\n0x0d1d PUSH1 0x01\n0x0d1f PUSH1 0x01\n0x0d21 PUSH1 0xa0\n0x0d23 SHL\n0x0d24 SUB\n0x0d25 PUSH32 0x0000000000000000000000003bb7a23316f82c0e984fa2e784846d8928a35f42\n0x0d46 AND\n0x0d47 EQ\n0x0d48 ISZERO\n0x0d49 JUMPDEST\n0x0d4a ISZERO\n0x0d4b PUSH2 0x0d67\n0x0d4e JUMPI\n0x0d4f PUSH1 0x40\n0x0d51 MLOAD\n0x0d52 PUSH4 0x429b324f\n0x0d57 PUSH1 0xe0\n0x0d59 SHL\n0x0d5a DUP2\n0x0d5b MSTORE\n0x0d5c PUSH1 0x04\n0x0d5e ADD\n0x0d5f PUSH1 0x40\n0x0d61 MLOAD\n0x0d62 DUP1\n0x0d63 SWAP2\n0x0d64 SUB\n0x0d65 SWAP1\n0x0d66 REVERT"
+          },
+          {
+            "locator": "depositInventory entry0x10d2..0x1152",
+            "disassembly": "0x10d2 JUMPDEST\n0x10d3 CALLER\n0x10d4 PUSH1 0x01\n0x10d6 PUSH1 0x01\n0x10d8 PUSH1 0xa0\n0x10da SHL\n0x10db SUB\n0x10dc PUSH32 0x000000000000000000000000498752d5fa0600cbd613074c151abe15b3fec7cb\n0x10fd AND\n0x10fe EQ\n0x10ff DUP1\n0x1100 ISZERO\n0x1101 SWAP1\n0x1102 PUSH2 0x1134\n0x1105 JUMPI\n0x1106 POP\n0x1107 CALLER\n0x1108 PUSH1 0x01\n0x110a PUSH1 0x01\n0x110c PUSH1 0xa0\n0x110e SHL\n0x110f SUB\n0x1110 PUSH32 0x0000000000000000000000003bb7a23316f82c0e984fa2e784846d8928a35f42\n0x1131 AND\n0x1132 EQ\n0x1133 ISZERO\n0x1134 JUMPDEST\n0x1135 ISZERO\n0x1136 PUSH2 0x1152\n0x1139 JUMPI\n0x113a PUSH1 0x40\n0x113c MLOAD\n0x113d PUSH4 0x429b324f\n0x1142 PUSH1 0xe0\n0x1144 SHL\n0x1145 DUP2\n0x1146 MSTORE\n0x1147 PUSH1 0x04\n0x1149 ADD\n0x114a PUSH1 0x40\n0x114c MLOAD\n0x114d DUP1\n0x114e SWAP2\n0x114f SUB\n0x1150 SWAP1\n0x1151 REVERT"
+          }
+        ],
+        "current_missing": [
+          "Pinned NET custody>=inventory+owedNet, actual inventory/unvested notes and redemption state across each generation.",
+          "Pinned menu/canonical feeds/discount/minimum/halt and dynamic routerSource target; dependency code/permissions and actual RWA/USDG receipt evidence.",
+          "Full exact SleeveBondDesk ABI/source, including four unnamed dispatcher branches and all permissions."
+        ],
+        "observed_on": "2026-10-07"
+      }
+    ]
+  },
+  "predict": {
+    "contract_id": "robinhood-0x7ef9528408d99f98056922291048f0710001e015",
+    "contract_record": "assets/addresses/contracts/predict-desk-and-vault.json",
+    "source_id": "netnet-predict-implementation-20261007",
+    "runtime_bytes": 18317,
+    "runtime_keccak256": "0xe7a63f394ad5aaf5f737f49508c136ea5db2ecc90d3019f53215d3b3d6ad2c43",
+    "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+    "explorer_proxy_type": null,
+    "explorer_implementations": [],
+    "proxy_limit": "Explorer null/empty implementation metadata is not an independent proxy/storage audit; dependencies may be upgradeable.",
+    "full_validation": false,
+    "owner_evidence": {
+      "status": "conditional_runtime_immutable",
+      "address": "0x3bb7a23316f82c0e984fa2e784846d8928a35f42",
+      "locator": "open0x0b64..0x0bae; setGrader0x121e..0x1270; getter owner() uses same PUSH32 constant",
+      "scope": "Contract-level public authority only, not Safe signer configuration, personal identity or organizational control."
+    },
+    "grader_evidence": {
+      "status": "conditional_runtime_mutable_storage",
+      "locator": "grade0x09b3..0x09dc; grader getter slot0 low160; owner-only setGrader0x121e",
+      "current_address": null,
+      "detail": "grade caller equals mutable grader storage. Constructor initial authority does not establish current grader. Owner can change grader; not decentralized automatic dashboard resolution."
+    },
+    "snippets": [
+      {
+        "locator": "owner-only open",
+        "disassembly": "0x0b64 JUMPDEST\n0x0b65 PUSH0\n0x0b66 CALLER\n0x0b67 PUSH1 0x01\n0x0b69 PUSH1 0x01\n0x0b6b PUSH1 0xa0\n0x0b6d SHL\n0x0b6e SUB\n0x0b6f PUSH32 0x0000000000000000000000003bb7a23316f82c0e984fa2e784846d8928a35f42\n0x0b90 AND\n0x0b91 EQ\n0x0b92 PUSH2 0x0bae\n0x0b95 JUMPI\n0x0b96 PUSH1 0x40\n0x0b98 MLOAD\n0x0b99 PUSH4 0x30cd7471\n0x0b9e PUSH1 0xe0\n0x0ba0 SHL\n0x0ba1 DUP2\n0x0ba2 MSTORE\n0x0ba3 PUSH1 0x04\n0x0ba5 ADD\n0x0ba6 PUSH1 0x40\n0x0ba8 MLOAD\n0x0ba9 DUP1\n0x0baa SWAP2\n0x0bab SUB\n0x0bac SWAP1\n0x0bad REVERT"
+      },
+      {
+        "locator": "mutable grader gate",
+        "disassembly": "0x09b3 PUSH0\n0x09b4 SLOAD\n0x09b5 PUSH1 0x01\n0x09b7 PUSH1 0x01\n0x09b9 PUSH1 0xa0\n0x09bb SHL\n0x09bc SUB\n0x09bd AND\n0x09be CALLER\n0x09bf EQ\n0x09c0 PUSH2 0x09dc\n0x09c3 JUMPI\n0x09c4 PUSH1 0x40\n0x09c6 MLOAD\n0x09c7 PUSH4 0x0e8d503d\n0x09cc PUSH1 0xe4\n0x09ce SHL\n0x09cf DUP2\n0x09d0 MSTORE\n0x09d1 PUSH1 0x04\n0x09d3 ADD\n0x09d4 PUSH1 0x40\n0x09d6 MLOAD\n0x09d7 DUP1\n0x09d8 SWAP2\n0x09d9 SUB\n0x09da SWAP1\n0x09db REVERT"
+      },
+      {
+        "locator": "owner-only setGrader",
+        "disassembly": "0x121e JUMPDEST\n0x121f CALLER\n0x1220 PUSH1 0x01\n0x1222 PUSH1 0x01\n0x1224 PUSH1 0xa0\n0x1226 SHL\n0x1227 SUB\n0x1228 PUSH32 0x0000000000000000000000003bb7a23316f82c0e984fa2e784846d8928a35f42\n0x1249 AND\n0x124a EQ\n0x124b PUSH2 0x1267\n0x124e JUMPI\n0x124f PUSH1 0x40\n0x1251 MLOAD\n0x1252 PUSH4 0x30cd7471\n0x1257 PUSH1 0xe0\n0x1259 SHL\n0x125a DUP2\n0x125b MSTORE\n0x125c PUSH1 0x04\n0x125e ADD\n0x125f PUSH1 0x40\n0x1261 MLOAD\n0x1262 DUP1\n0x1263 SWAP2\n0x1264 SUB\n0x1265 SWAP1\n0x1266 REVERT\n0x1267 JUMPDEST\n0x1268 PUSH2 0x1270\n0x126b DUP2\n0x126c PUSH2 0x333c\n0x126f JUMP"
+      }
+    ],
+    "current_missing": [
+      "Pinned owner/grader/barred/halt and Safe implementation/threshold/signers.",
+      "Complete authoritative valuation-script/print-ledger source and actual Safe-submitted prints; website display is not authority.",
+      "Series status plus settlement receipt, outcome burns/transfers, reservedUSDG and House asset/claim reconciliation."
+    ],
+    "finding_limit": "Targeted exact gates only; no complete fee arithmetic, tie/void, payout solvency, timelock or all-series audit."
+  },
+  "credit": {
+    "observed_on": "2026-10-10",
+    "status": "source_depth_and_fresh_snapshot_collector_added_unverified",
+    "source_evidence": "assets/analytics/credit-source-evidence.json",
+    "source_observed_on": "2026-10-10",
+    "catalog_count": 13,
+    "verified_source_families": [
+      "credit-vault",
+      "market-adapter",
+      "loopback-router",
+      "morpho",
+      "credit-irm",
+      "loopback-oracle"
+    ],
+    "runtime_only": [
+      "credit",
+      "credit-oracle-aapl",
+      "credit-oracle-coin",
+      "credit-oracle-googl",
+      "credit-oracle-msft",
+      "credit-oracle-nvda",
+      "credit-oracle-spcx"
+    ],
+    "pinned_state": "not_obtained",
+    "rpc_blocker": "Canonical RPC HTTP403 error1010; not retried or bypassed",
+    "material_findings": [
+      "Vault max functions unconditionally return0; not actual capacity/inactivity.",
+      "Stored vault supply excludes pending performance/management fee mints.",
+      "Vault uses one liquidityAdapter/data, not withdrawal queues.",
+      "Loopback currentLtvWad uses stored totals/no virtual offsets; fresh collector uses protocol accrued health.",
+      "Fee shares are entitlement, not USDG receipts; all lifetime earnings remain null.",
+      "Core18432.08USDG POL discrepancy and pol_reconstruction_supported=false unchanged."
+    ],
+    "checks_run": [],
+    "prior_observations": [
+      {
+        "contract_id": "robinhood-0xaff662814aa7cc80ac1577e03e123358cacc6a97",
+        "contract_record": "assets/addresses/contracts/coinflip-router-coin-token-and-credit-routers.json",
+        "source_id": "netnet-credit-implementation-20261007",
+        "runtime_bytes": 15135,
+        "runtime_keccak256": "0x4d6bcf2096248a9ede3e6399166917ce63b50f2a3a5ec05f878b8ebab525d9cf",
+        "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+        "explorer_proxy_type": null,
+        "explorer_implementations": [],
+        "proxy_limit": "Explorer null/empty implementation metadata is not an independent proxy/storage audit; dependencies may be upgradeable.",
+        "full_validation": false,
+        "allocator": {
+          "status": "current_grant_unresolved",
+          "detail": "Runtime helper0x26dd issues vault.isAllocator(address(this)) selector0x4dedf20e to immutable nnUSDG vault0x99347d5f70d3838763f6bddcf80304c8aa953b57; false changes sweep branch. External vault also enforces allocate/deallocate authority. Current docs pending claim and registry HUMAN-VERIFIED cannot substitute for same-block grant.",
+          "disassembly": "0x26dd JUMPDEST\n0x26de DUP1\n0x26df PUSH0\n0x26e0 SUB\n0x26e1 PUSH2 0x26e9\n0x26e4 JUMPI\n0x26e5 POP\n0x26e6 POP\n0x26e7 POP\n0x26e8 JUMP\n0x26e9 JUMPDEST\n0x26ea PUSH1 0x40\n0x26ec MLOAD\n0x26ed PUSH4 0x26f6f907\n0x26f2 PUSH1 0xe1\n0x26f4 SHL\n0x26f5 DUP2\n0x26f6 MSTORE\n0x26f7 ADDRESS\n0x26f8 PUSH1 0x04\n0x26fa DUP3\n0x26fb ADD\n0x26fc MSTORE\n0x26fd PUSH0\n0x26fe SWAP1\n0x26ff PUSH32 0x00000000000000000000000099347d5f70d3838763f6bddcf80304c8aa953b57\n0x2720 PUSH1 0x01\n0x2722 PUSH1 0x01\n0x2724 PUSH1 0xa0\n0x2726 SHL\n0x2727 SUB\n0x2728 AND\n0x2729 SWAP1\n0x272a PUSH4 0x4dedf20e\n0x272f SWAP1\n0x2730 PUSH1 0x24\n0x2732 ADD\n0x2733 PUSH1 0x20\n0x2735 PUSH1 0x40\n0x2737 MLOAD\n0x2738 DUP1\n0x2739 DUP4\n0x273a SUB\n0x273b DUP2\n0x273c DUP7\n0x273d 0x5a\n0x273e STATICCALL\n0x273f ISZERO\n0x2740 DUP1\n0x2741 ISZERO\n0x2742 PUSH2 0x274d\n0x2745 JUMPI\n0x2746 RETURNDATASIZE\n0x2747 PUSH0\n0x2748 PUSH0\n0x2749 0x3e\n0x274a RETURNDATASIZE\n0x274b PUSH0\n0x274c REVERT\n0x274d JUMPDEST\n0x274e POP\n0x274f POP\n0x2750 POP\n0x2751 POP\n0x2752 PUSH1 0x40\n0x2754 MLOAD\n0x2755 RETURNDATASIZE\n0x2756 PUSH1 0x1f\n0x2758 NOT\n0x2759 PUSH1 0x1f\n0x275b DUP3\n0x275c ADD\n0x275d AND\n0x275e DUP3\n0x275f ADD\n0x2760 DUP1\n0x2761 PUSH1 0x40\n0x2763 MSTORE\n0x2764 POP\n0x2765 DUP2\n0x2766 ADD\n0x2767 SWAP1\n0x2768 PUSH2 0x2771\n0x276b SWAP2\n0x276c SWAP1\n0x276d PUSH2 0x3795\n0x2770 JUMP\n0x2771 JUMPDEST\n0x2772 ISZERO\n0x2773 PUSH2 0x2888\n0x2776 JUMPI\n0x2777 PUSH2 0x2783\n0x277a DUP3\n0x277b PUSH2 0x19a1\n0x277e DUP7\n0x277f PUSH2 0x246b\n0x2782 JUMP"
+        },
+        "current_missing": [
+          "Pinned nnUSDG.isAllocator(CreditRouterV2), grant/revocation event history and active market adapter permissions.",
+          "Manager/keeper/swap adapter code and authority, listed market tuple/caps/buffers and same-block liquidity.",
+          "V1 never-granted remains historical publisher attribution; no fresh negative proof."
+        ],
+        "observed_on": "2026-10-07"
+      }
+    ]
+  },
+  "vault": {
+    "contract_id": "robinhood-0xb488368902b1cbd7533f1536c3f860065398d3e9",
+    "contract_record": "assets/addresses/contracts/predict-desk-and-vault.json",
+    "source_id": "netnet-vault-implementation-20261007",
+    "runtime_bytes": 5534,
+    "runtime_keccak256": "0x23b13523c73c5eeb691d96744f9cdd96eb32eca5668310798eb605ca4c75c65e",
+    "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+    "explorer_proxy_type": null,
+    "explorer_implementations": [],
+    "proxy_limit": "Explorer null/empty implementation metadata is not an independent proxy/storage audit; dependencies may be upgradeable.",
+    "full_validation": false,
+    "authority": {
+      "status": "conditional_runtime",
+      "detail": "fund and settle compare caller to desk stored in slot0 shifted8/masked160. wire only immutable deployer and once. Getter availability does not establish current configured desk.",
+      "snippets": [
+        "0x09a9 JUMPDEST\n0x09aa PUSH0\n0x09ab SLOAD\n0x09ac PUSH2 0x0100\n0x09af SWAP1\n0x09b0 DIV\n0x09b1 PUSH1 0x01\n0x09b3 PUSH1 0x01\n0x09b5 PUSH1 0xa0\n0x09b7 SHL\n0x09b8 SUB\n0x09b9 AND\n0x09ba CALLER\n0x09bb EQ\n0x09bc PUSH2 0x09d8\n0x09bf JUMPI\n0x09c0 PUSH1 0x40\n0x09c2 MLOAD\n0x09c3 PUSH4 0x067317cf\n0x09c8 PUSH1 0xe5\n0x09ca SHL\n0x09cb DUP2\n0x09cc MSTORE\n0x09cd PUSH1 0x04\n0x09cf ADD\n0x09d0 PUSH1 0x40\n0x09d2 MLOAD\n0x09d3 DUP1\n0x09d4 SWAP2\n0x09d5 SUB\n0x09d6 SWAP1\n0x09d7 REVERT",
+        "0x0b82 JUMPDEST\n0x0b83 PUSH0\n0x0b84 DUP1\n0x0b85 SLOAD\n0x0b86 PUSH2 0x0100\n0x0b89 SWAP1\n0x0b8a DIV\n0x0b8b PUSH1 0x01\n0x0b8d PUSH1 0x01\n0x0b8f PUSH1 0xa0\n0x0b91 SHL\n0x0b92 SUB\n0x0b93 AND\n0x0b94 CALLER\n0x0b95 EQ\n0x0b96 PUSH2 0x0bb2\n0x0b99 JUMPI\n0x0b9a PUSH1 0x40\n0x0b9c MLOAD\n0x0b9d PUSH4 0x067317cf\n0x0ba2 PUSH1 0xe5\n0x0ba4 SHL\n0x0ba5 DUP2\n0x0ba6 MSTORE\n0x0ba7 PUSH1 0x04\n0x0ba9 ADD\n0x0baa PUSH1 0x40\n0x0bac MLOAD\n0x0bad DUP1\n0x0bae SWAP2\n0x0baf SUB\n0x0bb0 SWAP1\n0x0bb1 REVERT"
+      ]
+    },
+    "current_missing": [
+      "Pinned wired/desk and actual Desk identity.",
+      "Pending/active/claimable balances, notice/share/generation queue reconciliation and cash held by both contracts.",
+      "Current payout/exit liquidity; no share-price solvency claim."
+    ]
+  },
+  "lpzap": {
+    "contract_id": "robinhood-0x455ca67558414929d33db4e949058165f1338c0d",
+    "contract_record": "assets/addresses/contracts/lp-zap.json",
+    "source_id": "netnet-lpzap-implementation-20261007",
+    "runtime_bytes": 6128,
+    "runtime_keccak256": "0xb047eb1cb8286fb4dceb5631ab5d50e4d9cbe274360a10da2c65a00d23723337",
+    "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+    "explorer_proxy_type": null,
+    "explorer_implementations": [],
+    "proxy_limit": "Explorer null/empty implementation metadata is not an independent proxy/storage audit; dependencies may be upgradeable.",
+    "full_validation": false,
+    "tax_logic": {
+      "status": "conditional_runtime",
+      "detail": "Reads NET.taxEnabled() and NET.isTaxExempt(address(this)); returns0 if tax disabled or this Zap exempt, else2. Historical exemption event is not current read.",
+      "locator": "0x06d2..0x07f2"
+    },
+    "historical_exemption": {
+      "source_id": "netnet-lp-zap-exemption-20261007",
+      "block_number": 67004892,
+      "event_at": "2026-09-19T10:18:14Z",
+      "detail": "NET TaxExemptAdded(account=LPZap) corroborates dated publisher exemption, not fresh tax state."
+    },
+    "current_missing": [
+      "Pinned NET.taxEnabled/isTaxExempt(LPZap)/taxTotalBps and LPZap.taxLegs at same block.",
+      "Actual pair/reserve/decimals/router code/dependency validation and amount-specific simulated execution if requested."
+    ],
+    "finding_limit": "No current tax-free route, liquidity or successful live UI transaction asserted."
+  },
+  "advance-zap": {
+    "contract_id": "robinhood-0x04e2f5707a4421c7afc7b56c14bc190550ac594d",
+    "contract_record": "assets/addresses/contracts/advance-desk-and-zap.json",
+    "source_id": "netnet-advance-zap-implementation-20261007",
+    "runtime_bytes": 6914,
+    "runtime_keccak256": "0xda9f1ee07506dab604d4bd5b2ec1422e5e0cba949808fcd2b15f9e18614bff09",
+    "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+    "explorer_proxy_type": null,
+    "explorer_implementations": [],
+    "proxy_limit": "Explorer null/empty implementation metadata is not an independent proxy/storage audit; dependencies may be upgradeable.",
+    "full_validation": false,
+    "retained_scope": "Exact explorer hash matches September26 runtime. Retain assets/analytics/advance-interface.json and advance-routes.json conditional mechanics, byte offsets and simulation limitations; no current positions/custody/dependency state obtained."
+  },
+  "advance-desk": {
+    "contract_id": "robinhood-0xde9df88aba59b644d4d7f6305e52ab982a3cfcac",
+    "contract_record": "assets/addresses/contracts/advance-desk-and-zap.json",
+    "source_id": "netnet-advance-desk-implementation-20261007",
+    "runtime_bytes": 15921,
+    "runtime_keccak256": "0xef5932a499b949e7560e7340f5af0475bebe91b55ba10983ba4f069224091af6",
+    "code_evidence": "explorer_deployed_bytecode_not_pinned_rpc",
+    "explorer_proxy_type": null,
+    "explorer_implementations": [],
+    "proxy_limit": "Explorer null/empty implementation metadata is not an independent proxy/storage audit; dependencies may be upgradeable.",
+    "full_validation": false,
+    "retained_scope": "Exact explorer hash matches September26 runtime. Retain assets/analytics/advance-interface.json and advance-routes.json conditional mechanics, byte offsets and simulation limitations; no current positions/custody/dependency state obtained."
+  }
+}

@@ -1,6 +1,145 @@
 {
   "contracts": [
     {
+      "role": "NetLong Shared Margin Oracle",
+      "aliases": [
+        "perpV1MarginOracle",
+        "marginOracle"
+      ],
+      "file": "assets/addresses/contracts/netlong-futures.json"
+    },
+    {
+      "role": "NetLong Futures Fee Router",
+      "aliases": [
+        "perpV1FeeRouter"
+      ],
+      "file": "assets/addresses/contracts/netlong-futures.json"
+    },
+    {
+      "role": "NetLong Futures Vault",
+      "aliases": [
+        "perpV1Vault"
+      ],
+      "file": "assets/addresses/contracts/netlong-futures.json"
+    },
+    {
+      "role": "NetLong Futures BTC Desk",
+      "aliases": [
+        "perpV1DeskBtc"
+      ],
+      "file": "assets/addresses/contracts/netlong-futures.json"
+    },
+    {
+      "role": "NetLong Futures ETH Desk",
+      "aliases": [
+        "perpV1DeskEth"
+      ],
+      "file": "assets/addresses/contracts/netlong-futures.json"
+    },
+    {
+      "role": "NetLong Futures SOL Desk",
+      "aliases": [
+        "perpV1DeskSol"
+      ],
+      "file": "assets/addresses/contracts/netlong-futures.json"
+    },
+    {
+      "role": "NetLong Futures NET Desk",
+      "aliases": [
+        "perpV1DeskNet"
+      ],
+      "file": "assets/addresses/contracts/netlong-futures.json"
+    },
+    {
+      "role": "NetLong Futures Superseded Vault",
+      "aliases": [],
+      "file": "assets/addresses/contracts/netlong-futures.json"
+    },
+    {
+      "role": "NetLong superseded marginDesk",
+      "aliases": [
+        "marginDesk superseded October8"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "NetLong superseded loseToken",
+      "aliases": [
+        "loseToken superseded October8"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "NetLong superseded loseDistributor",
+      "aliases": [
+        "loseDistributor superseded October8"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "NetLong superseded losePair",
+      "aliases": [
+        "losePair superseded October8"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "NetLong MarginDesk: leveraged spot loan positions and listings",
+      "aliases": [
+        "marginDesk"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "NetLong MarginLendingAccount: USDG lender equity and debt",
+      "aliases": [
+        "marginLendingAccount"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "NetLong MarginFeeRouter: fee conversion and NET burn",
+      "aliases": [
+        "marginFeeRouter"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "NetLong MarginTwapSource: token marks and depth",
+      "aliases": [
+        "marginTwapSource"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "NetLong MarginRouteExecutor: bounded swap legs",
+      "aliases": [
+        "marginRouteExecutor"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "NetLong MarginListerLib: linked listing/quote/risk library",
+      "aliases": [
+        "marginListerLib"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "NetLong MarginSettleLib: linked settlement/exit library",
+      "aliases": [
+        "marginSettleLib"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "NetLong executor WETH/USDG Uniswap V3 bridge pool (fee500)",
+      "aliases": [
+        "marginExecutorDependency"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
       "role": "NET (the token)",
       "aliases": [
         "NET"

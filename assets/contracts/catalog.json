@@ -1,0 +1,3115 @@
+{
+  "schema_version": 1,
+  "observed_on": "2026-10-10",
+  "scope": "Non-executable descriptive public/external interfaces. No wallet tooling, calldata, transaction payloads or validation warranty. Full supplied ABI != complete implementation.",
+  "current_coverage": {
+    "canonical_contract_records": 232,
+    "bound_catalogs": 75,
+    "catalogs_with_obtained_functions": 64,
+    "runtime_only_catalogs_without_obtained_abi": 11,
+    "function_entries": 1554,
+    "unreviewed_identities": 157
+  },
+  "source_ids": [
+    "netnet-premium-seller-implementation-20261010",
+    "netnet-trading-entry-20261010",
+    "netnet-contract-interfaces-20261007",
+    "netnet-sleeve-bond-runtime-20261010",
+    "netnet-credit-implementation-20261010",
+    "netnet-credit-implementation-20261010-credit",
+    "netnet-credit-implementation-20261010-credit-vault",
+    "netnet-credit-implementation-20261010-market-adapter",
+    "netnet-credit-implementation-20261010-loopback-router",
+    "netnet-credit-implementation-20261010-morpho",
+    "netnet-credit-implementation-20261010-credit-irm",
+    "netnet-credit-implementation-20261010-loopback-oracle",
+    "netnet-credit-implementation-20261010-credit-oracle-googl",
+    "netnet-credit-implementation-20261010-credit-oracle-msft",
+    "netnet-credit-implementation-20261010-credit-oracle-nvda",
+    "netnet-credit-implementation-20261010-credit-oracle-spcx",
+    "netnet-credit-implementation-20261010-credit-oracle-aapl",
+    "netnet-credit-implementation-20261010-credit-oracle-coin",
+    "netnet-book-interfaces-20261010",
+    "netnet-predict-runtime-depth-20261010"
+  ],
+  "contracts": [
+    {
+      "contract_id": "robinhood-0xca728e8ee6c8d59c1a3abdf1dea43f2f4a63c575",
+      "contract_record": "assets/addresses/contracts/netlong-futures.json",
+      "chain_id": 4663,
+      "address": "0xcA728E8ee6c8D59C1a3aBDF1DeA43f2f4a63C575",
+      "generation": "netlong-futures-btc",
+      "interface_status": "complete_publisher_literal_not_deployed_abi_guarantee",
+      "catalog_path": "assets/contracts/netlong-futures-btc.json",
+      "missing_evidence": [
+        "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+        "Compiler rebuild/source-runtime equivalence.",
+        "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x8784014a4cafec70bbc2ae678c59bbe64dbe7858",
+      "contract_record": "assets/addresses/contracts/netlong-futures.json",
+      "chain_id": 4663,
+      "address": "0x8784014A4CaFEC70Bbc2aE678c59BBe64dbE7858",
+      "generation": "netlong-futures-eth",
+      "interface_status": "complete_publisher_literal_not_deployed_abi_guarantee",
+      "catalog_path": "assets/contracts/netlong-futures-eth.json",
+      "missing_evidence": [
+        "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+        "Compiler rebuild/source-runtime equivalence.",
+        "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x87b14a8e5304e35b0cbddaba3454587b85ff2470",
+      "contract_record": "assets/addresses/contracts/netlong-futures.json",
+      "chain_id": 4663,
+      "address": "0x87b14A8e5304e35B0CbDDaBA3454587B85Ff2470",
+      "generation": "netlong-futures-sol",
+      "interface_status": "complete_publisher_literal_not_deployed_abi_guarantee",
+      "catalog_path": "assets/contracts/netlong-futures-sol.json",
+      "missing_evidence": [
+        "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+        "Compiler rebuild/source-runtime equivalence.",
+        "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x77d247ec5e2094e8226bcc1a5b8bfb8a903bb00f",
+      "contract_record": "assets/addresses/contracts/netlong-futures.json",
+      "chain_id": 4663,
+      "address": "0x77D247Ec5E2094E8226BCC1A5b8bfB8A903Bb00f",
+      "generation": "netlong-futures-net",
+      "interface_status": "complete_publisher_literal_not_deployed_abi_guarantee",
+      "catalog_path": "assets/contracts/netlong-futures-net.json",
+      "missing_evidence": [
+        "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+        "Compiler rebuild/source-runtime equivalence.",
+        "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x50dc51ce9e633bed99d1d826fa0e2caac3183bf6",
+      "contract_record": "assets/addresses/contracts/netlong-futures.json",
+      "chain_id": 4663,
+      "address": "0x50dC51CE9e633bed99D1D826fa0E2CaAc3183bF6",
+      "generation": "netlong-futures-vault",
+      "interface_status": "complete_publisher_literal_not_deployed_abi_guarantee",
+      "catalog_path": "assets/contracts/netlong-futures-vault.json",
+      "missing_evidence": [
+        "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+        "Compiler rebuild/source-runtime equivalence.",
+        "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x90f5b57a7236a1447ce786b1ebe42433e55d9fd0",
+      "contract_record": "assets/addresses/contracts/netlong-futures.json",
+      "chain_id": 4663,
+      "address": "0x90f5B57A7236A1447Ce786B1ebE42433e55D9fD0",
+      "generation": "netlong-futures-oracle",
+      "interface_status": "complete_publisher_literal_not_deployed_abi_guarantee",
+      "catalog_path": "assets/contracts/netlong-futures-oracle.json",
+      "missing_evidence": [
+        "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+        "Compiler rebuild/source-runtime equivalence.",
+        "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x56a8816132579c6c080e65147682da2d6d20efb0",
+      "contract_record": "assets/addresses/contracts/netlong-futures.json",
+      "chain_id": 4663,
+      "address": "0x56a8816132579c6c080e65147682DA2d6D20efb0",
+      "generation": "netlong-futures-fee-router",
+      "interface_status": "partial_runtime_reconstructed_descriptive_interface",
+      "catalog_path": "assets/contracts/netlong-futures-fee-router.json",
+      "missing_evidence": [
+        "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+        "Compiler rebuild/source-runtime equivalence.",
+        "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xe1685b19367e066af3e499dd4b0e51866b762c84",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0xE1685b19367E066af3e499DD4B0E51866B762c84",
+      "generation": "netlong-margin-desk",
+      "interface_status": "complete_publisher_literal_partial_contract_abi",
+      "catalog_path": "assets/contracts/netlong-margin-desk.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+        "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x068904944fcf4a18ab40ca112f385faa430f60f2",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0x068904944fCF4A18aB40cA112F385fAa430F60f2",
+      "generation": "netlong-margin-lending-account",
+      "interface_status": "complete_publisher_literal_partial_contract_abi",
+      "catalog_path": "assets/contracts/netlong-margin-lending-account.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+        "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x56ae9dd336525a9c29a10e80963ccbcaf4b3cfa0",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0x56AE9Dd336525A9C29a10E80963cCbCaF4b3CfA0",
+      "generation": "netlong-margin-fee-router",
+      "interface_status": "abi_not_obtained",
+      "catalog_path": "assets/contracts/netlong-margin-fee-router.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+        "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x2ff4b46b6bf08ecaf0c374676b9a5baa15524311",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0x2Ff4b46B6BF08ecAf0c374676b9a5baa15524311",
+      "generation": "netlong-margin-twap-source",
+      "interface_status": "abi_not_obtained",
+      "catalog_path": "assets/contracts/netlong-margin-twap-source.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+        "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x2d96bbf7859520ac6ecd2987a69e334b57de9de6",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0x2D96BbF7859520Ac6EcD2987a69e334b57de9de6",
+      "generation": "netlong-margin-route-executor",
+      "interface_status": "abi_not_obtained",
+      "catalog_path": "assets/contracts/netlong-margin-route-executor.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+        "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xa8ad2540af00381b8acd7e41fa6fdb7e0a1fd048",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0xA8Ad2540Af00381b8acD7e41fa6FdB7E0A1FD048",
+      "generation": "netlong-margin-lister-lib",
+      "interface_status": "abi_not_obtained",
+      "catalog_path": "assets/contracts/netlong-margin-lister-lib.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+        "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x39ce3cf58d65c96c86803556e4091f735efdab17",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0x39Ce3cf58d65c96c86803556e4091F735efDaB17",
+      "generation": "netlong-margin-settle-lib",
+      "interface_status": "abi_not_obtained",
+      "catalog_path": "assets/contracts/netlong-margin-settle-lib.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+        "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xf4d567e3c0b7b24bd2f379db8249701a6f929e93",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0xF4D567e3C0B7b24Bd2f379db8249701A6F929E93",
+      "generation": "netlong-lose-token",
+      "interface_status": "complete_publisher_literal_partial_contract_abi",
+      "catalog_path": "assets/contracts/netlong-lose-token.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+        "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x1dedda4de44f406fd25cdd3a22abb8e524368719",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0x1DEdDa4dE44f406FD25CdD3A22ABb8e524368719",
+      "generation": "netlong-lose-distributor",
+      "interface_status": "complete_publisher_literal_partial_contract_abi",
+      "catalog_path": "assets/contracts/netlong-lose-distributor.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+        "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x718b03bcc00b1a585e6aa58c5d081170bee93b6e",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0x718B03bcC00b1A585E6aA58c5d081170BEE93b6e",
+      "generation": "netlong-lose-pair",
+      "interface_status": "explorer_verified_twin_source_and_abi",
+      "catalog_path": "assets/contracts/netlong-lose-pair.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x39dbed3a2bd333467115de45665cc57f813c4571",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0x39dBED3a2bd333467115dE45665cC57F813C4571",
+      "generation": "netlong-margin-pons-token",
+      "interface_status": "explorer_source_and_abi",
+      "catalog_path": "assets/contracts/netlong-margin-pons-token.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x2e8c31162b855a2ffa90f6f8634643ad6f111e18",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0x2E8c31162b855A2ffa90F6F8634643Ad6F111e18",
+      "generation": "netlong-margin-ai-token",
+      "interface_status": "implementation_abi_bound_via_fixed_eip1167_runtime",
+      "catalog_path": "assets/contracts/netlong-margin-ai-token.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x3be8b97fd0e713b5abe0649fa830223b6b4bc599",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0x3Be8B97Fd0e713B5aBE0649Fa830223B6B4BC599",
+      "generation": "netlong-margin-ai-implementation",
+      "interface_status": "explorer_source_and_abi",
+      "catalog_path": "assets/contracts/netlong-margin-ai-implementation.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x69bfaf19c9f377bb306a89aed9f6b07e2c1a8d9a",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0x69bfaf19c9f377bb306a89aed9f6b07e2c1a8d9a",
+      "generation": "netlong-margin-weth-usdg-pool",
+      "interface_status": "explorer_source_and_abi",
+      "catalog_path": "assets/contracts/netlong-margin-weth-usdg-pool.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x62407957401bb3c78e001aed2a68cfdd5f1ccef2",
+      "contract_record": "assets/addresses/contracts/netlong-futures.json",
+      "chain_id": 4663,
+      "address": "0x62407957401Bb3C78e001aEd2A68cFDD5f1CcEf2",
+      "generation": "NetLong Futures Superseded Vault",
+      "interface_status": "unreviewed_superseded_identity_only",
+      "catalog_path": null,
+      "missing_evidence": [
+        "Superseded publisher identity only; complete source/ABI, current liabilities and implementation not reviewed."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x422e49df6da02bd19c92d6d0b3d9cbb324c53b77",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0x422e49Df6DA02Bd19C92d6D0b3d9CBb324C53B77",
+      "generation": "NetLong superseded marginDesk",
+      "interface_status": "unreviewed_superseded_identity_only",
+      "catalog_path": null,
+      "missing_evidence": [
+        "Superseded publisher identity only; complete source/ABI, current liabilities and implementation not reviewed."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xf71b999d3cb520e4214f38262424c8d398b8e0a0",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0xF71B999D3cb520E4214F38262424c8D398B8e0a0",
+      "generation": "NetLong superseded loseToken",
+      "interface_status": "unreviewed_superseded_identity_only",
+      "catalog_path": null,
+      "missing_evidence": [
+        "Superseded publisher identity only; complete source/ABI, current liabilities and implementation not reviewed."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x37fec09ef3ce2f3e1d1566f0f451c60d1c772a94",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0x37feC09Ef3cE2f3e1d1566F0f451c60d1C772a94",
+      "generation": "NetLong superseded loseDistributor",
+      "interface_status": "unreviewed_superseded_identity_only",
+      "catalog_path": null,
+      "missing_evidence": [
+        "Superseded publisher identity only; complete source/ABI, current liabilities and implementation not reviewed."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xbd033f7bf613e6ecfb7539a5b939d16607bf0821",
+      "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+      "chain_id": 4663,
+      "address": "0xBd033f7BF613E6ECfb7539a5b939D16607BF0821",
+      "generation": "NetLong superseded losePair",
+      "interface_status": "unreviewed_superseded_identity_only",
+      "catalog_path": null,
+      "missing_evidence": [
+        "Superseded publisher identity only; complete source/ABI, current liabilities and implementation not reviewed."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x000000000022d473030f116ddee9f6b43ac78ba3",
+      "contract_record": "assets/addresses/contracts/pack-desk-pair-oracle-pendle-permit2-and-perp-fees.json",
+      "chain_id": 4663,
+      "address": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+      "generation": "Permit2",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x018f9993881596ba84407f45fbd4c4f4773efeae",
+      "contract_record": "assets/addresses/contracts/netnet-gear-nft-descriptors-and-nvda-token.json",
+      "chain_id": 4663,
+      "address": "0x018F9993881596bA84407F45FBD4c4f4773Efeae",
+      "generation": "original",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x020bfc650a365f8bb26819deaabf3e21291018b4",
+      "contract_record": "assets/addresses/contracts/cashcat-climb-and-coinflip.json",
+      "chain_id": 4663,
+      "address": "0x020bfC650A365f8BB26819deAAbF3E21291018b4",
+      "generation": "netlong-margin-cashcat-token",
+      "interface_status": "explorer_source_and_abi",
+      "catalog_path": "assets/contracts/netlong-margin-cashcat-token.json",
+      "missing_evidence": [
+        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x045477bf65aef6f4f2386ad0164579e48381cc74",
+      "contract_record": "assets/addresses/feeds/rklb.json",
+      "chain_id": 4663,
+      "address": "0x045477BF65Aef6f4F2386ad0164579e48381CC74",
+      "generation": "chainlinkRklbUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x04822ea321a0dee6f40656172f29312104855d66",
+      "contract_record": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json",
+      "chain_id": 4663,
+      "address": "0x04822Ea321A0DEE6F40656172F29312104855d66",
+      "generation": "Treasury",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/treasury.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x04e2f5707a4421c7afc7b56c14bc190550ac594d",
+      "contract_record": "assets/addresses/contracts/advance-desk-and-zap.json",
+      "chain_id": 4663,
+      "address": "0x04E2F5707A4421c7aFc7b56c14bc190550aC594D",
+      "generation": "advanceZap",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/advance-zap.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit.",
+        "Existing September26 runtime conditional findings remain valid at their stated scope; October7 explorer hashes match, but no fresh pinned live dependency state."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x04f999c0bca1579f46e2cc6f19fe58f462fd07ec",
+      "contract_record": "assets/addresses/contracts/predict-series-4-outcomes.json",
+      "chain_id": 4663,
+      "address": "0x04f999c0BCA1579f46e2cC6f19fe58f462Fd07eC",
+      "generation": "PredictOutcome series4",
+      "interface_status": "catalogued_runtime_reconstructed_interface_unpinned",
+      "catalog_path": "assets/contracts/predict-outcome-series-4-lower.json",
+      "missing_evidence": [
+        "Pinned current runtime and series association; canonical records are not discovery seeds.",
+        "Verified source/compiler equivalence and full audit.",
+        "Current supply, claims and cash/burn reconciliation."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x07431db5f53c2cc14a80755a010a00a09785ad39",
+      "contract_record": "assets/addresses/contracts/predict-series-3-outcomes.json",
+      "chain_id": 4663,
+      "address": "0x07431db5F53C2cC14a80755A010A00a09785ad39",
+      "generation": "PredictOutcome series3",
+      "interface_status": "catalogued_runtime_reconstructed_interface_unpinned",
+      "catalog_path": "assets/contracts/predict-outcome-series-3-lower.json",
+      "missing_evidence": [
+        "Pinned current runtime and series association; canonical records are not discovery seeds.",
+        "Verified source/compiler equivalence and full audit.",
+        "Current supply, claims and cash/burn reconciliation."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x07b8e5977adedf539a528f0704be07cc289b97b4",
+      "contract_record": "assets/addresses/contracts/cashcat-climb-and-coinflip.json",
+      "chain_id": 4663,
+      "address": "0x07b8E5977aDeDF539a528F0704Be07CC289B97b4",
+      "generation": "coinflipFeedAdapter",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x086c58400b8708ef993f256e12e752dcf0ac918e",
+      "contract_record": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json",
+      "chain_id": 4663,
+      "address": "0x086C58400b8708Ef993f256E12e752dcF0AC918e",
+      "generation": "TaxCollector",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+      "contract_record": "assets/addresses/contracts/weth-and-wsnet.json",
+      "chain_id": 4663,
+      "address": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+      "generation": "WETH",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x0be486bd185844a282690ea0f84ca628c8b67935",
+      "contract_record": "assets/addresses/contracts/pendle-snet-1oct2026.json",
+      "chain_id": 4663,
+      "address": "0x0be486bd185844a282690ea0f84ca628c8b67935",
+      "generation": "PT-sNET-1OCT2026",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x0e6a64a2b58a6693a531e6c555f3a5d042eea844",
+      "contract_record": "assets/addresses/feeds/orcl.json",
+      "chain_id": 4663,
+      "address": "0x0e6a64a2B58A6693a531E6c555f3A5d042eEA844",
+      "generation": "chainlinkOrclUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x0fbad98595b0186da120e41f77c102beb49f803c",
+      "contract_record": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json",
+      "chain_id": 4663,
+      "address": "0x0FBad98595b0186dA120E41f77C102beb49f803c",
+      "generation": "vaultV2Factory",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x115e5779ce2f7bc265eaabcacaf7b06f01d5d471",
+      "contract_record": "assets/addresses/contracts/turbo-deployments-and-adapters.json",
+      "chain_id": 4663,
+      "address": "0x115E5779Ce2f7BC265EAAbcAcaf7b06f01d5D471",
+      "generation": "v1.1",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x117074c7b7b6acd290f7a031efe76dbfb0383e80",
+      "contract_record": "assets/addresses/contracts/perp-oracles-pendle-lp-premium-seller-and-presser-prizes.json",
+      "chain_id": 4663,
+      "address": "0x117074C7B7B6ACd290F7a031efE76dBfB0383e80",
+      "generation": "presserCharacter",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x12ec3474d1e321e0aab065278b97fbc7eda5f424",
+      "contract_record": "assets/addresses/contracts/googl-msft-nvda-spcx-morpho-oracles.json",
+      "chain_id": 4663,
+      "address": "0x12Ec3474D1e321e0aAB065278B97FBC7eDa5F424",
+      "generation": "credit-oracle-googl",
+      "interface_status": "abi_unavailable",
+      "catalog_path": "assets/contracts/credit-oracle-googl.json",
+      "missing_evidence": [
+        "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+        "Independent compiler equivalence and exhaustive function reachability.",
+        "Verified implementation source/ABI; unknown selector economics and permissions."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x169beae602a6441cb581ef75947621cae4d1d496",
+      "contract_record": "assets/addresses/contracts/otc-desk-and-adapters.json",
+      "chain_id": 4663,
+      "address": "0x169BeaE602a6441Cb581eF75947621CAE4d1D496",
+      "generation": "otcDeskFeedAdapter",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x1c6c8cadbe02e19129c39ddb92281ce4c0bf206b",
+      "contract_record": "assets/addresses/feeds/dell.json",
+      "chain_id": 4663,
+      "address": "0x1C6c8cADBe02E19129c39dDB92281cE4c0bf206b",
+      "generation": "chainlinkDellUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x1ed09929b960f22b2ed71102e4d7fe281ecc5ebb",
+      "contract_record": "assets/addresses/contracts/rialto-runner-and-rwa-desk-v1.json",
+      "chain_id": 4663,
+      "address": "0x1ed09929B960f22B2ed71102e4d7fE281Ecc5EBB",
+      "generation": "runnerPriceVerifier",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x1f7d7550b1b028f7571e69a784071f0205fd2efa",
+      "contract_record": "assets/addresses/contracts/underwriting-vaults-and-uniswap-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0x1f7d7550B1b028f7571E69A784071F0205FD2EfA",
+      "generation": "uniswapV3Factory",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x209b73908e92ae021826ed79609845451ecba2ce",
+      "contract_record": "assets/addresses/feeds/slv.json",
+      "chain_id": 4663,
+      "address": "0x209b73908e92Ae021826eD79609845451Ecba2ce",
+      "generation": "chainlinkSlvUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x21089cfcdbf47902a2f3950200ce9ea66bf79ee4",
+      "contract_record": "assets/addresses/contracts/cashcat-climb-and-coinflip.json",
+      "chain_id": 4663,
+      "address": "0x21089CFCDbf47902A2F3950200cE9ea66bF79ee4",
+      "generation": "ClimbDesk",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x212dbb2af8f150c6d66bc78910775fa8f52d5785",
+      "contract_record": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0x212DbB2aF8F150c6D66bC78910775fa8F52D5785",
+      "generation": "dialupDesk",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x22efec4919baf55f360e0edee4abeb26de4971eb",
+      "contract_record": "assets/addresses/feeds/ionq.json",
+      "chain_id": 4663,
+      "address": "0x22EfeC4919baf55F360E0EDee4AbEB26DE4971eb",
+      "generation": "chainlinkIonqUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x23237bbe20becaceca5c853840d0984e4bdea759",
+      "contract_record": "assets/addresses/contracts/perp-oracles-pendle-lp-premium-seller-and-presser-prizes.json",
+      "chain_id": 4663,
+      "address": "0x23237bBE20beCACEcA5C853840d0984e4bDea759",
+      "generation": "PerpOracle (CASHCAT)",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+      "contract_record": "assets/addresses/contracts/perp-oracles-pendle-lp-premium-seller-and-presser-prizes.json",
+      "chain_id": 4663,
+      "address": "0x23c68474e3cd533a2f952a0fb998f1867e57d27f",
+      "generation": "PLP-sNET-17SEP2026",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x2431be44044fa1a2062777910348c24dcfb3e620",
+      "contract_record": "assets/addresses/contracts/turbo-deployments-and-adapters.json",
+      "chain_id": 4663,
+      "address": "0x2431be44044FA1a2062777910348c24DCfb3e620",
+      "generation": "v1.0",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x27c71df6a64fb476468edf256cf72c038bab5b67",
+      "contract_record": "assets/addresses/feeds/gme.json",
+      "chain_id": 4663,
+      "address": "0x27C71df6A64fB476468EdF256CF72c038baB5B67",
+      "generation": "chainlinkGmeUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x27efaa6ff13314a143ea3bf2891f12aea4902773",
+      "contract_record": "assets/addresses/contracts/fee-sinks-and-flightsim.json",
+      "chain_id": 4663,
+      "address": "0x27EfAA6fF13314A143eA3Bf2891F12aeA4902773",
+      "generation": "flightsimRouterSource",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x282a3c4d320cc7f0d5eaf56b8029e4b88338f0a3",
+      "contract_record": "assets/addresses/contracts/underwriting-vaults-and-uniswap-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0x282a3c4d320cc7f0d5eaf56b8029e4b88338f0a3",
+      "generation": "UniswapInterfaceMulticall",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x2882bc606cf74fd52d09d4a1ae8ea05ff3b56f1e",
+      "contract_record": "assets/addresses/contracts/turbo-deployments-and-adapters.json",
+      "chain_id": 4663,
+      "address": "0x2882bc606Cf74Fd52D09d4A1aE8Ea05fF3B56f1e",
+      "generation": "v1.0",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x2a045cf1c49c61c166c036d2f06fa2d2d984f765",
+      "contract_record": "assets/addresses/feeds/rgti.json",
+      "chain_id": 4663,
+      "address": "0x2A045cF1C49c61c166C036d2f06FA2D2d984f765",
+      "generation": "chainlinkRgtiUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x2bd3d5965b26b51814ac95127b2b80dd6ccc0fa1",
+      "contract_record": "assets/addresses/contracts/aapl-token-pool-and-interest-rate-model.json",
+      "chain_id": 4663,
+      "address": "0x2BD3d5965B26B51814AC95127B2b80dD6CcC0fa1",
+      "generation": "credit-irm",
+      "interface_status": "complete_obtained_explorer_abi",
+      "catalog_path": "assets/contracts/credit-irm.json",
+      "missing_evidence": [
+        "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+        "Independent compiler equivalence and exhaustive function reachability."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x2e0847e8910a9732eb3fb1bb4b70a580adad4fe3",
+      "contract_record": "assets/addresses/contracts/general-adapter-genesis-bond-and-googl.json",
+      "chain_id": 4663,
+      "address": "0x2e0847e8910a9732eb3fb1bb4b70a580adad4fe3",
+      "generation": "googlStockToken",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x2e1d4033a3b98b74135ba4fbee245ef0d97a71f4",
+      "contract_record": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json",
+      "chain_id": 4663,
+      "address": "0x2E1d4033A3b98b74135Ba4FbeE245eF0d97a71F4",
+      "generation": "V3TwapAggregator (CASHCAT index)",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x2e9d45bb7b30549f5216813ada9a6b7982c5b3ed",
+      "contract_record": "assets/addresses/contracts/netnet-gear-nft-descriptors-and-nvda-token.json",
+      "chain_id": 4663,
+      "address": "0x2e9d45bb7b30549f5216813ada9a6b7982c5b3ed",
+      "generation": "NFTDescriptor",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x2f2f215b810fa692304cb0095804ab3c8e4cef78",
+      "contract_record": "assets/addresses/contracts/asset-bond-desk-and-zap.json",
+      "chain_id": 4663,
+      "address": "0x2F2F215b810Fa692304cB0095804Ab3C8e4cEf78",
+      "generation": "assetBondDesk V2",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/asset-bond-v2.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x3174de69a84c53f82f6b6dca5c64e705cffe8dd6",
+      "contract_record": "assets/addresses/contracts/sportsbook-desk-and-zap.json",
+      "chain_id": 4663,
+      "address": "0x3174dE69a84c53F82F6B6Dca5C64E705cFFe8Dd6",
+      "generation": "SportsBookDesk",
+      "interface_status": "complete_publisher_literal_not_deployed_abi_guarantee",
+      "catalog_path": "assets/contracts/sports-book-desk.json",
+      "missing_evidence": [
+        "Verified Solidity and independently pinned runtime/source equivalence.",
+        "Current dependent code, authority and accounting snapshot; canonical RPC403 prevented collection.",
+        "Full transaction/event discovery and receipt/state reconciliation; no financial history stored."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x319724394d3a0e3669269846abe664cd621f9f6a",
+      "contract_record": "assets/addresses/feeds/spy.json",
+      "chain_id": 4663,
+      "address": "0x319724394D3A0e3669269846abE664Cd621f9f6A",
+      "generation": "chainlinkSpyUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x32ca7363c45212d119deeb11d02ce638234729d6",
+      "contract_record": "assets/addresses/contracts/hohm-token-and-twap.json",
+      "chain_id": 4663,
+      "address": "0x32Ca7363C45212d119DEEB11d02Ce638234729d6",
+      "generation": "hohmTwapOracle",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/hohm-twap.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x33e885ed0ec9bf04ecfb19341582aadcb4c8a9e7",
+      "contract_record": "assets/addresses/contracts/uniswap-quoter.json",
+      "chain_id": 4663,
+      "address": "0x33e885ed0ec9bf04ecfb19341582aadcb4c8a9e7",
+      "generation": "QuoterV2",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x346e1a31171a0f7ac73909010b5435768d3b5462",
+      "contract_record": "assets/addresses/contracts/perp-oracles-pendle-lp-premium-seller-and-presser-prizes.json",
+      "chain_id": 4663,
+      "address": "0x346e1a31171A0f7aC73909010b5435768d3B5462",
+      "generation": "PremiumSeller",
+      "interface_status": "complete_obtained_source_review_unpinned",
+      "catalog_path": "assets/contracts/premium-seller.json",
+      "missing_evidence": [
+        "Independently pinned runtime, constructor/deployment receipt and block hash, dependency storage/code and current permissions; explorer metadata is provider evidence, not an independent chain pin.",
+        "Independent compiler rebuild and source-to-bytecode equivalence or exhaustive path/security audit; dispatcher and immutable matches do not establish these.",
+        "Router, pair and oracle implementation equivalence; USDG is an upgradeable ERC1967 proxy whose current and historical implementation/storage are not pinned here.",
+        "Fresh receipt/log reconciliation and complete historical coverage; no sale totals, activity roster, eligibility or financial state is stored in this package."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x34d0dc122cf9a8eb296fc5e0d3a233625d7d19b7",
+      "contract_record": "assets/addresses/contracts/general-adapter-genesis-bond-and-googl.json",
+      "chain_id": 4663,
+      "address": "0x34d0dc122cf9a8eb296fc5e0d3a233625d7d19b7",
+      "generation": "googlUsdgV3Pool",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x35aa4383a7d4bc63be49a1f58a7e9667ed05887c",
+      "contract_record": "assets/addresses/contracts/share-certificate-snet-and-spacex-invaders.json",
+      "chain_id": 4663,
+      "address": "0x35aA4383a7D4BC63Be49a1F58A7E9667ED05887c",
+      "generation": "spacexInvadersFeedAdapter",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x379ec4f7c378f34a1b47e4f3cbebcbac3e8e9f15",
+      "contract_record": "assets/addresses/feeds/nvda.json",
+      "chain_id": 4663,
+      "address": "0x379EC4f7C378F34a1B47E4F3cbeBCbAC3E8E9F15",
+      "generation": "chainlinkNvdaUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x38f620aec20b116ad19629e8f91842d0d4ed8c39",
+      "contract_record": "assets/addresses/contracts/underwriting-vaults-and-uniswap-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0x38f620aeC20B116ad19629e8F91842d0D4Ed8c39",
+      "generation": "UnderwritingVault (CASHCAT)",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x396118bdfb181e6240e74d243f266b061c0edc3d",
+      "contract_record": "assets/addresses/feeds/mstr.json",
+      "chain_id": 4663,
+      "address": "0x396118bdFB181e6240E74D243F266B061c0edc3D",
+      "generation": "chainlinkMstrUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x3a7dce19447f9028c360592fdfdb3f27c50dae29",
+      "contract_record": "assets/addresses/contracts/underwriting-vaults-and-uniswap-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0x3a7Dce19447f9028C360592fDfdb3f27c50daE29",
+      "generation": "UnderwritingVault",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x3b4c1617c76c72d41ff43b625bc5dbbf3a32d986",
+      "contract_record": "assets/addresses/contracts/asset-bond-desk-and-zap.json",
+      "chain_id": 4663,
+      "address": "0x3B4C1617C76c72D41Ff43B625BC5DbBF3A32D986",
+      "generation": "assetBondZap",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/asset-bond-zap.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x3bb7a23316f82c0e984fa2e784846d8928a35f42",
+      "contract_record": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json",
+      "chain_id": 4663,
+      "address": "0x3Bb7A23316f82C0e984fA2E784846d8928a35f42",
+      "generation": "Team multisig (Safe), owner and curator",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x3d9e0f83834e015d25d07444de0296359ebfb6e3",
+      "contract_record": "assets/addresses/contracts/pendle-snet-15oct2026.json",
+      "chain_id": 4663,
+      "address": "0x3d9e0f83834e015d25d07444de0296359ebfb6e3",
+      "generation": "YT-sNET-15OCT2026",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x3ebd3088b69a5eec3bdf03b82ccf19c3bc1fa894",
+      "contract_record": "assets/addresses/contracts/spcx-staking-and-aapl-coin-morpho-oracles.json",
+      "chain_id": 4663,
+      "address": "0x3ebD3088b69A5eeC3bDF03B82CcF19c3Bc1fa894",
+      "generation": "credit-oracle-coin",
+      "interface_status": "abi_unavailable",
+      "catalog_path": "assets/contracts/credit-oracle-coin.json",
+      "missing_evidence": [
+        "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+        "Independent compiler equivalence and exhaustive function reachability.",
+        "Verified implementation source/ABI; unknown selector economics and permissions."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x3ef6878bda20925c2b8f4cf2341696b2d2ad82e1",
+      "contract_record": "assets/addresses/contracts/fee-sinks-and-flightsim.json",
+      "chain_id": 4663,
+      "address": "0x3ef6878bDA20925C2B8f4cF2341696B2d2ad82E1",
+      "generation": "FeeSink (CASHCAT)",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x3f390c5c24628ac7c489515402235fead71d1913",
+      "contract_record": "assets/addresses/feeds/intc.json",
+      "chain_id": 4663,
+      "address": "0x3f390C5C24628Ac7C489515402235FeAD71D1913",
+      "generation": "chainlinkIntcUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x3f52d9ce80d5dc2ec30002a26b6d3ed70e8dba41",
+      "contract_record": "assets/addresses/contracts/fee-sinks-and-flightsim.json",
+      "chain_id": 4663,
+      "address": "0x3f52D9ce80D5DC2EC30002a26B6D3ED70E8dBA41",
+      "generation": "flightsimFeedAdapter",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x414b1637de64d91223df88f9f060fd1983d0e593",
+      "contract_record": "assets/addresses/contracts/predict-series-2-outcomes.json",
+      "chain_id": 4663,
+      "address": "0x414b1637de64d91223Df88f9f060fd1983d0E593",
+      "generation": "PredictOutcome series2",
+      "interface_status": "catalogued_runtime_reconstructed_interface_unpinned",
+      "catalog_path": "assets/contracts/predict-outcome-series-2-lower.json",
+      "missing_evidence": [
+        "Pinned current runtime and series association; canonical records are not discovery seeds.",
+        "Verified source/compiler equivalence and full audit.",
+        "Current supply, claims and cash/burn reconciliation."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x425eefdcf05ed6526c3ce61af99429a228a6d596",
+      "contract_record": "assets/addresses/feeds/mu.json",
+      "chain_id": 4663,
+      "address": "0x425EEFdCf05ed6526C3cE61Af99429A228a6d596",
+      "generation": "chainlinkMuUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x44abc1d6ccff2696d98890b92e2157af242179c2",
+      "contract_record": "assets/addresses/contracts/historical-publisher-dependencies.json",
+      "chain_id": 4663,
+      "address": "0x44ABc1d6cCFF2696d98890B92E2157AF242179c2",
+      "generation": "STEAKUSDG historical adapter",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x455ca67558414929d33db4e949058165f1338c0d",
+      "contract_record": "assets/addresses/contracts/lp-zap.json",
+      "chain_id": 4663,
+      "address": "0x455ca67558414929D33Db4e949058165f1338C0d",
+      "generation": "LPZap",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/lpzap.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x45c3c877c15e6ba2ebb19ea114ea508d14c1af2e",
+      "contract_record": "assets/addresses/feeds/msft.json",
+      "chain_id": 4663,
+      "address": "0x45C3C877C15E6BA2EBB19eA114Ea508d14C1Af2E",
+      "generation": "chainlinkMsftUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x4638617808e3f1cf237c0d33ae818126d5c77e17",
+      "contract_record": "assets/addresses/contracts/turbo-deployments-and-adapters.json",
+      "chain_id": 4663,
+      "address": "0x4638617808e3f1Cf237c0d33Ae818126D5C77E17",
+      "generation": "loopback-router",
+      "interface_status": "complete_obtained_explorer_abi",
+      "catalog_path": "assets/contracts/loopback-router.json",
+      "missing_evidence": [
+        "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+        "Independent compiler equivalence and exhaustive function reachability."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x498752d5fa0600cbd613074c151abe15b3fec7cb",
+      "contract_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0x498752D5fa0600CBd613074C151Abe15B3FeC7CB",
+      "generation": "managerSleeve",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x4a0e65a3eccec6dbe60ae065f2e7bb85fae35eea",
+      "contract_record": "assets/addresses/contracts/spcx-staking-and-aapl-coin-morpho-oracles.json",
+      "chain_id": 4663,
+      "address": "0x4a0e65a3eccec6dbe60ae065f2e7bb85fae35eea",
+      "generation": "spcxStockToken",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x4a1166a659a55625345e9515b32adecea5547c38",
+      "contract_record": "assets/addresses/feeds/tsla.json",
+      "chain_id": 4663,
+      "address": "0x4A1166a659A55625345e9515b32adECea5547C38",
+      "generation": "chainlinkTslaUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x53176cadd446700fa6b89f840357ac586d7e33db",
+      "contract_record": "assets/addresses/contracts/share-certificate-snet-and-spacex-invaders.json",
+      "chain_id": 4663,
+      "address": "0x53176cadd446700fa6b89f840357ac586d7e33db",
+      "generation": "sNET-scaled18",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x53a1eb6589861f686af7c531211e35aefe30210f",
+      "contract_record": "assets/addresses/contracts/blackjack-boardroom-and-morpho-bundles.json",
+      "chain_id": 4663,
+      "address": "0x53A1eB6589861F686af7c531211E35Aefe30210f",
+      "generation": "BlueBundlesV1",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x55e76ba1f7c7603c27bbdf8dfa1b235f7e512540",
+      "contract_record": "assets/addresses/contracts/rwa-desk-v2-and-feed-router-adapters.json",
+      "chain_id": 4663,
+      "address": "0x55e76ba1f7c7603c27bbdf8dfa1b235f7e512540",
+      "generation": "rwa-feed-adapter-v3-fixed-to-sleeve-20260930",
+      "interface_status": "catalogued_partial_interface_runtime_all_four_branches_reviewed_names_unresolved",
+      "catalog_path": "assets/contracts/sleeve-feed-adapter.json",
+      "missing_evidence": [
+        "Current exact-address source/full ABI and3getter names.",
+        "Independent pinned runtime and actual feed/token implementations,feed liveness and multiplier values.",
+        "No owner/setter or proxy path observed in4branch runtime; not a universal dependency authority audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x575b7b7c97ef3e21c82daeb427899d583e1e913f",
+      "contract_record": "assets/addresses/contracts/general-adapter-genesis-bond-and-googl.json",
+      "chain_id": 4663,
+      "address": "0x575b7B7c97Ef3E21C82DAeB427899d583e1E913f",
+      "generation": "GenesisBond (founding offering)",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/genesis.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x583e00f04cca3e42b8d20b5e67ba6e9e0b454c3f",
+      "contract_record": "assets/addresses/contracts/predict-series-3-outcomes.json",
+      "chain_id": 4663,
+      "address": "0x583e00F04CcA3e42B8D20B5e67ba6e9e0B454C3F",
+      "generation": "PredictOutcome series3",
+      "interface_status": "catalogued_runtime_reconstructed_interface_unpinned",
+      "catalog_path": "assets/contracts/predict-outcome-series-3-higher.json",
+      "missing_evidence": [
+        "Pinned current runtime and series association; canonical records are not discovery seeds.",
+        "Verified source/compiler equivalence and full audit.",
+        "Current supply, claims and cash/burn reconciliation."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x58daec3116aae6d93017baaea7749052e8a04fa7",
+      "contract_record": "assets/addresses/contracts/uniswap-v4-position-manager.json",
+      "chain_id": 4663,
+      "address": "0x58daec3116aae6d93017baaea7749052e8a04fa7",
+      "generation": "uniswapV4PositionManager",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x59f95461e68e0c77605299791e1449f175165b54",
+      "contract_record": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+      "chain_id": 4663,
+      "address": "0x59F95461E68e0c77605299791E1449f175165B54",
+      "generation": "NET/USDG canonical pair (Uniswap v2)",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/net-usdg-pair.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x5d446a2be952f4f9ba241b382a73ad3b1819aaf5",
+      "contract_record": "assets/addresses/contracts/swap-router-and-pendle-sy.json",
+      "chain_id": 4663,
+      "address": "0x5d446a2be952f4f9ba241b382a73ad3b1819aaf5",
+      "generation": "SY-sNET",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x5e49e1f85813f2b65858860a3fa231b4186f2e0e",
+      "contract_record": "assets/addresses/contracts/pack-desk-pair-oracle-pendle-permit2-and-perp-fees.json",
+      "chain_id": 4663,
+      "address": "0x5e49e1f85813f2b65858860a3fa231b4186f2e0e",
+      "generation": "PENDLE",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x5fc5360d0400a0fd4f2af552add042d716f1d168",
+      "contract_record": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+      "chain_id": 4663,
+      "address": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+      "generation": "USDG (reserve asset, not ours)",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x61b7e5650328764b076a108eff5fa7282a1b9ad2",
+      "contract_record": "assets/addresses/feeds/usdg.json",
+      "chain_id": 4663,
+      "address": "0x61B7e5650328764B076A108EFF5fa7282a1B9aD2",
+      "generation": "usdgUsdFeed",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x621342f15f86fd5620c5141d0cc1a6cefdae28ee",
+      "contract_record": "assets/addresses/contracts/netnet-gear-nft-descriptors-and-nvda-token.json",
+      "chain_id": 4663,
+      "address": "0x621342F15f86fd5620c5141D0cc1A6ceFDaE28eE",
+      "generation": "NetNetGear (the loot collection, shared by every cabinet)",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x62cc8f9b5f56a33c9c8a60c8b92779f523c4e984",
+      "contract_record": "assets/addresses/feeds/baba.json",
+      "chain_id": 4663,
+      "address": "0x62Cc8F9b5f56a33c9C8A60c8B92779f523c4E984",
+      "generation": "chainlinkBabaUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x6330d8c3178a418788df01a47479c0ce7ccf450b",
+      "contract_record": "assets/addresses/contracts/coinflip-router-coin-token-and-credit-routers.json",
+      "chain_id": 4663,
+      "address": "0x6330d8c3178a418788df01a47479c0ce7ccf450b",
+      "generation": "coinStockToken",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x63c12667638f2ae6fc6ae09b43d98ec84a8586ea",
+      "contract_record": "assets/addresses/contracts/weth-and-wsnet.json",
+      "chain_id": 4663,
+      "address": "0x63C12667638f2Ae6fC6ae09B43D98Ec84a8586eA",
+      "generation": "WrappedStakedNET (wsNET)",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/wrapped-snet.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x6478e9393d4c5bb4d53ee881d1de78786a0344a6",
+      "contract_record": "assets/addresses/contracts/boardroom-bonds-bonus-bundler-and-button.json",
+      "chain_id": 4663,
+      "address": "0x6478e9393d4C5bB4d53ee881d1DE78786A0344a6",
+      "generation": "Bundler3",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x64ec5c92ec336f9bc0ae2dcff5acae91b58437ad",
+      "contract_record": "assets/addresses/contracts/predict-series-4-outcomes.json",
+      "chain_id": 4663,
+      "address": "0x64eC5c92eC336F9bc0AE2dCFf5acae91B58437AD",
+      "generation": "PredictOutcome series4",
+      "interface_status": "catalogued_runtime_reconstructed_interface_unpinned",
+      "catalog_path": "assets/contracts/predict-outcome-series-4-higher.json",
+      "missing_evidence": [
+        "Pinned current runtime and series association; canonical records are not discovery seeds.",
+        "Verified source/compiler equivalence and full audit.",
+        "Current supply, claims and cash/burn reconciliation."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x650f58079daa17ee28928c2f92d22291d038b2b0",
+      "contract_record": "assets/addresses/contracts/pendle-principal-token-and-pteam.json",
+      "chain_id": 4663,
+      "address": "0x650F58079dAa17ee28928c2F92d22291d038B2B0",
+      "generation": "pTEAM",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/pteam.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x6652edf64ba3731c4f2d3ce821a0fb1f1f6b482a",
+      "contract_record": "assets/addresses/feeds/crcl.json",
+      "chain_id": 4663,
+      "address": "0x6652eDf64bA3731C4F2D3ce821A0Fb1f1f6b482a",
+      "generation": "chainlinkCrclUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x6b22a786baa607d76728168703a39ea9c99f2cd0",
+      "contract_record": "assets/addresses/feeds/aapl.json",
+      "chain_id": 4663,
+      "address": "0x6B22A786bAa607d76728168703a39Ea9C99f2cD0",
+      "generation": "chainlinkAaplUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x6c2b1e062da09d18389cc563d75b1e1899f2a02f",
+      "contract_record": "assets/addresses/contracts/boardroom-bonds-bonus-bundler-and-button.json",
+      "chain_id": 4663,
+      "address": "0x6C2B1e062DA09d18389cC563D75B1e1899F2a02f",
+      "generation": "boardroomLoot",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x6f84dae9c064ff453e5c8af51efb819f8f610225",
+      "contract_record": "assets/addresses/contracts/netnet-gear-nft-descriptors-and-nvda-token.json",
+      "chain_id": 4663,
+      "address": "0x6f84dae9c064ff453e5c8af51efb819f8f610225",
+      "generation": "NonfungibleTokenPositionDescriptor",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x70eaeec20c39df48509f1f3fab01f7dde207947b",
+      "contract_record": "assets/addresses/contracts/otc-desk-and-adapters.json",
+      "chain_id": 4663,
+      "address": "0x70eaeEc20c39dF48509F1F3faB01f7dDe207947b",
+      "generation": "otcDesk",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x712f52fd42d7b89fd444e0cc4430020faa9cfb26",
+      "contract_record": "assets/addresses/contracts/blackjack-boardroom-and-morpho-bundles.json",
+      "chain_id": 4663,
+      "address": "0x712F52Fd42D7b89fd444e0cc4430020fAA9cfb26",
+      "generation": "BlackjackDesk",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x7185ed82f9e4ae9a3fff0ae072eaf83bba969abc",
+      "contract_record": "assets/addresses/contracts/predict-series-2-outcomes.json",
+      "chain_id": 4663,
+      "address": "0x7185eD82f9e4Ae9a3fFF0Ae072eaF83BBA969AbC",
+      "generation": "PredictOutcome series2",
+      "interface_status": "catalogued_runtime_reconstructed_interface_unpinned",
+      "catalog_path": "assets/contracts/predict-outcome-series-2-higher.json",
+      "missing_evidence": [
+        "Pinned current runtime and series association; canonical records are not discovery seeds.",
+        "Verified source/compiler equivalence and full audit.",
+        "Current supply, claims and cash/burn reconciliation."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x71a120cbbf3ce7cd910a3c50ff77afc62735687e",
+      "contract_record": "assets/addresses/contracts/rialto-runner-and-rwa-desk-v1.json",
+      "chain_id": 4663,
+      "address": "0x71a120CbBf3Ce7cD910a3c50fF77aFc62735687E",
+      "generation": "rialtoRouterRegistry",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x72b8e8c226848ceb35ba51d193f4f962dee957c1",
+      "contract_record": "assets/addresses/contracts/pendle-principal-token-and-pteam.json",
+      "chain_id": 4663,
+      "address": "0x72b8e8c226848ceb35ba51d193f4f962dee957c1",
+      "generation": "PT-sNET-17SEP2026",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x732b3d1d3e8912cae75164fa14a6e1c4c64615b3",
+      "contract_record": "assets/addresses/contracts/sleeve-bond-desk.json",
+      "chain_id": 4663,
+      "address": "0x732b3D1d3E8912CaE75164FA14a6E1c4C64615B3",
+      "generation": "sleeve-bond-desk-20260930",
+      "interface_status": "catalogued_publisher_abi_all_obtained_paths_reviewed_four_names_unresolved",
+      "catalog_path": "assets/contracts/sleeve.json",
+      "missing_evidence": [
+        "Exact deployed verified Solidity and full ABI; four dispatcher names unresolved although targeted branch effects traced.",
+        "Independently pinned runtime, storage, permissions, receipt history and current financial reconciliation.",
+        "Independent compiler equivalence or exhaustive symbolic execution; external dependency behavior and historic NET inventory purchase provenance."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x7332b329860986e596b2fd71e9c53786c0242ce5",
+      "contract_record": "assets/addresses/contracts/perp-oracles-pendle-lp-premium-seller-and-presser-prizes.json",
+      "chain_id": 4663,
+      "address": "0x7332B329860986e596B2fd71e9c53786c0242ce5",
+      "generation": "PrizeVault",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x73991a25c818bf1f1128deaab1492d45638de0d3",
+      "contract_record": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+      "chain_id": 4663,
+      "address": "0x73991a25c818bf1f1128deaab1492d45638de0d3",
+      "generation": "uniswapV3PositionManager",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x757122439420900ca44a80c390d586011fd72c8a",
+      "contract_record": "assets/addresses/contracts/turbo-deployments-and-adapters.json",
+      "chain_id": 4663,
+      "address": "0x757122439420900ca44A80c390d586011FD72C8a",
+      "generation": "v1.1",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/turbo-v11.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x75a9c76ef439e2c7c2e5a34ab105ecfe3766431c",
+      "contract_record": "assets/addresses/feeds/uso.json",
+      "chain_id": 4663,
+      "address": "0x75a9c76Ef439e2C7c2E5a34Ab105EcFe3766431c",
+      "generation": "chainlinkUsoUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x75edfe49d9ec8c23a9931c5ef32ec56b2444a141",
+      "contract_record": "assets/addresses/contracts/share-certificate-snet-and-spacex-invaders.json",
+      "chain_id": 4663,
+      "address": "0x75EdFE49d9ec8c23A9931C5EF32eC56b2444A141",
+      "generation": "SpacexInvadersDesk",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x76cf788606f3d968b93b8a243d0e185c974ee407",
+      "contract_record": "assets/addresses/contracts/hohm-token-and-twap.json",
+      "chain_id": 4663,
+      "address": "0x76Cf788606F3d968B93B8A243D0e185C974EE407",
+      "generation": "hohmToken",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x78f3556b67e17df817d51ef5a990cdaf09e8d3a9",
+      "contract_record": "assets/addresses/feeds/eth.json",
+      "chain_id": 4663,
+      "address": "0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9",
+      "generation": "chainlinkEthUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x79370ed003ce325c088e530d5e8655c99c2993e1",
+      "contract_record": "assets/addresses/contracts/morpho-vault-registry-factories-and-msft-token.json",
+      "chain_id": 4663,
+      "address": "0x79370Ed003CE325C088E530d5e8655c99c2993e1",
+      "generation": "morphoMarketV1AdapterV2Factory",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x79e71f8a8a2912e40687a8820b2dc0fdd2f686b3",
+      "contract_record": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0x79e71F8a8a2912E40687a8820b2dC0fdd2f686b3",
+      "generation": "Distributor",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/distributor.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x7a91222f3f7b927bb8fb624593ca86e111c2f85e",
+      "contract_record": "assets/addresses/contracts/morpho-vault-registry-factories-and-msft-token.json",
+      "chain_id": 4663,
+      "address": "0x7a91222F3f7B927bB8fb624593Ca86e111C2F85e",
+      "generation": "MorphoVaultV1 AdapterFactory",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x7c38c00c30bee9378381e7b6135d7283356d71b1",
+      "contract_record": "assets/addresses/feeds/meta.json",
+      "chain_id": 4663,
+      "address": "0x7C38C00C30BEe9378381E7B6135d7283356D71b1",
+      "generation": "chainlinkMetaUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x7cf28d61d42352eb2fd68167e9b08f73cbbf21eb",
+      "contract_record": "assets/addresses/contracts/pack-desk-pair-oracle-pendle-permit2-and-perp-fees.json",
+      "chain_id": 4663,
+      "address": "0x7cf28D61D42352Eb2FD68167e9B08f73CBbF21eB",
+      "generation": "PackDesk",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/pack-desk.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x7dfd4f31be6814d2906bde155c3e1b146eac1468",
+      "contract_record": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json",
+      "chain_id": 4663,
+      "address": "0x7dfd4f31be6814d2906bde155c3e1b146eac1468",
+      "generation": "TickLens",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x7ef9528408d99f98056922291048f0710001e015",
+      "contract_record": "assets/addresses/contracts/predict-desk-and-vault.json",
+      "chain_id": 4663,
+      "address": "0x7EF9528408D99f98056922291048F0710001e015",
+      "generation": "PredictDesk",
+      "interface_status": "catalogued_supplied_interface_all_functions_runtime_reviewed_unpinned",
+      "catalog_path": "assets/contracts/predict.json",
+      "missing_evidence": [
+        "Verified Solidity/compiler equivalence and exhaustive audit.",
+        "Pinned current state, dependency permissions and financial reconciliation.",
+        "Authoritative versioned print script/constituent ledger."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x80901d846d5d7b030f26b480776ee3b29374c2ae",
+      "contract_record": "assets/addresses/feeds/qqq.json",
+      "chain_id": 4663,
+      "address": "0x80901d846d5D7B030F26B480776EE3b29374C2ae",
+      "generation": "chainlinkQqqUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x810c12d3a554bc47fd39597fe3b3aac4941f50ef",
+      "contract_record": "assets/addresses/feeds/clsk.json",
+      "chain_id": 4663,
+      "address": "0x810c12D3a554Bc47fd39597Fe3b3AAC4941F50eF",
+      "generation": "chainlinkClskUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x8154e35166f21305adac82f95b54de8acd44d23a",
+      "contract_record": "assets/addresses/contracts/rialto-runner-and-rwa-desk-v1.json",
+      "chain_id": 4663,
+      "address": "0x8154e35166f21305AdAc82f95B54De8acD44d23A",
+      "generation": "runnerDeskNvda",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x820abedff239034956b7a9d2f0a331f9f075eb4c",
+      "contract_record": "assets/addresses/feeds/pltr.json",
+      "chain_id": 4663,
+      "address": "0x820ABedFF239034956B7A9d2F0a331f9F075eB4c",
+      "generation": "chainlinkPltrUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x823b016b546178c4c47a830b92333ad44e655d06",
+      "contract_record": "assets/addresses/contracts/boardroom-bonds-bonus-bundler-and-button.json",
+      "chain_id": 4663,
+      "address": "0x823b016b546178C4C47a830B92333aD44E655d06",
+      "generation": "BonusBook",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x82d04c79424fa36bd252aa0d031de512f5f7aefa",
+      "contract_record": "assets/addresses/contracts/fee-sinks-and-flightsim.json",
+      "chain_id": 4663,
+      "address": "0x82d04c79424FA36BD252Aa0D031de512f5F7aeFa",
+      "generation": "FeeSink",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x8366a39cc670b4001a1121b8f6a443a643e40951",
+      "contract_record": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+      "chain_id": 4663,
+      "address": "0x8366a39CC670B4001A1121B8F6A443A643e40951",
+      "generation": "uniswapV4PoolManager",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x872f9d8955b34e841227a92de755cd63042ab7a5",
+      "contract_record": "assets/addresses/contracts/googl-msft-nvda-spcx-morpho-oracles.json",
+      "chain_id": 4663,
+      "address": "0x872F9D8955B34e841227a92dE755cd63042Ab7A5",
+      "generation": "credit-oracle-spcx",
+      "interface_status": "abi_unavailable",
+      "catalog_path": "assets/contracts/credit-oracle-spcx.json",
+      "missing_evidence": [
+        "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+        "Independent compiler equivalence and exhaustive function reachability.",
+        "Verified implementation source/ABI; unknown selector economics and permissions."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x874cf94aa8ec88fd9560094dd065f2fb3e41fc2f",
+      "contract_record": "assets/addresses/feeds/tsm.json",
+      "chain_id": 4663,
+      "address": "0x874cF94aa8eC88Fd9560094dD065f2fB3E41Fc2F",
+      "generation": "chainlinkTsmUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x8876789976decbfcbbbe364623c63652db8c0904",
+      "contract_record": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+      "chain_id": 4663,
+      "address": "0x8876789976decbfcbbbe364623c63652db8c0904",
+      "generation": "UniversalRouter",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x89e5db8b5aa49aa85ac63f691524311aeb649eba",
+      "contract_record": "assets/addresses/contracts/underwriting-vaults-and-uniswap-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0x89e5DB8B5aA49aA85AC63f691524311AEB649eba",
+      "generation": "uniswapV2Router",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x8bceaa40b9acdfaedf85adf4ff01f5ad6517937f",
+      "contract_record": "assets/addresses/contracts/underwriting-vaults-and-uniswap-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0x8bcEaA40B9AcdfAedF85AdF4FF01F5Ad6517937f",
+      "generation": "uniswapV2Factory",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x8d8a68884134b49ec8549f6f5d7b43b8ca327814",
+      "contract_record": "assets/addresses/contracts/pack-desk-pair-oracle-pendle-permit2-and-perp-fees.json",
+      "chain_id": 4663,
+      "address": "0x8d8A68884134b49EC8549f6F5D7b43b8Ca327814",
+      "generation": "PerpFeeRouter",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x8fb5a00413063c220785d556bfdf891f3f30f14e",
+      "contract_record": "assets/addresses/contracts/pack-desk-pair-oracle-pendle-permit2-and-perp-fees.json",
+      "chain_id": 4663,
+      "address": "0x8FB5A00413063C220785D556BFdf891f3f30f14e",
+      "generation": "PerpFeeRouter (CASHCAT)",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x92166e94eea5b7799b761653881692f881dfc4c9",
+      "contract_record": "assets/addresses/contracts/inverse-bond.json",
+      "chain_id": 4663,
+      "address": "0x92166e94Eea5B7799b761653881692f881dFC4C9",
+      "generation": "InverseBond (buyback program)",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/inverse-bond.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x929631b33f4070d6f54477fba3fd27566567daca",
+      "contract_record": "assets/addresses/contracts/pack-desk-pair-oracle-pendle-permit2-and-perp-fees.json",
+      "chain_id": 4663,
+      "address": "0x929631b33F4070D6f54477fba3FD27566567dAca",
+      "generation": "PairOracle",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/pair-oracle.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x9353766a5ffea84d15ba431928596f613f533a89",
+      "contract_record": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0x9353766a5ffEA84D15BA431928596f613F533A89",
+      "generation": "dialupZap",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x943a29e7ae51a4798823ca9eed2ed533b2a22c72",
+      "contract_record": "assets/addresses/feeds/amd.json",
+      "chain_id": 4663,
+      "address": "0x943A29E7ae51A4798823ca9eEd2ed533B2A22C72",
+      "generation": "chainlinkAmdUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x96ddab1e3fbd974dba0fdfaf3bf867f679ec2d29",
+      "contract_record": "assets/addresses/contracts/button-card-and-router.json",
+      "chain_id": 4663,
+      "address": "0x96DdaB1e3fBD974dbA0fDfaF3bF867F679eC2d29",
+      "generation": "buttonRouterSource",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x99347d5f70d3838763f6bddcf80304c8aa953b57",
+      "contract_record": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+      "chain_id": 4663,
+      "address": "0x99347d5F70D3838763f6Bddcf80304C8aa953B57",
+      "generation": "credit-vault",
+      "interface_status": "complete_obtained_explorer_abi",
+      "catalog_path": "assets/contracts/credit-vault.json",
+      "missing_evidence": [
+        "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+        "Independent compiler equivalence and exhaustive function reachability."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x99b6ee6ede47d9a8a9bfd03f728a99b789df1961",
+      "contract_record": "assets/addresses/contracts/rialto-runner-and-rwa-desk-v1.json",
+      "chain_id": 4663,
+      "address": "0x99B6eE6eDe47d9a8a9bfd03F728a99B789df1961",
+      "generation": "v1",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/rwa-v1.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x9ca38c9c144ff411231c82da03c7d30286a7dbf6",
+      "contract_record": "assets/addresses/contracts/rwa-desk-v2-and-feed-router-adapters.json",
+      "chain_id": 4663,
+      "address": "0x9ca38c9c144ff411231c82da03c7d30286a7dbf6",
+      "generation": "rwa-router-source-shared-by-v2-and-sleeve-20260930",
+      "interface_status": "catalogued_complete_obtained_abi_source_explorer_partial_verification",
+      "catalog_path": "assets/contracts/sleeve-router-source.json",
+      "missing_evidence": [
+        "Independent compiler equivalence and pinned runtime/storage.",
+        "Current registry router/governance and source/runtime history."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x9cc4e5fc9149eeae154273c52292f3bb350233fb",
+      "contract_record": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0x9Cc4E5FC9149eEae154273C52292F3bb350233fb",
+      "generation": "netlong-futures-tape-verifier",
+      "interface_status": "partial_runtime_reconstructed_descriptive_interface",
+      "catalog_path": "assets/contracts/netlong-futures-tape-verifier.json",
+      "missing_evidence": [
+        "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+        "Compiler rebuild/source-runtime equivalence.",
+        "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0x9d53d5e3bd5e8d4cbfa6db1ca238aea02e651010",
+      "contract_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+      "generation": "morpho",
+      "interface_status": "complete_obtained_explorer_abi",
+      "catalog_path": "assets/contracts/morpho.json",
+      "missing_evidence": [
+        "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+        "Independent compiler equivalence and exhaustive function reachability."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xa0df4ee0fff975306345875e3548fcc519577a11",
+      "contract_record": "assets/addresses/feeds/sgov.json",
+      "chain_id": 4663,
+      "address": "0xa0DF4ee0fFf975306345875E3548Fcc519577A11",
+      "generation": "chainlinkSgovUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xa1ee052ec32532304a7522bd9a4b594ec28ff1b1",
+      "contract_record": "assets/addresses/contracts/zap.json",
+      "chain_id": 4663,
+      "address": "0xA1ee052EC32532304a7522bd9A4b594eC28fF1b1",
+      "generation": "Zap",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xa20bf3e1abf0dd3927566dd776aaa9b388e4376b",
+      "contract_record": "assets/addresses/contracts/pendle-snet-1oct2026.json",
+      "chain_id": 4663,
+      "address": "0xa20bf3e1abf0dd3927566dd776aaa9b388e4376b",
+      "generation": "YT-sNET-1OCT2026",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xa3a468a452940b7d6b69991207b508c609a98ef2",
+      "contract_record": "assets/addresses/feeds/coin.json",
+      "chain_id": 4663,
+      "address": "0xA3a468A452940B7D6b69991207B508c609a98Ef2",
+      "generation": "chainlinkCoinUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xa70fc67c9f69da90b63a0e4c05d229954574e313",
+      "contract_record": "assets/addresses/contracts/cashcat-climb-and-coinflip.json",
+      "chain_id": 4663,
+      "address": "0xA70fc67C9F69da90B63a0e4C05D229954574E313",
+      "generation": "cashcatWethV3Pool",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xa84efc3136bf1bb89ade9e5be6ab32cb1a04f08d",
+      "contract_record": "assets/addresses/contracts/rwa-desk-v2-and-feed-router-adapters.json",
+      "chain_id": 4663,
+      "address": "0xa84efC3136BF1Bb89ade9E5BE6Ab32cb1A04f08D",
+      "generation": "v2",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/rwa-v2.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xa8d5c34aef923d73ae9161ea934eb27a2219e416",
+      "contract_record": "assets/addresses/contracts/baskets-desk.json",
+      "chain_id": 4663,
+      "address": "0xa8D5C34Aef923D73aE9161Ea934EB27A2219E416",
+      "generation": "BasketsDesk",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xa994d3684e8400a6c8078226925779fdee682dd9",
+      "contract_record": "assets/addresses/feeds/usar.json",
+      "chain_id": 4663,
+      "address": "0xA994d3684e8400A6c8078226925779FdeE682DD9",
+      "generation": "chainlinkUsarUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xa99d15dace9aede816600a31c3e4158926000f3c",
+      "contract_record": "assets/addresses/contracts/cashcat-climb-and-coinflip.json",
+      "chain_id": 4663,
+      "address": "0xA99D15dACe9aeDE816600A31C3e4158926000f3c",
+      "generation": "CoinFlipDesk",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xaae0d815ee56e4092a5e5c2911e676fea50b2d6d",
+      "contract_record": "assets/addresses/contracts/aapl-token-pool-and-interest-rate-model.json",
+      "chain_id": 4663,
+      "address": "0xAae0d815EE56e4092a5E5C2911E676Fea50B2d6D",
+      "generation": "aaplUsdgV3Pool",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xab0093949fefa432bfb1a0ba8943ee4aebc898a8",
+      "contract_record": "assets/addresses/contracts/pendle-snet-1oct2026.json",
+      "chain_id": 4663,
+      "address": "0xab0093949fefa432bfb1a0ba8943ee4aebc898a8",
+      "generation": "PLP-sNET-1OCT2026",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xaf3d76f1834a1d425780943c99ea8a608f8a93f9",
+      "contract_record": "assets/addresses/contracts/aapl-token-pool-and-interest-rate-model.json",
+      "chain_id": 4663,
+      "address": "0xaf3d76f1834a1d425780943c99ea8a608f8a93f9",
+      "generation": "aaplStockToken",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xaff662814aa7cc80ac1577e03e123358cacc6a97",
+      "contract_record": "assets/addresses/contracts/coinflip-router-coin-token-and-credit-routers.json",
+      "chain_id": 4663,
+      "address": "0xaff662814Aa7cC80AC1577E03E123358CAcc6a97",
+      "generation": "credit",
+      "interface_status": "publisher_interface_only",
+      "catalog_path": "assets/contracts/credit.json",
+      "missing_evidence": [
+        "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+        "Independent compiler equivalence and exhaustive function reachability.",
+        "Verified implementation source/ABI; unknown selector economics and permissions."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xb078cc304a0b264c5f3680dc0488954accd02e87",
+      "contract_record": "assets/addresses/contracts/spcx-staking-and-aapl-coin-morpho-oracles.json",
+      "chain_id": 4663,
+      "address": "0xB078cc304A0B264C5F3680DC0488954ACcd02E87",
+      "generation": "Staking",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/staking.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xb1a1e14c586215235f64166fbc093b8d28fce5db",
+      "contract_record": "assets/addresses/contracts/predict-series-1-outcomes.json",
+      "chain_id": 4663,
+      "address": "0xb1A1E14c586215235F64166FbC093b8d28Fce5DB",
+      "generation": "PredictOutcome series1",
+      "interface_status": "catalogued_runtime_reconstructed_interface_unpinned",
+      "catalog_path": "assets/contracts/predict-outcome-series-1-lower.json",
+      "missing_evidence": [
+        "Pinned current runtime and series association; canonical records are not discovery seeds.",
+        "Verified source/compiler equivalence and full audit.",
+        "Current supply, claims and cash/burn reconciliation."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xb265810950ba6c5c0ff821c9963014a56fd8bffb",
+      "contract_record": "assets/addresses/feeds/spcx.json",
+      "chain_id": 4663,
+      "address": "0xB265810950ba6c5C0Ff821c9963014a56fD8Bffb",
+      "generation": "chainlinkSpcxUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xb4106147e8cce40b7d46124090d373a71b70f87d",
+      "contract_record": "assets/addresses/feeds/asml.json",
+      "chain_id": 4663,
+      "address": "0xB4106147E8cce40b7d46124090d373A71b70f87D",
+      "generation": "chainlinkAsmlUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xb488368902b1cbd7533f1536c3f860065398d3e9",
+      "contract_record": "assets/addresses/contracts/predict-desk-and-vault.json",
+      "chain_id": 4663,
+      "address": "0xb488368902b1CbD7533F1536C3F860065398D3e9",
+      "generation": "PredictVault",
+      "interface_status": "catalogued_supplied_interface_all_functions_runtime_reviewed_unpinned",
+      "catalog_path": "assets/contracts/vault.json",
+      "missing_evidence": [
+        "Verified Solidity/compiler equivalence and exhaustive audit.",
+        "Pinned current state, dependency permissions and financial reconciliation.",
+        "Authoritative versioned print script/constituent ledger."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xb763ddb485314af686745f74ebba68e56c0bedfa",
+      "contract_record": "assets/addresses/contracts/share-certificate-snet-and-spacex-invaders.json",
+      "chain_id": 4663,
+      "address": "0xB763Ddb485314af686745f74EbBa68e56c0bEDFa",
+      "generation": "spacexInvadersRouterSource",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xb773ec2c326b7f98a5a83fc098825492f020a4c7",
+      "contract_record": "assets/addresses/contracts/share-certificate-snet-and-spacex-invaders.json",
+      "chain_id": 4663,
+      "address": "0xb773ec2C326B7f98a5a83fc098825492F020a4c7",
+      "generation": "sNET (staked NET)",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/snet.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xb7c16f6f8cf531447bf27ca7220f981e79c9cdf2",
+      "contract_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0xB7c16F6F8cF531447Bf27Ca7220f981E79C9cdF2",
+      "generation": "Morpho ChainlinkOracleV2 Factory",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xba46fc84409589f369c107e869c06809df3d9727",
+      "contract_record": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+      "chain_id": 4663,
+      "address": "0xba46fc84409589f369c107e869c06809df3d9727",
+      "generation": "NET-scaled18",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xbeeff033f34c046626b8d0a041844c5d1a5409dd",
+      "contract_record": "assets/addresses/contracts/morpho-vault-registry-factories-and-msft-token.json",
+      "chain_id": 4663,
+      "address": "0xBeEff033F34C046626B8D0A041844C5d1A5409dd",
+      "generation": "morphoUsdgVault",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xc50f040f9a38f7cd94fe87be56325eaac48e770e",
+      "contract_record": "assets/addresses/contracts/pendle-snet-15oct2026.json",
+      "chain_id": 4663,
+      "address": "0xc50f040f9a38f7cd94fe87be56325eaac48e770e",
+      "generation": "PT-sNET-15OCT2026",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xc5b8a6c5fdf14f9744db1c8595f49e42ce23031a",
+      "contract_record": "assets/addresses/contracts/historical-publisher-dependencies.json",
+      "chain_id": 4663,
+      "address": "0xC5b8A6C5fDF14f9744dB1C8595f49E42Ce23031a",
+      "generation": "Third-party NVDA historical MorphoChainlinkOracleV2",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xc5e188541d107e8b79e43478bde365f1406665d6",
+      "contract_record": "assets/addresses/contracts/general-adapter-genesis-bond-and-googl.json",
+      "chain_id": 4663,
+      "address": "0xc5E188541D107e8B79e43478bDE365F1406665D6",
+      "generation": "GeneralAdapter1",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xc61284332117c3fb23a2a56cceffd07f7af60029",
+      "contract_record": "assets/addresses/contracts/spcx-staking-and-aapl-coin-morpho-oracles.json",
+      "chain_id": 4663,
+      "address": "0xc61284332117c3FB23A2A56cceFFD07F7aF60029",
+      "generation": "spcxUsdgV3Pool",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xc79c0fa204f42a66985ab2ede7646567d4db5dbb",
+      "contract_record": "assets/addresses/contracts/otc-desk-and-adapters.json",
+      "chain_id": 4663,
+      "address": "0xC79C0FA204F42a66985AB2eDE7646567D4DB5DbB",
+      "generation": "otcDeskRouterSource",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xc866e4f53f1439d85171a06395ce37b887d16fa1",
+      "contract_record": "assets/addresses/contracts/sportsbook-desk-and-zap.json",
+      "chain_id": 4663,
+      "address": "0xC866E4f53f1439d85171a06395ce37b887D16Fa1",
+      "generation": "SportsBookZap",
+      "interface_status": "complete_publisher_literal_partial_contract_abi",
+      "catalog_path": "assets/contracts/sports-book-zap.json",
+      "missing_evidence": [
+        "Verified Solidity and independently pinned runtime/source equivalence.",
+        "Current dependent code, authority and accounting snapshot; canonical RPC403 prevented collection.",
+        "Full transaction/event discovery and receipt/state reconciliation; no financial history stored.",
+        "Publisher Zap literal omits constructor and all events; four event-like LOG topic constants are present in runtime. Their signatures/indexed fields remain unknown and are not decoded by collector."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xc8a11e8793f8714a159061369173dc86a0a5e23f",
+      "contract_record": "assets/addresses/contracts/perp-oracles-pendle-lp-premium-seller-and-presser-prizes.json",
+      "chain_id": 4663,
+      "address": "0xc8a11E8793F8714a159061369173dc86A0A5E23F",
+      "generation": "PerpOracle",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xc94135b63772b91d79d0a2daab2a8801f32359bd",
+      "contract_record": "assets/addresses/contracts/historical-publisher-dependencies.json",
+      "chain_id": 4663,
+      "address": "0xC94135b63772b91D79d0A2DaAb2a8801f32359bD",
+      "generation": "Rialto historical resolved taker router",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xca11bde05977b3631167028862be2a173976ca11",
+      "contract_record": "assets/addresses/contracts/multicall3.json",
+      "chain_id": 4663,
+      "address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+      "generation": "multicall3",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xca9c78dd337a67f6e0077f65f5e9218719d30edf",
+      "contract_record": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+      "chain_id": 4663,
+      "address": "0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+      "generation": "NET (the token)",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/net.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xcaf681a66d020601342297493863e78c959e5cb2",
+      "contract_record": "assets/addresses/contracts/swap-router-and-pendle-sy.json",
+      "chain_id": 4663,
+      "address": "0xcaf681a66d020601342297493863e78c959e5cb2",
+      "generation": "SwapRouter02",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xcb9a035fe0e8f321e36286405febc70de42db34e",
+      "contract_record": "assets/addresses/contracts/googl-msft-nvda-spcx-morpho-oracles.json",
+      "chain_id": 4663,
+      "address": "0xcb9a035fe0e8f321e36286405fEBC70dE42DB34e",
+      "generation": "credit-oracle-msft",
+      "interface_status": "abi_unavailable",
+      "catalog_path": "assets/contracts/credit-oracle-msft.json",
+      "missing_evidence": [
+        "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+        "Independent compiler equivalence and exhaustive function reachability.",
+        "Verified implementation source/ABI; unknown selector economics and permissions."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xcc108538f36242d6e0d6b9255f6d9ccd137d70fe",
+      "contract_record": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json",
+      "chain_id": 4663,
+      "address": "0xcC108538f36242D6E0d6B9255f6D9Ccd137D70Fe",
+      "generation": "VaultBundlesV1",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xcc4a7c03a2d4d248b8da0e35c178944799feac70",
+      "contract_record": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0xcC4A7C03A2d4D248B8dA0E35C178944799feac70",
+      "generation": "DrawController",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xcde9599059f8ae6d6b9f33a0af7877827ec75f16",
+      "contract_record": "assets/addresses/contracts/loopback-oracle.json",
+      "chain_id": 4663,
+      "address": "0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16",
+      "generation": "loopback-oracle",
+      "interface_status": "complete_obtained_explorer_abi",
+      "catalog_path": "assets/contracts/loopback-oracle.json",
+      "missing_evidence": [
+        "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+        "Independent compiler equivalence and exhaustive function reachability."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xce29862924756584bbd0d75ca1249d22007e2813",
+      "contract_record": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json",
+      "chain_id": 4663,
+      "address": "0xCE29862924756584BBD0D75CA1249d22007E2813",
+      "generation": "VaultExitBundlesV1",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xce5c1afa115ff8b1d6913509bfc79d9ae08cc857",
+      "contract_record": "assets/addresses/contracts/blackjack-boardroom-and-morpho-bundles.json",
+      "chain_id": 4663,
+      "address": "0xCe5c1aFa115fF8b1D6913509bfc79D9AE08CC857",
+      "generation": "Blue Public Allocator",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xce73c8ad08cbdeaca6078bf0627c8fe0a9a536e7",
+      "contract_record": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json",
+      "chain_id": 4663,
+      "address": "0xcE73c8ad08CBDEaCa6078BF0627C8fe0a9a536E7",
+      "generation": "netlong-futures-stream-verifier",
+      "interface_status": "complete_explorer_partial_verification_abi",
+      "catalog_path": "assets/contracts/netlong-futures-stream-verifier.json",
+      "missing_evidence": [
+        "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+        "Compiler rebuild/source-runtime equivalence."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xcef73866b088766ded46ba71d9bd7591b5e931d2",
+      "contract_record": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json",
+      "chain_id": 4663,
+      "address": "0xCeF73866b088766DeD46Ba71d9Bd7591B5e931d2",
+      "generation": "tNET",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xd0601ce157db5bdc3162bbac2a2c8af5320d9eec",
+      "contract_record": "assets/addresses/contracts/netnet-gear-nft-descriptors-and-nvda-token.json",
+      "chain_id": 4663,
+      "address": "0xd0601ce157db5bdc3162bbac2a2c8af5320d9eec",
+      "generation": "nvdaStockToken",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xd1604dcadb949a28c7cfa8cd044641b8c520ef3f",
+      "contract_record": "assets/addresses/contracts/futures-clearinghouses.json",
+      "chain_id": 4663,
+      "address": "0xD1604dcAdB949A28C7cfA8Cd044641b8C520Ef3f",
+      "generation": "FuturesClearinghouse (CASHCAT)",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xd4d34ecfbc9c0000a7915a5f48bb0def484ff802",
+      "contract_record": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0xd4D34ecfbc9c0000a7915A5F48bb0dEf484ff802",
+      "generation": "DrandSigRegistry",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xd4eb21209c4d6093f80b5b84f5c45cc093ea14a3",
+      "contract_record": "assets/addresses/contracts/nvda-usdg-pool.json",
+      "chain_id": 4663,
+      "address": "0xd4EB21209C4D6093f80B5b84f5C45cc093EA14a3",
+      "generation": "nvdaUsdgV3Pool",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xd5a1508ced74c084ebf3cbe853e2c968fb2a651c",
+      "contract_record": "assets/addresses/feeds/amzn.json",
+      "chain_id": 4663,
+      "address": "0xD5a1508ceD74c084eBf3cBe853e2C968fB2a651C",
+      "generation": "chainlinkAmznUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xd5d418f95715bc0fadb35923d389fe3f627df80a",
+      "contract_record": "assets/addresses/contracts/pendle-snet-15oct2026.json",
+      "chain_id": 4663,
+      "address": "0xd5d418f95715bc0fadb35923d389fe3f627df80a",
+      "generation": "PLP-sNET-15OCT2026",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xd625d488d552775d2867194c618b945e5ddfe097",
+      "contract_record": "assets/addresses/contracts/spcx-staking-and-aapl-coin-morpho-oracles.json",
+      "chain_id": 4663,
+      "address": "0xD625d488D552775D2867194C618B945E5dDfE097",
+      "generation": "credit-oracle-aapl",
+      "interface_status": "abi_unavailable",
+      "catalog_path": "assets/contracts/credit-oracle-aapl.json",
+      "missing_evidence": [
+        "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+        "Independent compiler equivalence and exhaustive function reachability.",
+        "Verified implementation source/ABI; unknown selector economics and permissions."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xd6c8b97245b8c080d8615e8caf5f3ca9a3820728",
+      "contract_record": "assets/addresses/contracts/coinflip-router-coin-token-and-credit-routers.json",
+      "chain_id": 4663,
+      "address": "0xD6C8b97245b8C080d8615E8CAF5F3Ca9A3820728",
+      "generation": "coinflipRouterSource",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xde9df88aba59b644d4d7f6305e52ab982a3cfcac",
+      "contract_record": "assets/addresses/contracts/advance-desk-and-zap.json",
+      "chain_id": 4663,
+      "address": "0xDe9df88ABA59b644D4d7f6305e52aB982A3cFCac",
+      "generation": "advanceDesk",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/advance-desk.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit.",
+        "Existing September26 runtime conditional findings remain valid at their stated scope; October7 explorer hashes match, but no fresh pinned live dependency state."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xe109eaf5fa12f93168947f62cc340c96f4dc15eb",
+      "contract_record": "assets/addresses/contracts/blackjack-boardroom-and-morpho-bundles.json",
+      "chain_id": 4663,
+      "address": "0xe109eAf5FA12F93168947f62cC340c96F4Dc15eB",
+      "generation": "BoardroomDesk",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xe1b3aabcafad1c94708dc1367dcff8aa4407487c",
+      "contract_record": "assets/addresses/feeds/crwv.json",
+      "chain_id": 4663,
+      "address": "0xe1b3aABCAFAd1c94708dc1367dcfF8Aa4407487C",
+      "generation": "chainlinkCrwvUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xe1d87b116ba0fe898998f1d140339d1fa1e09705",
+      "contract_record": "assets/addresses/feeds/nbis.json",
+      "chain_id": 4663,
+      "address": "0xE1D87B116Ba0fe898998f1D140339D1fA1E09705",
+      "generation": "chainlinkNbisUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xe5143de9d3ccbc31ffb4e7fc66d8320e0e2693d2",
+      "contract_record": "assets/addresses/contracts/button-card-and-router.json",
+      "chain_id": 4663,
+      "address": "0xE5143de9D3CcBc31Ffb4e7Fc66d8320e0E2693D2",
+      "generation": "buttonPresserCard",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xe55aee500ef58d164cf5c04f24bcb041f315fee6",
+      "contract_record": "assets/addresses/contracts/predict-series-1-outcomes.json",
+      "chain_id": 4663,
+      "address": "0xE55AEe500Ef58D164cF5c04F24bCB041f315fEe6",
+      "generation": "PredictOutcome series1",
+      "interface_status": "catalogued_runtime_reconstructed_interface_unpinned",
+      "catalog_path": "assets/contracts/predict-outcome-series-1-higher.json",
+      "missing_evidence": [
+        "Pinned current runtime and series association; canonical records are not discovery seeds.",
+        "Verified source/compiler equivalence and full audit.",
+        "Current supply, claims and cash/burn reconciliation."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xe785a2efd384ba7b95baed3851bc76aed67c676f",
+      "contract_record": "assets/addresses/contracts/morpho-vault-registry-factories-and-msft-token.json",
+      "chain_id": 4663,
+      "address": "0xe785a2eFD384BA7B95BaEd3851BC76aeD67C676f",
+      "generation": "morphoRegistry",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xe93237c50d904957cf27e7b1133b510c669c2e74",
+      "contract_record": "assets/addresses/contracts/morpho-vault-registry-factories-and-msft-token.json",
+      "chain_id": 4663,
+      "address": "0xe93237c50d904957cf27e7b1133b510c669c2e74",
+      "generation": "msftStockToken",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xed29d310cfa91778a5850538da28ed42234cb78c",
+      "contract_record": "assets/addresses/contracts/googl-msft-nvda-spcx-morpho-oracles.json",
+      "chain_id": 4663,
+      "address": "0xED29D310cfa91778A5850538DA28ed42234Cb78c",
+      "generation": "credit-oracle-nvda",
+      "interface_status": "abi_unavailable",
+      "catalog_path": "assets/contracts/credit-oracle-nvda.json",
+      "missing_evidence": [
+        "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+        "Independent compiler equivalence and exhaustive function reachability.",
+        "Verified implementation source/ABI; unknown selector economics and permissions."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xede5ee1d473e5e5b6049e045866d7557a174f44b",
+      "contract_record": "assets/addresses/contracts/boardroom-bonds-bonus-bundler-and-button.json",
+      "chain_id": 4663,
+      "address": "0xEdE5eE1D473E5E5B6049E045866D7557a174f44b",
+      "generation": "buttonFeedAdapter",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xefdf54610b62a7753ec30bdc380847c12d32e1d1",
+      "contract_record": "assets/addresses/feeds/ewy.json",
+      "chain_id": 4663,
+      "address": "0xEFdf54610B62A7753Ec30bDc380847c12D32e1D1",
+      "generation": "chainlinkEwyUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xf0eef247585b184836915e80f984246d981c55c4",
+      "contract_record": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+      "chain_id": 4663,
+      "address": "0xf0eeF247585b184836915e80f984246d981c55C4",
+      "generation": "market-adapter",
+      "interface_status": "complete_obtained_explorer_abi",
+      "catalog_path": "assets/contracts/market-adapter.json",
+      "missing_evidence": [
+        "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+        "Independent compiler equivalence and exhaustive function reachability."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xf125ad8abde2591609a982e0b6a51309fdf7db37",
+      "contract_record": "assets/addresses/contracts/jackpot-pool.json",
+      "chain_id": 4663,
+      "address": "0xF125Ad8ABdE2591609a982e0b6a51309fdF7Db37",
+      "generation": "JackpotPool",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xf2d7268d753bb48d784c93d944ce1279957d8510",
+      "contract_record": "assets/addresses/contracts/blackjack-boardroom-and-morpho-bundles.json",
+      "chain_id": 4663,
+      "address": "0xf2D7268D753BB48d784c93D944Ce1279957d8510",
+      "generation": "BlackjackLogic",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xf56e517652bb18e519871abb13a382d205f6e375",
+      "contract_record": "assets/addresses/contracts/fee-sinks-and-flightsim.json",
+      "chain_id": 4663,
+      "address": "0xF56e517652bb18E519871ABb13A382D205f6e375",
+      "generation": "FlightSimDesk",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xf657ac993a24dd71db1d0f4c0b4aa82e5ec78a83",
+      "contract_record": "assets/addresses/contracts/coinflip-router-coin-token-and-credit-routers.json",
+      "chain_id": 4663,
+      "address": "0xF657Ac993A24dd71dB1d0f4c0B4Aa82e5EC78A83",
+      "generation": "v1",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xf6ec124ca62c841384abd0e128552cf9eb446205",
+      "contract_record": "assets/addresses/contracts/futures-clearinghouses.json",
+      "chain_id": 4663,
+      "address": "0xf6ec124ca62C841384ABD0e128552cF9Eb446205",
+      "generation": "FuturesClearinghouse",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xf6f373a037c30f0e5010d854385ca89185ae638b",
+      "contract_record": "assets/addresses/feeds/googl.json",
+      "chain_id": 4663,
+      "address": "0xF6f373a037c30F0e5010d854385cA89185AE638b",
+      "generation": "chainlinkGooglUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xfae9967d8d29c18886bc172d2b82028f93e3a651",
+      "contract_record": "assets/addresses/contracts/perp-oracles-pendle-lp-premium-seller-and-presser-prizes.json",
+      "chain_id": 4663,
+      "address": "0xFae9967D8D29C18886BC172d2B82028F93E3a651",
+      "generation": "presserFaction",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xfb133fa4b7b385802b693a293606682df47109a3",
+      "contract_record": "assets/addresses/feeds/sndk.json",
+      "chain_id": 4663,
+      "address": "0xfb133Fa4B7b385802B693a293606682Df47109A3",
+      "generation": "chainlinkSndkUsd",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xfb2d72fc9c378a73b4e03abac48194367447fa5a",
+      "contract_record": "assets/addresses/contracts/pendle-yield-token.json",
+      "chain_id": 4663,
+      "address": "0xfb2d72fc9c378a73b4e03abac48194367447fa5a",
+      "generation": "YT-sNET-17SEP2026",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xfb8058769063519f26fb114631919c0e5254068e",
+      "contract_record": "assets/addresses/contracts/share-certificate-snet-and-spacex-invaders.json",
+      "chain_id": 4663,
+      "address": "0xfB8058769063519f26FB114631919c0E5254068e",
+      "generation": "ShareCertificate",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xfd46af62cf6e9306008a13bee045c542ec3daef6",
+      "contract_record": "assets/addresses/contracts/boardroom-bonds-bonus-bundler-and-button.json",
+      "chain_id": 4663,
+      "address": "0xFd46AF62CF6E9306008a13beE045c542Ec3DAef6",
+      "generation": "buttonDesk",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xfdb9586cd58cd61e9f571ed41db27b57f63781e3",
+      "contract_record": "assets/addresses/contracts/asset-bond-desk-and-zap.json",
+      "chain_id": 4663,
+      "address": "0xfdb9586cd58cd61e9F571ed41db27b57F63781e3",
+      "generation": "assetBondDesk V1",
+      "interface_status": "unreviewed",
+      "catalog_path": null,
+      "missing_evidence": [
+        "No generation-bound public/external function catalog reviewed for this exact identity.",
+        "Current deployed implementation, authority and financial state not validated."
+      ]
+    },
+    {
+      "contract_id": "robinhood-0xff32a969a0c567129eecd926d04657728e1980c1",
+      "contract_record": "assets/addresses/contracts/boardroom-bonds-bonus-bundler-and-button.json",
+      "chain_id": 4663,
+      "address": "0xff32a969A0c567129eECD926D04657728E1980C1",
+      "generation": "BondDepository (primary offerings)",
+      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "catalog_path": "assets/contracts/bond-depository.json",
+      "missing_evidence": [
+        "Independently pinned code, storage, current permissions and financial reconciliation.",
+        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      ]
+    }
+  ],
+  "unbound_publisher_interfaces": [
+    {
+      "catalog_path": "assets/contracts/unbound-interfaces.json",
+      "literal_count": 45,
+      "status": "parsed_not_primary_deployment_bound"
+    }
+  ],
+  "extraction_coverage": {
+    "observed_on": "2026-10-07",
+    "scope": "Historical shareholder-bundle extraction only; its32 bound/206 canonical counters describe that baseline. Current combined totals are in current_coverage; NetLong source/runtime catalogs carry their own extraction boundaries.",
+    "bundle_bytes": 1259006,
+    "bundle_sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+    "complete_assigned_literal_abi_arrays": 75,
+    "primary_literal_arrays_bound": 30,
+    "unbound_or_supplemental_arrays": 45,
+    "bound_contract_records": 32,
+    "canonical_contract_records": 206,
+    "limits": [
+      "Assigned literal arrays in this one complete shareholder bundle only; resolves literal br/MM component arrays without executing JavaScript.",
+      "Spread/composed/imported/lazy-chunk interfaces may contain additional entries; unmatched selectors never assigned speculative names.",
+      "49 preexisting unresolved creation candidates remain in discovery, outside canonical ledger; no aliases promoted."
+    ]
+  },
+  "validation": "assets/contracts/validation.json"
+}

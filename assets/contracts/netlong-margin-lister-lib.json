@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0xa8ad2540af00381b8acd7e41fa6fdb7e0a1fd048",
+  "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+  "chain_id": 4663,
+  "address": "0xA8Ad2540Af00381b8acD7e41fa6FdB7E0A1FD048",
+  "generation": "netlong-margin-lister-lib",
+  "provenance": [
+    {
+      "source_id": "netlong-margin-lister-lib-explorer-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xA8Ad2540Af00381b8acD7e41fa6FdB7E0A1FD048",
+      "observed_on": "2026-10-10",
+      "locator": "Complete explorer smart-contract response; source/ABI fields and deployed_bytecode where supplied"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "abi_not_obtained",
+    "supplied_entry_count": 0,
+    "implementation": "targeted_static_runtime_review_with_explicit_unresolved_dispatchers",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+      "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+      "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+    ],
+    "runtime_dispatcher_count": 10,
+    "runtime_unresolved_signature_count": 10
+  },
+  "runtime_identity": {
+    "byte_count": 11041,
+    "sha256": "89fee49c841b5587cebe1c8118cee5d867946206e0a8bbe2b31dfc47761bef32",
+    "keccak256": "0xd176908ca2498d7af5f1d7c1222d3ccc444a94b53001b87cdfc8741e42f1a3d9",
+    "evidence_kind": "explorer_indexed_unpinned_runtime",
+    "proxy_type": null,
+    "explorer_is_verified": null,
+    "explorer_is_fully_verified": null,
+    "verified_twin_address": null
+  },
+  "functions": [],
+  "events": [],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": [],
+  "runtime_review": [
+    {
+      "scope": "every dispatcher branch",
+      "selectors": [
+        "0x186ae923",
+        "0x338dbffe",
+        "0x5d41b25c",
+        "0x7073c658",
+        "0x711700bb",
+        "0x8feca260",
+        "0xa17e6b57",
+        "0xd2edc0f2",
+        "0xf0f29f21",
+        "0xf3e6b51a"
+      ],
+      "detail": "Source/ABI unavailable. Branches traced by their ABI decoder/storage/calls: open-check0x027f,depth0x065f,tokenCap0x0707,params0x0767,list0x0801,quote0x0cde,Safe ceilings0x0fa0,marks0x10e6,liquidation thresholds0x126a,measurement0x13b5. Signature/storage-reference tuple types not reconstructed as a complete ABI."
+    },
+    {
+      "scope": "listing and depth manipulation constraints",
+      "pcs": [
+        "0x0801-0x0cde",
+        "0x1887-0x1c48"
+      ],
+      "detail": "Rejects USDG/wsNET listing; requires decimals<=18, canonical mark-pool lookup and usable marks; changing mark pool/quote basis while totalShares nonzero reverts. Depth pool count bounded by source MAX_DEPTH_POOLS(8), duplicates and mark-pool duplication rejected, each source pool identity validated. No timelock proved; Desk controls authority."
+    },
+    {
+      "scope": "measured bounds",
+      "pcs": [
+        "0x13b5-0x16b2",
+        "0x17a7-0x1887",
+        "0x1c85-0x1d69"
+      ],
+      "detail": "Effective depth=min(submitted depth,source measured depth), halved if ownerRisk. Formula leverage=clamp(floor(9000*1e18/(3*sigmaHBps+200)),1.2e18,10e18), then nonzero Safe ceiling. slipBps=floor(1000*1e18/L), maintenance=slip+200. tokenCap=min(floor(depth*slip/10000),250000e18,nonzero safeCap); positionCap=min(floor(tokenCap/4),50000e18). Open uses freshness21600s/probe flag, existing-position and lending guards. Probe boolean and volatility submissions are keeper inputs, not autonomous proof that a token cannot blacklist/upgrade."
+    },
+    {
+      "scope": "marks fallback and quotes",
+      "pcs": [
+        "0x10e6-0x13b5",
+        "0x0cde-0x0fa0"
+      ],
+      "detail": "Tries full TWAP+spot source first; then spot-only; then zero, preserving twapLive=false. Quote derives margin credit, whole leveraged notional, rounded-up loan USDG, opening fee25bps and min units; no guarantee of execution. Lender oracle-credit fallback not equivalent to healthy token TWAP."
+    }
+  ],
+  "source_files": [],
+  "runtime_dispatch": [
+    {
+      "selector": "0x186ae923",
+      "entry_pc": "0xc8",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x338dbffe",
+      "entry_pc": "0x137",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x5d41b25c",
+      "entry_pc": "0x158",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x7073c658",
+      "entry_pc": "0x16b",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x711700bb",
+      "entry_pc": "0x1a8",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x8feca260",
+      "entry_pc": "0x1c9",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xa17e6b57",
+      "entry_pc": "0x1e9",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xd2edc0f2",
+      "entry_pc": "0x208",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xf0f29f21",
+      "entry_pc": "0x238",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xf3e6b51a",
+      "entry_pc": "0x260",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    }
+  ]
+}

@@ -1,0 +1,3246 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x3174de69a84c53f82f6b6dca5c64e705cffe8dd6",
+  "contract_record": "assets/addresses/contracts/sportsbook-desk-and-zap.json",
+  "chain_id": 4663,
+  "address": "0x3174dE69a84c53F82F6B6Dca5C64E705cFFe8Dd6",
+  "generation": "SportsBookDesk",
+  "provenance": [
+    {
+      "source_id": "netnet-book-interfaces-20261010",
+      "url": "https://play.netnet.capital/assets/sportsbook-live-BuQ1LO4q.js",
+      "sha256": "994aeb2cfd1fb5c684a0f6023dccd057d9740956dde35e66dfd5a9b796e1faf8",
+      "locator": "Literal Ht; Unicode character offsets (557, 19045)",
+      "observed_on": "2026-10-10"
+    },
+    {
+      "source_id": "netnet-book-interfaces-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x3174dE69a84c53F82F6B6Dca5C64E705cFFe8Dd6",
+      "locator": "Exact-address runtime/creation metadata, no verified ABI/source",
+      "observed_on": "2026-10-10"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal",
+    "supplied_entry_count": 103,
+    "implementation": "source_unavailable_dispatcher_correlated_unpinned",
+    "pinned_state": "not_obtained",
+    "source_evidence_path": "assets/contracts/book-source-evidence.json",
+    "dispatcher_evidence": {
+      "unmatched_dispatcher_selectors": [],
+      "interface_selectors_not_seen": []
+    },
+    "missing_evidence": [
+      "Verified Solidity and independently pinned runtime/source equivalence.",
+      "Current dependent code, authority and accounting snapshot; canonical RPC403 prevented collection.",
+      "Full transaction/event discovery and receipt/state reconciliation; no financial history stored."
+    ]
+  },
+  "functions": [
+    {
+      "name": "accountOf",
+      "inputs": [
+        {
+          "name": "player",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[1]"
+      },
+      "signature": "accountOf(address)",
+      "selector": "0x8086b8ba",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Two unnamed wsNET outputs; client uses free and locked balance respectively. Neither is wallet token balance."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x20d",
+        "entry_offset": "0x619"
+      }
+    },
+    {
+      "name": "approveWithdraw",
+      "inputs": [
+        {
+          "name": "spender",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "wsAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[2]"
+      },
+      "signature": "approveWithdraw(address,uint256)",
+      "selector": "0x4e1ca120",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Caller-funded or caller-account path per publisher; detailed implementation enforcement unverified."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Set internal free-balance withdrawal allowance to spender; never included in runner interface."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x287",
+        "entry_offset": "0x513"
+      }
+    },
+    {
+      "name": "balanceOf",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[3]"
+      },
+      "signature": "balanceOf(address)",
+      "selector": "0x70a08231",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Internal free wsNET ledger, not ERC20 wallet custody."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x1f7",
+        "entry_offset": "0x5e7"
+      }
+    },
+    {
+      "name": "barred",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[4]"
+      },
+      "signature": "barred(address)",
+      "selector": "0x6dfedb11",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Address betting restriction, not withdrawal or beneficiary eligibility."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x232",
+        "entry_offset": "0x595"
+      }
+    },
+    {
+      "name": "betCount",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[5]"
+      },
+      "signature": "betCount()",
+      "selector": "0xcf094497",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Global sequential bet-ID counter, not open bet count or turnover."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0xab",
+        "entry_offset": "0x7ee"
+      }
+    },
+    {
+      "name": "betOf",
+      "inputs": [
+        {
+          "name": "betId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct ISportsBookDesk.Bet",
+          "components": [
+            {
+              "name": "player",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "marketId",
+              "type": "uint32",
+              "internalType": "uint32"
+            },
+            {
+              "name": "side",
+              "type": "uint8",
+              "internalType": "enum ISportsBookDesk.Side"
+            },
+            {
+              "name": "riskOff",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "settled",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "feeBps",
+              "type": "uint16",
+              "internalType": "uint16"
+            },
+            {
+              "name": "placedAt",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "amount",
+              "type": "uint128",
+              "internalType": "uint128"
+            },
+            {
+              "name": "reserve",
+              "type": "uint128",
+              "internalType": "uint128"
+            },
+            {
+              "name": "index0",
+              "type": "uint128",
+              "internalType": "uint128"
+            },
+            {
+              "name": "wager",
+              "type": "uint128",
+              "internalType": "uint128"
+            },
+            {
+              "name": "payout",
+              "type": "uint128",
+              "internalType": "uint128"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[6]"
+      },
+      "signature": "betOf(uint256)",
+      "selector": "0x8e0e019d",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Player, uint32 marketId, side, riskOff, settled, fixed feeBps, placedAt, amount, reserve, index0, wager, payout. Client treats risk-on amount as fee-net stake and risk-off amount as principal. Stored wager/payout are settlement fields; zero before settlement does not mean zero eventual claim."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x176",
+        "entry_offset": "0x692"
+      }
+    },
+    {
+      "name": "betRiskOff",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "side",
+          "type": "uint8",
+          "internalType": "enum ISportsBookDesk.Side"
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "betId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[7]"
+      },
+      "signature": "betRiskOff(uint256,uint8,uint256)",
+      "selector": "0x63e3e9a5",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Caller free ledger, not barred, not halted, open before close, minimum/cap/cover requirements."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Lock principal, fix fee rate and reserve cap; only realized through-grade yield clipped to reserve is wagered. No dollar principal protection."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x21c",
+        "entry_offset": "0x579"
+      }
+    },
+    {
+      "name": "betRiskOn",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "side",
+          "type": "uint8",
+          "internalType": "enum ISportsBookDesk.Side"
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "betId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[8]"
+      },
+      "signature": "betRiskOn(uint256,uint8,uint256)",
+      "selector": "0x92e769ef",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Caller free ledger, not barred, not halted, open before close, minimum/cap/cover requirements."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Debit gross wsNET free balance, immediate fee, lock fee-net stake; fees retained on push. Both sides even money before fee; no agent execution."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x181",
+        "entry_offset": "0x6b2"
+      }
+    },
+    {
+      "name": "betsOf",
+      "inputs": [
+        {
+          "name": "player",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[9]"
+      },
+      "signature": "betsOf(address,uint256)",
+      "selector": "0x6fcc5628",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Player and market scoped dynamic bet-ID list; not discovery of all players or a page-bounded global ledger."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x1ec",
+        "entry_offset": "0x5c7"
+      }
+    },
+    {
+      "name": "cancel",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[10]"
+      },
+      "signature": "cancel(uint256)",
+      "selector": "0x40e58ee5",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Publisher: manager only."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Cancel open market as push; separate settlement required; risk-on fee retained."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x2c2",
+        "entry_offset": "0x49f"
+      }
+    },
+    {
+      "name": "deposit",
+      "inputs": [
+        {
+          "name": "wsAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[11]"
+      },
+      "signature": "deposit(uint256)",
+      "selector": "0xb6b55f25",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Caller-funded or caller-account path per publisher; detailed implementation enforcement unverified."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Pull wsNET into free internal account; no revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x15c",
+        "entry_offset": "0x736"
+      }
+    },
+    {
+      "name": "depositFor",
+      "inputs": [
+        {
+          "name": "player",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "wsAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[12]"
+      },
+      "signature": "depositFor(address,uint256)",
+      "selector": "0x2f4f21e2",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Caller-funded or caller-account path per publisher; detailed implementation enforcement unverified."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Pull sender wsNET and credit nominated player; distinguish payer and beneficiary."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x2f2",
+        "entry_offset": "0x470"
+      }
+    },
+    {
+      "name": "depositHouse",
+      "inputs": [
+        {
+          "name": "wsAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[13]"
+      },
+      "signature": "depositHouse(uint256)",
+      "selector": "0x4082aaaf",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Caller-funded or caller-account path per publisher; detailed implementation enforcement unverified."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Transfer wsNET into house pot; contributed capital, not fee or wager revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x2b7",
+        "entry_offset": "0x48c"
+      }
+    },
+    {
+      "name": "distributor",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ISportsBookDistributor"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[14]"
+      },
+      "signature": "distributor()",
+      "selector": "0xbfe10928",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: distributor. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x12c",
+        "entry_offset": "0x770"
+      }
+    },
+    {
+      "name": "epochsUntil",
+      "inputs": [
+        {
+          "name": "t",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[15]"
+      },
+      "signature": "epochsUntil(uint64)",
+      "selector": "0x8ae7ca1c",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Epoch count projection to timestamp; no promise of realized emission rate or settlement income."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x1a6",
+        "entry_offset": "0x663"
+      }
+    },
+    {
+      "name": "exposureOf",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[16]"
+      },
+      "signature": "exposureOf(uint256)",
+      "selector": "0xd456e24f",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Market wsNET cover; publisher exposure nets only opposing risk-on stakes, not speculative risk-off yields."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0xb6",
+        "entry_offset": "0x7f7"
+      }
+    },
+    {
+      "name": "freePot",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[17]"
+      },
+      "signature": "freePot()",
+      "selector": "0xa94b5cc5",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "House wsNET available subject to reserved cover; compare observed housePot-reservedTotal without clamping deficits."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x151",
+        "entry_offset": "0x72e"
+      }
+    },
+    {
+      "name": "grade",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "favScore",
+          "type": "uint8",
+          "internalType": "uint8"
+        },
+        {
+          "name": "dogScore",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[18]"
+      },
+      "signature": "grade(uint256,uint8,uint8)",
+      "selector": "0x443ec87d",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Publisher: configured grader or manager; exact current grader requires pinned getter."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Post final scores <=99 after close+3h; spread determines cover/push, fixes grade index after due-rebase catchup. No price oracle or sports data feed settles automatically. Grade does not mean every bet was settled or paid externally."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x2cd",
+        "entry_offset": "0x4b2"
+      }
+    },
+    {
+      "name": "grader",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[19]"
+      },
+      "signature": "grader()",
+      "selector": "0x5bc05526",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: grader. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x257",
+        "entry_offset": "0x54c"
+      }
+    },
+    {
+      "name": "halt",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[20]"
+      },
+      "signature": "halt()",
+      "selector": "0x5ed7ca5b",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Publisher: manager only."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Gate new bets/deposits; publisher says withdrawals/settlement/grade/void unaffected."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x26d",
+        "entry_offset": "0x571"
+      }
+    },
+    {
+      "name": "halted",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[21]"
+      },
+      "signature": "halted()",
+      "selector": "0xb9b8af0b",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Deposit/new-bet gate per publisher; not inactive/closed/insolvent status."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x116",
+        "entry_offset": "0x749"
+      }
+    },
+    {
+      "name": "housePot",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[22]"
+      },
+      "signature": "housePot()",
+      "selector": "0xe53856aa",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "House wsNET capital stock including allocated fees and realized house wager flows; not revenue or Treasury backing."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x86",
+        "entry_offset": "0x84c"
+      }
+    },
+    {
+      "name": "lockedOf",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[23]"
+      },
+      "signature": "lockedOf(address)",
+      "selector": "0xa5f1e282",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Per-player locked wsNET ledger; distinguish risk-off principal and risk-on fee-net stake."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x146",
+        "entry_offset": "0x70f"
+      }
+    },
+    {
+      "name": "lockedPrincipal",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[24]"
+      },
+      "signature": "lockedPrincipal()",
+      "selector": "0xbfe50788",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Current risk-off principal lock stock, not realized yield wagers."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x137",
+        "entry_offset": "0x797"
+      }
+    },
+    {
+      "name": "lockedWagers",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[25]"
+      },
+      "signature": "lockedWagers()",
+      "selector": "0xdb92b877",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Current risk-on lock stock; grade may move losing stakes to house before individual settle. Not placement volume."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x7b",
+        "entry_offset": "0x843"
+      }
+    },
+    {
+      "name": "manager",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[26]"
+      },
+      "signature": "manager()",
+      "selector": "0x481c6a75",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: manager. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x2d8",
+        "entry_offset": "0x4c5"
+      }
+    },
+    {
+      "name": "managerSleeve",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[27]"
+      },
+      "signature": "managerSleeve()",
+      "selector": "0xf32cea06",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: managerSleeve. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x61",
+        "entry_offset": "0x891"
+      }
+    },
+    {
+      "name": "marketCount",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[28]"
+      },
+      "signature": "marketCount()",
+      "selector": "0xec979082",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Global sequential market-ID counter, not open-market count."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x91",
+        "entry_offset": "0x855"
+      }
+    },
+    {
+      "name": "marketOf",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct ISportsBookDesk.Market",
+          "components": [
+            {
+              "name": "favourite",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "underdog",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "spreadTenths",
+              "type": "int32",
+              "internalType": "int32"
+            },
+            {
+              "name": "openAt",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "closeAt",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "state",
+              "type": "uint8",
+              "internalType": "enum ISportsBookDesk.State"
+            },
+            {
+              "name": "result",
+              "type": "uint8",
+              "internalType": "enum ISportsBookDesk.Result"
+            },
+            {
+              "name": "favScore",
+              "type": "uint8",
+              "internalType": "uint8"
+            },
+            {
+              "name": "dogScore",
+              "type": "uint8",
+              "internalType": "uint8"
+            },
+            {
+              "name": "owedFav",
+              "type": "uint128",
+              "internalType": "uint128"
+            },
+            {
+              "name": "owedDog",
+              "type": "uint128",
+              "internalType": "uint128"
+            },
+            {
+              "name": "wagersFav",
+              "type": "uint128",
+              "internalType": "uint128"
+            },
+            {
+              "name": "wagersDog",
+              "type": "uint128",
+              "internalType": "uint128"
+            },
+            {
+              "name": "feesPot",
+              "type": "uint128",
+              "internalType": "uint128"
+            },
+            {
+              "name": "feesSleeve",
+              "type": "uint128",
+              "internalType": "uint128"
+            },
+            {
+              "name": "indexAtGrade",
+              "type": "uint128",
+              "internalType": "uint128"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[29]"
+      },
+      "signature": "marketOf(uint256)",
+      "selector": "0xeee97751",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Market labels, signed tenths spread, opening/closing time, state/result, scores, owed/wagers/fees by side and grade index; quantities are wsNET, index scale 1e9. Unknown state/result stays unknown."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x4b",
+        "entry_offset": "0x85e"
+      }
+    },
+    {
+      "name": "maxBetBps",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[30]"
+      },
+      "signature": "maxBetBps()",
+      "selector": "0xc23cc8b1",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Configurable per-bet risk cap basis points of house pot; baseline500 is not a fresh read."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0xdb",
+        "entry_offset": "0x7a0"
+      }
+    },
+    {
+      "name": "minBetWs",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[31]"
+      },
+      "signature": "minBetWs()",
+      "selector": "0x8be3111d",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Configurable minimum wsNET; publisher baseline0.0004 wsNET is not current state."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x1b1",
+        "entry_offset": "0x676"
+      }
+    },
+    {
+      "name": "net",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[32]"
+      },
+      "signature": "net()",
+      "selector": "0xc2fff4a5",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: net. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0xe6",
+        "entry_offset": "0x7b4"
+      }
+    },
+    {
+      "name": "open",
+      "inputs": [
+        {
+          "name": "favourite",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "underdog",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "spreadTenths",
+          "type": "int32",
+          "internalType": "int32"
+        },
+        {
+          "name": "closeAt",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[33]"
+      },
+      "signature": "open(bytes32,bytes32,int32,uint64)",
+      "selector": "0xd80bb0d9",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Publisher: manager only."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Create fixed line/teams, close1hour to20days ahead; no line setter supplied."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0xcc",
+        "entry_offset": "0x830"
+      }
+    },
+    {
+      "name": "playerTotal",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[34]"
+      },
+      "signature": "playerTotal()",
+      "selector": "0x3174ef62",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Aggregate free player wsNET ledger; do not confuse with whole token custody or lifetime deposits."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x2fd",
+        "entry_offset": "0x483"
+      }
+    },
+    {
+      "name": "potsOf",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[35]"
+      },
+      "signature": "potsOf()",
+      "selector": "0x07ee5cbe",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Unnamed tuple maps to housePot, reservedTotal, lockedWagers, lockedPrincipal in that order; reservations overlap house capital, not additional assets."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x35c",
+        "entry_offset": "0x39f"
+      }
+    },
+    {
+      "name": "quoteFee",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "side",
+          "type": "uint8",
+          "internalType": "enum ISportsBookDesk.Side"
+        },
+        {
+          "name": "payout",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "riskOff",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[36]"
+      },
+      "signature": "quoteFee(uint256,uint8,uint256,bool)",
+      "selector": "0x00e4d7db",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Read-only fee quote from pre-bet exposure/house pot and whether proposed wager adds/reduces exposure. Baseline 300bps, adding up to600, reducing to150 in docs; not guaranteed execution or a user-independent fixed fee."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x347",
+        "entry_offset": "0x36a"
+      }
+    },
+    {
+      "name": "quoteRiskOff",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "side",
+          "type": "uint8",
+          "internalType": "enum ISportsBookDesk.Side"
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "epochsLeft",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "reserveWs",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "estimatedYieldWs",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "feeBps",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[37]"
+      },
+      "signature": "quoteRiskOff(uint256,uint8,uint256)",
+      "selector": "0x9c5a8585",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "epochsLeft, reserveWs, estimatedYieldWs, feeBps; reserve through kickoff+24h and projected yield differ from realized grade-index wager."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x197",
+        "entry_offset": "0x6d8"
+      }
+    },
+    {
+      "name": "quoteRiskOn",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "side",
+          "type": "uint8",
+          "internalType": "enum ISportsBookDesk.Side"
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "netWager",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "feeBps",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[38]"
+      },
+      "signature": "quoteRiskOn(uint256,uint8,uint256)",
+      "selector": "0xfea5d7f5",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Fee-net wager and fixed fee quote for gross wsNET debit; never subtract fee a second time from betOf.amount."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x6c",
+        "entry_offset": "0x8b8"
+      }
+    },
+    {
+      "name": "reserveRateBps",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[39]"
+      },
+      "signature": "reserveRateBps()",
+      "selector": "0xbb2d3618",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Configurable reserve growth rate bps per epoch; baseline90 is cover, not actual staking return."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x121",
+        "entry_offset": "0x75c"
+      }
+    },
+    {
+      "name": "reservedTotal",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[40]"
+      },
+      "signature": "reservedTotal()",
+      "selector": "0x67a539ea",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Reserved house cover for imbalance and unpaid winners; overlap with housePot, not additive TVL or exact total player payouts."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x227",
+        "entry_offset": "0x58c"
+      }
+    },
+    {
+      "name": "resume",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[41]"
+      },
+      "signature": "resume()",
+      "selector": "0x046f7da2",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Publisher: manager only."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Remove halt for new bets/deposits; not historical activity evidence."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x351",
+        "entry_offset": "0x395"
+      }
+    },
+    {
+      "name": "sNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ISportsBookSNet"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[42]"
+      },
+      "signature": "sNet()",
+      "selector": "0x1adb8eb6",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: sNet. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x317",
+        "entry_offset": "0x3cb"
+      }
+    },
+    {
+      "name": "setGrader",
+      "inputs": [
+        {
+          "name": "grader_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[43]"
+      },
+      "signature": "setGrader(address)",
+      "selector": "0x56e7a607",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Publisher: manager only."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Change score-posting authority."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x292",
+        "entry_offset": "0x526"
+      }
+    },
+    {
+      "name": "setMaxBetBps",
+      "inputs": [
+        {
+          "name": "maxBetBps_",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[44]"
+      },
+      "signature": "setMaxBetBps(uint16)",
+      "selector": "0xc8fdeb22",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Publisher: manager only."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Change house-pot-relative per-bet cap."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0xf1",
+        "entry_offset": "0x7db"
+      }
+    },
+    {
+      "name": "setMinBetWs",
+      "inputs": [
+        {
+          "name": "minBetWs_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[45]"
+      },
+      "signature": "setMinBetWs(uint256)",
+      "selector": "0x7aa153a2",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Publisher: manager only."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Change minimum wsNET stake."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x202",
+        "entry_offset": "0x606"
+      }
+    },
+    {
+      "name": "setReserveRateBps",
+      "inputs": [
+        {
+          "name": "reserveRateBps_",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[46]"
+      },
+      "signature": "setReserveRateBps(uint16)",
+      "selector": "0xf250b449",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Publisher: manager only."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Change future reserve growth assumptions; already fixed bet reserves remain separate."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x56",
+        "entry_offset": "0x87e"
+      }
+    },
+    {
+      "name": "settle",
+      "inputs": [
+        {
+          "name": "betId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[47]"
+      },
+      "signature": "settle(uint256)",
+      "selector": "0x8df82800",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Publisher: anyone for decided market; idempotent."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Permissionless idempotent per-bet settlement after grade/void/cancel, credits internal free wsNET. Risk-on win2x fee-net amount, loss0, push amount; risk-off clipped realized yield and fee, push principal. External withdrawal separate."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x1bc",
+        "entry_offset": "0x67f"
+      }
+    },
+    {
+      "name": "settleMany",
+      "inputs": [
+        {
+          "name": "betIds",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[48]"
+      },
+      "signature": "settleMany(uint256[])",
+      "selector": "0x5ba3107b",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Publisher: anyone for decided bets; each ID checked."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Batch settle by IDs, not a whole-market payout or automatic account withdrawal."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x24c",
+        "entry_offset": "0x539"
+      }
+    },
+    {
+      "name": "skim",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[49]"
+      },
+      "signature": "skim()",
+      "selector": "0x1dd19cb4",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "No authority restriction visible in obtained entry sequence; Solidity unavailable; runtime review is not a path audit."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Assign unaccounted wsNET custody surplus to house pot per runtime candidate accounting; not a recipient transfer, independent income or proof all donations discovered."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x322",
+        "entry_offset": "0x40a"
+      }
+    },
+    {
+      "name": "staking",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ISportsBookStaking"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[50]"
+      },
+      "signature": "staking()",
+      "selector": "0x4cf088d9",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: staking. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x27c",
+        "entry_offset": "0x4ec"
+      }
+    },
+    {
+      "name": "void",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[51]"
+      },
+      "signature": "void(uint256)",
+      "selector": "0x5ea2145b",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Publisher: anyone after ungraded close+72hours."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "After close+72h permissionless void of ungraded market as push; transaction required, not automatic expiry."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x262",
+        "entry_offset": "0x55e"
+      }
+    },
+    {
+      "name": "withdraw",
+      "inputs": [
+        {
+          "name": "wsAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[52]"
+      },
+      "signature": "withdraw(uint256)",
+      "selector": "0x2e1a7d4d",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Caller-funded or caller-account path per publisher; detailed implementation enforcement unverified."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Debit caller free ledger and transfer wsNET; distinct from claim credit."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x2e7",
+        "entry_offset": "0x45d"
+      }
+    },
+    {
+      "name": "withdrawAllowance",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[53]"
+      },
+      "signature": "withdrawAllowance(address,address)",
+      "selector": "0x233ac008",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Internal free-balance withdrawal delegation; not ERC20 allowance."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x338",
+        "entry_offset": "0x433"
+      }
+    },
+    {
+      "name": "withdrawFrom",
+      "inputs": [
+        {
+          "name": "player",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "wsAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[54]"
+      },
+      "signature": "withdrawFrom(address,uint256)",
+      "selector": "0x9470b0bd",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Internal player withdrawal allowance required; no role-wide blanket entitlement."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Use internal withdrawAllowance, debit named player and transfer to authorized caller; Zap uses this path."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x18c",
+        "entry_offset": "0x6c5"
+      }
+    },
+    {
+      "name": "withdrawHouse",
+      "inputs": [
+        {
+          "name": "wsAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[55]"
+      },
+      "signature": "withdrawHouse(uint256)",
+      "selector": "0x23218411",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Publisher/runtime dispatch review: manager or managerSleeve only; recipient fixed to managerSleeve."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Withdraw only free house cover to managerSleeve regardless of caller; not player escrow or Treasury revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0x32d",
+        "entry_offset": "0x420"
+      }
+    },
+    {
+      "name": "wsNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[56]"
+      },
+      "signature": "wsNet()",
+      "selector": "0xd52014e3",
+      "permissions": {
+        "status": "publisher_or_targeted_runtime_evidence_not_source_verified",
+        "detail": "Read-only; no caller restriction stated; dependency reads can fail."
+      },
+      "economic_meaning": {
+        "status": "publisher_and_targeted_runtime_not_audited",
+        "detail": "Dependency/authority identity getter: wsNet. Resolve canonical role and compare at snapshot; not current permissions, financial balance, code equivalence or revenue."
+      },
+      "dispatcher_match": {
+        "compare_offset": "0xc1",
+        "entry_offset": "0x80a"
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "BetPlaced",
+      "inputs": [
+        {
+          "name": "betId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "player",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "side",
+          "type": "uint8",
+          "indexed": false,
+          "internalType": "enum ISportsBookDesk.Side"
+        },
+        {
+          "name": "riskOff",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "reserve",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "feeBps",
+          "type": "uint16",
+          "indexed": false,
+          "internalType": "uint16"
+        },
+        {
+          "name": "fee",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "index0",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[57]"
+      },
+      "signature": "BetPlaced(uint256,address,uint256,uint8,bool,uint256,uint256,uint16,uint256,uint256)",
+      "topic0": "0xf5f84fe3a1cbb848521639cd9192e9eaac2fbc834d534a3c14693f793c849500",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Placement amount emission basis is not established from ABI alone; do not automatically classify gross or deduct fee twice."
+      }
+    },
+    {
+      "name": "Cancelled",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[58]"
+      },
+      "signature": "Cancelled(uint256)",
+      "topic0": "0xc41d93b8bfbf9fd7cf5bfe271fd649ab6a6fec0ea101c23b82a2a28eca2533a9",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Named event evidence only; confirm resulting state and permissions independently."
+      }
+    },
+    {
+      "name": "Deposited",
+      "inputs": [
+        {
+          "name": "player",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[59]"
+      },
+      "signature": "Deposited(address,address,uint256)",
+      "topic0": "0x8752a472e571a816aea92eec8dae9baf628e840f4929fbcc2d155e6233ff68a7",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Player funding, not house earnings."
+      }
+    },
+    {
+      "name": "FeeSplit",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "betId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "potHalf",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "sleeveHalf",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[60]"
+      },
+      "signature": "FeeSplit(uint256,uint256,uint256,uint256)",
+      "topic0": "0x6de73609726ef2eed5f1c7d2933cf6ad038c7788f9d9fba204687c08e09d5145",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "potHalf internal house allocation versus sleeveHalf expected external wsNET transfer; prove receipts separately."
+      }
+    },
+    {
+      "name": "Graded",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "favScore",
+          "type": "uint8",
+          "indexed": false,
+          "internalType": "uint8"
+        },
+        {
+          "name": "dogScore",
+          "type": "uint8",
+          "indexed": false,
+          "internalType": "uint8"
+        },
+        {
+          "name": "result",
+          "type": "uint8",
+          "indexed": false,
+          "internalType": "enum ISportsBookDesk.Result"
+        },
+        {
+          "name": "indexAtGrade",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[61]"
+      },
+      "signature": "Graded(uint256,uint8,uint8,uint8,uint256)",
+      "topic0": "0x9f4d484a79fc5d07788e3a707c4a89be22ded83b1ee3d321c05b51c243e66481",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Named event evidence only; confirm resulting state and permissions independently."
+      }
+    },
+    {
+      "name": "GraderSet",
+      "inputs": [
+        {
+          "name": "grader",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[62]"
+      },
+      "signature": "GraderSet(address)",
+      "topic0": "0x01e5a6bf3b3f58a6cb0bba0a5d932047ca4b281279b818866eec72ff3401a2d7",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Named event evidence only; confirm resulting state and permissions independently."
+      }
+    },
+    {
+      "name": "HaltSet",
+      "inputs": [
+        {
+          "name": "halted",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[63]"
+      },
+      "signature": "HaltSet(bool)",
+      "topic0": "0x623faa9c0ee906b8d749b30501daa0eae86c9843958d3384513f39a1312c9925",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Named event evidence only; confirm resulting state and permissions independently."
+      }
+    },
+    {
+      "name": "HouseDeposited",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[64]"
+      },
+      "signature": "HouseDeposited(address,uint256)",
+      "topic0": "0x90f0e32fc59372e005386ed89b1745d81da0cc7f4acd4d8cf0f4cffd09186a4d",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "House contributed capital, not earnings."
+      }
+    },
+    {
+      "name": "HouseWithdrawn",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[65]"
+      },
+      "signature": "HouseWithdrawn(address,uint256)",
+      "topic0": "0xd7d7cc9b93e284aa94ef15ab7a70191483528f4e45d0bd07818aef974077ba78",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "House capital outflow to recipient; can include capital and accumulated gains, not automatically fees."
+      }
+    },
+    {
+      "name": "MarketOpened",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "favourite",
+          "type": "bytes32",
+          "indexed": false,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "underdog",
+          "type": "bytes32",
+          "indexed": false,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "spreadTenths",
+          "type": "int32",
+          "indexed": false,
+          "internalType": "int32"
+        },
+        {
+          "name": "openAt",
+          "type": "uint64",
+          "indexed": false,
+          "internalType": "uint64"
+        },
+        {
+          "name": "closeAt",
+          "type": "uint64",
+          "indexed": false,
+          "internalType": "uint64"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[66]"
+      },
+      "signature": "MarketOpened(uint256,bytes32,bytes32,int32,uint64,uint64)",
+      "topic0": "0xc7369753385d42c9bee70e238ad587abd151d70dbdfbe11aa01b0e2831c44464",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Named event evidence only; confirm resulting state and permissions independently."
+      }
+    },
+    {
+      "name": "MaxBetBpsSet",
+      "inputs": [
+        {
+          "name": "maxBetBps",
+          "type": "uint16",
+          "indexed": false,
+          "internalType": "uint16"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[67]"
+      },
+      "signature": "MaxBetBpsSet(uint16)",
+      "topic0": "0x8180f0c8483d2714c83cc3d48521cfb31e9a26b80ba0af93e77ee1213c2a6fe2",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Named event evidence only; confirm resulting state and permissions independently."
+      }
+    },
+    {
+      "name": "MinBetSet",
+      "inputs": [
+        {
+          "name": "minBetWs",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[68]"
+      },
+      "signature": "MinBetSet(uint256)",
+      "topic0": "0x2668101b90651250e96bd036b1ae3dd81437082b9d4c93d15cb3e705117a159d",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Named event evidence only; confirm resulting state and permissions independently."
+      }
+    },
+    {
+      "name": "ReserveRateSet",
+      "inputs": [
+        {
+          "name": "reserveRateBps",
+          "type": "uint16",
+          "indexed": false,
+          "internalType": "uint16"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[69]"
+      },
+      "signature": "ReserveRateSet(uint16)",
+      "topic0": "0x635cd519b4ded84dca0dfb7aa92a6ccb419c60b106bac95ea8b52ac5cd4947eb",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Named event evidence only; confirm resulting state and permissions independently."
+      }
+    },
+    {
+      "name": "Settled",
+      "inputs": [
+        {
+          "name": "betId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "player",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "won",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        },
+        {
+          "name": "wager",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "fee",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "payout",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[70]"
+      },
+      "signature": "Settled(uint256,address,uint256,bool,uint256,uint256,uint256)",
+      "topic0": "0xbb80fb8dc99ca316c8e2733bc1d1eb99e97f7b87fc23314b5f10aee8a11a47d4",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Internal credit event; won=false includes push/void or loss; wager/payout not net house revenue."
+      }
+    },
+    {
+      "name": "Skimmed",
+      "inputs": [
+        {
+          "name": "by",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[71]"
+      },
+      "signature": "Skimmed(address,uint256)",
+      "topic0": "0xb0477b3d4d588e76d76df1c6cf069311c9dc4f742f19d0f74a70f58803d0768f",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Internal surplus assignment; not independent cash receipt."
+      }
+    },
+    {
+      "name": "Voided",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[72]"
+      },
+      "signature": "Voided(uint256)",
+      "topic0": "0xa0add9b3f251e0c65ca063f300e2f04bc423f4b29b11f0149bd33d75f0160172",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Named event evidence only; confirm resulting state and permissions independently."
+      }
+    },
+    {
+      "name": "WithdrawApproval",
+      "inputs": [
+        {
+          "name": "player",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "spender",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[73]"
+      },
+      "signature": "WithdrawApproval(address,address,uint256)",
+      "topic0": "0x7361992bf16bfdca3c21740dec888a3f2d9024c18cd5e8a80b555251ebcdc00e",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Named event evidence only; confirm resulting state and permissions independently."
+      }
+    },
+    {
+      "name": "Withdrawn",
+      "inputs": [
+        {
+          "name": "player",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[74]"
+      },
+      "signature": "Withdrawn(address,address,uint256)",
+      "topic0": "0xd1c19fbcd4551a5edfb66d43d2e337c04837afda3482b42bdf569a8fccdae5fb",
+      "economic_meaning": {
+        "status": "publisher_interface_not_source_verified",
+        "detail": "Player free-balance outflow, not a new wager or settlement credit."
+      }
+    }
+  ],
+  "errors": [
+    {
+      "name": "AboveMaxBet",
+      "inputs": [
+        {
+          "name": "cap",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[75]"
+      },
+      "signature": "AboveMaxBet(uint256)",
+      "selector": "0x7472721d",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "BadAmount",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[76]"
+      },
+      "signature": "BadAmount()",
+      "selector": "0x749b5939",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "BadBps",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[77]"
+      },
+      "signature": "BadBps()",
+      "selector": "0x6e549e59",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "BadScore",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[78]"
+      },
+      "signature": "BadScore()",
+      "selector": "0x9c9cef39",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "BadTeams",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[79]"
+      },
+      "signature": "BadTeams()",
+      "selector": "0xbf7429ef",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "Barred",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[80]"
+      },
+      "signature": "Barred()",
+      "selector": "0x544a0b76",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "BelowCover",
+      "inputs": [
+        {
+          "name": "free",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "need",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[81]"
+      },
+      "signature": "BelowCover(uint256,uint256)",
+      "selector": "0xd8a89a29",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "BelowMinBet",
+      "inputs": [
+        {
+          "name": "minBetWs",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[82]"
+      },
+      "signature": "BelowMinBet(uint256)",
+      "selector": "0x4596efe7",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "BoardClosed",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[83]"
+      },
+      "signature": "BoardClosed()",
+      "selector": "0xff5bb7c5",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "CloseTooLate",
+      "inputs": [
+        {
+          "name": "latest",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[84]"
+      },
+      "signature": "CloseTooLate(uint64)",
+      "selector": "0x6817cc1e",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "CloseTooSoon",
+      "inputs": [
+        {
+          "name": "earliest",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[85]"
+      },
+      "signature": "CloseTooSoon(uint64)",
+      "selector": "0x638ee80d",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "GradeTooEarly",
+      "inputs": [
+        {
+          "name": "earliest",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[86]"
+      },
+      "signature": "GradeTooEarly(uint64)",
+      "selector": "0x2063b8d0",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "Halted",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[87]"
+      },
+      "signature": "Halted()",
+      "selector": "0x1ee9080f",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "Insufficient",
+      "inputs": [
+        {
+          "name": "have",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "need",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[88]"
+      },
+      "signature": "Insufficient(uint256,uint256)",
+      "selector": "0xe8620800",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "InvalidConfig",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[89]"
+      },
+      "signature": "InvalidConfig()",
+      "selector": "0x35be3ac8",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "MarketNotOpen",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[90]"
+      },
+      "signature": "MarketNotOpen()",
+      "selector": "0xc02d38cc",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "MarketOpen",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[91]"
+      },
+      "signature": "MarketOpen()",
+      "selector": "0x8e497f8b",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "NoBet",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[92]"
+      },
+      "signature": "NoBet()",
+      "selector": "0xd87e9e04",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "NoMarket",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[93]"
+      },
+      "signature": "NoMarket()",
+      "selector": "0x78dc030c",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "NoYieldToWager",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[94]"
+      },
+      "signature": "NoYieldToWager()",
+      "selector": "0xb5fa2c49",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "NotApproved",
+      "inputs": [
+        {
+          "name": "allowed",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "need",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[95]"
+      },
+      "signature": "NotApproved(uint256,uint256)",
+      "selector": "0x99121319",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "NotGrader",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[96]"
+      },
+      "signature": "NotGrader()",
+      "selector": "0xe8d503d0",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "NotManager",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[97]"
+      },
+      "signature": "NotManager()",
+      "selector": "0xc0fc8a8a",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "Reentrancy",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[98]"
+      },
+      "signature": "Reentrancy()",
+      "selector": "0xab143c06",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "TransferFailed",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[99]"
+      },
+      "signature": "TransferFailed()",
+      "selector": "0x90b8ec18",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "VoidTooEarly",
+      "inputs": [
+        {
+          "name": "earliest",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[100]"
+      },
+      "signature": "VoidTooEarly(uint64)",
+      "selector": "0x6e8a8285",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "WithdrawExceedsFree",
+      "inputs": [
+        {
+          "name": "free",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[101]"
+      },
+      "signature": "WithdrawExceedsFree(uint256)",
+      "selector": "0x0cb65cdb",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[102]"
+      },
+      "signature": "ZeroAddress()",
+      "selector": "0xd92e233d",
+      "meaning": {
+        "status": "interface_only",
+        "detail": "Named revert condition; detailed triggering paths and precedence unavailable without source/path review."
+      }
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "inputs": [
+        {
+          "name": "c",
+          "type": "tuple",
+          "internalType": "struct SportsBookDesk.DeskConfig",
+          "components": [
+            {
+              "name": "wsNet",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "sNet",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "staking",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "distributor",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "net",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "manager",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "managerSleeve",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "grader",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "minBetWs",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "barred",
+              "type": "address[]",
+              "internalType": "address[]"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-book-interfaces-20261010",
+        "locator": "Ht[0]"
+      }
+    }
+  ]
+}

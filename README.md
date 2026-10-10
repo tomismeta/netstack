@@ -6,7 +6,9 @@ netstack helps agents research NetNet's protocol, products, games, RWA strategy 
 
 It is an independent [Agent Skills](https://agentskills.io/specification) package. It is **not** an official NetNet product, a trading bot or a wallet toolkit.
 
-**v0.4.0.** RPC-backed Core/Sleeve accounting with browser-free current publisher-methodology checks, consistent component summaries and fresh numerical reads on every run. Includes auditable bounded asset discovery, accrued Morpho balances, feed-specific freshness policies, lightweight Predict snapshots, website-label-to-contract routing and evidence-qualified product guidance. Website values are not calculation inputs; unrecognized methodology cannot silently reuse a dated formula as current “True RFV.” Identify installed bytes by the reviewed commit, manifest and runtime hashes; release-specific security evidence accompanies the GitHub release.
+**Development branch: `feat/v0.5.0` (`0.5.0-dev`, unpublished).** The October 7 ecosystem refresh covers contract identities, functions, scoped validation, accounting and source recovery. The October 10 extensions add NetLong/current futures/LOSE and deeper PremiumSeller, Sleeve bonds, Credit/Loopback, THE BOOK and Predict/House research and read-only analytics. No tag, release, registry submission or installed-copy update is authorized by this branch.
+
+**Released baseline — v0.4.0.** RPC-backed Core/Sleeve accounting with browser-free current publisher-methodology checks, consistent component summaries and fresh numerical reads on every run. Includes auditable bounded asset discovery, accrued Morpho balances, feed-specific freshness policies, lightweight Predict snapshots, website-label-to-contract routing and evidence-qualified product guidance. Website values are not calculation inputs; unrecognized methodology cannot silently reuse a dated formula as current “True RFV.” Identify installed bytes by the reviewed commit, manifest and runtime hashes; release-specific security evidence accompanies the GitHub release.
 
 **Release engineering:** offline CI, manifest and resource-consistency checks, reviewed-commit runtime export with an external checksum-bound receipt, deterministic archives and an offline installed-tree verifier. RFV and Advance add opt-in summary stdout while retaining full JSON by default and full same-collection checkpoints. September 26 changes add fresh V4 owner/count reconciliation, source-derived publisher NFT selection, NET Advance read views and bounded Desk/Zap runtime analysis. Explorer-supplied bytecode supports exact settlement/shortfall allocation and a genuine Zap swap branch, not pinned live state, dependency execution or a full audit. No raw bytecode or EVM interpreter is bundled. Publisher Advance reserves remain distinct from net House equity. These checks do not establish live-source availability, host isolation or deployed-contract safety.
 
@@ -16,10 +18,71 @@ It is an independent [Agent Skills](https://agentskills.io/specification) packag
 
 **History — v0.3.1:** added THE BOOK's contracts, launch evidence, published rules, a minimal read/event interface and snapshot-first research, plus the Loopback Morpho market identity. Targeted evidence was reviewed **September 20, 2026**; older observations retain their dates. LP/Predict/House runner behavior is unchanged; no Book helper is added. This is research guidance, not a product launch or guarantee of availability. See the [releases page](https://github.com/tomismeta/netstack/releases) for published packages.
 
+## Next iteration: accounting corrections and capability inventory
+
+**Decision recorded September 27, 2026:** do not release or deploy this work as a standalone **0.4.1**. Include it in the next iteration that adds new netstack capabilities; choose the version when that release's scope is defined. This is planned work, not a claim that the corrections below have shipped.
+
+Corrections are release requirements for that iteration and precede inventory expansion:
+
+1. **Correct Core accounting and its consumers.** The user's validation established that the 2% Morpho haircut is deployed arithmetic (`M - floor(M * 200 / 10000)`), not merely a reporting convention, and that the documented POL reconstruction underreproduces on-chain `rfv()` by **18,432.08 USDG**. Preserve the validation block, raw inputs and runtime evidence with the correction; those artifacts are not attached to this planning note. Match exact integer operation order, update affected calculations/references/regression coverage, and reconcile at the validation block without an unexplained residual. Never use the observed discrepancy as a balancing constant.
+2. **Lead with composition questions.** Organize question-to-capability map → contract inventory → interface entries. Explain which getters, units, marks and exclusions answer each question, especially Core RFV, publisher Reports “True RFV,” and Advance. Keep publisher composition distinct from economic net assets, and make Sleeve/V4/Advance inclusion boundaries explicit to prevent double counting. Do not silently replace the reviewed Reports Advance recipe (unallocated plus escrowed USDG and inventory at index × NET TWAP) with discounted receivables, escrow exclusion or spot marking.
+3. **Separate three evidence claims.** Record deployment/role identity, interface availability, and supported economic/behavioral meaning independently, with source/date or block and limitations. Distinguish publisher diary, app ABI, explorer-runtime analysis, verified source and pinned chain observations. Existing Advance term/cap/fee evidence includes scoped runtime support and must not be downgraded wholesale to diary-only evidence.
+4. **Record negative capabilities with bounded claims.** Distinguish proven absence within a reviewed scope, omission from a partial interface, required reconstruction, and unverified availability. Cover managed-wallet stock holdings versus oracle valuation, historical True RFV reconstruction, and Predict print-dispute rights. An oracle does not prove holdings; a read-only ABI omitting challenge functions does not prove no dispute path. Keep print disputes, ungraded voiding and closest-guess prize challenges separate.
+5. **Encode discovery policy structurally.** Distinguish canonical chain-qualified deployment addresses, discover-current holdings/position identities, and historical-observation-only identifiers. Discover Sleeve V4 position IDs and current asset membership afresh; dated IDs must never become current-run seeds or fallbacks. The distinction is stable deployment identity versus dynamic membership, not simply addresses versus numeric IDs.
+
+Preserve existing command/output contracts unless the capability release explicitly includes a separately scoped change. A new Advance economic valuation model, broader discovery, or CLI/output redesign is not implicitly authorized by this correction plan. No release, deployment or version bump is authorized by this note.
+
+### October 7 development update
+
+The October 7 baseline of the `0.5.0-dev` branch implemented the following refresh while preserving the September 27 requirements above; subsequent product and contract-depth additions extend these historical inventory counts:
+
+- **Inventory and interfaces:** 206 canonical identities, including eight new product/token identities and three separately attributed historical dependencies. The [capability ledger](assets/contracts/catalog.json) covers every identity: 32 supplied-interface catalogs contain 708 functions; 174 identities remain explicitly unreviewed. Full supplied ABI coverage is not full deployed-function coverage or an audit.
+- **Priority validation:** [Genesis claims, SleeveBondDesk, Advance, Predict/House, CreditRouter and LPZap](references/contract-capabilities.md) now distinguish source/runtime findings, interface gaps, historical permissions and missing current-state evidence. Genesis source hashes/locators and original summaries are retained, not a copied third-party Solidity archive.
+- **Knowledge:** 259 source records, all 28 indexed documentation bodies refreshed, seven dashboard links, recovered original announcements/article and [all four interview text-track reviews](references/interview-research.md). Auto-caption/transcript findings are not independently verified audio/visuals. Missing SDK/manuals and the exact Predict print script remain explicit.
+- **Accounting:** exact subtract-floored Morpho haircut; a separately versioned October 7 Reports recipe includes Loopback posted collateral/debt and Advance principal receivables rather than escrow. This is evidenced publisher-methodology drift, not an unlabeled replacement of the September 26 recipe. Historical profiles remain dated and cannot serve as current fallbacks.
+- **Keeper evidence:** retained only reported October 2/3 empty-code observations as identity provenance, not conclusive EOA or ownership verification. Removed cached balances, nonce, transfer history, latest-call details and activity-derived operator claims from the role and source records. Activity questions require fresh reads; other public-role entries are unchanged.
+- **Skill-wide snapshot cleanup:** audited packaged assets, all 22 references and runtime lookup paths. Removed cached V4 NFT ownership/mint history, Dial-Up live roster/artifact availability and Predict trade quantities, including duplicate source prose and obsolete ownership counts. Retained pool/contract identities, narrowly scoped mechanism evidence, attributed publication history and synthetic examples. Live discovery and per-run outputs are unchanged; none of the removed state is a packaged fallback.
+
+**Release blocker:** the reported **18,432.08 USDG POL discrepancy is not resolved**. The original validation block, raw inputs and applicable runtime packet were not recovered; an explorer source/runtime listing conflicts with the established haircut behavior. Geometric POL remains diagnostic, and the runner cannot certify complete Core/dependent totals until applicable evidence resolves it. RPC access returned HTTP 403 before fresh state could be pinned; no present claim balances, mutable roles or end-to-end contract validation are certified.
+
+**October 7 verification:** 234 offline regressions passed. Actual public entry/bundle recognition matched the October 7 Reports fingerprint; the synthetic Core CLI and offline Advance provenance command were exercised. These checks did not establish live financial reconciliation or rendered UI behavior. The later NetLong work has separate verification below; these earlier checks do not cover changed bytes.
+
+### October 10 NetLong and LOSE extension
+
+- **Contracts:** 24 new detailed catalogs add 536 function entries. At this NetLong cutover, the ledger covered 232 canonical identities, with 56 detailed catalogs (51 with obtained/reconstructed functions and five runtime-only dispatcher inventories), 1,244 function entries and 176 explicitly unreviewed identities. New address records distinguish current contracts, dependencies and five superseded deployments; shared tokens/verifiers are reused.
+- **Read-only capability:** `python3 -I -B scripts/analytics.py netlong --detail summary` discovers current futures desks and margin tokens/positions. It separates entry OI, last-posted-mark futures notional, real-token marked exposure and indexed USDG debt. New compatible markets are registry-discovered; unknown implementations remain explicit gaps. No balances, positions, transaction history or OI are packaged as a fallback.
+- **Knowledge:** 295 source records, 30 indexed documentation entries, all five original launch-thread captions and five interview text-track reviews. The terminal and expanded LOSE surface were inspected in the browser; the vault surface remained loading. The launch video and complete interview audio/visuals were not independently reviewed.
+- **Material findings:** LOSE is fixed preissuance with allocation-funded distribution, not new minting per loss. Its initial runtime curve is 150 LOSE/$ versus the UI's 166.666… formula; loss notification is best-effort, not a payout guarantee. Current wsNET futures and margin loans must not inherit the legacy tNET manual. Source/runtime reviews also cover withdrawal claims, ADL/writeoff, token-share rounding, authority and AI pool-lock sellability risk.
+- **Verification:** 255 regressions pass. Real CLI orchestration was exercised with isolated synthetic inputs for futures/margin accounting, a newly discovered symbol, vault mismatch and unavailable pricing; the actual CLI deadline boundary returned partial JSON without network access. Real event-scanner integration and reconciliation/unknown-versus-zero defects found during review were corrected and covered by regressions.
+
+**Limits:** canonical RPC access returned HTTP 403 before a block could be pinned, so no live OI or financial reconciliation is certified. Complete core NetLong/LOSE Solidity and deployed ABIs remain unavailable; obtained interfaces, runtime paths, source-backed dependencies and missing selectors are qualified separately. The existing Core POL release blocker above is unchanged. No commit, push, tag, release or installed-copy update was performed.
+
+### October 10 PremiumSeller accounting extension
+
+- **Contract depth:** all ten supplied source files, 13 functions, six errors, event and constructor; dispatcher/immutable consistency checks and targeted Treasury/NET/USDG dependency research. At this stage, the ledger had **1,252 function entries** across the same 232 identities and 56 catalogs, with **296 source records**. Source review is not independent compilation or full live contract validation.
+- **Fresh answers:** `python3 -I -B scripts/analytics.py premiumseller --deadline 600 --detail summary` reports gross NET sold, event proceeds, individual/range/volume-weighted realized prices and independently matched direct Treasury USDG receipts. Default history starts at verified creation evidence; explicit windows, incomplete ranges and receipt gaps remain visible. No financial history or totals are bundled.
+- **Empty-log guard:** no matching logs never means inactive or never used. Validate the emitter/topic/range and reconcile the latest sale with pinned `lastExecuteAt()`. Contradictory empty or nonempty history withholds totals; a narrow empty window does not erase earlier sales. `active()` is only a limited current eligibility predicate.
+- **Material distinctions:** only new swap USDG is remitted, not preexisting seller cash; gross NET can differ from pool input after tax. The 2× backing TWAP gate is not a realized-price guarantee. Direct receipts are neither fiat USD, profit, current Treasury balance nor RFV growth. The reviewed mint path has authorization checks but no direct RFV/supply-cap check.
+- **Verification and limits:** real CLI/Context orchestration was exercised with isolated synthetic RPC inputs for sales, empty/history-state contradictions, scoped zero, terminal permission/integrity failures, unrelated anonymous receipt logs, unconfirmed snapshots and equal-timestamp cutoff blocks. Integrity failures now stop before any final recheck request. The previously observed live RPC denial was not retried or bypassed; no live financial total is certified. Existing Core POL release blocker and unpublished `0.5.0-dev` status remain unchanged.
+
+### October 10 Sleeve, Credit, Book and Predict depth extension
+
+- **Coverage:**28 existing identities receive deeper evidence;19 additional bound catalogs and302 function entries bring the inventory to **75 catalogs,1,554 function entries and313 sources**, covering the same232 canonical identities. Eleven catalogs are runtime-only;157 identities remain explicitly unreviewed.
+- **Sleeve bonds:** `sleeve-bonds` reads inventory, global gross owed NET and optional account vesting; opt-in `--history` reconciles subscription/claim events and receipt routing. Router returns are not new subscriber capital, and residual USDG to Sleeve is not Treasury revenue. All four previously unexplained dispatcher branches now have qualified runtime meanings, without invented ABI names.
+- **Credit/Loopback:** `credit` discovers current adapter/router/Loopback markets and separates stored from accrued debt, fee shares, claims, caps and liquidity. VaultV2 `max*` getters return zero by source design; this does not prove inactivity or inability to withdraw. Pending Morpho fee shares belong in the selected fee recipient's accrued claim, not in every supplier's claim or a cash-revenue total.
+- **THE BOOK:** `book` reads bounded recent or selected market/bet records and optional `--from-block` event/receipt history. House pot, reserved cover, player claim credit, withdrawals and recipient transfers stay separate. No all-time wagering, exact full payout-liability or net-profit total is implied.
+- **Predict/House:** exact-runtime review covers all33/27 publisher functions and12 reconstructed functions for each of eight outcome deployments. House `Deposited` can represent lazy synchronization rather than new cash; ordinary transfer-to-zero is not proof of a supply burn. State/history, cash, outcomes and receipts must agree; inconsistent receipt payloads stop collection.
+- **Verification and limits:** real CLI/Context paths were exercised with synthetic transport for successful snapshots/receipt windows, inconsistent empty histories, independent zero-state corroboration, terminal denial and accounting defects. An isolated Predict single-series CLI run also completed. These are software checks, not live-chain validation: the canonical RPC denial was not retried or bypassed. No financial history was added, and the Core POL blocker, reporting methodology and unpublished status are unchanged.
+
 ## What you can ask
 
 | Question | What netstack brings |
 |---|---|
+| “How much open interest is there on NET, BTC, SOL or a new market?” | Fresh registry discovery, separate futures and margin measures, implementation checks and explicit partial coverage; no saved OI |
+| “How does LOSE work, and is the displayed reward rate right?” | Fixed issuance, allocation-funded release curve, pool-transfer levy/burn, authority, best-effort award and documented UI/runtime conflicts |
+| “How much has PremiumSeller sold NET for, and how much went to Treasury?” | Fresh gross NET, sale proceeds, realized prices and receipt-confirmed USDG remittances; explicit coverage and no cached sales |
+| “How much capital did Sleeve bonds receive, and how much NET is still owed?” | Fresh inventory/owed NET, scoped subscriber vesting, event/counter reconciliation and receipt routing; no cached subscription totals |
+| “What is my Credit claim or Loopback leverage, including accrued interest?” | Current indexed market discovery, virtual-offset rounding, accrued debt and fee shares, oracle-qualified health and explicit withdrawal constraints |
 | “What backs NET?” | Core RFV, NAV, supply and the distinction between Core reserves and the RWA Sleeve |
 | “What's the current RFV and what makes it up?” | Reconciled Core plus broader custody, off-wallet claims and liabilities; investigated omissions and an explicit searched universe, not wallet balances alone |
 | “What makes up True RFV on the website?” | Website terminology resolved to contract reads; separate Core RFV, Reports composition and adjusted net assets with explicit completeness |
@@ -31,7 +94,7 @@ It is an independent [Agent Skills](https://agentskills.io/specification) packag
 | “How much third-party LP is there, and what fees did it earn this week?” | Complete holder discovery, evidence-qualified ownership, reserve-share valuation and historical gross fee attribution; protocol dilution and net-income limits |
 | “Which prediction markets are active, and how much has been bet?” | Dynamic series discovery; distinct gross purchases, sell proceeds, trading fees and outstanding outcomes, reconciled with public events |
 | “How much outside capital is in the House, and what has it earned?” | Fund versus unattributed ownership; active shares, queues and claims; observed returns distinguished from conditional forecasts |
-| “How does THE BOOK work, and what can its public activity tell us?” | Risk-off versus risk-on, exact contracts, and flexible research guidance for wagers, participants, outcomes and fee recipients; live answers depend on available evidence |
+| “How much has THE BOOK wagered, paid or sent to the Sleeve?” | Bounded selected records and requested-window events/receipts, with house capital, player credit, withdrawals and recipient transfers separated; lifetime totals remain unproven |
 | “What happens when someone plays this game?” | Stakes, payouts, fees, burns, custody and who receives the proceeds |
 | “Which contract or dashboard should I inspect?” | Chain-qualified addresses, generation conflicts, source provenance and direct links |
 | “What did this article or interview actually claim?” | Dated strategy summaries and publisher notes, separated from observed results |
@@ -53,7 +116,7 @@ Use one skill with seven plural topics:
 | `Use netstack: nfts` | NetNet Gear and Button Presser collection links and identity notes |
 | `Use netstack: games` | Game directory, links, mechanics and risk distinctions |
 | `Use netstack: documents` | Official documentation, grouped by topic |
-| `Use netstack: interviews` | Four interview sources and available publisher chapter notes |
+| `Use netstack: interviews` | Five interview originals, available chapter notes and qualified transcript/caption-derived findings |
 | `Use netstack: contracts` | Contract families; add a name for exact addresses and provenance |
 | `Use netstack: feeds` | RWA, ETH/USD and USDG/USD feeds; distinct NET price sources; identity and freshness limits |
 
@@ -155,12 +218,12 @@ The address catalog keeps identities, statuses and dated evidence per record; sh
 
 ## What's covered
 
-Baseline documentation dates from **September 10, 2026**, with targeted additions through **September 26**. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
+Baseline documentation dates from **September 10, 2026**, with targeted additions through **October 10**. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
 
-- **28 indexed official documentation pages**, represented by original summaries and source links; not all freshly reread.
+- **30 indexed official documentation entries**, represented by original summaries and source links; LOSE's standalone page remains sparse. Individual review dates differ.
 - Canonical contracts, feeds, market and pool IDs, plus a separately qualified deployer-discovery inventory. Counts and boundaries live in [address conventions](assets/address-conventions.json), not a competing inventory here.
 - Original announcements, strategy/report articles, documentation, integrations and scoped interface/creation evidence in the [source catalog](assets/sources.json).
-- Four interview source posts with publisher descriptions and available chapters; no claim that full recordings/transcripts were reviewed.
+- Five interview originals with complete available transcript/caption-text reviews; no claim of independent complete audio/visual verification.
 
 Use the [SKILL knowledge map](SKILL.md#knowledge-map) to choose a reference and the [link directory](references/links.md) for destinations.
 
@@ -208,7 +271,7 @@ For reproducible problems, open a [GitHub issue](https://github.com/tomismeta/ne
 
 ## Maintaining the knowledge
 
-**Package version: 0.4.0.** Dogfooding, exact-input security review and integrity checks precede publication. Commits, merges, tags, releases and registry submissions require maintainer approval; never overwrite published tags or assets. A manifest establishes byte integrity, not publisher authenticity or release approval.
+**Working package version: 0.5.0-dev; unpublished.** Dogfooding, exact-input security review and integrity checks precede publication. Commits, merges, tags, releases and registry submissions require maintainer approval; never overwrite published tags or assets. A manifest establishes byte integrity, not publisher authenticity or release approval.
 
 **Revision pinning:** retain the explicitly installed immutable revision until the maintainer requests an update. Do not automatically track a moving branch; review replacements and confirm the loaded revision in a fresh session.
 

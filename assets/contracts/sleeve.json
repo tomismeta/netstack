@@ -1,0 +1,2223 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x732b3d1d3e8912cae75164fa14a6e1c4c64615b3",
+  "contract_record": "assets/addresses/contracts/sleeve-bond-desk.json",
+  "chain_id": 4663,
+  "address": "0x732b3D1d3E8912CaE75164FA14a6E1c4C64615B3",
+  "generation": "sleeve-bond-desk-20260930",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve",
+      "observed_on": "2026-10-07"
+    },
+    {
+      "source_id": "netnet-sleeve-bond-runtime-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x732b3D1d3E8912CaE75164FA14a6E1c4C64615B3",
+      "observed_on": "2026-10-10",
+      "locator": "Complete indexed runtime; source/ABI unavailable; all publisher-named dispatcher branches and four unnamed branches statically reviewed"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 74,
+    "implementation": "all_obtained_function_paths_targeted_static_runtime_review_not_full_audit",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Exact deployed verified Solidity and full ABI; four dispatcher names unresolved although targeted branch effects traced.",
+      "Independently pinned runtime, storage, permissions, receipt history and current financial reconciliation.",
+      "Independent compiler equivalence or exhaustive symbolic execution; external dependency behavior and historic NET inventory purchase provenance."
+    ],
+    "literal_abi_sha256": "e5c091c232995f4c0185f7eed182d5281cdba6659b303630459552707efc7e8c",
+    "literal_character_range": [
+      375153,
+      385889
+    ],
+    "dispatcher_evidence": {
+      "source_id": "netnet-sleeve-implementation-20261007",
+      "method": "PUSH4/EQ/PUSH2/JUMPI dispatcher patterns within first850 bytes; not exhaustive symbolic execution. Selectors alone do not identify absent names, outputs or permissions.",
+      "observed_selector_count": 41,
+      "unmatched_dispatcher_selectors": [
+        "0x083893e1",
+        "0x14ae9e4e",
+        "0x5ea8cd12",
+        "0xb8fea0a1"
+      ],
+      "interface_selectors_not_seen_in_pattern": []
+    },
+    "generation_warning": "App reuses Oa (struct RwaDesk labels) across generations. Never infer identical deployed economics. Current Sleeve runtime has four dispatcher selectors absent from Oa; candidate names seen in other contracts do not fill this interface."
+  },
+  "functions": [
+    {
+      "name": "INVENTORY_HARD_CAP",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "INVENTORY_HARD_CAP()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[1]"
+      },
+      "selector": "0xe52442cc",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Immutable NET9 ceiling for manager-set inventoryMax; 300e9 in indexed runtime.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x6b5",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xe52442cc entry 0x6b5; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "MAX_DISCOUNT_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MAX_DISCOUNT_BPS()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[2]"
+      },
+      "selector": "0x390947cf",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Immutable maximum discount,750bps in indexed runtime.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x371",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x390947cf entry 0x371; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "MAX_ORACLE_DEV_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MAX_ORACLE_DEV_BPS()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[3]"
+      },
+      "selector": "0xb64a2c2a",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Immutable downside oracle-value tolerance,500bps; not a maximum favorable upside or execution-price guarantee.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x59e",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xb64a2c2a entry 0x59e; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "MIN_PREMIUM_WAD",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MIN_PREMIUM_WAD()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[4]"
+      },
+      "selector": "0xfaacfaf0",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Immutable1.2e18 multiplier of monotone backing high-water mark used as a reject guard.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x72b",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xfaacfaf0 entry 0x72b; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "VEST",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "VEST()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[5]"
+      },
+      "selector": "0x784effbd",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Immutable172800seconds; note end=start+VEST.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x462",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x784effbd entry 0x462; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "bHwm",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "bHwm()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[6]"
+      },
+      "selector": "0xba0d618d",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Stored monotone backing high-water mark,WAD USDG per NET; poke/bond only raises it.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x5e4",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xba0d618d entry 0x5e4; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "bond",
+      "inputs": [
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "maxPriceWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "rwaToken",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "swapCalldata",
+          "type": "bytes",
+          "internalType": "bytes"
+        },
+        {
+          "name": "minRwaOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "payout",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "bond(uint256,uint256,address,bytes,uint256,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[7]"
+      },
+      "selector": "0x0122bafa",
+      "semantic_evidence": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "locator": "assets/contracts/validation.json#sleeve; bond"
+      },
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public nonreentrant; halt and execution guards",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Accept USDG6 from caller, reserve floor(usdgIn*1e12*1e9/discountedPriceWad) existing NET9 from inventory, execute supplied router bytes into caller-selected active menu token, send equity and any new USDG residual to fixed Sleeve, append recipient note and increase owedNet. DeskBond fee field literal zero. No Treasury transfer or NET mint. See source evidence for gates/rounding.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x2c6",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x0122bafa entry 0x2c6; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "bondPrice",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "bondPrice()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[8]"
+      },
+      "selector": "0xd7ccfb0b",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read; oracle may revert",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "floor(pairOracle selector0x10aa790e WAD quote*(10000-discount)/10000); only discounted oracle quote, not execution eligibility or floor-clamped quote.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x672",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xd7ccfb0b entry 0x672; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "canonicalFeed",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "canonicalFeed(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[9]"
+      },
+      "selector": "0xb4053d64",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Constructor-fixed token=>feed mapping; immutable mapping contents have no setter in obtained dispatcher. Manager menu must match.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x573",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xb4053d64 entry 0x573; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "depositInventory",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "depositInventory(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[10]"
+      },
+      "selector": "0x78a3ef55",
+      "semantic_evidence": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "locator": "assets/contracts/validation.json#sleeve; depositInventory"
+      },
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "manager OR fixed Sleeve; nonreentrant",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Transfer NET from caller; credit measured desk balance delta, not nominal transfer amount. New inventory <=inventoryMax and NET balance >=inventory+owedNet.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x489",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x78a3ef55 entry 0x489; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "deskDiscountBps",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "deskDiscountBps()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[11]"
+      },
+      "selector": "0x7d6abb36",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Mutable price discount in basis points; not a guaranteed market execution advantage.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x4fa",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x7d6abb36 entry 0x4fa; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "feedAdapter",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IRwaFeedAdapter"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "feedAdapter()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[12]"
+      },
+      "selector": "0x569adb39",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Fixed0x55e... dependency; not sibling old adapter source from RouterSource compilation.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x401",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x569adb39 entry 0x401; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "halted",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "halted()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[13]"
+      },
+      "selector": "0xb9b8af0b",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "New-subscription halt flag; not historical activity or claim suspension.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x5d7",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xb9b8af0b entry 0x5d7; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "inventory",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "inventory()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[14]"
+      },
+      "selector": "0x15d52a5c",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "NET9 unsold allocation; excludes owedNet and unallocated donations.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x329",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x15d52a5c entry 0x329; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "inventoryMax",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "inventoryMax()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[15]"
+      },
+      "selector": "0xb884386b",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "NET9 current ceiling for new inventory deposits; may be lowered below existing inventory without forced liquidation.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x5c5",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xb884386b entry 0x5c5; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "isActiveMenuToken",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "active",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isActiveMenuToken(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[16]"
+      },
+      "selector": "0x9d9ea392",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Linear scan; true iff token has active menu entry.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x529",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x9d9ea392 entry 0x529; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "manager",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "manager()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[17]"
+      },
+      "selector": "0x481c6a75",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Fixed team Safe; no desk-level owner transfer/set-manager entrypoint obtained. Safe owners/threshold not established.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x3b3",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x481c6a75 entry 0x3b3; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "menu",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple[]",
+          "internalType": "struct IRwaDesk.Asset[]",
+          "components": [
+            {
+              "name": "token",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "feed",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "targetWeightBps",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "active",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "menu()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[18]"
+      },
+      "selector": "0xf0439f71",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Full token/feed/targetWeightBps/active list; weights are configuration, not proof of automatic underweight selection.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x6dc",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xf0439f71 entry 0x6dc; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "menuLength",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "menuLength()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[19]"
+      },
+      "selector": "0x3d939a49",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Current menu entry count, not historical token universe.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x3ab",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x3d939a49 entry 0x3ab; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "net",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "net()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[20]"
+      },
+      "selector": "0xc2fff4a5",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Fixed NET token binding; no minter setter or mint branch in desk. Earlier acquisition provenance and token minter authorization remain separate.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x608",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xc2fff4a5 entry 0x608; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "noteAt",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "i",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct IRwaDesk.Note",
+          "components": [
+            {
+              "name": "payout",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "claimed",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "start",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "end",
+              "type": "uint64",
+              "internalType": "uint64"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "noteAt(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[21]"
+      },
+      "selector": "0x7bb07c4c",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read; bounds checked",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Recipient-indexed append-only note: payout NET9,claimed NET9,start/end uint64 Unix seconds.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x49c",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x7bb07c4c entry 0x49c; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "noteCount",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "noteCount(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[22]"
+      },
+      "selector": "0xdc950d36",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Total appended notes for supplied account, including fully claimed notes; not active-note count or global counter.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x68d",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xdc950d36 entry 0x68d; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "owedNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "owedNet()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[23]"
+      },
+      "selector": "0xbd521b92",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Global outstanding gross NET9 liability, increments at bond and decrements by gross redeemed amount.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x5ff",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xbd521b92 entry 0x5ff; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "pairOracle",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IPairOracleTwap"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pairOracle()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[24]"
+      },
+      "selector": "0xb1b9a7c5",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Fixed paired NET/USDG TWAP dependency; external oracle liveness/marks not guaranteed by desk.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x54c",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xb1b9a7c5 entry 0x54c; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "pendingFor",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "totalPending",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "claimableNow",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pendingFor(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[25]"
+      },
+      "selector": "0xd7820452",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read; loops all account notes",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Sum(payout-claimed),sum(floored vested-claimed),NET9. Expensive accounts can cause read failure; zero returned is scoped account state only.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x64a",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xd7820452 entry 0x64a; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "pokeHwm",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "pokeHwm()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[26]"
+      },
+      "selector": "0xd1e266d1",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public state change",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Reads Treasury backing selector0x1521843e and raises stored bHwm only. It does not remit, mint or update Core accounting.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x62f",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xd1e266d1 entry 0x62f; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "redeem",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "paid",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "redeem(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[27]"
+      },
+      "selector": "0x95a2251f",
+      "semantic_evidence": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "locator": "assets/contracts/validation.json#sleeve; redeem"
+      },
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "note owner=msg.sender; nonreentrant, no halt gate",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "All-notes or supplied-id form credits gross vested-minus-claimed per owned note, emits DeskRedeemed per positive note, decrements owedNet then transfers aggregate NET to supplied to. Duplicate ids cannot double claim after first update. No global recipient ownership transfer or USDG refund.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x516",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x95a2251f entry 0x516; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "redeem",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "noteIds",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "paid",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "redeem(address,uint256[])",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[28]"
+      },
+      "selector": "0xd2390aa2",
+      "semantic_evidence": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "locator": "assets/contracts/validation.json#sleeve; redeem"
+      },
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "note owner=msg.sender; nonreentrant, no halt gate",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "All-notes or supplied-id form credits gross vested-minus-claimed per owned note, emits DeskRedeemed per positive note, decrements owedNet then transfers aggregate NET to supplied to. Duplicate ids cannot double claim after first update. No global recipient ownership transfer or USDG refund.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x637",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xd2390aa2 entry 0x637; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "routerSource",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IRouterSource"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "routerSource()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[29]"
+      },
+      "selector": "0x38ac6813",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Fixed source resolves live registry ownerOf(2); router itself is not desk-immutable.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x332",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x38ac6813 entry 0x332; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "setDiscount",
+      "inputs": [
+        {
+          "name": "bps",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setDiscount(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[30]"
+      },
+      "selector": "0xdabd2719",
+      "semantic_evidence": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "locator": "assets/contracts/validation.json#sleeve; setDiscount"
+      },
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "manager only",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Sets bps<=MAX_DISCOUNT_BPS; emits DiscountUpdated.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x67a",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xdabd2719 entry 0x67a; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "setHalt",
+      "inputs": [
+        {
+          "name": "halted_",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setHalt(bool)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[31]"
+      },
+      "selector": "0xf4954387",
+      "semantic_evidence": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "locator": "assets/contracts/validation.json#sleeve; setHalt"
+      },
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "manager only",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Sets new-bond halted flag; existing redeem functions have no halted check.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x6f1",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xf4954387 entry 0x6f1; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "setInventoryMax",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setInventoryMax(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[32]"
+      },
+      "selector": "0x3d17c5ab",
+      "semantic_evidence": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "locator": "assets/contracts/validation.json#sleeve; setInventoryMax"
+      },
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "manager only",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Sets amount<=INVENTORY_HARD_CAP; does not remove existing inventory or owedNet.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x398",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x3d17c5ab entry 0x398; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "setMenu",
+      "inputs": [
+        {
+          "name": "entries",
+          "type": "tuple[]",
+          "internalType": "struct IRwaDesk.Asset[]",
+          "components": [
+            {
+              "name": "token",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "feed",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "targetWeightBps",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "active",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ]
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setMenu((address,address,uint256,bool)[])",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[33]"
+      },
+      "selector": "0x82801f85",
+      "semantic_evidence": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "locator": "assets/contracts/validation.json#sleeve; setMenu"
+      },
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "manager only",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Active entries require nonzero token/feed and exact constructor canonicalFeed; active token duplicates rejected; weights across entries must total10000. Replaces menu; no sale of old custody and no onchain underweight allocator.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x503",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x82801f85 entry 0x503; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "skim",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "skim(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[34]"
+      },
+      "selector": "0xbc25cf77",
+      "semantic_evidence": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "locator": "assets/contracts/validation.json#sleeve; skim"
+      },
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "permissionless trigger; fixed Sleeve beneficiary; nonreentrant",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "For NET only balance-inventory-owedNet surplus, reverting on underfunding; for other tokens entire desk balance. Always transfers to Sleeve, never arbitrary caller. Not subscriber refund.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x5ec",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xbc25cf77 entry 0x5ec; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "sleeve",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "sleeve()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[35]"
+      },
+      "selector": "0x55e28b9c",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Fixed dedicated Safe beneficiary of equities, residual USDG, skim and unsold inventory withdrawal; no subscriber equity redemption right in desk.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x3da",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x55e28b9c entry 0x3da; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "treasury",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ITreasuryBacking"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "treasury()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[36]"
+      },
+      "selector": "0x61d027b3",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Backing-read dependency for HWM only in reviewed subscription flow, not subscription fee beneficiary.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x43b",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0x61d027b3 entry 0x43b; references/sleeve-bond-contracts.md"
+      }
+    },
+    {
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdg()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[37]"
+      },
+      "selector": "0xf5b91b7b",
+      "permissions": {
+        "status": "targeted_runtime_review",
+        "detail": "public read",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "economic_meaning": {
+        "status": "targeted_runtime_review",
+        "detail": "Fixed USDG binding; constructor decimal scale1e12 in indexed runtime.",
+        "source_id": "netnet-sleeve-bond-runtime-20261010"
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-sleeve-implementation-20261007",
+        "entry_offset": "0x704",
+        "scope": "selector/branch identity only"
+      },
+      "implementation_evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "runtime dispatcher 0xf5b91b7b entry 0x704; references/sleeve-bond-contracts.md"
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "DeskBond",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "rwaToken",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "payout",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "priceWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "fee",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "rwaOut",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "DeskBond(address,address,uint256,uint256,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[38]"
+      },
+      "topic0": "0x2cfcb3ca367d7f7d6165a0805c4c4e8f66a29641cae4d57667d135fac29129e9"
+    },
+    {
+      "name": "DeskRedeemed",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "noteId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "payout",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "DeskRedeemed(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[39]"
+      },
+      "topic0": "0x4739bbda7b4de2dc304bd7714be8e5afc5c45db0a61b0b2044e679b303845f18"
+    },
+    {
+      "name": "DiscountUpdated",
+      "inputs": [
+        {
+          "name": "bps",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "DiscountUpdated(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[40]"
+      },
+      "topic0": "0x4380d185219209b34ffa7f42fb87214e1e8b63a4957f532acc0cfa84697f0514"
+    },
+    {
+      "name": "HaltSet",
+      "inputs": [
+        {
+          "name": "halted",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        }
+      ],
+      "anonymous": false,
+      "signature": "HaltSet(bool)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[41]"
+      },
+      "topic0": "0x623faa9c0ee906b8d749b30501daa0eae86c9843958d3384513f39a1312c9925"
+    },
+    {
+      "name": "InventoryDeposited",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "newInventory",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "InventoryDeposited(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[42]"
+      },
+      "topic0": "0x8c659e8002149653e7d4cc7bf86afdabac70f806574c8e709329fb76a5a71681"
+    },
+    {
+      "name": "InventoryMaxUpdated",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "InventoryMaxUpdated(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[43]"
+      },
+      "topic0": "0xb92d7d3bb18f9ac962bf0c198f33cbb7cdcfa153e714b48456b2a061ef4ae401"
+    },
+    {
+      "name": "MenuUpdated",
+      "inputs": [
+        {
+          "name": "menu",
+          "type": "tuple[]",
+          "indexed": false,
+          "internalType": "struct IRwaDesk.Asset[]",
+          "components": [
+            {
+              "name": "token",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "feed",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "targetWeightBps",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "active",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ]
+        }
+      ],
+      "anonymous": false,
+      "signature": "MenuUpdated((address,address,uint256,bool)[])",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[44]"
+      },
+      "topic0": "0x1a6e3114249a83a1824e52b37b22c4a9b246e78544473771c743bb26a49c86da"
+    },
+    {
+      "name": "Skimmed",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Skimmed(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[45]"
+      },
+      "topic0": "0xb0477b3d4d588e76d76df1c6cf069311c9dc4f742f19d0f74a70f58803d0768f"
+    }
+  ],
+  "errors": [
+    {
+      "name": "BadMenu",
+      "inputs": [],
+      "signature": "BadMenu()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[46]"
+      },
+      "selector": "0x59ed51d6"
+    },
+    {
+      "name": "DiscountTooHigh",
+      "inputs": [],
+      "signature": "DiscountTooHigh()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[47]"
+      },
+      "selector": "0x35937253"
+    },
+    {
+      "name": "DuplicateMenuToken",
+      "inputs": [],
+      "signature": "DuplicateMenuToken()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[48]"
+      },
+      "selector": "0x66e8777e"
+    },
+    {
+      "name": "ExceedsHardCap",
+      "inputs": [],
+      "signature": "ExceedsHardCap()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[49]"
+      },
+      "selector": "0x45939939"
+    },
+    {
+      "name": "ExceedsInventoryMax",
+      "inputs": [],
+      "signature": "ExceedsInventoryMax()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[50]"
+      },
+      "selector": "0xae794d73"
+    },
+    {
+      "name": "FeedNotAllowlisted",
+      "inputs": [],
+      "signature": "FeedNotAllowlisted()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[51]"
+      },
+      "selector": "0xb18504cd"
+    },
+    {
+      "name": "FloorGuard",
+      "inputs": [],
+      "signature": "FloorGuard()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[52]"
+      },
+      "selector": "0x0e8bec72"
+    },
+    {
+      "name": "Halted",
+      "inputs": [],
+      "signature": "Halted()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[53]"
+      },
+      "selector": "0x1ee9080f"
+    },
+    {
+      "name": "InsufficientInventory",
+      "inputs": [],
+      "signature": "InsufficientInventory()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[54]"
+      },
+      "selector": "0x8b2024a5"
+    },
+    {
+      "name": "InvalidConfig",
+      "inputs": [],
+      "signature": "InvalidConfig()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[55]"
+      },
+      "selector": "0x35be3ac8"
+    },
+    {
+      "name": "InventoryUndercollateralized",
+      "inputs": [],
+      "signature": "InventoryUndercollateralized()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[56]"
+      },
+      "selector": "0x9dfa151c"
+    },
+    {
+      "name": "MulDivOverflow",
+      "inputs": [],
+      "signature": "MulDivOverflow()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[57]"
+      },
+      "selector": "0x49248f77"
+    },
+    {
+      "name": "NotManager",
+      "inputs": [],
+      "signature": "NotManager()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[58]"
+      },
+      "selector": "0xc0fc8a8a"
+    },
+    {
+      "name": "NotOnMenu",
+      "inputs": [],
+      "signature": "NotOnMenu()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[59]"
+      },
+      "selector": "0x40fa2c7c"
+    },
+    {
+      "name": "NoteIndexOutOfRange",
+      "inputs": [],
+      "signature": "NoteIndexOutOfRange()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[60]"
+      },
+      "selector": "0x9a6b715b"
+    },
+    {
+      "name": "OracleValueTooLow",
+      "inputs": [],
+      "signature": "OracleValueTooLow()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[61]"
+      },
+      "selector": "0xaca70354"
+    },
+    {
+      "name": "PriceAboveMax",
+      "inputs": [],
+      "signature": "PriceAboveMax()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[62]"
+      },
+      "selector": "0xf2e3adf8"
+    },
+    {
+      "name": "Reentrancy",
+      "inputs": [],
+      "signature": "Reentrancy()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[63]"
+      },
+      "selector": "0xab143c06"
+    },
+    {
+      "name": "RouterUnavailable",
+      "inputs": [],
+      "signature": "RouterUnavailable()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[64]"
+      },
+      "selector": "0xcd7f3c68"
+    },
+    {
+      "name": "RwaCustodyRetained",
+      "inputs": [],
+      "signature": "RwaCustodyRetained()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[65]"
+      },
+      "selector": "0x44478186"
+    },
+    {
+      "name": "SkimUnderflow",
+      "inputs": [],
+      "signature": "SkimUnderflow()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[66]"
+      },
+      "selector": "0x44711fb0"
+    },
+    {
+      "name": "SlippageExceeded",
+      "inputs": [],
+      "signature": "SlippageExceeded()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[67]"
+      },
+      "selector": "0x8199f5f3"
+    },
+    {
+      "name": "SwapFailed",
+      "inputs": [],
+      "signature": "SwapFailed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[68]"
+      },
+      "selector": "0x81ceff30"
+    },
+    {
+      "name": "TooManyNotes",
+      "inputs": [],
+      "signature": "TooManyNotes()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[69]"
+      },
+      "selector": "0x0b7aa319"
+    },
+    {
+      "name": "TransferFailed",
+      "inputs": [],
+      "signature": "TransferFailed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[70]"
+      },
+      "selector": "0x90b8ec18"
+    },
+    {
+      "name": "UsdgResidualMismatch",
+      "inputs": [],
+      "signature": "UsdgResidualMismatch()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[71]"
+      },
+      "selector": "0xa80b4b90"
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "signature": "ZeroAddress()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[72]"
+      },
+      "selector": "0xd92e233d"
+    },
+    {
+      "name": "ZeroPayout",
+      "inputs": [],
+      "signature": "ZeroPayout()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[73]"
+      },
+      "selector": "0xaf110036"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "c",
+          "type": "tuple",
+          "internalType": "struct RwaDesk.DeskConfig",
+          "components": [
+            {
+              "name": "net",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "usdg",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "treasury",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "pairOracle",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "routerSource",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "feedAdapter",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "manager",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "sleeve",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "maxDiscountBps",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "minPremiumWad",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "inventoryHardCap",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "maxOracleDevBps",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "vest",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "initialDiscountBps",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "initialInventoryMax",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "menuTokens",
+              "type": "address[]",
+              "internalType": "address[]"
+            },
+            {
+              "name": "menuFeeds",
+              "type": "address[]",
+              "internalType": "address[]"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Oa, Unicode character offsets[375153,385889); consumer binding to sleeve; ABI entry[0]"
+      }
+    }
+  ],
+  "source_evidence": "assets/contracts/sleeve-bond-source-evidence.json"
+}

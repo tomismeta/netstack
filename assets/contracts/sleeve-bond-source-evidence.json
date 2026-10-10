@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "source_id": "netnet-sleeve-bond-runtime-20261010",
+  "observed_on": "2026-10-10",
+  "contract_id": "robinhood-0x732b3d1d3e8912cae75164fa14a6e1c4c64615b3",
+  "address": "0x732b3D1d3E8912CaE75164FA14a6E1c4C64615B3",
+  "generation": "sleeve-bond-desk-20260930",
+  "review_scope": "All37publisher ABI functions plus4unmatched branches targeted statically; no full symbolic audit or source equivalence claim.",
+  "runtime_evidence": {
+    "runtime_bytes": 13092,
+    "runtime_sha256": "a9530676de951374979dd16ca5ce237fc80f7ff8c18849370cd842bca6272c02",
+    "meaning": "Exact explorer indexed runtime; not verified source, compiler equivalence or independently pinned state. Fresh exact runtime match required."
+  },
+  "source_recovery": {
+    "explorer": "No source_code or abi returned; address endpoint is_verified=false,proxy_type=null.",
+    "sourcify_full_match": "HTTP404",
+    "sourcify_partial_match": "HTTP404",
+    "source_metadata_multihash": "1220a3f8b946ec1dc4a7608160922c1f787f720767c3e5be4e174608c99ae250404d",
+    "limits": "Solidity metadata locator is not retrieved source. Direct programmatic explorer fetch deniedHTTP403; no retry or alternate client after denial. Canonical RPC already denied; no current financial observations obtained."
+  },
+  "unknown_dispatcher_selectors": [
+    {
+      "selector": "0x083893e1",
+      "entry_offset": "0x02ec",
+      "body_range": "0x0ce7-0x0f8d",
+      "abi_status": "name_not_obtained_not_callable",
+      "observed_shape": "one uint256 input; no output",
+      "permissions": "caller equals manager OR Sleeve",
+      "effects": "Nonreentrant; require amount<=inventory; subtract inventory; NET.transfer(fixedSleeve,amount); check NET balance>=inventory+owedNet; emit unidentified two-word event topic0x2c00ca3d52bd7dddf904d5cec45258352cc35234b97a3b1de12ce3c30502697a. No note cancellation."
+    },
+    {
+      "selector": "0x14ae9e4e",
+      "entry_offset": "0x0301",
+      "body_range": "0x0301-0x0328",
+      "abi_status": "name_not_obtained_not_callable",
+      "observed_shape": "one address input; one uint256 output",
+      "permissions": "public read",
+      "effects": "mapping(address=>uint256) slot9; incremented for each note, decremented on fully claimed note; active rather than lifetime note count."
+    },
+    {
+      "selector": "0x5ea8cd12",
+      "entry_offset": "0x0428",
+      "body_range": "0x1054-0x10d1",
+      "abi_status": "name_not_obtained_not_callable",
+      "observed_shape": "one uint256 input; no output",
+      "permissions": "manager only",
+      "effects": "Sets slot4; bond requires discounted price>=slot4 independently of backing-premium guard. Emits unidentified event topic0x5458182db4020e94853c0d5c5cce048c4e1634ccde3542a2041f7ac4f9810200."
+    },
+    {
+      "selector": "0xb8fea0a1",
+      "entry_offset": "0x05ce",
+      "body_range": "0x05ce-0x05d6",
+      "abi_status": "name_not_obtained_not_callable",
+      "observed_shape": "no input; one uint256 output",
+      "permissions": "public read",
+      "effects": "Returns slot4 additional price floor (WAD)."
+    }
+  ],
+  "immutable_values": {
+    "MAX_DISCOUNT_BPS": 750,
+    "MIN_PREMIUM_WAD": "1200000000000000000",
+    "INVENTORY_HARD_CAP_NET9": "300000000000",
+    "MAX_ORACLE_DEV_BPS": 500,
+    "VEST_seconds": 172800,
+    "usdgWadFactor": "1000000000000"
+  },
+  "economic_paths": [
+    {
+      "range": "0x0752-0x0ce6",
+      "path": "subscription",
+      "detail": "Nonreentrant,halt=false,recipient neither zero nor desk; third-party note-spray guard uses slot9 active counter. Refresh backing HWM; discounted oracle price must<=caller max and>=both floor(HWM*1.2e18/1e18) and slot4. Gross NET payout=floor((USDG6*1e12)*1e9/priceWad),nonzero and>=1e7NET9,<=inventory. Reserve inventory; pull USDG; route; append note; increase active count and global owedNet; emit DeskBond with literal0fee."
+    },
+    {
+      "range": "0x204c-0x2887",
+      "path": "equity routing",
+      "detail": "Resolve active selected token feed, live routerSource.router(), require nonzero router; record desk and Sleeve equity balances. Approve full usdgIn to router; execute caller bytes; measure desk equity delta; oracle-check it; transfer that delta to Sleeve; measure Sleeve equity delta>=minRwaOut. Transfer any USDG above pre-subscription baseline to Sleeve, require exact USDG baseline restored; clear router allowance; require exact desk equity baseline restored. DeskBond.rwaOut is measured Sleeve receipt delta,not gross transfer."
+    },
+    {
+      "range": "0x2c47-0x2d7e",
+      "path": "oracle value guard",
+      "detail": "priceWad(feed,token); floor(desk equity raw18*unitPriceWad/1e18)>=floor(usdgIn*1e12*(10000-MAX_ORACLE_DEV_BPS)/10000). This is a downside mark test, not optimal quote proof. Raw18 is contract arithmetic assumption; fresh token metadata/scaled UI still separate."
+    },
+    {
+      "range": "0x1801-0x1875;0x1ba5-0x1c5b;0x2888-0x2ab2",
+      "path": "claims",
+      "detail": "msg.sender-owned notes; all or requested ids; floor(payout*(timestamp-start)/(end-start)) before end,full payout at/after end; subtract claimed,update per-note claimed,decrement active counter once fully claimed; emit per positive claim; decrease global owedNet by total; transfer gross NET to supplied receiver. No halt guard or USDG refund. Fee-on-transfer receiver net can differ."
+    },
+    {
+      "range": "0x10d2-0x148c;0x1907-0x1b9a",
+      "path": "inventory and surplus",
+      "detail": "Manager or Sleeve deposit credits measured NET balance increase and checks current inventory cap plus aggregate coverage. Permissionless skim routes only NET surplus above inventory+owedNet,or all other token balance,to Sleeve. Four-selector review separately proves unsold withdrawal limited to inventory."
+    },
+    {
+      "range": "0x1538-0x1800;0x2b75-0x2c46",
+      "path": "menu",
+      "detail": "Manager replaces entries; active entry token/feed nonzero,canonical mapping match,active duplicate tokens rejected; all entry weights total10000. Subscription scans active entries for supplied token. No code selecting most-underweight custody position."
+    }
+  ],
+  "dependencies": {
+    "feed_adapter": {
+      "address": "0x55e76ba1f7c7603c27bbdf8dfa1b235f7e512540",
+      "runtime_bytes": 1783,
+      "runtime_sha256": "10472ea23bb6e1dfab88465d7498bfb4aab4fc47804e182e96e788d8fda5673c",
+      "source_status": "source_and_full_abi_unavailable",
+      "dispatcher_selectors": [
+        "0x0b8ad9f6",
+        "0x0dcaeaf2",
+        "0x1ab5b41a",
+        "0x53c3a6a1"
+      ],
+      "known_interface": "priceWad(address feed,address token) from obtained IFeedAdapter declaration in RouterSource compilation; current body independently traced. Other3getter names unknown.",
+      "semantics": "Requires feed answer>0,answeredInRound>=roundId,updatedAt<=timestamp,age<=345600seconds. Token.uiMultiplier() must be inclusively0.8e18..1.2e18. Returns floor(answer*10^(18-feedDecimals)*uiMultiplier/1e18). Feed decimals>18 revert. No sessionOpen branch. Bound getters return0.8e18,345600,1.2e18 respectively.",
+      "generation_warning": "Obtained RouterSource compilation contains an older RwaFeedAdapter implementation with identity-only multiplier/session-aware age; that source is NOT the exact-address current adapter."
+    },
+    "router_source": {
+      "address": "0x9ca38c9c144ff411231c82da03c7d30286a7dbf6",
+      "runtime_bytes": 502,
+      "runtime_sha256": "1f044c53d1904e05bc03180f94a7ead75ba6b13749f5c34aff4bdd31284275ee",
+      "explorer_is_verified": true,
+      "explorer_is_fully_verified": false,
+      "explorer_is_partially_verified": true,
+      "source_files": [
+        {
+          "path": "src/rwa/RwaAdapters.sol",
+          "sha256": "52a3baec4573ef74da1c696b2aab177c785fdcd965f5d5aef78faf51d254ee42"
+        },
+        {
+          "path": "src/libraries/FixedPointMath.sol",
+          "sha256": "ec9413a896063a73bb56dacbef143610ce5b883b8e13c768263ce975d78214e2"
+        },
+        {
+          "path": "src/rwa/DeskMath.sol",
+          "sha256": "cdb765fd7370ffd6e49acdae8b23baf57ed717bd9dbb72a7d3a7cd24c6da1ad2"
+        },
+        {
+          "path": "src/rwa/RwaConstants.sol",
+          "sha256": "0b991702bdb94aaffa15f135e794aff0c97b783f76a8dffb95167f6256e2e259"
+        }
+      ],
+      "semantics": "All obtained RouterSource constructor/error/3functions reviewed. Immutable registry0x71a120cbbf3ce7cd910a3c50ff77afc62735687e and routerTokenId2; router() returns registry.ownerOf(routerTokenId). No setter,owner or write path. Registry authority/liveness remains external."
+    }
+  },
+  "historical_boundaries": [
+    "RwaDeskV1/V2 kept unchanged; same publisherOaABI does not carry economics or withdrawal rules across generations.",
+    "Sibling DeskMath feeUsdgRaw is older-generation source and is not called on current desk bond path.",
+    "Bought NET provenance not established by desk code: deposits may be any qualifying NET source; no new NET minted by desk is narrower than every deposited NET proven purchased."
+  ],
+  "not_obtained": [
+    "Exact current Safe owners/threshold/modules,NET minter allowlist and current registry router.",
+    "Live runtime/storage/financial totals or independent receipts at confirmed snapshot.",
+    "Independent contract source compiler equivalence,all external dependency implementations and historical change audit."
+  ],
+  "stored_financial_observations": false
+}

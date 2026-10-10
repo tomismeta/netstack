@@ -1,0 +1,3672 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x2e8c31162b855a2ffa90f6f8634643ad6f111e18",
+  "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+  "chain_id": 4663,
+  "address": "0x2E8c31162b855A2ffa90F6F8634643Ad6F111e18",
+  "generation": "netlong-margin-ai-token",
+  "provenance": [
+    {
+      "source_id": "netlong-margin-ai-token-explorer-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x2E8c31162b855A2ffa90F6F8634643Ad6F111e18",
+      "observed_on": "2026-10-10",
+      "locator": "Complete explorer smart-contract response; source/ABI fields and deployed_bytecode where supplied"
+    },
+    {
+      "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x3Be8B97Fd0e713B5aBE0649Fa830223B6B4BC599",
+      "observed_on": "2026-10-10",
+      "locator": "Fixed EIP1167 implementation at0x3Be8B97Fd0e713B5aBE0649Fa830223B6B4BC599"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "implementation_abi_bound_via_fixed_eip1167_runtime",
+    "supplied_entry_count": 107,
+    "implementation": "all_obtained_abi_functions_source_reviewed_not_compiler_equivalence",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+      "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+    ]
+  },
+  "runtime_identity": {
+    "byte_count": 44,
+    "sha256": "006870377d147cf66d7e15949f19a89773097d4806b67f9743a01e440e48d4fb",
+    "keccak256": "0xf10f86b05965a827a332e6c73086f18026fbe3917f4bffbec3f938b3b5397b56",
+    "evidence_kind": "explorer_indexed_unpinned_runtime",
+    "proxy_type": "eip1167",
+    "explorer_is_verified": null,
+    "explorer_is_fully_verified": null,
+    "verified_twin_address": null
+  },
+  "functions": [
+    {
+      "inputs": [],
+      "name": "CLOCK_MODE",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "CLOCK_MODE()",
+      "selector": "0x4bf5d7e9",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:95"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "mode=blocknumber&from=default."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "DOMAIN_SEPARATOR",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "result",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "DOMAIN_SEPARATOR()",
+      "selector": "0x3644e515",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:472"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "EIP-712 domain for permits; binds contract identity and chain domain."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "result",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "allowance(address,address)",
+      "selector": "0xdd62ed3e",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:165"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Solady: Permit2 address has fixed maxUint allowance for all owners; other spenders use stored allowance. Token-level revoke cannot disable Permit2."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "approve(address,uint256)",
+      "selector": "0x095ea7b3",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:186"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Caller sets normal spender allowance; non-max approval for fixed Permit2 reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Caller sets normal spender allowance; non-max approval for fixed Permit2 reverts."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "balanceLimitEnd",
+      "outputs": [
+        {
+          "internalType": "uint48",
+          "name": "",
+          "type": "uint48"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "balanceLimitEnd()",
+      "selector": "0xcd6106f8",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[54]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the balanceLimitEnd stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "result",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "balanceOf(address)",
+      "selector": "0x70a08231",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:155"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Raw token units held by the supplied account; not position ownership, spendability or USD value."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "burn",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "burn(uint256)",
+      "selector": "0x42966c68",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:338"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Caller destroys own tokens; total supply and votes checkpoints decrease."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Caller destroys own tokens; total supply and votes checkpoints decrease."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "cancelOwnershipHandover",
+      "outputs": [],
+      "stateMutability": "payable",
+      "signature": "cancelOwnershipHandover()",
+      "selector": "0x54d1f13d",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:208"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Caller deletes its own request."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Caller deletes its own request."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "i",
+          "type": "uint256"
+        }
+      ],
+      "name": "checkpointAt",
+      "outputs": [
+        {
+          "internalType": "uint48",
+          "name": "checkpointClock",
+          "type": "uint48"
+        },
+        {
+          "internalType": "uint256",
+          "name": "checkpointValue",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "checkpointAt(address,uint256)",
+      "selector": "0x84a0e082",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:215"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Indexed packed checkpoint clock/value; out-of-range reverts."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "checkpointCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "result",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "checkpointCount(address)",
+      "selector": "0x76a82342",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:206"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Number of account vote checkpoints."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "clock",
+      "outputs": [
+        {
+          "internalType": "uint48",
+          "name": "result",
+          "type": "uint48"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "clock()",
+      "selector": "0x91ddadf4",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:100"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Current block number uint48; not timestamp."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "pendingOwner",
+          "type": "address"
+        }
+      ],
+      "name": "completeOwnershipHandover",
+      "outputs": [],
+      "stateMutability": "payable",
+      "signature": "completeOwnershipHandover(address)",
+      "selector": "0xf04e283e",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:222"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Owner-only accepts unexpired pending-owner request; clears request and changes owner."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Owner-only accepts unexpired pending-owner request; clears request and changes owner."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "scheduleId",
+          "type": "uint256"
+        }
+      ],
+      "name": "computeAvailableVestedAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "computeAvailableVestedAmount(address,uint256)",
+      "selector": "0x23386469",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:423; src/tokens/DopplerERC20V1.sol:432"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Cliff-gated linear floor(totalAllocation*(now-start)/duration), fully vested at duration, minus released; per-schedule or sum overload. Zero-duration schedule vests immediately."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        }
+      ],
+      "name": "computeAvailableVestedAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "total",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "computeAvailableVestedAmount(address)",
+      "selector": "0x4c869795",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:423; src/tokens/DopplerERC20V1.sol:432"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Cliff-gated linear floor(totalAllocation*(now-start)/duration), fully vested at duration, minus released; per-schedule or sum overload. Zero-duration schedule vests immediately."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "controller",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "controller()",
+      "selector": "0xf77c4791",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[64]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the controller stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "decimals()",
+      "selector": "0x313ce567",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:138"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Display scale; 18 in the reviewed ERC20 implementations, not a conversion or valuation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "delegatee",
+          "type": "address"
+        }
+      ],
+      "name": "delegate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "delegate(address)",
+      "selector": "0x5c19a95c",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:140"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Caller selects vote delegate, moves delegated units based on token balance."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Caller selects vote delegate, moves delegated units based on token balance."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "delegatee",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nonce",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "expiry",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "v",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "r",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "s",
+          "type": "bytes32"
+        }
+      ],
+      "name": "delegateBySig",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "delegateBySig(address,uint256,uint256,uint8,bytes32,bytes32)",
+      "selector": "0xc3cda520",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:145"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "EIP712 delegation signature with supplied nonce and expiry, increments shared nonce then delegates signer votes."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "EIP712 delegation signature with supplied nonce and expiry, increments shared nonce then delegates signer votes."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "delegator",
+          "type": "address"
+        }
+      ],
+      "name": "delegates",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "result",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "delegates(address)",
+      "selector": "0x587cde1e",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:130"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Stored voting delegate, independent of token allowance."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "disableBalanceLimit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "disableBalanceLimit()",
+      "selector": "0x91c46371",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:324"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Only fixed controller; permanently disables active max-balance rule. No public setter to re-enable it."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Only fixed controller; permanently disables active max-balance rule. No public setter to re-enable it."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timepoint",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPastVotes",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "getPastVotes(address,uint256)",
+      "selector": "0x3a46b1a8",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:119"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Checkpoint lookup before strictly past block-number timepoint; present/future lookup reverts."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "timepoint",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPastVotesTotalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "getPastVotesTotalSupply(uint256)",
+      "selector": "0xc7a2f1de",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:241"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Historical total voting units at strictly past block-number timepoint."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        }
+      ],
+      "name": "getScheduleIdsOf",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "getScheduleIdsOf(address)",
+      "selector": "0xd2482469",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:413"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Beneficiary schedule indices; initialization uses transient-storage deduplication."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "getVotes",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "getVotes(address)",
+      "selector": "0x9ab24eb0",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:114"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Latest delegated voting-unit checkpoint; not token balance."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "getVotesTotalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "getVotesTotalSupply()",
+      "selector": "0xcd63c4d2",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:236"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Latest total voting-unit checkpoint."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name_",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "symbol_",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "initialSupply",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "owner_",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint64",
+              "name": "cliff",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint64",
+              "name": "duration",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct VestingSchedule[]",
+          "name": "schedules",
+          "type": "tuple[]"
+        },
+        {
+          "internalType": "address[]",
+          "name": "beneficiaries",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "scheduleIds",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "amounts",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "string",
+          "name": "tokenURI_",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxBalanceLimit_",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint48",
+          "name": "balanceLimitEnd_",
+          "type": "uint48"
+        },
+        {
+          "internalType": "address",
+          "name": "controller_",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "excludedFromBalanceLimit",
+          "type": "address[]"
+        }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "initialize(string,string,uint256,address,address,(uint64,uint64)[],address[],uint256[],uint256[],string,uint256,uint48,address,address[])",
+      "selector": "0x8071cdfa",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:189"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "One-time clone initialization; implementation constructor disables own initialization. Sets owner/metadata/vesting/controller/exclusions, validates durations(0 or>=1day),cliff<=duration, aligned arrays and positive beneficiaries; per-beneficiary and aggregate vesting allocations<=80% initial supply. Mints vested units to self and remainder to recipient; no further external mint entrypoint in obtained ABI."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "One-time clone initialization; implementation constructor disables own initialization. Sets owner/metadata/vesting/controller/exclusions, validates durations(0 or>=1day),cliff<=duration, aligned arrays and positive beneficiaries; per-beneficiary and aggregate vesting allocations<=80% initial supply. Mints vested units to self and remainder to recipient; no further external mint entrypoint in obtained ABI."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "isBalanceLimitActive",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isBalanceLimitActive()",
+      "selector": "0x17fc70ee",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[76]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the isBalanceLimitActive stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isExcludedFromBalanceLimit",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "excluded",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isExcludedFromBalanceLimit(address)",
+      "selector": "0x12d10c4a",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[77]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the isExcludedFromBalanceLimit stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "isPoolLocked",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isPoolLocked()",
+      "selector": "0x800f57cb",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[78]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the isPoolLocked stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "pool_",
+          "type": "address"
+        }
+      ],
+      "name": "lockPool",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "lockPool(address)",
+      "selector": "0x207d0636",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:304"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Only owner, requires not locked; assigns pool and excludes it from balance cap; then transfers INTO pool revert. Not a global pause or an owner balance seizure."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Only owner, requires not locked; assigns pool and excludes it from balance cap; then transfers INTO pool revert. Not a global pause or an owner balance seizure."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "maxBalanceLimit",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "maxBalanceLimit()",
+      "selector": "0x04dfe79d",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[80]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the maxBalanceLimit stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "name()",
+      "selector": "0x06fdde03",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:556; lib/solady/src/tokens/ERC20.sol:132"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Token name metadata; not a unique identity."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "nonces",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "result",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "nonces(address)",
+      "selector": "0x7ecebe00",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:375"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Current signature nonce; not a transaction-count or trading-ledger metric."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "result",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "owner()",
+      "selector": "0x8da5cb5b",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:245"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the owner stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "pendingOwner",
+          "type": "address"
+        }
+      ],
+      "name": "ownershipHandoverExpiresAt",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "result",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "ownershipHandoverExpiresAt(address)",
+      "selector": "0xfee81cf4",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:253"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Stored expiry for prospective owner request, not permission by itself."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "v",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "r",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "s",
+          "type": "bytes32"
+        }
+      ],
+      "name": "permit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "permit(address,address,uint256,uint256,uint8,bytes32,bytes32)",
+      "selector": "0xd505accf",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:389"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "EIP2612 deadline/signature/current nonce; Permit2 value must remain maxUint. Shares nonce storage with delegation signatures."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "EIP2612 deadline/signature/current nonce; Permit2 value must remain maxUint. Shares nonce storage with delegation signatures."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "pool",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pool()",
+      "selector": "0x16f0115b",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[86]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the pool stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "scheduleId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "release",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "release(uint256,uint256)",
+      "selector": "0x366a4120",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:365; src/tokens/DopplerERC20V1.sol:374"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Caller releases vesting from one schedule or across its schedule list; zero requested amount means all available. Moves already-issued tokens from clone custody; does not mint."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Caller releases vesting from one schedule or across its schedule list; zero requested amount means all available. Moves already-issued tokens from clone custody; does not mint."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "release",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "release(uint256)",
+      "selector": "0x37bdc99b",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:365; src/tokens/DopplerERC20V1.sol:374"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Caller releases vesting from one schedule or across its schedule list; zero requested amount means all available. Moves already-issued tokens from clone custody; does not mint."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Caller releases vesting from one schedule or across its schedule list; zero requested amount means all available. Moves already-issued tokens from clone custody; does not mint."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "releaseFor",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "releaseFor(address,uint256)",
+      "selector": "0xbeb96be5",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:385; src/tokens/DopplerERC20V1.sol:395"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Anyone triggers already-vested transfer exclusively to specified beneficiary; overloaded single/all schedules; zero amount means all available, excessive amount reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Anyone triggers already-vested transfer exclusively to specified beneficiary; overloaded single/all schedules; zero amount means all available, excessive amount reverts."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "scheduleId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "releaseFor",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "releaseFor(address,uint256,uint256)",
+      "selector": "0xd699d7d2",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:385; src/tokens/DopplerERC20V1.sol:395"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Anyone triggers already-vested transfer exclusively to specified beneficiary; overloaded single/all schedules; zero amount means all available, excessive amount reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Anyone triggers already-vested transfer exclusively to specified beneficiary; overloaded single/all schedules; zero amount means all available, excessive amount reverts."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "payable",
+      "signature": "renounceOwnership()",
+      "selector": "0x715018a6",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:186"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Owner-only sets zero owner and removes reachable owner operations."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Owner-only sets zero owner and removes reachable owner operations."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "requestOwnershipHandover",
+      "outputs": [],
+      "stateMutability": "payable",
+      "signature": "requestOwnershipHandover()",
+      "selector": "0x25692962",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:192"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Caller creates its48-hour handover request; does not change owner."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Caller creates its48-hour handover request; does not change owner."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "symbol()",
+      "selector": "0x95d89b41",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:561; lib/solady/src/tokens/ERC20.sol:135"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Token symbol metadata; identity is chain/address."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "tokenURI",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "tokenURI()",
+      "selector": "0x3c130d90",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[94]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the tokenURI stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        }
+      ],
+      "name": "totalAllocatedOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "totalAllocatedOf(address)",
+      "selector": "0xf5009604",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[95]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the totalAllocatedOf stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "result",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "totalSupply()",
+      "selector": "0x18160ddd",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:147"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Current issued units less burns; distinct from original issuance and circulating/distributed supply."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "transfer(address,uint256)",
+      "selector": "0xa9059cbb",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:217"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Raw transfer runs pool-lock/max-recipient-balance hook and updates votes. Not taxed/rebasing in obtained implementation."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Raw transfer runs pool-lock/max-recipient-balance hook and updates votes. Not taxed/rebasing in obtained implementation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "transferFrom(address,address,uint256)",
+      "selector": "0x23b872dd",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:257"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Allowance-spend plus hooks/votes; fixed Permit2 caller bypasses ERC20 allowance deduction, other infinite allowances not decremented."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Allowance-spend plus hooks/votes; fixed Permit2 caller bypasses ERC20 allowance deduction, other infinite allowances not decremented."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "payable",
+      "signature": "transferOwnership(address)",
+      "selector": "0xf2fde38b",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:174"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Owner-only transfer to nonzero owner; new owner excluded from balance cap if limit end remains future."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Owner-only transfer to nonzero owner; new owner excluded from balance cap if limit end remains future."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "unlockPool",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "unlockPool()",
+      "selector": "0x89026538",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:312"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Only owner, requires locked; clears receiving-pool lock."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Only owner, requires locked; clears receiving-pool lock."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "tokenURI_",
+          "type": "string"
+        }
+      ],
+      "name": "updateTokenURI",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "updateTokenURI(string)",
+      "selector": "0x98cd6153",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:350"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Only owner sets informational tokenURI string."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Only owner sets informational tokenURI string."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "vestedTotalAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "vestedTotalAmount()",
+      "selector": "0xf68d90d8",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[102]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the vestedTotalAmount stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "scheduleId",
+          "type": "uint256"
+        }
+      ],
+      "name": "vestingOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "totalAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "releasedAmount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "vestingOf(address,uint256)",
+      "selector": "0x6f503e67",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[103]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the vestingOf stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "vestingScheduleCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "vestingScheduleCount()",
+      "selector": "0x53c7efa9",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:404"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Number of schedules, not number of beneficiaries."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "vestingSchedules",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "cliff",
+          "type": "uint64"
+        },
+        {
+          "internalType": "uint64",
+          "name": "duration",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "vestingSchedules(uint256)",
+      "selector": "0x6d3cbe21",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[105]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the vestingSchedules stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "vestingStart",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "vestingStart()",
+      "selector": "0x254800d4",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[106]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the vestingStart stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    }
+  ],
+  "events": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "signature": "Approval(address,address,uint256)",
+      "topic0": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:58"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20.sol:58"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "expired",
+          "type": "bool"
+        }
+      ],
+      "name": "BalanceLimitDisabled",
+      "signature": "BalanceLimitDisabled(bool)",
+      "topic0": "0xde7efbfa85e22db1ead49b6dfd1e807893247c3e22f7ded13eb9f9856a807661",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:104"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:104"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "delegator",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "DelegateChanged",
+      "signature": "DelegateChanged(address,address,address)",
+      "topic0": "0x3134e8a2e6d97e929a7e54011ea5485d7d196dd5f0ba4d4ef95803e8e3fc257f",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:37"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20Votes.sol:37"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "delegate",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "oldValue",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newValue",
+          "type": "uint256"
+        }
+      ],
+      "name": "DelegateVotesChanged",
+      "signature": "DelegateVotesChanged(address,uint256,uint256)",
+      "topic0": "0xdec2bacdd2f05b59de34da9b523dff8be42e5e38e818c82fdb0bae774387a724",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:40"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20Votes.sol:40"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "version",
+          "type": "uint64"
+        }
+      ],
+      "name": "Initialized",
+      "signature": "Initialized(uint64)",
+      "topic0": "0xc7f505b2f371ae2175ee4913f4499e1f2633a7b5936321eed1cdaeb6115181d2",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/utils/Initializable.sol:23"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "lib/solady/src/utils/Initializable.sol:23"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "pendingOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipHandoverCanceled",
+      "signature": "OwnershipHandoverCanceled(address)",
+      "topic0": "0xfa7b8eab7da67f412cc9575ed43464468f9bfbae89d1675917346ca6d8fe3c92",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:45"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "lib/solady/src/auth/Ownable.sol:45"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "pendingOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipHandoverRequested",
+      "signature": "OwnershipHandoverRequested(address)",
+      "topic0": "0xdbf36a107da19e49527a7176a1babf963b4b0ff8cde35ee35d6cd8f1f9ac7e1d",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:42"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "lib/solady/src/auth/Ownable.sol:42"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "oldOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "signature": "OwnershipTransferred(address,address)",
+      "topic0": "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:39"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "lib/solady/src/auth/Ownable.sol:39"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "scheduleId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "TokensReleased",
+      "signature": "TokensReleased(address,uint256,uint256)",
+      "topic0": "0xc5c52c2a9175470464d5ea4429889e7df2ea88630a3d32f4d0d3d2d448656210",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:98"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:98"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "signature": "Transfer(address,address,uint256)",
+      "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:55"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20.sol:55"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "tokenURI",
+          "type": "string"
+        }
+      ],
+      "name": "UpdateTokenURI",
+      "signature": "UpdateTokenURI(string)",
+      "topic0": "0x97b44a9429ef39a6d23e2de72846304d5b7873011084c4f1368f7a46545d5173",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:101"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:101"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "scheduleId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "VestingAllocated",
+      "signature": "VestingAllocated(address,uint256,uint256)",
+      "topic0": "0x6b467f0a76daac5283d2251b6e7660fed01ea99dbd70aa7092f3318731690c9d",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:95"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:95"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "scheduleId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "cliff",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "duration",
+          "type": "uint64"
+        }
+      ],
+      "name": "VestingScheduleCreated",
+      "signature": "VestingScheduleCreated(uint256,uint64,uint64)",
+      "topic0": "0xde48917a7c688e2f10cf41d45c1a7529ec84f5f9b9a08866ecf9453c417ad2c5",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:92"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:92"
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "inputs": [],
+      "name": "AllowanceOverflow",
+      "signature": "AllowanceOverflow()",
+      "selector": "0xf9067066",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:30"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20.sol:30"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "AllowanceUnderflow",
+      "signature": "AllowanceUnderflow()",
+      "selector": "0x8301ab38",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:33"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20.sol:33"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "AlreadyInitialized",
+      "signature": "AlreadyInitialized()",
+      "selector": "0x0dc149f0",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:29"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/auth/Ownable.sol:29"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "ArrayLengthsMismatch",
+      "signature": "ArrayLengthsMismatch()",
+      "selector": "0x3b800a46",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:12"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:12"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "balance",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "limit",
+          "type": "uint256"
+        }
+      ],
+      "name": "BalanceLimitExceeded",
+      "signature": "BalanceLimitExceeded(uint256,uint256)",
+      "selector": "0xe38912a8",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:45"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:45"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "BalanceLimitNotActive",
+      "signature": "BalanceLimitNotActive()",
+      "selector": "0x1ca934f2",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:27"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:27"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "ERC5805CheckpointIndexOutOfBounds",
+      "signature": "ERC5805CheckpointIndexOutOfBounds()",
+      "selector": "0x86df9d10",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:24"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20Votes.sol:24"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "ERC5805CheckpointValueOverflow",
+      "signature": "ERC5805CheckpointValueOverflow()",
+      "selector": "0x9dbbeb75",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:27"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20Votes.sol:27"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "ERC5805CheckpointValueUnderflow",
+      "signature": "ERC5805CheckpointValueUnderflow()",
+      "selector": "0x5915f686",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:30"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20Votes.sol:30"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "ERC5805DelegateInvalidSignature",
+      "signature": "ERC5805DelegateInvalidSignature()",
+      "selector": "0x1838d95c",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:21"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20Votes.sol:21"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "ERC5805DelegateSignatureExpired",
+      "signature": "ERC5805DelegateSignatureExpired()",
+      "selector": "0x3480e9e1",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:18"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20Votes.sol:18"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "ERC5805FutureLookup",
+      "signature": "ERC5805FutureLookup()",
+      "selector": "0xf9874464",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20Votes.sol:15"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20Votes.sol:15"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "InsufficientAllowance",
+      "signature": "InsufficientAllowance()",
+      "selector": "0x13be252b",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:39"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20.sol:39"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "InsufficientBalance",
+      "signature": "InsufficientBalance()",
+      "selector": "0xf4d678b8",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:36"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20.sol:36"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "available",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "requested",
+          "type": "uint256"
+        }
+      ],
+      "name": "InsufficientReleasableAmount",
+      "signature": "InsufficientReleasableAmount(uint256,uint256)",
+      "selector": "0x7ab3846b",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:48"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:48"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "InvalidAllocation",
+      "signature": "InvalidAllocation(uint256)",
+      "selector": "0x6f677338",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:36"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:36"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "limit",
+          "type": "uint256"
+        }
+      ],
+      "name": "InvalidBalanceLimit",
+      "signature": "InvalidBalanceLimit(uint256)",
+      "selector": "0x2a9f5c1f",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:42"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:42"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "specified",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "current",
+          "type": "uint256"
+        }
+      ],
+      "name": "InvalidBalanceLimitTimestamp",
+      "signature": "InvalidBalanceLimitTimestamp(uint256,uint256)",
+      "selector": "0x774a2d38",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:39"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:39"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "InvalidInitialization",
+      "signature": "InvalidInitialization()",
+      "selector": "0xf92ee8a9",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/utils/Initializable.sol:13"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/utils/Initializable.sol:13"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "InvalidPermit",
+      "signature": "InvalidPermit()",
+      "selector": "0xddafbaef",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:42"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20.sol:42"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "scheduleId",
+          "type": "uint256"
+        }
+      ],
+      "name": "InvalidSchedule",
+      "signature": "InvalidSchedule(uint256)",
+      "selector": "0x52fbb5df",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:33"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:33"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "limit",
+          "type": "uint256"
+        }
+      ],
+      "name": "MaxPreMintPerAddressExceeded",
+      "signature": "MaxPreMintPerAddressExceeded(uint256,uint256)",
+      "selector": "0x0887f672",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:51"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:51"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "limit",
+          "type": "uint256"
+        }
+      ],
+      "name": "MaxTotalPreMintExceeded",
+      "signature": "MaxTotalPreMintExceeded(uint256,uint256)",
+      "selector": "0x23f3f88b",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:54"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:54"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "limit",
+          "type": "uint256"
+        }
+      ],
+      "name": "MaxTotalVestedExceeded",
+      "signature": "MaxTotalVestedExceeded(uint256,uint256)",
+      "selector": "0x05767d17",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:57"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:57"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "NewOwnerIsZeroAddress",
+      "signature": "NewOwnerIsZeroAddress()",
+      "selector": "0x7448fbae",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:23"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/auth/Ownable.sol:23"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "NoHandoverRequest",
+      "signature": "NoHandoverRequest()",
+      "selector": "0x6f5e8818",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:26"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/auth/Ownable.sol:26"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "NoReleasableAmount",
+      "signature": "NoReleasableAmount()",
+      "selector": "0x47b048bc",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:24"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:24"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "NotInitializing",
+      "signature": "NotInitializing()",
+      "selector": "0xd7e6bcf8",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/utils/Initializable.sol:16"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/utils/Initializable.sol:16"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "Permit2AllowanceIsFixedAtInfinity",
+      "signature": "Permit2AllowanceIsFixedAtInfinity()",
+      "selector": "0x3f68539a",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:48"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20.sol:48"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "PermitExpired",
+      "signature": "PermitExpired()",
+      "selector": "0x1a15a3cc",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:45"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20.sol:45"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "PoolAlreadyLocked",
+      "signature": "PoolAlreadyLocked()",
+      "selector": "0x5b3d9c43",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:18"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:18"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "PoolAlreadyUnlocked",
+      "signature": "PoolAlreadyUnlocked()",
+      "selector": "0x4bc0a9fb",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:21"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:21"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "PoolLocked",
+      "signature": "PoolLocked()",
+      "selector": "0x2e136745",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:15"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:15"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "TotalSupplyOverflow",
+      "signature": "TotalSupplyOverflow()",
+      "selector": "0xe5cfe957",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/tokens/ERC20.sol:27"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/tokens/ERC20.sol:27"
+        ]
+      }
+    },
+    {
+      "inputs": [],
+      "name": "Unauthorized",
+      "signature": "Unauthorized()",
+      "selector": "0x82b42900",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "lib/solady/src/auth/Ownable.sol:20"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "lib/solady/src/auth/Ownable.sol:20"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "scheduleId",
+          "type": "uint256"
+        }
+      ],
+      "name": "UnknownScheduleId",
+      "signature": "UnknownScheduleId(uint256)",
+      "selector": "0x4ed2e7cf",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "src/tokens/DopplerERC20V1.sol:30"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "src/tokens/DopplerERC20V1.sol:30"
+        ]
+      }
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+        "locator": "ABI entry[0]"
+      },
+      "type": "constructor"
+    }
+  ],
+  "runtime_review": [],
+  "source_files": [
+    {
+      "path": "src/tokens/DopplerERC20V1.sol",
+      "sha256": "7c1a5a54e12c663aea35611a4b0decb5788ff3b273f1f2dbabc70133103414ee",
+      "line_count": 602,
+      "function_declarations": [
+        {
+          "name": "initialize",
+          "line": 189
+        },
+        {
+          "name": "lockPool",
+          "line": 304
+        },
+        {
+          "name": "unlockPool",
+          "line": 312
+        },
+        {
+          "name": "disableBalanceLimit",
+          "line": 324
+        },
+        {
+          "name": "burn",
+          "line": 338
+        },
+        {
+          "name": "updateTokenURI",
+          "line": 350
+        },
+        {
+          "name": "release",
+          "line": 365
+        },
+        {
+          "name": "release",
+          "line": 374
+        },
+        {
+          "name": "releaseFor",
+          "line": 385
+        },
+        {
+          "name": "releaseFor",
+          "line": 395
+        },
+        {
+          "name": "vestingScheduleCount",
+          "line": 404
+        },
+        {
+          "name": "getScheduleIdsOf",
+          "line": 413
+        },
+        {
+          "name": "computeAvailableVestedAmount",
+          "line": 423
+        },
+        {
+          "name": "computeAvailableVestedAmount",
+          "line": 432
+        },
+        {
+          "name": "_available",
+          "line": 450
+        },
+        {
+          "name": "_hasTransientSchedule",
+          "line": 474
+        },
+        {
+          "name": "_setTransientSchedule",
+          "line": 478
+        },
+        {
+          "name": "_transientScheduleSlot",
+          "line": 482
+        },
+        {
+          "name": "_releaseFor",
+          "line": 492
+        },
+        {
+          "name": "_releaseAllFor",
+          "line": 510
+        },
+        {
+          "name": "name",
+          "line": 556
+        },
+        {
+          "name": "symbol",
+          "line": 561
+        },
+        {
+          "name": "_beforeTokenTransfer",
+          "line": 566
+        },
+        {
+          "name": "_givePermit2InfiniteAllowance",
+          "line": 586
+        },
+        {
+          "name": "_afterTokenTransfer",
+          "line": 591
+        },
+        {
+          "name": "_setOwner",
+          "line": 596
+        }
+      ]
+    },
+    {
+      "path": "lib/solady/src/auth/Ownable.sol",
+      "sha256": "a74625ee15f4872b773cd4730c9b578db57455eb1005ea35f120b5e01e49f753",
+      "line_count": 278,
+      "function_declarations": [
+        {
+          "name": "_guardInitializeOwner",
+          "line": 85
+        },
+        {
+          "name": "_initializeOwner",
+          "line": 94
+        },
+        {
+          "name": "_setOwner",
+          "line": 124
+        },
+        {
+          "name": "_checkOwner",
+          "line": 151
+        },
+        {
+          "name": "_ownershipHandoverValidFor",
+          "line": 165
+        },
+        {
+          "name": "transferOwnership",
+          "line": 174
+        },
+        {
+          "name": "renounceOwnership",
+          "line": 186
+        },
+        {
+          "name": "requestOwnershipHandover",
+          "line": 192
+        },
+        {
+          "name": "cancelOwnershipHandover",
+          "line": 208
+        },
+        {
+          "name": "completeOwnershipHandover",
+          "line": 222
+        },
+        {
+          "name": "owner",
+          "line": 245
+        },
+        {
+          "name": "ownershipHandoverExpiresAt",
+          "line": 253
+        }
+      ]
+    },
+    {
+      "path": "lib/solady/src/tokens/ERC20.sol",
+      "sha256": "d03cd9ca3bbde25702d81d68343f44aad1add7de6d8eb63a08e4a808a5af524b",
+      "line_count": 670,
+      "function_declarations": [
+        {
+          "name": "name",
+          "line": 132
+        },
+        {
+          "name": "symbol",
+          "line": 135
+        },
+        {
+          "name": "decimals",
+          "line": 138
+        },
+        {
+          "name": "totalSupply",
+          "line": 147
+        },
+        {
+          "name": "balanceOf",
+          "line": 155
+        },
+        {
+          "name": "allowance",
+          "line": 165
+        },
+        {
+          "name": "approve",
+          "line": 186
+        },
+        {
+          "name": "transfer",
+          "line": 217
+        },
+        {
+          "name": "transferFrom",
+          "line": 257
+        },
+        {
+          "name": "_constantNameHash",
+          "line": 355
+        },
+        {
+          "name": "_versionHash",
+          "line": 358
+        },
+        {
+          "name": "_incrementNonce",
+          "line": 363
+        },
+        {
+          "name": "nonces",
+          "line": 375
+        },
+        {
+          "name": "permit",
+          "line": 389
+        },
+        {
+          "name": "DOMAIN_SEPARATOR",
+          "line": 472
+        },
+        {
+          "name": "_mint",
+          "line": 496
+        },
+        {
+          "name": "_burn",
+          "line": 529
+        },
+        {
+          "name": "_transfer",
+          "line": 559
+        },
+        {
+          "name": "_spendAllowance",
+          "line": 594
+        },
+        {
+          "name": "_approve",
+          "line": 622
+        },
+        {
+          "name": "_beforeTokenTransfer",
+          "line": 652
+        },
+        {
+          "name": "_afterTokenTransfer",
+          "line": 656
+        },
+        {
+          "name": "_givePermit2InfiniteAllowance",
+          "line": 667
+        }
+      ]
+    },
+    {
+      "path": "lib/solady/src/tokens/ERC20Votes.sol",
+      "sha256": "13c1f08956c87625424f169cef9a7a2853bcdb27acbed2f4235e8d4738a38202",
+      "line_count": 458,
+      "function_declarations": [
+        {
+          "name": "CLOCK_MODE",
+          "line": 95
+        },
+        {
+          "name": "clock",
+          "line": 100
+        },
+        {
+          "name": "getVotes",
+          "line": 114
+        },
+        {
+          "name": "getPastVotes",
+          "line": 119
+        },
+        {
+          "name": "delegates",
+          "line": 130
+        },
+        {
+          "name": "delegate",
+          "line": 140
+        },
+        {
+          "name": "delegateBySig",
+          "line": 145
+        },
+        {
+          "name": "checkpointCount",
+          "line": 206
+        },
+        {
+          "name": "checkpointAt",
+          "line": 215
+        },
+        {
+          "name": "getVotesTotalSupply",
+          "line": 236
+        },
+        {
+          "name": "getPastVotesTotalSupply",
+          "line": 241
+        },
+        {
+          "name": "_getVotingUnits",
+          "line": 252
+        },
+        {
+          "name": "_afterTokenTransfer",
+          "line": 257
+        },
+        {
+          "name": "_transferVotingUnits",
+          "line": 266
+        },
+        {
+          "name": "_moveDelegateVotes",
+          "line": 278
+        },
+        {
+          "name": "_delegate",
+          "line": 308
+        },
+        {
+          "name": "_delegateCheckpointsSlot",
+          "line": 329
+        },
+        {
+          "name": "_checkpointPushDiff",
+          "line": 339
+        },
+        {
+          "name": "_checkpointLatest",
+          "line": 396
+        },
+        {
+          "name": "_checkpointUpperLookupRecent",
+          "line": 409
+        },
+        {
+          "name": "_revertERC5805FutureLookup",
+          "line": 451
+        }
+      ]
+    },
+    {
+      "path": "lib/solady/src/utils/Initializable.sol",
+      "sha256": "1ec7bb5fa9aaca4a6cec733fa710759a904d83e7b8ef48a946c03fe242ea5d8a",
+      "line_count": 185,
+      "function_declarations": [
+        {
+          "name": "_initializableSlot",
+          "line": 47
+        },
+        {
+          "name": "_checkInitializing",
+          "line": 130
+        },
+        {
+          "name": "_disableInitializers",
+          "line": 148
+        },
+        {
+          "name": "_getInitializedVersion",
+          "line": 169
+        },
+        {
+          "name": "_isInitializing",
+          "line": 178
+        }
+      ]
+    },
+    {
+      "path": "lib/solady/src/utils/LibTransient.sol",
+      "sha256": "ddabc97d5cb3f72e3d4d54ef90c0cd9ae43a8f7a324561673d8a0c7b96e14792",
+      "line_count": 756,
+      "function_declarations": [
+        {
+          "name": "tUint256",
+          "line": 59
+        },
+        {
+          "name": "tUint256",
+          "line": 67
+        },
+        {
+          "name": "get",
+          "line": 75
+        },
+        {
+          "name": "getCompat",
+          "line": 83
+        },
+        {
+          "name": "set",
+          "line": 88
+        },
+        {
+          "name": "setCompat",
+          "line": 96
+        },
+        {
+          "name": "clear",
+          "line": 102
+        },
+        {
+          "name": "clearCompat",
+          "line": 110
+        },
+        {
+          "name": "inc",
+          "line": 116
+        },
+        {
+          "name": "incCompat",
+          "line": 121
+        },
+        {
+          "name": "inc",
+          "line": 126
+        },
+        {
+          "name": "incCompat",
+          "line": 131
+        },
+        {
+          "name": "dec",
+          "line": 136
+        },
+        {
+          "name": "decCompat",
+          "line": 141
+        },
+        {
+          "name": "dec",
+          "line": 146
+        },
+        {
+          "name": "decCompat",
+          "line": 151
+        },
+        {
+          "name": "incSigned",
+          "line": 156
+        },
+        {
+          "name": "incSignedCompat",
+          "line": 171
+        },
+        {
+          "name": "decSigned",
+          "line": 191
+        },
+        {
+          "name": "decSignedCompat",
+          "line": 206
+        },
+        {
+          "name": "tInt256",
+          "line": 230
+        },
+        {
+          "name": "tInt256",
+          "line": 238
+        },
+        {
+          "name": "get",
+          "line": 246
+        },
+        {
+          "name": "getCompat",
+          "line": 254
+        },
+        {
+          "name": "set",
+          "line": 259
+        },
+        {
+          "name": "setCompat",
+          "line": 267
+        },
+        {
+          "name": "clear",
+          "line": 273
+        },
+        {
+          "name": "clearCompat",
+          "line": 281
+        },
+        {
+          "name": "inc",
+          "line": 287
+        },
+        {
+          "name": "incCompat",
+          "line": 292
+        },
+        {
+          "name": "inc",
+          "line": 297
+        },
+        {
+          "name": "incCompat",
+          "line": 302
+        },
+        {
+          "name": "dec",
+          "line": 307
+        },
+        {
+          "name": "decCompat",
+          "line": 312
+        },
+        {
+          "name": "dec",
+          "line": 317
+        },
+        {
+          "name": "decCompat",
+          "line": 322
+        },
+        {
+          "name": "tBytes32",
+          "line": 331
+        },
+        {
+          "name": "tBytes32",
+          "line": 339
+        },
+        {
+          "name": "get",
+          "line": 347
+        },
+        {
+          "name": "getCompat",
+          "line": 355
+        },
+        {
+          "name": "set",
+          "line": 360
+        },
+        {
+          "name": "setCompat",
+          "line": 368
+        },
+        {
+          "name": "clear",
+          "line": 374
+        },
+        {
+          "name": "clearCompat",
+          "line": 382
+        },
+        {
+          "name": "tAddress",
+          "line": 392
+        },
+        {
+          "name": "tAddress",
+          "line": 400
+        },
+        {
+          "name": "get",
+          "line": 408
+        },
+        {
+          "name": "getCompat",
+          "line": 416
+        },
+        {
+          "name": "set",
+          "line": 421
+        },
+        {
+          "name": "setCompat",
+          "line": 429
+        },
+        {
+          "name": "clear",
+          "line": 435
+        },
+        {
+          "name": "clearCompat",
+          "line": 443
+        },
+        {
+          "name": "tBool",
+          "line": 453
+        },
+        {
+          "name": "tBool",
+          "line": 461
+        },
+        {
+          "name": "get",
+          "line": 469
+        },
+        {
+          "name": "getCompat",
+          "line": 477
+        },
+        {
+          "name": "set",
+          "line": 482
+        },
+        {
+          "name": "setCompat",
+          "line": 490
+        },
+        {
+          "name": "clear",
+          "line": 500
+        },
+        {
+          "name": "clearCompat",
+          "line": 508
+        },
+        {
+          "name": "tBytes",
+          "line": 518
+        },
+        {
+          "name": "tBytes",
+          "line": 526
+        },
+        {
+          "name": "length",
+          "line": 534
+        },
+        {
+          "name": "lengthCompat",
+          "line": 542
+        },
+        {
+          "name": "get",
+          "line": 552
+        },
+        {
+          "name": "getCompat",
+          "line": 575
+        },
+        {
+          "name": "set",
+          "line": 600
+        },
+        {
+          "name": "setCompat",
+          "line": 618
+        },
+        {
+          "name": "setCalldata",
+          "line": 638
+        },
+        {
+          "name": "setCalldataCompat",
+          "line": 658
+        },
+        {
+          "name": "clear",
+          "line": 680
+        },
+        {
+          "name": "clearCompat",
+          "line": 688
+        },
+        {
+          "name": "_compat",
+          "line": 698
+        },
+        {
+          "name": "_compat",
+          "line": 708
+        },
+        {
+          "name": "_compat",
+          "line": 718
+        },
+        {
+          "name": "_compat",
+          "line": 728
+        },
+        {
+          "name": "_compat",
+          "line": 738
+        },
+        {
+          "name": "_compat",
+          "line": 748
+        }
+      ]
+    },
+    {
+      "path": "src/types/Wad.sol",
+      "sha256": "58df1b00418c6a4f749894fb627499c5769f7b07fb830a415cfaa410d66c565a",
+      "line_count": 5,
+      "function_declarations": []
+    }
+  ]
+}

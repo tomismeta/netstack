@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x872f9d8955b34e841227a92de755cd63042ab7a5",
+  "chain_id": 4663,
+  "address": "0x872F9D8955B34e841227a92dE755cd63042Ab7A5",
+  "contract_record": "assets/addresses/contracts/googl-msft-nvda-spcx-morpho-oracles.json",
+  "generation": "credit-oracle-spcx",
+  "provenance": [
+    {
+      "source_id": "netnet-credit-implementation-20261010-credit-oracle-spcx",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x872F9D8955B34e841227a92dE755cd63042Ab7A5",
+      "observed_on": "2026-10-10",
+      "locator": "deployed_bytecode; source absent"
+    }
+  ],
+  "functions": [],
+  "events": [],
+  "errors": [],
+  "constructors": [],
+  "special_entrypoints": [],
+  "completeness": {
+    "supplied_interface": "abi_unavailable",
+    "supplied_entry_count": 0,
+    "implementation": "runtime_identity_only",
+    "pinned_state": "not_obtained",
+    "dispatcher_evidence": {
+      "method": "PUSH4 EQ PUSHn JUMPI byte-pattern; incomplete and not semantic reachability proof",
+      "observed_selector_count": 12,
+      "unmatched_dispatcher_selectors": [
+        "0x06d37817",
+        "0x0b8ad9f6",
+        "0x150e89cb",
+        "0x1ab5b41a",
+        "0x1b1043c8",
+        "0x89a71afe",
+        "0x8b09578d",
+        "0xa035b1fe",
+        "0xce4b5bbe",
+        "0xe4955b3d",
+        "0xfc0c546a",
+        "0xfed0f855"
+      ]
+    },
+    "missing_evidence": [
+      "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+      "Independent compiler equivalence and exhaustive function reachability.",
+      "Verified implementation source/ABI; unknown selector economics and permissions."
+    ]
+  },
+  "runtime_evidence": {
+    "source_id": "netnet-credit-implementation-20261010-credit-oracle-spcx",
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x872F9D8955B34e841227a92dE755cd63042Ab7A5",
+    "observed_on": "2026-10-10",
+    "source_status": "source_and_deployed_abi_unavailable",
+    "source_file": null,
+    "source_sha256": null,
+    "runtime_sha256": "c75ed33c09575e30eb220b9ca0e49338e44fae32787c7b76ed69ee551239c20e",
+    "runtime_bytes": 2563,
+    "runtime_observation": "unpinned_explorer_response",
+    "compiler_version": null,
+    "proxy_type": null,
+    "implementations": [],
+    "additional_sources": [],
+    "constructor_bindings": null,
+    "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+  }
+}

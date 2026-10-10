@@ -1,0 +1,783 @@
+{
+  "schema_version": 1,
+  "source_id": "netnet-trading-entry-20261010",
+  "source_url": "https://trading.netnet.capital/assets/index-BViJKZuW.js",
+  "source_sha256": "b62b66a56fbaa9d7b387761108e99e72633369c14f3a8ad6fda8444ba9be70bc",
+  "reviewed_on": "2026-10-10",
+  "scope": "Exact bounded read-only executable subset. No transaction/write ABI. Publisher tuples and events; runtime identities independently fetched from explorer, not independent RPC verification. Fixed-supply LOSE distribution is not OI.",
+  "margin_libraries": [
+    {"address": "0xa8ad2540af00381b8acd7e41fa6fdb7e0a1fd048", "family": "marginListerLib"},
+    {"address": "0x39ce3cf58d65c96c86803556e4091f735efdab17", "family": "marginSettleLib"}
+  ],
+  "models": [
+    {
+      "id": "perpV1StreamConstructorTemplate",
+      "family": "futures",
+      "stream_market": true,
+      "runtime_bytes": 23475,
+      "normalized_sha256": "668148d67ef8bfb14fd47ecdd4c87bd9bd82cfdb761a119611e9d072500bfb1b",
+      "source_id": "netlong-futures-explorer-20261010-btc",
+      "runtime_source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xcA728E8ee6c8D59C1a3aBDF1DeA43f2f4a63C575",
+      "evidence": "BTC/ETH/SOL embedded creation runtime identical including metadata. All 49 masked PUSH32 words match constructor MSTORE offsets; repeated words must agree. Only streamId and tapeFeedId may vary from this pinned constructor configuration. Not Solidity/compiler source verification.",
+      "immutable_ranges": [[873,32],[1084,32],[1149,32],[1212,32],[1776,32],[1834,32],[1999,32],[2475,32],[2514,32],[2553,32],[2592,32],[3038,32],[3190,32],[4254,32],[4446,32],[5037,32],[5170,32],[5760,32],[5895,32],[5937,32],[6097,32],[6507,32],[8431,32],[8584,32],[8755,32],[10216,32],[10369,32],[10418,32],[10490,32],[10618,32],[10763,32],[10796,32],[11967,32],[12109,32],[12398,32],[12633,32],[12780,32],[13249,32],[14195,32],[14355,32],[14948,32],[16666,32],[16819,32],[16868,32],[16985,32],[17082,32],[18597,32],[18741,32],[19287,32]],
+      "immutable_groups": [
+        {"name": "halter", "offsets": [1999,3190], "expected_word": "000000000000000000000000a849eab402c34bcfe1e74e542a85657e49521054"},
+        {"name": "tapeFeedId", "offsets": [2475,12780]},
+        {"name": "tapeVerifier", "offsets": [1212,12633], "expected_word": "0000000000000000000000009cc4e5fc9149eeae154273c52292f3bb350233fb"},
+        {"name": "streamId", "offsets": [2514,10796]},
+        {"name": "verifierProxy", "offsets": [1149,10763], "expected_word": "000000000000000000000000ce73c8ad08cbdeaca6078bf0627c8fe0a9a536e7"},
+        {"name": "loseDistributor", "offsets": [1834,19287], "expected_word": "0000000000000000000000001dedda4de44f406fd25cdd3a22abb8e524368719"},
+        {"name": "takerBps", "offsets": [2553,14948], "expected_word": "0000000000000000000000000000000000000000000000000000000000000032"},
+        {"name": "maintenanceBps", "offsets": [873,13249], "expected_word": "0000000000000000000000000000000000000000000000000000000000000064"},
+        {"name": "maxLeverageX", "offsets": [1084,5895,10369,10418,12109,16819,16868], "expected_word": "000000000000000000000000000000000000000000000000000000000000000a"},
+        {"name": "oracle", "offsets": [1776,3038,4254,4446,5037,5760,5937,8755,10216,10490,11967,16666,18597,18741], "expected_word": "00000000000000000000000090f5b57a7236a1447ce786b1ebe42433e55d9fd0"},
+        {"name": "vault", "offsets": [2592,5170,6097,6507,8431,8584,10618,12398,14195,14355,16985,17082], "expected_word": "00000000000000000000000050dc51ce9e633bed99d1d826fa0e2caac3183bf6"}
+      ]
+    },
+    {
+      "id": "marginListerLib",
+      "family": "marginListerLib",
+      "runtime_bytes": 11041,
+      "normalized_sha256": "89fee49c841b5587cebe1c8118cee5d867946206e0a8bbe2b31dfc47761bef32",
+      "immutable_ranges": [],
+      "source_id": "netlong-margin-lister-lib-explorer-20261010",
+      "runtime_source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xA8Ad2540Af00381b8acD7e41fa6FdB7E0A1FD048"
+    },
+    {
+      "id": "marginSettleLib",
+      "family": "marginSettleLib",
+      "runtime_bytes": 10741,
+      "normalized_sha256": "a484f98a1ed21f3c57a0dae8573b16834a583134a1a04998318a982fa33dbf3f",
+      "immutable_ranges": [],
+      "source_id": "netlong-margin-settle-lib-explorer-20261010",
+      "runtime_source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x39Ce3cf58d65c96c86803556e4091F735efDaB17"
+    },
+    {
+      "id": "perpV1Vault",
+      "family": "vault",
+      "runtime_bytes": 17874,
+      "normalized_sha256": "cdf15f1c649e2b46728ac5d9c9a41662147d02c8ecd3f131fa9515599c0801dd",
+      "immutable_ranges": [],
+      "source_id": "netlong-futures-explorer-20261010-vault",
+      "runtime_source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x50dC51CE9e633bed99D1D826fa0E2CaAc3183bF6",
+      "evidence": "Exact explorer-observed runtime bytes, not source-verified Solidity or a complete contract audit."
+    },
+    {
+      "id": "perpV1MarginOracle",
+      "family": "oracle",
+      "runtime_bytes": 3065,
+      "normalized_sha256": "5a5fbec31d6c98340aafa033212d76761262a9f57ba101ec17495e3fcf813b84",
+      "immutable_ranges": [],
+      "source_id": "netlong-futures-explorer-20261010-oracle",
+      "runtime_source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x90f5B57A7236A1447Ce786B1ebE42433e55D9fD0",
+      "evidence": "Exact explorer-observed runtime bytes, not source-verified Solidity or a complete contract audit."
+    },
+    {
+      "id": "perpV1DeskBtc",
+      "family": "futures",
+      "stream_market": true,
+      "runtime_bytes": 23475,
+      "normalized_sha256": "67d24d59d2be5eed24188df2d1711c8161851d3741edd73813f2b1b5510206b3",
+      "immutable_ranges": [],
+      "source_id": "netlong-futures-explorer-20261010-btc",
+      "runtime_source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xcA728E8ee6c8D59C1a3aBDF1DeA43f2f4a63C575",
+      "evidence": "Exact explorer-observed runtime bytes, not source-verified Solidity or a complete contract audit."
+    },
+    {
+      "id": "perpV1DeskEth",
+      "family": "futures",
+      "stream_market": true,
+      "runtime_bytes": 23475,
+      "normalized_sha256": "b99ca3da4b44d9bae05630494bb285a74c82cb49b3b1c0cfd088c9ff8e6d678d",
+      "immutable_ranges": [],
+      "source_id": "netlong-futures-explorer-20261010-eth",
+      "runtime_source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x8784014A4CaFEC70Bbc2aE678c59BBe64dbE7858",
+      "evidence": "Exact explorer-observed runtime bytes, not source-verified Solidity or a complete contract audit."
+    },
+    {
+      "id": "perpV1DeskSol",
+      "family": "futures",
+      "stream_market": true,
+      "runtime_bytes": 23475,
+      "normalized_sha256": "55b6766da22bc83cf55e5782935bb2498b67a5d40fe4ad5ec9ecb1b612236a6f",
+      "immutable_ranges": [],
+      "source_id": "netlong-futures-explorer-20261010-sol",
+      "runtime_source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x87b14A8e5304e35B0CbDDaBA3454587B85Ff2470",
+      "evidence": "Exact explorer-observed runtime bytes, not source-verified Solidity or a complete contract audit."
+    },
+    {
+      "id": "perpV1DeskNet",
+      "family": "futures",
+      "runtime_bytes": 20666,
+      "normalized_sha256": "2269f9f3b704f747eab1dd18f6813b62d36592b239b5a027e66477e6c93c037a",
+      "immutable_ranges": [],
+      "source_id": "netlong-futures-explorer-20261010-net",
+      "runtime_source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x77D247Ec5E2094E8226BCC1A5b8bfB8A903Bb00f",
+      "evidence": "Exact explorer-observed runtime bytes, not source-verified Solidity or a complete contract audit."
+    },
+    {
+      "id": "marginDesk",
+      "family": "margin",
+      "runtime_bytes": 24403,
+      "normalized_sha256": "17b0806d172eab539e3fd362416666284dfb8656d2b93ec5b73e75cf4593555f",
+      "immutable_ranges": [],
+      "source_id": "netlong-margin-desk-explorer-20261010",
+      "runtime_source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xE1685b19367E066af3e499DD4B0E51866B762c84",
+      "evidence": "Exact explorer-observed runtime bytes, not source-verified Solidity or a complete contract audit."
+    },
+    {
+      "id": "marginLendingAccount",
+      "family": "pot",
+      "runtime_bytes": 11043,
+      "normalized_sha256": "53a8f0a67f812441c293d9cd7b42db7c2532e18328487eea8ffc6562c38811e7",
+      "immutable_ranges": [],
+      "source_id": "netlong-margin-lending-account-explorer-20261010",
+      "runtime_source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x068904944fCF4A18aB40cA112F385fAa430F60f2",
+      "evidence": "Exact explorer-observed runtime bytes, not source-verified Solidity or a complete contract audit."
+    },
+    {
+      "id": "marginTwapSource",
+      "family": "twap",
+      "runtime_bytes": 10666,
+      "normalized_sha256": "10d9e45363bb04e8445efff63d67d466d1ed0753e33f861212fd921cec093d42",
+      "immutable_ranges": [],
+      "source_id": "netlong-margin-twap-source-explorer-20261010",
+      "runtime_source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x2Ff4b46B6BF08ecAf0c374676b9a5baa15524311",
+      "evidence": "Exact explorer-observed runtime bytes, not source-verified Solidity or a complete contract audit."
+    }
+  ],
+  "vault_abi": [
+    {
+      "type": "function",
+      "name": "deskCount",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "deskAt",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "i",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "desks",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "desk",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tuple",
+          "components": [
+            {
+              "name": "registered",
+              "type": "bool"
+            },
+            {
+              "name": "skewShareBps",
+              "type": "uint16"
+            },
+            {
+              "name": "skewUsdWad",
+              "type": "int256"
+            },
+            {
+              "name": "oiUsdWad",
+              "type": "uint256"
+            },
+            {
+              "name": "lockedWs",
+              "type": "uint256"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "totalOiUsdWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ]
+    }
+  ],
+  "futures_abi": [
+    {"type": "function", "name": "streamId", "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "bytes32"}]},
+    {"type": "function", "name": "verifierProxy", "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "address"}]},
+    {"type": "function", "name": "tapeVerifier", "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "address"}]},
+    {
+      "type": "function",
+      "name": "vault",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "oracle",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "positions",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tuple",
+          "components": [
+            {
+              "name": "isLong",
+              "type": "bool"
+            },
+            {
+              "name": "fillRung",
+              "type": "uint8"
+            },
+            {
+              "name": "openedAt",
+              "type": "uint64"
+            },
+            {
+              "name": "lastTouch",
+              "type": "uint64"
+            },
+            {
+              "name": "sizeUsdWad",
+              "type": "uint128"
+            },
+            {
+              "name": "marginWs",
+              "type": "uint128"
+            },
+            {
+              "name": "entryPriceWad",
+              "type": "uint128"
+            },
+            {
+              "name": "entryCarryWad",
+              "type": "int128"
+            },
+            {
+              "name": "takeProfitWad",
+              "type": "uint128"
+            },
+            {
+              "name": "stopLossWad",
+              "type": "uint128"
+            },
+            {
+              "name": "pendingCloseId",
+              "type": "uint64"
+            },
+            {
+              "name": "underSince",
+              "type": "uint64"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "lastMark",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "tuple",
+          "components": [
+            {
+              "name": "priceWad",
+              "type": "uint128"
+            },
+            {
+              "name": "observedAt",
+              "type": "uint64"
+            },
+            {
+              "name": "rung",
+              "type": "uint8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "oiLongUsdWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "oiShortUsdWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "Filled",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "commitId",
+          "type": "uint256",
+          "indexed": true
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "isLong",
+          "type": "bool",
+          "indexed": false
+        },
+        {
+          "name": "sizeUsdWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "priceWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "rung",
+          "type": "uint8",
+          "indexed": false
+        },
+        {
+          "name": "marginWs",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "feeWs",
+          "type": "uint256",
+          "indexed": false
+        }
+      ]
+    }
+  ],
+  "margin_abi": [
+    {"type": "function", "name": "pot", "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "address"}]},
+    {"type": "function", "name": "marginOracle", "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "address"}]},
+    {"type": "function", "name": "twapSource", "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "address"}]},
+    {"type": "function", "name": "usdg", "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "address"}]},
+    {"type": "function", "name": "nextPositionId", "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "uint256"}]},
+    {
+      "type": "function",
+      "name": "listings",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "components": [
+            {
+              "name": "allowed",
+              "type": "bool"
+            },
+            {
+              "name": "measuredAt",
+              "type": "uint64"
+            },
+            {
+              "name": "tokenDecimals",
+              "type": "uint8"
+            },
+            {
+              "name": "listed",
+              "type": "bool"
+            },
+            {
+              "name": "probeOk",
+              "type": "bool"
+            },
+            {
+              "name": "ownerRisk",
+              "type": "bool"
+            },
+            {
+              "name": "pool",
+              "type": "address"
+            },
+            {
+              "name": "quoteIsWeth",
+              "type": "bool"
+            },
+            {
+              "name": "depthUsdWad",
+              "type": "uint128"
+            },
+            {
+              "name": "sigmaHBps",
+              "type": "uint32"
+            },
+            {
+              "name": "maxLeverageWad",
+              "type": "uint64"
+            },
+            {
+              "name": "safeCapUsdWad",
+              "type": "uint128"
+            },
+            {
+              "name": "safeMaxLeverageWad",
+              "type": "uint64"
+            },
+            {
+              "name": "capUsedWad",
+              "type": "uint128"
+            },
+            {
+              "name": "notionalUsdWad",
+              "type": "uint128"
+            },
+            {
+              "name": "totalShares",
+              "type": "uint128"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "tokenCount",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "tokenAt",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "i",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "marks",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "twapPriceWad",
+          "type": "uint256"
+        },
+        {
+          "name": "spotPriceWad",
+          "type": "uint256"
+        },
+        {
+          "name": "twapLive",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "opensAllowed",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "ok",
+          "type": "bool"
+        },
+        {
+          "name": "reason",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "positions",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "components": [
+            {
+              "name": "trader",
+              "type": "address"
+            },
+            {
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "name": "state",
+              "type": "uint8"
+            },
+            {
+              "name": "openedAt",
+              "type": "uint64"
+            },
+            {
+              "name": "lastTouch",
+              "type": "uint64"
+            },
+            {
+              "name": "underSince",
+              "type": "uint64"
+            },
+            {
+              "name": "deadline",
+              "type": "uint64"
+            },
+            {
+              "name": "marginWs",
+              "type": "uint128"
+            },
+            {
+              "name": "loanUsdg",
+              "type": "uint128"
+            },
+            {
+              "name": "scaledDebtWad",
+              "type": "uint128"
+            },
+            {
+              "name": "shares",
+              "type": "uint128"
+            },
+            {
+              "name": "entryPriceWad",
+              "type": "uint128"
+            },
+            {
+              "name": "notionalUsdWad",
+              "type": "uint128"
+            },
+            {
+              "name": "capShareWad",
+              "type": "uint128"
+            },
+            {
+              "name": "leverageWad",
+              "type": "uint64"
+            },
+            {
+              "name": "slipBps",
+              "type": "uint16"
+            },
+            {
+              "name": "maintenanceBps",
+              "type": "uint16"
+            },
+            {
+              "name": "maxPriceWad",
+              "type": "uint128"
+            },
+            {
+              "name": "minProceedsUsdg",
+              "type": "uint128"
+            },
+            {
+              "name": "sharesPending",
+              "type": "uint128"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "unitsOf",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "debtUsdg",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    }
+  ],
+  "pot_abi": [
+    {"type": "function", "name": "desk", "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "address"}]},
+    {"type": "function", "name": "usdg", "stateMutability": "view", "inputs": [], "outputs": [{"name": "", "type": "address"}]},
+    {
+      "type": "function",
+      "name": "totalPrincipalUsdg",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "totalDebtUsdg",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    }
+  ],
+  "token_abi": [
+    {
+      "type": "function",
+      "name": "symbol",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "decimals",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "balanceOf",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ]
+    }
+  ]
+}

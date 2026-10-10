@@ -1,0 +1,74 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x583e00f04cca3e42b8d20b5e67ba6e9e0b454c3f",
+      "chain_id": 4663,
+      "address": "0x583e00F04CcA3e42B8D20B5e67ba6e9e0B454C3F",
+      "role": "Predict HIGHER #3",
+      "aliases": [
+        "HIGHER #3",
+        "HI-3"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "series_specific_indexed_creation_observed",
+      "lifecycle_notes": "Series-specific indexed identity, not an evergreen outcome or House share. CREATE trace from PredictDesk and metadata establish identity/date/name/scale, not current trading, source correctness, settlement or payout.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-predict-series-3-indexed-20261007",
+          "locator": "Successful CREATE trace 27; token/address name and decimals",
+          "evidence_kind": "explorer_indexed_creation_and_token_metadata",
+          "observed_on": "2026-10-07"
+        },
+        {
+          "source_id": "netnet-predict-runtime-depth-20261010",
+          "locator": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x583e00F04CcA3e42B8D20B5e67ba6e9e0B454C3F deployed_bytecode;1993bytes;Keccak256=0x1e885071188ec8e93373085aafb1569fae587912b48aa61ffd2564538b7718c7; exact variant identity only, no current supply/holdings retained",
+          "evidence_kind": "explorer_runtime_identity",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "decimals": 18,
+      "series_id": 3,
+      "deployment_transaction_hash": "0x1bd5e6b337b56586f8c22379372bb332f9c9e171b3c74decb5c12ebbea0d8537",
+      "deployment_block_number": 74953161,
+      "deployment_at": "2026-09-28T16:48:45Z",
+      "desk_id": "robinhood-0x7ef9528408d99f98056922291048f0710001e015",
+      "desk_record": "assets/addresses/contracts/predict-desk-and-vault.json"
+    },
+    {
+      "id": "robinhood-0x07431db5f53c2cc14a80755a010a00a09785ad39",
+      "chain_id": 4663,
+      "address": "0x07431db5F53C2cC14a80755A010A00a09785ad39",
+      "role": "Predict LOWER #3",
+      "aliases": [
+        "LOWER #3",
+        "LO-3"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "series_specific_indexed_creation_observed",
+      "lifecycle_notes": "Series-specific indexed identity, not an evergreen outcome or House share. CREATE trace from PredictDesk and metadata establish identity/date/name/scale, not current trading, source correctness, settlement or payout.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-predict-series-3-indexed-20261007",
+          "locator": "Successful CREATE trace 28; token/address name and decimals",
+          "evidence_kind": "explorer_indexed_creation_and_token_metadata",
+          "observed_on": "2026-10-07"
+        },
+        {
+          "source_id": "netnet-predict-runtime-depth-20261010",
+          "locator": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x07431db5F53C2cC14a80755A010A00a09785ad39 deployed_bytecode;1993bytes;Keccak256=0x1e885071188ec8e93373085aafb1569fae587912b48aa61ffd2564538b7718c7; exact variant identity only, no current supply/holdings retained",
+          "evidence_kind": "explorer_runtime_identity",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "decimals": 18,
+      "series_id": 3,
+      "deployment_transaction_hash": "0x1bd5e6b337b56586f8c22379372bb332f9c9e171b3c74decb5c12ebbea0d8537",
+      "deployment_block_number": 74953161,
+      "deployment_at": "2026-09-28T16:48:45Z",
+      "desk_id": "robinhood-0x7ef9528408d99f98056922291048f0710001e015",
+      "desk_record": "assets/addresses/contracts/predict-desk-and-vault.json"
+    }
+  ]
+}

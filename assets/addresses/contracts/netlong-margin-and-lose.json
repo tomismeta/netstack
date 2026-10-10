@@ -1,0 +1,459 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x422e49df6da02bd19c92d6d0b3d9cbb324c53b77",
+      "chain_id": 4663,
+      "address": "0x422e49Df6DA02Bd19C92d6D0b3d9CBb324C53B77",
+      "role": "NetLong superseded marginDesk",
+      "aliases": [
+        "marginDesk superseded October8"
+      ],
+      "status": "historical_publisher_reported_superseded",
+      "live_chain_verification_status": "not_performed",
+      "lifecycle_notes": "Publisher identifies a superseded deployment; not a current discovery root or alias for its successor. Its runtime, complete interface, current claims and permissions were not independently reviewed.",
+      "provenance": [
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "marginDesk registry superseded deployment note",
+          "evidence_kind": "public_publisher_registry",
+          "observed_on": "2026-10-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xf71b999d3cb520e4214f38262424c8d398b8e0a0",
+      "chain_id": 4663,
+      "address": "0xF71B999D3cb520E4214F38262424c8D398B8e0a0",
+      "role": "NetLong superseded loseToken",
+      "aliases": [
+        "loseToken superseded October8"
+      ],
+      "status": "historical_publisher_reported_superseded",
+      "live_chain_verification_status": "not_performed",
+      "lifecycle_notes": "Publisher identifies a superseded deployment; not a current discovery root or alias for its successor. Its runtime, complete interface, current claims and permissions were not independently reviewed.",
+      "provenance": [
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "loseToken registry superseded deployment note",
+          "evidence_kind": "public_publisher_registry",
+          "observed_on": "2026-10-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x37fec09ef3ce2f3e1d1566f0f451c60d1c772a94",
+      "chain_id": 4663,
+      "address": "0x37feC09Ef3cE2f3e1d1566F0f451c60d1C772a94",
+      "role": "NetLong superseded loseDistributor",
+      "aliases": [
+        "loseDistributor superseded October8"
+      ],
+      "status": "historical_publisher_reported_superseded",
+      "live_chain_verification_status": "not_performed",
+      "lifecycle_notes": "Publisher identifies a superseded deployment; not a current discovery root or alias for its successor. Its runtime, complete interface, current claims and permissions were not independently reviewed.",
+      "provenance": [
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "loseDistributor registry superseded deployment note",
+          "evidence_kind": "public_publisher_registry",
+          "observed_on": "2026-10-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xbd033f7bf613e6ecfb7539a5b939d16607bf0821",
+      "chain_id": 4663,
+      "address": "0xBd033f7BF613E6ECfb7539a5b939D16607BF0821",
+      "role": "NetLong superseded losePair",
+      "aliases": [
+        "losePair superseded October8"
+      ],
+      "status": "historical_publisher_reported_superseded",
+      "live_chain_verification_status": "not_performed",
+      "lifecycle_notes": "Publisher identifies a superseded deployment; not a current discovery root or alias for its successor. Its runtime, complete interface, current claims and permissions were not independently reviewed.",
+      "provenance": [
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "losePair registry superseded deployment note",
+          "evidence_kind": "public_publisher_registry",
+          "observed_on": "2026-10-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0xe1685b19367e066af3e499dd4b0e51866b762c84",
+      "chain_id": 4663,
+      "address": "0xE1685b19367E066af3e499DD4B0E51866B762c84",
+      "role": "NetLong MarginDesk: leveraged spot loan positions and listings",
+      "aliases": [
+        "marginDesk"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_deployment",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-margin-desk-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "marginDesk.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x068904944fcf4a18ab40ca112f385faa430f60f2",
+      "chain_id": 4663,
+      "address": "0x068904944fCF4A18aB40cA112F385fAa430F60f2",
+      "role": "NetLong MarginLendingAccount: USDG lender equity and debt",
+      "aliases": [
+        "marginLendingAccount"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_deployment",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-margin-lending-account-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "marginLendingAccount.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x56ae9dd336525a9c29a10e80963ccbcaf4b3cfa0",
+      "chain_id": 4663,
+      "address": "0x56AE9Dd336525A9C29a10E80963cCbCaF4b3CfA0",
+      "role": "NetLong MarginFeeRouter: fee conversion and NET burn",
+      "aliases": [
+        "marginFeeRouter"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_deployment",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-margin-fee-router-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "marginFeeRouter.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x2ff4b46b6bf08ecaf0c374676b9a5baa15524311",
+      "chain_id": 4663,
+      "address": "0x2Ff4b46B6BF08ecAf0c374676b9a5baa15524311",
+      "role": "NetLong MarginTwapSource: token marks and depth",
+      "aliases": [
+        "marginTwapSource"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_deployment",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-margin-twap-source-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "marginTwapSource.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x2d96bbf7859520ac6ecd2987a69e334b57de9de6",
+      "chain_id": 4663,
+      "address": "0x2D96BbF7859520Ac6EcD2987a69e334b57de9de6",
+      "role": "NetLong MarginRouteExecutor: bounded swap legs",
+      "aliases": [
+        "marginRouteExecutor"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_deployment",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-margin-route-executor-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "marginRouteExecutor.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xa8ad2540af00381b8acd7e41fa6fdb7e0a1fd048",
+      "chain_id": 4663,
+      "address": "0xA8Ad2540Af00381b8acD7e41fa6FdB7E0A1FD048",
+      "role": "NetLong MarginListerLib: linked listing/quote/risk library",
+      "aliases": [
+        "marginListerLib"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_deployment",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-margin-lister-lib-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "marginListerLib.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x39ce3cf58d65c96c86803556e4091f735efdab17",
+      "chain_id": 4663,
+      "address": "0x39Ce3cf58d65c96c86803556e4091F735efDaB17",
+      "role": "NetLong MarginSettleLib: linked settlement/exit library",
+      "aliases": [
+        "marginSettleLib"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_deployment",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-margin-settle-lib-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "marginSettleLib.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0xf4d567e3c0b7b24bd2f379db8249701a6f929e93",
+      "chain_id": 4663,
+      "address": "0xF4D567e3C0B7b24Bd2f379db8249701A6F929E93",
+      "role": "LOSE (LOSER) fixed-issuance transfer-tax token",
+      "aliases": [
+        "loseToken"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_deployment",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-lose-token-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "loseToken.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x1dedda4de44f406fd25cdd3a22abb8e524368719",
+      "chain_id": 4663,
+      "address": "0x1DEdDa4dE44f406FD25CdD3A22ABb8e524368719",
+      "role": "LOSE qualifying-loss distributor",
+      "aliases": [
+        "loseDistributor"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_deployment",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-lose-distributor-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "loseDistributor.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x718b03bcc00b1a585e6aa58c5d081170bee93b6e",
+      "chain_id": 4663,
+      "address": "0x718B03bcC00b1A585E6aA58c5d081170BEE93b6e",
+      "role": "LOSE/USDG Uniswap V2 pair",
+      "aliases": [
+        "losePair"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "current_publisher_deployment",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-lose-pair-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "losePair.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED"
+    },
+    {
+      "id": "robinhood-0x39dbed3a2bd333467115de45665cc57f813c4571",
+      "chain_id": 4663,
+      "address": "0x39dBED3a2bd333467115dE45665cC57F813C4571",
+      "role": "PONS (Pons) market token",
+      "aliases": [
+        "ponsToken"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "discovered_dependency",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-margin-pons-token-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "ponsToken.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "token_identity": {
+        "symbol": "PONS",
+        "decimals": 18,
+        "status": "publisher_metadata_and_source_behavior_not_fresh_getter"
+      }
+    },
+    {
+      "id": "robinhood-0x2e8c31162b855a2ffa90f6f8634643ad6f111e18",
+      "chain_id": 4663,
+      "address": "0x2E8c31162b855A2ffa90F6F8634643Ad6F111e18",
+      "role": "AI (Artificial Inu) EIP-1167 market-token clone",
+      "aliases": [
+        "artificialInuToken"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "discovered_dependency",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-margin-ai-token-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "artificialInuToken.address",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "token_identity": {
+        "symbol": "AI",
+        "decimals": 18,
+        "status": "publisher_metadata_and_source_behavior_not_fresh_getter"
+      },
+      "implementation_id": "robinhood-0x3be8b97fd0e713b5abe0649fa830223b6b4bc599"
+    },
+    {
+      "id": "robinhood-0x3be8b97fd0e713b5abe0649fa830223b6b4bc599",
+      "chain_id": 4663,
+      "address": "0x3Be8B97Fd0e713B5aBE0649Fa830223B6B4BC599",
+      "role": "AI DopplerERC20V1 fixed clone implementation",
+      "aliases": [
+        "artificialInuImplementation"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "discovered_dependency",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-margin-ai-implementation-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        }
+      ]
+    },
+    {
+      "id": "robinhood-0x69bfaf19c9f377bb306a89aed9f6b07e2c1a8d9a",
+      "chain_id": 4663,
+      "address": "0x69bfaf19c9f377bb306a89aed9f6b07e2c1a8d9a",
+      "role": "NetLong executor WETH/USDG Uniswap V3 bridge pool (fee500)",
+      "aliases": [
+        "marginExecutorDependency"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "discovered_dependency",
+      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "provenance": [
+        {
+          "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+          "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        }
+      ]
+    }
+  ]
+}

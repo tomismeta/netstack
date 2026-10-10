@@ -30,7 +30,9 @@
       "chain_id": 4663,
       "address": "0x9Cc4E5FC9149eEae154273C52292F3bb350233fb",
       "role": "dialupVerifier",
-      "aliases": [],
+      "aliases": [
+        "NetLong Futures fallback tape verifier"
+      ],
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
       "live_chain_verification_status": "not_performed",
@@ -46,6 +48,12 @@
           "locator": "dialupVerifier.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netlong-futures-explorer-20261010-tape-verifier",
+          "locator": "Current BTC/ETH/SOL constructor arg4 and verify(bytes) staticcall; source unavailable.",
+          "evidence_kind": "explorer_runtime_and_source_review_not_pinned_state",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED"

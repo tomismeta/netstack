@@ -1,0 +1,1793 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0xaff662814aa7cc80ac1577e03e123358cacc6a97",
+  "contract_record": "assets/addresses/contracts/coinflip-router-coin-token-and-credit-routers.json",
+  "chain_id": 4663,
+  "address": "0xaff662814Aa7cC80AC1577E03E123358CAcc6a97",
+  "generation": "credit",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit",
+      "observed_on": "2026-10-07"
+    },
+    {
+      "source_id": "netnet-credit-implementation-20261010-credit",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xaff662814Aa7cC80AC1577E03E123358CAcc6a97",
+      "observed_on": "2026-10-10",
+      "locator": "deployed_bytecode; source absent"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "publisher_interface_only",
+    "supplied_entry_count": 32,
+    "implementation": "runtime_identity_only",
+    "pinned_state": "not_obtained",
+    "dispatcher_evidence": {
+      "method": "PUSH4 EQ PUSHn JUMPI byte-pattern; incomplete and not semantic reachability proof",
+      "observed_selector_count": 32,
+      "unmatched_dispatcher_selectors": []
+    },
+    "missing_evidence": [
+      "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+      "Independent compiler equivalence and exhaustive function reachability.",
+      "Verified implementation source/ABI; unknown selector economics and permissions."
+    ]
+  },
+  "functions": [
+    {
+      "name": "MAX_LOOP_LTV_LOW_WAD",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MAX_LOOP_LTV_LOW_WAD()",
+      "selector": "0x9c10c2e0",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "MAX_LOOP_LTV_WAD",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MAX_LOOP_LTV_WAD()",
+      "selector": "0x931f9873",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "MAX_MOVE_PER_TX_RAW",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MAX_MOVE_PER_TX_RAW()",
+      "selector": "0xd6e7c1e9",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "MIN_BUFFER_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MIN_BUFFER_BPS()",
+      "selector": "0xaaa2ee1d",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "MIN_BUFFER_FLOOR_RAW",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MIN_BUFFER_FLOOR_RAW()",
+      "selector": "0x9d57893a",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "adapter",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IMorphoMarketV1AdapterV2"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "adapter()",
+      "selector": "0x03eadcfc",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "available",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "available(bytes32)",
+      "selector": "0x6932854f",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "borrow",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "collateralIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdgOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "borrow(bytes32,uint256,uint256,address)",
+      "selector": "0x021dc9ea",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "borrow",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "collateralIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdgOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "authorization",
+          "type": "tuple",
+          "internalType": "struct IMorphoBlue.Authorization",
+          "components": [
+            {
+              "name": "authorizer",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "authorized",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "isAuthorized",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "nonce",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "deadline",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        },
+        {
+          "name": "signature",
+          "type": "tuple",
+          "internalType": "struct IMorphoBlue.Signature",
+          "components": [
+            {
+              "name": "v",
+              "type": "uint8",
+              "internalType": "uint8"
+            },
+            {
+              "name": "r",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "s",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            }
+          ]
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "borrow(bytes32,uint256,uint256,address,(address,address,bool,uint256,uint256),(uint8,bytes32,bytes32))",
+      "selector": "0xb79bbc31",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "capRoom",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "room",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "capId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "capRoom(bytes32)",
+      "selector": "0x1c6c7dc6",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "delistMarket",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "delistMarket(bytes32)",
+      "selector": "0xa0252e9c",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "idle",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "idle(bytes32)",
+      "selector": "0xf3f84a6f",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "isListed",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isListed(bytes32)",
+      "selector": "0xecefbdc6",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "keeper",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "keeper()",
+      "selector": "0xaced1661",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "listMarket",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "listMarket(bytes32)",
+      "selector": "0xcbdf6e6f",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "listedMarkets",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32[]",
+          "internalType": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "listedMarkets()",
+      "selector": "0xa2cc35de",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "loop",
+      "inputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "pure",
+      "signature": "loop(bytes32,uint256,uint256,uint256)",
+      "selector": "0x93c92e0b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "loopbackMarketId",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "loopbackMarketId()",
+      "selector": "0x35665437",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "manager",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "manager()",
+      "selector": "0x481c6a75",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "marketCapId",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "marketCapId(bytes32)",
+      "selector": "0x32f28d84",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "marketParams",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct IMorphoBlue.MarketParams",
+          "components": [
+            {
+              "name": "loanToken",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "collateralToken",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "oracle",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "irm",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "lltv",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "marketParams(bytes32)",
+      "selector": "0x7fd065f9",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "minLoopbackBuffer",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "minLoopbackBuffer()",
+      "selector": "0xfc5a4156",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "morpho",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IMorphoBlue"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "morpho()",
+      "selector": "0xd8fbc833",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "movable",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "movable(bytes32)",
+      "selector": "0xc0a76850",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "repayAndWithdraw",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "usdgRepay",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "collateralOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "repayAndWithdraw(bytes32,uint256,uint256)",
+      "selector": "0xadbc8d90",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "setSwapAdapter",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "swapAdapter",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setSwapAdapter(bytes32,address)",
+      "selector": "0x0c74f7a1",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "swapAdapterOf",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "swapAdapterOf(bytes32)",
+      "selector": "0x1133f497",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "sweepToLoopback",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "sweepToLoopback(bytes32,uint256)",
+      "selector": "0x4f5faa36",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "unwind",
+      "inputs": [
+        {
+          "name": "",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "pure",
+      "signature": "unwind(bytes32,uint256,uint256)",
+      "selector": "0xbd26c7f0",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdg()",
+      "selector": "0xf5b91b7b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "vault",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IVaultV2"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "vault()",
+      "selector": "0xfbfa77cf",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    },
+    {
+      "name": "vaultIdle",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "vaultIdle()",
+      "selector": "0x111c8453",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit",
+        "locator": "Publisher interface; runtime selector only, implementation unavailable"
+      },
+      "permissions": {
+        "status": "unresolved",
+        "detail": "Cannot establish caller authorization from selector or ABI.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "unresolved",
+        "detail": "Named publisher interface; economic behavior not established from current implementation source. No inactive/zero inference."
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "Borrowed",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "collateralIn",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdgOut",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "receiver",
+          "type": "address",
+          "indexed": false,
+          "internalType": "address"
+        },
+        {
+          "name": "moved",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Borrowed(address,bytes32,uint256,uint256,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[33]"
+      },
+      "topic0": "0x58b4ef7f25d68097e89146e701c6628f70f58b6ead03d9a7872b19435fed1f21"
+    },
+    {
+      "name": "LeftIdle",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "assets",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "LeftIdle(bytes32,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[34]"
+      },
+      "topic0": "0x32570dd5167b4b68b58887489e09391c6a8cff829ac363e03bc7d0813916662c"
+    },
+    {
+      "name": "MarketDelisted",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        }
+      ],
+      "anonymous": false,
+      "signature": "MarketDelisted(bytes32)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[35]"
+      },
+      "topic0": "0xe1526bc344fdde594a79605f3313f37845891c255704c17712ffeb9812a32666"
+    },
+    {
+      "name": "MarketListed",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "collateral",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false,
+      "signature": "MarketListed(bytes32,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[36]"
+      },
+      "topic0": "0x9ca43f22547a0a51fa8c86acdc375ebc1b92bdb7d6f65ff01521463e108c2fcd"
+    },
+    {
+      "name": "Moved",
+      "inputs": [
+        {
+          "name": "fromMarketId",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "toMarketId",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "assets",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Moved(bytes32,bytes32,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[37]"
+      },
+      "topic0": "0x75f65150e382e19acfc5af9387873cdce488e9bbd3ed3cc3694e3325450901ab"
+    },
+    {
+      "name": "Repaid",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "usdgRepaid",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "sharesRepaid",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "collateralOut",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Repaid(address,bytes32,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[38]"
+      },
+      "topic0": "0xb534cf46876676dc25eed091a56291bb47ddf7931a9c46d437a66d0c919e74a9"
+    },
+    {
+      "name": "SwapAdapterSet",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "adapter",
+          "type": "address",
+          "indexed": false,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false,
+      "signature": "SwapAdapterSet(bytes32,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[39]"
+      },
+      "topic0": "0xe46d3cd9c578a5cffbb64a8ffd3a459196e38020b207427d0e35b8a604584841"
+    },
+    {
+      "name": "Swept",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "indexed": true,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "assets",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "by",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Swept(bytes32,uint256,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[40]"
+      },
+      "topic0": "0xd8885dc03c9edf850a2aa684ac6678af73ae0e269ccde4cc3575a6983985b01a"
+    }
+  ],
+  "errors": [
+    {
+      "name": "BadAuthorization",
+      "inputs": [],
+      "signature": "BadAuthorization()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[41]"
+      },
+      "selector": "0xb9738588"
+    },
+    {
+      "name": "BufferBreached",
+      "inputs": [
+        {
+          "name": "loopbackAfter",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "buffer",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "BufferBreached(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[42]"
+      },
+      "selector": "0x44ca859e"
+    },
+    {
+      "name": "CapRoomExceeded",
+      "inputs": [
+        {
+          "name": "capId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "need",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "room",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "CapRoomExceeded(bytes32,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[43]"
+      },
+      "selector": "0x3ca9b556"
+    },
+    {
+      "name": "InsufficientAllocation",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "allocation",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "InsufficientAllocation(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[44]"
+      },
+      "selector": "0xaf4956d0"
+    },
+    {
+      "name": "LoopbackIlliquid",
+      "inputs": [
+        {
+          "name": "need",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "idle",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "LoopbackIlliquid(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[45]"
+      },
+      "selector": "0x3eef82f9"
+    },
+    {
+      "name": "LoopbackNotListable",
+      "inputs": [],
+      "signature": "LoopbackNotListable()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[46]"
+      },
+      "selector": "0x0a9d176f"
+    },
+    {
+      "name": "MarketAlreadyListed",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "signature": "MarketAlreadyListed(bytes32)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[47]"
+      },
+      "selector": "0x23d42557"
+    },
+    {
+      "name": "MarketDoesNotExist",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "signature": "MarketDoesNotExist(bytes32)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[48]"
+      },
+      "selector": "0x095dbd40"
+    },
+    {
+      "name": "MarketIlliquid",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "idle",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "MarketIlliquid(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[49]"
+      },
+      "selector": "0xd9563b5a"
+    },
+    {
+      "name": "MarketNotListed",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "signature": "MarketNotListed(bytes32)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[50]"
+      },
+      "selector": "0x3b2b8905"
+    },
+    {
+      "name": "MarketUnknown",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "signature": "MarketUnknown(bytes32)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[51]"
+      },
+      "selector": "0x93a963e0"
+    },
+    {
+      "name": "MoveTooLarge",
+      "inputs": [
+        {
+          "name": "need",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "max",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "MoveTooLarge(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[52]"
+      },
+      "selector": "0xb62d3256"
+    },
+    {
+      "name": "NotAuthorized",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "signature": "NotAuthorized(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[53]"
+      },
+      "selector": "0x4a0bfec1"
+    },
+    {
+      "name": "NotManager",
+      "inputs": [],
+      "signature": "NotManager()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[54]"
+      },
+      "selector": "0xc0fc8a8a"
+    },
+    {
+      "name": "NotOperator",
+      "inputs": [],
+      "signature": "NotOperator()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[55]"
+      },
+      "selector": "0x7c214f04"
+    },
+    {
+      "name": "NotYet",
+      "inputs": [],
+      "signature": "NotYet()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[56]"
+      },
+      "selector": "0x0d3f7776"
+    },
+    {
+      "name": "Reentrancy",
+      "inputs": [],
+      "signature": "Reentrancy()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[57]"
+      },
+      "selector": "0xab143c06"
+    },
+    {
+      "name": "TransferFailed",
+      "inputs": [],
+      "signature": "TransferFailed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[58]"
+      },
+      "selector": "0x90b8ec18"
+    },
+    {
+      "name": "WrongIrm",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "signature": "WrongIrm(bytes32)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[59]"
+      },
+      "selector": "0x6cc8e9e7"
+    },
+    {
+      "name": "WrongLoanToken",
+      "inputs": [
+        {
+          "name": "marketId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "signature": "WrongLoanToken(bytes32)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[60]"
+      },
+      "selector": "0xb85b56ec"
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "signature": "ZeroAddress()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[61]"
+      },
+      "selector": "0xd92e233d"
+    },
+    {
+      "name": "ZeroAmount",
+      "inputs": [],
+      "signature": "ZeroAmount()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[62]"
+      },
+      "selector": "0x1f2a2005"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "vault_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "adapter_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "morpho_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "usdg_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "loopbackMarketId_",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "manager_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "keeper_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "initialMarkets",
+          "type": "bytes32[]",
+          "internalType": "bytes32[]"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _f, Unicode character offsets[691209,702332); consumer binding to credit; ABI entry[0]"
+      }
+    }
+  ],
+  "runtime_evidence": {
+    "source_id": "netnet-credit-implementation-20261010-credit",
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xaff662814Aa7cC80AC1577E03E123358CAcc6a97",
+    "observed_on": "2026-10-10",
+    "source_status": "source_and_deployed_abi_unavailable",
+    "source_file": null,
+    "source_sha256": null,
+    "runtime_sha256": "843b37bb65dae6925b090891926f26a78f73451c3c95e728a9c00f364b2707e7",
+    "runtime_bytes": 15135,
+    "runtime_observation": "unpinned_explorer_response",
+    "compiler_version": null,
+    "proxy_type": null,
+    "implementations": [],
+    "additional_sources": [],
+    "constructor_bindings": null,
+    "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+  }
+}

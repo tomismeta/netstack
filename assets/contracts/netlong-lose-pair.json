@@ -1,0 +1,1599 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x718b03bcc00b1a585e6aa58c5d081170bee93b6e",
+  "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+  "chain_id": 4663,
+  "address": "0x718B03bcC00b1A585E6aA58c5d081170BEE93b6e",
+  "generation": "netlong-lose-pair",
+  "provenance": [
+    {
+      "source_id": "netlong-lose-pair-explorer-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x718B03bcC00b1A585E6aA58c5d081170BEE93b6e",
+      "observed_on": "2026-10-10",
+      "locator": "Complete explorer smart-contract response; source/ABI attributed to verified twin0xb9C67A370D6c2E1426Df424E53430408aCe21A08. Separately retrieved twin endpoint reports is_verified=true and returns byte-for-byte identical indexed deployed_bytecode; no pinned RPC/compiler equivalence claim."
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "explorer_verified_twin_source_and_abi",
+    "supplied_entry_count": 34,
+    "implementation": "all_obtained_abi_functions_source_reviewed_not_compiler_equivalence",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+      "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+    ]
+  },
+  "runtime_identity": {
+    "byte_count": 11293,
+    "sha256": "8b5db55fa9ab3b9527508d4abe0b39eb588bf310270c8e04b3f38214e8ba63b4",
+    "keccak256": "0x5b83bdbcc56b2e630f2807bbadd2b0c21619108066b92a58de081261089e9ce5",
+    "evidence_kind": "explorer_indexed_unpinned_runtime",
+    "proxy_type": null,
+    "explorer_is_verified": false,
+    "explorer_is_fully_verified": false,
+    "verified_twin_address": "0xb9C67A370D6c2E1426Df424E53430408aCe21A08",
+    "verified_twin_runtime_equal": true,
+    "verified_twin_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xb9C67A370D6c2E1426Df424E53430408aCe21A08"
+  },
+  "functions": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "DOMAIN_SEPARATOR",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "DOMAIN_SEPARATOR()",
+      "selector": "0x3644e515",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:18; contracts/interfaces/IUniswapV2ERC20.sol:18"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "EIP-712 domain for permits; binds contract identity and chain domain."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "MINIMUM_LIQUIDITY",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "MINIMUM_LIQUIDITY()",
+      "selector": "0xba9a7a56",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:36"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Constant1000 raw LP permanently minted to zero on initial mint."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "PERMIT_TYPEHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "PERMIT_TYPEHASH()",
+      "selector": "0x30adf81f",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:19; contracts/interfaces/IUniswapV2ERC20.sol:19"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "EIP2612 Permit struct type hash."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "allowance(address,address)",
+      "selector": "0xdd62ed3e",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:12; contracts/interfaces/IERC20.sol:12; contracts/interfaces/IUniswapV2ERC20.sol:12"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Spender authorization in raw units; maximum uint256 is treated as non-decrementing infinite allowance."
+      }
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "signature": "approve(address,uint256)",
+      "selector": "0x095ea7b3",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:14; contracts/UniswapV2ERC20.sol:63; contracts/interfaces/IERC20.sol:14; contracts/interfaces/IUniswapV2ERC20.sol:14"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Caller sets spender allowance; no tokens move. Token-specific restrictions apply."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Caller sets spender allowance; no tokens move. Token-specific restrictions apply."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "balanceOf(address)",
+      "selector": "0x70a08231",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:11; contracts/interfaces/IERC20.sol:11; contracts/interfaces/IUniswapV2ERC20.sol:11"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Raw token units held by the supplied account; not position ownership, spendability or USD value."
+      }
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "burn",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "signature": "burn(address)",
+      "selector": "0x89afcb44",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/UniswapV2Pair.sol:134; contracts/interfaces/IUniswapV2Pair.sol:46"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Burns LP currently held by the pair, not arbitrary caller LP; sends pro-rata actual balances to recipient, then reads balances again. Outgoing LOSE taxes can make recipient net lower than reported gross."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Burns LP currently held by the pair, not arbitrary caller LP; sends pro-rata actual balances to recipient, then reads balances again. Outgoing LOSE taxes can make recipient net lower than reported gross."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "decimals()",
+      "selector": "0x313ce567",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:9; contracts/interfaces/IERC20.sol:9; contracts/interfaces/IUniswapV2ERC20.sol:9"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Display scale; 18 in the reviewed ERC20 implementations, not a conversion or valuation."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "factory",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "factory()",
+      "selector": "0xc45a0155",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:37"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Constructor msg.sender factory; feeTo controls protocol fee recipient."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getReserves",
+      "outputs": [
+        {
+          "internalType": "uint112",
+          "name": "_reserve0",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint112",
+          "name": "_reserve1",
+          "type": "uint112"
+        },
+        {
+          "internalType": "uint32",
+          "name": "_blockTimestampLast",
+          "type": "uint32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "getReserves()",
+      "selector": "0x0902f1ac",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/UniswapV2Pair.sol:38; contracts/interfaces/IUniswapV2Pair.sol:40"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Stored uint112 reserves and uint32 timestamp; reserves can differ from token balances."
+      }
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_token0",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_token1",
+          "type": "address"
+        }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "signature": "initialize(address,address)",
+      "selector": "0x485cc955",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/UniswapV2Pair.sol:66; contracts/interfaces/IUniswapV2Pair.sol:51"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Factory-only assigns token0/token1. Pair code itself has no once-only boolean; safety relies on factory deployment behavior."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Factory-only assigns token0/token1. Pair code itself has no once-only boolean; safety relies on factory deployment behavior."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "kLast",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "kLast()",
+      "selector": "0x7464fc3d",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:43"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reserve product captured at liquidity event when factory feeTo active; not current invariant by itself."
+      }
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "mint",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "liquidity",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "signature": "mint(address)",
+      "selector": "0x6a627842",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/UniswapV2Pair.sol:110; contracts/interfaces/IUniswapV2Pair.sol:45"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Permissionless liquidity mint using actual balance minus reserve; initial sqrt(amount0*amount1)-1000 and permanently locked1000 LP, later min pro-rata deposits. Calls protocol fee mint then updates reserves."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Permissionless liquidity mint using actual balance minus reserve; initial sqrt(amount0*amount1)-1000 and permanently locked1000 LP, later min pro-rata deposits. Calls protocol fee mint then updates reserves."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "name()",
+      "selector": "0x06fdde03",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:7; contracts/interfaces/IERC20.sol:7; contracts/interfaces/IUniswapV2ERC20.sol:7"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Token name metadata; not a unique identity."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "nonces",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "nonces(address)",
+      "selector": "0x7ecebe00",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:20; contracts/interfaces/IUniswapV2ERC20.sol:20"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Current signature nonce; not a transaction-count or trading-ledger metric."
+      }
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "v",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "r",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "s",
+          "type": "bytes32"
+        }
+      ],
+      "name": "permit",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "signature": "permit(address,address,uint256,uint256,uint8,bytes32,bytes32)",
+      "selector": "0xd505accf",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:22; contracts/UniswapV2ERC20.sol:81; contracts/interfaces/IUniswapV2ERC20.sol:22"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Signed EIP-2612 allowance update with deadline/signature and nonce consumption; no tokens move."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Signed EIP-2612 allowance update with deadline/signature and nonce consumption; no tokens move."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "price0CumulativeLast",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "price0CumulativeLast()",
+      "selector": "0x5909c0d5",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:41"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "UQ112x112 time-integral of reserve1/reserve0 at last update, wraps intentionally; not a price by itself."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "price1CumulativeLast",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "price1CumulativeLast()",
+      "selector": "0x5a3d5493",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:42"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reverse UQ112x112 reserve-price time-integral; needs timestamps and observations."
+      }
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "skim",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "signature": "skim(address)",
+      "selector": "0xbc25cf77",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/UniswapV2Pair.sol:190; contracts/interfaces/IUniswapV2Pair.sol:48"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Permissionless sweep of balances above stored reserves to recipient. Unsynced deposits/donations are not protected liquidity and LOSE outgoing tax can apply."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Permissionless sweep of balances above stored reserves to recipient. Unsynced deposits/donations are not protected liquidity and LOSE outgoing tax can apply."
+      }
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount0Out",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount1Out",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "swap",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "signature": "swap(uint256,uint256,address,bytes)",
+      "selector": "0x022c0d9f",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/UniswapV2Pair.sol:159; contracts/interfaces/IUniswapV2Pair.sol:47"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Optimistic outputs then optional uniswapV2Call callback; derives actual inputs from post-call balances, enforces (1000*b0-3*in0)*(1000*b1-3*in1)>=1e6*r0*r1.0.3% AMM fee is additional to LOSE transfer tax."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Optimistic outputs then optional uniswapV2Call callback; derives actual inputs from post-call balances, enforces (1000*b0-3*in0)*(1000*b1-3*in1)>=1e6*r0*r1.0.3% AMM fee is additional to LOSE transfer tax."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "symbol()",
+      "selector": "0x95d89b41",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:8; contracts/interfaces/IERC20.sol:8; contracts/interfaces/IUniswapV2ERC20.sol:8"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Token symbol metadata; identity is chain/address."
+      }
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "sync",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "signature": "sync()",
+      "selector": "0xfff6cae9",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/UniswapV2Pair.sol:198; contracts/interfaces/IUniswapV2Pair.sol:49"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Permissionless reset reserves to actual balances and update cumulative prices; not a liquidity mint."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Permissionless reset reserves to actual balances and update cumulative prices; not a liquidity mint."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "token0",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "token0()",
+      "selector": "0x0dfe1681",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:38"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Stored first pool token identity, not LOSE identity inferred from ordering."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "token1",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "token1()",
+      "selector": "0xd21220a7",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:39"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Stored second pool token identity."
+      }
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "signature": "totalSupply()",
+      "selector": "0x18160ddd",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:10; contracts/interfaces/IERC20.sol:10; contracts/interfaces/IUniswapV2ERC20.sol:10"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Current issued units less burns; distinct from original issuance and circulating/distributed supply."
+      }
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "signature": "transfer(address,uint256)",
+      "selector": "0xa9059cbb",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:15; contracts/UniswapV2ERC20.sol:68; contracts/interfaces/IERC20.sol:15; contracts/interfaces/IUniswapV2ERC20.sol:15"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Moves caller tokens after balance and token-specific transfer rules; no economic redemption."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Moves caller tokens after balance and token-specific transfer rules; no economic redemption."
+      }
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "signature": "transferFrom(address,address,uint256)",
+      "selector": "0x23b872dd",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:16; contracts/UniswapV2ERC20.sol:73; contracts/interfaces/IERC20.sol:16; contracts/interfaces/IUniswapV2ERC20.sol:16"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Moves from-account tokens using caller allowance; maximum allowance is not decremented; token-specific transfer rules apply."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Moves from-account tokens using caller allowance; maximum allowance is not decremented; token-specific transfer rules apply."
+      }
+    }
+  ],
+  "events": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "signature": "Approval(address,address,uint256)",
+      "topic0": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:4; contracts/UniswapV2ERC20.sol:21; contracts/interfaces/IERC20.sol:4; contracts/interfaces/IUniswapV2ERC20.sol:4"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/interfaces/IUniswapV2Pair.sol:4",
+          "contracts/UniswapV2ERC20.sol:21",
+          "contracts/interfaces/IERC20.sol:4",
+          "contracts/interfaces/IUniswapV2ERC20.sol:4"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "Burn",
+      "signature": "Burn(address,uint256,uint256,address)",
+      "topic0": "0xdccd412f0b1252819cb1fd330b93224ca42612892bb3f4f789976e6d81936496",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/UniswapV2Pair.sol:50; contracts/interfaces/IUniswapV2Pair.sol:25"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/UniswapV2Pair.sol:50",
+          "contracts/interfaces/IUniswapV2Pair.sol:25"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        }
+      ],
+      "name": "Mint",
+      "signature": "Mint(address,uint256,uint256)",
+      "topic0": "0x4c209b5fc8ad50758f13e2e1088ba56a560dff690a1c6fef26394f4c03821c4f",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/UniswapV2Pair.sol:49; contracts/interfaces/IUniswapV2Pair.sol:24"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/UniswapV2Pair.sol:49",
+          "contracts/interfaces/IUniswapV2Pair.sol:24"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount0In",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount1In",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount0Out",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount1Out",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "Swap",
+      "signature": "Swap(address,uint256,uint256,uint256,uint256,address)",
+      "topic0": "0xd78ad95fa46c994b6551d0da85fc275fe613ce37657fb8d5e3d130840159d822",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/UniswapV2Pair.sol:51; contracts/interfaces/IUniswapV2Pair.sol:26"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/UniswapV2Pair.sol:51",
+          "contracts/interfaces/IUniswapV2Pair.sol:26"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint112",
+          "name": "reserve0",
+          "type": "uint112"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint112",
+          "name": "reserve1",
+          "type": "uint112"
+        }
+      ],
+      "name": "Sync",
+      "signature": "Sync(uint112,uint112)",
+      "topic0": "0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/UniswapV2Pair.sol:59; contracts/interfaces/IUniswapV2Pair.sol:34"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/UniswapV2Pair.sol:59",
+          "contracts/interfaces/IUniswapV2Pair.sol:34"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "signature": "Transfer(address,address,uint256)",
+      "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "contracts/interfaces/IUniswapV2Pair.sol:5; contracts/UniswapV2ERC20.sol:22; contracts/interfaces/IERC20.sol:5; contracts/interfaces/IUniswapV2ERC20.sol:5"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/interfaces/IUniswapV2Pair.sol:5",
+          "contracts/UniswapV2ERC20.sol:22",
+          "contracts/interfaces/IERC20.sol:5",
+          "contracts/interfaces/IUniswapV2ERC20.sol:5"
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netlong-lose-pair-explorer-20261010",
+        "locator": "ABI entry[0]"
+      },
+      "type": "constructor"
+    }
+  ],
+  "runtime_review": [],
+  "source_files": [
+    {
+      "path": "contracts/UniswapV2Pair.sol",
+      "sha256": "43a5421b31415868367b62bfa161ca10bcee03778873faad905f5a3e2cce9cbd",
+      "line_count": 201,
+      "function_declarations": [
+        {
+          "name": "getReserves",
+          "line": 38
+        },
+        {
+          "name": "_safeTransfer",
+          "line": 44
+        },
+        {
+          "name": "initialize",
+          "line": 66
+        },
+        {
+          "name": "_update",
+          "line": 73
+        },
+        {
+          "name": "_mintFee",
+          "line": 89
+        },
+        {
+          "name": "mint",
+          "line": 110
+        },
+        {
+          "name": "burn",
+          "line": 134
+        },
+        {
+          "name": "swap",
+          "line": 159
+        },
+        {
+          "name": "skim",
+          "line": 190
+        },
+        {
+          "name": "sync",
+          "line": 198
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/IUniswapV2Pair.sol",
+      "sha256": "29c75e69ce173ff8b498584700fef76bc81498c1d98120e2877a1439f0c31b5a",
+      "line_count": 52,
+      "function_declarations": [
+        {
+          "name": "name",
+          "line": 7
+        },
+        {
+          "name": "symbol",
+          "line": 8
+        },
+        {
+          "name": "decimals",
+          "line": 9
+        },
+        {
+          "name": "totalSupply",
+          "line": 10
+        },
+        {
+          "name": "balanceOf",
+          "line": 11
+        },
+        {
+          "name": "allowance",
+          "line": 12
+        },
+        {
+          "name": "approve",
+          "line": 14
+        },
+        {
+          "name": "transfer",
+          "line": 15
+        },
+        {
+          "name": "transferFrom",
+          "line": 16
+        },
+        {
+          "name": "DOMAIN_SEPARATOR",
+          "line": 18
+        },
+        {
+          "name": "PERMIT_TYPEHASH",
+          "line": 19
+        },
+        {
+          "name": "nonces",
+          "line": 20
+        },
+        {
+          "name": "permit",
+          "line": 22
+        },
+        {
+          "name": "MINIMUM_LIQUIDITY",
+          "line": 36
+        },
+        {
+          "name": "factory",
+          "line": 37
+        },
+        {
+          "name": "token0",
+          "line": 38
+        },
+        {
+          "name": "token1",
+          "line": 39
+        },
+        {
+          "name": "getReserves",
+          "line": 40
+        },
+        {
+          "name": "price0CumulativeLast",
+          "line": 41
+        },
+        {
+          "name": "price1CumulativeLast",
+          "line": 42
+        },
+        {
+          "name": "kLast",
+          "line": 43
+        },
+        {
+          "name": "mint",
+          "line": 45
+        },
+        {
+          "name": "burn",
+          "line": 46
+        },
+        {
+          "name": "swap",
+          "line": 47
+        },
+        {
+          "name": "skim",
+          "line": 48
+        },
+        {
+          "name": "sync",
+          "line": 49
+        },
+        {
+          "name": "initialize",
+          "line": 51
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/Math.sol",
+      "sha256": "e4a9d451964a0689be2b244322a353de143ca4248d8736d91aca4ffadca4325f",
+      "line_count": 23,
+      "function_declarations": [
+        {
+          "name": "min",
+          "line": 6
+        },
+        {
+          "name": "sqrt",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/SafeMath.sol",
+      "sha256": "4b1c95ff75de7342e0fadff58064820a4eb7c2fcb422a75b4994980ce8e216ae",
+      "line_count": 17,
+      "function_declarations": [
+        {
+          "name": "add",
+          "line": 6
+        },
+        {
+          "name": "sub",
+          "line": 10
+        },
+        {
+          "name": "mul",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/UQ112x112.sol",
+      "sha256": "6633b57b0723b1d72e08cc3e8b29f0af838294e59863b6cdcce95a141ed02cdb",
+      "line_count": 20,
+      "function_declarations": [
+        {
+          "name": "encode",
+          "line": 12
+        },
+        {
+          "name": "uqdiv",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "path": "contracts/UniswapV2ERC20.sol",
+      "sha256": "b8ce88929ce2c93b8fce385f8d57701b1a64c600a95317ea5f3561d36297be32",
+      "line_count": 94,
+      "function_declarations": [
+        {
+          "name": "_mint",
+          "line": 40
+        },
+        {
+          "name": "_burn",
+          "line": 46
+        },
+        {
+          "name": "_approve",
+          "line": 52
+        },
+        {
+          "name": "_transfer",
+          "line": 57
+        },
+        {
+          "name": "approve",
+          "line": 63
+        },
+        {
+          "name": "transfer",
+          "line": 68
+        },
+        {
+          "name": "transferFrom",
+          "line": 73
+        },
+        {
+          "name": "permit",
+          "line": 81
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/IERC20.sol",
+      "sha256": "2b63f199f838028184efefbcfd6cf2b9192624c3dae5dc1116ecbb15c36a67e8",
+      "line_count": 17,
+      "function_declarations": [
+        {
+          "name": "name",
+          "line": 7
+        },
+        {
+          "name": "symbol",
+          "line": 8
+        },
+        {
+          "name": "decimals",
+          "line": 9
+        },
+        {
+          "name": "totalSupply",
+          "line": 10
+        },
+        {
+          "name": "balanceOf",
+          "line": 11
+        },
+        {
+          "name": "allowance",
+          "line": 12
+        },
+        {
+          "name": "approve",
+          "line": 14
+        },
+        {
+          "name": "transfer",
+          "line": 15
+        },
+        {
+          "name": "transferFrom",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/IUniswapV2Callee.sol",
+      "sha256": "ecfa434d468bb1888124d8c34b0b8483f4ea1e5cd63f0874c8b28aa4305c1dbc",
+      "line_count": 5,
+      "function_declarations": [
+        {
+          "name": "uniswapV2Call",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/IUniswapV2ERC20.sol",
+      "sha256": "7948069aea398dec4b7e771ffc749a24fdce3a64673a1b14deae960e7a54c603",
+      "line_count": 23,
+      "function_declarations": [
+        {
+          "name": "name",
+          "line": 7
+        },
+        {
+          "name": "symbol",
+          "line": 8
+        },
+        {
+          "name": "decimals",
+          "line": 9
+        },
+        {
+          "name": "totalSupply",
+          "line": 10
+        },
+        {
+          "name": "balanceOf",
+          "line": 11
+        },
+        {
+          "name": "allowance",
+          "line": 12
+        },
+        {
+          "name": "approve",
+          "line": 14
+        },
+        {
+          "name": "transfer",
+          "line": 15
+        },
+        {
+          "name": "transferFrom",
+          "line": 16
+        },
+        {
+          "name": "DOMAIN_SEPARATOR",
+          "line": 18
+        },
+        {
+          "name": "PERMIT_TYPEHASH",
+          "line": 19
+        },
+        {
+          "name": "nonces",
+          "line": 20
+        },
+        {
+          "name": "permit",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/IUniswapV2Factory.sol",
+      "sha256": "51d056199e3f5e41cb1a9f11ce581aa3e190cc982db5771ffeef8d8d1f962a0d",
+      "line_count": 17,
+      "function_declarations": [
+        {
+          "name": "feeTo",
+          "line": 6
+        },
+        {
+          "name": "feeToSetter",
+          "line": 7
+        },
+        {
+          "name": "getPair",
+          "line": 9
+        },
+        {
+          "name": "allPairs",
+          "line": 10
+        },
+        {
+          "name": "allPairsLength",
+          "line": 11
+        },
+        {
+          "name": "createPair",
+          "line": 13
+        },
+        {
+          "name": "setFeeTo",
+          "line": 15
+        },
+        {
+          "name": "setFeeToSetter",
+          "line": 16
+        }
+      ]
+    }
+  ]
+}

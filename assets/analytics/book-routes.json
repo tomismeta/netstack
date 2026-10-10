@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "workflow": "references/book-analytics.md",
+  "interface": "assets/analytics/book-interface.json",
+  "desk": {
+    "file": "assets/addresses/contracts/sportsbook-desk-and-zap.json",
+    "id": "robinhood-0x3174de69a84c53f82f6b6dca5c64e705cffe8dd6"
+  },
+  "zap": {
+    "file": "assets/addresses/contracts/sportsbook-desk-and-zap.json",
+    "id": "robinhood-0xc866e4f53f1439d85171a06395ce37b887d16fa1"
+  },
+  "sleeve": {
+    "file": "assets/addresses/contracts/manager-sleeve-and-morpho-singleton-infrastructure.json",
+    "id": "robinhood-0x498752d5fa0600cbd613074c151abe15b3fec7cb"
+  },
+  "treasury": {
+    "file": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json",
+    "id": "robinhood-0x04822ea321a0dee6f40656172f29312104855d66"
+  },
+  "net": {
+    "file": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+    "id": "robinhood-0xca9c78dd337a67f6e0077f65f5e9218719d30edf"
+  },
+  "usdg": {
+    "file": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+    "id": "robinhood-0x5fc5360d0400a0fd4f2af552add042d716f1d168"
+  },
+  "snet": {
+    "file": "assets/addresses/contracts/share-certificate-snet-and-spacex-invaders.json",
+    "id": "robinhood-0xb773ec2c326b7f98a5a83fc098825492f020a4c7"
+  },
+  "wsnet": {
+    "file": "assets/addresses/contracts/weth-and-wsnet.json",
+    "id": "robinhood-0x63c12667638f2ae6fc6ae09b43d98ec84a8586ea"
+  }
+}

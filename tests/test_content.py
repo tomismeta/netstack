@@ -208,6 +208,58 @@ class ContentVerificationTests(unittest.TestCase):
         self.docs[CANONICAL]["trusted_product_marks"][0]["feed_address"] = UNKNOWN
         self.reject("unknown canonical address")
 
+    def add_function_catalog(self):
+        identity = "robinhood-" + ALPHA
+        detail = "assets/contracts/alpha.json"
+        self.docs["assets/contracts/catalog.json"] = {
+            "contracts": [
+                {"contract_id": identity, "contract_record": CANONICAL, "chain_id": 4663,
+                 "address": ALPHA, "interface_status": "publisher_abi", "catalog_path": detail},
+                {"contract_id": "robinhood-" + BETA, "contract_record": OTHER, "chain_id": 4663,
+                 "address": BETA, "interface_status": "not_reviewed", "catalog_path": None,
+                 "missing_evidence": ["No matching interface reviewed."]},
+            ]
+        }
+        self.docs[detail] = {
+            "contract_id": identity, "contract_record": CANONICAL, "chain_id": 4663, "address": ALPHA,
+            "provenance": [{"source_id": "history"}],
+            "completeness": {"scope": "One illustrative signature, not a complete implementation."},
+            "functions": [{"signature": "transfer(address,uint256)", "selector": "0xa9059cbb",
+                           "inputs": [{"type": "address"}, {"type": "uint256"}],
+                           "outputs": [{"type": "bool"}], "stateMutability": "nonpayable",
+                           "evidence": {"source_id": "history"},
+                           "permissions": {"status": "unverified", "detail": "Not established by the ABI."},
+                           "economic_meaning": {"status": "unverified", "detail": "No runtime reviewed."}}],
+            "events": [], "errors": []
+        }
+        return detail
+
+    def test_descriptive_write_catalog_does_not_enable_analytics_writes(self):
+        detail = self.add_function_catalog()
+        result = verify_content(encode(self.docs))
+        self.assertEqual(result["canonical_contracts"], 2)
+        self.docs[INTERFACE]["abi"].append({
+            "type": "function", "name": "transfer",
+            "inputs": deepcopy(self.docs[detail]["functions"][0]["inputs"]),
+            "outputs": [{"type": "bool"}], "stateMutability": "nonpayable"})
+        self.reject("write function in read ABI")
+
+    def test_catalog_rejects_wrong_function_selectors_and_incomplete_coverage(self):
+        detail = self.add_function_catalog()
+        self.docs[detail]["functions"][0]["selector"] = "0x00000000"
+        self.reject("selector/topic does not match")
+        self.docs[detail]["functions"][0]["selector"] = "0xa9059cbb"
+        self.docs["assets/contracts/catalog.json"]["contracts"].pop()
+        self.reject("coverage ledger omits")
+
+    def test_catalog_rejects_signature_type_drift_and_wrong_contract_binding(self):
+        detail = self.add_function_catalog()
+        self.docs[detail]["functions"][0]["inputs"][1]["type"] = "uint128"
+        self.reject("incorrect or duplicate catalog signature")
+        self.docs[detail]["functions"][0]["inputs"][1]["type"] = "uint256"
+        self.docs[detail]["address"] = BETA
+        self.reject("does not match coverage ledger")
+
     def test_version_is_required_in_metadata_not_the_body(self):
         self.docs["SKILL.md"] = self.docs["SKILL.md"].replace('  version: "0.4.0"\n', '') + '\nversion: "0.4.0"\n'
         self.reject("metadata.version|metadata mapping")

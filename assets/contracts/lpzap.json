@@ -1,0 +1,589 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x455ca67558414929d33db4e949058165f1338c0d",
+  "contract_record": "assets/addresses/contracts/lp-zap.json",
+  "chain_id": 4663,
+  "address": "0x455ca67558414929D33Db4e949058165f1338C0d",
+  "generation": "lpzap",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap",
+      "observed_on": "2026-10-07"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 20,
+    "implementation": "targeted_explorer_runtime_review",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned code, storage, current permissions and financial reconciliation.",
+      "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+    ],
+    "literal_abi_sha256": "62a47a40d769ea3dd67febf0d4f39e7fd2c8acba58ee0e5c867e19a1279b29ba",
+    "literal_character_range": [
+      344097,
+      347213
+    ],
+    "dispatcher_evidence": {
+      "source_id": "netnet-lpzap-implementation-20261007",
+      "method": "PUSH4/EQ/PUSH2/JUMPI dispatcher patterns within first850 bytes; not exhaustive symbolic execution. Selectors alone do not identify absent names, outputs or permissions.",
+      "observed_selector_count": 9,
+      "unmatched_dispatcher_selectors": [],
+      "interface_selectors_not_seen_in_pattern": []
+    }
+  },
+  "functions": [
+    {
+      "name": "net",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract INET"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "net()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[1]"
+      },
+      "selector": "0xc2fff4a5",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface net(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-lpzap-implementation-20261007",
+        "entry_offset": "0x16c",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "pair",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IUniswapV2Pair"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pair()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[2]"
+      },
+      "selector": "0xa8aa1b31",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface pair(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-lpzap-implementation-20261007",
+        "entry_offset": "0x12d",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "quote",
+      "inputs": [
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "q",
+          "type": "tuple",
+          "internalType": "struct LpZap.Quote",
+          "components": [
+            {
+              "name": "swapUsdg",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "netToPool",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "usdgToPool",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "lpOut",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "usdgRefund",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "quote(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[3]"
+      },
+      "selector": "0xed1bd76c",
+      "semantic_evidence": {
+        "source_id": "netnet-lpzap-implementation-20261007",
+        "locator": "assets/contracts/validation.json#lpzap; quote"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public view; runtime0x07f2."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Models current reserves and returned taxLegs; view quote is not price execution guarantee."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-lpzap-implementation-20261007",
+        "entry_offset": "0x193",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "router",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IUniswapV2Router02"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "router()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[4]"
+      },
+      "selector": "0xf887ea40",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface router(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-lpzap-implementation-20261007",
+        "entry_offset": "0x20e",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "swapLeg",
+      "inputs": [
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "rUsdg",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "legs",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "swapLeg(uint256,uint256,uint8)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[5]"
+      },
+      "selector": "0x498c165f",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface swapLeg(uint256,uint256,uint8). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-lpzap-implementation-20261007",
+        "entry_offset": "0xdf",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "taxLegs",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "taxLegs()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[6]"
+      },
+      "selector": "0x976aab39",
+      "semantic_evidence": {
+        "source_id": "netnet-lpzap-implementation-20261007",
+        "locator": "assets/contracts/validation.json#lpzap; taxLegs"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public view; runtime0x06d2..0x07f2."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Reads NET.taxEnabled() and NET.isTaxExempt(address(this)); returns0 if tax disabled or this Zap exempt, else2. Historical exemption event is not current read."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-lpzap-implementation-20261007",
+        "entry_offset": "0x113",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdg()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[7]"
+      },
+      "selector": "0xf5b91b7b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface usdg(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-lpzap-implementation-20261007",
+        "entry_offset": "0x1e7",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "usdgIsToken0",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdgIsToken0()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[8]"
+      },
+      "selector": "0x21fc0e81",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface usdgIsToken0(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-lpzap-implementation-20261007",
+        "entry_offset": "0xa3",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "zap",
+      "inputs": [
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "minLpOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "deadline",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "lpOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "zap(uint256,uint256,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[9]"
+      },
+      "selector": "0x6e5d6541",
+      "semantic_evidence": {
+        "source_id": "netnet-lpzap-implementation-20261007",
+        "locator": "assets/contracts/validation.json#lpzap; zap"
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Any caller with token allowance; nonzero amount/recipient, deadline and minLP enforced."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Exact incoming USDG balance delta; fee-on-transfer-compatible swap, pair mint to recipient, checks minLP, returns leftover USDG to caller. Distinct from Managed Futures Zap."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-lpzap-implementation-20261007",
+        "entry_offset": "0x100",
+        "scope": "selector/branch identity only"
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "Zapped",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "swapUsdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "netToPool",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdgToPool",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "lpOut",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Zapped(address,address,uint256,uint256,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[10]"
+      },
+      "topic0": "0xdf8a8c5380ff483423f7739f4335a0a9561ca16cfdfa3705644325cb96f31390"
+    }
+  ],
+  "errors": [
+    {
+      "name": "Expired",
+      "inputs": [],
+      "signature": "Expired()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[11]"
+      },
+      "selector": "0x203d82d8"
+    },
+    {
+      "name": "InvalidConfig",
+      "inputs": [],
+      "signature": "InvalidConfig()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[12]"
+      },
+      "selector": "0x35be3ac8"
+    },
+    {
+      "name": "InvalidRecipient",
+      "inputs": [],
+      "signature": "InvalidRecipient()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[13]"
+      },
+      "selector": "0x9c8d2cd2"
+    },
+    {
+      "name": "NotCanonicalPair",
+      "inputs": [],
+      "signature": "NotCanonicalPair()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[14]"
+      },
+      "selector": "0xc85568c6"
+    },
+    {
+      "name": "Reentrancy",
+      "inputs": [],
+      "signature": "Reentrancy()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[15]"
+      },
+      "selector": "0xab143c06"
+    },
+    {
+      "name": "Slippage",
+      "inputs": [
+        {
+          "name": "got",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "min",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "Slippage(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[16]"
+      },
+      "selector": "0x2746152a"
+    },
+    {
+      "name": "TransferFailed",
+      "inputs": [],
+      "signature": "TransferFailed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[17]"
+      },
+      "selector": "0x90b8ec18"
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "signature": "ZeroAddress()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[18]"
+      },
+      "selector": "0xd92e233d"
+    },
+    {
+      "name": "ZeroAmount",
+      "inputs": [],
+      "signature": "ZeroAmount()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[19]"
+      },
+      "selector": "0x1f2a2005"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "usdg_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "net_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "router_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal af, Unicode character offsets[344097,347213); consumer binding to lpzap; ABI entry[0]"
+      }
+    }
+  ]
+}

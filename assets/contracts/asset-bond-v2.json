@@ -1,0 +1,2606 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x2f2f215b810fa692304cb0095804ab3c8e4cef78",
+  "contract_record": "assets/addresses/contracts/asset-bond-desk-and-zap.json",
+  "chain_id": 4663,
+  "address": "0x2F2F215b810Fa692304cB0095804Ab3C8e4cEf78",
+  "generation": "asset-bond-v2",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2",
+      "observed_on": "2026-10-07"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 111,
+    "implementation": "unreviewed",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned code, storage, current permissions and financial reconciliation.",
+      "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+    ],
+    "literal_abi_sha256": "13983dcd24f7091fe68662f7a633affbc3b41294381596543f21d992d1a489ea",
+    "literal_character_range": [
+      798822,
+      815158
+    ]
+  },
+  "functions": [
+    {
+      "name": "ADD_ASSET_DELAY",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "ADD_ASSET_DELAY()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[1]"
+      },
+      "selector": "0xb1b673d3",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface ADD_ASSET_DELAY(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "EPOCH",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "EPOCH()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[2]"
+      },
+      "selector": "0xa0dc2758",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface EPOCH(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "INVENTORY_HARD_CAP",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "INVENTORY_HARD_CAP()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[3]"
+      },
+      "selector": "0xe52442cc",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface INVENTORY_HARD_CAP(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "MAX_DISCOUNT_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MAX_DISCOUNT_BPS()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[4]"
+      },
+      "selector": "0x390947cf",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface MAX_DISCOUNT_BPS(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "MAX_EPOCH_CAP_NET9",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MAX_EPOCH_CAP_NET9()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[5]"
+      },
+      "selector": "0xaa4c5cef",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface MAX_EPOCH_CAP_NET9(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "MAX_FEE_SWAP_DEV_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MAX_FEE_SWAP_DEV_BPS()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[6]"
+      },
+      "selector": "0xac366e97",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface MAX_FEE_SWAP_DEV_BPS(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "MAX_HAIRCUT_BPS",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MAX_HAIRCUT_BPS()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[7]"
+      },
+      "selector": "0xe9b04b3c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface MAX_HAIRCUT_BPS(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "MIN_PREMIUM_WAD",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "MIN_PREMIUM_WAD()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[8]"
+      },
+      "selector": "0xfaacfaf0",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface MIN_PREMIUM_WAD(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "PROPOSAL_WINDOW",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "PROPOSAL_WINDOW()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[9]"
+      },
+      "selector": "0x00a184e5",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface PROPOSAL_WINDOW(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "VEST",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "VEST()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[10]"
+      },
+      "selector": "0x784effbd",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface VEST(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "activateAsset",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "activateAsset(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[11]"
+      },
+      "selector": "0x7558d9b1",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface activateAsset(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "assetAt",
+      "inputs": [
+        {
+          "name": "i",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "assetAt(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[12]"
+      },
+      "selector": "0xaa9239f5",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface assetAt(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "assetCount",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "assetCount()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[13]"
+      },
+      "selector": "0xeafe7a74",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface assetCount(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "assetInfo",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct IAssetBondDesk.Asset",
+          "components": [
+            {
+              "name": "oracle",
+              "type": "address",
+              "internalType": "contract IAssetOracle"
+            },
+            {
+              "name": "haircutBps",
+              "type": "uint16",
+              "internalType": "uint16"
+            },
+            {
+              "name": "epochCapNet9",
+              "type": "uint96",
+              "internalType": "uint96"
+            },
+            {
+              "name": "active",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "decimals",
+              "type": "uint8",
+              "internalType": "uint8"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "assetInfo(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[14]"
+      },
+      "selector": "0x8b0dcb4e",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface assetInfo(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "assetList",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address[]",
+          "internalType": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "assetList()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[15]"
+      },
+      "selector": "0xe372f03a",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface assetList(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "bHwm",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "bHwm()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[16]"
+      },
+      "selector": "0xba0d618d",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface bHwm(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "bond",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amountIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "minPayoutNet9",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "payout",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "bond(address,uint256,uint256,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[17]"
+      },
+      "selector": "0xf732128e",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface bond(address,uint256,uint256,address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "bondPrice",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "bondPrice()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[18]"
+      },
+      "selector": "0xd7ccfb0b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface bondPrice(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "currentEpoch",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "currentEpoch()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[19]"
+      },
+      "selector": "0x76671808",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface currentEpoch(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "depositInventory",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "depositInventory(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[20]"
+      },
+      "selector": "0x78a3ef55",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface depositInventory(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "deskDiscountBps",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "deskDiscountBps()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[21]"
+      },
+      "selector": "0x7d6abb36",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface deskDiscountBps(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "epochSpent",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "epochId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "epochSpent(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[22]"
+      },
+      "selector": "0xfc427bf0",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface epochSpent(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "feePoolOf",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct PoolKey",
+          "components": [
+            {
+              "name": "currency0",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "currency1",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "fee",
+              "type": "uint24",
+              "internalType": "uint24"
+            },
+            {
+              "name": "tickSpacing",
+              "type": "int24",
+              "internalType": "int24"
+            },
+            {
+              "name": "hooks",
+              "type": "address",
+              "internalType": "address"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "feePoolOf(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[23]"
+      },
+      "selector": "0xe34b2ac4",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface feePoolOf(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "halted",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "halted()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[24]"
+      },
+      "selector": "0xb9b8af0b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface halted(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "inventory",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "inventory()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[25]"
+      },
+      "selector": "0x15d52a5c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface inventory(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "inventoryMax",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "inventoryMax()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[26]"
+      },
+      "selector": "0xb884386b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface inventoryMax(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "manager",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "manager()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[27]"
+      },
+      "selector": "0x481c6a75",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface manager(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "net",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "net()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[28]"
+      },
+      "selector": "0xc2fff4a5",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface net(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "noteAt",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "i",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct IAssetBondDesk.Note",
+          "components": [
+            {
+              "name": "payout",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "claimed",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "start",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "end",
+              "type": "uint64",
+              "internalType": "uint64"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "noteAt(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[29]"
+      },
+      "selector": "0x7bb07c4c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface noteAt(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "noteCount",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "noteCount(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[30]"
+      },
+      "selector": "0xdc950d36",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface noteCount(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "openNoteCount",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "openNoteCount(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[31]"
+      },
+      "selector": "0x14ae9e4e",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface openNoteCount(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "owedNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "owedNet()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[32]"
+      },
+      "selector": "0xbd521b92",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface owedNet(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "pairOracle",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IPairOracleTwap"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pairOracle()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[33]"
+      },
+      "selector": "0xb1b9a7c5",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface pairOracle(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "pendingFor",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "totalPending",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "claimableNow",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pendingFor(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[34]"
+      },
+      "selector": "0xd7820452",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface pendingFor(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "pendingInfo",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct IAssetBondDesk.Pending",
+          "components": [
+            {
+              "name": "oracle",
+              "type": "address",
+              "internalType": "contract IAssetOracle"
+            },
+            {
+              "name": "haircutBps",
+              "type": "uint16",
+              "internalType": "uint16"
+            },
+            {
+              "name": "epochCapNet9",
+              "type": "uint96",
+              "internalType": "uint96"
+            },
+            {
+              "name": "readyAt",
+              "type": "uint64",
+              "internalType": "uint64"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pendingInfo(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[35]"
+      },
+      "selector": "0x0d574e02",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface pendingInfo(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "pokeHwm",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "pokeHwm()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[36]"
+      },
+      "selector": "0xd1e266d1",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface pokeHwm(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "poolManager",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IPoolManager"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "poolManager()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[37]"
+      },
+      "selector": "0xdc4c90d3",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface poolManager(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "preview",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amountIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "payoutNet9",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "feeUsdg6",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "feeAssetRawEst",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "priceWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "unitWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "valueWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "epochRemainingNet9",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "preview(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[38]"
+      },
+      "selector": "0x13ce19e3",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface preview(address,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "proposeAsset",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "oracle",
+          "type": "address",
+          "internalType": "contract IAssetOracle"
+        },
+        {
+          "name": "haircutBps",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "epochCapNet9",
+          "type": "uint96",
+          "internalType": "uint96"
+        },
+        {
+          "name": "feePool",
+          "type": "tuple",
+          "internalType": "struct PoolKey",
+          "components": [
+            {
+              "name": "currency0",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "currency1",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "fee",
+              "type": "uint24",
+              "internalType": "uint24"
+            },
+            {
+              "name": "tickSpacing",
+              "type": "int24",
+              "internalType": "int24"
+            },
+            {
+              "name": "hooks",
+              "type": "address",
+              "internalType": "address"
+            }
+          ]
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "proposeAsset(address,address,uint16,uint96,(address,address,uint24,int24,address))",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[39]"
+      },
+      "selector": "0x7f6d27b8",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface proposeAsset(address,address,uint16,uint96,(address,address,uint24,int24,address)). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "redeem",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "paid",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "redeem(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[40]"
+      },
+      "selector": "0x95a2251f",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface redeem(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "redeem",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "noteIds",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "paid",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "redeem(address,uint256[])",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[41]"
+      },
+      "selector": "0xd2390aa2",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface redeem(address,uint256[]). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "setActive",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "active",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setActive(address,bool)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[42]"
+      },
+      "selector": "0x2ce962cf",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface setActive(address,bool). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "setAssetParams",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "haircutBps",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "epochCapNet9",
+          "type": "uint96",
+          "internalType": "uint96"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setAssetParams(address,uint16,uint96)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[43]"
+      },
+      "selector": "0x9459f9da",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface setAssetParams(address,uint16,uint96). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "setDiscount",
+      "inputs": [
+        {
+          "name": "bps",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setDiscount(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[44]"
+      },
+      "selector": "0xdabd2719",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface setDiscount(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "setHalt",
+      "inputs": [
+        {
+          "name": "halted_",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setHalt(bool)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[45]"
+      },
+      "selector": "0xf4954387",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface setHalt(bool). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "setInventoryMax",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setInventoryMax(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[46]"
+      },
+      "selector": "0x3d17c5ab",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface setInventoryMax(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "skim",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "skim(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[47]"
+      },
+      "selector": "0xbc25cf77",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface skim(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "sleeve",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "sleeve()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[48]"
+      },
+      "selector": "0x55e28b9c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface sleeve(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "treasury",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ITreasuryBacking"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "treasury()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[49]"
+      },
+      "selector": "0x61d027b3",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface treasury(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "unlockCallback",
+      "inputs": [
+        {
+          "name": "data",
+          "type": "bytes",
+          "internalType": "bytes"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes",
+          "internalType": "bytes"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "unlockCallback(bytes)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[50]"
+      },
+      "selector": "0x91dd7346",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface unlockCallback(bytes). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdg()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[51]"
+      },
+      "selector": "0xf5b91b7b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface usdg(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "AssetActivated",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "oracle",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "haircutBps",
+          "type": "uint16",
+          "indexed": false,
+          "internalType": "uint16"
+        },
+        {
+          "name": "epochCapNet9",
+          "type": "uint96",
+          "indexed": false,
+          "internalType": "uint96"
+        }
+      ],
+      "anonymous": false,
+      "signature": "AssetActivated(address,address,uint16,uint96)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[52]"
+      },
+      "topic0": "0x7dfe9f249d59fb322e44b05ed8f64653ac7c81daf7a09f8ee8fe8ac8ffcc2474"
+    },
+    {
+      "name": "AssetActive",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "active",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        }
+      ],
+      "anonymous": false,
+      "signature": "AssetActive(address,bool)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[53]"
+      },
+      "topic0": "0xc67c49759362ff055d3c87c7d6bba1cff64ba9a042350c63a206c535949c14e5"
+    },
+    {
+      "name": "AssetBond",
+      "inputs": [
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "token",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amountIn",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "valueWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "payout",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "priceWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "fee",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "feeAssetRaw",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "toSleeve",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "AssetBond(address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[54]"
+      },
+      "topic0": "0xdec46cdd0be10d522b17d462ec4f74dd8f90bd2a62eab8d79d863e0c7845af26"
+    },
+    {
+      "name": "AssetParams",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "haircutBps",
+          "type": "uint16",
+          "indexed": false,
+          "internalType": "uint16"
+        },
+        {
+          "name": "epochCapNet9",
+          "type": "uint96",
+          "indexed": false,
+          "internalType": "uint96"
+        }
+      ],
+      "anonymous": false,
+      "signature": "AssetParams(address,uint16,uint96)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[55]"
+      },
+      "topic0": "0x180fee07ce7e09dffd6e709b1cd244e46766ae66915f0695f0de15e554f89379"
+    },
+    {
+      "name": "AssetProposed",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "oracle",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "haircutBps",
+          "type": "uint16",
+          "indexed": false,
+          "internalType": "uint16"
+        },
+        {
+          "name": "epochCapNet9",
+          "type": "uint96",
+          "indexed": false,
+          "internalType": "uint96"
+        },
+        {
+          "name": "feePoolId",
+          "type": "bytes32",
+          "indexed": false,
+          "internalType": "bytes32"
+        },
+        {
+          "name": "readyAt",
+          "type": "uint64",
+          "indexed": false,
+          "internalType": "uint64"
+        }
+      ],
+      "anonymous": false,
+      "signature": "AssetProposed(address,address,uint16,uint96,bytes32,uint64)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[56]"
+      },
+      "topic0": "0xa244a6352bbd11703fbc137f31d95a306fb2e3f9cf0f097d6fe9dc80458e10b6"
+    },
+    {
+      "name": "DiscountSet",
+      "inputs": [
+        {
+          "name": "bps",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "DiscountSet(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[57]"
+      },
+      "topic0": "0x1b69574255c79758c64d1a097acfd0300110698292feae84be7ab7e574f195d2"
+    },
+    {
+      "name": "Halted",
+      "inputs": [
+        {
+          "name": "halted",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Halted(bool)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[58]"
+      },
+      "topic0": "0x92333b0b676476985757350034668cb9ee247674ac7a7479de10cd761381f733"
+    },
+    {
+      "name": "HwmUpdated",
+      "inputs": [
+        {
+          "name": "bHwm",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "HwmUpdated(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[59]"
+      },
+      "topic0": "0xf6d3d2229fe9bd810eacf5450097210baca082020263b19ceaad1177330aaf36"
+    },
+    {
+      "name": "InventoryDeposited",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "newInventory",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "InventoryDeposited(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[60]"
+      },
+      "topic0": "0x8c659e8002149653e7d4cc7bf86afdabac70f806574c8e709329fb76a5a71681"
+    },
+    {
+      "name": "InventoryMaxSet",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "InventoryMaxSet(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[61]"
+      },
+      "topic0": "0xa861969c4b0e81703c7f5e05130c888352787d04161aad707f3515d002b54fbb"
+    },
+    {
+      "name": "Redeemed",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "noteId",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "payout",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Redeemed(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[62]"
+      },
+      "topic0": "0xf3a670cd3af7d64b488926880889d08a8585a138ff455227af6737339a1ec262"
+    },
+    {
+      "name": "Skimmed",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Skimmed(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[63]"
+      },
+      "topic0": "0xb0477b3d4d588e76d76df1c6cf069311c9dc4f742f19d0f74a70f58803d0768f"
+    }
+  ],
+  "errors": [
+    {
+      "name": "AssetCustodyRetained",
+      "inputs": [],
+      "signature": "AssetCustodyRetained()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[64]"
+      },
+      "selector": "0x6f3878c2"
+    },
+    {
+      "name": "BackingBelowFloor",
+      "inputs": [],
+      "signature": "BackingBelowFloor()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[65]"
+      },
+      "selector": "0xd6002d64"
+    },
+    {
+      "name": "BadFeePool",
+      "inputs": [],
+      "signature": "BadFeePool()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[66]"
+      },
+      "selector": "0x959a9ef5"
+    },
+    {
+      "name": "DecimalsTooHigh",
+      "inputs": [],
+      "signature": "DecimalsTooHigh()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[67]"
+      },
+      "selector": "0xa3095eff"
+    },
+    {
+      "name": "DeskHalted",
+      "inputs": [],
+      "signature": "DeskHalted()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[68]"
+      },
+      "selector": "0x32942cd8"
+    },
+    {
+      "name": "DiscountTooHigh",
+      "inputs": [],
+      "signature": "DiscountTooHigh()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[69]"
+      },
+      "selector": "0x35937253"
+    },
+    {
+      "name": "EpochCapExceeded",
+      "inputs": [],
+      "signature": "EpochCapExceeded()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[70]"
+      },
+      "selector": "0x339b2676"
+    },
+    {
+      "name": "EpochCapTooHigh",
+      "inputs": [],
+      "signature": "EpochCapTooHigh()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[71]"
+      },
+      "selector": "0xd421d920"
+    },
+    {
+      "name": "ExceedsHardCap",
+      "inputs": [],
+      "signature": "ExceedsHardCap()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[72]"
+      },
+      "selector": "0x45939939"
+    },
+    {
+      "name": "ExceedsInventoryMax",
+      "inputs": [],
+      "signature": "ExceedsInventoryMax()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[73]"
+      },
+      "selector": "0xae794d73"
+    },
+    {
+      "name": "FeePoolNotInitialized",
+      "inputs": [],
+      "signature": "FeePoolNotInitialized()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[74]"
+      },
+      "selector": "0x42ed3e98"
+    },
+    {
+      "name": "FeeSwapFailed",
+      "inputs": [],
+      "signature": "FeeSwapFailed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[75]"
+      },
+      "selector": "0xc23fe04f"
+    },
+    {
+      "name": "FeeSwapTooCostly",
+      "inputs": [],
+      "signature": "FeeSwapTooCostly()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[76]"
+      },
+      "selector": "0x7a0dbb06"
+    },
+    {
+      "name": "FloorGuard",
+      "inputs": [],
+      "signature": "FloorGuard()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[77]"
+      },
+      "selector": "0x0e8bec72"
+    },
+    {
+      "name": "ForbiddenAsset",
+      "inputs": [],
+      "signature": "ForbiddenAsset()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[78]"
+      },
+      "selector": "0x7f6c7919"
+    },
+    {
+      "name": "HaircutTooHigh",
+      "inputs": [],
+      "signature": "HaircutTooHigh()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[79]"
+      },
+      "selector": "0x53914af6"
+    },
+    {
+      "name": "InsufficientInventory",
+      "inputs": [],
+      "signature": "InsufficientInventory()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[80]"
+      },
+      "selector": "0x8b2024a5"
+    },
+    {
+      "name": "InvalidConfig",
+      "inputs": [],
+      "signature": "InvalidConfig()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[81]"
+      },
+      "selector": "0x35be3ac8"
+    },
+    {
+      "name": "InventoryUndercollateralized",
+      "inputs": [],
+      "signature": "InventoryUndercollateralized()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[82]"
+      },
+      "selector": "0x9dfa151c"
+    },
+    {
+      "name": "MulDivOverflow",
+      "inputs": [],
+      "signature": "MulDivOverflow()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[83]"
+      },
+      "selector": "0x49248f77"
+    },
+    {
+      "name": "NoPendingProposal",
+      "inputs": [],
+      "signature": "NoPendingProposal()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[84]"
+      },
+      "selector": "0xb1713b6a"
+    },
+    {
+      "name": "NotAContract",
+      "inputs": [],
+      "signature": "NotAContract()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[85]"
+      },
+      "selector": "0x09ee12d5"
+    },
+    {
+      "name": "NotListed",
+      "inputs": [],
+      "signature": "NotListed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[86]"
+      },
+      "selector": "0x665c1c57"
+    },
+    {
+      "name": "NotManager",
+      "inputs": [],
+      "signature": "NotManager()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[87]"
+      },
+      "selector": "0xc0fc8a8a"
+    },
+    {
+      "name": "NotOnMenu",
+      "inputs": [],
+      "signature": "NotOnMenu()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[88]"
+      },
+      "selector": "0x40fa2c7c"
+    },
+    {
+      "name": "NotPoolManager",
+      "inputs": [],
+      "signature": "NotPoolManager()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[89]"
+      },
+      "selector": "0xae18210a"
+    },
+    {
+      "name": "NotReady",
+      "inputs": [],
+      "signature": "NotReady()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[90]"
+      },
+      "selector": "0x9488aaa6"
+    },
+    {
+      "name": "NoteIndexOutOfRange",
+      "inputs": [],
+      "signature": "NoteIndexOutOfRange()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[91]"
+      },
+      "selector": "0x9a6b715b"
+    },
+    {
+      "name": "OracleAssetMismatch",
+      "inputs": [],
+      "signature": "OracleAssetMismatch()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[92]"
+      },
+      "selector": "0xfee2429b"
+    },
+    {
+      "name": "PayoutBelowMinimum",
+      "inputs": [],
+      "signature": "PayoutBelowMinimum()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[93]"
+      },
+      "selector": "0x79f93b92"
+    },
+    {
+      "name": "ProposalExpired",
+      "inputs": [],
+      "signature": "ProposalExpired()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[94]"
+      },
+      "selector": "0x28a72379"
+    },
+    {
+      "name": "Reentrancy",
+      "inputs": [],
+      "signature": "Reentrancy()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[95]"
+      },
+      "selector": "0xab143c06"
+    },
+    {
+      "name": "ShortDelivery",
+      "inputs": [],
+      "signature": "ShortDelivery()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[96]"
+      },
+      "selector": "0x2120b8c5"
+    },
+    {
+      "name": "SkimUnderflow",
+      "inputs": [],
+      "signature": "SkimUnderflow()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[97]"
+      },
+      "selector": "0x44711fb0"
+    },
+    {
+      "name": "SlippageExceeded",
+      "inputs": [],
+      "signature": "SlippageExceeded()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[98]"
+      },
+      "selector": "0x8199f5f3"
+    },
+    {
+      "name": "TooManyNotes",
+      "inputs": [],
+      "signature": "TooManyNotes()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[99]"
+      },
+      "selector": "0x0b7aa319"
+    },
+    {
+      "name": "TransferFailed",
+      "inputs": [],
+      "signature": "TransferFailed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[100]"
+      },
+      "selector": "0x90b8ec18"
+    },
+    {
+      "name": "UnexpectedCallback",
+      "inputs": [],
+      "signature": "UnexpectedCallback()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[101]"
+      },
+      "selector": "0xdab1e993"
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "signature": "ZeroAddress()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[102]"
+      },
+      "selector": "0xd92e233d"
+    },
+    {
+      "name": "ZeroAmount",
+      "inputs": [],
+      "signature": "ZeroAmount()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[103]"
+      },
+      "selector": "0x1f2a2005"
+    },
+    {
+      "name": "ZeroPayout",
+      "inputs": [],
+      "signature": "ZeroPayout()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[104]"
+      },
+      "selector": "0xaf110036"
+    },
+    {
+      "name": "PoolNotInitialized",
+      "inputs": [],
+      "signature": "PoolNotInitialized()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[105]"
+      },
+      "selector": "0x486aa307"
+    },
+    {
+      "name": "SpotDeviates",
+      "inputs": [],
+      "signature": "SpotDeviates()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[106]"
+      },
+      "selector": "0x638e6d94"
+    },
+    {
+      "name": "Stale",
+      "inputs": [],
+      "signature": "Stale()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[107]"
+      },
+      "selector": "0xd7815800"
+    },
+    {
+      "name": "TickOutOfRange",
+      "inputs": [],
+      "signature": "TickOutOfRange()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[108]"
+      },
+      "selector": "0xc7e13a01"
+    },
+    {
+      "name": "Warming",
+      "inputs": [],
+      "signature": "Warming()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[109]"
+      },
+      "selector": "0xaf7b2cf7"
+    },
+    {
+      "name": "ZeroPrice",
+      "inputs": [],
+      "signature": "ZeroPrice()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[110]"
+      },
+      "selector": "0x4dfba023"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "c",
+          "type": "tuple",
+          "internalType": "struct AssetBondDesk.DeskConfig",
+          "components": [
+            {
+              "name": "net",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "usdg",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "treasury",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "pairOracle",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "manager",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "sleeve",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "maxDiscountBps",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "minPremiumWad",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "inventoryHardCap",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "vest",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "maxHaircutBps",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "addAssetDelay",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "epoch",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "maxEpochCapNet9",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "initialDiscountBps",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "initialInventoryMax",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "poolManager",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "maxFeeSwapDevBps",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal ln, Unicode character offsets[798822,815158); consumer binding to asset-bond-v2; ABI entry[0]"
+      }
+    }
+  ]
+}

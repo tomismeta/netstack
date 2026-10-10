@@ -1,0 +1,2112 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x69bfaf19c9f377bb306a89aed9f6b07e2c1a8d9a",
+  "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+  "chain_id": 4663,
+  "address": "0x69bfaf19c9f377bb306a89aed9f6b07e2c1a8d9a",
+  "generation": "netlong-margin-weth-usdg-pool",
+  "provenance": [
+    {
+      "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x69bfaf19c9f377bb306a89aed9f6b07e2c1a8d9a",
+      "observed_on": "2026-10-10",
+      "locator": "Complete explorer smart-contract response; source/ABI fields and deployed_bytecode where supplied"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "explorer_source_and_abi",
+    "supplied_entry_count": 36,
+    "implementation": "all_obtained_abi_functions_source_reviewed_not_compiler_equivalence",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+      "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+    ]
+  },
+  "runtime_identity": {
+    "byte_count": 22142,
+    "sha256": "55f9b1ba469661359360eea621b92a44d00924d68d452f29e04d1d4c2e587bf2",
+    "keccak256": "0x74a16c3b1b4ac8903c54a9edad666d4c87512cb78ed0723538acd84d1b56c5b5",
+    "evidence_kind": "explorer_indexed_unpinned_runtime",
+    "proxy_type": null,
+    "explorer_is_verified": true,
+    "explorer_is_fully_verified": false,
+    "verified_twin_address": null
+  },
+  "functions": [
+    {
+      "inputs": [
+        {
+          "internalType": "int24",
+          "name": "tickLower",
+          "type": "int24"
+        },
+        {
+          "internalType": "int24",
+          "name": "tickUpper",
+          "type": "int24"
+        },
+        {
+          "internalType": "uint128",
+          "name": "amount",
+          "type": "uint128"
+        }
+      ],
+      "name": "burn",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "burn(int24,int24,uint128)",
+      "selector": "0xa34123a7",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/UniswapV3Pool.sol:517; contracts/interfaces/pool/IUniswapV3PoolActions.sol:59"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Reduces caller-owned range liquidity and credits withdrawable tokens; zero amount can update fees. Does not directly transfer proceeds."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reduces caller-owned range liquidity and credits withdrawable tokens; zero amount can update fees. Does not directly transfer proceeds."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "int24",
+          "name": "tickLower",
+          "type": "int24"
+        },
+        {
+          "internalType": "int24",
+          "name": "tickUpper",
+          "type": "int24"
+        },
+        {
+          "internalType": "uint128",
+          "name": "amount0Requested",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "amount1Requested",
+          "type": "uint128"
+        }
+      ],
+      "name": "collect",
+      "outputs": [
+        {
+          "internalType": "uint128",
+          "name": "amount0",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "amount1",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "collect(address,int24,int24,uint128,uint128)",
+      "selector": "0x4f1eb3d8",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/UniswapV3Pool.sol:490; contracts/interfaces/pool/IUniswapV3PoolActions.sol:43"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Only accesses msg.sender range; transfers min(requested,tokensOwed) per token to recipient. Does not itself recompute unaccrued fees."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Only accesses msg.sender range; transfers min(requested,tokensOwed) per token to recipient. Does not itself recompute unaccrued fees."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint128",
+          "name": "amount0Requested",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "amount1Requested",
+          "type": "uint128"
+        }
+      ],
+      "name": "collectProtocol",
+      "outputs": [
+        {
+          "internalType": "uint128",
+          "name": "amount0",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "amount1",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "collectProtocol(address,uint128,uint128)",
+      "selector": "0x85b66729",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/UniswapV3Pool.sol:848; contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol:18"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Factory-owner only; capped protocol fee withdrawal and deliberately leaves1 raw unit when taking full tracked amount."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Factory-owner only; capped protocol fee withdrawal and deliberately leaves1 raw unit when taking full tracked amount."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "factory",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "factory()",
+      "selector": "0xc45a0155",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolImmutables.sol:9"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the factory stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "fee",
+      "outputs": [
+        {
+          "internalType": "uint24",
+          "name": "",
+          "type": "uint24"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "fee()",
+      "selector": "0xddca3f43",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolImmutables.sol:21"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the fee stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "feeGrowthGlobal0X128",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "feeGrowthGlobal0X128()",
+      "selector": "0xf3058399",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolState.sol:36"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the feeGrowthGlobal0X128 stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "feeGrowthGlobal1X128",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "feeGrowthGlobal1X128()",
+      "selector": "0x46141319",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolState.sol:40"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the feeGrowthGlobal1X128 stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "flash",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "flash(address,uint256,uint256,bytes)",
+      "selector": "0x490e6cbc",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/UniswapV3Pool.sol:791; contracts/interfaces/pool/IUniswapV3PoolActions.sol:91"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Requires active liquidity; lends requested tokens to recipient, invokes caller callback, checks old balances plus ceil(amount*fee/1e6); excess donations accrue as LP/protocol fees."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Requires active liquidity; lends requested tokens to recipient, invokes caller callback, checks old balances plus ceil(amount*fee/1e6); excess donations accrue as LP/protocol fees."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint16",
+          "name": "observationCardinalityNext",
+          "type": "uint16"
+        }
+      ],
+      "name": "increaseObservationCardinalityNext",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "increaseObservationCardinalityNext(uint16)",
+      "selector": "0x32148f67",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/UniswapV3Pool.sol:255; contracts/interfaces/pool/IUniswapV3PoolActions.sol:102"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Permissionless increases future oracle buffer capacity; does not manufacture past history."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Permissionless increases future oracle buffer capacity; does not manufacture past history."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint160",
+          "name": "sqrtPriceX96",
+          "type": "uint160"
+        }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "initialize(uint160)",
+      "selector": "0xf637731d",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/UniswapV3Pool.sol:271; contracts/interfaces/pool/IUniswapV3PoolActions.sol:10; contracts/libraries/Oracle.sol:52"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Permissionless once sqrtPriceX96 zero; sets starting tick and initial oracle observation, unlocks pool."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Permissionless once sqrtPriceX96 zero; sets starting tick and initial oracle observation, unlocks pool."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "liquidity",
+      "outputs": [
+        {
+          "internalType": "uint128",
+          "name": "",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "liquidity()",
+      "selector": "0x1a686502",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolState.sol:48"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the liquidity stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "maxLiquidityPerTick",
+      "outputs": [
+        {
+          "internalType": "uint128",
+          "name": "",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "maxLiquidityPerTick()",
+      "selector": "0x70cf754a",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolImmutables.sol:34"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the maxLiquidityPerTick stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "int24",
+          "name": "tickLower",
+          "type": "int24"
+        },
+        {
+          "internalType": "int24",
+          "name": "tickUpper",
+          "type": "int24"
+        },
+        {
+          "internalType": "uint128",
+          "name": "amount",
+          "type": "uint128"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "mint",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "mint(address,int24,int24,uint128,bytes)",
+      "selector": "0x3c8a7d8d",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/UniswapV3Pool.sol:457; contracts/interfaces/pool/IUniswapV3PoolActions.sol:23"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Creates/increases recipient concentrated-liquidity range; caller callback must pay required token deltas. Balance-delta verification after callback."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Creates/increases recipient concentrated-liquidity range; caller callback must pay required token deltas. Balance-delta verification after callback."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "observations",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "blockTimestamp",
+          "type": "uint32"
+        },
+        {
+          "internalType": "int56",
+          "name": "tickCumulative",
+          "type": "int56"
+        },
+        {
+          "internalType": "uint160",
+          "name": "secondsPerLiquidityCumulativeX128",
+          "type": "uint160"
+        },
+        {
+          "internalType": "bool",
+          "name": "initialized",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "observations(uint256)",
+      "selector": "0x252c09d7",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolState.sol:107"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the observations stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint32[]",
+          "name": "secondsAgos",
+          "type": "uint32[]"
+        }
+      ],
+      "name": "observe",
+      "outputs": [
+        {
+          "internalType": "int56[]",
+          "name": "tickCumulatives",
+          "type": "int56[]"
+        },
+        {
+          "internalType": "uint160[]",
+          "name": "secondsPerLiquidityCumulativeX128s",
+          "type": "uint160[]"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "observe(uint32[])",
+      "selector": "0x883bdbfd",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/UniswapV3Pool.sol:236; contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol:18; contracts/libraries/Oracle.sol:300"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Oracle cumulative tick and seconds-per-liquidity at supplied lookback seconds; inadequate history can revert; cumulative output not a spot/TWAP price directly."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "positions",
+      "outputs": [
+        {
+          "internalType": "uint128",
+          "name": "liquidity",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint256",
+          "name": "feeGrowthInside0LastX128",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "feeGrowthInside1LastX128",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint128",
+          "name": "tokensOwed0",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "tokensOwed1",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "positions(bytes32)",
+      "selector": "0x514ea4bf",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolState.sol:88"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Liquidity/fee-growth/tokens-owed for owner+tick-range hash; not MarginDesk loan positions."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "protocolFees",
+      "outputs": [
+        {
+          "internalType": "uint128",
+          "name": "token0",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "token1",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "protocolFees()",
+      "selector": "0x1ad8b03b",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolState.sol:44"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the protocolFees stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "feeProtocol0",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint8",
+          "name": "feeProtocol1",
+          "type": "uint8"
+        }
+      ],
+      "name": "setFeeProtocol",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setFeeProtocol(uint8,uint8)",
+      "selector": "0x8206a4d1",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/UniswapV3Pool.sol:837; contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol:10"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Factory-owner only; each denominator zero(disabled) or4..10. Controls fraction of swap fee, not gross trade tax."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Factory-owner only; each denominator zero(disabled) or4..10. Controls fraction of swap fee, not gross trade tax."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "slot0",
+      "outputs": [
+        {
+          "internalType": "uint160",
+          "name": "sqrtPriceX96",
+          "type": "uint160"
+        },
+        {
+          "internalType": "int24",
+          "name": "tick",
+          "type": "int24"
+        },
+        {
+          "internalType": "uint16",
+          "name": "observationIndex",
+          "type": "uint16"
+        },
+        {
+          "internalType": "uint16",
+          "name": "observationCardinality",
+          "type": "uint16"
+        },
+        {
+          "internalType": "uint16",
+          "name": "observationCardinalityNext",
+          "type": "uint16"
+        },
+        {
+          "internalType": "uint8",
+          "name": "feeProtocol",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bool",
+          "name": "unlocked",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "slot0()",
+      "selector": "0x3850c7bd",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolState.sol:21"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Spot sqrtPriceX96/tick and oracle index/cardinality/protocol fee/unlocked state; active liquidity or TVL is not depth within1%."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "int24",
+          "name": "tickLower",
+          "type": "int24"
+        },
+        {
+          "internalType": "int24",
+          "name": "tickUpper",
+          "type": "int24"
+        }
+      ],
+      "name": "snapshotCumulativesInside",
+      "outputs": [
+        {
+          "internalType": "int56",
+          "name": "tickCumulativeInside",
+          "type": "int56"
+        },
+        {
+          "internalType": "uint160",
+          "name": "secondsPerLiquidityInsideX128",
+          "type": "uint160"
+        },
+        {
+          "internalType": "uint32",
+          "name": "secondsInside",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "snapshotCumulativesInside(int24,int24)",
+      "selector": "0xa38807f2",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/UniswapV3Pool.sol:158; contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol:32"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Inside-range tick/seconds/liquidity cumulative differences for initialized boundary ticks."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "zeroForOne",
+          "type": "bool"
+        },
+        {
+          "internalType": "int256",
+          "name": "amountSpecified",
+          "type": "int256"
+        },
+        {
+          "internalType": "uint160",
+          "name": "sqrtPriceLimitX96",
+          "type": "uint160"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "swap",
+      "outputs": [
+        {
+          "internalType": "int256",
+          "name": "amount0",
+          "type": "int256"
+        },
+        {
+          "internalType": "int256",
+          "name": "amount1",
+          "type": "int256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "swap(address,bool,int256,uint160,bytes)",
+      "selector": "0x128acb08",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/UniswapV3Pool.sol:596; contracts/interfaces/pool/IUniswapV3PoolActions.sol:75"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Exact input if amountSpecified positive, exact output if negative; walks initialized ticks with rounded SwapMath/SqrtPriceMath steps to price bound, updates liquidity/fee growth/observations and calls payer callback. Requires actual postcallback input increase; fee-on-transfer input must be covered."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Exact input if amountSpecified positive, exact output if negative; walks initialized ticks with rounded SwapMath/SqrtPriceMath steps to price bound, updates liquidity/fee growth/observations and calls payer callback. Requires actual postcallback input increase; fee-on-transfer input must be covered."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "int16",
+          "name": "",
+          "type": "int16"
+        }
+      ],
+      "name": "tickBitmap",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "tickBitmap(int16)",
+      "selector": "0x5339c296",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolState.sol:79"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the tickBitmap stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "tickSpacing",
+      "outputs": [
+        {
+          "internalType": "int24",
+          "name": "",
+          "type": "int24"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "tickSpacing()",
+      "selector": "0xd0c93a7c",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolImmutables.sol:28"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the tickSpacing stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "int24",
+          "name": "",
+          "type": "int24"
+        }
+      ],
+      "name": "ticks",
+      "outputs": [
+        {
+          "internalType": "uint128",
+          "name": "liquidityGross",
+          "type": "uint128"
+        },
+        {
+          "internalType": "int128",
+          "name": "liquidityNet",
+          "type": "int128"
+        },
+        {
+          "internalType": "uint256",
+          "name": "feeGrowthOutside0X128",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "feeGrowthOutside1X128",
+          "type": "uint256"
+        },
+        {
+          "internalType": "int56",
+          "name": "tickCumulativeOutside",
+          "type": "int56"
+        },
+        {
+          "internalType": "uint160",
+          "name": "secondsPerLiquidityOutsideX128",
+          "type": "uint160"
+        },
+        {
+          "internalType": "uint32",
+          "name": "secondsOutside",
+          "type": "uint32"
+        },
+        {
+          "internalType": "bool",
+          "name": "initialized",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "ticks(int24)",
+      "selector": "0xf30dba93",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolState.sol:64"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the ticks stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "token0",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "token0()",
+      "selector": "0x0dfe1681",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolImmutables.sol:13"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the token0 stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "token1",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "token1()",
+      "selector": "0xd21220a7",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolImmutables.sol:17"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the token1 stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    }
+  ],
+  "events": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "int24",
+          "name": "tickLower",
+          "type": "int24"
+        },
+        {
+          "indexed": true,
+          "internalType": "int24",
+          "name": "tickUpper",
+          "type": "int24"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint128",
+          "name": "amount",
+          "type": "uint128"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        }
+      ],
+      "name": "Burn",
+      "signature": "Burn(address,int24,int24,uint128,uint256,uint256)",
+      "topic0": "0x0c396cd989a39f4459b5fa1aed6a9a8dcdbc45908acfd67e028cd568da98982c",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:55"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:55"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "int24",
+          "name": "tickLower",
+          "type": "int24"
+        },
+        {
+          "indexed": true,
+          "internalType": "int24",
+          "name": "tickUpper",
+          "type": "int24"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint128",
+          "name": "amount0",
+          "type": "uint128"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint128",
+          "name": "amount1",
+          "type": "uint128"
+        }
+      ],
+      "name": "Collect",
+      "signature": "Collect(address,address,int24,int24,uint128,uint128)",
+      "topic0": "0x70935338e69775456a85ddef226c395fb668b63fa0115f5f20610b388e6ca9c0",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:38"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:38"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint128",
+          "name": "amount0",
+          "type": "uint128"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint128",
+          "name": "amount1",
+          "type": "uint128"
+        }
+      ],
+      "name": "CollectProtocol",
+      "signature": "CollectProtocol(address,address,uint128,uint128)",
+      "topic0": "0x596b573906218d3411850b26a6b437d6c4522fdb43d2d2386263f86d50b8b151",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:120"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:120"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "paid0",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "paid1",
+          "type": "uint256"
+        }
+      ],
+      "name": "Flash",
+      "signature": "Flash(address,address,uint256,uint256,uint256,uint256)",
+      "topic0": "0xbdbdb71d7860376ba52b25a5028beea23581364a40522f6bcfb86bb1f2dca633",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:89"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:89"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint16",
+          "name": "observationCardinalityNextOld",
+          "type": "uint16"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint16",
+          "name": "observationCardinalityNextNew",
+          "type": "uint16"
+        }
+      ],
+      "name": "IncreaseObservationCardinalityNext",
+      "signature": "IncreaseObservationCardinalityNext(uint16,uint16)",
+      "topic0": "0xac49e518f90a358f652e4400164f05a5d8f7e35e7747279bc3a93dbf584e125a",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:103"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:103"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint160",
+          "name": "sqrtPriceX96",
+          "type": "uint160"
+        },
+        {
+          "indexed": false,
+          "internalType": "int24",
+          "name": "tick",
+          "type": "int24"
+        }
+      ],
+      "name": "Initialize",
+      "signature": "Initialize(uint160,int24)",
+      "topic0": "0x98636036cb66a9c19a37435efc1e90142190214e8abeb821bdba3f2990dd4c95",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:11"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:11"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "int24",
+          "name": "tickLower",
+          "type": "int24"
+        },
+        {
+          "indexed": true,
+          "internalType": "int24",
+          "name": "tickUpper",
+          "type": "int24"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint128",
+          "name": "amount",
+          "type": "uint128"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        }
+      ],
+      "name": "Mint",
+      "signature": "Mint(address,address,int24,int24,uint128,uint256,uint256)",
+      "topic0": "0x7a53080ba414158be7ec69b987b5fb7d07dee101fe85488f0853ae16239d0bde",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:21"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:21"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "feeProtocol0Old",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "feeProtocol1Old",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "feeProtocol0New",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "feeProtocol1New",
+          "type": "uint8"
+        }
+      ],
+      "name": "SetFeeProtocol",
+      "signature": "SetFeeProtocol(uint8,uint8,uint8,uint8)",
+      "topic0": "0x973d8d92bb299f4af6ce49b52a8adb85ae46b9f214c4c4fc06ac77401237b133",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:113"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:113"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "int256",
+          "name": "amount0",
+          "type": "int256"
+        },
+        {
+          "indexed": false,
+          "internalType": "int256",
+          "name": "amount1",
+          "type": "int256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint160",
+          "name": "sqrtPriceX96",
+          "type": "uint160"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint128",
+          "name": "liquidity",
+          "type": "uint128"
+        },
+        {
+          "indexed": false,
+          "internalType": "int24",
+          "name": "tick",
+          "type": "int24"
+        }
+      ],
+      "name": "Swap",
+      "signature": "Swap(address,address,int256,int256,uint160,uint128,int24)",
+      "topic0": "0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:72"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "contracts/interfaces/pool/IUniswapV3PoolEvents.sol:72"
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netlong-margin-weth-usdg-pool-explorer-20261010",
+        "locator": "ABI entry[0]"
+      },
+      "type": "constructor"
+    }
+  ],
+  "runtime_review": [],
+  "source_files": [
+    {
+      "path": "contracts/UniswapV3Pool.sol",
+      "sha256": "d515775b7f3ffe921dd70aca86b8bad16280fa4c122425d82b4dbea4dc564a7a",
+      "line_count": 869,
+      "function_declarations": [
+        {
+          "name": "checkTicks",
+          "line": 126
+        },
+        {
+          "name": "_blockTimestamp",
+          "line": 133
+        },
+        {
+          "name": "balance0",
+          "line": 140
+        },
+        {
+          "name": "balance1",
+          "line": 150
+        },
+        {
+          "name": "snapshotCumulativesInside",
+          "line": 158
+        },
+        {
+          "name": "observe",
+          "line": 236
+        },
+        {
+          "name": "increaseObservationCardinalityNext",
+          "line": 255
+        },
+        {
+          "name": "initialize",
+          "line": 271
+        },
+        {
+          "name": "_modifyPosition",
+          "line": 306
+        },
+        {
+          "name": "_updatePosition",
+          "line": 379
+        },
+        {
+          "name": "mint",
+          "line": 457
+        },
+        {
+          "name": "collect",
+          "line": 490
+        },
+        {
+          "name": "burn",
+          "line": 517
+        },
+        {
+          "name": "swap",
+          "line": 596
+        },
+        {
+          "name": "flash",
+          "line": 791
+        },
+        {
+          "name": "setFeeProtocol",
+          "line": 837
+        },
+        {
+          "name": "collectProtocol",
+          "line": 848
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/FixedPoint96.sol",
+      "sha256": "219deb88ffbcdefa482be35051db586378e8523062bee592dd2c5fa7fb47ebd6",
+      "line_count": 10,
+      "function_declarations": []
+    },
+    {
+      "path": "contracts/libraries/FullMath.sol",
+      "sha256": "54087aee268a6938a85a408d7b14481b5c2c956c21508d5583f1bf48ec6d69ba",
+      "line_count": 124,
+      "function_declarations": [
+        {
+          "name": "mulDiv",
+          "line": 14
+        },
+        {
+          "name": "mulDivRoundingUp",
+          "line": 113
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/LiquidityMath.sol",
+      "sha256": "84d20a16d5346f6ec4c12dff4df23dda5d46e52d33f18aaaaac2e9e36ce4a072",
+      "line_count": 17,
+      "function_declarations": [
+        {
+          "name": "addDelta",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "path": "contracts/NoDelegateCall.sol",
+      "sha256": "c2b03bbf6ae73415e9f60fb2bcdad1ee9dbb3ab1f27f9b12384c44d11a5624e0",
+      "line_count": 27,
+      "function_declarations": [
+        {
+          "name": "checkNotDelegateCall",
+          "line": 18
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/IERC20Minimal.sol",
+      "sha256": "bb0bf574bdfd637eb7d3c0869e8170314d5aac37df8e86cd3ca808f828c7c22a",
+      "line_count": 52,
+      "function_declarations": [
+        {
+          "name": "balanceOf",
+          "line": 10
+        },
+        {
+          "name": "transfer",
+          "line": 16
+        },
+        {
+          "name": "allowance",
+          "line": 22
+        },
+        {
+          "name": "approve",
+          "line": 28
+        },
+        {
+          "name": "transferFrom",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/IUniswapV3Factory.sol",
+      "sha256": "17c72e89a7d0eecca7929ca08d97f46e80930ef7024e4ccbc7b294c588477107",
+      "line_count": 78,
+      "function_declarations": [
+        {
+          "name": "owner",
+          "line": 34
+        },
+        {
+          "name": "feeAmountTickSpacing",
+          "line": 40
+        },
+        {
+          "name": "getPool",
+          "line": 48
+        },
+        {
+          "name": "createPool",
+          "line": 62
+        },
+        {
+          "name": "setOwner",
+          "line": 71
+        },
+        {
+          "name": "enableFeeAmount",
+          "line": 77
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/IUniswapV3Pool.sol",
+      "sha256": "b0f97121de74f3c916503f6ec37fa1ba196affd1cc02157e47ab00125dde91fe",
+      "line_count": 24,
+      "function_declarations": []
+    },
+    {
+      "path": "contracts/interfaces/IUniswapV3PoolDeployer.sol",
+      "sha256": "48908460f444abc497b261e38a38540effecbf5c99d17e60d849f1d0acfb1fe6",
+      "line_count": 26,
+      "function_declarations": [
+        {
+          "name": "parameters",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/callback/IUniswapV3FlashCallback.sol",
+      "sha256": "612135b515e651db56cd80191cd56c0b982eaae954c5b1c4d1dc111f8968d5b8",
+      "line_count": 18,
+      "function_declarations": [
+        {
+          "name": "uniswapV3FlashCallback",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/callback/IUniswapV3MintCallback.sol",
+      "sha256": "4dbecbcec83e4f5609d72309f40be3eac554f8517ed46e6345bd35069c9bbc23",
+      "line_count": 18,
+      "function_declarations": [
+        {
+          "name": "uniswapV3MintCallback",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/callback/IUniswapV3SwapCallback.sol",
+      "sha256": "171a9a692e71b6d532df655695b0b672bd8ea5dcca3b3363131700b45b0171c6",
+      "line_count": 21,
+      "function_declarations": [
+        {
+          "name": "uniswapV3SwapCallback",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/pool/IUniswapV3PoolActions.sol",
+      "sha256": "7fc763acbf5e7044d88cae4a6ed7b1c99b5268d647ae794ba5ee1085060e6a2c",
+      "line_count": 103,
+      "function_declarations": [
+        {
+          "name": "initialize",
+          "line": 10
+        },
+        {
+          "name": "mint",
+          "line": 23
+        },
+        {
+          "name": "collect",
+          "line": 43
+        },
+        {
+          "name": "burn",
+          "line": 59
+        },
+        {
+          "name": "swap",
+          "line": 75
+        },
+        {
+          "name": "flash",
+          "line": 91
+        },
+        {
+          "name": "increaseObservationCardinalityNext",
+          "line": 102
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol",
+      "sha256": "9f670bdfed3a283e0557b208a5d4bc561afd2df771d67c4368dddaae2dc1b6e3",
+      "line_count": 40,
+      "function_declarations": [
+        {
+          "name": "observe",
+          "line": 18
+        },
+        {
+          "name": "snapshotCumulativesInside",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/pool/IUniswapV3PoolEvents.sol",
+      "sha256": "2c2b798ca4288dfdf746bca8516b4e725b79ca6636af3d38a5a64801e50020a7",
+      "line_count": 121,
+      "function_declarations": []
+    },
+    {
+      "path": "contracts/interfaces/pool/IUniswapV3PoolImmutables.sol",
+      "sha256": "ac6332f7e174db7fa3852a6c5ae3da3bd013e72c2ff8fa1cf2ec37f6916e2951",
+      "line_count": 35,
+      "function_declarations": [
+        {
+          "name": "factory",
+          "line": 9
+        },
+        {
+          "name": "token0",
+          "line": 13
+        },
+        {
+          "name": "token1",
+          "line": 17
+        },
+        {
+          "name": "fee",
+          "line": 21
+        },
+        {
+          "name": "tickSpacing",
+          "line": 28
+        },
+        {
+          "name": "maxLiquidityPerTick",
+          "line": 34
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol",
+      "sha256": "5f4cd982d6abe55237bc770da3b667f96edf048c230cfe3d7f6309c92cc0e205",
+      "line_count": 23,
+      "function_declarations": [
+        {
+          "name": "setFeeProtocol",
+          "line": 10
+        },
+        {
+          "name": "collectProtocol",
+          "line": 18
+        }
+      ]
+    },
+    {
+      "path": "contracts/interfaces/pool/IUniswapV3PoolState.sol",
+      "sha256": "d8d3937703d08d95f7f867a0f49c2aa73c3f3ef5508a54d431e829295f5175ea",
+      "line_count": 116,
+      "function_declarations": [
+        {
+          "name": "slot0",
+          "line": 21
+        },
+        {
+          "name": "feeGrowthGlobal0X128",
+          "line": 36
+        },
+        {
+          "name": "feeGrowthGlobal1X128",
+          "line": 40
+        },
+        {
+          "name": "protocolFees",
+          "line": 44
+        },
+        {
+          "name": "liquidity",
+          "line": 48
+        },
+        {
+          "name": "ticks",
+          "line": 64
+        },
+        {
+          "name": "tickBitmap",
+          "line": 79
+        },
+        {
+          "name": "positions",
+          "line": 88
+        },
+        {
+          "name": "observations",
+          "line": 107
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/BitMath.sol",
+      "sha256": "32f71ea9156f55572a72efb0b2a913df88de66ff33d042043fb3e51a6050a557",
+      "line_count": 94,
+      "function_declarations": [
+        {
+          "name": "mostSignificantBit",
+          "line": 13
+        },
+        {
+          "name": "leastSignificantBit",
+          "line": 53
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/FixedPoint128.sol",
+      "sha256": "cfc3aef8851f183492547dccc168bf72398fba2aad4c4d9d4784f542a8ccda34",
+      "line_count": 8,
+      "function_declarations": []
+    },
+    {
+      "path": "contracts/libraries/LowGasSafeMath.sol",
+      "sha256": "394107ff2dbbaded5612452af5e77b4af9d0871b096c1514b0ea659b862fc46f",
+      "line_count": 46,
+      "function_declarations": [
+        {
+          "name": "add",
+          "line": 11
+        },
+        {
+          "name": "sub",
+          "line": 19
+        },
+        {
+          "name": "mul",
+          "line": 27
+        },
+        {
+          "name": "add",
+          "line": 35
+        },
+        {
+          "name": "sub",
+          "line": 43
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/Oracle.sol",
+      "sha256": "eea86662877614f800344bbe432098f9edf55735f5d1c9474ebd64b55097771b",
+      "line_count": 325,
+      "function_declarations": [
+        {
+          "name": "transform",
+          "line": 30
+        },
+        {
+          "name": "initialize",
+          "line": 52
+        },
+        {
+          "name": "write",
+          "line": 78
+        },
+        {
+          "name": "grow",
+          "line": 108
+        },
+        {
+          "name": "lte",
+          "line": 128
+        },
+        {
+          "name": "binarySearch",
+          "line": 153
+        },
+        {
+          "name": "getSurroundingObservations",
+          "line": 198
+        },
+        {
+          "name": "observeSingle",
+          "line": 245
+        },
+        {
+          "name": "observe",
+          "line": 300
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/Position.sol",
+      "sha256": "a9130c72e3adb7d3fa10ee5050fc9375d6119a8250125fe7daacec94450be21d",
+      "line_count": 88,
+      "function_declarations": [
+        {
+          "name": "get",
+          "line": 30
+        },
+        {
+          "name": "update",
+          "line": 44
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/SafeCast.sol",
+      "sha256": "9aed494b56d3dd16b7d6535583ded2cdfb03dc80aaa919347b13d35fd597e8bf",
+      "line_count": 28,
+      "function_declarations": [
+        {
+          "name": "toUint160",
+          "line": 10
+        },
+        {
+          "name": "toInt128",
+          "line": 17
+        },
+        {
+          "name": "toInt256",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/SqrtPriceMath.sol",
+      "sha256": "ddd62e3a94346248677f30f1ab009ef015e71e4b8696dcca890eeabc9dc6c149",
+      "line_count": 227,
+      "function_declarations": [
+        {
+          "name": "getNextSqrtPriceFromAmount0RoundingUp",
+          "line": 28
+        },
+        {
+          "name": "getNextSqrtPriceFromAmount1RoundingDown",
+          "line": 68
+        },
+        {
+          "name": "getNextSqrtPriceFromInput",
+          "line": 106
+        },
+        {
+          "name": "getNextSqrtPriceFromOutput",
+          "line": 129
+        },
+        {
+          "name": "getAmount0Delta",
+          "line": 153
+        },
+        {
+          "name": "getAmount1Delta",
+          "line": 182
+        },
+        {
+          "name": "getAmount0Delta",
+          "line": 201
+        },
+        {
+          "name": "getAmount1Delta",
+          "line": 217
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/SwapMath.sol",
+      "sha256": "d6cb9a153be4ea9fb2377ef88641ef7979b5cee6933162f1b732d0289e26e1b6",
+      "line_count": 98,
+      "function_declarations": [
+        {
+          "name": "computeSwapStep",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/Tick.sol",
+      "sha256": "d9c4686fef99d647352e3a5cac643eb41cdf616bcc1038e199b52038cc3662d6",
+      "line_count": 185,
+      "function_declarations": [
+        {
+          "name": "tickSpacingToMaxLiquidityPerTick",
+          "line": 44
+        },
+        {
+          "name": "getFeeGrowthInside",
+          "line": 60
+        },
+        {
+          "name": "update",
+          "line": 110
+        },
+        {
+          "name": "clear",
+          "line": 155
+        },
+        {
+          "name": "cross",
+          "line": 168
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/TickBitmap.sol",
+      "sha256": "bd7a17c5134f0718eb7d856ddfc58d8347d32a8f661bed53aa3ad17c9aea09ba",
+      "line_count": 78,
+      "function_declarations": [
+        {
+          "name": "position",
+          "line": 14
+        },
+        {
+          "name": "flipTick",
+          "line": 23
+        },
+        {
+          "name": "nextInitializedTickWithinOneWord",
+          "line": 42
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/TickMath.sol",
+      "sha256": "83cf64b2ca84001effd16e007b49bac5359143b6c3132bfe42907b2426a0c5f5",
+      "line_count": 205,
+      "function_declarations": [
+        {
+          "name": "getSqrtRatioAtTick",
+          "line": 23
+        },
+        {
+          "name": "getTickAtSqrtRatio",
+          "line": 61
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/TransferHelper.sol",
+      "sha256": "f15b94bc000ee68e434c3ff4c28696c3f5bc23222bd6249744a7228b063e267b",
+      "line_count": 23,
+      "function_declarations": [
+        {
+          "name": "safeTransfer",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "path": "contracts/libraries/UnsafeMath.sol",
+      "sha256": "4d02353eb503e3111e25bd50104ac9b279f99e88d848e455262a3fbeb55c50e7",
+      "line_count": 17,
+      "function_declarations": [
+        {
+          "name": "divRoundingUp",
+          "line": 12
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,938 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x04e2f5707a4421c7afc7b56c14bc190550ac594d",
+  "contract_record": "assets/addresses/contracts/advance-desk-and-zap.json",
+  "chain_id": 4663,
+  "address": "0x04E2F5707A4421c7aFc7b56c14bc190550aC594D",
+  "generation": "advance-zap",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap",
+      "observed_on": "2026-10-07"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 29,
+    "implementation": "targeted_explorer_runtime_review",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned code, storage, current permissions and financial reconciliation.",
+      "Compiler/source equivalence and exhaustive implementation/function reachability audit.",
+      "Existing September26 runtime conditional findings remain valid at their stated scope; October7 explorer hashes match, but no fresh pinned live dependency state."
+    ],
+    "literal_abi_sha256": "93ced53d1d186a50bf525a0d4a66517179a5a3410dc82b39c1885302ec6364ac",
+    "literal_character_range": [
+      1034372,
+      1039880
+    ],
+    "dispatcher_evidence": {
+      "source_id": "netnet-advance-zap-implementation-20261007",
+      "method": "PUSH4/EQ/PUSH2/JUMPI dispatcher patterns within first850 bytes; not exhaustive symbolic execution. Selectors alone do not identify absent names, outputs or permissions.",
+      "observed_selector_count": 14,
+      "unmatched_dispatcher_selectors": [],
+      "interface_selectors_not_seen_in_pattern": []
+    }
+  },
+  "functions": [
+    {
+      "name": "ZAP_CAP_USDG",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "ZAP_CAP_USDG()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[1]"
+      },
+      "selector": "0x6a980fa4",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface ZAP_CAP_USDG(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0x17c",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "desk",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IAdvanceDeskZap"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "desk()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[2]"
+      },
+      "selector": "0xc12b293c",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface desk(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0x207",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "house",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "house()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[3]"
+      },
+      "selector": "0xff9b3acf",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface house(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0x2dd",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "net",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "net()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[4]"
+      },
+      "selector": "0xc2fff4a5",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface net(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0x22e",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "openWithNet",
+      "inputs": [
+        {
+          "name": "netAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "minWs",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "minAdvance",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "destination",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "wsOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "openWithNet(uint256,uint256,uint256,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[5]"
+      },
+      "selector": "0x89cdb0c0",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-zap; openWithNet"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "Caller supplies NET; exact inbound, warmup/final minWs guards."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "Stakes and wraps then opens Desk lock; no mature market-sale path inferred."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0x1f4",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "openWithSnet",
+      "inputs": [
+        {
+          "name": "sNetIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "minWs",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "minAdvance",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "destination",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "wsOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "openWithSnet(uint256,uint256,uint256,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[6]"
+      },
+      "selector": "0x1cf10943",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-zap; openWithSnet"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "Caller supplies sNET; exact inbound/final minWs guards."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "Wraps sNET then opens Desk lock for original caller; no signature or transaction prepared."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0x12d",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "openWithUsdg",
+      "inputs": [
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "minWs",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "minAdvance",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "destination",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "deadline",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "wsOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "openWithUsdg(uint256,uint256,uint256,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[7]"
+      },
+      "selector": "0xd3aa0b8e",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-zap; openWithUsdg"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "Caller supplies USDG; enforces input cap, deadline and final minWs."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "Actual fee-on-transfer-compatible router swap is in deployed runtime, not merely constructor approvals. Original caller passed as Desk owner; quote/dependency execution remains conditional."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0x255",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "quoteLegs",
+      "inputs": [
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "useInventory",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "wsInventory",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "wsPair",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "quoteLegs(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[8]"
+      },
+      "selector": "0x81e0a68d",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-zap; quoteLegs"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "Public quote, no execution authorization."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "Compares full-input inventory and pool routes, takes inventory on ties. Scoped September26 runtime evidence retained; fresh October7 explorer hash equal, not pinned dependency state."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0x1c4",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "router",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IUniswapV2Router02"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "router()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[9]"
+      },
+      "selector": "0xf887ea40",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface router(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0x2b6",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "sNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "sNet()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[10]"
+      },
+      "selector": "0x1adb8eb6",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface sNet(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0xe9",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "skim",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "skim(address,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[11]"
+      },
+      "selector": "0x712b772f",
+      "semantic_evidence": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "locator": "assets/contracts/validation.json#advance-zap; skim"
+      },
+      "permissions": {
+        "status": "retained_conditional_runtime",
+        "detail": "House-only."
+      },
+      "economic_meaning": {
+        "status": "retained_conditional_runtime",
+        "detail": "Full-token-balance skim; distinct from LPZap and Sleeve surplus policy."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0x1b1",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "staking",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IStakingZap"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "staking()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[12]"
+      },
+      "selector": "0x4cf088d9",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface staking(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0x155",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdg()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[13]"
+      },
+      "selector": "0xf5b91b7b",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface usdg(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0x28f",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "wsNet",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IWrappedStakedNET"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "wsNet()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[14]"
+      },
+      "selector": "0xd52014e3",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface wsNet(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-advance-zap-implementation-20261007",
+        "entry_offset": "0x268",
+        "scope": "selector/branch identity only"
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "OpenedWithNet",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "owner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "netIn",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "wsLocked",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "OpenedWithNet(uint256,address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[15]"
+      },
+      "topic0": "0x53d35810042e68cc8123286d99203506465071aafc24f00de87c218b6be747e7"
+    },
+    {
+      "name": "OpenedWithSnet",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "owner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "sNetIn",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "wsLocked",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "OpenedWithSnet(uint256,address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[16]"
+      },
+      "topic0": "0x51a679d44381e5960633a319bad7494b4bca8f4be440544310220ba575d76378"
+    },
+    {
+      "name": "OpenedWithUsdg",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "owner",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdgToInventory",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "netBought",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "wsLocked",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "OpenedWithUsdg(uint256,address,uint256,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[17]"
+      },
+      "topic0": "0x34b4fa619029e2928fef3f56f5dd273617b87be4f9e2f0050c922bd4dcdedf58"
+    },
+    {
+      "name": "Skimmed",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "to",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Skimmed(address,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[18]"
+      },
+      "topic0": "0x0cfb7d414a57e3fd35da9f4b61341e65026c225646228ba0262d9264f541c32e"
+    }
+  ],
+  "errors": [
+    {
+      "name": "AboveZapCap",
+      "inputs": [
+        {
+          "name": "cap",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "AboveZapCap(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[19]"
+      },
+      "selector": "0xb46909b4"
+    },
+    {
+      "name": "Expired",
+      "inputs": [],
+      "signature": "Expired()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[20]"
+      },
+      "selector": "0x203d82d8"
+    },
+    {
+      "name": "InvalidConfig",
+      "inputs": [],
+      "signature": "InvalidConfig()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[21]"
+      },
+      "selector": "0x35be3ac8"
+    },
+    {
+      "name": "NotHouse",
+      "inputs": [],
+      "signature": "NotHouse()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[22]"
+      },
+      "selector": "0x890a15a7"
+    },
+    {
+      "name": "Reentrancy",
+      "inputs": [],
+      "signature": "Reentrancy()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[23]"
+      },
+      "selector": "0xab143c06"
+    },
+    {
+      "name": "Slippage",
+      "inputs": [
+        {
+          "name": "got",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "min",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "signature": "Slippage(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[24]"
+      },
+      "selector": "0x2746152a"
+    },
+    {
+      "name": "TransferFailed",
+      "inputs": [],
+      "signature": "TransferFailed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[25]"
+      },
+      "selector": "0x90b8ec18"
+    },
+    {
+      "name": "WarmupActive",
+      "inputs": [],
+      "signature": "WarmupActive()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[26]"
+      },
+      "selector": "0x1f1dad94"
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "signature": "ZeroAddress()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[27]"
+      },
+      "selector": "0xd92e233d"
+    },
+    {
+      "name": "ZeroAmount",
+      "inputs": [],
+      "signature": "ZeroAmount()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[28]"
+      },
+      "selector": "0x1f2a2005"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "c",
+          "type": "tuple",
+          "internalType": "struct AdvanceZap.ZapConfig",
+          "components": [
+            {
+              "name": "usdg",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "net",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "sNet",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "wsNet",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "router",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "staking",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "desk",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "zapCapUsdg",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal xk, Unicode character offsets[1034372,1039880); consumer binding to advance-zap; ABI entry[0]"
+      }
+    }
+  ],
+  "retained_evidence": "assets/analytics/advance-interface.json"
+}

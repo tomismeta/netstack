@@ -1,0 +1,1572 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x020bfc650a365f8bb26819deaabf3e21291018b4",
+  "contract_record": "assets/addresses/contracts/cashcat-climb-and-coinflip.json",
+  "chain_id": 4663,
+  "address": "0x020bfC650A365f8BB26819deAAbF3E21291018b4",
+  "generation": "netlong-margin-cashcat-token",
+  "provenance": [
+    {
+      "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x020bfC650A365f8BB26819deAAbF3E21291018b4",
+      "observed_on": "2026-10-10",
+      "locator": "Complete explorer smart-contract response; source/ABI fields and deployed_bytecode where supplied"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "explorer_source_and_abi",
+    "supplied_entry_count": 41,
+    "implementation": "all_obtained_abi_functions_source_reviewed_not_compiler_equivalence",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+      "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit."
+    ]
+  },
+  "runtime_identity": {
+    "byte_count": 4830,
+    "sha256": "224b54d0c42295f65953edd380ab828d3aa3dddb11c9b0ea7922a84875432017",
+    "keccak256": "0x725781ccca82a0bf9b1f8920b2fe58ea1e4facf46d0db9f50226d6409de890fe",
+    "evidence_kind": "explorer_indexed_unpinned_runtime",
+    "proxy_type": null,
+    "explorer_is_verified": true,
+    "explorer_is_fully_verified": false,
+    "verified_twin_address": null
+  },
+  "functions": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "allowance(address,address)",
+      "selector": "0xdd62ed3e",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/token/ERC20/ERC20.sol:106; @openzeppelin/contracts/token/ERC20/IERC20.sol:50"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Spender authorization in raw units; maximum uint256 is treated as non-decrementing infinite allowance."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "approve(address,uint256)",
+      "selector": "0x095ea7b3",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/token/ERC20/ERC20.sol:120; @openzeppelin/contracts/token/ERC20/IERC20.sol:67"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Caller sets spender allowance; no tokens move. Token-specific restrictions apply."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Caller sets spender allowance; no tokens move. Token-specific restrictions apply."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "balanceOf(address)",
+      "selector": "0x70a08231",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/token/ERC20/ERC20.sol:87; @openzeppelin/contracts/token/ERC20/IERC20.sol:32"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Raw token units held by the supplied account; not position ownership, spendability or USD value."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "decimals()",
+      "selector": "0x313ce567",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/token/ERC20/ERC20.sol:77; @openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:25"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Display scale; 18 in the reviewed ERC20 implementations, not a conversion or valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "deployer",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "deployer()",
+      "selector": "0xd5f39488",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "contracts/LaunchToken.sol:98"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the deployer stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "description",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "description()",
+      "selector": "0x7284e416",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "contracts/LaunchToken.sol:106"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the description stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "dexFactory",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "dexFactory()",
+      "selector": "0xb8d8fbb4",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "ABI entry[18]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the dexFactory stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "getTokenInfo",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "deployer",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "logo",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "telegram",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "twitter",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "discord",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "website",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "farcaster",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct LauncherTypes.Socials",
+              "name": "socials",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct LauncherTypes.TokenInfo",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "getTokenInfo()",
+      "selector": "0xabb1dc44",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "contracts/LaunchToken.sol:94"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Creator and immutable-at-construction metadata tuple; not creator privileges."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "launchBlock",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "launchBlock()",
+      "selector": "0xd00efb2f",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "ABI entry[20]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the launchBlock stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "launchFactory",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "launchFactory()",
+      "selector": "0x536dac9b",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "ABI entry[21]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the launchFactory stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "liquidityPool",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "liquidityPool()",
+      "selector": "0x665a11ca",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "contracts/LaunchToken.sol:82"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Canonical V3 pool from pinned dexFactory.getPool(this,pairToken,poolFee); getter can fail if dependency fails."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "logo",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "logo()",
+      "selector": "0xfb7f21eb",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "contracts/LaunchToken.sol:102"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the logo stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "maxTxAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "maxTxAmount()",
+      "selector": "0x8c0b5e22",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "ABI entry[24]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Raw-unit launch pool-buy base limit, compatibility getter."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "maxTxBps",
+      "outputs": [
+        {
+          "internalType": "uint16",
+          "name": "",
+          "type": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "maxTxBps()",
+      "selector": "0xff8ea3e5",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "ABI entry[25]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the maxTxBps stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "maxTxLimit",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "maxTxLimit()",
+      "selector": "0x8036d590",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "contracts/LaunchToken.sol:90"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Raw-unit launch pool-buy base limit; token-specific cumulative rules differ."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "maxWalletAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "maxWalletAmount()",
+      "selector": "0xaa4bde28",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "ABI entry[27]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Raw-unit launch recipient limit, compatibility getter."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "maxWalletBps",
+      "outputs": [
+        {
+          "internalType": "uint16",
+          "name": "",
+          "type": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "maxWalletBps()",
+      "selector": "0x12f16a07",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "ABI entry[28]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the maxWalletBps stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "maxWalletLimit",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "maxWalletLimit()",
+      "selector": "0x66a88d96",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "contracts/LaunchToken.sol:86"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Raw-unit launch recipient limit; no USD meaning."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "name()",
+      "selector": "0x06fdde03",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/token/ERC20/ERC20.sol:52; @openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:15"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Token name metadata; not a unique identity."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "pairToken",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pairToken()",
+      "selector": "0x3de35b79",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "ABI entry[31]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the pairToken stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "poolFee",
+      "outputs": [
+        {
+          "internalType": "uint24",
+          "name": "",
+          "type": "uint24"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "poolFee()",
+      "selector": "0x089fe6aa",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "ABI entry[32]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the poolFee stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "positionManager",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "positionManager()",
+      "selector": "0x791b98bc",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "ABI entry[33]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the positionManager stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "restrictionBlocks",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "restrictionBlocks()",
+      "selector": "0xbaed0765",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "ABI entry[34]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the restrictionBlocks stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "restrictionEndBlock",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "restrictionEndBlock()",
+      "selector": "0x0861ac61",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "ABI entry[35]; public storage/immutable getter declaration in source"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads the restrictionEndBlock stored/immutable/constant field or indexed source structure exactly as described by the ABI output tuple; no transfer. Interpretation requires token/pool units, not a USD valuation."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "socials",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "telegram",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "twitter",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "discord",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "website",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "farcaster",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct LauncherTypes.Socials",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "socials()",
+      "selector": "0x53cd512a",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "contracts/LaunchToken.sol:110"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Recorded social metadata strings; not authenticated channels."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "symbol()",
+      "selector": "0x95d89b41",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/token/ERC20/ERC20.sol:60; @openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:20"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Token symbol metadata; identity is chain/address."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "totalSupply()",
+      "selector": "0x18160ddd",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/token/ERC20/ERC20.sol:82; @openzeppelin/contracts/token/ERC20/IERC20.sol:27"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Current issued units less burns; distinct from original issuance and circulating/distributed supply."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "transfer(address,uint256)",
+      "selector": "0xa9059cbb",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/token/ERC20/ERC20.sol:99; @openzeppelin/contracts/token/ERC20/IERC20.sol:41"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Moves caller tokens after balance and token-specific transfer rules; no economic redemption."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Moves caller tokens after balance and token-specific transfer rules; no economic redemption."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "transferFrom(address,address,uint256)",
+      "selector": "0x23b872dd",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/token/ERC20/ERC20.sol:142; @openzeppelin/contracts/token/ERC20/IERC20.sol:78"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Moves from-account tokens using caller allowance; maximum allowance is not decremented; token-specific transfer rules apply."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Moves from-account tokens using caller allowance; maximum allowance is not decremented; token-specific transfer rules apply."
+      }
+    }
+  ],
+  "events": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "signature": "Approval(address,address,uint256)",
+      "topic0": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/token/ERC20/IERC20.sol:22"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "@openzeppelin/contracts/token/ERC20/IERC20.sol:22"
+        ]
+      }
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "signature": "Transfer(address,address,uint256)",
+      "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/token/ERC20/IERC20.sol:16"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": [
+          "@openzeppelin/contracts/token/ERC20/IERC20.sol:16"
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "allowance",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "needed",
+          "type": "uint256"
+        }
+      ],
+      "name": "ERC20InsufficientAllowance",
+      "signature": "ERC20InsufficientAllowance(address,uint256,uint256)",
+      "selector": "0xfb8f41b2",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol:37"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "@openzeppelin/contracts/interfaces/draft-IERC6093.sol:37"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "balance",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "needed",
+          "type": "uint256"
+        }
+      ],
+      "name": "ERC20InsufficientBalance",
+      "signature": "ERC20InsufficientBalance(address,uint256,uint256)",
+      "selector": "0xe450d38c",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol:17"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "@openzeppelin/contracts/interfaces/draft-IERC6093.sol:17"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "approver",
+          "type": "address"
+        }
+      ],
+      "name": "ERC20InvalidApprover",
+      "signature": "ERC20InvalidApprover(address)",
+      "selector": "0xe602df05",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol:43"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "@openzeppelin/contracts/interfaces/draft-IERC6093.sol:43"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        }
+      ],
+      "name": "ERC20InvalidReceiver",
+      "signature": "ERC20InvalidReceiver(address)",
+      "selector": "0xec442f05",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol:29"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "@openzeppelin/contracts/interfaces/draft-IERC6093.sol:29"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "ERC20InvalidSender",
+      "signature": "ERC20InvalidSender(address)",
+      "selector": "0x96c6fd1e",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol:23"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "@openzeppelin/contracts/interfaces/draft-IERC6093.sol:23"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "ERC20InvalidSpender",
+      "signature": "ERC20InvalidSpender(address)",
+      "selector": "0x94280d62",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol:49"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "@openzeppelin/contracts/interfaces/draft-IERC6093.sol:49"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "LaunchBlockBuyBlocked",
+      "signature": "LaunchBlockBuyBlocked(address)",
+      "selector": "0x85234f97",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "contracts/LaunchToken.sol:43"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "contracts/LaunchToken.sol:43"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxTx",
+          "type": "uint256"
+        }
+      ],
+      "name": "MaxTxExceeded",
+      "signature": "MaxTxExceeded(address,uint256,uint256)",
+      "selector": "0xd397e2dc",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "contracts/LaunchToken.sol:42"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "contracts/LaunchToken.sol:42"
+        ]
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "balanceAfter",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxWallet",
+          "type": "uint256"
+        }
+      ],
+      "name": "MaxWalletExceeded",
+      "signature": "MaxWalletExceeded(address,uint256,uint256)",
+      "selector": "0x9487d160",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "contracts/LaunchToken.sol:41"
+      },
+      "semantics": {
+        "status": "source_declared",
+        "detail": "Exact custom-error signature/inputs; conditional rejection, not an independent proof of current state.",
+        "source_declarations": [
+          "contracts/LaunchToken.sol:41"
+        ]
+      }
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "symbol",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "supply",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "pairToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "positionManager",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "dexFactory",
+              "type": "address"
+            },
+            {
+              "internalType": "uint24",
+              "name": "poolFee",
+              "type": "uint24"
+            },
+            {
+              "internalType": "uint16",
+              "name": "maxWalletBps",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint16",
+              "name": "maxTxBps",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint32",
+              "name": "restrictionBlocks",
+              "type": "uint32"
+            }
+          ],
+          "internalType": "struct LauncherTypes.TokenConfig",
+          "name": "config",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "deployer",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "logo",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "telegram",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "twitter",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "discord",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "website",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "farcaster",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct LauncherTypes.Socials",
+              "name": "socials",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct LauncherTypes.TokenInfo",
+          "name": "info",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+        "locator": "ABI entry[0]"
+      },
+      "type": "constructor"
+    }
+  ],
+  "runtime_review": [],
+  "source_files": [
+    {
+      "path": "contracts/LaunchToken.sol",
+      "sha256": "f511b8ee4817caca8bc1c462b76344da060dd888ea48c7acc5e2992e10d3ab29",
+      "line_count": 161,
+      "function_declarations": [
+        {
+          "name": "getPool",
+          "line": 7
+        },
+        {
+          "name": "liquidityPool",
+          "line": 82
+        },
+        {
+          "name": "maxWalletLimit",
+          "line": 86
+        },
+        {
+          "name": "maxTxLimit",
+          "line": 90
+        },
+        {
+          "name": "getTokenInfo",
+          "line": 94
+        },
+        {
+          "name": "deployer",
+          "line": 98
+        },
+        {
+          "name": "logo",
+          "line": 102
+        },
+        {
+          "name": "description",
+          "line": 106
+        },
+        {
+          "name": "socials",
+          "line": 110
+        },
+        {
+          "name": "_update",
+          "line": 114
+        }
+      ]
+    },
+    {
+      "path": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
+      "sha256": "fa7068f56bc180571a6095be6eaef06d51dbe81e30cb128397d993c9599ecc30",
+      "line_count": 162,
+      "function_declarations": []
+    },
+    {
+      "path": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "sha256": "50f34ae16a067a41c2c1091445d11d63788e54c717677cb6d6b0e4cdea2ad21d",
+      "line_count": 305,
+      "function_declarations": [
+        {
+          "name": "name",
+          "line": 52
+        },
+        {
+          "name": "symbol",
+          "line": 60
+        },
+        {
+          "name": "decimals",
+          "line": 77
+        },
+        {
+          "name": "totalSupply",
+          "line": 82
+        },
+        {
+          "name": "balanceOf",
+          "line": 87
+        },
+        {
+          "name": "transfer",
+          "line": 99
+        },
+        {
+          "name": "allowance",
+          "line": 106
+        },
+        {
+          "name": "approve",
+          "line": 120
+        },
+        {
+          "name": "transferFrom",
+          "line": 142
+        },
+        {
+          "name": "_transfer",
+          "line": 159
+        },
+        {
+          "name": "_update",
+          "line": 176
+        },
+        {
+          "name": "_mint",
+          "line": 214
+        },
+        {
+          "name": "_burn",
+          "line": 229
+        },
+        {
+          "name": "_approve",
+          "line": 251
+        },
+        {
+          "name": "_approve",
+          "line": 266
+        },
+        {
+          "name": "_approve",
+          "line": 273
+        },
+        {
+          "name": "_spendAllowance",
+          "line": 294
+        }
+      ]
+    },
+    {
+      "path": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "sha256": "01b6f5c4fa45fd38822b286ecef6daf983d27306dd6362496fa71b3e4600b72c",
+      "line_count": 79,
+      "function_declarations": [
+        {
+          "name": "totalSupply",
+          "line": 27
+        },
+        {
+          "name": "balanceOf",
+          "line": 32
+        },
+        {
+          "name": "transfer",
+          "line": 41
+        },
+        {
+          "name": "allowance",
+          "line": 50
+        },
+        {
+          "name": "approve",
+          "line": 67
+        },
+        {
+          "name": "transferFrom",
+          "line": 78
+        }
+      ]
+    },
+    {
+      "path": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "sha256": "0b7132f17d14d1d84b41b0bb429be62dafdff00fd3470f68724d8018eb07f57a",
+      "line_count": 26,
+      "function_declarations": [
+        {
+          "name": "name",
+          "line": 15
+        },
+        {
+          "name": "symbol",
+          "line": 20
+        },
+        {
+          "name": "decimals",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "path": "@openzeppelin/contracts/utils/Context.sol",
+      "sha256": "847fda5460fee70f56f4200f59b82ae622bb03c79c77e67af010e31b7e2cc5b6",
+      "line_count": 28,
+      "function_declarations": [
+        {
+          "name": "_msgSender",
+          "line": 17
+        },
+        {
+          "name": "_msgData",
+          "line": 21
+        },
+        {
+          "name": "_contextSuffixLength",
+          "line": 25
+        }
+      ]
+    }
+  ]
+}

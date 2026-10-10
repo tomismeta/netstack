@@ -4,15 +4,23 @@
       "id": "robinhood-0xa84efc3136bf1bb89ade9e5be6ab32cb1a04f08d",
       "chain_id": 4663,
       "address": "0xa84efC3136BF1Bb89ade9E5BE6Ab32cb1A04f08D",
-      "role": "rwaDesk",
+      "role": "rwaDeskV2",
       "aliases": [
         "RWA Desk V2",
+        "rwaDesk historical V2",
         "AAPL trusted mark source contract"
       ],
       "status": "recorded_from_public_source",
-      "lifecycle_status": "locally_and_publisher_reported_current_not_live_verified",
+      "lifecycle_status": "publisher_reported_superseded_legacy_claims",
+      "lifecycle_notes": "Current October7 registry moves this address to rwaDeskV2, superseded September30 by SleeveBondDesk. Historical local_recorded_current/lifecycle fields below describe the September10 local snapshot, not current status. Preserve separate V2 notes and claims; do not apply the successor's no-fee mechanics retroactively.",
       "live_chain_verification_status": "not_performed",
       "provenance": [
+        {
+          "source_id": "netnet-contract-interfaces-20261007",
+          "locator": "rwaDeskV2.address/source; current rwaDesk successor",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-07"
+        },
         {
           "source_id": "netnet-app-registry-asset",
           "locator": "rwaDesk.address",
@@ -81,10 +89,17 @@
           "locator": "rwaDeskFeedAdapter.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-sleeve-bond-runtime-20261010",
+          "locator": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x55e76ba1f7c7603c27bbdf8dfa1b235f7e512540; exact-address runtime/source distinctions in assets/contracts/sleeve-bond-source-evidence.json",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "local_recorded_lifecycle": "support"
+      "local_recorded_lifecycle": "support",
+      "implementation_reference": "assets/contracts/sleeve-bond-source-evidence.json"
     },
     {
       "id": "robinhood-0x9ca38c9c144ff411231c82da03c7d30286a7dbf6",
@@ -115,10 +130,17 @@
           "locator": "rwaDeskRouterSource.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-sleeve-bond-runtime-20261010",
+          "locator": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x9ca38c9c144ff411231c82da03c7d30286a7dbf6; exact-address runtime/source distinctions in assets/contracts/sleeve-bond-source-evidence.json",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",
-      "local_recorded_lifecycle": "support"
+      "local_recorded_lifecycle": "support",
+      "implementation_reference": "assets/contracts/sleeve-bond-source-evidence.json"
     }
   ]
 }

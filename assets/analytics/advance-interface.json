@@ -26,12 +26,14 @@
     }
   },
   "discovery_evidence": {
-    "counter": "positionCount() is displayed as locksIssued by the Reports consumer. No reviewed global contiguous-ID enumeration consumer; do not assume 1..count.",
+    "counter": "September26 Reports displayed positionCount as locksIssued without global enumeration. October7 reviewed k8 now reads every position1..positionCount; that is a versioned publisher perimeter, not a replacement for the standalone advance command's event-reconciled discovery.",
     "method": "Scan Opened/Repaid/Closed/Shortfall from the canonical recorded deployment boundary to the snapshot, deduplicate by log identity, then reconcile unique Opened IDs with pinned positionCount. RPC range coverage assumes no silently omitted logs.",
-    "owner_consumer": "pF.positionIds pages positionsOf(owner,offset,limit), not a global holder list. The helper discovers public owners from Opened events and re-reads position(id)."
+    "owner_consumer": "pF.positionIds pages positionsOf(owner,offset,limit), not a global holder list. The helper discovers public owners from Opened events and re-reads position(id).",
+    "reports_current": "netnet-reports-methodology-20261007-current: every selected position must be read; missing/zero-owner positions or IDs beyond the128-position collection bound withhold principal receivable. Do not copy the publisher's silent null-position skip."
   },
   "accounting_evidence": {
     "position": "Eight-field tuple: owner,destination,openedAt uint64,closed bool,wsLocked,principalNet,owed,paid. In analyzed runtime, paid combines actual USDG repayment receipts with collateral mark-valuation coverage on close; it is not cash recovery, voluntary repayment, realized revenue or profit.",
+    "reports_principal": "October7 publisher adds sum floor((owed-paid)*10000/11500) per !closed && owed>paid position. This is a Reports principal convention, not original advanceOf, fair value, net House equity or cash recovery. September26 unallocated+escrowed+inventory recipe remains historical.",
     "advanced": "Opened.advance and advanceOf(id) record original USDG advance A, transferred in full to destination at open. With Q=10^18 and B=10000, A=floor(wsAmount*(openMark*4000)/(Q*B)), O=floor(A*11500/B), T=floor(A*500/B), returned fee=O-A-T. Residual fee is not always floor(A*1000/B). No inversion of owed or division by a fee multiplier.",
     "capacity": "capacity returns unallocated in analyzed runtime. Open requires unallocated >= A+T, subtracts A+T and adds only T to escrowed. Treasury reserve is additional to the full advance, not a deduction from its proceeds and not the entire nominal 15% uplift. Raw Desk USDG balance is neither capacity nor maximum immediately lendable advance.",
     "repayment": "repay caps requested USDG to owed-paid, pulls exactly that amount from caller with strict true return and exact balance-increase checks, adds it to paid and unallocated, and emits Repaid.usdg. Any caller may repay before maturity or while halted; full repayment automatically finalizes with zero collateral take and all collateral returned to recorded owner. Partial repayment releases no collateral. Closed positions cannot be repaid.",

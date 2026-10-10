@@ -1,0 +1,46 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0x732b3d1d3e8912cae75164fa14a6e1c4c64615b3",
+      "chain_id": 4663,
+      "address": "0x732b3D1d3E8912CaE75164FA14a6E1c4C64615B3",
+      "role": "SleeveBondDesk",
+      "aliases": [
+        "Sleeve Bond Desk",
+        "SLEEVE DESK",
+        "rwaDesk current registry key"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_not_live_verified",
+      "lifecycle_notes": "September30successor separate fromRwaDeskV1/V2. Indexedcreationblock76732423,not publisherrehearsal76730211. October10runtime review establishes inventory-backed grossNET claims,zeroTreasuryfee,USDG residual toSleeve,and restricted unsoldwithdrawal; all37publisher functions+4unnamed branches reviewed. ExactverifiedSolidity/fullABI and independentlypinnedstate unavailable; legacyclaims remain generation-specific.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "netnet-contract-interfaces-20261007",
+          "locator": "rwaDesk.address/status/source; Oa and Gx ABI consumers",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-07"
+        },
+        {
+          "source_id": "netnet-sleeve-desk-deployment-20261007",
+          "locator": "created_contract.hash; status=ok; block_number=76732423; timestamp",
+          "evidence_kind": "explorer_indexed_transaction",
+          "observed_on": "2026-10-07"
+        },
+        {
+          "source_id": "netnet-sleeve-bond-runtime-20261010",
+          "locator": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x732b3D1d3E8912CaE75164FA14a6E1c4C64615B3; exact-address runtime/source distinctions in assets/contracts/sleeve-bond-source-evidence.json",
+          "evidence_kind": "explorer_indexed_runtime_or_source",
+          "observed_on": "2026-10-10"
+        }
+      ],
+      "generation": "sleeve-bond-desk-20260930",
+      "deployment_transaction_hash": "0x6517270f4acb4093fc3a391a069452be43b576b107591a0ca42e72309448393d",
+      "deployment_block_number": 76732423,
+      "deployment_at": "2026-09-30T18:31:30Z",
+      "publisher_verification_claim": "HUMAN-VERIFIED",
+      "supersedes": "0xa84efC3136BF1Bb89ade9E5BE6Ab32cb1A04f08D",
+      "implementation_reference": "assets/contracts/sleeve-bond-source-evidence.json"
+    }
+  ]
+}

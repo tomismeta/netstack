@@ -24,7 +24,9 @@
     },
     {
       "role": "verifierProxy",
-      "aliases": [],
+      "aliases": [
+        "NetLong Futures stream verifier gateway"
+      ],
       "file": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json"
     }
   ]

@@ -155,6 +155,13 @@
           "locator": "LOOPBACK_TURBO_ROUTER",
           "evidence_kind": "local_definition",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-credit-implementation-20261010-loopback-router",
+          "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x4638617808e3f1Cf237c0d33Ae818126D5C77E17",
+          "locator": "Explorer ABI/source/runtime identity; unpinned, no financial state",
+          "evidence_kind": "explorer_source_and_runtime",
+          "observed_on": "2026-10-10"
         }
       ]
     }

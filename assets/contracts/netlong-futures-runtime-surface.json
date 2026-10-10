@@ -1,0 +1,717 @@
+{
+  "schema_version": 1,
+  "chain_id": 4663,
+  "scope": "Descriptive runtime discoveries, not execution ABI. No code blobs or user state retained.",
+  "observed_on": "2026-10-10",
+  "source_ids": [
+    "netlong-futures-explorer-20261010-btc",
+    "netlong-futures-explorer-20261010-eth",
+    "netlong-futures-explorer-20261010-sol",
+    "netlong-futures-explorer-20261010-net",
+    "netlong-futures-explorer-20261010-vault",
+    "netlong-futures-explorer-20261010-oracle",
+    "netlong-futures-explorer-20261010-fee-router",
+    "netlong-futures-explorer-20261010-stream-verifier",
+    "netlong-futures-explorer-20261010-tape-verifier"
+  ],
+  "stream_template": {
+    "runtime_bytes": 23475,
+    "embedded_template_sha256": "668148d67ef8bfb14fd47ecdd4c87bd9bd82cfdb761a119611e9d072500bfb1b",
+    "immutable_word_offsets": [
+      873,
+      1084,
+      1149,
+      1212,
+      1776,
+      1834,
+      1999,
+      2475,
+      2514,
+      2553,
+      2592,
+      3038,
+      3190,
+      4254,
+      4446,
+      5037,
+      5170,
+      5760,
+      5895,
+      5937,
+      6097,
+      6507,
+      8431,
+      8584,
+      8755,
+      10216,
+      10369,
+      10418,
+      10490,
+      10618,
+      10763,
+      10796,
+      11967,
+      12109,
+      12398,
+      12633,
+      12780,
+      13249,
+      14195,
+      14355,
+      14948,
+      16666,
+      16819,
+      16868,
+      16985,
+      17082,
+      18597,
+      18741,
+      19287
+    ],
+    "normalization_matches_creation_template": true,
+    "constructor_runtime_offset": 982,
+    "constructor_patch_offsets": [
+      873,
+      1084,
+      1149,
+      1212,
+      1776,
+      1834,
+      1999,
+      2475,
+      2514,
+      2553,
+      2592,
+      3038,
+      3190,
+      4254,
+      4446,
+      5037,
+      5170,
+      5760,
+      5895,
+      5937,
+      6097,
+      6507,
+      8431,
+      8584,
+      8755,
+      10216,
+      10369,
+      10418,
+      10490,
+      10618,
+      10763,
+      10796,
+      11967,
+      12109,
+      12398,
+      12633,
+      12780,
+      13249,
+      14195,
+      14355,
+      14948,
+      16666,
+      16819,
+      16868,
+      16985,
+      17082,
+      18597,
+      18741,
+      19287
+    ],
+    "binding_depth": "All 49 normalized 32-byte words are zero PUSH32 placeholders in creation embedded runtime and have matching constructor MSTORE patch offsets. BTC/ETH/SOL creation templates including metadata equal; normalization not compiler/source equivalence.",
+    "known_streams": {
+      "perpV1DeskBtc": {
+        "address": "0xcA728E8ee6c8D59C1a3aBDF1DeA43f2f4a63C575",
+        "streamId": "0x00039d9e45394f473ab1f050a1b963e6b05351e52d71e507509ada0c95ed75b8"
+      },
+      "perpV1DeskEth": {
+        "address": "0x8784014A4CaFEC70Bbc2aE678c59BBe64dbE7858",
+        "streamId": "0x000362205e10b3a147d02792eccee483dca6c7b44ecce7012cb8c6e0b68b3ae9"
+      },
+      "perpV1DeskSol": {
+        "address": "0x87b14A8e5304e35B0CbDDaBA3454587B85Ff2470",
+        "streamId": "0x0003b778d3f6b2ac4991302b89cb313f99a42467d6c9c5f96f57c29c0d2bc24f"
+      }
+    },
+    "immutable_groups": [
+      {
+        "offsets": [
+          1999,
+          3190
+        ],
+        "btc_word": "0x000000000000000000000000a849eab402c34bcfe1e74e542a85657e49521054"
+      },
+      {
+        "offsets": [
+          2475,
+          12780
+        ],
+        "btc_word": "0xf7d1aaa34d529f98ec9ee7039644e3d4a3bb9d8cee261de1e2575b69448d20a2"
+      },
+      {
+        "offsets": [
+          1212,
+          12633
+        ],
+        "btc_word": "0x0000000000000000000000009cc4e5fc9149eeae154273c52292f3bb350233fb"
+      },
+      {
+        "offsets": [
+          2514,
+          10796
+        ],
+        "btc_word": "0x00039d9e45394f473ab1f050a1b963e6b05351e52d71e507509ada0c95ed75b8"
+      },
+      {
+        "offsets": [
+          1149,
+          10763
+        ],
+        "btc_word": "0x000000000000000000000000ce73c8ad08cbdeaca6078bf0627c8fe0a9a536e7"
+      },
+      {
+        "offsets": [
+          1834,
+          19287
+        ],
+        "btc_word": "0x0000000000000000000000001dedda4de44f406fd25cdd3a22abb8e524368719"
+      },
+      {
+        "offsets": [
+          2553,
+          14948
+        ],
+        "btc_word": "0x0000000000000000000000000000000000000000000000000000000000000032"
+      },
+      {
+        "offsets": [
+          873,
+          13249
+        ],
+        "btc_word": "0x0000000000000000000000000000000000000000000000000000000000000064"
+      },
+      {
+        "offsets": [
+          1084,
+          5895,
+          10369,
+          10418,
+          12109,
+          16819,
+          16868
+        ],
+        "btc_word": "0x000000000000000000000000000000000000000000000000000000000000000a"
+      },
+      {
+        "offsets": [
+          1776,
+          3038,
+          4254,
+          4446,
+          5037,
+          5760,
+          5937,
+          8755,
+          10216,
+          10490,
+          11967,
+          16666,
+          18597,
+          18741
+        ],
+        "btc_word": "0x00000000000000000000000090f5b57a7236a1447ce786b1ebe42433e55d9fd0"
+      },
+      {
+        "offsets": [
+          2592,
+          5170,
+          6097,
+          6507,
+          8431,
+          8584,
+          10618,
+          12398,
+          14195,
+          14355,
+          16985,
+          17082
+        ],
+        "btc_word": "0x00000000000000000000000050dc51ce9e633bed99d1d826fa0e2caac3183bf6"
+      }
+    ]
+  },
+  "dependencies": {
+    "stream_desks": [
+      {
+        "role": "vault",
+        "address": "0x50dC51CE9e633bed99D1D826fa0E2CaAc3183bF6",
+        "contract_id": "robinhood-0x50dc51ce9e633bed99d1d826fa0e2caac3183bf6",
+        "evidence": "runtime getter and repeated constructor patches",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "marginOracle",
+        "address": "0x90f5B57A7236A1447Ce786B1ebE42433e55D9fD0",
+        "contract_id": "robinhood-0x90f5b57a7236a1447ce786b1ebe42433e55d9fd0",
+        "evidence": "runtime getter and repeated constructor patches",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "verifierProxy",
+        "address": "0xcE73c8ad08CBDEaCa6078BF0627C8fe0a9a536E7",
+        "contract_id": "robinhood-0xce73c8ad08cbdeaca6078bf0627c8fe0a9a536e7",
+        "evidence": "constructor arg2, getter and verifier call",
+        "verification_depth": "explorer_partial_source_review",
+        "contract_record": "assets/addresses/contracts/cashcat-twap-vault-bundles-factory-and-verifier.json"
+      },
+      {
+        "role": "tapeVerifier",
+        "address": "0x9Cc4E5FC9149eEae154273C52292F3bb350233fb",
+        "contract_id": "robinhood-0x9cc4e5fc9149eeae154273c52292f3bb350233fb",
+        "evidence": "constructor arg4, getter and STATICCALL verify(bytes)",
+        "verification_depth": "runtime_only_source_gap",
+        "contract_record": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json"
+      },
+      {
+        "role": "loseDistributor",
+        "address": "0x1DEdDa4dE44f406FD25CdD3A22ABb8e524368719",
+        "contract_id": "robinhood-0x1dedda4de44f406fd25cdd3a22abb8e524368719",
+        "evidence": "constructor arg9, getter0x9d61e2bf and low-level loss notification",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "halter",
+        "address": "0xA849eAB402c34bcfe1e74E542A85657e49521054",
+        "contract_id": "robinhood-0xa849eab402c34bcfe1e74e542a85657e49521054",
+        "evidence": "constructor arg6 and runtime caller restriction",
+        "verification_depth": "immutable_binding"
+      }
+    ],
+    "net_desk": [
+      {
+        "role": "vault",
+        "address": "0x50dC51CE9e633bed99D1D826fa0E2CaAc3183bF6",
+        "contract_id": "robinhood-0x50dc51ce9e633bed99d1d826fa0e2caac3183bf6",
+        "evidence": "constructor arg0 / getter",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "marginOracle",
+        "address": "0x90f5B57A7236A1447Ce786B1ebE42433e55D9fD0",
+        "contract_id": "robinhood-0x90f5b57a7236a1447ce786b1ebe42433e55d9fd0",
+        "evidence": "constructor arg1 / getter",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "loseDistributor",
+        "address": "0x1DEdDa4dE44f406FD25CdD3A22ABb8e524368719",
+        "contract_id": "robinhood-0x1dedda4de44f406fd25cdd3a22abb8e524368719",
+        "evidence": "constructor arg4 / getter",
+        "verification_depth": "immutable_binding"
+      }
+    ],
+    "oracle": [
+      {
+        "role": "pairOracle",
+        "address": "0x929631b33F4070D6f54477fba3FD27566567dAca",
+        "contract_id": "robinhood-0x929631b33f4070d6f54477fba3fd27566567daca",
+        "evidence": "constructor arg0 / getter; twapNetUsdg external read",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "treasury",
+        "address": "0x04822eA321A0DeE6f40656172F29312104855D66",
+        "contract_id": "robinhood-0x04822ea321a0dee6f40656172f29312104855d66",
+        "evidence": "constructor arg1 / getter; backing-per-token external read",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "sNET",
+        "address": "0xB773eC2c326B7f98A5a83FC098825492f020A4C7",
+        "contract_id": "robinhood-0xb773ec2c326b7f98a5a83fc098825492f020a4c7",
+        "evidence": "constructor arg2 / index external read",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "NET",
+        "address": "0xcA9c78Dd337a67F6E0077f65f5e9218719d30eDf",
+        "contract_id": "robinhood-0xca9c78dd337a67f6e0077f65f5e9218719d30edf",
+        "evidence": "constructor arg3 used to determine pair token ordering",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "NET/USDG pair",
+        "address": "0x59f95461e68E0c77605299791e1449f175165B54",
+        "contract_id": "robinhood-0x59f95461e68e0c77605299791e1449f175165b54",
+        "evidence": "constructor resolves pairOracle.pair(), then embeds pair; reserve and token0 reads",
+        "verification_depth": "immutable_binding"
+      }
+    ],
+    "vault": [
+      {
+        "role": "wsNET",
+        "address": "0x63C12667638f2AE6Fc6AE09b43D98Ec84A8586eA",
+        "contract_id": "robinhood-0x63c12667638f2ae6fc6ae09b43d98ec84a8586ea",
+        "evidence": "constructor arg0 / token transfers and balance",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "sNET",
+        "address": "0xB773eC2c326B7f98A5a83FC098825492f020A4C7",
+        "contract_id": "robinhood-0xb773ec2c326b7f98a5a83fc098825492f020a4c7",
+        "evidence": "constructor arg1",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "NET",
+        "address": "0xcA9c78Dd337a67F6E0077f65f5e9218719d30eDf",
+        "contract_id": "robinhood-0xca9c78dd337a67f6e0077f65f5e9218719d30edf",
+        "evidence": "constructor arg2",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "staking",
+        "address": "0xb078CC304a0b264c5F3680dc0488954Accd02E87",
+        "contract_id": "robinhood-0xb078cc304a0b264c5f3680dc0488954accd02e87",
+        "evidence": "constructor arg3",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "staking helper",
+        "address": "0xa1EE052ec32532304a7522bd9A4B594EC28FF1b1",
+        "contract_id": "robinhood-0xa1ee052ec32532304a7522bd9a4b594ec28ff1b1",
+        "evidence": "constructor arg4",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "marginOracle",
+        "address": "0x90f5B57A7236A1447Ce786B1ebE42433e55D9fD0",
+        "contract_id": "robinhood-0x90f5b57a7236a1447ce786b1ebe42433e55d9fd0",
+        "evidence": "constructor arg5",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "feeRouter",
+        "address": "0x56a8816132579c6c080e65147682DA2d6D20efb0",
+        "contract_id": "robinhood-0x56a8816132579c6c080e65147682da2d6d20efb0",
+        "evidence": "constructor arg6",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "initial registrar",
+        "address": "0xcFBD7e12A0F154A45576A73C1E409200068507B9",
+        "contract_id": "robinhood-0xcfbd7e12a0f154a45576a73c1e409200068507b9",
+        "evidence": "constructor arg7; mutable until sealing",
+        "verification_depth": "historical_constructor_binding_current_registrar_unread"
+      }
+    ],
+    "fee_router": [
+      {
+        "role": "keeper",
+        "address": "0xc73177390Fb65f733F9c7B286C29fb9FAa358213",
+        "contract_id": "robinhood-0xc73177390fb65f733f9c7b286c29fb9faa358213",
+        "evidence": "constructor arg9; conditional route authority",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "safe",
+        "address": "0x3Bb7A23316f82C0e984fA2E784846d8928a35f42",
+        "contract_id": "robinhood-0x3bb7a23316f82c0e984fa2e784846d8928a35f42",
+        "evidence": "constructor arg10; conditional route authority",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "USDG",
+        "address": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+        "contract_id": "robinhood-0x5fc5360d0400a0fd4f2af552add042d716f1d168",
+        "evidence": "constructor arg4; inactive swap-branch quote asset",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "v2 router",
+        "address": "0x89e5dB8B5aa49Aa85AC63F691524311Aeb649eBa",
+        "contract_id": "robinhood-0x89e5db8b5aa49aa85ac63f691524311aeb649eba",
+        "evidence": "constructor arg5; inactive swap branch",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "wsNET",
+        "address": "0x63C12667638f2AE6Fc6AE09b43D98Ec84A8586eA",
+        "contract_id": "robinhood-0x63c12667638f2ae6fc6ae09b43d98ec84a8586ea",
+        "evidence": "constructor arg0; active fee input",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "staking",
+        "address": "0xb078CC304a0b264c5F3680dc0488954Accd02E87",
+        "contract_id": "robinhood-0xb078cc304a0b264c5f3680dc0488954accd02e87",
+        "evidence": "constructor arg3; active unstaking path",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "NET",
+        "address": "0xcA9c78Dd337a67F6E0077f65f5e9218719d30eDf",
+        "contract_id": "robinhood-0xca9c78dd337a67f6e0077f65f5e9218719d30edf",
+        "evidence": "constructor arg2; active burn destination",
+        "verification_depth": "immutable_binding"
+      }
+    ],
+    "tape_verifier": [
+      {
+        "role": "manager",
+        "address": "0x3Bb7A23316f82C0e984fA2E784846d8928a35f42",
+        "contract_id": "robinhood-0x3bb7a23316f82c0e984fa2e784846d8928a35f42",
+        "evidence": "constructor arg0 / runtime immutable",
+        "verification_depth": "immutable_binding"
+      },
+      {
+        "role": "initial authorized signer",
+        "address": "0x7C1783533Af716001aDd90DCaeB64c953913A83f",
+        "contract_id": "robinhood-0x7c1783533af716001add90dcaeb64c953913a83f",
+        "evidence": "constructor arg1; mutable signers mapping",
+        "verification_depth": "historical_constructor_binding_current_allowlist_unread"
+      }
+    ],
+    "stream_verifier_dynamic": {
+      "getVerifier(configDigest)": "Config-specific mapped verifier unresolved without current report digest and pinned read; initialized verifier can register new unmapped configs.",
+      "s_accessController()": "Current target unresolved; constructor zero does not establish current permissionless access.",
+      "s_feeManager()": "Current target unresolved; setter owner-controlled and nonzero only.",
+      "owner()": "Current authority unresolved; no independent state read."
+    }
+  },
+  "missing_interfaces": {
+    "perpV1DeskBtc": [
+      {
+        "selector": "0x9d61e2bf",
+        "entry_pc": "0x725",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      }
+    ],
+    "perpV1DeskEth": [
+      {
+        "selector": "0x9d61e2bf",
+        "entry_pc": "0x725",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      }
+    ],
+    "perpV1DeskSol": [
+      {
+        "selector": "0x9d61e2bf",
+        "entry_pc": "0x725",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      }
+    ],
+    "perpV1DeskNet": [
+      {
+        "selector": "0x9d61e2bf",
+        "entry_pc": "0x61e",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      }
+    ],
+    "perpV1Vault": [
+      {
+        "selector": "0xfaa20b9c",
+        "entry_pc": "0xa69",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xf29ebf61",
+        "entry_pc": "0xa23",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xd52014e3",
+        "entry_pc": "0x9a9",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xc2fff4a5",
+        "entry_pc": "0x954",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xcb71faa8",
+        "entry_pc": "0x97b",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xcf70cb69",
+        "entry_pc": "0x98e",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xb89601cd",
+        "entry_pc": "0x943",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xaf54aa86",
+        "entry_pc": "0x8c5",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x7dc0d1d0",
+        "entry_pc": "0x7cf",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x4f0b47fe",
+        "entry_pc": "0x6ce",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x4cf088d9",
+        "entry_pc": "0x68f",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x2b20e397",
+        "entry_pc": "0x5fc",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x2f45580c",
+        "entry_pc": "0x60e",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x262d6152",
+        "entry_pc": "0x5b1",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x21e9ec8a",
+        "entry_pc": "0x576",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x1adb8eb6",
+        "entry_pc": "0x4d4",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      }
+    ],
+    "perpV1MarginOracle": [
+      {
+        "selector": "0xb1b9a7c5",
+        "entry_pc": "0x26c",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xa8aa1b31",
+        "entry_pc": "0x21b",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x516dc7c3",
+        "entry_pc": "0x1cc",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x61d027b3",
+        "entry_pc": "0x1d4",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x0f0964aa",
+        "entry_pc": "0xff",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x1adb8eb6",
+        "entry_pc": "0x145",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      }
+    ],
+    "perpV1FeeRouter": [
+      {
+        "selector": "0xdeadbc14",
+        "entry_pc": "0x2a8",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x63f7324a",
+        "entry_pc": "0x197",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x186f0354",
+        "entry_pc": "0xde",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      }
+    ],
+    "stream-verifier": [],
+    "tape-verifier": [
+      {
+        "selector": "0xacb8cc49",
+        "entry_pc": "0x1f1",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xae3c9941",
+        "entry_pc": "0x211",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xd386b557",
+        "entry_pc": "0x238",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x9d0c69f2",
+        "entry_pc": "0x1de",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x796f077b",
+        "entry_pc": "0x15e",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      }
+    ]
+  },
+  "rpc_access": {
+    "url": "https://rpc.mainnet.chain.robinhood.com",
+    "method": "eth_chainId",
+    "observed_on": "2026-10-10",
+    "http_status": 403,
+    "response": "error code: 1010",
+    "retry_or_alternate_route": false
+  },
+  "source_discovery": {
+    "publisher_entry_source_map": "no sourceMappingURL",
+    "publisher_repository_link": "no github source URL in entry; bounded public search returned unrelated repositories",
+    "linked_ipfs_metadata": "Desk and oracle CIDs derived from bytecode; ipfs.io returned429 each, no alternate gateway/retry",
+    "runtime_bound_cids": {
+      "perpV1MarginOracle": "QmQdThkD42HbwEq4HnmfK4VJ2oE2787GiGSq8Ksr7o4y23",
+      "perpV1FeeRouter": "QmXkLctJovyW6q1D4kUsSkSbTEqufupSuGCxwet1NmAbvb",
+      "perpV1Vault": "Qmd5cvFd92azaENpxBobNgwgPNCySe1Lra1ta2tWLzinf7",
+      "perpV1DeskBtc": "Qmf9MmLjBAm8U3YCLNH9YJEAYCtdwZcBhGwfQbGA1ZwTDq",
+      "perpV1DeskEth": "Qmf9MmLjBAm8U3YCLNH9YJEAYCtdwZcBhGwfQbGA1ZwTDq",
+      "perpV1DeskSol": "Qmf9MmLjBAm8U3YCLNH9YJEAYCtdwZcBhGwfQbGA1ZwTDq",
+      "perpV1DeskNet": "QmUpfUnWKNqZpdBWhudBMURtGaHJwpZzDyVMvrzpvF6hqV"
+    }
+  },
+  "supplemental_functions": [
+    {
+      "contracts": [
+        "perpV1DeskBtc",
+        "perpV1DeskEth",
+        "perpV1DeskSol",
+        "perpV1DeskNet"
+      ],
+      "signature": "loseDistributor()",
+      "selector": "0x9d61e2bf",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "analysis": "Immutable LOSE distributor target. Settlement low-level notification is capped to trader posted margin loss plus penalty; failed notification emits missed-loss event rather than reverting core close. Full distributor semantics belong to LOSE catalog.",
+      "evidence": "Selector hash, constructor binding and PUSH32 immutable getter; absent from supplied publisher ABI."
+    }
+  ]
+}

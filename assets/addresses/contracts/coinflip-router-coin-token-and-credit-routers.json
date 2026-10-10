@@ -93,6 +93,13 @@
           "locator": "creditRouter.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-credit-implementation-20261010-credit",
+          "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xaff662814Aa7cC80AC1577E03E123358CAcc6a97",
+          "locator": "Explorer ABI/source/runtime identity; unpinned, no financial state",
+          "evidence_kind": "explorer_runtime_only",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED",

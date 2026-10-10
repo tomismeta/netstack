@@ -1,0 +1,1456 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0xb488368902b1cbd7533f1536c3f860065398d3e9",
+  "contract_record": "assets/addresses/contracts/predict-desk-and-vault.json",
+  "chain_id": 4663,
+  "address": "0xb488368902b1CbD7533F1536C3F860065398D3e9",
+  "generation": "vault",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault",
+      "observed_on": "2026-10-07"
+    },
+    {
+      "source_id": "netnet-predict-runtime-depth-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xb488368902b1CbD7533F1536C3F860065398D3e9",
+      "observed_on": "2026-10-10",
+      "locator": "deployed_bytecode; assets/contracts/predict-source-evidence.json#function_evidence.house"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 49,
+    "implementation": "all_published_functions_targeted_exact_runtime_review_not_full_audit",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned code, storage, current permissions and financial reconciliation.",
+      "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+    ],
+    "literal_abi_sha256": "3f97b8f5de2a3e7ba7cdec002ef488de4e53bceab4383a9e772c93563bfaba6f",
+    "literal_character_range": [
+      360040,
+      366639
+    ],
+    "dispatcher_evidence": {
+      "source_id": "netnet-vault-implementation-20261007",
+      "method": "PUSH4/EQ/PUSH2/JUMPI dispatcher patterns within first850 bytes; not exhaustive symbolic execution. Selectors alone do not identify absent names, outputs or permissions.",
+      "observed_selector_count": 27,
+      "unmatched_dispatcher_selectors": [],
+      "interface_selectors_not_seen_in_pattern": []
+    }
+  },
+  "functions": [
+    {
+      "name": "activeAssets",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "activeAssets()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[1]"
+      },
+      "selector": "0x1c17b946",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot3 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Idle active accounting USDG; fund resets it to zero while sending capital to Desk. Zero while live does not imply no capital."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x1d8",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x01d8..0x01e0",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "assetsOf",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "assetsOf(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[2]"
+      },
+      "selector": "0x2c62fa10",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public view."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "floor(sharesOf(account)*sharePriceWad()/1e18); sharesOf excludes matured notices but includes unmatured notices and eligible matured joins. Not liquid withdrawal cash."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x1e9",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x05c9..0x05f3",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "cancelDeposit",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "cancelDeposit()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[3]"
+      },
+      "selector": "0x3d561602",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Caller account only after lazy sync; must still have pending principal."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Deletes unprocessed pending, subtracts totalPending, returns raw USDG. A matured deposit may synchronize to shares instead and cease to be cancellable."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x221",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x05f4..0x0741",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "cancelWithdraw",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "cancelWithdraw()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[4]"
+      },
+      "selector": "0x84b76824",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Caller account only; nonzero unmatured notice after sync."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Subtracts generation/series noticed tally, restores free internal shares, clears notice. No USDG payment."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x2b5",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x089b..0x09a8",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "claimWithdraw",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "paid",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "claimWithdraw()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[5]"
+      },
+      "selector": "0x0e8584aa",
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x03f0..0x05ba",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Caller account only; nonzero matured notice after sync."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Clears notice, floors shares*stored exitPrice/1e18, decrements totalClaimable, transfers positive USDG. Zero exit price can mean real zero payout; failed read is unknown."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x1b4",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "deposit",
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "deposit(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[6]"
+      },
+      "selector": "0xb6b55f25",
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x0ce1..0x0ef8",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public caller, wired and nonzero USDG; lazy account sync then transferFrom."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Idle: floor USDG*1e18/price shares, activeAssets and totalShares grow. Live: records current series pending and totalPending. Receipt must distinguish direct Deposited from lazy-sync Deposited emitted before new transfer."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x30a",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "desk",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "desk()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[7]"
+      },
+      "selector": "0xc12b293c",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public packed slot0 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "One-shot wired funding/settlement authority; current getter is not deployment signer evidence."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x31d",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x031d..0x034b",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "exitPriceWad",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "exitPriceWad(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[8]"
+      },
+      "selector": "0xb013400c",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot6[series] getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Struck exit raw USDG per1e18 shares; floor conversion to individual USDG, zero is distinct from unavailable."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x2e3",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x02e3..0x0301",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "fund",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "amount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "fund()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[9]"
+      },
+      "selector": "0xb60d4288",
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x0b82..0x0ce0",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Wired Desk caller only."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Sets live, increments House seriesCount, zeros activeAssets, sends that amount to Desk and emits Funded. Not a depositor cash inflow or trade."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x302",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "generation",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "generation()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[10]"
+      },
+      "selector": "0x17219522",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot9 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Incremented on zero struck exit price with remaining shares; old active share basis is wiped lazily. Does not replace the House address."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x1cf",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x01cf..0x01d7;0x09a9..0x0b81",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "generationStartSeries",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "generationStartSeries()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[11]"
+      },
+      "selector": "0xc62a101d",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot10 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Reset series boundary used to exclude old pending joins; historical return calculations must not bridge it."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x34c",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x034c..0x0354",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "joinPriceWad",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "joinPriceWad(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[12]"
+      },
+      "selector": "0xc989c127",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot7[series] getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Join price stored at settle: struck exit price when nonzero, otherwise initial1e6 raw USDG scale; queue conversion floors to shares."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x355",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x0355..0x0373",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "live",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "live()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[13]"
+      },
+      "selector": "0x957aa58c",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public packed slot0 bit168 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Controls deposit queue and struck price behavior, not Desk buy acceptance or wall-clock maturity."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x2d0",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x02d0..0x02e2",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "noticeOf",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "shares",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "series",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "noticeOf(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[14]"
+      },
+      "selector": "0x7497b562",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot14[account] raw getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Raw shares/series can persist until claim/cancel/sync; maturity is accounting predicate. Matured claims can survive a generation reset."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x250",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x0250..0x028a",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "noticedShares",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "noticedShares(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[15]"
+      },
+      "selector": "0x764dbe54",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot8 nested mapping getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Exact key order is (generation,paidAtSeries): requestWithdraw writes slot8[currentGeneration][seriesCount+1]; settle consumes slot8[currentGeneration][seriesCount]. No account enumeration implied."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x28b",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x028b..0x02b4;0x0742..0x089a;0x09a9..0x0b81",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "pendingOf",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "series",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pendingOf(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[16]"
+      },
+      "selector": "0xf44136a1",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot13[account] raw getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Raw USDG/series pending can remain after settlement, already counted via sharesOf; not additive to active shares after maturity."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x37d",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x037d..0x03a2",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "requestWithdraw",
+      "inputs": [
+        {
+          "name": "shares",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "requestWithdraw(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[17]"
+      },
+      "selector": "0x745400c9",
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x0742..0x089a",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Caller account only, nonzero shares, available free balance after sync; same next-series notice can grow."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Moves free shares into notice for seriesCount+1 and generation keyed aggregate. sharesOf includes unmatured noticed shares; not an instant withdrawal."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x23d",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "seriesCount",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "seriesCount()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[18]"
+      },
+      "selector": "0xd7f2c0ef",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot1 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Incremented by fund, not by settle. At idle current series is settled; live current series is not."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x374",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x0374..0x037c",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "settle",
+      "inputs": [
+        {
+          "name": "returned",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "settle(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[19]"
+      },
+      "selector": "0x8df82800",
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x09a9..0x0b81",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Wired Desk caller only."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Uses supplied returned USDG (does not pull tokens itself). exit=floor(returned*1e18/totalShares); removes noticed shares and floors aggregate exit reserve; active=returned-exitReserve. Handles zero-price reset; then converts totalPending at join price and clears aggregate pending. Receipt must prove prior Desk transfer."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x2bd",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "sharePriceWad",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "sharePriceWad()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[20]"
+      },
+      "selector": "0x2770c503",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public view."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Live uses prior join price or initial1e6; idle with shares uses floor(activeAssets*1e18/totalShares), otherwise initial1e6. Not a probability WAD or live equity mark."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x1e1",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x1364..0x13ef",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "sharesOf",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "shares",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "sharesOf(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[21]"
+      },
+      "selector": "0xf5eb42dc",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public generation-aware view."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Current-generation free shares plus unmatured noticed shares plus eligible settled pending conversion; excludes matured notice claims. Old active shares vanish across reset; no ERC20 transferability."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x3ca",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x0ef9..0x101d",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "totalClaimable",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "totalClaimable()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[22]"
+      },
+      "selector": "0x4838ed19",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot5 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Aggregate matured USDG claim reserve; aggregate floor versus per-account floor creates dust, not extra owner-attributed claims."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x234",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x0234..0x023c",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "totalPending",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "totalPending()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[23]"
+      },
+      "selector": "0x3f90916a",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot4 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Only not-yet-processed queued USDG; resets at settle even if individual raw pending records remain."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x22b",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x022b..0x0233",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "totalShares",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "totalShares()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[24]"
+      },
+      "selector": "0x3a98ef39",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot2 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Aggregate active share basis including unprocessed live notices, excluding shares removed at settlement; generation and rounding needed for owner sums."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x218",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x0218..0x0220",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdg()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[25]"
+      },
+      "selector": "0xf5b91b7b",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public immutable getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "USDG denomination, not proof of dollar parity; arithmetic initial price is1e6 raw."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x3a3",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x03a3..0x03c9",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "wire",
+      "inputs": [
+        {
+          "name": "desk_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "wire(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[26]"
+      },
+      "selector": "0xf6487d8c",
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x101e..0x10c6",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Immutable deployer0xcfbd7e12a0f154a45576a73c1e409200068507b9 only; once, nonzero Desk."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Locks Desk authority into packed slot0. No rewire or arbitrary sweep selector found in this exact dispatcher; not a full dependency audit."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x3dd",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "wired",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "wired()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[27]"
+      },
+      "selector": "0x39d57b02",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot0 lowbyte getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Indicates wire used; collector still compares actual Desk/USDG identities."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-vault-implementation-20261007",
+        "entry_offset": "0x1fc",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "house runtime 0x01fc..0x0217",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "DepositCancelled",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "DepositCancelled(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[28]"
+      },
+      "topic0": "0x1578da51d7693d10ae70cf7f1026491f713689b467be8e1a73b5e24656dea729"
+    },
+    {
+      "name": "DepositQueued",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "series",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "DepositQueued(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[29]"
+      },
+      "topic0": "0xff465791f48805b0254fc0e26cc605e27ef7706d8ee0cf018f8696f58db83679"
+    },
+    {
+      "name": "Deposited",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "shares",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Deposited(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[30]"
+      },
+      "topic0": "0x73a19dd210f1a7f902193214c0ee91dd35ee5b4d920cba8d519eca65a7b488ca"
+    },
+    {
+      "name": "Funded",
+      "inputs": [
+        {
+          "name": "series",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Funded(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[31]"
+      },
+      "topic0": "0xa1dd612b9278fe0bb5d89ed1f642dc3678d0e558630c5a4a8df212ba2197cdb4"
+    },
+    {
+      "name": "Settled",
+      "inputs": [
+        {
+          "name": "series",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdgReturned",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "sharePriceWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "exitUsdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "joinUsdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Settled(uint256,uint256,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[32]"
+      },
+      "topic0": "0xa973b04048409154dba42dd56f3d2787fcfae851d65aa083ef6231bf57e53669"
+    },
+    {
+      "name": "WithdrawCancelled",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "shares",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "WithdrawCancelled(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[33]"
+      },
+      "topic0": "0x6cf22392efcef3d14b6c4d51fdcdc5c24f8bacbdecf5dcefa057cffdbce53f72"
+    },
+    {
+      "name": "WithdrawClaimed",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "shares",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "WithdrawClaimed(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[34]"
+      },
+      "topic0": "0x5b9b0bc34c7f6a61889ce3382d8697cc823f00d6e619362ae6b156bc8ee3ad46"
+    },
+    {
+      "name": "WithdrawNoticed",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "shares",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "paidAtSeries",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "WithdrawNoticed(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[35]"
+      },
+      "topic0": "0x5c67666ad14882e7f539ef2cbc5697aa77f88b065484333235a4a74f567c66c9"
+    }
+  ],
+  "errors": [
+    {
+      "name": "AlreadyWired",
+      "inputs": [],
+      "signature": "AlreadyWired()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[36]"
+      },
+      "selector": "0xda7c0e55"
+    },
+    {
+      "name": "InsufficientShares",
+      "inputs": [],
+      "signature": "InsufficientShares()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[37]"
+      },
+      "selector": "0x39996567"
+    },
+    {
+      "name": "MulDivOverflow",
+      "inputs": [],
+      "signature": "MulDivOverflow()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[38]"
+      },
+      "selector": "0x49248f77"
+    },
+    {
+      "name": "NoNotice",
+      "inputs": [],
+      "signature": "NoNotice()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[39]"
+      },
+      "selector": "0x8f025c52"
+    },
+    {
+      "name": "NotDeployer",
+      "inputs": [],
+      "signature": "NotDeployer()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[40]"
+      },
+      "selector": "0x8b906c97"
+    },
+    {
+      "name": "NotDesk",
+      "inputs": [],
+      "signature": "NotDesk()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[41]"
+      },
+      "selector": "0xce62f9e0"
+    },
+    {
+      "name": "NotWired",
+      "inputs": [],
+      "signature": "NotWired()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[42]"
+      },
+      "selector": "0x3fcbf498"
+    },
+    {
+      "name": "NothingPending",
+      "inputs": [],
+      "signature": "NothingPending()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[43]"
+      },
+      "selector": "0x175c1aea"
+    },
+    {
+      "name": "NoticeNotMature",
+      "inputs": [],
+      "signature": "NoticeNotMature()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[44]"
+      },
+      "selector": "0x7849fd9a"
+    },
+    {
+      "name": "NoticeOutstanding",
+      "inputs": [],
+      "signature": "NoticeOutstanding()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[45]"
+      },
+      "selector": "0xc31ae487"
+    },
+    {
+      "name": "TransferFailed",
+      "inputs": [],
+      "signature": "TransferFailed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[46]"
+      },
+      "selector": "0x90b8ec18"
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "signature": "ZeroAddress()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[47]"
+      },
+      "selector": "0xd92e233d"
+    },
+    {
+      "name": "ZeroAmount",
+      "inputs": [],
+      "signature": "ZeroAmount()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[48]"
+      },
+      "selector": "0x1f2a2005"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "usdg_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal Zt, Unicode character offsets[360040,366639); consumer binding to vault; ABI entry[0]"
+      }
+    }
+  ],
+  "runtime_evidence": {
+    "address": "0xb488368902b1cbd7533f1536c3f860065398d3e9",
+    "runtime_bytes": 5534,
+    "runtime_keccak256": "0x23b13523c73c5eeb691d96744f9cdd96eb32eca5668310798eb605ca4c75c65e"
+  },
+  "source_evidence": "assets/contracts/predict-source-evidence.json"
+}

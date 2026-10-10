@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 import hashlib
+import json
 from html.parser import HTMLParser
 import http.client
 import ipaddress
@@ -16,7 +17,7 @@ from netstack_core import MAX_TOTAL_BYTES, RpcError, StopRun, load_json
 
 HOST = "app.netnet.capital"
 ENTRY_URL = "https://" + HOST + "/"
-PROFILE_ID = "reports-20260926-dynamic-v4-registry"
+PROFILE_ID = "reports-20261007-loopback-advance-principal"
 MAX_HTML_BYTES = 128 * 1024
 MAX_BUNDLE_BYTES = 2 * 1024 * 1024
 MAX_REQUESTS = 2
@@ -246,10 +247,17 @@ def _entry_bundle(raw, expected_shell):
     return url
 
 
+def _accounting_digest(profile):
+    """Bind the version's complete selection and marks, not merely their shape."""
+    payload = {key: profile.get(key) for key in
+               ("profile_id", "selection_policy", "valuation_conventions", "v4_position_scope")}
+    return _digest(json.dumps(payload, sort_keys=True, separators=(",", ":")).encode())
+
+
 def _reviewed_profile():
     profile = load_json("assets/analytics/reports-methodology.json")
     if (profile.get("schema_version") != 2 or profile.get("profile_id") != PROFILE_ID
-            or profile.get("source_id") != "netnet-reports-methodology-20260926-current"
+            or profile.get("source_id") != "netnet-reports-methodology-20261007-current"
             or profile.get("entry_url") != ENTRY_URL or profile.get("v4_principal_included") is not True
             or profile.get("v4_fees_included") is not False
             or profile.get("normalization") != "reviewed_reports_v4_registry_v1"):
@@ -266,6 +274,8 @@ def _reviewed_profile():
         for name in ("bundle_sha256", "executable_sha256"):
             if not isinstance(bundle.get(name), str) or not _SHA256.fullmatch(bundle[name]):
                 raise RpcError("Packaged publisher fingerprint is invalid", kind="package")
+        if bundle.get("accounting_sha256") != _accounting_digest(profile):
+            raise RpcError("Packaged accounting policy differs from its reviewed bundle binding", kind="package")
         registry = bundle.get("registry_extraction")
         if (not isinstance(registry, dict)
                 or any(not isinstance(registry.get(name), str)

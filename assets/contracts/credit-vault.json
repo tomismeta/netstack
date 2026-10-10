@@ -1,0 +1,5124 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x99347d5f70d3838763f6bddcf80304c8aa953b57",
+  "contract_record": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+  "chain_id": 4663,
+  "address": "0x99347d5F70D3838763f6Bddcf80304C8aa953B57",
+  "generation": "credit-vault",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal un, Unicode character offsets[385893,388670); consumer binding to credit-vault",
+      "observed_on": "2026-10-07"
+    },
+    {
+      "source_id": "netnet-credit-implementation-20261010-credit-vault",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x99347d5F70D3838763f6Bddcf80304C8aa953B57",
+      "observed_on": "2026-10-10",
+      "locator": "lib/vault-v2/src/VaultV2.sol"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_obtained_explorer_abi",
+    "supplied_entry_count": 175,
+    "implementation": "targeted_source_review",
+    "pinned_state": "not_obtained",
+    "dispatcher_evidence": {
+      "method": "PUSH4 EQ PUSHn JUMPI byte-pattern; incomplete and not semantic reachability proof",
+      "observed_selector_count": 97,
+      "unmatched_dispatcher_selectors": []
+    },
+    "missing_evidence": [
+      "Independent pinned runtime and storage, historical cash flow/receipts and recipient changes.",
+      "Independent compiler equivalence and exhaustive function reachability."
+    ]
+  },
+  "functions": [
+    {
+      "inputs": [],
+      "name": "DOMAIN_SEPARATOR",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "DOMAIN_SEPARATOR()",
+      "selector": "0x3644e515",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:259"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "encode",
+          "keccak256"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined DOMAIN_SEPARATOR operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "_totalAssets",
+      "outputs": [
+        {
+          "internalType": "uint128",
+          "name": "",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "_totalAssets()",
+      "selector": "0xce04bebb",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads _totalAssets state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        }
+      ],
+      "name": "abdicate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "abdicate(bytes4)",
+      "selector": "0xb2e32848",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:465"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "Abdicate",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined abdicate operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        }
+      ],
+      "name": "abdicated",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "abdicated(bytes4)",
+      "selector": "0xe470b8bc",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads abdicated state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        }
+      ],
+      "name": "absoluteCap",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "absoluteCap(bytes32)",
+      "selector": "0xbc0dd374",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:263"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined absoluteCap operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "accrueInterest",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "accrueInterest()",
+      "selector": "0xa6afed95",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:636"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "AccrueInterest",
+          "accrueInterestView",
+          "createShares",
+          "toUint128"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Public accrual realizes losses/distributed growth and mints fee shares; does not transfer USDG fee receipts."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "accrueInterestView",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "accrueInterestView()",
+      "selector": "0x60a38ac1",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:652"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "IAdapter",
+          "IERC20",
+          "balanceOf",
+          "canReceiveShares",
+          "min",
+          "mulDivDown",
+          "realAssets",
+          "zeroFloorSub"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Returns updated totalAssets and unminted performance/management fee shares; caps positive distributed growth by last assets * elapsed * maxRate / WAD; realizes losses immediately. Fee assets and fee shares round down; gate-denied recipients receive no shares."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "adapterRegistry",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "adapterRegistry()",
+      "selector": "0x50b5c16a",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads adapterRegistry state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "adapters",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "adapters(uint256)",
+      "selector": "0x4ef501ac",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads adapters state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "adaptersLength",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "adaptersLength()",
+      "selector": "0x5aa22bc8",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:250"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined adaptersLength operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addAdapter",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "addAdapter(address)",
+      "selector": "0x60d54d41",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:416"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [
+          "adapterRegistry == address(0) || IAdapterRegistry(adapterRegistry).isInRegistry(account)"
+        ],
+        "internal_and_dependency_calls": [
+          "AddAdapter",
+          "IAdapterRegistry",
+          "NotInAdapterRegistry",
+          "isInRegistry",
+          "push",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined addAdapter operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "adapter",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        }
+      ],
+      "name": "allocate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "allocate(address,bytes,uint256)",
+      "selector": "0x5c9ce04d",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:564"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "isAllocator[msg.sender]"
+        ],
+        "internal_and_dependency_calls": [
+          "Unauthorized",
+          "allocateInternal"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined allocate operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        }
+      ],
+      "name": "allocation",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "allocation(bytes32)",
+      "selector": "0xc69507dd",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:271"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Last (de)allocation bookkeeping, not necessarily accrued current value."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "allowance(address,address)",
+      "selector": "0xdd62ed3e",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads allowance state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "approve(address,uint256)",
+      "selector": "0x095ea7b3",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:871"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "Approval"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined approve operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "asset",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "asset()",
+      "selector": "0x38d52e0f",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads asset state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "balanceOf(address)",
+      "selector": "0x70a08231",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads balanceOf state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "canReceiveAssets",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "canReceiveAssets(address)",
+      "selector": "0x0d326b18",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:918"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "IReceiveAssetsGate",
+          "canReceiveAssets"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined canReceiveAssets operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "canReceiveShares",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "canReceiveShares(address)",
+      "selector": "0x98c9b49c",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:910"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "IReceiveSharesGate",
+          "canReceiveShares"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined canReceiveShares operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "canSendAssets",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "canSendAssets(address)",
+      "selector": "0x20fe8d58",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:923"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "ISendAssetsGate",
+          "canSendAssets"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined canSendAssets operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "canSendShares",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "canSendShares(address)",
+      "selector": "0x8e511e4d",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:914"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "ISendSharesGate",
+          "canSendShares"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined canSendShares operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "name": "convertToAssets",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "convertToAssets(uint256)",
+      "selector": "0x07a2d13a",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:719"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "previewRedeem"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "previewRedeem: floor(shares*(newTotalAssets+1)/(storedSupply+pendingFeeShares+virtualShares))."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        }
+      ],
+      "name": "convertToShares",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "convertToShares(uint256)",
+      "selector": "0xc6e6f592",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:713"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "previewDeposit"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "previewDeposit: floor(assets*(storedSupply+pendingFeeShares+virtualShares)/(newTotalAssets+1))."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "curator",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "curator()",
+      "selector": "0xe66f53b7",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads curator state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "adapter",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        }
+      ],
+      "name": "deallocate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "deallocate(address,bytes,uint256)",
+      "selector": "0x4b219d16",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:591"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "isAllocator[msg.sender] || isSentinel[msg.sender]"
+        ],
+        "internal_and_dependency_calls": [
+          "Unauthorized",
+          "deallocateInternal"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined deallocate operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "decimals()",
+      "selector": "0x313ce567",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads decimals state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "idData",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newAbsoluteCap",
+          "type": "uint256"
+        }
+      ],
+      "name": "decreaseAbsoluteCap",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "decreaseAbsoluteCap(bytes,uint256)",
+      "selector": "0x8c54519b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:524"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == curator || isSentinel[msg.sender]",
+          "newAbsoluteCap <= caps[id].absoluteCap"
+        ],
+        "internal_and_dependency_calls": [
+          "AbsoluteCapNotDecreasing",
+          "DecreaseAbsoluteCap",
+          "Unauthorized",
+          "keccak256"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined decreaseAbsoluteCap operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "idData",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newRelativeCap",
+          "type": "uint256"
+        }
+      ],
+      "name": "decreaseRelativeCap",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "decreaseRelativeCap(bytes,uint256)",
+      "selector": "0x57975270",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:545"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == curator || isSentinel[msg.sender]",
+          "newRelativeCap <= caps[id].relativeCap"
+        ],
+        "internal_and_dependency_calls": [
+          "DecreaseRelativeCap",
+          "RelativeCapNotDecreasing",
+          "Unauthorized",
+          "keccak256"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined decreaseRelativeCap operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newDuration",
+          "type": "uint256"
+        }
+      ],
+      "name": "decreaseTimelock",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "decreaseTimelock(bytes4,uint256)",
+      "selector": "0x5c1a1a4f",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:456"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [
+          "selector != IVaultV2.decreaseTimelock.selector",
+          "newDuration <= timelock[selector]"
+        ],
+        "internal_and_dependency_calls": [
+          "AutomaticallyTimelocked",
+          "DecreaseTimelock",
+          "TimelockNotDecreasing",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined decreaseTimelock operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        }
+      ],
+      "name": "deposit",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "deposit(uint256,address)",
+      "selector": "0x6e553f65",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:748"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "accrueInterest",
+          "enter",
+          "previewDeposit"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Accrues, takes assets, mints floor shares; optional liquidityAdapter allocation may hit caps and revert."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "executableAt",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "executableAt(bytes)",
+      "selector": "0x8639fb07",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads executableAt state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "firstTotalAssets",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "firstTotalAssets()",
+      "selector": "0xf73f8f31",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads firstTotalAssets state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "adapter",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        }
+      ],
+      "name": "forceDeallocate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "forceDeallocate(address,bytes,uint256,address)",
+      "selector": "0xe4d38cd8",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:822"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "ForceDeallocate",
+          "deallocateInternal",
+          "mulDivUp",
+          "withdraw"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Deallocate an adapter then charge ceil(assets*penalty/WAD) via withdrawal to vault; share allowance and gates still apply."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "adapter",
+          "type": "address"
+        }
+      ],
+      "name": "forceDeallocatePenalty",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "forceDeallocatePenalty(address)",
+      "selector": "0x99e99183",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads forceDeallocatePenalty state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "idData",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newAbsoluteCap",
+          "type": "uint256"
+        }
+      ],
+      "name": "increaseAbsoluteCap",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "increaseAbsoluteCap(bytes,uint256)",
+      "selector": "0xf6f98fd5",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:515"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [
+          "newAbsoluteCap >= caps[id].absoluteCap"
+        ],
+        "internal_and_dependency_calls": [
+          "AbsoluteCapNotIncreasing",
+          "IncreaseAbsoluteCap",
+          "keccak256",
+          "timelocked",
+          "toUint128"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined increaseAbsoluteCap operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "idData",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newRelativeCap",
+          "type": "uint256"
+        }
+      ],
+      "name": "increaseRelativeCap",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "increaseRelativeCap(bytes,uint256)",
+      "selector": "0x2438525b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:534"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [
+          "newRelativeCap <= WAD",
+          "newRelativeCap >= caps[id].relativeCap"
+        ],
+        "internal_and_dependency_calls": [
+          "IncreaseRelativeCap",
+          "RelativeCapAboveOne",
+          "RelativeCapNotIncreasing",
+          "keccak256",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined increaseRelativeCap operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newDuration",
+          "type": "uint256"
+        }
+      ],
+      "name": "increaseTimelock",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "increaseTimelock(bytes4,uint256)",
+      "selector": "0x47966291",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:447"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [
+          "selector != IVaultV2.decreaseTimelock.selector",
+          "newDuration >= timelock[selector]"
+        ],
+        "internal_and_dependency_calls": [
+          "AutomaticallyTimelocked",
+          "IncreaseTimelock",
+          "TimelockNotIncreasing",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined increaseTimelock operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isAdapter",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isAdapter(address)",
+      "selector": "0x68c18beb",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads isAdapter state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isAllocator",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isAllocator(address)",
+      "selector": "0x4dedf20e",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads isAllocator state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isSentinel",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "isSentinel(address)",
+      "selector": "0xba03a75f",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads isSentinel state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "lastUpdate",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "lastUpdate()",
+      "selector": "0xc0463711",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads lastUpdate state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "liquidityAdapter",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "liquidityAdapter()",
+      "selector": "0xad468d11",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads liquidityAdapter state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "liquidityData",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "liquidityData()",
+      "selector": "0x2e029228",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads liquidityData state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "managementFee",
+      "outputs": [
+        {
+          "internalType": "uint96",
+          "name": "",
+          "type": "uint96"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "managementFee()",
+      "selector": "0xa6f7f5d6",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "WAD per-second rate on accrued total assets, also charged during losses."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "managementFeeRecipient",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "managementFeeRecipient()",
+      "selector": "0x6d9a3010",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads managementFeeRecipient state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "maxDeposit",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "signature": "maxDeposit(address)",
+      "selector": "0x402d267d",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:726"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Always returns0 by source design to remain revert-free around gates. Does NOT prove zero capacity, inactive vault or illiquidity."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "maxMint",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "signature": "maxMint(address)",
+      "selector": "0xc63d75b6",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:731"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Always returns0 by source design to remain revert-free around gates. Does NOT prove zero capacity, inactive vault or illiquidity."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "maxRate",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "maxRate()",
+      "selector": "0xece1d6e5",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads maxRate state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "maxRedeem",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "signature": "maxRedeem(address)",
+      "selector": "0xd905777e",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:741"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Always returns0 by source design to remain revert-free around gates. Does NOT prove zero capacity, inactive vault or illiquidity."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "maxWithdraw",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "signature": "maxWithdraw(address)",
+      "selector": "0xce96cb77",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:736"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Always returns0 by source design to remain revert-free around gates. Does NOT prove zero capacity, inactive vault or illiquidity."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        }
+      ],
+      "name": "mint",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "mint(uint256,address)",
+      "selector": "0x94bf804d",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:756"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "accrueInterest",
+          "enter",
+          "previewMint"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Accrues, takes ceil assets, mints shares; same gates and liquidity allocation as deposit."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes[]",
+          "name": "data",
+          "type": "bytes[]"
+        }
+      ],
+      "name": "multicall",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "multicall(bytes[])",
+      "selector": "0xac9650d8",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:280"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "add",
+          "delegatecall",
+          "mload",
+          "revert"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined multicall operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "name()",
+      "selector": "0x06fdde03",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads name state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "nonces",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "nonces(address)",
+      "selector": "0x7ecebe00",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads nonces state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "owner()",
+      "selector": "0x8da5cb5b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads owner state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "performanceFee",
+      "outputs": [
+        {
+          "internalType": "uint96",
+          "name": "",
+          "type": "uint96"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "performanceFee()",
+      "selector": "0x87788782",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "WAD fraction of positive distributed interest, not market real interest."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "performanceFeeRecipient",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "performanceFeeRecipient()",
+      "selector": "0xed27f7c9",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads performanceFeeRecipient state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "v",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "r",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "s",
+          "type": "bytes32"
+        }
+      ],
+      "name": "permit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "permit(address,address,uint256,uint256,uint8,bytes32,bytes32)",
+      "selector": "0xd505accf",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:878"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "deadline >= block.timestamp",
+          "recoveredAddress != address(0) && recoveredAddress == _owner"
+        ],
+        "internal_and_dependency_calls": [
+          "Approval",
+          "DOMAIN_SEPARATOR",
+          "InvalidSigner",
+          "Permit",
+          "PermitDeadlineExpired",
+          "ecrecover",
+          "encode",
+          "encodePacked",
+          "keccak256"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined permit operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        }
+      ],
+      "name": "previewDeposit",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "previewDeposit(uint256)",
+      "selector": "0xef8b30f7",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:684"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "accrueInterestView",
+          "mulDivDown"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Assets to minted shares rounded down after fee accrual."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "name": "previewMint",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "previewMint(uint256)",
+      "selector": "0xb3d7f6b9",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:691"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "accrueInterestView",
+          "mulDivUp"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Shares to required assets rounded up after fee accrual."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "name": "previewRedeem",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "previewRedeem(uint256)",
+      "selector": "0x4cdad506",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:705"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "accrueInterestView",
+          "mulDivDown"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Shares to returned assets rounded down after fee accrual."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        }
+      ],
+      "name": "previewWithdraw",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "previewWithdraw(uint256)",
+      "selector": "0x0a28a477",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:698"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "accrueInterestView",
+          "mulDivUp"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Assets to burned shares rounded up after fee accrual."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "receiveAssetsGate",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "receiveAssetsGate()",
+      "selector": "0x54cde13e",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads receiveAssetsGate state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "receiveSharesGate",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "receiveSharesGate()",
+      "selector": "0x7e729ac4",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads receiveSharesGate state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        }
+      ],
+      "name": "redeem",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "redeem(uint256,address,address)",
+      "selector": "0xba087652",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:785"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "accrueInterest",
+          "exit",
+          "previewRedeem"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Burns specified shares and pays floor assets through same liquidity path."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        }
+      ],
+      "name": "relativeCap",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "relativeCap(bytes32)",
+      "selector": "0xa68bafa3",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:267"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "WAD soft cap against firstTotalAssets; checked on allocation, not exit; interest can exceed caps."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "removeAdapter",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "removeAdapter(address)",
+      "selector": "0x585cd34b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:429"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "RemoveAdapter",
+          "pop",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined removeAdapter operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "revoke",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "revoke(bytes)",
+      "selector": "0x0b467b9b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:360"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == curator || isSentinel[msg.sender]",
+          "executableAt[data] != 0"
+        ],
+        "internal_and_dependency_calls": [
+          "DataNotTimelocked",
+          "Revoke",
+          "Unauthorized"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined revoke operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "sendAssetsGate",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "sendAssetsGate()",
+      "selector": "0x8eede801",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads sendAssetsGate state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "sendSharesGate",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "sendSharesGate()",
+      "selector": "0x93ab2ab7",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads sendSharesGate state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newAdapterRegistry",
+          "type": "address"
+        }
+      ],
+      "name": "setAdapterRegistry",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setAdapterRegistry(address)",
+      "selector": "0x5b34b823",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:401"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [
+          "IAdapterRegistry(newAdapterRegistry).isInRegistry(adapters[i])"
+        ],
+        "internal_and_dependency_calls": [
+          "IAdapterRegistry",
+          "NotInAdapterRegistry",
+          "SetAdapterRegistry",
+          "isInRegistry",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setAdapterRegistry operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newCurator",
+          "type": "address"
+        }
+      ],
+      "name": "setCurator",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setCurator(address)",
+      "selector": "0xe90956cf",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:312"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == owner"
+        ],
+        "internal_and_dependency_calls": [
+          "SetCurator",
+          "Unauthorized"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setCurator operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "adapter",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newForceDeallocatePenalty",
+          "type": "uint256"
+        }
+      ],
+      "name": "setForceDeallocatePenalty",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setForceDeallocatePenalty(address,uint256)",
+      "selector": "0x3e9d2ac7",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:555"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [
+          "newForceDeallocatePenalty <= MAX_FORCE_DEALLOCATE_PENALTY"
+        ],
+        "internal_and_dependency_calls": [
+          "PenaltyTooHigh",
+          "SetForceDeallocatePenalty",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setForceDeallocatePenalty operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "newIsAllocator",
+          "type": "bool"
+        }
+      ],
+      "name": "setIsAllocator",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setIsAllocator(address,bool)",
+      "selector": "0xb192a84a",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:370"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "SetIsAllocator",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setIsAllocator operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "newIsSentinel",
+          "type": "bool"
+        }
+      ],
+      "name": "setIsSentinel",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setIsSentinel(address,bool)",
+      "selector": "0x920ed706",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:318"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == owner"
+        ],
+        "internal_and_dependency_calls": [
+          "SetIsSentinel",
+          "Unauthorized"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setIsSentinel operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newLiquidityAdapter",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "newLiquidityData",
+          "type": "bytes"
+        }
+      ],
+      "name": "setLiquidityAdapterAndData",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setLiquidityAdapterAndData(address,bytes)",
+      "selector": "0x7fb6caad",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:616"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "isAllocator[msg.sender]"
+        ],
+        "internal_and_dependency_calls": [
+          "SetLiquidityAdapterAndData",
+          "Unauthorized"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Allocator selects one entry/exit adapter and encoded market data; there is no withdraw queue in VaultV2."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newManagementFee",
+          "type": "uint256"
+        }
+      ],
+      "name": "setManagementFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setManagementFee(uint256)",
+      "selector": "0xfe56e232",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:483"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [
+          "newManagementFee <= MAX_MANAGEMENT_FEE",
+          "managementFeeRecipient != address(0) || newManagementFee == 0"
+        ],
+        "internal_and_dependency_calls": [
+          "FeeInvariantBroken",
+          "FeeTooHigh",
+          "SetManagementFee",
+          "accrueInterest",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setManagementFee operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newManagementFeeRecipient",
+          "type": "address"
+        }
+      ],
+      "name": "setManagementFeeRecipient",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setManagementFeeRecipient(address)",
+      "selector": "0x9faae464",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:505"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [
+          "newManagementFeeRecipient != address(0) || managementFee == 0"
+        ],
+        "internal_and_dependency_calls": [
+          "FeeInvariantBroken",
+          "SetManagementFeeRecipient",
+          "accrueInterest",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setManagementFeeRecipient operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newMaxRate",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMaxRate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setMaxRate(uint256)",
+      "selector": "0xaa4abe7f",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:623"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "isAllocator[msg.sender]",
+          "newMaxRate <= MAX_MAX_RATE"
+        ],
+        "internal_and_dependency_calls": [
+          "MaxRateTooHigh",
+          "SetMaxRate",
+          "Unauthorized",
+          "accrueInterest"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setMaxRate operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "newName",
+          "type": "string"
+        }
+      ],
+      "name": "setName",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setName(string)",
+      "selector": "0xc47f0027",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:324"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == owner"
+        ],
+        "internal_and_dependency_calls": [
+          "SetName",
+          "Unauthorized"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setName operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "setOwner",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setOwner(address)",
+      "selector": "0x13af4035",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:306"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == owner"
+        ],
+        "internal_and_dependency_calls": [
+          "SetOwner",
+          "Unauthorized"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setOwner operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newPerformanceFee",
+          "type": "uint256"
+        }
+      ],
+      "name": "setPerformanceFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setPerformanceFee(uint256)",
+      "selector": "0x70897b23",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:471"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [
+          "newPerformanceFee <= MAX_PERFORMANCE_FEE",
+          "performanceFeeRecipient != address(0) || newPerformanceFee == 0"
+        ],
+        "internal_and_dependency_calls": [
+          "FeeInvariantBroken",
+          "FeeTooHigh",
+          "SetPerformanceFee",
+          "accrueInterest",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setPerformanceFee operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newPerformanceFeeRecipient",
+          "type": "address"
+        }
+      ],
+      "name": "setPerformanceFeeRecipient",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setPerformanceFeeRecipient(address)",
+      "selector": "0x6a5f1aa2",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:495"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [
+          "newPerformanceFeeRecipient != address(0) || performanceFee == 0"
+        ],
+        "internal_and_dependency_calls": [
+          "FeeInvariantBroken",
+          "SetPerformanceFeeRecipient",
+          "accrueInterest",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setPerformanceFeeRecipient operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newReceiveAssetsGate",
+          "type": "address"
+        }
+      ],
+      "name": "setReceiveAssetsGate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setReceiveAssetsGate(address)",
+      "selector": "0x04dbf0ce",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:388"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "SetReceiveAssetsGate",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setReceiveAssetsGate operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newReceiveSharesGate",
+          "type": "address"
+        }
+      ],
+      "name": "setReceiveSharesGate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setReceiveSharesGate(address)",
+      "selector": "0x2cb19f98",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:376"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "SetReceiveSharesGate",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setReceiveSharesGate operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newSendAssetsGate",
+          "type": "address"
+        }
+      ],
+      "name": "setSendAssetsGate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setSendAssetsGate(address)",
+      "selector": "0x871c979c",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:394"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "SetSendAssetsGate",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setSendAssetsGate operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newSendSharesGate",
+          "type": "address"
+        }
+      ],
+      "name": "setSendSharesGate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setSendSharesGate(address)",
+      "selector": "0xc21ad028",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:382"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Timelocked submitted calldata; any executor after maturity, not abdicated.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "SetSendSharesGate",
+          "timelocked"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setSendSharesGate operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "newSymbol",
+          "type": "string"
+        }
+      ],
+      "name": "setSymbol",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setSymbol(string)",
+      "selector": "0xb84c8246",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:330"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == owner"
+        ],
+        "internal_and_dependency_calls": [
+          "SetSymbol",
+          "Unauthorized"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined setSymbol operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "submit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "submit(bytes)",
+      "selector": "0xef7fa71b",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:340"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "msg.sender == curator",
+          "executableAt[data] == 0"
+        ],
+        "internal_and_dependency_calls": [
+          "DataAlreadyPending",
+          "Submit",
+          "Unauthorized"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined submit operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "symbol()",
+      "selector": "0x95d89b41",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads symbol state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        }
+      ],
+      "name": "timelock",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "timelock(bytes4)",
+      "selector": "0xe78ab14e",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads timelock state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "totalAssets",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "totalAssets()",
+      "selector": "0x01e1d114",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:254"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "accrueInterestView"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Accrued, rate-limited assets before fee-share dilution; not idle cash, revenue or unrestricted redemption liquidity."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "totalSupply()",
+      "selector": "0x18160ddd",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Stored issued shares, excluding both pending fee-share mints."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "transfer(address,uint256)",
+      "selector": "0xa9059cbb",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:836"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "to != address(0)",
+          "canSendShares(msg.sender)",
+          "canReceiveShares(to)"
+        ],
+        "internal_and_dependency_calls": [
+          "CannotReceiveShares",
+          "CannotSendShares",
+          "Transfer",
+          "ZeroAddress",
+          "canReceiveShares",
+          "canSendShares"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined transfer operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "transferFrom(address,address,uint256)",
+      "selector": "0x23b872dd",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:849"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [
+          "from != address(0)",
+          "to != address(0)",
+          "canSendShares(from)",
+          "canReceiveShares(to)"
+        ],
+        "internal_and_dependency_calls": [
+          "AllowanceUpdatedByTransferFrom",
+          "CannotReceiveShares",
+          "CannotSendShares",
+          "Transfer",
+          "ZeroAddress",
+          "canReceiveShares",
+          "canSendShares",
+          "type"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Source-defined transferFrom operation. Direct guards and called paths catalogued; configuration/token/timelock effects, not independently a cash receipt."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "virtualShares",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "virtualShares()",
+      "selector": "0xc719946c",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: public state getter"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter/read; can revert through dependency calls or invalid index.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": []
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Reads virtualShares state/configuration in declared ABI units; not historical income or execution guarantee."
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "withdraw(uint256,address,address)",
+      "selector": "0xb460af94",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol:777"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "See source guards and internal call requirements; no additional caller role inferred.",
+        "direct_source_guards": [],
+        "internal_and_dependency_calls": [
+          "accrueInterest",
+          "exit",
+          "previewWithdraw"
+        ]
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Burns ceil shares; takes idle USDG then deallocates deficit from liquidityAdapter; gates and allowance apply."
+      }
+    }
+  ],
+  "events": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        }
+      ],
+      "name": "Abdicate",
+      "type": "event",
+      "signature": "Abdicate(bytes4)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event Abdicate; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xa8480b135a28741e8c059528bf8f82de70278485fb86bfc816a183801f0a8570"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "Accept",
+      "type": "event",
+      "signature": "Accept(bytes4,bytes)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event Accept; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x29aa42fc192ff77ef42105abba283197ac841341e196e417a7fc2784cdc4e5fb"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "previousTotalAssets",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newTotalAssets",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "performanceFeeShares",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "managementFeeShares",
+          "type": "uint256"
+        }
+      ],
+      "name": "AccrueInterest",
+      "type": "event",
+      "signature": "AccrueInterest(uint256,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event AccrueInterest; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x4dec04e750ca11537cabcd8a9eab06494de08da3735bc8871cd41250e190bc04"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "AddAdapter",
+      "type": "event",
+      "signature": "AddAdapter(address)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event AddAdapter; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x8f125a24838c4c23e893904b255b5c672d43d4cb8af7e3d15841eaeabc1e68aa"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "adapter",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32[]",
+          "name": "ids",
+          "type": "bytes32[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "int256",
+          "name": "change",
+          "type": "int256"
+        }
+      ],
+      "name": "Allocate",
+      "type": "event",
+      "signature": "Allocate(address,address,uint256,bytes32[],int256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event Allocate; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x2bc7948a96a066968d2a58aaf46eb0b305aa166b1d1951d2f7ef0919746b8c2a"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "name": "AllowanceUpdatedByTransferFrom",
+      "type": "event",
+      "signature": "AllowanceUpdatedByTransferFrom(address,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event AllowanceUpdatedByTransferFrom; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xc1886047cf852ffdaeda16dafd86e28507781ffba1faafef1d536d4abaa260b0"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event",
+      "signature": "Approval(address,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event Approval; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "asset",
+          "type": "address"
+        }
+      ],
+      "name": "Constructor",
+      "type": "event",
+      "signature": "Constructor(address,address)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event Constructor; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x612d665a88b3ae6bc3e53207bfc2db673e2e05e2aa4a68043b618cc81295a27d"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "adapter",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32[]",
+          "name": "ids",
+          "type": "bytes32[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "int256",
+          "name": "change",
+          "type": "int256"
+        }
+      ],
+      "name": "Deallocate",
+      "type": "event",
+      "signature": "Deallocate(address,address,uint256,bytes32[],int256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event Deallocate; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xd602b36fb24934aef1bc2a658de029b486fa4c664a6e45de1f48e3fd1be25dd9"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "idData",
+          "type": "bytes"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newAbsoluteCap",
+          "type": "uint256"
+        }
+      ],
+      "name": "DecreaseAbsoluteCap",
+      "type": "event",
+      "signature": "DecreaseAbsoluteCap(address,bytes32,bytes,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event DecreaseAbsoluteCap; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xbc2ffe81312f53db4f327eca188ebdc13df66a8ce25f7dec6f5b4495fe27b371"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "idData",
+          "type": "bytes"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newRelativeCap",
+          "type": "uint256"
+        }
+      ],
+      "name": "DecreaseRelativeCap",
+      "type": "event",
+      "signature": "DecreaseRelativeCap(address,bytes32,bytes,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event DecreaseRelativeCap; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xcedce6ffe8b7f89de49bd4f955667ca0a963a8059264196807b240ed470b25ce"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newDuration",
+          "type": "uint256"
+        }
+      ],
+      "name": "DecreaseTimelock",
+      "type": "event",
+      "signature": "DecreaseTimelock(bytes4,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event DecreaseTimelock; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x488e0bfafe0a9580c2271bee1f563a47d309f0105ca950ea525d909b43b36daf"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "name": "Deposit",
+      "type": "event",
+      "signature": "Deposit(address,address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event Deposit; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xdcbc1c05240f31ff3ad067ef1ee35ce4997762752e3a095284754544f4c709d7"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "adapter",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32[]",
+          "name": "ids",
+          "type": "bytes32[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "penaltyAssets",
+          "type": "uint256"
+        }
+      ],
+      "name": "ForceDeallocate",
+      "type": "event",
+      "signature": "ForceDeallocate(address,address,uint256,address,bytes32[],uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event ForceDeallocate; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xb98216be0267fa550428a584fe6ac1ef0f39788e0198372100e813444afecd29"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "idData",
+          "type": "bytes"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newAbsoluteCap",
+          "type": "uint256"
+        }
+      ],
+      "name": "IncreaseAbsoluteCap",
+      "type": "event",
+      "signature": "IncreaseAbsoluteCap(bytes32,bytes,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event IncreaseAbsoluteCap; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x7368d59ed82f6a538f6deef9baa54623fe3699ce07b19031f762f740c8c34b03"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "id",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "idData",
+          "type": "bytes"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newRelativeCap",
+          "type": "uint256"
+        }
+      ],
+      "name": "IncreaseRelativeCap",
+      "type": "event",
+      "signature": "IncreaseRelativeCap(bytes32,bytes,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event IncreaseRelativeCap; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x2a343b9a1ceba40853d01c6adeea53f5c0e4b95b4eb870ed4af309a0ead7e399"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newDuration",
+          "type": "uint256"
+        }
+      ],
+      "name": "IncreaseTimelock",
+      "type": "event",
+      "signature": "IncreaseTimelock(bytes4,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event IncreaseTimelock; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xed380a7a1f0afc99b313ac7d9f1e52e44430d32b4639c7993bd0021974e30c0e"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "nonce",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "Permit",
+      "type": "event",
+      "signature": "Permit(address,address,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event Permit; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x40336af4b170f3dad5ddfb59897a8289adc3bed01417ca7e2bd77f85bc526413"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "RemoveAdapter",
+      "type": "event",
+      "signature": "RemoveAdapter(address)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event RemoveAdapter; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x34f33faa2592bc1f615ec3e91b55b7784665ce46461403c294824d85f9f66458"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "Revoke",
+      "type": "event",
+      "signature": "Revoke(address,bytes4,bytes)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event Revoke; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x70521cf6a7c2458c5ad406081ad7b3bc4afd31b01b586a157a9780fcee6a77cb"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newAdapterRegistry",
+          "type": "address"
+        }
+      ],
+      "name": "SetAdapterRegistry",
+      "type": "event",
+      "signature": "SetAdapterRegistry(address)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetAdapterRegistry; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x7c5f71ef3a94efd2804ad9a6eb74b723dae0d26ef7d2a031f7986c96ae55afda"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newCurator",
+          "type": "address"
+        }
+      ],
+      "name": "SetCurator",
+      "type": "event",
+      "signature": "SetCurator(address)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetCurator; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xbd0a63c12948fbc9194a5839019f99c9d71db924e5c70018265bc778b8f1a506"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "adapter",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "forceDeallocatePenalty",
+          "type": "uint256"
+        }
+      ],
+      "name": "SetForceDeallocatePenalty",
+      "type": "event",
+      "signature": "SetForceDeallocatePenalty(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetForceDeallocatePenalty; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x1e29a0bf54cf1e929f17cc97a198ff5cf7f8da1df1cb8ff67f7184ce380f3924"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "newIsAllocator",
+          "type": "bool"
+        }
+      ],
+      "name": "SetIsAllocator",
+      "type": "event",
+      "signature": "SetIsAllocator(address,bool)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetIsAllocator; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x74dc60cbc81a9472d04ad1d20e151d369c41104d655ed3f2f3091166a502cd8d"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "newIsSentinel",
+          "type": "bool"
+        }
+      ],
+      "name": "SetIsSentinel",
+      "type": "event",
+      "signature": "SetIsSentinel(address,bool)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetIsSentinel; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x8da69db4003c01b5c7be66a7bb5953423222e5118b6af0aadf54e75feef5bc50"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newLiquidityAdapter",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes",
+          "name": "newLiquidityData",
+          "type": "bytes"
+        }
+      ],
+      "name": "SetLiquidityAdapterAndData",
+      "type": "event",
+      "signature": "SetLiquidityAdapterAndData(address,address,bytes)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetLiquidityAdapterAndData; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x9deb43d71422af41853c3921fb364b7647f9a9b136e46d66d45c1bf707af706c"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newManagementFee",
+          "type": "uint256"
+        }
+      ],
+      "name": "SetManagementFee",
+      "type": "event",
+      "signature": "SetManagementFee(uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetManagementFee; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xd87632b1c6ebfa21acbca0e3279b3cf6385a377cb8fda51e5b866baa6e6012ab"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newManagementFeeRecipient",
+          "type": "address"
+        }
+      ],
+      "name": "SetManagementFeeRecipient",
+      "type": "event",
+      "signature": "SetManagementFeeRecipient(address)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetManagementFeeRecipient; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x7f1dd9b78dfeeb8c452333915b2f077f4920fefc4ec7f146767e9ba40303ef1f"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newMaxRate",
+          "type": "uint256"
+        }
+      ],
+      "name": "SetMaxRate",
+      "type": "event",
+      "signature": "SetMaxRate(uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetMaxRate; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x75fef0e2a5e934789b0723129a0d1bbfd4a50f39c5af9919626e4f3603aef5ff"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "newName",
+          "type": "string"
+        }
+      ],
+      "name": "SetName",
+      "type": "event",
+      "signature": "SetName(string)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetName; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x4df9dcd34ae35f40f2c756fd8ac83210ed0b76d065543ee73d868aec7c7fcf02"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "SetOwner",
+      "type": "event",
+      "signature": "SetOwner(address)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetOwner; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x167d3e9c1016ab80e58802ca9da10ce5c6a0f4debc46a2e7a2cd9e56899a4fb5"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newPerformanceFee",
+          "type": "uint256"
+        }
+      ],
+      "name": "SetPerformanceFee",
+      "type": "event",
+      "signature": "SetPerformanceFee(uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetPerformanceFee; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x8b940a95968ad5b511f89b01075446a4fe9f614f2dc5fbb9e9a6b227d6d4fd70"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newPerformanceFeeRecipient",
+          "type": "address"
+        }
+      ],
+      "name": "SetPerformanceFeeRecipient",
+      "type": "event",
+      "signature": "SetPerformanceFeeRecipient(address)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetPerformanceFeeRecipient; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xe59cc3d47f72dbd81f7d5fc40b9b05d9c4374a54addea771648ae24943c26e76"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newReceiveAssetsGate",
+          "type": "address"
+        }
+      ],
+      "name": "SetReceiveAssetsGate",
+      "type": "event",
+      "signature": "SetReceiveAssetsGate(address)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetReceiveAssetsGate; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x6b530281a3f54e1c3e430297307183ba1bafca3cdf775404395c208e6cf3e15f"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newReceiveSharesGate",
+          "type": "address"
+        }
+      ],
+      "name": "SetReceiveSharesGate",
+      "type": "event",
+      "signature": "SetReceiveSharesGate(address)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetReceiveSharesGate; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x004237ebb79833e3e0bc633281452dc9e5c76b92b603140b2a53b0bceb441cae"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newSendAssetsGate",
+          "type": "address"
+        }
+      ],
+      "name": "SetSendAssetsGate",
+      "type": "event",
+      "signature": "SetSendAssetsGate(address)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetSendAssetsGate; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x34c1885f043c6c77736fbc402c63a383472347b85868dab73d42b69596a98e94"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newSendSharesGate",
+          "type": "address"
+        }
+      ],
+      "name": "SetSendSharesGate",
+      "type": "event",
+      "signature": "SetSendSharesGate(address)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetSendSharesGate; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x43a3573cf238e4b97d4ffec8e9b8a69cd276b47cf68230dbdbec3a7a98b28723"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "newSymbol",
+          "type": "string"
+        }
+      ],
+      "name": "SetSymbol",
+      "type": "event",
+      "signature": "SetSymbol(string)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event SetSymbol; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xadf3ae8bd543b3007d464f15cb8ea1db3f44e84d41d203164f40b95e27558ac6"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes4",
+          "name": "selector",
+          "type": "bytes4"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "executableAt",
+          "type": "uint256"
+        }
+      ],
+      "name": "Submit",
+      "type": "event",
+      "signature": "Submit(bytes4,bytes,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event Submit; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0x8b18afeb361b83b025999ed5b42f1d90c68aaa5a0fd49c015f04c3b8b81e80eb"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event",
+      "signature": "Transfer(address,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event Transfer; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "onBehalf",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "assets",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "name": "Withdraw",
+      "type": "event",
+      "signature": "Withdraw(address,address,address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI event Withdraw; imported source declarations as hashed in source-evidence asset"
+      },
+      "topic0": "0xfbde797d201c681b91056529119e0b02407c7bb96a4a2c75c01fc9667232c8db"
+    }
+  ],
+  "errors": [
+    {
+      "inputs": [],
+      "name": "Abdicated",
+      "type": "error",
+      "signature": "Abdicated()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error Abdicated; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x281df4aa"
+    },
+    {
+      "inputs": [],
+      "name": "AbsoluteCapExceeded",
+      "type": "error",
+      "signature": "AbsoluteCapExceeded()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error AbsoluteCapExceeded; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x4616e4af"
+    },
+    {
+      "inputs": [],
+      "name": "AbsoluteCapNotDecreasing",
+      "type": "error",
+      "signature": "AbsoluteCapNotDecreasing()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error AbsoluteCapNotDecreasing; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xbdeafe07"
+    },
+    {
+      "inputs": [],
+      "name": "AbsoluteCapNotIncreasing",
+      "type": "error",
+      "signature": "AbsoluteCapNotIncreasing()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error AbsoluteCapNotIncreasing; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xa844d937"
+    },
+    {
+      "inputs": [],
+      "name": "AutomaticallyTimelocked",
+      "type": "error",
+      "signature": "AutomaticallyTimelocked()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error AutomaticallyTimelocked; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x07e895b1"
+    },
+    {
+      "inputs": [],
+      "name": "CannotReceiveAssets",
+      "type": "error",
+      "signature": "CannotReceiveAssets()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error CannotReceiveAssets; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x8181c5ea"
+    },
+    {
+      "inputs": [],
+      "name": "CannotReceiveShares",
+      "type": "error",
+      "signature": "CannotReceiveShares()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error CannotReceiveShares; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x861a96d6"
+    },
+    {
+      "inputs": [],
+      "name": "CannotSendAssets",
+      "type": "error",
+      "signature": "CannotSendAssets()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error CannotSendAssets; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x515b7cd9"
+    },
+    {
+      "inputs": [],
+      "name": "CannotSendShares",
+      "type": "error",
+      "signature": "CannotSendShares()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error CannotSendShares; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x876736d1"
+    },
+    {
+      "inputs": [],
+      "name": "CastOverflow",
+      "type": "error",
+      "signature": "CastOverflow()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error CastOverflow; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xe58d4718"
+    },
+    {
+      "inputs": [],
+      "name": "DataAlreadyPending",
+      "type": "error",
+      "signature": "DataAlreadyPending()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error DataAlreadyPending; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xd91ff208"
+    },
+    {
+      "inputs": [],
+      "name": "DataNotTimelocked",
+      "type": "error",
+      "signature": "DataNotTimelocked()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error DataNotTimelocked; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x1ea942a8"
+    },
+    {
+      "inputs": [],
+      "name": "FeeInvariantBroken",
+      "type": "error",
+      "signature": "FeeInvariantBroken()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error FeeInvariantBroken; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xda9e0fa0"
+    },
+    {
+      "inputs": [],
+      "name": "FeeTooHigh",
+      "type": "error",
+      "signature": "FeeTooHigh()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error FeeTooHigh; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xcd4e6167"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidSigner",
+      "type": "error",
+      "signature": "InvalidSigner()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error InvalidSigner; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x815e1d64"
+    },
+    {
+      "inputs": [],
+      "name": "MaxRateTooHigh",
+      "type": "error",
+      "signature": "MaxRateTooHigh()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error MaxRateTooHigh; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x0d54247f"
+    },
+    {
+      "inputs": [],
+      "name": "NoCode",
+      "type": "error",
+      "signature": "NoCode()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error NoCode; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xf046a714"
+    },
+    {
+      "inputs": [],
+      "name": "NotAdapter",
+      "type": "error",
+      "signature": "NotAdapter()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error NotAdapter; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xf521d159"
+    },
+    {
+      "inputs": [],
+      "name": "NotInAdapterRegistry",
+      "type": "error",
+      "signature": "NotInAdapterRegistry()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error NotInAdapterRegistry; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x133c5cc8"
+    },
+    {
+      "inputs": [],
+      "name": "PenaltyTooHigh",
+      "type": "error",
+      "signature": "PenaltyTooHigh()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error PenaltyTooHigh; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x516e7f38"
+    },
+    {
+      "inputs": [],
+      "name": "PermitDeadlineExpired",
+      "type": "error",
+      "signature": "PermitDeadlineExpired()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error PermitDeadlineExpired; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x05787bdf"
+    },
+    {
+      "inputs": [],
+      "name": "RelativeCapAboveOne",
+      "type": "error",
+      "signature": "RelativeCapAboveOne()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error RelativeCapAboveOne; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x0d6108b6"
+    },
+    {
+      "inputs": [],
+      "name": "RelativeCapExceeded",
+      "type": "error",
+      "signature": "RelativeCapExceeded()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error RelativeCapExceeded; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x44e1772c"
+    },
+    {
+      "inputs": [],
+      "name": "RelativeCapNotDecreasing",
+      "type": "error",
+      "signature": "RelativeCapNotDecreasing()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error RelativeCapNotDecreasing; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x04c27fbf"
+    },
+    {
+      "inputs": [],
+      "name": "RelativeCapNotIncreasing",
+      "type": "error",
+      "signature": "RelativeCapNotIncreasing()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error RelativeCapNotIncreasing; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x8433449d"
+    },
+    {
+      "inputs": [],
+      "name": "TimelockNotDecreasing",
+      "type": "error",
+      "signature": "TimelockNotDecreasing()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error TimelockNotDecreasing; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x17e0a21c"
+    },
+    {
+      "inputs": [],
+      "name": "TimelockNotExpired",
+      "type": "error",
+      "signature": "TimelockNotExpired()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error TimelockNotExpired; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x621e25c3"
+    },
+    {
+      "inputs": [],
+      "name": "TimelockNotIncreasing",
+      "type": "error",
+      "signature": "TimelockNotIncreasing()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error TimelockNotIncreasing; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x470f70c2"
+    },
+    {
+      "inputs": [],
+      "name": "TransferFromReturnedFalse",
+      "type": "error",
+      "signature": "TransferFromReturnedFalse()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error TransferFromReturnedFalse; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x1eded19c"
+    },
+    {
+      "inputs": [],
+      "name": "TransferFromReverted",
+      "type": "error",
+      "signature": "TransferFromReverted()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error TransferFromReverted; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xe65b7a77"
+    },
+    {
+      "inputs": [],
+      "name": "TransferReturnedFalse",
+      "type": "error",
+      "signature": "TransferReturnedFalse()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error TransferReturnedFalse; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x2f0470fc"
+    },
+    {
+      "inputs": [],
+      "name": "TransferReverted",
+      "type": "error",
+      "signature": "TransferReverted()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error TransferReverted; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xace2a47e"
+    },
+    {
+      "inputs": [],
+      "name": "Unauthorized",
+      "type": "error",
+      "signature": "Unauthorized()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error Unauthorized; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0x82b42900"
+    },
+    {
+      "inputs": [],
+      "name": "ZeroAbsoluteCap",
+      "type": "error",
+      "signature": "ZeroAbsoluteCap()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error ZeroAbsoluteCap; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xbb1a23b9"
+    },
+    {
+      "inputs": [],
+      "name": "ZeroAddress",
+      "type": "error",
+      "signature": "ZeroAddress()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error ZeroAddress; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xd92e233d"
+    },
+    {
+      "inputs": [],
+      "name": "ZeroAllocation",
+      "type": "error",
+      "signature": "ZeroAllocation()",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "Explorer ABI error ZeroAllocation; imported source declarations as hashed in source-evidence asset"
+      },
+      "selector": "0xba0d87b5"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_asset",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor",
+      "evidence": {
+        "source_id": "netnet-credit-implementation-20261010-credit-vault",
+        "locator": "lib/vault-v2/src/VaultV2.sol: constructor; explorer decoded_constructor_args"
+      }
+    }
+  ],
+  "runtime_evidence": {
+    "source_id": "netnet-credit-implementation-20261010-credit-vault",
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x99347d5F70D3838763f6Bddcf80304C8aa953B57",
+    "observed_on": "2026-10-10",
+    "source_status": "explorer_verified_source_obtained",
+    "source_file": "lib/vault-v2/src/VaultV2.sol",
+    "source_sha256": "027839cf5246abd67db755454109a751fa0683aac70f49056d271068b79201f6",
+    "runtime_sha256": "22d19d582f6a09b86afd87e041301054eb6ceb557f33bb8193b7ae3441bd9372",
+    "runtime_bytes": 21808,
+    "runtime_observation": "unpinned_explorer_response",
+    "compiler_version": "v0.8.28+commit.7893614a",
+    "proxy_type": null,
+    "implementations": [],
+    "additional_sources": [
+      {
+        "file_path": "lib/vault-v2/src/interfaces/IAdapter.sol",
+        "sha256": "30e47594e7a91d177c63b68b63c661353c20b92bb0fc48e605893d7d2c13478e"
+      },
+      {
+        "file_path": "lib/vault-v2/src/interfaces/IAdapterRegistry.sol",
+        "sha256": "dbc8981d1f8cb231a6c3f85e67e1c770145747df1686d86191ff12f3ea408939"
+      },
+      {
+        "file_path": "lib/vault-v2/src/interfaces/IERC20.sol",
+        "sha256": "1d9682ff2ea29e80e60e748b88cf47a01b7606a845ed9323b0f303be767051df"
+      },
+      {
+        "file_path": "lib/vault-v2/src/interfaces/IERC2612.sol",
+        "sha256": "2b4f6d51f3965e4a8b1d85caaee959f8a4fe8bf6c97ad33c4da1a717f91868cb"
+      },
+      {
+        "file_path": "lib/vault-v2/src/interfaces/IERC4626.sol",
+        "sha256": "5a293f3c3fd995c3338ce56468c9197d15e9f0f8d767942aeafb5c3baef5f1ef"
+      },
+      {
+        "file_path": "lib/vault-v2/src/interfaces/IGate.sol",
+        "sha256": "9d80c8dc873cce3b66261a02619c5079a4cbbb39936a0f00a532eaed354bfbd9"
+      },
+      {
+        "file_path": "lib/vault-v2/src/interfaces/IVaultV2.sol",
+        "sha256": "e8cacc45b0bab475326b91996ab74492ffa114bc1105177742f62ac5b28f485b"
+      },
+      {
+        "file_path": "lib/vault-v2/src/libraries/ConstantsLib.sol",
+        "sha256": "6c64bc1617dc34ea04933f9192c88f1d67163b5800e82c15cba8d3ca80f001b7"
+      },
+      {
+        "file_path": "lib/vault-v2/src/libraries/ErrorsLib.sol",
+        "sha256": "58ea626978468e67f57f356bd2ec89276cd3c677d5c4156b12831627467a9e8b"
+      },
+      {
+        "file_path": "lib/vault-v2/src/libraries/EventsLib.sol",
+        "sha256": "cab5c240822fd51c4ed8d1aee6a3469dc71a1d62f429de301fb01ba70849bb5a"
+      },
+      {
+        "file_path": "lib/vault-v2/src/libraries/MathLib.sol",
+        "sha256": "9a72949f4fe0317fc9aac3bced953c8e6f32b0015b5e3ac37184dc291eda530b"
+      },
+      {
+        "file_path": "src/interfaces/IVaultV2.sol",
+        "sha256": "d4b323a5e74305414e89e745a7187d82ec956230d7775f55024477e758070eaf"
+      },
+      {
+        "file_path": "lib/vault-v2/src/libraries/SafeERC20Lib.sol",
+        "sha256": "1d41dfba079af0490bdecfa235a1b172bd6f7a93980b94ef2e56081d4501fdaa"
+      },
+      {
+        "file_path": "src/VaultV2.sol",
+        "sha256": "841512790db80b45388de51bb47ceef2af6cad36ddd5e1f10aa95894a85c7b25"
+      },
+      {
+        "file_path": "src/VaultV2Flat.sol",
+        "sha256": "9738400406893388eb03a674cd2d2aba742ae15dea2de641d8bad40453c9f5a0"
+      },
+      {
+        "file_path": "src/interfaces/IAdapter.sol",
+        "sha256": "30e47594e7a91d177c63b68b63c661353c20b92bb0fc48e605893d7d2c13478e"
+      },
+      {
+        "file_path": "src/interfaces/IAdapterRegistry.sol",
+        "sha256": "dbc8981d1f8cb231a6c3f85e67e1c770145747df1686d86191ff12f3ea408939"
+      },
+      {
+        "file_path": "src/interfaces/IERC20.sol",
+        "sha256": "1d9682ff2ea29e80e60e748b88cf47a01b7606a845ed9323b0f303be767051df"
+      },
+      {
+        "file_path": "src/interfaces/IERC2612.sol",
+        "sha256": "2b4f6d51f3965e4a8b1d85caaee959f8a4fe8bf6c97ad33c4da1a717f91868cb"
+      },
+      {
+        "file_path": "src/interfaces/IERC4626.sol",
+        "sha256": "3c8aa467fe38da6f97b85378e97dae39914497d6326564d70ae51faf75c8538a"
+      },
+      {
+        "file_path": "src/interfaces/IGate.sol",
+        "sha256": "9d80c8dc873cce3b66261a02619c5079a4cbbb39936a0f00a532eaed354bfbd9"
+      },
+      {
+        "file_path": "src/libraries/ConstantsLib.sol",
+        "sha256": "6c64bc1617dc34ea04933f9192c88f1d67163b5800e82c15cba8d3ca80f001b7"
+      },
+      {
+        "file_path": "src/libraries/ErrorsLib.sol",
+        "sha256": "9fb67dda5d82cee68fb3bb6dfe6bf286d81486c98a37102efeae13d8e1dedf7d"
+      },
+      {
+        "file_path": "src/libraries/EventsLib.sol",
+        "sha256": "cab5c240822fd51c4ed8d1aee6a3469dc71a1d62f429de301fb01ba70849bb5a"
+      },
+      {
+        "file_path": "src/libraries/MathLib.sol",
+        "sha256": "314b182b20b5162e89bcd535a445d8bf9dedb5b9b028586f213aaadb52dd3e3f"
+      },
+      {
+        "file_path": "src/libraries/SafeERC20Lib.sol",
+        "sha256": "1d41dfba079af0490bdecfa235a1b172bd6f7a93980b94ef2e56081d4501fdaa"
+      }
+    ],
+    "constructor_bindings": [
+      [
+        "0xCfBd7e12A0f154a45576a73C1E409200068507B9",
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      [
+        "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+        {
+          "internalType": "address",
+          "name": "_asset",
+          "type": "address"
+        }
+      ]
+    ],
+    "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+  }
+}

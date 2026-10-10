@@ -1,0 +1,2671 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0xca728e8ee6c8d59c1a3abdf1dea43f2f4a63c575",
+  "contract_record": "assets/addresses/contracts/netlong-futures.json",
+  "chain_id": 4663,
+  "address": "0xcA728E8ee6c8D59C1a3aBDF1DeA43f2f4a63C575",
+  "generation": "netlong-futures-btc",
+  "provenance": [
+    {
+      "source_id": "netnet-trading-entry-20261010",
+      "url": "https://trading.netnet.capital/assets/index-BViJKZuW.js",
+      "sha256": "b62b66a56fbaa9d7b387761108e99e72633369c14f3a8ad6fda8444ba9be70bc",
+      "locator": "Literal Xt, Unicode character offsets[598487,600868)",
+      "observed_on": "2026-10-10"
+    },
+    {
+      "source_id": "netlong-futures-explorer-20261010-btc",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xcA728E8ee6c8D59C1a3aBDF1DeA43f2f4a63C575",
+      "observed_on": "2026-10-10",
+      "locator": "Explorer-reported deployed_bytecode and creation_bytecode; no source_code or abi fields"
+    }
+  ],
+  "execution_authority": false,
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 99,
+    "implementation": "material_runtime_paths_reviewed_source_unavailable",
+    "pinned_state": "not_obtained_rpc_denied",
+    "missing_evidence": [
+      "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+      "Compiler rebuild/source-runtime equivalence.",
+      "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
+    ],
+    "literal_character_range": [
+      598487,
+      600868
+    ],
+    "resolved_literal_abi_sha256": "a8cc09153c4a576158eb98dad92c60de4ecdc03aa8c0fadbf95493124ceb3c71"
+  },
+  "runtime_evidence": {
+    "sha256": "67d24d59d2be5eed24188df2d1711c8161851d3741edd73813f2b1b5510206b3",
+    "byte_length": 23475,
+    "bytecode_origin": "explorer_reported_not_rpc_pinned",
+    "selector_comparison": "Compiler dispatcher PUSH3/PUSH4 EQ PUSH2 JUMPI targets; selector presence is not full semantic equivalence.",
+    "source_verification": {
+      "is_verified": false,
+      "is_fully_verified": false,
+      "is_partially_verified": false,
+      "local_compilation_performed": false
+    },
+    "dispatch_function_count": 45,
+    "unrepresented_dispatch_selectors": [
+      {
+        "selector": "0x9d61e2bf",
+        "entry_pc": "0x725",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      }
+    ],
+    "creation_template_comparison": {
+      "runtime_bytes": 23475,
+      "embedded_template_sha256": "668148d67ef8bfb14fd47ecdd4c87bd9bd82cfdb761a119611e9d072500bfb1b",
+      "immutable_word_offsets": [
+        873,
+        1084,
+        1149,
+        1212,
+        1776,
+        1834,
+        1999,
+        2475,
+        2514,
+        2553,
+        2592,
+        3038,
+        3190,
+        4254,
+        4446,
+        5037,
+        5170,
+        5760,
+        5895,
+        5937,
+        6097,
+        6507,
+        8431,
+        8584,
+        8755,
+        10216,
+        10369,
+        10418,
+        10490,
+        10618,
+        10763,
+        10796,
+        11967,
+        12109,
+        12398,
+        12633,
+        12780,
+        13249,
+        14195,
+        14355,
+        14948,
+        16666,
+        16819,
+        16868,
+        16985,
+        17082,
+        18597,
+        18741,
+        19287
+      ],
+      "normalization_matches_creation_template": true,
+      "constructor_runtime_offset": 982
+    },
+    "equivalence_scope": "BTC/ETH/SOL normalized creation runtime templates including metadata exactly equal; all49 masked words match constructor patch offsets. Full runtimes and parameters are distinct; NET is a different template."
+  },
+  "functions": [
+    {
+      "name": "vault",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[0]"
+      },
+      "signature": "vault()",
+      "selector": "0xfbfa77cf",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable clearing vault address, not a trader balance. Current four desks embed the current vault binding."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0xa1b"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "oracle",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[1]"
+      },
+      "signature": "oracle()",
+      "selector": "0x7dc0d1d0",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable shared margin-credit oracle; this is collateral valuation, not necessarily the traded asset price feed."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x6eb"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "maxLeverageX",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[2]"
+      },
+      "signature": "maxLeverageX()",
+      "selector": "0x3c31a7d1",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Integer leverage multiplier. Constructor words show BTC/ETH 10, SOL 5, NET 3; re-read rather than treating labels as active limits."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x437"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "maintenanceBps",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[3]"
+      },
+      "signature": "maintenanceBps()",
+      "selector": "0x2e673446",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Maintenance threshold applied to remaining entry-dollar size /10000. Constructor words: BTC/ETH 100, SOL 200, NET 500."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x364"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "takerBps",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[4]"
+      },
+      "signature": "takerBps()",
+      "selector": "0xf6bd8de2",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "50 basis points in the embedded constructor, used for futures leg fees; distinct from leveraged spot margin 25bps."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x9f4"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "positions",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tuple",
+          "components": [
+            {
+              "name": "isLong",
+              "type": "bool"
+            },
+            {
+              "name": "fillRung",
+              "type": "uint8"
+            },
+            {
+              "name": "openedAt",
+              "type": "uint64"
+            },
+            {
+              "name": "lastTouch",
+              "type": "uint64"
+            },
+            {
+              "name": "sizeUsdWad",
+              "type": "uint128"
+            },
+            {
+              "name": "marginWs",
+              "type": "uint128"
+            },
+            {
+              "name": "entryPriceWad",
+              "type": "uint128"
+            },
+            {
+              "name": "entryCarryWad",
+              "type": "int128"
+            },
+            {
+              "name": "takeProfitWad",
+              "type": "uint128"
+            },
+            {
+              "name": "stopLossWad",
+              "type": "uint128"
+            },
+            {
+              "name": "pendingCloseId",
+              "type": "uint64"
+            },
+            {
+              "name": "underSince",
+              "type": "uint64"
+            }
+          ]
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[5]"
+      },
+      "signature": "positions(address)",
+      "selector": "0x55f57510",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Address-keyed packed position: direction, fill rung, openedAt/lastTouch seconds, sizeUsdWad, marginWs, entryPriceWad, signed entryCarryWad, TP/SL, pendingCloseId and underSince. Size is entry-dollar exposure, not tokens or current marked OI. Empty size is no position; no trader enumeration is exposed."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x4f1"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "commits",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tuple",
+          "components": [
+            {
+              "name": "trader",
+              "type": "address"
+            },
+            {
+              "name": "isLong",
+              "type": "bool"
+            },
+            {
+              "name": "isClose",
+              "type": "bool"
+            },
+            {
+              "name": "commitTs",
+              "type": "uint64"
+            },
+            {
+              "name": "deadline",
+              "type": "uint64"
+            },
+            {
+              "name": "sizeUsdWad",
+              "type": "uint128"
+            },
+            {
+              "name": "marginWs",
+              "type": "uint128"
+            },
+            {
+              "name": "limitPriceWad",
+              "type": "uint128"
+            }
+          ]
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[6]"
+      },
+      "signature": "commits(uint256)",
+      "selector": "0xc7c4a615",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "ID-keyed pending intent with trader/direction/isClose/createdAt/deadline/size/margin/limit. Pending open is not filled OI; deletion leaves an empty trader. IDs cannot enumerate existing positions after filled intents are cleared."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x829"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "nextCommitId",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[7]"
+      },
+      "signature": "nextCommitId()",
+      "selector": "0xb9f5f4e6",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Monotonic next intent ID, initialized to one. Counts intent allocation including canceled/filled intents, not active positions."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x7fa"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "commitOf",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[8]"
+      },
+      "signature": "commitOf(address)",
+      "selector": "0xfdd5791e",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Current outstanding commit ID per trader; zero means none. Not an index of all traders."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0xa42"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "lastMark",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "tuple",
+          "components": [
+            {
+              "name": "priceWad",
+              "type": "uint128"
+            },
+            {
+              "name": "observedAt",
+              "type": "uint64"
+            },
+            {
+              "name": "rung",
+              "type": "uint8"
+            }
+          ]
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[9]"
+      },
+      "signature": "lastMark()",
+      "selector": "0x2f8407ca",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Stored priceWad/observedAt/rung. Reports update only monotonically newer observations on stream desks; NET posts marks when paths execute. It is a cached observation, never proof of a fresh executable mark."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x38b"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "oiLongUsdWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[10]"
+      },
+      "signature": "oiLongUsdWad()",
+      "selector": "0xada96ca5",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Stored slot 4: sum of remaining long sizeUsdWad; opens add original requested size, closes subtract closed size. Units USD times 1e18; price moves alone do not revalue it."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x7c1"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "oiShortUsdWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[11]"
+      },
+      "signature": "oiShortUsdWad()",
+      "selector": "0x1a52c6a9",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Stored slot 5: sum of remaining short sizeUsdWad. Long plus short is gross stored entry notional; subtracting short gives signed entry skew, not marked net exposure."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x353"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "carryLongWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "int256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[12]"
+      },
+      "signature": "carryLongWad()",
+      "selector": "0xb60eda80",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Signed accumulated long carry index per notional WAD. Positive growth charges longs; individual liability depends on entryCarryWad, remaining size and elapsed unsettled carry."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x7f1"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "carryShortWad",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "int256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[13]"
+      },
+      "signature": "carryShortWad()",
+      "selector": "0x5a67481d",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Signed short carry accumulator, distinct from long carry. Minority receives 90% index movement while 10% of positive carry is charged as protocol fee on settlement; aggregate value is not a dollar balance."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x670"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "lastCarryAt",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[14]"
+      },
+      "signature": "lastCarryAt()",
+      "selector": "0x599bf762",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Timestamp seconds of last settled funding interval; reading it does not accrue carry."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x645"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "equityUsdWad",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        },
+        {
+          "name": "priceWad",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "int256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[15]"
+      },
+      "signature": "equityUsdWad(address,uint256)",
+      "selector": "0x02bd8c41",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read; oracle can revert"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "At supplied asset price: collateral*usablePerWsWad/1e18 plus direction-signed size*(price-entry)/entry minus size*(sideCarry-entryCarry)/1e18. Signed divisions truncate toward zero. Caller-selected price is hypothetical, not authenticated by this view."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x307"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "liquidatableAt",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        },
+        {
+          "name": "priceWad",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[16]"
+      },
+      "signature": "liquidatableAt(address,uint256)",
+      "selector": "0x61730990",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read; oracle can revert"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Compares equity at supplied price against size*maintenanceBps/10000. A true result is a health predicate, not proof that persistence, report freshness and liquidation transaction gates are satisfied."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x679"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "quoteFill",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "isLong",
+          "type": "bool"
+        },
+        {
+          "name": "sizeUsdWad",
+          "type": "uint256"
+        },
+        {
+          "name": "marginWs",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "feeWs",
+          "type": "uint256"
+        },
+        {
+          "name": "maxSizeUsdWad",
+          "type": "uint256"
+        },
+        {
+          "name": "allowed",
+          "type": "bool"
+        },
+        {
+          "name": "reason",
+          "type": "uint8"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[17]"
+      },
+      "signature": "quoteFill(bool,uint256,uint256)",
+      "selector": "0x72f20947",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read; dependencies can revert"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Returns feeWs, leverage-derived maxSizeUsdWad, vault opens gate and reason. Uses lossPerWsWad for fee conversion and usablePerWsWad for margin; local pause/divergence can override allowed. It does not validate commit timing, report or actual fill bounds."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x6af"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "streamId",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "bytes32"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[18]"
+      },
+      "signature": "streamId()",
+      "selector": "0xf4408e4b",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable bytes32 signed-stream feed identity. BTC/ETH/SOL differ here; the ID is not an address or on-chain spot aggregator."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x9cd"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "tapeFeedId",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "bytes32"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[19]"
+      },
+      "signature": "tapeFeedId()",
+      "selector": "0xed695b88",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable alternate tape bytes32 feed ID; must match decoded tape payload, independent of signed-stream feed ID."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x9a6"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "halter",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[20]"
+      },
+      "signature": "halter()",
+      "selector": "0xb0e73c14",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable authority allowed to set the stream desk open pause. No authority migration was established."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x7ca"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "verifierProxy",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[21]"
+      },
+      "signature": "verifierProxy()",
+      "selector": "0x47f77bc0",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable Chainlink report verifier gateway. Its mutable owner-controlled access/fee/config routing remains a dependency even though the desk address cannot change this binding."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x478"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "tapeVerifier",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[22]"
+      },
+      "signature": "tapeVerifier()",
+      "selector": "0x4a9f2886",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable DIAL2 TAPE signature verifier address. Current signer membership is mutable in that separate dependency and was not read live."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x4b7"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "lastTape",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "tuple",
+          "components": [
+            {
+              "name": "priceWad",
+              "type": "uint128"
+            },
+            {
+              "name": "observedAt",
+              "type": "uint64"
+            },
+            {
+              "name": "rung",
+              "type": "uint8"
+            }
+          ]
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[23]"
+      },
+      "signature": "lastTape()",
+      "selector": "0xad0ffa8e",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Stored tape price/observation/rung; a cached alternate observation. Tape timestamps are decoded from milliseconds to seconds before storage."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x75f"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "servingRung",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint8"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[24]"
+      },
+      "signature": "servingRung()",
+      "selector": "0x3ff35f4a",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Runtime selects rung 1 when last stream mark age <=60 seconds, else rung 2 when nonzero tape age <=600 seconds, else rung 3. This is availability of stored marks, not a fill guarantee."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x45e"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "staleHaircutBps",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[25]"
+      },
+      "signature": "staleHaircutBps()",
+      "selector": "0x23536f78",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Runtime computes clamp(floor((now-lastStreamObservedAt)*25/3600),25,300) bps. Last-price close applies adverse direction-dependent adjustment, so this cached-rung price is not symmetric market value."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x35c"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "opensPausedUntil",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[26]"
+      },
+      "signature": "opensPausedUntil()",
+      "selector": "0xba10aef9",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Seconds timestamp for temporary new-open pause; it is not a close pause flag or proof the vault opens gate is open."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x803"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "commit",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "isLong",
+          "type": "bool"
+        },
+        {
+          "name": "sizeUsdWad",
+          "type": "uint256"
+        },
+        {
+          "name": "marginWs",
+          "type": "uint256"
+        },
+        {
+          "name": "limitPriceWad",
+          "type": "uint256"
+        },
+        {
+          "name": "deadline",
+          "type": "uint64"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "commitId",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[27]"
+      },
+      "signature": "commit(bool,uint256,uint256,uint256,uint64)",
+      "selector": "0xfe8e2483",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "caller creates own intent"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Requires no position/outstanding commit, size >=10e18 USD and nonzero margin, deadline >= now+2; reserves margin plus quoted fee through vault. Stores intent and fee estimate, not a position. Leverage is checked against credited margin; fill checks again."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0xa61"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "closeCommit",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "sizeUsdWad",
+          "type": "uint256"
+        },
+        {
+          "name": "limitPriceWad",
+          "type": "uint256"
+        },
+        {
+          "name": "deadline",
+          "type": "uint64"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "commitId",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[28]"
+      },
+      "signature": "closeCommit(uint256,uint256,uint64)",
+      "selector": "0xc90a69d7",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "position owner"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Creates a size-limited close intent, deadline >= now+2, one outstanding intent. Partial remainder must be >=10e18 USD unless full close. Sets pendingCloseId; OI remains until fill."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x92c"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "cancelCommit",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "commitId",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[29]"
+      },
+      "signature": "cancelCommit(uint256)",
+      "selector": "0xd6e3b252",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "trader before effective expiry; anyone after"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Deletes intent and clears trader index/pendingCloseId. Open cancellation releases margin; reserved opening fee is charged if nonzero. Effective lifetime is min(user deadline, createdAt+30). Closing cancellation does not return locked position collateral."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x952"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "setExit",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "takeProfitWad",
+          "type": "uint256"
+        },
+        {
+          "name": "stopLossWad",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[30]"
+      },
+      "signature": "setExit(uint256,uint256)",
+      "selector": "0xc369e9d5",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "position owner"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Sets or clears TP/SL priceWad on current position. When both nonzero their ordering must agree with long/short direction. Does not execute or validate a current authenticated market price."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x816"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "addMargin",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[31]"
+      },
+      "signature": "addMargin(uint256)",
+      "selector": "0xa43be948",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "position owner"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Locks additional positive wsNET from caller free balance through vault and adds packed marginWs; no trade-size/OI increase. uint128 checked addition can revert."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x74c"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "settleCarry",
+      "stateMutability": "nonpayable",
+      "inputs": [],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[32]"
+      },
+      "signature": "settleCarry()",
+      "selector": "0xdb45a00a",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Calls oracle.poke, advances lastCarryAt, computes abs(long-short)/(long+short) WAD skew ratio and 0.001 WAD * ratio * elapsed/28800 payer-index delta, flooring each unsigned division. Larger side pays; opposite side receives 90% index delta. Zero total/equal sides/zero elapsed do not move indices. Does not iterate positions."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x965"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "removeMargin",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        },
+        {
+          "name": "report",
+          "type": "bytes"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[33]"
+      },
+      "signature": "removeMargin(uint256,bytes)",
+      "selector": "0x17103f60",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "position owner"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Requires positive amount <=position margin, no pending close, and both remaining credited margin and equity above initial requirement size/maxLeverageX. Stream variant requires recent post-touch report; NET requires live TWAP and no under checkpoint. Unlocks wsNET to free balance and updates lastTouch."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x340"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "fill",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "commitId",
+          "type": "uint256"
+        },
+        {
+          "name": "report",
+          "type": "bytes"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[34]"
+      },
+      "signature": "fill(uint256,bytes)",
+      "selector": "0xe09ceba9",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless executor of committed intent"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Consumes valid delayed intent; stream report must lie in createdAt+2..min(deadline,createdAt+30), be at most 10s old and within first 3s of eligible window. Directional limit is checked. Open settles carry, rechecks collateral, updates vault risk/OI, charges reserved fee, and stores position. Close apportions collateral and removes remaining entry notional. NET uses current oracle side-specific mark instead of report."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x980"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "fillCloseOnTape",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "closeId",
+          "type": "uint256"
+        },
+        {
+          "name": "print",
+          "type": "bytes"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[35]"
+      },
+      "signature": "fillCloseOnTape(uint256,bytes)",
+      "selector": "0xe1dfcd11",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless; close intent only"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Only after primary stream has been down >60s relative to intent creation. Verifies matching nonzero alternate tape, milliseconds converted to seconds, observation beyond primary outage; applies timing and limit checks. Never opens a position on this fallback."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x993"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "fillCloseStale",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "closeId",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[36]"
+      },
+      "signature": "fillCloseStale(uint256)",
+      "selector": "0xcccbada0",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless; close intent only"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Requires primary mark and available tape both stale >600s relative to commit creation, plus ordinary commit eligibility. Uses last primary price with adverse staleHaircutBps rather than a fresh mark. This is an emergency exit mechanism, not current spot."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x93f"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "fillExit",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        },
+        {
+          "name": "report",
+          "type": "bytes"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[37]"
+      },
+      "signature": "fillExit(address,bytes)",
+      "selector": "0x02a3c2fc",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless trigger executor"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Requires active position and TP/SL reached, then closes all size. Stream requires authenticated recent post-touch report; NET requires no under checkpoint and live TWAP. Does not promise execution at configured trigger price."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x2f2"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "fillExitOnTape",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        },
+        {
+          "name": "print",
+          "type": "bytes"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[38]"
+      },
+      "signature": "fillExitOnTape(address,bytes)",
+      "selector": "0x96dbef8b",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless trigger executor"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Alternate-tape full exit after stream outage; requires valid post-touch recent tape and reached TP/SL, preserving tape verification and settlement costs."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x712"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "marginCall",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        },
+        {
+          "name": "reportA",
+          "type": "bytes"
+        },
+        {
+          "name": "reportB",
+          "type": "bytes"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[39]"
+      },
+      "signature": "marginCall(address,bytes,bytes)",
+      "selector": "0x54ffea94",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless with valid report pair"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Full stream-desk liquidation requires both authenticated prices under maintenance, reportA after lastTouch, reportB at least 5 and at most 15 seconds after A and recent B. Settles carry and applies 1% notional penalty, with 10% of penalty caller rebate. Persistence differs from NET five-minute checkpoint."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x4de"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "adl",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        },
+        {
+          "name": "report",
+          "type": "bytes"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[40]"
+      },
+      "signature": "adl(address,bytes)",
+      "selector": "0x72453035",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless; vault ADL mode and positive price PnL required"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Closes full profitable position when vault signals ADL. Waives ordinary taker fee on this path; profits may become queued ADL claims instead of liquid free balance. Caller must not equate profit entitlement with immediate payout."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x69c"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "postMark",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "report",
+          "type": "bytes"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[41]"
+      },
+      "signature": "postMark(bytes)",
+      "selector": "0xe01f118c",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless with authenticated report"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Verifies signed stream and matching feed, positive price, validity interval, observation not future; monotonic newer observation updates lastMark. A report can be cached even when too old for a fill; freshness is separately enforced by trade paths."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x96d"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "postTape",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "print",
+          "type": "bytes"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[42]"
+      },
+      "signature": "postTape(bytes)",
+      "selector": "0x361d5287",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "permissionless with valid tape while primary down"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Verifies alternate payload and matching feed after primary outage; only newer tape observation updates lastTape. Signature-verifier acceptance does not by itself establish desk-level freshness."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x424"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "setOpensPaused",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "paused",
+          "type": "bool"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[43]"
+      },
+      "signature": "setOpensPaused(bool)",
+      "selector": "0x0d1554ea",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "halter only"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Runtime caller check against immutable halter, sets opensPausedUntil to now+3600 when true or zero when false, emits state. It stops new fills, not every action, and cannot change immutable leverage/feed bindings."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x32d"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    }
+  ],
+  "events": [
+    {
+      "name": "Committed",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "commitId",
+          "type": "uint256",
+          "indexed": true
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "isLong",
+          "type": "bool",
+          "indexed": false
+        },
+        {
+          "name": "isClose",
+          "type": "bool",
+          "indexed": false
+        },
+        {
+          "name": "sizeUsdWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "marginWs",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "limitPriceWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "deadline",
+          "type": "uint64",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[44]"
+      },
+      "signature": "Committed(uint256,address,bool,bool,uint256,uint256,uint256,uint64)",
+      "topic0": "0xdfcbef44a168b869ac5b9b5d4b408f7cb79c6194752558c9c0b3dff2140eab18"
+    },
+    {
+      "name": "Cancelled",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "commitId",
+          "type": "uint256",
+          "indexed": true
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "returnedWs",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[45]"
+      },
+      "signature": "Cancelled(uint256,address,uint256)",
+      "topic0": "0xaa17fdf5ffb610a4cc0887f35c13c501975a370005080f68441055871952eb81"
+    },
+    {
+      "name": "Filled",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "commitId",
+          "type": "uint256",
+          "indexed": true
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "isLong",
+          "type": "bool",
+          "indexed": false
+        },
+        {
+          "name": "sizeUsdWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "priceWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "rung",
+          "type": "uint8",
+          "indexed": false
+        },
+        {
+          "name": "marginWs",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "feeWs",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[46]"
+      },
+      "signature": "Filled(uint256,address,bool,uint256,uint256,uint8,uint256,uint256)",
+      "topic0": "0xd9a1842a12806067cb0e679e803c891e8dbec11ccb5e60e0aaa29f2d16a700c1"
+    },
+    {
+      "name": "Closed",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "reason",
+          "type": "uint8",
+          "indexed": false
+        },
+        {
+          "name": "sizeUsdWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "priceWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "rung",
+          "type": "uint8",
+          "indexed": false
+        },
+        {
+          "name": "pnlUsdWad",
+          "type": "int256",
+          "indexed": false
+        },
+        {
+          "name": "pnlWs",
+          "type": "int256",
+          "indexed": false
+        },
+        {
+          "name": "returnedWs",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "by",
+          "type": "address",
+          "indexed": true
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[47]"
+      },
+      "signature": "Closed(address,uint8,uint256,uint256,uint8,int256,int256,uint256,address)",
+      "topic0": "0x32efa87bb41851a964c3c8c4ba4b1ef00c1f13b09a2a3dfe22a592a88ef9c84e"
+    },
+    {
+      "name": "MarginCalled",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "caller",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "priceA",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "priceB",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "penaltyWs",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "rebateWs",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[48]"
+      },
+      "signature": "MarginCalled(address,address,uint256,uint256,uint256,uint256)",
+      "topic0": "0x55284d26ee89129894a51115a58943709ada1e45b86dfd4b5ebdd87de4708cc7"
+    },
+    {
+      "name": "ExitSet",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "takeProfitWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "stopLossWad",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[49]"
+      },
+      "signature": "ExitSet(address,uint256,uint256)",
+      "topic0": "0xd85167f1cab5754e1e7a84dcc7475092923d5413d1bb24acc91cd8218c495252"
+    },
+    {
+      "name": "MarginAdded",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[50]"
+      },
+      "signature": "MarginAdded(address,uint256)",
+      "topic0": "0x2f511207ce5ebcde9ee1624d6dfe240ca859263638fbd7a18417d9cdd56f9a09"
+    },
+    {
+      "name": "MarginRemoved",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[51]"
+      },
+      "signature": "MarginRemoved(address,uint256)",
+      "topic0": "0xa281fa1b5faa81f054d92876a8bcad5fc8225ff9b049511d9a05d4d5d625bb88"
+    },
+    {
+      "name": "CarryAccrued",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "longsPay",
+          "type": "bool",
+          "indexed": false
+        },
+        {
+          "name": "rateWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "carryLongWad",
+          "type": "int256",
+          "indexed": false
+        },
+        {
+          "name": "carryShortWad",
+          "type": "int256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[52]"
+      },
+      "signature": "CarryAccrued(bool,uint256,int256,int256)",
+      "topic0": "0x29c268e1a25192bd370bd0ce4b4e7fc6f9290898c50735ca367c5c2ae254436f"
+    },
+    {
+      "name": "MarkPosted",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "priceWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "observedAt",
+          "type": "uint64",
+          "indexed": false
+        },
+        {
+          "name": "rung",
+          "type": "uint8",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[53]"
+      },
+      "signature": "MarkPosted(uint256,uint64,uint8)",
+      "topic0": "0xc03079884ee985111dcf2421761dcfea38a58b31155123571f44afc33b58a080"
+    },
+    {
+      "name": "OpensPausedSet",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "paused",
+          "type": "bool",
+          "indexed": false
+        },
+        {
+          "name": "until",
+          "type": "uint64",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[54]"
+      },
+      "signature": "OpensPausedSet(bool,uint64)",
+      "topic0": "0x6a20b1140c0da566143ab2615ff6619c7e5cf59ae7b1ef380c8398a0ff233a7a"
+    },
+    {
+      "name": "UnderRecorded",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "priceWad",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[55]"
+      },
+      "signature": "UnderRecorded(address,uint256)",
+      "topic0": "0x1bda9560ea6be9133243450b87c445a337fa00076e0e71ad182387b83cc6540a"
+    },
+    {
+      "name": "UnderCleared",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[56]"
+      },
+      "signature": "UnderCleared(address)",
+      "topic0": "0xb46e7fd648cfd5495bf187228b08eb080150ece4741e3c95a81120521dcdc469"
+    }
+  ],
+  "errors": [
+    {
+      "name": "PositionExists",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[57]"
+      },
+      "signature": "PositionExists()",
+      "selector": "0x709cb07e",
+      "publisher_message": "There is already an open contract on this market. One contract per market.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NoPosition",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[58]"
+      },
+      "signature": "NoPosition()",
+      "selector": "0xabf0f034",
+      "publisher_message": "There is no open contract on this market.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "CommitExists",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[59]"
+      },
+      "signature": "CommitExists()",
+      "selector": "0xd0641400",
+      "publisher_message": "An order is already open on this market. Wait for it to fill or expire.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NoCommit",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[60]"
+      },
+      "signature": "NoCommit()",
+      "selector": "0xfbd0656a",
+      "publisher_message": "This order does not exist.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NotYourCommit",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[61]"
+      },
+      "signature": "NotYourCommit()",
+      "selector": "0x2147f14a",
+      "publisher_message": "This order belongs to another account.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "TooEarly",
+      "inputs": [
+        {
+          "name": "earliest",
+          "type": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[62]"
+      },
+      "signature": "TooEarly(uint64)",
+      "selector": "0xd606d83f",
+      "publisher_message": "The report is from before the order's entry delay. The next report fills it.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "WindowClosed",
+      "inputs": [
+        {
+          "name": "latest",
+          "type": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[63]"
+      },
+      "signature": "WindowClosed(uint64)",
+      "selector": "0xb7a74920",
+      "publisher_message": "The order's window closed before a report filled it. Cancel it to return the margin.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "WindowOpen",
+      "inputs": [
+        {
+          "name": "until",
+          "type": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[64]"
+      },
+      "signature": "WindowOpen(uint64)",
+      "selector": "0xadc95131",
+      "publisher_message": "The order's window is still open; it cannot be cancelled until the window ends.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "StaleReport",
+      "inputs": [
+        {
+          "name": "observedAt",
+          "type": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[65]"
+      },
+      "signature": "StaleReport(uint64)",
+      "selector": "0xe6f3ba2d",
+      "publisher_message": "The price report is older than the desk accepts. Fetch a fresh report and try again.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NotFirstReport",
+      "inputs": [
+        {
+          "name": "observedAt",
+          "type": "uint64"
+        },
+        {
+          "name": "latest",
+          "type": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[66]"
+      },
+      "signature": "NotFirstReport(uint64,uint64)",
+      "selector": "0x956d3c3b",
+      "publisher_message": null,
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "FutureReport",
+      "inputs": [
+        {
+          "name": "observedAt",
+          "type": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[67]"
+      },
+      "signature": "FutureReport(uint64)",
+      "selector": "0xbc6a847c",
+      "publisher_message": "The price report is ahead of the chain's clock. Try again in a moment.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "WrongFeed",
+      "inputs": [
+        {
+          "name": "got",
+          "type": "bytes32"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[68]"
+      },
+      "signature": "WrongFeed(bytes32)",
+      "selector": "0xf61c9216",
+      "publisher_message": "The price report is for a different market.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "ReportExpired",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[69]"
+      },
+      "signature": "ReportExpired()",
+      "selector": "0x69458111",
+      "publisher_message": "The price report has expired.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "BadPrice",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[70]"
+      },
+      "signature": "BadPrice()",
+      "selector": "0xfd1ee349",
+      "publisher_message": "The price report carries no price.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "MarketClosed",
+      "inputs": [
+        {
+          "name": "status",
+          "type": "uint32"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[71]"
+      },
+      "signature": "MarketClosed(uint32)",
+      "selector": "0xe1328b86",
+      "publisher_message": "The report says the market is closed.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "LimitBreached",
+      "inputs": [
+        {
+          "name": "price",
+          "type": "uint256"
+        },
+        {
+          "name": "limit",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[72]"
+      },
+      "signature": "LimitBreached(uint256,uint256)",
+      "selector": "0x0fe0903a",
+      "publisher_message": "The fill price is outside the order's price bound. The order expires back to the account.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "OverLeverage",
+      "inputs": [
+        {
+          "name": "maxSizeUsdWad",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[73]"
+      },
+      "signature": "OverLeverage(uint256)",
+      "selector": "0x676d5f55",
+      "publisher_message": "The size exceeds the market's maximum leverage on this margin.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "InitialMarginBreached",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[74]"
+      },
+      "signature": "InitialMarginBreached()",
+      "selector": "0x58c21bfa",
+      "publisher_message": "This would take the margin under the initial requirement of the open contract.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NotLiquidatable",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[75]"
+      },
+      "signature": "NotLiquidatable()",
+      "selector": "0xddeb79ba",
+      "publisher_message": "The contract is above its maintenance margin at this price.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "PersistNotMet",
+      "inputs": [
+        {
+          "name": "a",
+          "type": "uint64"
+        },
+        {
+          "name": "b",
+          "type": "uint64"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[76]"
+      },
+      "signature": "PersistNotMet(uint64,uint64)",
+      "selector": "0xd541778d",
+      "publisher_message": "A margin call needs two reports at least the persistence interval apart.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "ReportBeforeTouch",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[77]"
+      },
+      "signature": "ReportBeforeTouch()",
+      "selector": "0xc45c93c2",
+      "publisher_message": "The first report predates the contract's last margin change.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NotAdl",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[78]"
+      },
+      "signature": "NotAdl()",
+      "selector": "0x81474de5",
+      "publisher_message": "The vault is not in auto-deleveraging.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NotInProfit",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[79]"
+      },
+      "signature": "NotInProfit()",
+      "selector": "0xdef4a1be",
+      "publisher_message": "Only a contract in profit can be auto-deleveraged.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "ExitNotReached",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[80]"
+      },
+      "signature": "ExitNotReached()",
+      "selector": "0x4886453b",
+      "publisher_message": "The report price has not reached the take-profit or stop-loss level.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "Rung1Live",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[81]"
+      },
+      "signature": "Rung1Live()",
+      "selector": "0xbf792d82",
+      "publisher_message": "The price stream is live, so this exit prices on a stream report, not the house tape.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "Rung2Live",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[82]"
+      },
+      "signature": "Rung2Live()",
+      "selector": "0xc44b46af",
+      "publisher_message": "The house tape is live, so this close prices on the tape, not the stale mark.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "RungNotServing",
+      "inputs": [
+        {
+          "name": "rung",
+          "type": "uint8"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[83]"
+      },
+      "signature": "RungNotServing(uint8)",
+      "selector": "0x5c5bd347",
+      "publisher_message": "The mark ladder is not serving this rung right now.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "MarginOracleDown",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[84]"
+      },
+      "signature": "MarginOracleDown()",
+      "selector": "0x572551e6",
+      "publisher_message": "The NET price oracle is down. Closes continue; liquidations and opens wait.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NotHalter",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[85]"
+      },
+      "signature": "NotHalter()",
+      "selector": "0x8362e95b",
+      "publisher_message": "Only the halter role may pause or resume opens.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "OpensPaused",
+      "inputs": [
+        {
+          "name": "reason",
+          "type": "uint8"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[86]"
+      },
+      "signature": "OpensPaused(uint8)",
+      "selector": "0xe6fdb380",
+      "publisher_message": "New contracts are paused on this market. Closes and withdrawals continue.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "CloseTooLarge",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[87]"
+      },
+      "signature": "CloseTooLarge()",
+      "selector": "0x373aa330",
+      "publisher_message": "The close is larger than the open contract.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "ZeroAmount",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[88]"
+      },
+      "signature": "ZeroAmount()",
+      "selector": "0x1f2a2005",
+      "publisher_message": "Nothing to do: the amount is zero.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "CheckpointPending",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[89]"
+      },
+      "signature": "CheckpointPending()",
+      "selector": "0x84744c96",
+      "publisher_message": "A margin checkpoint is pending on this contract. Wait for it to settle or clear.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NoCheckpoint",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[90]"
+      },
+      "signature": "NoCheckpoint()",
+      "selector": "0x5973885c",
+      "publisher_message": "No margin checkpoint has been recorded for this contract.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NotUnder",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[91]"
+      },
+      "signature": "NotUnder()",
+      "selector": "0x192fc68c",
+      "publisher_message": "The contract is above its maintenance margin at the current mark.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "StillUnder",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[92]"
+      },
+      "signature": "StillUnder()",
+      "selector": "0xbb72d01a",
+      "publisher_message": "The contract is still under maintenance; the checkpoint stands.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "Diverged",
+      "inputs": [
+        {
+          "name": "bps",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[93]"
+      },
+      "signature": "Diverged(uint256)",
+      "selector": "0x813e90e9",
+      "publisher_message": "NET spot and its TWAP disagree too much for a new contract. Closes continue.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "ShortLossCapped",
+      "inputs": [
+        {
+          "name": "lossUsd",
+          "type": "uint256"
+        },
+        {
+          "name": "capUsd",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[94]"
+      },
+      "signature": "ShortLossCapped(uint256,uint256)",
+      "selector": "0x627e75d4",
+      "publisher_message": "This short would push the market past its NET short-loss cap.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NotOpenCommit",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[95]"
+      },
+      "signature": "NotOpenCommit()",
+      "selector": "0x30ce9f27",
+      "publisher_message": "This order is a close, not an open.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "NotCloseCommit",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[96]"
+      },
+      "signature": "NotCloseCommit()",
+      "selector": "0x7eb7ecef",
+      "publisher_message": "This order is an open, not a close.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "BadExit",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[97]"
+      },
+      "signature": "BadExit()",
+      "selector": "0x475861fc",
+      "publisher_message": "The take-profit and stop-loss levels are on the wrong side of the entry price.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "Literal Xt, Unicode character offsets[598487,600868); ABI entry[98]"
+      },
+      "signature": "ZeroAddress()",
+      "selector": "0xd92e233d",
+      "publisher_message": "An address is missing.",
+      "interpretation_scope": "Publisher descriptive shared error union; presence does not prove this deployment reaches each error or that the message is exhaustive."
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": []
+}

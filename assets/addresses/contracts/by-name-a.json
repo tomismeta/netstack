@@ -1,6 +1,20 @@
 {
   "contracts": [
     {
+      "role": "AI (Artificial Inu) EIP-1167 market-token clone",
+      "aliases": [
+        "artificialInuToken"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
+      "role": "AI DopplerERC20V1 fixed clone implementation",
+      "aliases": [
+        "artificialInuImplementation"
+      ],
+      "file": "assets/addresses/contracts/netlong-margin-and-lose.json"
+    },
+    {
       "role": "aaplStockToken",
       "aliases": [
         "AAPL stock token"

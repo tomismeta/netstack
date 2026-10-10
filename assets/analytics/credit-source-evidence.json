@@ -1,0 +1,764 @@
+{
+  "schema_version": 1,
+  "source_id": "netnet-credit-implementation-20261010",
+  "observed_on": "2026-10-10",
+  "chain_id": 4663,
+  "pinned_state": "not_obtained",
+  "rpc_blocker": "Canonical RPC HTTP403 error1010; not retried or bypassed.",
+  "contracts": {
+    "credit": {
+      "address": "0xaff662814Aa7cC80AC1577E03E123358CAcc6a97",
+      "source_id": "netnet-credit-implementation-20261010-credit",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xaff662814Aa7cC80AC1577E03E123358CAcc6a97",
+      "observed_on": "2026-10-10",
+      "source_status": "source_and_deployed_abi_unavailable",
+      "source_file": null,
+      "source_sha256": null,
+      "runtime_sha256": "843b37bb65dae6925b090891926f26a78f73451c3c95e728a9c00f364b2707e7",
+      "runtime_bytes": 15135,
+      "runtime_observation": "unpinned_explorer_response",
+      "compiler_version": null,
+      "proxy_type": null,
+      "implementations": [],
+      "additional_sources": [],
+      "constructor_bindings": null,
+      "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+    },
+    "credit-vault": {
+      "address": "0x99347d5F70D3838763f6Bddcf80304C8aa953B57",
+      "source_id": "netnet-credit-implementation-20261010-credit-vault",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x99347d5F70D3838763f6Bddcf80304C8aa953B57",
+      "observed_on": "2026-10-10",
+      "source_status": "explorer_verified_source_obtained",
+      "source_file": "lib/vault-v2/src/VaultV2.sol",
+      "source_sha256": "027839cf5246abd67db755454109a751fa0683aac70f49056d271068b79201f6",
+      "runtime_sha256": "22d19d582f6a09b86afd87e041301054eb6ceb557f33bb8193b7ae3441bd9372",
+      "runtime_bytes": 21808,
+      "runtime_observation": "unpinned_explorer_response",
+      "compiler_version": "v0.8.28+commit.7893614a",
+      "proxy_type": null,
+      "implementations": [],
+      "additional_sources": [
+        {
+          "file_path": "lib/vault-v2/src/interfaces/IAdapter.sol",
+          "sha256": "30e47594e7a91d177c63b68b63c661353c20b92bb0fc48e605893d7d2c13478e"
+        },
+        {
+          "file_path": "lib/vault-v2/src/interfaces/IAdapterRegistry.sol",
+          "sha256": "dbc8981d1f8cb231a6c3f85e67e1c770145747df1686d86191ff12f3ea408939"
+        },
+        {
+          "file_path": "lib/vault-v2/src/interfaces/IERC20.sol",
+          "sha256": "1d9682ff2ea29e80e60e748b88cf47a01b7606a845ed9323b0f303be767051df"
+        },
+        {
+          "file_path": "lib/vault-v2/src/interfaces/IERC2612.sol",
+          "sha256": "2b4f6d51f3965e4a8b1d85caaee959f8a4fe8bf6c97ad33c4da1a717f91868cb"
+        },
+        {
+          "file_path": "lib/vault-v2/src/interfaces/IERC4626.sol",
+          "sha256": "5a293f3c3fd995c3338ce56468c9197d15e9f0f8d767942aeafb5c3baef5f1ef"
+        },
+        {
+          "file_path": "lib/vault-v2/src/interfaces/IGate.sol",
+          "sha256": "9d80c8dc873cce3b66261a02619c5079a4cbbb39936a0f00a532eaed354bfbd9"
+        },
+        {
+          "file_path": "lib/vault-v2/src/interfaces/IVaultV2.sol",
+          "sha256": "e8cacc45b0bab475326b91996ab74492ffa114bc1105177742f62ac5b28f485b"
+        },
+        {
+          "file_path": "lib/vault-v2/src/libraries/ConstantsLib.sol",
+          "sha256": "6c64bc1617dc34ea04933f9192c88f1d67163b5800e82c15cba8d3ca80f001b7"
+        },
+        {
+          "file_path": "lib/vault-v2/src/libraries/ErrorsLib.sol",
+          "sha256": "58ea626978468e67f57f356bd2ec89276cd3c677d5c4156b12831627467a9e8b"
+        },
+        {
+          "file_path": "lib/vault-v2/src/libraries/EventsLib.sol",
+          "sha256": "cab5c240822fd51c4ed8d1aee6a3469dc71a1d62f429de301fb01ba70849bb5a"
+        },
+        {
+          "file_path": "lib/vault-v2/src/libraries/MathLib.sol",
+          "sha256": "9a72949f4fe0317fc9aac3bced953c8e6f32b0015b5e3ac37184dc291eda530b"
+        },
+        {
+          "file_path": "src/interfaces/IVaultV2.sol",
+          "sha256": "d4b323a5e74305414e89e745a7187d82ec956230d7775f55024477e758070eaf"
+        },
+        {
+          "file_path": "lib/vault-v2/src/libraries/SafeERC20Lib.sol",
+          "sha256": "1d41dfba079af0490bdecfa235a1b172bd6f7a93980b94ef2e56081d4501fdaa"
+        },
+        {
+          "file_path": "src/VaultV2.sol",
+          "sha256": "841512790db80b45388de51bb47ceef2af6cad36ddd5e1f10aa95894a85c7b25"
+        },
+        {
+          "file_path": "src/VaultV2Flat.sol",
+          "sha256": "9738400406893388eb03a674cd2d2aba742ae15dea2de641d8bad40453c9f5a0"
+        },
+        {
+          "file_path": "src/interfaces/IAdapter.sol",
+          "sha256": "30e47594e7a91d177c63b68b63c661353c20b92bb0fc48e605893d7d2c13478e"
+        },
+        {
+          "file_path": "src/interfaces/IAdapterRegistry.sol",
+          "sha256": "dbc8981d1f8cb231a6c3f85e67e1c770145747df1686d86191ff12f3ea408939"
+        },
+        {
+          "file_path": "src/interfaces/IERC20.sol",
+          "sha256": "1d9682ff2ea29e80e60e748b88cf47a01b7606a845ed9323b0f303be767051df"
+        },
+        {
+          "file_path": "src/interfaces/IERC2612.sol",
+          "sha256": "2b4f6d51f3965e4a8b1d85caaee959f8a4fe8bf6c97ad33c4da1a717f91868cb"
+        },
+        {
+          "file_path": "src/interfaces/IERC4626.sol",
+          "sha256": "3c8aa467fe38da6f97b85378e97dae39914497d6326564d70ae51faf75c8538a"
+        },
+        {
+          "file_path": "src/interfaces/IGate.sol",
+          "sha256": "9d80c8dc873cce3b66261a02619c5079a4cbbb39936a0f00a532eaed354bfbd9"
+        },
+        {
+          "file_path": "src/libraries/ConstantsLib.sol",
+          "sha256": "6c64bc1617dc34ea04933f9192c88f1d67163b5800e82c15cba8d3ca80f001b7"
+        },
+        {
+          "file_path": "src/libraries/ErrorsLib.sol",
+          "sha256": "9fb67dda5d82cee68fb3bb6dfe6bf286d81486c98a37102efeae13d8e1dedf7d"
+        },
+        {
+          "file_path": "src/libraries/EventsLib.sol",
+          "sha256": "cab5c240822fd51c4ed8d1aee6a3469dc71a1d62f429de301fb01ba70849bb5a"
+        },
+        {
+          "file_path": "src/libraries/MathLib.sol",
+          "sha256": "314b182b20b5162e89bcd535a445d8bf9dedb5b9b028586f213aaadb52dd3e3f"
+        },
+        {
+          "file_path": "src/libraries/SafeERC20Lib.sol",
+          "sha256": "1d41dfba079af0490bdecfa235a1b172bd6f7a93980b94ef2e56081d4501fdaa"
+        }
+      ],
+      "constructor_bindings": [
+        [
+          "0xCfBd7e12A0f154a45576a73C1E409200068507B9",
+          {
+            "internalType": "address",
+            "name": "_owner",
+            "type": "address"
+          }
+        ],
+        [
+          "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          {
+            "internalType": "address",
+            "name": "_asset",
+            "type": "address"
+          }
+        ]
+      ],
+      "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+    },
+    "market-adapter": {
+      "address": "0xf0eeF247585b184836915e80f984246d981c55C4",
+      "source_id": "netnet-credit-implementation-20261010-market-adapter",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xf0eeF247585b184836915e80f984246d981c55C4",
+      "observed_on": "2026-10-10",
+      "source_status": "explorer_verified_source_obtained",
+      "source_file": "src/adapters/MorphoMarketV1AdapterV2.sol",
+      "source_sha256": "f2c10a8c14434246257baf4f31f40385acb5c56cf4f3d8e5ee61a7427623b818",
+      "runtime_sha256": "d4ff26a66e2c453c9d2d74f2f39ed86c8be0ca04ff1b85f8260b138919856931",
+      "runtime_bytes": 11784,
+      "runtime_observation": "unpinned_explorer_response",
+      "compiler_version": "v0.8.28+commit.7893614a",
+      "proxy_type": null,
+      "implementations": [],
+      "additional_sources": [
+        {
+          "file_path": "lib/morpho-blue-irm/lib/morpho-blue/src/interfaces/IMorpho.sol",
+          "sha256": "8fcdf6278afd39146333380afe2054d66e2c4fd7e8aa90fbd746cd947d4d42ea"
+        },
+        {
+          "file_path": "lib/morpho-blue-irm/lib/morpho-blue/src/interfaces/IIrm.sol",
+          "sha256": "3ba6e6164cd0ed25d2b1d8d3766667ef016712705fe30094a97fe3801d14e915"
+        },
+        {
+          "file_path": "lib/morpho-blue-irm/lib/morpho-blue/src/libraries/ErrorsLib.sol",
+          "sha256": "0a54375182b5cfbb4f1101da4900c45ee96ba74962853168daf0d6281580666c"
+        },
+        {
+          "file_path": "lib/morpho-blue-irm/lib/morpho-blue/src/libraries/MathLib.sol",
+          "sha256": "2c6728d1bc8f5db81f2a7946f226c3c4a8cffe4134c55450ca445b05727011bc"
+        },
+        {
+          "file_path": "lib/morpho-blue-irm/lib/morpho-blue/src/libraries/SharesMathLib.sol",
+          "sha256": "4580deb1b1a3f2ea0b60f2305708428975613d1e94d404d647bcc573a7b2a2f0"
+        },
+        {
+          "file_path": "lib/morpho-blue-irm/lib/morpho-blue/src/libraries/UtilsLib.sol",
+          "sha256": "9d0c8a0855b2f9e9f92111cdf32bdbbd1ff97b7584f0f958b695f2c4cb0d1b34"
+        },
+        {
+          "file_path": "lib/morpho-blue-irm/src/adaptive-curve-irm/interfaces/IAdaptiveCurveIrm.sol",
+          "sha256": "9112f11e85dd88dc13584fe5386f09e6947d99a67c1a1beb8e853212a2a21064"
+        },
+        {
+          "file_path": "lib/morpho-blue-irm/src/adaptive-curve-irm/libraries/ConstantsLib.sol",
+          "sha256": "63abf640bd64295e39b7b32f22159e49927c2156c9445b17fd856f447f634afa"
+        },
+        {
+          "file_path": "lib/morpho-blue-irm/src/adaptive-curve-irm/libraries/ExpLib.sol",
+          "sha256": "dfb80c3de40a2a4ab5d814fe00b0b21b5af13f5248785d37d4e97910bb8a9773"
+        },
+        {
+          "file_path": "lib/morpho-blue-irm/src/adaptive-curve-irm/libraries/MathLib.sol",
+          "sha256": "5f510a2c6b2e069fa1d310c34526093bf792175a56ab636dfc73665a424d163d"
+        },
+        {
+          "file_path": "lib/morpho-blue-irm/src/adaptive-curve-irm/libraries/UtilsLib.sol",
+          "sha256": "c30953f0149cc33f4f44f00a15ab90120f2e6ce70a8f447f33bcdff1dc3b14f6"
+        },
+        {
+          "file_path": "lib/morpho-blue-irm/src/adaptive-curve-irm/libraries/periphery/AdaptiveCurveIrmLib.sol",
+          "sha256": "d263041dd4172e08d62ec443a49f5932955c0ec26308b2b04880d97e6dbbf089"
+        },
+        {
+          "file_path": "lib/morpho-blue/src/interfaces/IMorpho.sol",
+          "sha256": "8fcdf6278afd39146333380afe2054d66e2c4fd7e8aa90fbd746cd947d4d42ea"
+        },
+        {
+          "file_path": "lib/morpho-blue/src/libraries/MarketParamsLib.sol",
+          "sha256": "94af290e2a2094b8547b925449484d247bce87cce4fed8902ecf82dd2b49242e"
+        },
+        {
+          "file_path": "lib/morpho-blue/src/libraries/MathLib.sol",
+          "sha256": "2c6728d1bc8f5db81f2a7946f226c3c4a8cffe4134c55450ca445b05727011bc"
+        },
+        {
+          "file_path": "lib/morpho-blue/src/libraries/SharesMathLib.sol",
+          "sha256": "4580deb1b1a3f2ea0b60f2305708428975613d1e94d404d647bcc573a7b2a2f0"
+        },
+        {
+          "file_path": "src/adapters/interfaces/IMorphoMarketV1AdapterV2.sol",
+          "sha256": "57a2dd16cc45f9491724448a1355d301cae5a49af957dfdbd20f3269fb709e3d"
+        },
+        {
+          "file_path": "src/interfaces/IAdapter.sol",
+          "sha256": "30e47594e7a91d177c63b68b63c661353c20b92bb0fc48e605893d7d2c13478e"
+        },
+        {
+          "file_path": "src/interfaces/IERC20.sol",
+          "sha256": "1d9682ff2ea29e80e60e748b88cf47a01b7606a845ed9323b0f303be767051df"
+        },
+        {
+          "file_path": "src/interfaces/IERC2612.sol",
+          "sha256": "2b4f6d51f3965e4a8b1d85caaee959f8a4fe8bf6c97ad33c4da1a717f91868cb"
+        },
+        {
+          "file_path": "src/interfaces/IERC4626.sol",
+          "sha256": "3c8aa467fe38da6f97b85378e97dae39914497d6326564d70ae51faf75c8538a"
+        },
+        {
+          "file_path": "src/interfaces/IVaultV2.sol",
+          "sha256": "d4b323a5e74305414e89e745a7187d82ec956230d7775f55024477e758070eaf"
+        },
+        {
+          "file_path": "src/libraries/ErrorsLib.sol",
+          "sha256": "9fb67dda5d82cee68fb3bb6dfe6bf286d81486c98a37102efeae13d8e1dedf7d"
+        },
+        {
+          "file_path": "src/libraries/SafeERC20Lib.sol",
+          "sha256": "1d41dfba079af0490bdecfa235a1b172bd6f7a93980b94ef2e56081d4501fdaa"
+        }
+      ],
+      "constructor_bindings": [
+        [
+          "0x99347d5F70D3838763f6Bddcf80304C8aa953B57",
+          {
+            "internalType": "address",
+            "name": "_parentVault",
+            "type": "address"
+          }
+        ],
+        [
+          "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+          {
+            "internalType": "address",
+            "name": "_morpho",
+            "type": "address"
+          }
+        ],
+        [
+          "0x2BD3d5965B26B51814AC95127B2b80dD6CcC0fa1",
+          {
+            "internalType": "address",
+            "name": "_adaptiveCurveIrm",
+            "type": "address"
+          }
+        ]
+      ],
+      "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+    },
+    "loopback-router": {
+      "address": "0x4638617808e3f1Cf237c0d33Ae818126D5C77E17",
+      "source_id": "netnet-credit-implementation-20261010-loopback-router",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x4638617808e3f1Cf237c0d33Ae818126D5C77E17",
+      "observed_on": "2026-10-10",
+      "source_status": "explorer_verified_source_obtained",
+      "source_file": "src/lending/TurboRouter.sol",
+      "source_sha256": "053590bac9ceed72018fe0247f65b07a9efa6991e8eaff76c827c09437ed144b",
+      "runtime_sha256": "0b68334bb2df9e665c40ba71c339bf126ef197dbff062596eb23a7a575a8f7fd",
+      "runtime_bytes": 7634,
+      "runtime_observation": "unpinned_explorer_response",
+      "compiler_version": "v0.8.30+commit.73712a01",
+      "proxy_type": null,
+      "implementations": [],
+      "additional_sources": [
+        {
+          "file_path": "src/interfaces/IStaking.sol",
+          "sha256": "34e5202a43208d307382214826720a23913b587f6c5c32f339fee022db108b78"
+        },
+        {
+          "file_path": "src/interfaces/external/IERC20.sol",
+          "sha256": "3b2bdeac1b60996e9ef139ede11f53bce36a8115a3c3092f2ea2309d8243de1d"
+        },
+        {
+          "file_path": "src/interfaces/external/IUniswapV2.sol",
+          "sha256": "0facf540a1771e87ab41400b76a23a7cd18a747a730c800316118fa27424d19c"
+        },
+        {
+          "file_path": "src/lending/LendingConstants.sol",
+          "sha256": "d0b286953f8b5b0c1d5f3bf2058afb4740b183c2f72e17145eda483b1cacbdf9"
+        },
+        {
+          "file_path": "src/lending/interfaces/IMorphoBlue.sol",
+          "sha256": "fd561cf7c0adbb60fff8912501236a04b59ef32abf24b4df313f288e9cab97de"
+        }
+      ],
+      "constructor_bindings": [
+        [
+          "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+          {
+            "internalType": "address",
+            "name": "morpho_",
+            "type": "address"
+          }
+        ],
+        [
+          "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          {
+            "internalType": "address",
+            "name": "usdg_",
+            "type": "address"
+          }
+        ],
+        [
+          "0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+          {
+            "internalType": "address",
+            "name": "net_",
+            "type": "address"
+          }
+        ],
+        [
+          "0xb773ec2C326B7f98a5a83fc098825492F020a4c7",
+          {
+            "internalType": "address",
+            "name": "sNet_",
+            "type": "address"
+          }
+        ],
+        [
+          "0xB078cc304A0B264C5F3680DC0488954ACcd02E87",
+          {
+            "internalType": "address",
+            "name": "staking_",
+            "type": "address"
+          }
+        ],
+        [
+          "0x63C12667638f2Ae6fC6ae09B43D98Ec84a8586eA",
+          {
+            "internalType": "address",
+            "name": "wsNet_",
+            "type": "address"
+          }
+        ],
+        [
+          "0xA1ee052EC32532304a7522bd9A4b594eC28fF1b1",
+          {
+            "internalType": "address",
+            "name": "zap_",
+            "type": "address"
+          }
+        ],
+        [
+          "0x89e5DB8B5aA49aA85AC63f691524311AEB649eba",
+          {
+            "internalType": "address",
+            "name": "swapRouter_",
+            "type": "address"
+          }
+        ],
+        [
+          "0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16",
+          {
+            "internalType": "address",
+            "name": "oracle_",
+            "type": "address"
+          }
+        ],
+        [
+          "0x2BD3d5965B26B51814AC95127B2b80dD6CcC0fa1",
+          {
+            "internalType": "address",
+            "name": "irm_",
+            "type": "address"
+          }
+        ]
+      ],
+      "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+    },
+    "morpho": {
+      "address": "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+      "source_id": "netnet-credit-implementation-20261010-morpho",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+      "observed_on": "2026-10-10",
+      "source_status": "explorer_verified_source_obtained",
+      "source_file": "src/Morpho.sol",
+      "source_sha256": "1b7b966f12d47ed015695d51cc50d31d44369d942fea0ebac923955588e8bd5f",
+      "runtime_sha256": "49a0d9bf03de19d7dad859819e7f8986b3329b3ee7c75da1b516661583ed7a76",
+      "runtime_bytes": 15582,
+      "runtime_observation": "unpinned_explorer_response",
+      "compiler_version": "v0.8.19+commit.7dd6d404",
+      "proxy_type": null,
+      "implementations": [],
+      "additional_sources": [
+        {
+          "file_path": "src/interfaces/IERC20.sol",
+          "sha256": "6e2b44aa15626cde7e33adc20c8a424ba91aaec47fab9170efaeea54104e565d"
+        },
+        {
+          "file_path": "src/interfaces/IOracle.sol",
+          "sha256": "757c9870385af7a880cb12ae47b4aba8a936bab4a7bdeff50647d605237fc178"
+        },
+        {
+          "file_path": "src/interfaces/IIrm.sol",
+          "sha256": "3ba6e6164cd0ed25d2b1d8d3766667ef016712705fe30094a97fe3801d14e915"
+        },
+        {
+          "file_path": "src/interfaces/IMorpho.sol",
+          "sha256": "8fcdf6278afd39146333380afe2054d66e2c4fd7e8aa90fbd746cd947d4d42ea"
+        },
+        {
+          "file_path": "src/interfaces/IMorphoCallbacks.sol",
+          "sha256": "3fa10015bd49e04e3c14e63bcf0abefb3ebac5759b030d32784cb1bd4773e0c4"
+        },
+        {
+          "file_path": "src/libraries/ConstantsLib.sol",
+          "sha256": "d450cc5f56d70f6460ed81c5e2e7a294f5b7644307a4c742754e0d41a8789567"
+        },
+        {
+          "file_path": "src/libraries/ErrorsLib.sol",
+          "sha256": "0a54375182b5cfbb4f1101da4900c45ee96ba74962853168daf0d6281580666c"
+        },
+        {
+          "file_path": "src/libraries/EventsLib.sol",
+          "sha256": "c267b23c5a3086ed00a712b841ef12b674be508ac8b8cf2e3f289ae09bd1677a"
+        },
+        {
+          "file_path": "src/libraries/MarketParamsLib.sol",
+          "sha256": "94af290e2a2094b8547b925449484d247bce87cce4fed8902ecf82dd2b49242e"
+        },
+        {
+          "file_path": "src/libraries/MathLib.sol",
+          "sha256": "2c6728d1bc8f5db81f2a7946f226c3c4a8cffe4134c55450ca445b05727011bc"
+        },
+        {
+          "file_path": "src/libraries/SafeTransferLib.sol",
+          "sha256": "bee3d6375591947edc45a28f46569e969df9ab434b91530e5bb4560aa61e3675"
+        },
+        {
+          "file_path": "src/libraries/SharesMathLib.sol",
+          "sha256": "4580deb1b1a3f2ea0b60f2305708428975613d1e94d404d647bcc573a7b2a2f0"
+        },
+        {
+          "file_path": "src/libraries/UtilsLib.sol",
+          "sha256": "9d0c8a0855b2f9e9f92111cdf32bdbbd1ff97b7584f0f958b695f2c4cb0d1b34"
+        }
+      ],
+      "constructor_bindings": [
+        [
+          "0xC67335D90Eb297407f998bFb75DbAAC8bebDdd2b",
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ]
+      ],
+      "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+    },
+    "credit-irm": {
+      "address": "0x2BD3d5965B26B51814AC95127B2b80dD6CcC0fa1",
+      "source_id": "netnet-credit-implementation-20261010-credit-irm",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x2BD3d5965B26B51814AC95127B2b80dD6CcC0fa1",
+      "observed_on": "2026-10-10",
+      "source_status": "explorer_verified_source_obtained",
+      "source_file": "src/AdaptiveCurveIrm.sol",
+      "source_sha256": "ad200e89b170787da48c58e00b2cc761a9048eacad2925193346bc0306ee5613",
+      "runtime_sha256": "7e09a715d3bcda5fc8a46817ec0517b6bd313b98e4aa3acb6f2e865c4e40d4f7",
+      "runtime_bytes": 2282,
+      "runtime_observation": "unpinned_explorer_response",
+      "compiler_version": "v0.8.19+commit.7dd6d404",
+      "proxy_type": null,
+      "implementations": [],
+      "additional_sources": [
+        {
+          "file_path": "lib/morpho-blue/src/libraries/MarketParamsLib.sol",
+          "sha256": "94af290e2a2094b8547b925449484d247bce87cce4fed8902ecf82dd2b49242e"
+        },
+        {
+          "file_path": "lib/morpho-blue/src/interfaces/IIrm.sol",
+          "sha256": "3ba6e6164cd0ed25d2b1d8d3766667ef016712705fe30094a97fe3801d14e915"
+        },
+        {
+          "file_path": "lib/morpho-blue/src/interfaces/IMorpho.sol",
+          "sha256": "24f96c2860c42cd5834c56cdb159c56435acaee0716d34d54ca18bd755edc97c"
+        },
+        {
+          "file_path": "lib/morpho-blue/src/libraries/MathLib.sol",
+          "sha256": "2c6728d1bc8f5db81f2a7946f226c3c4a8cffe4134c55450ca445b05727011bc"
+        },
+        {
+          "file_path": "src/interfaces/IAdaptiveCurveIrm.sol",
+          "sha256": "a5c4cc3c6dd12b25c04c77ff70473e1a8f209ac705466c2f4135c72f681eef31"
+        },
+        {
+          "file_path": "src/libraries/ErrorsLib.sol",
+          "sha256": "80315a7906730fd4b1af980a617d0dceb02a708040b9868f19748f979bb8ef88"
+        },
+        {
+          "file_path": "src/libraries/MathLib.sol",
+          "sha256": "3c60401197fd8affadc5aa8a3b77325d58a206810cce4c7fb967b0d8d48abfc7"
+        },
+        {
+          "file_path": "src/libraries/UtilsLib.sol",
+          "sha256": "c30953f0149cc33f4f44f00a15ab90120f2e6ce70a8f447f33bcdff1dc3b14f6"
+        },
+        {
+          "file_path": "src/libraries/adaptive-curve/ConstantsLib.sol",
+          "sha256": "63abf640bd64295e39b7b32f22159e49927c2156c9445b17fd856f447f634afa"
+        },
+        {
+          "file_path": "src/libraries/adaptive-curve/ExpLib.sol",
+          "sha256": "6b97791ac8d5244e44c1e29fdb55cb941221314fa2e70beeec0013a3d9b1a03b"
+        }
+      ],
+      "constructor_bindings": [
+        [
+          "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010",
+          {
+            "internalType": "address",
+            "name": "morpho",
+            "type": "address"
+          }
+        ]
+      ],
+      "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+    },
+    "loopback-oracle": {
+      "address": "0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16",
+      "source_id": "netnet-credit-implementation-20261010-loopback-oracle",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16",
+      "observed_on": "2026-10-10",
+      "source_status": "explorer_verified_source_obtained",
+      "source_file": "src/lending/LoopbackOracle.sol",
+      "source_sha256": "eeb8f5d9daae0b908ad88a2a24688e52b37554cb538be6619c5d939a86a1cf08",
+      "runtime_sha256": "f981dc3fba7b078eabbfba86e82c4289c3f050fb22ace34af3b4bf4a5a157347",
+      "runtime_bytes": 1550,
+      "runtime_observation": "unpinned_explorer_response",
+      "compiler_version": "v0.8.30+commit.73712a01",
+      "proxy_type": null,
+      "implementations": [],
+      "additional_sources": [
+        {
+          "file_path": "src/Constants.sol",
+          "sha256": "1a02fd6a04c98a0119cc38b6d0bf244d2103715733f0d9d0e28ca2227ce02d5d"
+        },
+        {
+          "file_path": "src/interfaces/IPairOracle.sol",
+          "sha256": "ff754e7dbfed580049324400497ddde0844609609cbb6250de3d849ce8524138"
+        },
+        {
+          "file_path": "src/interfaces/ITreasury.sol",
+          "sha256": "e0574920aa8097bbd499dfc49cb7ed70941c1ae4bf45aa5122b40d217c57f679"
+        },
+        {
+          "file_path": "src/interfaces/IsNET.sol",
+          "sha256": "2d5e70f1ded1ea16373aa169ba7ed458b30706c497a95f0cead8b376bbba6d92"
+        },
+        {
+          "file_path": "src/interfaces/external/IERC20.sol",
+          "sha256": "3b2bdeac1b60996e9ef139ede11f53bce36a8115a3c3092f2ea2309d8243de1d"
+        },
+        {
+          "file_path": "src/interfaces/external/IUniswapV2.sol",
+          "sha256": "0facf540a1771e87ab41400b76a23a7cd18a747a730c800316118fa27424d19c"
+        },
+        {
+          "file_path": "src/lending/LendingConstants.sol",
+          "sha256": "d0b286953f8b5b0c1d5f3bf2058afb4740b183c2f72e17145eda483b1cacbdf9"
+        }
+      ],
+      "constructor_bindings": [
+        [
+          "0x929631b33F4070D6f54477fba3FD27566567dAca",
+          {
+            "internalType": "address",
+            "name": "pairOracle_",
+            "type": "address"
+          }
+        ],
+        [
+          "0x04822Ea321A0DEE6F40656172F29312104855d66",
+          {
+            "internalType": "address",
+            "name": "treasury_",
+            "type": "address"
+          }
+        ],
+        [
+          "0xb773ec2C326B7f98a5a83fc098825492F020a4c7",
+          {
+            "internalType": "address",
+            "name": "sNet_",
+            "type": "address"
+          }
+        ],
+        [
+          "0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+          {
+            "internalType": "address",
+            "name": "net_",
+            "type": "address"
+          }
+        ]
+      ],
+      "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+    },
+    "credit-oracle-googl": {
+      "address": "0x12Ec3474D1e321e0aAB065278B97FBC7eDa5F424",
+      "source_id": "netnet-credit-implementation-20261010-credit-oracle-googl",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x12Ec3474D1e321e0aAB065278B97FBC7eDa5F424",
+      "observed_on": "2026-10-10",
+      "source_status": "source_and_deployed_abi_unavailable",
+      "source_file": null,
+      "source_sha256": null,
+      "runtime_sha256": "4460126c89f76655390dfb2434f6573b8b702faeb5eb7425f21d1a064a532f32",
+      "runtime_bytes": 2563,
+      "runtime_observation": "unpinned_explorer_response",
+      "compiler_version": null,
+      "proxy_type": null,
+      "implementations": [],
+      "additional_sources": [],
+      "constructor_bindings": null,
+      "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+    },
+    "credit-oracle-msft": {
+      "address": "0xcb9a035fe0e8f321e36286405fEBC70dE42DB34e",
+      "source_id": "netnet-credit-implementation-20261010-credit-oracle-msft",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xcb9a035fe0e8f321e36286405fEBC70dE42DB34e",
+      "observed_on": "2026-10-10",
+      "source_status": "source_and_deployed_abi_unavailable",
+      "source_file": null,
+      "source_sha256": null,
+      "runtime_sha256": "56c54357030bc805ccf4f62b37f7afcf3a05338aad49919a616350c955e4858a",
+      "runtime_bytes": 2563,
+      "runtime_observation": "unpinned_explorer_response",
+      "compiler_version": null,
+      "proxy_type": null,
+      "implementations": [],
+      "additional_sources": [],
+      "constructor_bindings": null,
+      "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+    },
+    "credit-oracle-nvda": {
+      "address": "0xED29D310cfa91778A5850538DA28ed42234Cb78c",
+      "source_id": "netnet-credit-implementation-20261010-credit-oracle-nvda",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xED29D310cfa91778A5850538DA28ed42234Cb78c",
+      "observed_on": "2026-10-10",
+      "source_status": "source_and_deployed_abi_unavailable",
+      "source_file": null,
+      "source_sha256": null,
+      "runtime_sha256": "67b470630d8a93386d0d79ec322d9c1477f5bc3c2a36c809009237251e6e95b7",
+      "runtime_bytes": 2563,
+      "runtime_observation": "unpinned_explorer_response",
+      "compiler_version": null,
+      "proxy_type": null,
+      "implementations": [],
+      "additional_sources": [],
+      "constructor_bindings": null,
+      "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+    },
+    "credit-oracle-spcx": {
+      "address": "0x872F9D8955B34e841227a92dE755cd63042Ab7A5",
+      "source_id": "netnet-credit-implementation-20261010-credit-oracle-spcx",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x872F9D8955B34e841227a92dE755cd63042Ab7A5",
+      "observed_on": "2026-10-10",
+      "source_status": "source_and_deployed_abi_unavailable",
+      "source_file": null,
+      "source_sha256": null,
+      "runtime_sha256": "c75ed33c09575e30eb220b9ca0e49338e44fae32787c7b76ed69ee551239c20e",
+      "runtime_bytes": 2563,
+      "runtime_observation": "unpinned_explorer_response",
+      "compiler_version": null,
+      "proxy_type": null,
+      "implementations": [],
+      "additional_sources": [],
+      "constructor_bindings": null,
+      "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+    },
+    "credit-oracle-aapl": {
+      "address": "0xD625d488D552775D2867194C618B945E5dDfE097",
+      "source_id": "netnet-credit-implementation-20261010-credit-oracle-aapl",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xD625d488D552775D2867194C618B945E5dDfE097",
+      "observed_on": "2026-10-10",
+      "source_status": "source_and_deployed_abi_unavailable",
+      "source_file": null,
+      "source_sha256": null,
+      "runtime_sha256": "81c7e7ec8be24f57b3fe047ddba6d496da48a9f7c856f36ddc07d477ce418457",
+      "runtime_bytes": 2563,
+      "runtime_observation": "unpinned_explorer_response",
+      "compiler_version": null,
+      "proxy_type": null,
+      "implementations": [],
+      "additional_sources": [],
+      "constructor_bindings": null,
+      "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+    },
+    "credit-oracle-coin": {
+      "address": "0x3ebD3088b69A5eeC3bDF03B82CcF19c3Bc1fa894",
+      "source_id": "netnet-credit-implementation-20261010-credit-oracle-coin",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x3ebD3088b69A5eeC3bDF03B82CcF19c3Bc1fa894",
+      "observed_on": "2026-10-10",
+      "source_status": "source_and_deployed_abi_unavailable",
+      "source_file": null,
+      "source_sha256": null,
+      "runtime_sha256": "2e7cb0db3edb18b16a27cabc25392eeebe9fcf99d810a7eac697dee65b2e40db",
+      "runtime_bytes": 2563,
+      "runtime_observation": "unpinned_explorer_response",
+      "compiler_version": null,
+      "proxy_type": null,
+      "implementations": [],
+      "additional_sources": [],
+      "constructor_bindings": null,
+      "audit_scope": "ABI plus targeted source review; no independent compilation, deployed-code equivalence, exhaustive reachability or historical implementation audit."
+    }
+  }
+}

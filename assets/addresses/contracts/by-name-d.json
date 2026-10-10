@@ -7,7 +7,9 @@
     },
     {
       "role": "dialupVerifier",
-      "aliases": [],
+      "aliases": [
+        "NetLong Futures fallback tape verifier"
+      ],
       "file": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json"
     },
     {

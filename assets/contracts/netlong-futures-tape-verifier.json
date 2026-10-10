@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x9cc4e5fc9149eeae154273c52292f3bb350233fb",
+  "contract_record": "assets/addresses/contracts/dialup-distributor-and-draw-infrastructure.json",
+  "chain_id": 4663,
+  "address": "0x9Cc4E5FC9149eEae154273C52292F3bb350233fb",
+  "generation": "netlong-futures-tape-verifier",
+  "provenance": [
+    {
+      "source_id": "netlong-futures-explorer-20261010-tape-verifier",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x9Cc4E5FC9149eEae154273C52292F3bb350233fb",
+      "observed_on": "2026-10-10",
+      "locator": "Explorer-reported deployed_bytecode and creation_bytecode; no source_code or abi fields"
+    }
+  ],
+  "execution_authority": false,
+  "completeness": {
+    "supplied_interface": "partial_runtime_reconstructed_descriptive_interface",
+    "supplied_entry_count": 5,
+    "implementation": "material_runtime_paths_reviewed_source_unavailable",
+    "pinned_state": "not_obtained_rpc_denied",
+    "missing_evidence": [
+      "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+      "Compiler rebuild/source-runtime equivalence.",
+      "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
+    ]
+  },
+  "runtime_evidence": {
+    "sha256": "b29bbe85c561c35d60eafe8885c951cbfc5d6bdd9dbb9b8f94cfd894d18f3caa",
+    "byte_length": 2599,
+    "bytecode_origin": "explorer_reported_not_rpc_pinned",
+    "selector_comparison": "Compiler dispatcher PUSH3/PUSH4 EQ PUSH2 JUMPI targets; selector presence is not full semantic equivalence.",
+    "source_verification": {
+      "is_verified": false,
+      "is_fully_verified": false,
+      "is_partially_verified": false,
+      "local_compilation_performed": false
+    },
+    "dispatch_function_count": 10,
+    "unrepresented_dispatch_selectors": [
+      {
+        "selector": "0xacb8cc49",
+        "entry_pc": "0x1f1",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xae3c9941",
+        "entry_pc": "0x211",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0xd386b557",
+        "entry_pc": "0x238",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x9d0c69f2",
+        "entry_pc": "0x1de",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x796f077b",
+        "entry_pc": "0x15e",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      }
+    ]
+  },
+  "functions": [
+    {
+      "name": "manager",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-tape-verifier",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[0]"
+      },
+      "signature": "manager()",
+      "selector": "0x481c6a75",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Runtime immutable team Safe address. Owns signer allowlist; this dependency can change who authenticates fallback prices without replacing the desk."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0xed"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "DOMAIN_SEPARATOR",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-tape-verifier",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[1]"
+      },
+      "signature": "DOMAIN_SEPARATOR()",
+      "selector": "0x3644e515",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "EIP-712 domain separator used by fallback verification; runtime branches for cached chain ID versus rebuilt domain. Domain/chain/address binding is not a signed-price freshness guarantee."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0xd2"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "signers",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "signer",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-tape-verifier",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[2]"
+      },
+      "signature": "signers(address)",
+      "selector": "0x736c0d5b",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Address-keyed mutable signer authorization bit. Constructor grants initial signer0x7c1783533af716001add90dcaeb64c953913a83f; current authorized set unresolved."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x12c"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "setSigner",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "signer",
+          "type": "address"
+        },
+        {
+          "name": "allowed",
+          "type": "bool"
+        }
+      ],
+      "outputs": [],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-tape-verifier",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[3]"
+      },
+      "signature": "setSigner(address,bool)",
+      "selector": "0x31cb6105",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "immutable manager only"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Runtime caller comparison to manager, updates mapping and emits authorization event. Source and verified ABI absent; this reconstructed function is descriptive only."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0xbd"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "verify",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "print",
+          "type": "bytes"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "feedId",
+          "type": "bytes32"
+        },
+        {
+          "name": "observedAtMs",
+          "type": "uint64"
+        },
+        {
+          "name": "mid",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-tape-verifier",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[4]"
+      },
+      "signature": "verify(bytes)",
+      "selector": "0x8e760afe",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read with signature validation"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Runtime selector0x8e760afe consumed via STATICCALL by stream desks. Decodes tape print, domain-separated signature recovery and allowlist check; returns feedId, millisecond observationsTimestamp and positive mid. Desk separately divides timestamp by1000 and checks matching feed/nonfuture/outage/freshness. Full decoder error/overflow/security review unresolved without source."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x1a7"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    }
+  ],
+  "events": [],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": []
+}

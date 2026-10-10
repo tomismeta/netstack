@@ -1,0 +1,60 @@
+# Credit contracts and evidence
+
+Credit is a USDG-denominated lending vault and routing system on Robinhood chain **4663**, not Ethereum. Addresses and every obtained function/ABI field live in the family catalogs; [source evidence](../assets/analytics/credit-source-evidence.json) records exact explorer source/runtime hashes, compiler metadata, imported-file hashes and constructor bindings, without redistributing source blobs or financial state. Observation: 2026-10-10. Explorer runtime observations are **unpinned**, not independent live-chain verification, recompilation or a full audit. Canonical RPC access returned HTTP403/error1010; no retry or alternative provider was used.
+
+| Component | Evidence / catalog | Scope |
+|---|---|---|
+| nnUSDG VaultV2 `0x99347d5F70D3838763f6Bddcf80304C8aa953B57` | [vault](../assets/contracts/credit-vault.json), [source](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x99347d5F70D3838763f6Bddcf80304C8aa953B57) | Complete obtained 175-entry explorer ABI and source |
+| Current CreditRouter `0xaff662814Aa7cC80AC1577E03E123358CAcc6a97` | [router](../assets/contracts/credit.json), [runtime](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xaff662814Aa7cC80AC1577E03E123358CAcc6a97) | Publisher ABI and runtime only; implementation source unavailable |
+| MorphoMarketV1AdapterV2 `0xf0eeF247585b184836915e80f984246d981c55C4` | [adapter](../assets/contracts/market-adapter.json), [source](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xf0eeF247585b184836915e80f984246d981c55C4) | Complete obtained 55-entry explorer ABI and source |
+| Loopback TurboRouter `0x4638617808e3f1Cf237c0d33Ae818126D5C77E17` | [Loopback](../assets/contracts/loopback-router.json), [source](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x4638617808e3f1Cf237c0d33Ae818126D5C77E17) | Complete obtained 29-entry explorer ABI and source; not TURBO Desk |
+| Morpho singleton `0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010` | [Morpho](../assets/contracts/morpho.json), [source](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010) | Complete obtained explorer ABI/source, including imported event/interface files |
+| AdaptiveCurveIrm `0x2BD3d5965B26B51814AC95127B2b80dD6CcC0fa1` | [IRM](../assets/contracts/credit-irm.json), [source](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x2BD3d5965B26B51814AC95127B2b80dD6CcC0fa1) | Source-backed per-second adaptive interest |
+| LoopbackOracle `0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16` | [oracle](../assets/contracts/loopback-oracle.json), [source](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16) | Source-backed bounded wsNET collateral mark |
+
+The AAPL, COIN, GOOGL, MSFT, NVDA and SPCX StockMorphoOracle deployment runtimes were also obtained. Their verified source and ABI were unavailable. Separate `credit-oracle-*.json` catalogs preserve their unknown dispatchers without inventing function names, permission checks, freshness or Chainlink/Pyth routing. An observed `price()` response is a reported mark, **not independently validated stock fair value**. New runtime/oracle/IRM/adapter variants must be explicitly unsupported until reviewed. No pending label establishes current activation; empty event logs cannot establish inactivity.
+
+## Depositor claims, accrual and fees
+
+Vault `totalAssets()` invokes `accrueInterestView()`. Real assets are idle loan-token balance plus every installed adapter's `realAssets()`. Distributed assets are the smaller of real assets and `_totalAssets + floor(_totalAssets * elapsed * maxRate / 1e18)`. Losses therefore realize immediately; donations and positive growth may distribute slowly. Allocations are not the same as accrued assets. A broken or excessively expensive adapter can make accrual revert.
+
+`totalSupply()` is **stored** supply: pending performance and management fee-share mints are absent. The view returns `(newTotalAssets, performanceFeeShares, managementFeeShares)`. Performance assets are `floor(max(newAssets-oldAssets,0)*performanceFee/1e18)`; management assets are `floor(newAssets*elapsed*managementFee/1e18)`. Management fee is per-second, not an annual rate, and can charge during losses. A fee applies only if its recipient may receive shares. Each fee's minted shares are separately floored against `(storedSupply+virtualShares)/(newAssets-feeAssetsTotal+1)`. These are claims, not transfers of USDG and not necessarily Treasury-owned income.
+
+For USDG6 the vault has 18 share decimals and `virtualShares=1e12`, one virtual asset. After adding both pending fee shares to supply:
+
+- deposit / convertToShares: floor `assets*(newSupply+virtualShares)/(newAssets+1)`;
+- mint: ceil `shares*(newAssets+1)/(newSupply+virtualShares)`;
+- withdraw: ceil `assets*(newSupply+virtualShares)/(newAssets+1)`;
+- redeem / convertToAssets: floor `shares*(newAssets+1)/(newSupply+virtualShares)`.
+
+All four **max** functions always return **0 by design**, since gate calls cannot be guaranteed revert-free. This does not mean no deposits, no withdrawals or an inactive/illiquid vault. Claims are not immediate redemption guarantees.
+
+## Permissions, caps and exit liquidity
+
+Owner sets owner/curator/sentinels and token naming. Curator submits exact timelocked calldata; maturity plus non-abdication permits execution. Curator/sentinel can revoke pending calls or lower caps. Existing pending calls can outlive a subsequent timelock increase; abdication permanently disables the target operation. Allocator assignment, adapter/registry changes, gates, fee settings/recipients, cap increases and force-deallocation penalties use timelocked paths. Every function's direct source guards and internal/dependency call graph are catalogued.
+
+Allocators move assets within configured caps, set maxRate and the liquidity adapter/data; allocators or sentinels may deallocate. Caps apply to adapter, collateral-token and adapter/market-parameter IDs. Absolute caps must be positive; relative WAD caps are against transaction `firstTotalAssets`, not current real assets. Interest can exceed caps and relative caps are not rechecked on exit. A cap reading is not borrowability.
+
+**VaultV2 has no withdraw queue.** Withdrawal consumes idle USDG, then attempts the deficit through one selected `liquidityAdapter` and its encoded data. Share-send/asset-receive gates, owner/operator allowance, token behavior and underlying market liquidity can block it. Force-deallocation offers another route but charges `ceil(assets*penalty/WAD)` via a withdrawal back to the vault; this burns shares while retained underlying value can redistribute. It is not free liquidity.
+
+Adapter allocate/deallocate is parent-vault-only, demands the immutable loan asset and adaptive IRM, and tracks internal supply shares. `expectedSupplyAssets` uses freshly accrued Morpho supply/fee dilution, rounded down. Donated singleton supply shares are not counted. Markets leave the index when accounted allocation becomes zero, even if external dust shares remain. Timelocked `burnShares` irreversibly discards internal claims; `skim` only lets the skim recipient transfer loose tokens/rewards. It does not automatically pay vault income.
+
+## Morpho debt and liquidation
+
+A market ID is `keccak256(abi.encode(loanToken,collateralToken,oracle,irm,lltv))` within a **specific chain and singleton**. Stored `market` balances and `position` shares do not include subsequent accrued debt. For matched AdaptiveCurveIrm, `borrowRateView(params,storedMarket)` gives the same average WAD/second rate used by source accrual. The collector uses exact ordered three-term Taylor floors; it does not replace protocol math with floating-point exponentiation.
+
+Morpho share math uses **1 virtual asset and 1,000,000 virtual shares**, unlike VaultV2's offset. Supply-assets-to-shares floors; withdraw-assets-to-shares ceils; borrow-assets-to-debt-shares ceils; repay-assets-to-shares floors. Share-specified required supply/repayment assets ceil; share-specified withdrawal/borrow payout floors. Current debt/health uses debt assets rounded up with virtual offsets. Fee assets floor from interest; fee shares floor against accrued supply less fee assets. The fee recipient receives supply shares, not contemporaneous cash.
+
+Borrow and withdrawal require owner/operator authorization; repayments and supplies can be made on behalf of others. Owner enables IRMs/LLTVs and sets market fee (up to 25%) and recipient; fee changes accrue the previous fee first. Liquidation is permissionless only after accrued debt exceeds `floor(floor(collateral*oraclePrice/1e36)*lltv/1e18)`. Incentive is `min(1.15,1/(1-0.3*(1-lltv)))` under fixed-point floors. Seized-assets selection quotes collateral up and repayment shares up; repaid-share selection converts debt down, incentive down and collateral down. Final repayment assets round up. Exhausting collateral writes remaining bad debt off both borrow and supply assets: lender loss, not negative cash paid to the liquidator.
+
+## Loopback economics and oracle route
+
+The immutable, ownerless router composes wsNET, sNET, staking, NET, Zap, canonical taxed v2 swap router and Morpho. `turbo` supplies initial wsNET plus committed loop output; borrows USDG, buys NET, stakes/wraps via Zap, returns excess wsNET. It refuses a post-borrow LTV above **53.125%**; Morpho LLTV is **62.5%**. This lower target is a router UX bound, not a protocol-wide limit. `unwind` repays specified debt shares, frees/unwraps collateral, unstake-loops until empty, sells NET and returns USDG surplus. Surplus is the user's leveraged exit proceeds, not protocol revenue. Callbacks require Morpho and the matching in-flight operation. Borrow/withdraw authorization still applies. The 5% NET pair tax participates in the path; gross borrow and collateral are not net income.
+
+`currentLtvWad` uses stored borrow totals and a ceil ratio **without** Morpho virtual offsets. It is not the collector's authoritative fresh health computation. Zero debt returns0; zero collateral value with debt returns uint256.max.
+
+LoopbackOracle reads PairOracle TWAP, Treasury backing floor, canonical pair reserves and sNET dividend index. It first rejects spot below `floor(TWAP*0.85)`, then credits `clamp(floor(TWAP*0.9),floor,5*floor)`, multiplies by index/1e9 with floor, then by1e6 into Morpho units. Invalid TWAP or divergence reverts: both borrowing and liquidation may be blocked. The collector's credit mark is not a liquidation execution quote. Treasury floor reliance does not remove the existing Core **18432.08 USDG POL discrepancy** or change `pol_reconstruction_supported=false`.
+
+## Accounting boundaries
+
+Depositor nnUSDG shares, Sleeve-beneficial shares, adapter claims and underlying markets are overlapping ownership layers. Never sum all layers as protocol assets. Existing RFV owns Sleeve look-through; this collector exposes credit claims/debt but does not duplicate Sleeve valuations. Existing Reports methodology intentionally uses stored-share debt; fresh accrued Credit exposure is separately labelled and must not silently rewrite that publisher metric. None of assets-minus-deposits, outstanding borrowed principal, borrower collateral, pending fee shares or user unwind surplus is lifetime protocol earnings.

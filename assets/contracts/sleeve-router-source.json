@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x9ca38c9c144ff411231c82da03c7d30286a7dbf6",
+  "contract_record": "assets/addresses/contracts/rwa-desk-v2-and-feed-router-adapters.json",
+  "chain_id": 4663,
+  "address": "0x9ca38c9c144ff411231c82da03c7d30286a7dbf6",
+  "generation": "rwa-router-source-shared-by-v2-and-sleeve-20260930",
+  "source_id": "netnet-sleeve-bond-runtime-20261010",
+  "source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x9ca38c9c144ff411231c82da03c7d30286a7dbf6",
+  "provenance": [
+    {
+      "source_id": "netnet-sleeve-bond-runtime-20261010",
+      "locator": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x9ca38c9c144ff411231c82da03c7d30286a7dbf6",
+      "observed_on": "2026-10-10",
+      "evidence_kind": "explorer_source_abi_and_unpinned_runtime"
+    }
+  ],
+  "completeness": {
+    "interface": "complete_obtained_explorer_abi",
+    "source": "obtained_explorer_partial_verification",
+    "live_state": "not_obtained",
+    "full_validation": false,
+    "missing_evidence": [
+      "Independent compiler equivalence and pinned runtime/storage.",
+      "Current registry router/governance and source/runtime history."
+    ]
+  },
+  "events": [],
+  "errors": [
+    {
+      "inputs": [],
+      "name": "ZeroAddress",
+      "type": "error",
+      "signature": "ZeroAddress()",
+      "selector": "0xd92e233d",
+      "evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "src/rwa/RwaAdapters.sol ZeroAddress error and RouterSource constructor",
+        "kind": "obtained_source_and_abi"
+      }
+    }
+  ],
+  "constructor_and_special_entries": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "registry_",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "routerTokenId_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "src/rwa/RwaAdapters.sol",
+      "sha256": "52a3baec4573ef74da1c696b2aab177c785fdcd965f5d5aef78faf51d254ee42"
+    },
+    {
+      "path": "src/libraries/FixedPointMath.sol",
+      "sha256": "ec9413a896063a73bb56dacbef143610ce5b883b8e13c768263ce975d78214e2"
+    },
+    {
+      "path": "src/rwa/DeskMath.sol",
+      "sha256": "cdb765fd7370ffd6e49acdae8b23baf57ed717bd9dbb72a7d3a7cd24c6da1ad2"
+    },
+    {
+      "path": "src/rwa/RwaConstants.sol",
+      "sha256": "0b991702bdb94aaffa15f135e794aff0c97b783f76a8dffb95167f6256e2e259"
+    }
+  ],
+  "verification": {
+    "address": "0x9ca38c9c144ff411231c82da03c7d30286a7dbf6",
+    "runtime_bytes": 502,
+    "runtime_sha256": "1f044c53d1904e05bc03180f94a7ead75ba6b13749f5c34aff4bdd31284275ee",
+    "explorer_is_verified": true,
+    "explorer_is_fully_verified": false,
+    "explorer_is_partially_verified": true,
+    "source_files": [
+      {
+        "path": "src/rwa/RwaAdapters.sol",
+        "sha256": "52a3baec4573ef74da1c696b2aab177c785fdcd965f5d5aef78faf51d254ee42"
+      },
+      {
+        "path": "src/libraries/FixedPointMath.sol",
+        "sha256": "ec9413a896063a73bb56dacbef143610ce5b883b8e13c768263ce975d78214e2"
+      },
+      {
+        "path": "src/rwa/DeskMath.sol",
+        "sha256": "cdb765fd7370ffd6e49acdae8b23baf57ed717bd9dbb72a7d3a7cd24c6da1ad2"
+      },
+      {
+        "path": "src/rwa/RwaConstants.sol",
+        "sha256": "0b991702bdb94aaffa15f135e794aff0c97b783f76a8dffb95167f6256e2e259"
+      }
+    ],
+    "semantics": "All obtained RouterSource constructor/error/3functions reviewed. Immutable registry0x71a120cbbf3ce7cd910a3c50ff77afc62735687e and routerTokenId2; router() returns registry.ownerOf(routerTokenId). No setter,owner or write path. Registry authority/liveness remains external."
+  },
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "registry_",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "routerTokenId_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "ZeroAddress",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "registry",
+      "outputs": [
+        {
+          "internalType": "contract IRouterRegistry",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "router",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "routerTokenId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "functions": [
+    {
+      "name": "registry",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "contract IRouterRegistry",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Immutable Rialto registry address; does not establish current registry governance."
+      },
+      "signature": "registry()",
+      "selector": "0x7b103999",
+      "evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "src/rwa/RwaAdapters.sol contract RouterSource: registry public immutable getter",
+        "kind": "obtained_source_and_abi_explorer_partial_verification_not_independent_compilation"
+      }
+    },
+    {
+      "name": "router",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Returns registry.ownerOf(routerTokenId); propagates external revert. Desk checks nonzero; no universal guarantee of live router."
+      },
+      "signature": "router()",
+      "selector": "0xf887ea40",
+      "evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "src/rwa/RwaAdapters.sol contract RouterSource: router() body",
+        "kind": "obtained_source_and_abi_explorer_partial_verification_not_independent_compilation"
+      }
+    },
+    {
+      "name": "routerTokenId",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Immutable registry asset id2,not financial balance or position id."
+      },
+      "signature": "routerTokenId()",
+      "selector": "0xd25415c4",
+      "evidence": {
+        "source_id": "netnet-sleeve-bond-runtime-20261010",
+        "locator": "src/rwa/RwaAdapters.sol contract RouterSource: routerTokenId public immutable getter",
+        "kind": "obtained_source_and_abi_explorer_partial_verification_not_independent_compilation"
+      }
+    }
+  ],
+  "missing_evidence": [
+    "Independent compiler equivalence and pinned runtime/storage.",
+    "Current registry router/governance and source/runtime history."
+  ]
+}

@@ -34,7 +34,7 @@
     "file": "assets/addresses/contracts/weth-and-wsnet.json",
     "id": "robinhood-0x63c12667638f2ae6fc6ae09b43d98ec84a8586ea"
   },
-  "scope": "Selected NET Advance Desk and Zap, identified by publisher records and separately corroborated explorer creation/runtime evidence. Discover position IDs and public holder addresses each run; no fixed inventory, beneficial-owner inference or all-generation coverage. Borrower collateral and owed/paid are not added to Treasury/Sleeve RFV; Desk cash is not capacity. Mechanics below are conditional on the analyzed explorer bytes, not live transaction history or independently pinned code/state.",
+  "scope": "Selected NET Advance Desk and Zap, identified by publisher records and separately corroborated explorer creation/runtime evidence. Discover position IDs and public holder addresses each run; no fixed inventory, beneficial-owner inference or all-generation coverage. Borrower collateral and owed/paid are not Core RFV. Versioned October7 Reports separately derives principal receivable from open owed-paid; September26 counted escrow instead. Neither is independent net House equity. Desk cash is not capacity. Mechanics below are conditional on analyzed explorer bytes, not live history or pinned code/state.",
   "source_id": "netnet-advance-zap-bytecode-20260926",
   "reviewed_on": "2026-09-26",
   "implementation_evidence": {

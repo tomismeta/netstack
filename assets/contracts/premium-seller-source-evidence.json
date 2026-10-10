@@ -1,0 +1,1285 @@
+{
+  "schema_version": 1,
+  "source_id": "netnet-premium-seller-implementation-20261010",
+  "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x346e1a31171A0f7aC73909010b5435768d3B5462",
+  "observed_on": "2026-10-10",
+  "scope": "Complete obtained PremiumSeller ABI and all10 source files reviewed statically; original analysis, hashes/locators and bounded dispatcher/immutable consistency. Targeted NET/Treasury mint-tax and USDG proxy dependency review. No full third-party Solidity/code blobs, live financial snapshots or sale transaction history distributed.",
+  "sources": [
+    {
+      "source_path": "src/PremiumSeller.sol",
+      "sha256": "588541355da5ea6d2c88b55a9ffb8278f40d0818e48759e6603fa4a5dee98536",
+      "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+      "upstream_license": "AGPL-3.0-only",
+      "source_line_count": 136,
+      "declaration_locators": [
+        {
+          "kind": "error",
+          "name": "NotActive",
+          "line": 24
+        },
+        {
+          "kind": "error",
+          "name": "IntervalNotElapsed",
+          "line": 25
+        },
+        {
+          "kind": "error",
+          "name": "SlippageExceeded",
+          "line": 26
+        },
+        {
+          "kind": "error",
+          "name": "TransferFailed",
+          "line": 27
+        },
+        {
+          "kind": "error",
+          "name": "ZeroAddress",
+          "line": 28
+        },
+        {
+          "kind": "constructor",
+          "name": "",
+          "line": 43
+        },
+        {
+          "kind": "function",
+          "name": "execute",
+          "line": 69
+        },
+        {
+          "kind": "function",
+          "name": "active",
+          "line": 102
+        },
+        {
+          "kind": "function",
+          "name": "twapIfAbove",
+          "line": 113
+        },
+        {
+          "kind": "function",
+          "name": "clipSize",
+          "line": 118
+        },
+        {
+          "kind": "function",
+          "name": "premiumThresholdWad",
+          "line": 124
+        },
+        {
+          "kind": "function",
+          "name": "_requireAboveThreshold",
+          "line": 128
+        }
+      ],
+      "review": "Reviewed entire concrete contract: seven immutable address getters, lastExecuteAt storage getter, constructor, execute/active/twapIfAbove/clipSize/premiumThresholdWad and internal _requireAboveThreshold; five local errors plus imported MulDivOverflow and inherited PremiumSold. Per-function semantics in premium-seller.json. No owner or mutable parameter/upgrade path."
+    },
+    {
+      "source_path": "src/Constants.sol",
+      "sha256": "1a02fd6a04c98a0119cc38b6d0bf244d2103715733f0d9d0e28ca2227ce02d5d",
+      "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+      "upstream_license": "AGPL-3.0-only",
+      "source_line_count": 80,
+      "declaration_locators": [],
+      "review": "All80lines reviewed. Seller reaches WAD=1e18, BPS=10000, NET_UNIT=1e9, PREMIUM_THRESHOLD_WAD=2e18, PREMIUM_CLIP_BPS=25, PREMIUM_MIN_INTERVAL=3600 and PREMIUM_MAX_DEV_BPS=100. Tax constants500bps and oracle30min–4h windows concern dependencies. Other emissions, pTEAM, genesis, Morpho, inverse and bond constants do not add seller entrypoints or guarantees; TUNE comments mean predeployment source edits, not setters."
+    },
+    {
+      "source_path": "src/interfaces/IGenesisBond.sol",
+      "sha256": "4ee8e4d286cd0a26626f093b29ee37899c814353f0ff559d41374255bae55997",
+      "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+      "upstream_license": "AGPL-3.0-only",
+      "source_line_count": 60,
+      "declaration_locators": [
+        {
+          "kind": "event",
+          "name": "Purchased",
+          "line": 18
+        },
+        {
+          "kind": "event",
+          "name": "Refunded",
+          "line": 19
+        },
+        {
+          "kind": "event",
+          "name": "Finalized",
+          "line": 20
+        },
+        {
+          "kind": "event",
+          "name": "Claimed",
+          "line": 21
+        },
+        {
+          "kind": "function",
+          "name": "purchase",
+          "line": 25
+        },
+        {
+          "kind": "function",
+          "name": "refund",
+          "line": 29
+        },
+        {
+          "kind": "function",
+          "name": "claim",
+          "line": 32
+        },
+        {
+          "kind": "function",
+          "name": "finalize",
+          "line": 39
+        },
+        {
+          "kind": "function",
+          "name": "finalized",
+          "line": 41
+        },
+        {
+          "kind": "function",
+          "name": "finalizeTime",
+          "line": 44
+        },
+        {
+          "kind": "function",
+          "name": "totalRaised",
+          "line": 47
+        },
+        {
+          "kind": "function",
+          "name": "purchasedNetOf",
+          "line": 50
+        },
+        {
+          "kind": "function",
+          "name": "claimableNetOf",
+          "line": 53
+        },
+        {
+          "kind": "function",
+          "name": "registryLength",
+          "line": 56
+        },
+        {
+          "kind": "function",
+          "name": "registryAt",
+          "line": 59
+        }
+      ],
+      "review": "Declarations, not implementation. Seller calls finalizeTime only (nonzero gate); purchase/refund/claim/finalize, finalized, totalRaised, purchasedNetOf/claimableNetOf and registryLength/registryAt are dependency surfaces, not seller methods. PurchaseRecord and Purchased/Refunded/Finalized/Claimed describe the dependency. Stale300k/10k commentary contradicts supplied Constants50k/2k, so comments are not current parameter evidence."
+    },
+    {
+      "source_path": "src/interfaces/INET.sol",
+      "sha256": "8c5833548f22f8aa00a512f1371f1ce397c6fd26f48db06195bdfc6b9eed0439",
+      "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+      "upstream_license": "AGPL-3.0-only",
+      "source_line_count": 87,
+      "declaration_locators": [
+        {
+          "kind": "event",
+          "name": "TaxedPairAdded",
+          "line": 19
+        },
+        {
+          "kind": "event",
+          "name": "TaxExemptQueued",
+          "line": 21
+        },
+        {
+          "kind": "event",
+          "name": "TaxExemptAdded",
+          "line": 23
+        },
+        {
+          "kind": "event",
+          "name": "TaxExemptCancelled",
+          "line": 25
+        },
+        {
+          "kind": "event",
+          "name": "TaxEnabled",
+          "line": 27
+        },
+        {
+          "kind": "event",
+          "name": "TaxCollected",
+          "line": 29
+        },
+        {
+          "kind": "function",
+          "name": "taxTotalBps",
+          "line": 32
+        },
+        {
+          "kind": "function",
+          "name": "taxEnabled",
+          "line": 35
+        },
+        {
+          "kind": "function",
+          "name": "taxCollector",
+          "line": 38
+        },
+        {
+          "kind": "function",
+          "name": "canonicalPair",
+          "line": 41
+        },
+        {
+          "kind": "function",
+          "name": "isTaxedPair",
+          "line": 44
+        },
+        {
+          "kind": "function",
+          "name": "isTaxExempt",
+          "line": 47
+        },
+        {
+          "kind": "function",
+          "name": "enableTax",
+          "line": 51
+        },
+        {
+          "kind": "function",
+          "name": "addTaxedPair",
+          "line": 66
+        },
+        {
+          "kind": "function",
+          "name": "queueTaxExempt",
+          "line": 70
+        },
+        {
+          "kind": "function",
+          "name": "cancelTaxExempt",
+          "line": 73
+        },
+        {
+          "kind": "function",
+          "name": "executeTaxExempt",
+          "line": 77
+        },
+        {
+          "kind": "function",
+          "name": "mint",
+          "line": 80
+        },
+        {
+          "kind": "function",
+          "name": "burn",
+          "line": 83
+        },
+        {
+          "kind": "function",
+          "name": "burnFrom",
+          "line": 86
+        }
+      ],
+      "review": "Declarations, not implementation. Seller directly uses inherited approve; mint/transferFrom/tax logic requires NET implementation reviewed separately. taxTotalBps/taxEnabled/taxCollector/canonicalPair/isTaxedPair/isTaxExempt, enableTax, addTaxedPair(PoolKind), queue/cancel/executeTaxExempt, mint/burn/burnFrom and tax administration/events expose dependencies, not seller authority. No current exemptions or permissions inferred."
+    },
+    {
+      "source_path": "src/interfaces/IPairOracle.sol",
+      "sha256": "ff754e7dbfed580049324400497ddde0844609609cbb6250de3d849ce8524138",
+      "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+      "upstream_license": "AGPL-3.0-only",
+      "source_line_count": 33,
+      "declaration_locators": [
+        {
+          "kind": "event",
+          "name": "Checkpointed",
+          "line": 12
+        },
+        {
+          "kind": "function",
+          "name": "checkpoint",
+          "line": 18
+        },
+        {
+          "kind": "function",
+          "name": "twapNetUsdg",
+          "line": 23
+        },
+        {
+          "kind": "function",
+          "name": "pair",
+          "line": 26
+        },
+        {
+          "kind": "function",
+          "name": "twapMinWindow",
+          "line": 29
+        },
+        {
+          "kind": "function",
+          "name": "twapMaxWindow",
+          "line": 32
+        }
+      ],
+      "review": "checkpoint, twapNetUsdg, pair, twapMinWindow/twapMaxWindow and Checkpointed are declarations. Seller only reads twapNetUsdg, documented as WAD USDG per wholeNET with30min–4h validity. No oracle implementation or checkpoint execution reviewed here; external failure propagates except active self-call catch."
+    },
+    {
+      "source_path": "src/interfaces/IPremiumSeller.sol",
+      "sha256": "a440ddd5eb5694f7a11a9133bc76fb1e9d798615515808c015dd99f3ef11ca08",
+      "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+      "upstream_license": "AGPL-3.0-only",
+      "source_line_count": 33,
+      "declaration_locators": [
+        {
+          "kind": "event",
+          "name": "PremiumSold",
+          "line": 14
+        },
+        {
+          "kind": "function",
+          "name": "execute",
+          "line": 19
+        },
+        {
+          "kind": "function",
+          "name": "active",
+          "line": 22
+        },
+        {
+          "kind": "function",
+          "name": "clipSize",
+          "line": 26
+        },
+        {
+          "kind": "function",
+          "name": "lastExecuteAt",
+          "line": 29
+        },
+        {
+          "kind": "function",
+          "name": "premiumThresholdWad",
+          "line": 32
+        }
+      ],
+      "review": "All five declared methods and nonindexed PremiumSold reviewed against implementation. Actual ABI additionally exposes seven getters and twapIfAbove; premiumThresholdWad is pure in implementation. Claimed each NET brings>1USDG is not an unconditional code guarantee; only relative TWAP gate and rounded execution floor are enforced."
+    },
+    {
+      "source_path": "src/interfaces/ITreasury.sol",
+      "sha256": "e0574920aa8097bbd499dfc49cb7ed70941c1ae4bf45aa5122b40d217c57f679",
+      "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+      "upstream_license": "AGPL-3.0-only",
+      "source_line_count": 60,
+      "declaration_locators": [
+        {
+          "kind": "event",
+          "name": "MorphoDeposited",
+          "line": 15
+        },
+        {
+          "kind": "event",
+          "name": "MorphoWithdrawn",
+          "line": 16
+        },
+        {
+          "kind": "event",
+          "name": "NetMinted",
+          "line": 17
+        },
+        {
+          "kind": "event",
+          "name": "UsdgSpent",
+          "line": 18
+        },
+        {
+          "kind": "function",
+          "name": "usdg",
+          "line": 20
+        },
+        {
+          "kind": "function",
+          "name": "net",
+          "line": 21
+        },
+        {
+          "kind": "function",
+          "name": "morphoVault",
+          "line": 22
+        },
+        {
+          "kind": "function",
+          "name": "canonicalPair",
+          "line": 23
+        },
+        {
+          "kind": "function",
+          "name": "rfv",
+          "line": 28
+        },
+        {
+          "kind": "function",
+          "name": "backingPerToken",
+          "line": 31
+        },
+        {
+          "kind": "function",
+          "name": "liquidUsdg",
+          "line": 34
+        },
+        {
+          "kind": "function",
+          "name": "morphoAssets",
+          "line": 37
+        },
+        {
+          "kind": "function",
+          "name": "morphoCapBps",
+          "line": 40
+        },
+        {
+          "kind": "function",
+          "name": "mintNet",
+          "line": 44
+        },
+        {
+          "kind": "function",
+          "name": "spendUsdg",
+          "line": 49
+        },
+        {
+          "kind": "function",
+          "name": "rebalanceToMorpho",
+          "line": 53
+        },
+        {
+          "kind": "function",
+          "name": "rebalanceFromMorpho",
+          "line": 56
+        },
+        {
+          "kind": "function",
+          "name": "isMinter",
+          "line": 58
+        },
+        {
+          "kind": "function",
+          "name": "isSpender",
+          "line": 59
+        }
+      ],
+      "review": "Declarations, not implementation. Seller calls backingPerToken and mintNet. rfv/liquidUsdg/morphoAssets/morphoCapBps, address getters, spendUsdg/rebalanceToMorpho/rebalanceFromMorpho and isMinter/isSpender do not add seller functionality. NetMinted gives mint attribution; UsdgSpent is Treasury outgoing spending, not a receipt event. USDG incoming delivery needs token Transfer evidence."
+    },
+    {
+      "source_path": "src/interfaces/external/IERC20.sol",
+      "sha256": "3b2bdeac1b60996e9ef139ede11f53bce36a8115a3c3092f2ea2309d8243de1d",
+      "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+      "upstream_license": "AGPL-3.0-only",
+      "source_line_count": 22,
+      "declaration_locators": [
+        {
+          "kind": "event",
+          "name": "Transfer",
+          "line": 6
+        },
+        {
+          "kind": "event",
+          "name": "Approval",
+          "line": 7
+        },
+        {
+          "kind": "function",
+          "name": "totalSupply",
+          "line": 9
+        },
+        {
+          "kind": "function",
+          "name": "balanceOf",
+          "line": 10
+        },
+        {
+          "kind": "function",
+          "name": "transfer",
+          "line": 11
+        },
+        {
+          "kind": "function",
+          "name": "allowance",
+          "line": 12
+        },
+        {
+          "kind": "function",
+          "name": "approve",
+          "line": 13
+        },
+        {
+          "kind": "function",
+          "name": "transferFrom",
+          "line": 14
+        },
+        {
+          "kind": "function",
+          "name": "name",
+          "line": 19
+        },
+        {
+          "kind": "function",
+          "name": "symbol",
+          "line": 20
+        },
+        {
+          "kind": "function",
+          "name": "decimals",
+          "line": 21
+        }
+      ],
+      "review": "All ERC20/metadata declarations reviewed: totalSupply,balanceOf,transfer,allowance,approve,transferFrom,name,symbol,decimals plus Transfer/Approval. Types do not establish token behavior. Seller snapshots balanceOf, ignores approve bool (reviewed NET returns true), requires USDG transfer bool, and caches USDG decimals at construction."
+    },
+    {
+      "source_path": "src/interfaces/external/IUniswapV2.sol",
+      "sha256": "0facf540a1771e87ab41400b76a23a7cd18a747a730c800316118fa27424d19c",
+      "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+      "upstream_license": "AGPL-3.0-only",
+      "source_line_count": 58,
+      "declaration_locators": [
+        {
+          "kind": "function",
+          "name": "getPair",
+          "line": 6
+        },
+        {
+          "kind": "function",
+          "name": "createPair",
+          "line": 7
+        },
+        {
+          "kind": "function",
+          "name": "token0",
+          "line": 12
+        },
+        {
+          "kind": "function",
+          "name": "token1",
+          "line": 13
+        },
+        {
+          "kind": "function",
+          "name": "getReserves",
+          "line": 14
+        },
+        {
+          "kind": "function",
+          "name": "price0CumulativeLast",
+          "line": 18
+        },
+        {
+          "kind": "function",
+          "name": "price1CumulativeLast",
+          "line": 19
+        },
+        {
+          "kind": "function",
+          "name": "totalSupply",
+          "line": 20
+        },
+        {
+          "kind": "function",
+          "name": "balanceOf",
+          "line": 21
+        },
+        {
+          "kind": "function",
+          "name": "transfer",
+          "line": 22
+        },
+        {
+          "kind": "function",
+          "name": "transferFrom",
+          "line": 23
+        },
+        {
+          "kind": "function",
+          "name": "approve",
+          "line": 24
+        },
+        {
+          "kind": "function",
+          "name": "mint",
+          "line": 25
+        },
+        {
+          "kind": "function",
+          "name": "sync",
+          "line": 26
+        },
+        {
+          "kind": "function",
+          "name": "factory",
+          "line": 33
+        },
+        {
+          "kind": "function",
+          "name": "addLiquidity",
+          "line": 35
+        },
+        {
+          "kind": "function",
+          "name": "swapExactTokensForTokensSupportingFeeOnTransferTokens",
+          "line": 46
+        },
+        {
+          "kind": "function",
+          "name": "getAmountsOut",
+          "line": 54
+        }
+      ],
+      "review": "All factory,getPair/createPair; pair token0/token1/getReserves/cumulative prices,totalSupply,balanceOf,transfer/transferFrom/approve,mint/sync; router factory/addLiquidity/FoT swap/getAmountsOut declarations reviewed. Seller uses token0 at construction,getReserves for clip,and FoT swap with path[NET,USDG]. No pair Swap ABI or router body supplied; constructor does not enforce canonical factory/path alignment."
+    },
+    {
+      "source_path": "src/libraries/FixedPointMath.sol",
+      "sha256": "ec9413a896063a73bb56dacbef143610ce5b883b8e13c768263ce975d78214e2",
+      "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+      "upstream_license": "AGPL-3.0-only",
+      "source_line_count": 98,
+      "declaration_locators": [
+        {
+          "kind": "error",
+          "name": "MulDivOverflow",
+          "line": 8
+        },
+        {
+          "kind": "function",
+          "name": "mulDiv",
+          "line": 11
+        },
+        {
+          "kind": "function",
+          "name": "mulDivUp",
+          "line": 49
+        },
+        {
+          "kind": "function",
+          "name": "sqrt",
+          "line": 56
+        }
+      ],
+      "review": "mulDiv floors a512-bit product divided by denominator, reconstructing high/low limbs and modular inverse; low-limb-only division by0 panics, high-limb denominator<=prod1 throws MulDivOverflow. mulDivUp adds1 on nonzero remainder with checked overflow; sqrt handles0 then seven Newton refinements and min(z,x/z) for floor. Only mulDiv is reached by seller; mulDivUp/sqrt are supplied library code, not seller entrypoints. expectedWad*9900 is separate checked256-bit multiplication and can panic before division."
+    }
+  ],
+  "abi": {
+    "entry_count": 21,
+    "function_count": 13,
+    "error_count": 6,
+    "event_count": 1,
+    "constructor_count": 1,
+    "sha256": "35dae2236d3e18d1f2a1d4d41433ac9a36ff300cbd98548d7a4e8b1d9b217009",
+    "hash_scope": "UTF-8 compact JSON serialized abi array with explorer key/entry order",
+    "catalog_path": "assets/contracts/premium-seller.json"
+  },
+  "runtime_identity": {
+    "byte_count": 3908,
+    "sha256": "e221c12443a8c1c39a7921d53341c8b689546777ccbc990a2e68ae8aa2e4a067",
+    "keccak256": "0x9ac99a39b1ed3273deea3853c57e91f678b851cbb373aa088b9dc6c87473c504",
+    "evidence_kind": "explorer_deployed_bytecode_not_pinned_rpc",
+    "explorer_is_verified": true,
+    "explorer_is_fully_verified": true,
+    "explorer_is_changed_bytecode": false,
+    "explorer_proxy_type": null,
+    "explorer_implementations": [],
+    "compiler_version": "v0.8.30+commit.73712a01",
+    "evm_version": "osaka",
+    "optimizer_runs": 800,
+    "via_ir": false,
+    "limit": "Explorer verification flags are provider assertions, not independent compiler rebuild, security audit or current fixed-block code verification."
+  },
+  "dispatcher": {
+    "method": "Decode instruction widths and enumerate13 PUSH4/EQ/PUSH2/JUMPI comparisons before0xda; matches all13 ABI selectors. No unmatched detected branches. Global CALLVALUE reject and default REVERT observed. Not symbolic execution or compiler equivalence.",
+    "entries": [
+      {
+        "selector": "0xdc727a38",
+        "compare_offset": "0x35",
+        "entry_offset": "0x220"
+      },
+      {
+        "selector": "0xf5b91b7b",
+        "compare_offset": "0x40",
+        "entry_offset": "0x22e"
+      },
+      {
+        "selector": "0xf887ea40",
+        "compare_offset": "0x4b",
+        "entry_offset": "0x255"
+      },
+      {
+        "selector": "0xfe0d94c1",
+        "compare_offset": "0x56",
+        "entry_offset": "0x27c"
+      },
+      {
+        "selector": "0x748a0ab0",
+        "compare_offset": "0x65",
+        "entry_offset": "0x1ab"
+      },
+      {
+        "selector": "0x7dc0d1d0",
+        "compare_offset": "0x70",
+        "entry_offset": "0x1d2"
+      },
+      {
+        "selector": "0xc2fff4a5",
+        "compare_offset": "0x7b",
+        "entry_offset": "0x1f9"
+      },
+      {
+        "selector": "0x4d709adf",
+        "compare_offset": "0x95",
+        "entry_offset": "0x13d"
+      },
+      {
+        "selector": "0x61d027b3",
+        "compare_offset": "0xa0",
+        "entry_offset": "0x17c"
+      },
+      {
+        "selector": "0x6af08d89",
+        "compare_offset": "0xab",
+        "entry_offset": "0x1a3"
+      },
+      {
+        "selector": "0x02fb0c5e",
+        "compare_offset": "0xba",
+        "entry_offset": "0xde"
+      },
+      {
+        "selector": "0x0c614ba0",
+        "compare_offset": "0xc5",
+        "entry_offset": "0xfb"
+      },
+      {
+        "selector": "0x44120c56",
+        "compare_offset": "0xd0",
+        "entry_offset": "0x111"
+      }
+    ],
+    "unmatched_dispatcher_selectors": [],
+    "interface_selectors_not_seen": []
+  },
+  "constructor_runtime_consistency": {
+    "creation_bytes_including_arguments": 5356,
+    "creation_sha256": "b2109d1293a9cf14ae4560e5d52c4c91777deebb34df3fc3c9053db11e935f12",
+    "constructor_argument_bytes": 224,
+    "arguments_match_creation_suffix": true,
+    "embedded_runtime_offset": "0x4c8",
+    "embedded_runtime_length": 3908,
+    "changed_nonzero_immutable_words": 23,
+    "additional_zero_valued_immutable_words": 1,
+    "differences_outside_identified_immutable_words": 0,
+    "method": "Compared explorer-returned deployed bytes to runtime template inside explorer-returned creation bytecode. All changes fall in23PUSH32 immediate words; constructor patch offsets additionally identify zero-valued cached bool. Decoded7address constructor arguments match runtime address words. This compares provider artifacts only; constructor/bytecode not executed.",
+    "immutables": [
+      {
+        "name": "net",
+        "value": "0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+        "runtime_word_offsets": [
+          "0x1fe",
+          "0x716",
+          "0x7a5"
+        ],
+        "evidence": "Decoded constructor argument and all corresponding runtime PUSH32 address words agree; source getter declaration maps name."
+      },
+      {
+        "name": "usdg",
+        "value": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+        "runtime_word_offsets": [
+          "0x233",
+          "0x664",
+          "0x7f8",
+          "0x8d1",
+          "0x9b6"
+        ],
+        "evidence": "Decoded constructor argument and all corresponding runtime PUSH32 address words agree; source getter declaration maps name."
+      },
+      {
+        "name": "router",
+        "value": "0x89e5DB8B5aA49aA85AC63f691524311AEB649eba",
+        "runtime_word_offsets": [
+          "0x25a",
+          "0x6e4",
+          "0x84f"
+        ],
+        "evidence": "Decoded constructor argument and all corresponding runtime PUSH32 address words agree; source getter declaration maps name."
+      },
+      {
+        "name": "pairContract",
+        "value": "0x59F95461E68e0c77605299791E1449f175165B54",
+        "runtime_word_offsets": [
+          "0x142",
+          "0x3d7"
+        ],
+        "evidence": "Decoded constructor argument and all corresponding runtime PUSH32 address words agree; source getter declaration maps name."
+      },
+      {
+        "name": "treasury",
+        "value": "0x04822Ea321A0DEE6F40656172F29312104855d66",
+        "runtime_word_offsets": [
+          "0x181",
+          "0x571",
+          "0x987",
+          "0xbb3"
+        ],
+        "evidence": "Decoded constructor argument and all corresponding runtime PUSH32 address words agree; source getter declaration maps name."
+      },
+      {
+        "name": "oracle",
+        "value": "0x929631b33F4070D6f54477fba3FD27566567dAca",
+        "runtime_word_offsets": [
+          "0x1d7",
+          "0xb2d"
+        ],
+        "evidence": "Decoded constructor argument and all corresponding runtime PUSH32 address words agree; source getter declaration maps name."
+      },
+      {
+        "name": "genesisBond",
+        "value": "0x575b7B7c97Ef3E21C82DAeB427899d583e1E913f",
+        "runtime_word_offsets": [
+          "0x1b0",
+          "0x2a7",
+          "0xa84"
+        ],
+        "evidence": "Decoded constructor argument and all corresponding runtime PUSH32 address words agree; source getter declaration maps name."
+      },
+      {
+        "name": "_netIsToken0",
+        "value": false,
+        "runtime_word_offsets": [
+          "0x45d"
+        ],
+        "evidence": "Constructor substitution to cached bool; runtime word0 chooses reserve1. Does not itself independently validate pair.token1 or present pair state."
+      },
+      {
+        "name": "_usdgWadFactor",
+        "value": "1000000000000",
+        "runtime_word_offsets": [
+          "0x5e5"
+        ],
+        "evidence": "Runtime immutable factor1e12 is consistent with constructor-cached USDG decimals6; current decimals still require pinned read."
+      }
+    ]
+  },
+  "deployment_identity": {
+    "creation_transaction": "0xbc4e2476b101f79753191364a4bc83fe6ff053c49998c48674c97521149f3c3e",
+    "creation_block": 11439688,
+    "creation_block_hash": "0xa8a1a4768b0db740643e05b547c6ac9c6cde8a779572887bda4df390997d525f",
+    "creation_timestamp": "2026-07-16T17:32:50.000000Z",
+    "creator": "0xCfBd7e12A0f154a45576a73C1E409200068507B9",
+    "observed_on": "2026-10-10",
+    "evidence_kind": "explorer_creation_identity_not_independent_rpc_receipt",
+    "sources": [
+      "https://robinhoodchain.blockscout.com/api/v2/addresses/0x346e1a31171A0f7aC73909010b5435768d3B5462",
+      "https://robinhoodchain.blockscout.com/api/v2/transactions/0xbc4e2476b101f79753191364a4bc83fe6ff053c49998c48674c97521149f3c3e",
+      "https://robinhoodchain.blockscout.com/api/v2/blocks/11439688"
+    ],
+    "corroboration": "Address creation_transaction_hash agrees with tx hash; tx result=success/status=ok/to=null/created_contract.hash=canonical seller; block height/time matches tx. This fixed creation boundary is not a sale history or cached financial snapshot."
+  },
+  "constants_and_units": {
+    "net_decimals": 9,
+    "usdg_decimals_at_construction": 6,
+    "net_unit": "1000000000",
+    "usdg_wad_factor": "1000000000000",
+    "threshold_multiplier_wad": "2000000000000000000",
+    "clip_bps": 25,
+    "minimum_interval_seconds": 3600,
+    "maximum_deviation_bps": 100,
+    "bps_denominator": 10000,
+    "price_unit": "WAD USDG per wholeNET, not rawUSDG per rawNET or fiatUSD. Realized sale price=(USDG raw/1e6)/(NET raw/1e9).",
+    "floor_order": [
+      "clipRaw=floor(netReserveRaw*25/10000)",
+      "thresholdWad=floor(backingWad*2e18/1e18); require(twapWad>thresholdWad)",
+      "expectedWad=floor(clipRaw*twapWad/1e9) using512-bit mulDiv",
+      "minAllowedRaw=floor(floor(expectedWad*9900/10000)/1e12); multiplication is checked256-bit",
+      "minOutRaw=max(callerMinRaw,minAllowedRaw)"
+    ],
+    "qualification": "Relative gate and99%floored floor do not guarantee realized price above2xbacking, above2USDG or above1USDG; no hardcoded financial floor or enforceable pre-mint RFV cap was found on the reviewed mint path."
+  },
+  "dependency_reviews": [
+    {
+      "address": "0x04822Ea321A0DEE6F40656172F29312104855d66",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x04822Ea321A0DEE6F40656172F29312104855d66",
+      "observed_on": "2026-10-10",
+      "source": {
+        "source_path": "src/Treasury.sol",
+        "sha256": "cfb600922e870e626001e6138601b30c2470f002be91bb172b5eb8b44144ea5b",
+        "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+        "upstream_license": "AGPL-3.0-only",
+        "source_line_count": 181,
+        "declaration_locators": [
+          {
+            "kind": "error",
+            "name": "NotMinter",
+            "line": 26
+          },
+          {
+            "kind": "error",
+            "name": "NotSpender",
+            "line": 27
+          },
+          {
+            "kind": "error",
+            "name": "MorphoCapExceeded",
+            "line": 28
+          },
+          {
+            "kind": "error",
+            "name": "TransferFailed",
+            "line": 29
+          },
+          {
+            "kind": "constructor",
+            "name": "",
+            "line": 42
+          },
+          {
+            "kind": "function",
+            "name": "wire",
+            "line": 54
+          },
+          {
+            "kind": "function",
+            "name": "usdg",
+            "line": 65
+          },
+          {
+            "kind": "function",
+            "name": "net",
+            "line": 69
+          },
+          {
+            "kind": "function",
+            "name": "morphoVault",
+            "line": 73
+          },
+          {
+            "kind": "function",
+            "name": "canonicalPair",
+            "line": 77
+          },
+          {
+            "kind": "function",
+            "name": "liquidUsdg",
+            "line": 83
+          },
+          {
+            "kind": "function",
+            "name": "morphoAssets",
+            "line": 87
+          },
+          {
+            "kind": "function",
+            "name": "polRfv",
+            "line": 93
+          },
+          {
+            "kind": "function",
+            "name": "rfv",
+            "line": 105
+          },
+          {
+            "kind": "function",
+            "name": "backingPerToken",
+            "line": 113
+          },
+          {
+            "kind": "function",
+            "name": "morphoCapBps",
+            "line": 119
+          },
+          {
+            "kind": "function",
+            "name": "mintNet",
+            "line": 126
+          },
+          {
+            "kind": "function",
+            "name": "spendUsdg",
+            "line": 134
+          },
+          {
+            "kind": "function",
+            "name": "rebalanceToMorpho",
+            "line": 151
+          },
+          {
+            "kind": "function",
+            "name": "rebalanceFromMorpho",
+            "line": 170
+          }
+        ],
+        "review": "Treasury.mintNet checks wired and isMinter[msg.sender], then calls NET.mint(to,amount), then NetMinted. Treasury does NOT enforce a pre-swap/post-mint RFV or supply cap here. backingPerToken returns0 for zero supply else floor(rfv*1e9/supply), rfv includes liquidUSDG, Morpho with2%haircut, and POL2sqrt valuation. Incoming sellerUSDG needs no Treasury function/UsdgSpent event; liquidation/outgoing spending is distinct. One-time deployer-only wire populates minter/spender arrays supplied at wiring, not a hardcoded verified current roster."
+      },
+      "runtime_sha256": "d82c547c353a49760e798a14526e42048194538ba7cd7f5802d1f87aaac92af5",
+      "runtime_bytes": 6157,
+      "explorer_is_verified": true,
+      "explorer_proxy_type": null,
+      "scope": "Targeted sale attribution dependency review; not a complete dependency implementation or current-state audit.",
+      "supporting_sources": [
+        {
+          "source_path": "src/abstract/Wired.sol",
+          "sha256": "ddbc6b33496472b58626a52791fab32fc5fe26b2d1d7489623d3af67cde5b458",
+          "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+          "upstream_license": "AGPL-3.0-only",
+          "source_line_count": 40,
+          "declaration_locators": [
+            {
+              "kind": "error",
+              "name": "NotDeployer",
+              "line": 13
+            },
+            {
+              "kind": "error",
+              "name": "AlreadyWired",
+              "line": 14
+            },
+            {
+              "kind": "error",
+              "name": "NotWired",
+              "line": 15
+            },
+            {
+              "kind": "error",
+              "name": "ZeroAddress",
+              "line": 16
+            },
+            {
+              "kind": "constructor",
+              "name": "",
+              "line": 21
+            },
+            {
+              "kind": "function",
+              "name": "_checkWired",
+              "line": 32
+            },
+            {
+              "kind": "function",
+              "name": "_nonZero",
+              "line": 36
+            }
+          ],
+          "review": "wiring permits only immutable deployer, rejects already-wired, sets wired before body; _checkWired gates runtime mint/spend; _nonZero rejects zero addresses. No proof of actual supplied wiring arrays/current storage."
+        }
+      ]
+    },
+    {
+      "address": "0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+      "observed_on": "2026-10-10",
+      "source": {
+        "source_path": "src/NET.sol",
+        "sha256": "a92982a349acb4678daaed7fb54d0a30d5602bb5e840d58bbc338d7a5ff4a1dd",
+        "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+        "upstream_license": "AGPL-3.0-only",
+        "source_line_count": 254,
+        "declaration_locators": [
+          {
+            "kind": "error",
+            "name": "NotTreasury",
+            "line": 19
+          },
+          {
+            "kind": "error",
+            "name": "NotGenesisBond",
+            "line": 20
+          },
+          {
+            "kind": "error",
+            "name": "NotGuardian",
+            "line": 21
+          },
+          {
+            "kind": "error",
+            "name": "TaxAlreadyEnabled",
+            "line": 22
+          },
+          {
+            "kind": "error",
+            "name": "PairAlreadyMapped",
+            "line": 23
+          },
+          {
+            "kind": "error",
+            "name": "NotANetPool",
+            "line": 24
+          },
+          {
+            "kind": "error",
+            "name": "AlreadyExempt",
+            "line": 25
+          },
+          {
+            "kind": "error",
+            "name": "NothingQueued",
+            "line": 26
+          },
+          {
+            "kind": "error",
+            "name": "DelayNotElapsed",
+            "line": 27
+          },
+          {
+            "kind": "error",
+            "name": "CannotExemptPair",
+            "line": 28
+          },
+          {
+            "kind": "error",
+            "name": "InsufficientBalance",
+            "line": 29
+          },
+          {
+            "kind": "error",
+            "name": "InsufficientAllowance",
+            "line": 30
+          },
+          {
+            "kind": "constructor",
+            "name": "",
+            "line": 59
+          },
+          {
+            "kind": "function",
+            "name": "wire",
+            "line": 67
+          },
+          {
+            "kind": "function",
+            "name": "approve",
+            "line": 93
+          },
+          {
+            "kind": "function",
+            "name": "transfer",
+            "line": 99
+          },
+          {
+            "kind": "function",
+            "name": "transferFrom",
+            "line": 104
+          },
+          {
+            "kind": "function",
+            "name": "_spendAllowance",
+            "line": 110
+          },
+          {
+            "kind": "function",
+            "name": "_transfer",
+            "line": 122
+          },
+          {
+            "kind": "function",
+            "name": "mint",
+            "line": 149
+          },
+          {
+            "kind": "function",
+            "name": "burn",
+            "line": 158
+          },
+          {
+            "kind": "function",
+            "name": "burnFrom",
+            "line": 162
+          },
+          {
+            "kind": "function",
+            "name": "_burn",
+            "line": 167
+          },
+          {
+            "kind": "function",
+            "name": "taxTotalBps",
+            "line": 179
+          },
+          {
+            "kind": "function",
+            "name": "enableTax",
+            "line": 184
+          },
+          {
+            "kind": "function",
+            "name": "addTaxedPair",
+            "line": 200
+          },
+          {
+            "kind": "function",
+            "name": "queueTaxExempt",
+            "line": 227
+          },
+          {
+            "kind": "function",
+            "name": "cancelTaxExempt",
+            "line": 237
+          },
+          {
+            "kind": "function",
+            "name": "executeTaxExempt",
+            "line": 245
+          }
+        ],
+        "review": "NET.mint checks wired, caller==treasury, recipient!=zero; checked supply/balance increases and Transfer(0,to,amount), with NO RFV or supply cap. approve returns true and emits Approval. transferFrom spends gross allowance then _transfer; if taxEnabled, neither endpoint exempt and either mapped pair, tax=floor(value*500/10000); optional Transfer(from,taxCollector,tax) and TaxCollected precede Transfer(from,to,value-tax). Mint is not taxed. Current seller exemption, taxCollector and wiring unobserved; initial wiring arrays and later delayed permanent exemptions are not proven by comments."
+      },
+      "runtime_sha256": "cdc02859b4648a5c35ed22cfc8c67de29b5646dd65bcb79aee802e3ef7fff23d",
+      "runtime_bytes": 6432,
+      "explorer_is_verified": true,
+      "explorer_proxy_type": null,
+      "scope": "Targeted sale attribution dependency review; not a complete dependency implementation or current-state audit."
+    },
+    {
+      "address": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+      "observed_on": "2026-10-10",
+      "source": {
+        "source_path": "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol",
+        "sha256": "a06fe97082355529c1da9076ea6c4518875ca9fdb1a4fa1e194c35cff21b29a1",
+        "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+        "upstream_license": "MIT",
+        "source_line_count": 40,
+        "declaration_locators": [
+          {
+            "kind": "constructor",
+            "name": "",
+            "line": 26
+          },
+          {
+            "kind": "function",
+            "name": "_implementation",
+            "line": 37
+          }
+        ],
+        "review": "USDG address returns ERC1967Proxy source and bytecode: calls delegate to implementation read from EIP1967 storage. Explorer lists implementation0x68184C449E1a8f34fA18d289737129FD27B66f8F, but current/historical storage and implementation logic were not pinned/reviewed. This limited proxy-boundary review does not claim tax-free, permissionless, immutable or always-successful transfers; token Transfer receipts remain explicitly scoped token-denominated evidence."
+      },
+      "runtime_sha256": "c85d18dc1e49769e01f9f88981176e213b2bc24d2f14d33a81d54bc06579f6db",
+      "runtime_bytes": 170,
+      "explorer_is_verified": true,
+      "explorer_proxy_type": "eip1967",
+      "scope": "Targeted sale attribution dependency review; not a complete dependency implementation or current-state audit."
+    }
+  ],
+  "receipt_attribution": {
+    "event": "PremiumSold(uint256,uint256)",
+    "topic0": "0x79374ec49ec36f76193b30b6763852a2777fce5bc71823cfd79cd3ba7e66763e",
+    "event_encoding": "One topic (signature),64data bytes: netSold then usdgSweptRaw, both uint256 nonindexed. Emitter must be canonical seller.",
+    "ordered_source_legs": [
+      "NET Transfer(zero,seller,netSold) emitted by NET.mint",
+      "Treasury NetMinted(seller,seller,netSold); minter and to indexed",
+      "NET Approval(seller,router,netSold)",
+      "Optional NET tax Transfer(seller,taxCollector,tax), TaxCollected(seller,pair,tax), then NET Transfer(seller,pair,netSold-tax)",
+      "Router/pair exchange delivers USDG to seller; seller measures net-new balance delta",
+      "USDG transfer seller→Treasury for measured delta, then PremiumSold(netSold,delta)"
+    ],
+    "grouping": "Use successful transaction receipts and ordered log indices to associate mint, canonical pairSwap, tokenTransfer and final seller event uniquely. Match both event fields against same-execution legs. Do not sum all same-transaction Treasury transfers, caller mints, swaps or direct donations. Ambiguous/missing/mismatched legs remain unreconciled rather than fabricated sales. Provider empty ranges are not proof of history completeness.",
+    "proceeds_meaning": "Event is seller-reported net-new output/requested Treasury transfer, not all USDG cash. Receipt-confirmed delivery is tokenTransfer evidence to Treasury attributable to seller sale. Neither is total Treasury receipts from every source, current Treasury balance, RFV, profit after keeper gas or fiatUSD.",
+    "tax_meaning": "Gross mintedNET can exceed pool receivedNET. TaxCollector NET accrual is separate and not USDG delivered to Treasury by this sale. PairSwap actualinput can also include preexisting unsynced pair balances; reconcile against tokenTransfers instead of assuming equality or multiplying by95%.",
+    "no_history_retained": true
+  },
+  "evidence_limits": [
+    "Independently pinned runtime, constructor/deployment receipt and block hash, dependency storage/code and current permissions; explorer metadata is provider evidence, not an independent chain pin.",
+    "Independent compiler rebuild and source-to-bytecode equivalence or exhaustive path/security audit; dispatcher and immutable matches do not establish these.",
+    "Router, pair and oracle implementation equivalence; USDG is an upgradeable ERC1967 proxy whose current and historical implementation/storage are not pinned here.",
+    "Fresh receipt/log reconciliation and complete historical coverage; no sale totals, activity roster, eligibility or financial state is stored in this package."
+  ],
+  "findings_path": "references/premium-seller-contracts.md"
+}

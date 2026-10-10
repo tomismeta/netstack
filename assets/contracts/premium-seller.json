@@ -1,0 +1,753 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x346e1a31171a0f7ac73909010b5435768d3b5462",
+  "contract_record": "assets/addresses/contracts/perp-oracles-pendle-lp-premium-seller-and-presser-prizes.json",
+  "chain_id": 4663,
+  "address": "0x346e1a31171A0f7aC73909010b5435768d3B5462",
+  "generation": "premium-seller",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal cT, Unicode character offsets[281017,281972); consumer binding to premium-seller",
+      "observed_on": "2026-10-07"
+    },
+    {
+      "source_id": "netnet-premium-seller-implementation-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x346e1a31171A0f7aC73909010b5435768d3B5462",
+      "sha256": "35dae2236d3e18d1f2a1d4d41433ac9a36ff300cbd98548d7a4e8b1d9b217009",
+      "hash_scope": "compact JSON serialized abi array; preserve explorer object-key and entry order",
+      "locator": "Complete explorer abi array and all10 supplied source files; source locators/hashes in premium-seller-source-evidence.json",
+      "observed_on": "2026-10-10"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_explorer_abi_list",
+    "supplied_entry_count": 21,
+    "implementation": "obtained_source_functions_reviewed_unpinned",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned runtime, constructor/deployment receipt and block hash, dependency storage/code and current permissions; explorer metadata is provider evidence, not an independent chain pin.",
+      "Independent compiler rebuild and source-to-bytecode equivalence or exhaustive path/security audit; dispatcher and immutable matches do not establish these.",
+      "Router, pair and oracle implementation equivalence; USDG is an upgradeable ERC1967 proxy whose current and historical implementation/storage are not pinned here.",
+      "Fresh receipt/log reconciliation and complete historical coverage; no sale totals, activity roster, eligibility or financial state is stored in this package."
+    ],
+    "prior_publisher_literal": {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "entry_count": 6,
+      "function_count": 5,
+      "literal_abi_sha256": "72f172c1d52c2890084ebefbe1c42f2643c41f5625644b23bb4e5dc6786a144f",
+      "literal_character_range": [
+        281017,
+        281972
+      ],
+      "difference": "Complete explorer ABI adds8functions,6errors,constructor; premiumThresholdWad mutability is pure, not the prior view label."
+    },
+    "dispatcher_evidence": {
+      "source_id": "netnet-premium-seller-implementation-20261010",
+      "method": "Decode opcode widths; enumerate PUSH4/EQ/PUSH2/JUMPI branches in runtime prefix[0,0xda). All13detected branches exactly match the13ABI functions. No source/bytecode execution or compiler rebuild.",
+      "observed_selector_count": 13,
+      "unmatched_dispatcher_selectors": [],
+      "interface_selectors_not_seen_in_pattern": []
+    },
+    "source_evidence_path": "assets/contracts/premium-seller-source-evidence.json"
+  },
+  "functions": [
+    {
+      "inputs": [],
+      "name": "active",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "active()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[8]"
+      },
+      "selector": "0x02fb0c5e",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:102-110"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "No caller restriction. False on unfinalized genesis or elapsed time below3600 seconds; catches failure of external self-call twapIfAbove only. Genesis finalizeTime(), timestamp subtraction, and clipSize() called in the success body can still revert."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Present eligibility hint: finalized genesis, interval elapsed, threshold helper succeeds, and positive clip. Does not test Treasury wiring/minter authorization, NET permissions/exemption, liquidity execution, minOut, approvals or USDG transfer. Neither liveness nor evidence of historical inactivity."
+      },
+      "dispatcher_match": {
+        "selector": "0x02fb0c5e",
+        "compare_offset": "0xba",
+        "entry_offset": "0xde",
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "scope": "Instruction-boundary dispatcher selector and jump destination, not exhaustive body equivalence"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "clipSize",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "clipSize()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[9]"
+      },
+      "selector": "0x0c614ba0",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:118-122"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "No caller restriction; external pair.getReserves() may revert."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "floor(selected pool NET reserve *25/10000) in NET raw9 units. Selects reserve using constructor-cached _netIsToken0; not seller inventory, lifetime sales, circulating supply, a USDG amount, or a promise of successful execution. Does not consult actual un-synced token balances."
+      },
+      "dispatcher_match": {
+        "selector": "0x0c614ba0",
+        "compare_offset": "0xc5",
+        "entry_offset": "0xfb",
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "scope": "Instruction-boundary dispatcher selector and jump destination, not exhaustive body equivalence"
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "minUsdgOutRaw",
+          "type": "uint256"
+        }
+      ],
+      "name": "execute",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "netSold",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "usdgOutRaw",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "execute(uint256)",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[10]"
+      },
+      "selector": "0xfe0d94c1",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:69-99,128-135"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Permissionless entrypoint, no owner/caller gate. Requires finalizeTime()!=0; oracle read succeeds; TWAP strictly greater than floor(backingPerToken()*2e18/1e18); elapsed time>=3600; clip>0. Treasury/NET wiring and authorization plus router/token failures remain dependency gates. State changes and logs roll back on revert. Descriptive only, not an authorized skill action."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Updates uint64 lastExecuteAt before external mint; mints clip to seller through Treasury, computes ordered floored99%-of-TWAP minimum, applies max(caller minimum, protocol minimum), approves router, swaps NET→USDG to self with fee-on-transfer-supporting path and same-block timestamp deadline. usdgOutRaw=post-swap seller balance minus pre-swap seller balance; checks minimum; transfers exactly delta to Treasury and requires true; emits PremiumSold. Event netSold is minted/gross routedNET, not necessarily pool actual input. Pre-existing sellerUSDG is not swept, Treasury receipt balance is not directly measured, and actual realized price need not exceed2*backing or2USDG."
+      },
+      "dispatcher_match": {
+        "selector": "0xfe0d94c1",
+        "compare_offset": "0x56",
+        "entry_offset": "0x27c",
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "scope": "Instruction-boundary dispatcher selector and jump destination, not exhaustive body equivalence"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "genesisBond",
+      "outputs": [
+        {
+          "internalType": "contract IGenesisBond",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "genesisBond()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[11]"
+      },
+      "selector": "0x748a0ab0",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:36,43-66"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public immutable-address getter without caller restriction; not a live observed state value."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Immutable GenesisBond queried for nonzero finalizeTime. It is the execution prerequisite, not a current finalized-state claim or an ownership/admin role."
+      },
+      "dispatcher_match": {
+        "selector": "0x748a0ab0",
+        "compare_offset": "0x65",
+        "entry_offset": "0x1ab",
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "scope": "Instruction-boundary dispatcher selector and jump destination, not exhaustive body equivalence"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "lastExecuteAt",
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "lastExecuteAt()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[12]"
+      },
+      "selector": "0x44120c56",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:40-41,69-74"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "uint64 Unix seconds of last successful execute (reverts roll back the early write); initially zero. Historical consistency indicator, not a sale counter or total. A nonzero value contradicts a purported complete history lacking its latest sale; an empty filtered scan alone proves neither never-used nor inactive."
+      },
+      "dispatcher_match": {
+        "selector": "0x44120c56",
+        "compare_offset": "0xd0",
+        "entry_offset": "0x111",
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "scope": "Instruction-boundary dispatcher selector and jump destination, not exhaustive body equivalence"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "net",
+      "outputs": [
+        {
+          "internalType": "contract INET",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "net()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[13]"
+      },
+      "selector": "0xc2fff4a5",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:30,43-66"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public immutable-address getter without caller restriction; not a live observed state value."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Immutable NET token binding; NET native amounts use9decimals. Seller calls approve and routes this token; direct mint authority resides in Treasury/NET dependencies, not this getter."
+      },
+      "dispatcher_match": {
+        "selector": "0xc2fff4a5",
+        "compare_offset": "0x7b",
+        "entry_offset": "0x1f9",
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "scope": "Instruction-boundary dispatcher selector and jump destination, not exhaustive body equivalence"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "oracle",
+      "outputs": [
+        {
+          "internalType": "contract IPairOracle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "oracle()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[14]"
+      },
+      "selector": "0x7dc0d1d0",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:35,43-66"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public immutable-address getter without caller restriction; not a live observed state value."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Immutable oracle queried for WAD USDG per wholeNET. Source delegates oracle freshness/window checks; getter does not prove its current configuration or correspondence with the clip pair."
+      },
+      "dispatcher_match": {
+        "selector": "0x7dc0d1d0",
+        "compare_offset": "0x70",
+        "entry_offset": "0x1d2",
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "scope": "Instruction-boundary dispatcher selector and jump destination, not exhaustive body equivalence"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "pairContract",
+      "outputs": [
+        {
+          "internalType": "contract IUniswapV2Pair",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pairContract()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[15]"
+      },
+      "selector": "0x4d709adf",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:33,43-66"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public immutable-address getter without caller restriction; not a live observed state value."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Immutable pair used only for reserve-based clip calculation and constructor token-order caching. The swap is routed by router/path, not a direct call to this address; constructor does not validate token1 or router/factory membership."
+      },
+      "dispatcher_match": {
+        "selector": "0x4d709adf",
+        "compare_offset": "0x95",
+        "entry_offset": "0x13d",
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "scope": "Instruction-boundary dispatcher selector and jump destination, not exhaustive body equivalence"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "premiumThresholdWad",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "signature": "premiumThresholdWad()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[16]"
+      },
+      "selector": "0xdc727a38",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:124-126; src/Constants.sol:68"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Pure function without caller gate; explorer ABI corrects publisher literal view to pure."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Constant2000000000000000000: dimensionless2x backing multiplier, not a fixed2USDG price. execute uses strict greater-than; equality is inactive. No setter or owner-controlled parameter path in this source."
+      },
+      "dispatcher_match": {
+        "selector": "0xdc727a38",
+        "compare_offset": "0x35",
+        "entry_offset": "0x220",
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "scope": "Instruction-boundary dispatcher selector and jump destination, not exhaustive body equivalence"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "router",
+      "outputs": [
+        {
+          "internalType": "contract IUniswapV2Router02",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "router()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[17]"
+      },
+      "selector": "0xf887ea40",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:32,43-66"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public immutable-address getter without caller restriction; not a live observed state value."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Immutable fee-on-transfer-supporting UniswapV2 router binding for the two-token NET→USDG path. Constructor does not compare router factory to pair; runtime identity and matching pool require separate evidence."
+      },
+      "dispatcher_match": {
+        "selector": "0xf887ea40",
+        "compare_offset": "0x4b",
+        "entry_offset": "0x255",
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "scope": "Instruction-boundary dispatcher selector and jump destination, not exhaustive body equivalence"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "treasury",
+      "outputs": [
+        {
+          "internalType": "contract ITreasury",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "treasury()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[18]"
+      },
+      "selector": "0x61d027b3",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:34,43-66"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public immutable-address getter without caller restriction; not a live observed state value."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Immutable Treasury used for backingPerToken(), mintNet(seller,clip), and saleUSDG receipt. Getter is not proof seller is authorized in isMinter or of Treasury assets/permissions."
+      },
+      "dispatcher_match": {
+        "selector": "0x61d027b3",
+        "compare_offset": "0xa0",
+        "entry_offset": "0x17c",
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "scope": "Instruction-boundary dispatcher selector and jump destination, not exhaustive body equivalence"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "twapIfAbove",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "twapIfAbove()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[19]"
+      },
+      "selector": "0x6af08d89",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:112-115,128-135"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public external view helper; intended for active self-call but not restricted to self. Reverts if unfinalized, oracle fails, or TWAP<=threshold."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Returns oracle TWAP in WAD USDG per wholeNET after threshold gate. Does not check interval, clip, Treasury mint permission or swap executability. Oracle interface documents30min–4h windows; seller delegates validity to oracle and does not itself checkpoint or independently enforce window bounds."
+      },
+      "dispatcher_match": {
+        "selector": "0x6af08d89",
+        "compare_offset": "0xab",
+        "entry_offset": "0x1a3",
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "scope": "Instruction-boundary dispatcher selector and jump destination, not exhaustive body equivalence"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "usdg",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdg()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[20]"
+      },
+      "selector": "0xf5b91b7b",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:31,43-66"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public immutable-address getter without caller restriction; not a live observed state value."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Immutable USDG token address used for balance-delta measurement and Treasury transfer. Explorer identifies this dependency as an upgradeable ERC1967 proxy; immutable address does not freeze token behavior or prove fiatUSD redemption."
+      },
+      "dispatcher_match": {
+        "selector": "0xf5b91b7b",
+        "compare_offset": "0x40",
+        "entry_offset": "0x22e",
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "scope": "Instruction-boundary dispatcher selector and jump destination, not exhaustive body equivalence"
+      }
+    }
+  ],
+  "events": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "netSold",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "usdgSweptRaw",
+          "type": "uint256"
+        }
+      ],
+      "name": "PremiumSold",
+      "signature": "PremiumSold(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[7]"
+      },
+      "topic0": "0x79374ec49ec36f76193b30b6763852a2777fce5bc71823cfd79cd3ba7e66763e",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/interfaces/IPremiumSeller.sol:14; src/PremiumSeller.sol:76-98"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Both uint256 fields nonindexed. netSold is newly minted clip in NET raw9. usdgSweptRaw is net-new seller USDG balance during swap in raw6, then requested transfer to Treasury, NOT all seller cash. Emitted only after transfer returns true; independently reconcile receipt USDG Transfer and swap/mint legs before labelling receipt-confirmed proceeds. No caller, execution price, NAV, tax or timestamp field."
+      }
+    }
+  ],
+  "errors": [
+    {
+      "inputs": [],
+      "name": "IntervalNotElapsed",
+      "signature": "IntervalNotElapsed()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[1]"
+      },
+      "selector": "0xc8851033",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:25,71-73"
+      },
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "block.timestamp-lastExecuteAt<3600 after the threshold check. Equality at3600 is allowed."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "MulDivOverflow",
+      "signature": "MulDivOverflow()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[2]"
+      },
+      "selector": "0x49248f77",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/libraries/FixedPointMath.sol:8,11-46"
+      },
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "Full-precision mulDiv result cannot fit uint256 (denominator<=high product limb in the512-bit path). Imported error retained in actual ABI; normal fixed denominators are nonzero. Other checked arithmetic can panic independently."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "NotActive",
+      "signature": "NotActive()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[3]"
+      },
+      "selector": "0x80cb55e2",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:24,77,129,134"
+      },
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "Unfinalized genesis, zero NET clip, or TWAP<=2x backing threshold. active() handles some but not all dependency failures by returning false."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "SlippageExceeded",
+      "signature": "SlippageExceeded()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[4]"
+      },
+      "selector": "0x8199f5f3",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:26,95-96"
+      },
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "Seller post-swap USDG delta is below max(caller minimum, ordered-floored protocol minimum). Router may already revert separately before this local check."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "TransferFailed",
+      "signature": "TransferFailed()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[5]"
+      },
+      "selector": "0x90b8ec18",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:27,97"
+      },
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "USDG transfer of measured delta to Treasury returns false. Token revert/malformed return can propagate differently; seller does not perform a Treasury balance-after check."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "ZeroAddress",
+      "signature": "ZeroAddress()",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[6]"
+      },
+      "selector": "0xd92e233d",
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:28,52-56"
+      },
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "Any of the seven constructor address arguments is zero. This constructor-only check does not establish dependency code identity, token-pair membership or permissions."
+      }
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "net_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "usdg_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "router_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "pair_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "treasury_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "oracle_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "genesisBond_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "Explorer abi array[0]"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-premium-seller-implementation-20261010",
+        "locator": "src/PremiumSeller.sol:43-66"
+      },
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "Nonpayable seven-address constructor rejects zero inputs, stores immutable bindings, caches pair.token0()==NET and10**(18-USDG.decimals()). Decimals above18 panic; external dependency failures propagate. Does not validate NET decimals, token1, pair factory/router alignment, oracle configuration or Treasury mint permission. No owner initialization/wiring/setter/proxy upgrade entrypoint exists in this source."
+      }
+    }
+  ],
+  "special_entrypoint_review": {
+    "status": "source_and_dispatcher_reviewed",
+    "detail": "No fallback or receive defined; unrecognized selectors and calldata shorter than4bytes revert through default dispatch. Runtime begins with a global nonpayable value check. No owner, parameter setter, upgrade, recovery or arbitrary-call entrypoint detected in the complete obtained source/ABI."
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x39ce3cf58d65c96c86803556e4091f735efdab17",
+  "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+  "chain_id": 4663,
+  "address": "0x39Ce3cf58d65c96c86803556e4091F735efDaB17",
+  "generation": "netlong-margin-settle-lib",
+  "provenance": [
+    {
+      "source_id": "netlong-margin-settle-lib-explorer-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x39Ce3cf58d65c96c86803556e4091F735efDaB17",
+      "observed_on": "2026-10-10",
+      "locator": "Complete explorer smart-contract response; source/ABI fields and deployed_bytecode where supplied"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "abi_not_obtained",
+    "supplied_entry_count": 0,
+    "implementation": "targeted_static_runtime_review_with_explicit_unresolved_dispatchers",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+      "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+      "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+    ],
+    "runtime_dispatcher_count": 6,
+    "runtime_unresolved_signature_count": 6
+  },
+  "runtime_identity": {
+    "byte_count": 10741,
+    "sha256": "a484f98a1ed21f3c57a0dae8573b16834a583134a1a04998318a982fa33dbf3f",
+    "keccak256": "0xd0a7e3d2aa7910d119e66ae842842b02717106d99c3136e33bb7867d05e56d78",
+    "evidence_kind": "explorer_indexed_unpinned_runtime",
+    "proxy_type": null,
+    "explorer_is_verified": null,
+    "explorer_is_fully_verified": null,
+    "verified_twin_address": null
+  },
+  "functions": [],
+  "events": [],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": [],
+  "runtime_review": [
+    {
+      "scope": "all six dispatcher branches",
+      "selectors": [
+        "0x0a48f8df",
+        "0x15cc3924",
+        "0x19525d50",
+        "0x272d3cbf",
+        "0x36f4c3b4",
+        "0xf6ec3430"
+      ],
+      "detail": "Source/ABI unavailable. Bodies traced: sell/settle0x0172,buy leg0x0970,route selection0x09b2,surplus sweep0x0b43,remove-margin0x0d21,zero-unit impaired exit0x10b2. Mutating library entries have Solidity delegatecall-context guards. Full parameter names/storage layout are not attested."
+    },
+    {
+      "scope": "tax-token/rebase execution",
+      "pcs": [
+        "0x14a2-0x16ec"
+      ],
+      "detail": "Pro-rata units use virtual+1 assets/+1e6 shares; token transferred to executor, output measured by destination balance delta and capped against executor returned amount. Tax/rebase changes are not hidden by nominal amounts."
+    },
+    {
+      "scope": "settlement waterfall",
+      "pcs": [
+        "0x0172-0x0962",
+        "0x16ec-0x196c",
+        "0x196c-0x1b35",
+        "0x1b35-0x1dc5"
+      ],
+      "detail": "Close fee25bps of proceeds; liquidation-reason branches additionally100bps penalty, half floor50% insurance and remainder feeRouter. Net liquidation proceeds retire debt; voluntary partial sales retire proportional debt. Full sale/voluntary shortfall may seize posted wsNET with ceil credit conversion capped to margin. Uncovered voluntary exit reverts. Pot receives wsNET, no wsNET market sale. Retires notional/cap shares proportionally; loss to pot not all attributed to borrower."
+    },
+    {
+      "scope": "route authority and delay",
+      "pcs": [
+        "0x09b2-0x0b43"
+      ],
+      "detail": "Lister may supply route; trader route allowed only for borrower-directed branch. Others use canonical pool route; non-trader borrower-close fallback has600-second last-touch check. Do not confuse this route fallback delay with documented300-second under-maintenance persistence."
+    },
+    {
+      "scope": "LOSE eligibility and failure",
+      "pcs": [
+        "0x2133-0x2262"
+      ],
+      "detail": "Calls distributor record(trader,credited seized-margin USDG*1e12) only for nonzero actual credited borrower loss; pot uncovered shortfall excluded. Low-level CALL failure emits failure event and does not revert settlement. No claim retry or backfill guarantee established."
+    }
+  ],
+  "source_files": [],
+  "runtime_dispatch": [
+    {
+      "selector": "0x0a48f8df",
+      "entry_pc": "0x7e",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x15cc3924",
+      "entry_pc": "0xc6",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x19525d50",
+      "entry_pc": "0xf3",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x272d3cbf",
+      "entry_pc": "0x113",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x36f4c3b4",
+      "entry_pc": "0x134",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xf6ec3430",
+      "entry_pc": "0x153",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    }
+  ]
+}

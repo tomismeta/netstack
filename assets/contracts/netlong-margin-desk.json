@@ -1,0 +1,1789 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0xe1685b19367e066af3e499dd4b0e51866b762c84",
+  "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+  "chain_id": 4663,
+  "address": "0xE1685b19367E066af3e499DD4B0E51866B762c84",
+  "generation": "netlong-margin-desk",
+  "provenance": [
+    {
+      "source_id": "netlong-margin-desk-explorer-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xE1685b19367E066af3e499DD4B0E51866B762c84",
+      "observed_on": "2026-10-10",
+      "locator": "Complete explorer smart-contract response; source/ABI fields and deployed_bytecode where supplied"
+    },
+    {
+      "source_id": "netnet-trading-entry-20261010",
+      "url": "https://trading.netnet.capital/assets/index-BViJKZuW.js",
+      "sha256": "b62b66a56fbaa9d7b387761108e99e72633369c14f3a8ad6fda8444ba9be70bc",
+      "observed_on": "2026-10-10",
+      "locator": "Literal zn Unicode character range [852982, 856823]; bound consumer; not full contract ABI"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_partial_contract_abi",
+    "supplied_entry_count": 27,
+    "implementation": "targeted_static_runtime_review_with_explicit_unresolved_dispatchers",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+      "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+      "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+    ],
+    "runtime_dispatcher_count": 59,
+    "runtime_unresolved_signature_count": 21
+  },
+  "runtime_identity": {
+    "byte_count": 24403,
+    "sha256": "17b0806d172eab539e3fd362416666284dfb8656d2b93ec5b73e75cf4593555f",
+    "keccak256": "0xa74be8a609bdb8472728ecea5b5f10b0695f5a016b80ceecec422ab2491d67e7",
+    "evidence_kind": "explorer_indexed_unpinned_runtime",
+    "proxy_type": null,
+    "explorer_is_verified": null,
+    "explorer_is_fully_verified": null,
+    "verified_twin_address": null
+  },
+  "functions": [
+    {
+      "name": "listings",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct Listing",
+          "components": [
+            {
+              "name": "allowed",
+              "type": "bool"
+            },
+            {
+              "name": "measuredAt",
+              "type": "uint64"
+            },
+            {
+              "name": "tokenDecimals",
+              "type": "uint8"
+            },
+            {
+              "name": "listed",
+              "type": "bool"
+            },
+            {
+              "name": "probeOk",
+              "type": "bool"
+            },
+            {
+              "name": "ownerRisk",
+              "type": "bool"
+            },
+            {
+              "name": "pool",
+              "type": "address"
+            },
+            {
+              "name": "quoteIsWeth",
+              "type": "bool"
+            },
+            {
+              "name": "depthUsdWad",
+              "type": "uint128"
+            },
+            {
+              "name": "sigmaHBps",
+              "type": "uint32"
+            },
+            {
+              "name": "maxLeverageWad",
+              "type": "uint64"
+            },
+            {
+              "name": "safeCapUsdWad",
+              "type": "uint128"
+            },
+            {
+              "name": "safeMaxLeverageWad",
+              "type": "uint64"
+            },
+            {
+              "name": "capUsedWad",
+              "type": "uint128"
+            },
+            {
+              "name": "notionalUsdWad",
+              "type": "uint128"
+            },
+            {
+              "name": "totalShares",
+              "type": "uint128"
+            }
+          ]
+        }
+      ],
+      "signature": "listings(address)",
+      "selector": "0x65d96c82",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[0]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Returns the 16-field per-token listing/accounting tuple. listed is historical registration, allowed is an opening gate, not all eligibility; capUsedWad reserves normalized cap shares, not USD principal; notionalUsdWad is stored entry/reservation accounting, not current marked exposure. Live parameters require same-block reads."
+      }
+    },
+    {
+      "name": "tokenCount",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "tokenCount()",
+      "selector": "0x9f181b5e",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[1]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Append-only token registry length (slot3); delisting does not make historical entries disappear. Bound pagination and deduplicate addresses."
+      }
+    },
+    {
+      "name": "tokenAt",
+      "inputs": [
+        {
+          "name": "i",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "signature": "tokenAt(uint256)",
+      "selector": "0x92a91a3a",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[2]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Returns token address at registry index; out-of-range access reverts. Discovery is dynamic, not the UI shortlist."
+      }
+    },
+    {
+      "name": "marks",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "twapPriceWad",
+          "type": "uint256"
+        },
+        {
+          "name": "spotPriceWad",
+          "type": "uint256"
+        },
+        {
+          "name": "twapLive",
+          "type": "bool"
+        }
+      ],
+      "signature": "marks(address)",
+      "selector": "0x1b1a1e24",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[3]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "ListerLib delegates to token TWAP source; full marks success returns TWAP/spot/live, failure attempts spot only then returns nonlive zero/fallback fields. Nonlive is not a valid liquidation mark."
+      }
+    },
+    {
+      "name": "wsCredit",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "creditPerWsWad",
+          "type": "uint256"
+        },
+        {
+          "name": "live",
+          "type": "bool"
+        }
+      ],
+      "signature": "wsCredit()",
+      "selector": "0xa60ddfbc",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[4]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Reads shared margin oracle credit/live state. Consult shared-oracle catalog; credit is not the wsNET token balance or a cash-redeemability promise."
+      }
+    },
+    {
+      "name": "opensAllowed",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "ok",
+          "type": "bool"
+        },
+        {
+          "name": "reason",
+          "type": "uint8"
+        }
+      ],
+      "signature": "opensAllowed(address)",
+      "selector": "0xc339e085",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[5]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Returns opening eligibility/reason based on listing, measurement freshness and probe/oracle/lending conditions; do not equate tokenAt membership with active listing."
+      }
+    },
+    {
+      "name": "paramsAt",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "name": "leverageWad",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "slipBps",
+          "type": "uint16"
+        },
+        {
+          "name": "tokenCapUsdWad",
+          "type": "uint256"
+        },
+        {
+          "name": "positionCapUsdWad",
+          "type": "uint256"
+        },
+        {
+          "name": "maintenanceBps",
+          "type": "uint16"
+        }
+      ],
+      "signature": "paramsAt(address,uint256)",
+      "selector": "0x39af3900",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[6]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Integer leverage-specific slip, cap and maintenance formula delegated to ListerLib. Safe ceilings/caps constrain the formula; see runtime_review."
+      }
+    },
+    {
+      "name": "positions",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct Position",
+          "components": [
+            {
+              "name": "trader",
+              "type": "address"
+            },
+            {
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "name": "state",
+              "type": "uint8"
+            },
+            {
+              "name": "openedAt",
+              "type": "uint64"
+            },
+            {
+              "name": "lastTouch",
+              "type": "uint64"
+            },
+            {
+              "name": "underSince",
+              "type": "uint64"
+            },
+            {
+              "name": "deadline",
+              "type": "uint64"
+            },
+            {
+              "name": "marginWs",
+              "type": "uint128"
+            },
+            {
+              "name": "loanUsdg",
+              "type": "uint128"
+            },
+            {
+              "name": "scaledDebtWad",
+              "type": "uint128"
+            },
+            {
+              "name": "shares",
+              "type": "uint128"
+            },
+            {
+              "name": "entryPriceWad",
+              "type": "uint128"
+            },
+            {
+              "name": "notionalUsdWad",
+              "type": "uint128"
+            },
+            {
+              "name": "capShareWad",
+              "type": "uint128"
+            },
+            {
+              "name": "leverageWad",
+              "type": "uint64"
+            },
+            {
+              "name": "slipBps",
+              "type": "uint16"
+            },
+            {
+              "name": "maintenanceBps",
+              "type": "uint16"
+            },
+            {
+              "name": "maxPriceWad",
+              "type": "uint128"
+            },
+            {
+              "name": "minProceedsUsdg",
+              "type": "uint128"
+            },
+            {
+              "name": "sharesPending",
+              "type": "uint128"
+            }
+          ]
+        }
+      ],
+      "signature": "positions(uint256)",
+      "selector": "0x99fbab88",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[7]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Stored position tuple keyed by id, including state/marginWs/loanUsdg/scaledDebtWad/shares/entry notional. Stored principal is not accrued debt; pending-buy is not executed OI."
+      }
+    },
+    {
+      "name": "positionOf",
+      "inputs": [
+        {
+          "name": "trader",
+          "type": "address"
+        },
+        {
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "signature": "positionOf(address,address)",
+      "selector": "0x892f928e",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[8]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Per-trader/per-token position id; zero means no currently registered id. Not a global trader enumeration."
+      }
+    },
+    {
+      "name": "unitsOf",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "unitsOf(uint256)",
+      "selector": "0x99f771a7",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[9]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "For nonzero token and totalShares: floor(position.shares*(token.balanceOf(desk)+1)/(listing.totalShares+1000000)); zero when shares or totalShares zero. Rebase/donation and tax transfers affect balances. Runtime entry0x867\u21920x20fa\u21920x3ca0\u21920x4b97."
+      }
+    },
+    {
+      "name": "debtUsdg",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "debtUsdg(uint256)",
+      "selector": "0x93f8bf36",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[10]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Zero when scaledDebtWad is zero; otherwise calls pot debt conversion selector0xbd7be5a4 with scaled debt, including current accrued index and ceiling. Pending-buy loanUsdg is not debt before executeBuy."
+      }
+    },
+    {
+      "name": "health",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct Health",
+          "components": [
+            {
+              "name": "tokenValueUsdWad",
+              "type": "uint256"
+            },
+            {
+              "name": "marginCreditUsdWad",
+              "type": "uint256"
+            },
+            {
+              "name": "debtUsdWad",
+              "type": "uint256"
+            },
+            {
+              "name": "ltvBps",
+              "type": "uint256"
+            },
+            {
+              "name": "under",
+              "type": "bool"
+            },
+            {
+              "name": "tokenTwapLive",
+              "type": "bool"
+            },
+            {
+              "name": "netOracleLive",
+              "type": "bool"
+            }
+          ]
+        }
+      ],
+      "signature": "health(uint256)",
+      "selector": "0x783b6d60",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[11]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Returns token value, wsNET credit, debt, LTV and separate oracle-live flags. Marks lower TWAP/spot where live. Under-maintenance must not be computed from stale/fallback marks as if live."
+      }
+    },
+    {
+      "name": "liquidationPrices",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "tokenPriceWad",
+          "type": "uint256"
+        },
+        {
+          "name": "netPriceWad",
+          "type": "uint256"
+        }
+      ],
+      "signature": "liquidationPrices(uint256)",
+      "selector": "0xef7d2bc5",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[12]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Conditional token and NET threshold read, not executable price/guaranteed liquidation fill; linked ListerLib path includes wsNET credit scaling."
+      }
+    },
+    {
+      "name": "minProceedsFor",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "name": "units",
+          "type": "uint256"
+        },
+        {
+          "name": "slipBps",
+          "type": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "minProceedsFor(address,uint256,uint16)",
+      "selector": "0x384c5b83",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[13]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "TWAP/slippage-based USDG proceeds floor with token decimal scaling; not route quote. Missing TWAP may revert; voluntary close can supply its own proceeds floor."
+      }
+    },
+    {
+      "name": "quoteOpen",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "name": "trader",
+          "type": "address"
+        },
+        {
+          "name": "marginWs",
+          "type": "uint256"
+        },
+        {
+          "name": "leverageWad",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct Quote",
+          "components": [
+            {
+              "name": "creditPerWsWad",
+              "type": "uint256"
+            },
+            {
+              "name": "marginCreditUsdWad",
+              "type": "uint256"
+            },
+            {
+              "name": "loanUsdg",
+              "type": "uint256"
+            },
+            {
+              "name": "feeUsdg",
+              "type": "uint256"
+            },
+            {
+              "name": "spendUsdg",
+              "type": "uint256"
+            },
+            {
+              "name": "notionalUsdWad",
+              "type": "uint256"
+            },
+            {
+              "name": "twapPriceWad",
+              "type": "uint256"
+            },
+            {
+              "name": "spotPriceWad",
+              "type": "uint256"
+            },
+            {
+              "name": "unitsAtTwap",
+              "type": "uint256"
+            },
+            {
+              "name": "minUnits",
+              "type": "uint256"
+            },
+            {
+              "name": "slipBps",
+              "type": "uint16"
+            },
+            {
+              "name": "maintenanceBps",
+              "type": "uint16"
+            },
+            {
+              "name": "allowed",
+              "type": "bool"
+            },
+            {
+              "name": "reason",
+              "type": "uint8"
+            }
+          ]
+        }
+      ],
+      "signature": "quoteOpen(address,address,uint256,uint256)",
+      "selector": "0xfab5993f",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[14]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read-only eligibility/loan/fee/spend/units quote, not fill. Loan funds the whole leveraged purchase (not leverage minus one); 25bps opening fee is deducted from borrowed USDG."
+      }
+    },
+    {
+      "name": "open",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "name": "marginWs",
+          "type": "uint256"
+        },
+        {
+          "name": "leverageWad",
+          "type": "uint256"
+        },
+        {
+          "name": "maxPriceWad",
+          "type": "uint256"
+        },
+        {
+          "name": "deadline",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "outputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "signature": "open(address,uint256,uint256,uint256,uint64)",
+      "selector": "0xb199f29e",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[15]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Takes caller wsNET and records pending-buy state1 with bounds/deadline and normalized cap reservation. Does not itself acquire tokens or fund the loan; execution is a second transition."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Takes caller wsNET and records pending-buy state1 with bounds/deadline and normalized cap reservation. Does not itself acquire tokens or fund the loan; execution is a second transition."
+      }
+    },
+    {
+      "name": "openWithSNet",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "name": "sNetAmount",
+          "type": "uint256"
+        },
+        {
+          "name": "leverageWad",
+          "type": "uint256"
+        },
+        {
+          "name": "maxPriceWad",
+          "type": "uint256"
+        },
+        {
+          "name": "deadline",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "outputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "signature": "openWithSNet(address,uint256,uint256,uint256,uint64)",
+      "selector": "0xf182d1ea",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[16]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Converts caller sNET through pinned wsNET wrapping path before pending-open recording. Source unavailable: exact wrapper rounding/tax transfer edge reachability remains partial."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Converts caller sNET through pinned wsNET wrapping path before pending-open recording. Source unavailable: exact wrapper rounding/tax transfer edge reachability remains partial."
+      }
+    },
+    {
+      "name": "openWithNet",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "name": "netAmount",
+          "type": "uint256"
+        },
+        {
+          "name": "leverageWad",
+          "type": "uint256"
+        },
+        {
+          "name": "maxPriceWad",
+          "type": "uint256"
+        },
+        {
+          "name": "deadline",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "outputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "signature": "openWithNet(address,uint256,uint256,uint256,uint64)",
+      "selector": "0xcb9631fc",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[17]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Stakes/wraps caller NET through pinned dependencies before pending-open recording. Source unavailable: full external staking tax/rounding dependency behavior not established here."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Stakes/wraps caller NET through pinned dependencies before pending-open recording. Source unavailable: full external staking tax/rounding dependency behavior not established here."
+      }
+    },
+    {
+      "name": "cancelOpen",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "outputs": [],
+      "signature": "cancelOpen(uint256)",
+      "selector": "0x806762a0",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[18]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Pending-open cancellation returns posted margin and clears reservation/position mapping under runtime authorization/deadline gates; not a close of executed token exposure."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Pending-open cancellation returns posted margin and clears reservation/position mapping under runtime authorization/deadline gates; not a close of executed token exposure."
+      }
+    },
+    {
+      "name": "executeBuy",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "name": "route",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "outputs": [
+        {
+          "name": "units",
+          "type": "uint256"
+        },
+        {
+          "name": "fillPriceWad",
+          "type": "uint256"
+        }
+      ],
+      "signature": "executeBuy(uint256,bytes)",
+      "selector": "0xd5c5df99",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[19]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Requires pending-buy state1, deadline and current listing freshness; pot lends stored loanUsdg, fee25bps sent to fee router, actual received token units measured, TWAP minimum and trader maximum fill price enforced, shares minted using virtual units/shares, then state2 and scaled debt stored. Atomic downstream failure reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Requires pending-buy state1, deadline and current listing freshness; pot lends stored loanUsdg, fee25bps sent to fee router, actual received token units measured, TWAP minimum and trader maximum fill price enforced, shares minted using virtual units/shares, then state2 and scaled debt stored. Atomic downstream failure reverts."
+      }
+    },
+    {
+      "name": "closeNow",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "name": "units",
+          "type": "uint256"
+        },
+        {
+          "name": "minProceedsUsdg",
+          "type": "uint256"
+        },
+        {
+          "name": "route",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "outputs": [
+        {
+          "name": "proceedsUsdg",
+          "type": "uint256"
+        }
+      ],
+      "signature": "closeNow(uint256,uint256,uint256,bytes)",
+      "selector": "0x8c778fa1",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[20]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Trader-directed sale with caller minimum proceeds; settlement uses actual receipt and proportional shares/debt, close fee, and posted wsNET if needed. Uncovered voluntary exit reverts. Source-unavailable conditions are separated in runtime_review."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Trader-directed sale with caller minimum proceeds; settlement uses actual receipt and proportional shares/debt, close fee, and posted wsNET if needed. Uncovered voluntary exit reverts. Source-unavailable conditions are separated in runtime_review."
+      }
+    },
+    {
+      "name": "addMargin",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "name": "ws",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "outputs": [],
+      "signature": "addMargin(uint256,uint256)",
+      "selector": "0xd41194b8",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[21]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Adds wsNET to existing position and clears/reassesses margin-call checkpoint path; no new borrowed spot purchase. Exact every-state transition coverage remains incomplete without source."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Adds wsNET to existing position and clears/reassesses margin-call checkpoint path; no new borrowed spot purchase. Exact every-state transition coverage remains incomplete without source."
+      }
+    },
+    {
+      "name": "removeMargin",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "name": "ws",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "outputs": [],
+      "signature": "removeMargin(uint256,uint256)",
+      "selector": "0x4b8f4381",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[22]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Borrower only, states2/3, no active underSince checkpoint; after subtraction both token and NET oracle flags must be live and position above opening requirement. SettleLib0x0d21..0x10b2."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Borrower only, states2/3, no active underSince checkpoint; after subtraction both token and NET oracle flags must be live and position above opening requirement. SettleLib0x0d21..0x10b2."
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "Opened",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "token",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "marginWs",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "leverageWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "loanUsdg",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "slipBps",
+          "type": "uint16",
+          "indexed": false
+        },
+        {
+          "name": "maintenanceBps",
+          "type": "uint16",
+          "indexed": false
+        },
+        {
+          "name": "maxPriceWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "deadline",
+          "type": "uint64",
+          "indexed": false
+        }
+      ],
+      "anonymous": false,
+      "signature": "Opened(uint256,address,address,uint256,uint256,uint256,uint16,uint16,uint256,uint64)",
+      "topic0": "0x6b3eaefbad384d06f0d9e8c6543170ac4f492e3f332c626662f97fdffa232e5a",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[23]"
+      },
+      "semantics": {
+        "status": "publisher_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": []
+      }
+    },
+    {
+      "name": "Bought",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "token",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "spendUsdg",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "units",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "fillPriceWad",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "feeUsdg",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "by",
+          "type": "address",
+          "indexed": false
+        }
+      ],
+      "anonymous": false,
+      "signature": "Bought(uint256,address,address,uint256,uint256,uint256,uint256,address)",
+      "topic0": "0x3b358845e7df2c278bb8ac3175a9b499f78b5cd2139cafadeb1bbb1e133fffc3",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[24]"
+      },
+      "semantics": {
+        "status": "publisher_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": []
+      }
+    },
+    {
+      "name": "Sold",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "token",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "reason",
+          "type": "uint8",
+          "indexed": false
+        },
+        {
+          "name": "units",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "proceedsUsdg",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "feeUsdg",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "penaltyUsdg",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "debtRepaidUsdg",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "seizedWs",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "shortfallUsdg",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "returnedUsdg",
+          "type": "uint256",
+          "indexed": false
+        },
+        {
+          "name": "by",
+          "type": "address",
+          "indexed": false
+        }
+      ],
+      "anonymous": false,
+      "signature": "Sold(uint256,address,address,uint8,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address)",
+      "topic0": "0x1b99e125e22fc5adb858e408dd06386b1c62f248766b39eec7ff673d85b4ec60",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[25]"
+      },
+      "semantics": {
+        "status": "publisher_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": []
+      }
+    },
+    {
+      "name": "MarginReturned",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "indexed": true
+        },
+        {
+          "name": "trader",
+          "type": "address",
+          "indexed": true
+        },
+        {
+          "name": "ws",
+          "type": "uint256",
+          "indexed": false
+        }
+      ],
+      "anonymous": false,
+      "signature": "MarginReturned(uint256,address,uint256)",
+      "topic0": "0x9caaf00ca5ce95817f564f79da27b7deae36d9c10624e6dd2a80f5c60d8eb599",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[26]"
+      },
+      "semantics": {
+        "status": "publisher_declared",
+        "detail": "Event fields are exact emitted-ABI vocabulary, not proof an event occurred; use transaction/log context.",
+        "source_declarations": []
+      }
+    }
+  ],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": [],
+  "runtime_review": [
+    {
+      "scope": "dependency pins and enumeration",
+      "pcs": [
+        "0x497",
+        "0x534",
+        "0xa77",
+        "0xab1",
+        "0xbf8",
+        "0xcde",
+        "0xd0d",
+        "0x812"
+      ],
+      "detail": "Direct immutable getters pin TWAP source,pot,shared oracle,LOSE distributor,executor,fee router,USDG. nextPositionId reads slot6 initialized to1 in creation; ids are not proof of active positions."
+    },
+    {
+      "scope": "buy transition",
+      "pcs": [
+        "0x2f00-0x35c0"
+      ],
+      "detail": "State1 pending request; deadline/freshness guards; pot lend called only in executeBuy; fee= floor(loanUsdg*25/10000), spend=loan-fee; actual received units measured and TWAP/trader-price floor checked; position debt/shares initialized after fill. Unknown all edge predicates remain non-certified."
+    },
+    {
+      "scope": "units and debt",
+      "pcs": [
+        "0x20fa",
+        "0x3ca0-0x3d4b",
+        "0x4b97-0x4bca",
+        "0x2038-0x20fa"
+      ],
+      "detail": "unitsOf is zero for zero shares or listing totalShares, otherwise floor(shares*(balanceOf(desk)+1)/(totalShares+1e6)); debtUsdg delegates scaled-debt conversion, zero before funded buy. Entry/reserved listing notional is not current marked exposure."
+    },
+    {
+      "scope": "linked implementation boundary",
+      "pcs": [
+        "0x21e7-0x2265",
+        "0x32ca-0x335a"
+      ],
+      "detail": "DELEGATECALL uses hardcoded SettleLib0x39Ce... and ListerLib0xA8Ad...; libraries operate on Desk storage. Neither publisher interface nor no-proxy metadata proves complete dependency safety."
+    }
+  ],
+  "source_files": [],
+  "runtime_dispatch": [
+    {
+      "selector": "0x1adb8eb6",
+      "entry_pc": "0x38c",
+      "candidate_signature": "sNet()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x1b1a1e24",
+      "entry_pc": "0x3d0",
+      "candidate_signature": "marks(address)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x2134f0f2",
+      "entry_pc": "0x400",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x262d6152",
+      "entry_pc": "0x428",
+      "candidate_signature": "zap()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x2bf6730e",
+      "entry_pc": "0x44f",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x2cdc1c74",
+      "entry_pc": "0x470",
+      "candidate_signature": "lister()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x316e13a3",
+      "entry_pc": "0x482",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x33b3a857",
+      "entry_pc": "0x497",
+      "candidate_signature": "twapSource()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x384c5b83",
+      "entry_pc": "0x4be",
+      "candidate_signature": "minProceedsFor(address,uint256,uint16)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x39af3900",
+      "entry_pc": "0x4d1",
+      "candidate_signature": "paramsAt(address,uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x484648a5",
+      "entry_pc": "0x50e",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x4b8f4381",
+      "entry_pc": "0x521",
+      "candidate_signature": "removeMargin(uint256,uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x4ba2363a",
+      "entry_pc": "0x534",
+      "candidate_signature": "pot()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x612e22b7",
+      "entry_pc": "0x55b",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x65d96c82",
+      "entry_pc": "0x56e",
+      "candidate_signature": "listings(address)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x6ad6d45b",
+      "entry_pc": "0x744",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x708f69f7",
+      "entry_pc": "0x757",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x70c6cea8",
+      "entry_pc": "0x773",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x743fba7e",
+      "entry_pc": "0x786",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x783b6d60",
+      "entry_pc": "0x78f",
+      "candidate_signature": "health(uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x806762a0",
+      "entry_pc": "0x7af",
+      "candidate_signature": "cancelOpen(uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x815f0a8b",
+      "entry_pc": "0x7c2",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x87d785e4",
+      "entry_pc": "0x7d5",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x892f928e",
+      "entry_pc": "0x7e8",
+      "candidate_signature": "positionOf(address,address)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x899346c7",
+      "entry_pc": "0x812",
+      "candidate_signature": "nextPositionId()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x8c3426a4",
+      "entry_pc": "0x81b",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x8c778fa1",
+      "entry_pc": "0x82e",
+      "candidate_signature": "closeNow(uint256,uint256,uint256,bytes)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x92a91a3a",
+      "entry_pc": "0x841",
+      "candidate_signature": "tokenAt(uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x93f8bf36",
+      "entry_pc": "0x854",
+      "candidate_signature": "debtUsdg(uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x99f771a7",
+      "entry_pc": "0x867",
+      "candidate_signature": "unitsOf(uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x99fbab88",
+      "entry_pc": "0x87a",
+      "candidate_signature": "positions(uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x9ae5668c",
+      "entry_pc": "0xa77",
+      "candidate_signature": "marginOracle()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x9b3e2291",
+      "entry_pc": "0xa9e",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x9d61e2bf",
+      "entry_pc": "0xab1",
+      "candidate_signature": "loseDistributor()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x9f181b5e",
+      "entry_pc": "0xad8",
+      "candidate_signature": "tokenCount()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xa60ddfbc",
+      "entry_pc": "0xae0",
+      "candidate_signature": "wsCredit()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xa99c38af",
+      "entry_pc": "0xafd",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xabffc9ac",
+      "entry_pc": "0xb10",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xb199f29e",
+      "entry_pc": "0xb23",
+      "candidate_signature": "open(address,uint256,uint256,uint256,uint64)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xb85226c9",
+      "entry_pc": "0xb36",
+      "candidate_signature": "listerAdmin()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xb9a431c1",
+      "entry_pc": "0xb5d",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xbc25cf77",
+      "entry_pc": "0xb70",
+      "candidate_signature": "skim(address)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xbf333f2c",
+      "entry_pc": "0xb83",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xc0fe1af8",
+      "entry_pc": "0xb92",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xc2fff4a5",
+      "entry_pc": "0xba5",
+      "candidate_signature": "net()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xc339e085",
+      "entry_pc": "0xbcc",
+      "candidate_signature": "opensAllowed(address)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xc34c08e5",
+      "entry_pc": "0xbf8",
+      "candidate_signature": "executor()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xcb9631fc",
+      "entry_pc": "0xc1f",
+      "candidate_signature": "openWithNet(address,uint256,uint256,uint256,uint64)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xd41194b8",
+      "entry_pc": "0xc32",
+      "candidate_signature": "addMargin(uint256,uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xd52014e3",
+      "entry_pc": "0xc45",
+      "candidate_signature": "wsNet()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xd5a5e1eb",
+      "entry_pc": "0xc6c",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xd5c5df99",
+      "entry_pc": "0xc92",
+      "candidate_signature": "executeBuy(uint256,bytes)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xe79560e0",
+      "entry_pc": "0xca5",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xef7d2bc5",
+      "entry_pc": "0xcb8",
+      "candidate_signature": "liquidationPrices(uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xf182d1ea",
+      "entry_pc": "0xccb",
+      "candidate_signature": "openWithSNet(address,uint256,uint256,uint256,uint64)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xf29ebf61",
+      "entry_pc": "0xcde",
+      "candidate_signature": "feeRouter()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xf2ea32b8",
+      "entry_pc": "0xd05",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xf5b91b7b",
+      "entry_pc": "0xd0d",
+      "candidate_signature": "usdg()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xfab5993f",
+      "entry_pc": "0xd34",
+      "candidate_signature": "quoteOpen(address,address,uint256,uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    }
+  ]
+}

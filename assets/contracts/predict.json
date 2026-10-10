@@ -1,0 +1,2324 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x7ef9528408d99f98056922291048f0710001e015",
+  "contract_record": "assets/addresses/contracts/predict-desk-and-vault.json",
+  "chain_id": 4663,
+  "address": "0x7EF9528408D99f98056922291048F0710001e015",
+  "generation": "predict",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict",
+      "observed_on": "2026-10-07"
+    },
+    {
+      "source_id": "netnet-predict-runtime-depth-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x7EF9528408D99f98056922291048F0710001e015",
+      "observed_on": "2026-10-10",
+      "locator": "deployed_bytecode; assets/contracts/predict-source-evidence.json#function_evidence.desk"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 79,
+    "implementation": "all_published_functions_targeted_exact_runtime_review_not_full_audit",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned code, storage, current permissions and financial reconciliation.",
+      "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+    ],
+    "literal_abi_sha256": "55a9616295bc3531b40ca377453b51160298d7a67067263ef7dadd85b6a48f3c",
+    "literal_character_range": [
+      347217,
+      360036
+    ],
+    "dispatcher_evidence": {
+      "source_id": "netnet-predict-implementation-20261007",
+      "method": "PUSH4/EQ/PUSH2/JUMPI dispatcher patterns within first850 bytes; not exhaustive symbolic execution. Selectors alone do not identify absent names, outputs or permissions.",
+      "observed_selector_count": 33,
+      "unmatched_dispatcher_selectors": [],
+      "interface_selectors_not_seen_in_pattern": []
+    }
+  },
+  "functions": [
+    {
+      "name": "barred",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "barred(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[1]"
+      },
+      "selector": "0x6dfedb11",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public mapping getter; slot2 address key."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Constructor-populated buy exclusion. No setter appears among the 33 matched dispatcher branches; not a general sell/redeem freeze."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x34b",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x034b..0x036d",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "buy",
+      "inputs": [
+        {
+          "name": "long_",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "minTokensOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "tokensOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "buy(bool,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[2]"
+      },
+      "selector": "0x01a9812c",
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x05ae..0x0989",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public, reentrancy guard; not halted/not barred; nonzero gross amount >= minTicket; current open series and before close; minTokensOut."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Pulls gross USDG; mints selected outcome to caller; book grows by gross minus rounded fee and volume grows by gross. Post absolute skew increase is disallowed after lastCallTime; equality is not rejected by that comparison. Fee allocator also attempts deferred NET routing."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x205",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "feesPaid",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "feesPaid(uint256,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[3]"
+      },
+      "selector": "0x220c5cc0",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public getter of slot6[series][account]."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Accumulates both buy and sell fees; does not transfer with outcome tokens and is not a current holding or net revenue."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x240",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x0240..0x0269;0x2865..0x28b6",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "grade",
+      "inputs": [
+        {
+          "name": "printWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "grade(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[4]"
+      },
+      "selector": "0x11ae1579",
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x098a..0x0b63;0x2dd1..0x312d",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Current slot0 grader only; reentrancy guard; current open series, timestamp strictly greater than printTime."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Records supplied print after numeric bounds using line and Treasury rfv dependency; compares print > line (tie is LOWER), binary long payout via settlement. Bounds do not reconstruct Sleeve/Reports, prove print truth or provide a dispute oracle."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x22b",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "grader",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "grader()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[5]"
+      },
+      "selector": "0x5bc05526",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public getter, mutable slot0 low160."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Current authority for grade; initial constructor identity is not current role evidence."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x2d7",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x02d7..0x02e8",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "guess",
+      "inputs": [
+        {
+          "name": "valueUsd",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "guess(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[6]"
+      },
+      "selector": "0x9189fec1",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public current-open-series path, before close; fee eligibility and one-guess flag."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Prize-only guess state; not a wager or print challenge. Stores uint128 guess and monotonic guess order; upper input conversion/eligibility exact boundary should not be inferred from UI alone."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x441",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x1894..0x1a26",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "guessOf",
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "valueUsd",
+          "type": "uint128",
+          "internalType": "uint128"
+        },
+        {
+          "name": "seq",
+          "type": "uint64",
+          "internalType": "uint64"
+        },
+        {
+          "name": "placed",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "guessOf(uint256,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[7]"
+      },
+      "selector": "0x71f10824",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot5[series][account] getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Packed uint128 value, uint64 order, bool entered; no payout or token ownership implied."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x37d",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x037d..0x03fd",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "halted",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "halted()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[8]"
+      },
+      "selector": "0xb9b8af0b",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot0 flag getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "New-buy gate; sell/redeem branches do not read this flag."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x45c",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x045c..0x046e",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "markPrice",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "markWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "markPrice()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[9]"
+      },
+      "selector": "0x45a15a01",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public getter; current series only."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Computes current open-series curve mark, otherwise returns lastMarkWad. Not a historical quote, Treasury value or posted print."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x27d",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x11d0..0x121d;0x327e..0x333b",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "minTicket",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "minTicket()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[10]"
+      },
+      "selector": "0xf6a30e3e",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot1 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Minimum gross raw USDG for buy; not frontend dust minimum or minimum sell."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x557",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x0557..0x055f",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "net",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "net()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[11]"
+      },
+      "selector": "0xc2fff4a5",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public immutable getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "NET destination token of fee-funded router swap; not automatically burned."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x46f",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x046f..0x0495",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "open",
+      "inputs": [
+        {
+          "name": "lineWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "todayWad",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "open(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[12]"
+      },
+      "selector": "0x4082de67",
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x0b64..0x11cf",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Immutable owner only, reentrancy guard; prior series and schedule guards."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Calls House fund, increments series, sets calendar/line/today fields, deploys distinct HIGHER/LOWER tokens. Funding is real USDG; virtual liquidity increases curve backing without a cash transfer. Treasury rfv threshold is not a full TrueRFV print."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x26a",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "owner",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "owner()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[13]"
+      },
+      "selector": "0x8da5cb5b",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public immutable getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Authority for open/setGrader/setHalted/setMinTicket; no transferOwnership selector found. Safe implementation/signers still require separate evidence."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x411",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x0411..0x0437",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "payPrize",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "payPrize(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[14]"
+      },
+      "selector": "0x66fef602",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public resolved-series path; unpaid prize and >= settledAt+86400."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Marks prize paid once. Sends prize to proposed bestGuesser or rolls it into prizeCarry if none; rollover is not cash. This does not arbitrate market settlement."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x310",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x12d1..0x1551",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "pendingNetUsdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pendingNetUsdg()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[15]"
+      },
+      "selector": "0xe3a31f1a",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot9 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Deferred fee-funded NET swap cash. Later successful fee allocator spends prior pending plus new portion; cross-series sum cannot be allocated by NetBought alone."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x501",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x0501..0x0509;0x2865..0x2c76",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "prizeCarry",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "prizeCarry()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[16]"
+      },
+      "selector": "0x8df47216",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot8 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Rolled unpaid prize accounting, overlapping reserved custody. Not extra income to add to balance."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x438",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x0438..0x0440",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "proposeWinner",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "proposeWinner(uint256,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[17]"
+      },
+      "selector": "0x8969da57",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public resolved-series and unpaid-prize path; nominated account must have eligible stored guess."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Accepts a guess not above print and improving stored eligible value, using earlier guess order for ties. Updates prize recipient only; cannot change printWad or outcome payout."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x3fe",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x15e3..0x1893",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "quoteBuy",
+      "inputs": [
+        {
+          "name": "long_",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "tokensOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "fee",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "quoteBuy(bool,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[18]"
+      },
+      "selector": "0xc7d4bc7f",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public view of current open series."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Returns modeled tokens and rounded fee using current book curve. Does not execute transfer or prove buy-specific halt/bar/account/slippage/clock acceptance; no series-ID argument."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x496",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x1ab4..0x1b33;0x257c..0x283e",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "quoteSell",
+      "inputs": [
+        {
+          "name": "long_",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "tokensIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "usdgOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "fee",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "quoteSell(bool,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[19]"
+      },
+      "selector": "0x6d6c8295",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public view of current open series."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Returns net USDG and rounded fee for burning selected tokens. Quote is not a fill or an account balance/allowance check; no series-ID argument."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x323",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x1552..0x15e2;0x3368..0x342e",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "redeem",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "long_",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "tokens",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "paid",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "redeem(uint256,bool,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[20]"
+      },
+      "selector": "0xe43f80a5",
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x2150..0x23e4",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public holder path, status resolved or voided, nonzero tokens; reentrancy guard."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Desk burns caller outcome without allowance then floor(tokens*payout/1e18) raw USDG, decrements reservedUsdg and transfers positive payout. LOWER uses 1e6-longPayoutUsdg. Tuple longOut/shortOut are not decremented here; token supply is remaining claims."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x50a",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "reservedUsdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "reservedUsdg()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[21]"
+      },
+      "selector": "0xde151def",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot7 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Aggregate retained settlement payouts/prizes; settlement rounds each side reserve upward, individual redemption rounds downward. Not disjoint from prizeCarry; rounding dust remains possible."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x4e5",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x04e5..0x04ed;0x2dd1..0x312d",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "router",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IUniswapV2Router02"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "router()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[22]"
+      },
+      "selector": "0xf887ea40",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public immutable getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Fee allocator approves exact pending USDG and calls swapExactTokensForTokensSupportingFeeOnTransferTokens with path USDG/NET, zero minOut, Sleeve recipient, current timestamp. Catch/defer is not a successful NET purchase."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x560",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x0560..0x0586;0x2865..0x2c76",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "sell",
+      "inputs": [
+        {
+          "name": "long_",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "tokensIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "minUsdgOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "usdgOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "sell(bool,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[23]"
+      },
+      "selector": "0xde254659",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public, reentrancy guard; nonzero tokens, current open series and before close, minUsdgOut."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Burns caller outcome through privileged Desk token call; reduces book by gross curve value, increments volume by gross sell value, transfers gross minus fee to caller. No buy halt/barred gate on this branch."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x4ee",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x1e6c..0x214f",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "series",
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct PredictDesk.Series",
+          "components": [
+            {
+              "name": "status",
+              "type": "uint8",
+              "internalType": "enum PredictDesk.Status"
+            },
+            {
+              "name": "openTime",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "lastCallTime",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "closeTime",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "printTime",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "settledAt",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "todayWad",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "lineWad",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "long",
+              "type": "address",
+              "internalType": "contract PredictToken"
+            },
+            {
+              "name": "short",
+              "type": "address",
+              "internalType": "contract PredictToken"
+            },
+            {
+              "name": "longOut",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "shortOut",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "bookUsdg",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "virtualLiquidity",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "backingUsdg",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "volumeUsdg",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "feesUsdg",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "netSpentUsdg",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "vaultFees",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "lastMarkWad",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "printWad",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "longPayoutUsdg",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "prizePot",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "prizePaid",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "bestGuesser",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "guessCount",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "series(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[24]"
+      },
+      "selector": "0xdc22cb6a",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot4 series mapping getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "All 26 fields preserved. Book/exposure/fee/reserve/prize values differ; settled stored exposure is not remaining token supply. Zero tuple for unused ID is not a discovered active series."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x4b2",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x1b34..0x1dbb",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "seriesCount",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "seriesCount()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[25]"
+      },
+      "selector": "0xd7f2c0ef",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public slot3 getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Monotonic selected-Desk series sequence advanced by open; discover 1..count at pinned block, never historical seed inventory."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x4a9",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x04a9..0x04b1",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "setGrader",
+      "inputs": [
+        {
+          "name": "grader_",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setGrader(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[26]"
+      },
+      "selector": "0x56e7a607",
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x121e..0x12d0",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Immutable owner only; nonzero address."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Changes mutable grader immediately in this runtime branch; numeric print bounds remain separate from honest grading."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x2c4",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "setHalted",
+      "inputs": [
+        {
+          "name": "halted_",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setHalted(bool)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[27]"
+      },
+      "selector": "0xdcc279c8",
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x1dbc..0x1e6b",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Immutable owner only."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Sets new-buy halt; not a global token-transfer or redemption pause."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x4d2",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "setMinTicket",
+      "inputs": [
+        {
+          "name": "minTicket_",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "setMinTicket(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[28]"
+      },
+      "selector": "0xe9f03b88",
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x23e5..0x2462",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      },
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Immutable owner only."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Updates raw USDG buy threshold. Nonzero buy guard still applies if threshold is zero."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x51d",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "sleeve",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "sleeve()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[29]"
+      },
+      "selector": "0x55e28b9c",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public immutable getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Recipient of fee-funded NET acquisition; does not prove Sleeve constituent valuation or beneficial ownership."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x285",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x0285..0x02c3",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "treasury",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract ITreasury"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "treasury()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[30]"
+      },
+      "selector": "0x61d027b3",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public immutable getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "rfv() dependency for open/grade numeric checks; Treasury Core POL discrepancy remains unresolved and is not repaired by Predict accounting."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x2e9",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x02e9..0x030f",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IERC20"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdg()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[31]"
+      },
+      "selector": "0xf5b91b7b",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public immutable getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "USDG cash token. Runtime assumes 1e6 payout unit; collector independently checks decimals, never assumes USD parity."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x530",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x0530..0x0556",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "vault",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract PredictVault"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "vault()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[32]"
+      },
+      "selector": "0xfbfa77cf",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Public immutable getter."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "House funding/settlement counterparty, not an ERC20 LP or outcome token."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x587",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x0587..0x05ad",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    },
+    {
+      "name": "void",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "void()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[33]"
+      },
+      "selector": "0xac4c25b2",
+      "permissions": {
+        "status": "conditional_runtime",
+        "detail": "Permissionless current-open-series path after timestamp strictly greater than printTime+259200; reentrancy guard."
+      },
+      "economic_meaning": {
+        "status": "conditional_runtime",
+        "detail": "Settles using stored lastMarkWad, not a binary fresh winner; prize allocation rolls forward. Liveness remedy for ungraded market, not correction of a posted print."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-predict-implementation-20261007",
+        "entry_offset": "0x454",
+        "scope": "selector/branch identity only"
+      },
+      "semantic_evidence": {
+        "source_id": "netnet-predict-runtime-depth-20261010",
+        "locator": "desk runtime 0x1a27..0x1ab3;0x2dd1..0x312d",
+        "limits": "Explorer-returned exact runtime; no pinned state/compiler equivalence/full audit."
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "Bought",
+      "inputs": [
+        {
+          "name": "series",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "long",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        },
+        {
+          "name": "usdgIn",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "fee",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "tokensOut",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "markAfterWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Bought(uint256,address,bool,uint256,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[34]"
+      },
+      "topic0": "0xda3658575501f28198f60bb28b30f0db3cd49f22a0cd16ce8925f17c1e67a6e6"
+    },
+    {
+      "name": "GraderSet",
+      "inputs": [
+        {
+          "name": "grader",
+          "type": "address",
+          "indexed": false,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false,
+      "signature": "GraderSet(address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[35]"
+      },
+      "topic0": "0x01e5a6bf3b3f58a6cb0bba0a5d932047ca4b281279b818866eec72ff3401a2d7"
+    },
+    {
+      "name": "Guessed",
+      "inputs": [
+        {
+          "name": "series",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "valueUsd",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Guessed(uint256,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[36]"
+      },
+      "topic0": "0xc507981645be3b56ad947e8ad0dd7bf7aacdf9d3f2537107dc9aca50865096ab"
+    },
+    {
+      "name": "HaltSet",
+      "inputs": [
+        {
+          "name": "halted",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        }
+      ],
+      "anonymous": false,
+      "signature": "HaltSet(bool)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[37]"
+      },
+      "topic0": "0x623faa9c0ee906b8d749b30501daa0eae86c9843958d3384513f39a1312c9925"
+    },
+    {
+      "name": "MinTicketSet",
+      "inputs": [
+        {
+          "name": "minTicket",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "MinTicketSet(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[38]"
+      },
+      "topic0": "0x650ffed47c1c63cbc0810f9d6b9b3768b8f2e6641d44fb24210e6b73f848d987"
+    },
+    {
+      "name": "NetBought",
+      "inputs": [
+        {
+          "name": "usdgSpent",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "NetBought(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[39]"
+      },
+      "topic0": "0x71cd0f8dff792cc47ffb5dbbd0f2fc9b159e196749c6f4e5945f72181d50ead4"
+    },
+    {
+      "name": "NetBuyDeferred",
+      "inputs": [
+        {
+          "name": "usdgPending",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "NetBuyDeferred(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[40]"
+      },
+      "topic0": "0x097e221d9ebdf0e1e67a5e96610f267e60cf34128e53b1e2b09c3faed189be3b"
+    },
+    {
+      "name": "Opened",
+      "inputs": [
+        {
+          "name": "series",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "todayWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "lineWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "backingUsdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "long",
+          "type": "address",
+          "indexed": false,
+          "internalType": "address"
+        },
+        {
+          "name": "short",
+          "type": "address",
+          "indexed": false,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Opened(uint256,uint256,uint256,uint256,address,address)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[41]"
+      },
+      "topic0": "0x805269f0f52536741bc05bcf6b4882537aa77b42b45cb4725cece5e1791b1237"
+    },
+    {
+      "name": "PrizePaid",
+      "inputs": [
+        {
+          "name": "series",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "PrizePaid(uint256,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[42]"
+      },
+      "topic0": "0xfcf35a3fc019052976cdcd0cd1a67217972ee331e0b9bf6a37f2fddfa276a014"
+    },
+    {
+      "name": "PrizeRolled",
+      "inputs": [
+        {
+          "name": "series",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "PrizeRolled(uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[43]"
+      },
+      "topic0": "0x12465b23ef06242be1da7cad8688894b0487c3100c40706106154d524241fd49"
+    },
+    {
+      "name": "Redeemed",
+      "inputs": [
+        {
+          "name": "series",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "long",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        },
+        {
+          "name": "tokens",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdgOut",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Redeemed(uint256,address,bool,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[44]"
+      },
+      "topic0": "0x4a82a8ccecb91df0e60674cc35673e8d01bc676c08474929b9fec55fa34c0318"
+    },
+    {
+      "name": "Settled",
+      "inputs": [
+        {
+          "name": "series",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "voided",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        },
+        {
+          "name": "printWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "longPayoutUsdg",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "toVault",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Settled(uint256,bool,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[45]"
+      },
+      "topic0": "0x2979d7c37b684f3f5ba6fc925a2b636381dc33c2bd83331024b8dc4dd6a88cd7"
+    },
+    {
+      "name": "Sold",
+      "inputs": [
+        {
+          "name": "series",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "long",
+          "type": "bool",
+          "indexed": false,
+          "internalType": "bool"
+        },
+        {
+          "name": "tokensIn",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "fee",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "usdgOut",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "name": "markAfterWad",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Sold(uint256,address,bool,uint256,uint256,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[46]"
+      },
+      "topic0": "0x114ebb48af5632562b9fea181acdd42b4f0c5a42f1d1939b9c4d49d936ce5af3"
+    },
+    {
+      "name": "WinnerProposed",
+      "inputs": [
+        {
+          "name": "series",
+          "type": "uint256",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "name": "account",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "valueUsd",
+          "type": "uint256",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "WinnerProposed(uint256,address,uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[47]"
+      },
+      "topic0": "0x8c12a3f8a691ed0d220418f8d0d69aed3ddb3560f317864dec62ff0bff603d1b"
+    }
+  ],
+  "errors": [
+    {
+      "name": "AlreadyGuessed",
+      "inputs": [],
+      "signature": "AlreadyGuessed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[48]"
+      },
+      "selector": "0x06f5197f"
+    },
+    {
+      "name": "Barred",
+      "inputs": [],
+      "signature": "Barred()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[49]"
+      },
+      "selector": "0x544a0b76"
+    },
+    {
+      "name": "BelowMinTicket",
+      "inputs": [],
+      "signature": "BelowMinTicket()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[50]"
+      },
+      "selector": "0x772f3806"
+    },
+    {
+      "name": "GuessClosed",
+      "inputs": [],
+      "signature": "GuessClosed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[51]"
+      },
+      "selector": "0x27e035a0"
+    },
+    {
+      "name": "GuessOverPrint",
+      "inputs": [],
+      "signature": "GuessOverPrint()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[52]"
+      },
+      "selector": "0x2e4913ae"
+    },
+    {
+      "name": "Halted",
+      "inputs": [],
+      "signature": "Halted()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[53]"
+      },
+      "selector": "0x1ee9080f"
+    },
+    {
+      "name": "HeavySideClosed",
+      "inputs": [],
+      "signature": "HeavySideClosed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[54]"
+      },
+      "selector": "0xf319c4c5"
+    },
+    {
+      "name": "Insolvent",
+      "inputs": [],
+      "signature": "Insolvent()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[55]"
+      },
+      "selector": "0xfc220038"
+    },
+    {
+      "name": "LastCallReducingOnly",
+      "inputs": [],
+      "signature": "LastCallReducingOnly()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[56]"
+      },
+      "selector": "0x2e153016"
+    },
+    {
+      "name": "LineOutOfBounds",
+      "inputs": [],
+      "signature": "LineOutOfBounds()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[57]"
+      },
+      "selector": "0x62ce7ba8"
+    },
+    {
+      "name": "MulDivOverflow",
+      "inputs": [],
+      "signature": "MulDivOverflow()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[58]"
+      },
+      "selector": "0x49248f77"
+    },
+    {
+      "name": "NoSeries",
+      "inputs": [],
+      "signature": "NoSeries()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[59]"
+      },
+      "selector": "0xf67233b1"
+    },
+    {
+      "name": "NotBetter",
+      "inputs": [],
+      "signature": "NotBetter()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[60]"
+      },
+      "selector": "0xee269648"
+    },
+    {
+      "name": "NotEligible",
+      "inputs": [],
+      "signature": "NotEligible()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[61]"
+      },
+      "selector": "0xf8eb54de"
+    },
+    {
+      "name": "NotGrader",
+      "inputs": [],
+      "signature": "NotGrader()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[62]"
+      },
+      "selector": "0xe8d503d0"
+    },
+    {
+      "name": "NotOwner",
+      "inputs": [],
+      "signature": "NotOwner()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[63]"
+      },
+      "selector": "0x30cd7471"
+    },
+    {
+      "name": "NotSettled",
+      "inputs": [],
+      "signature": "NotSettled()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[64]"
+      },
+      "selector": "0xba329a9b"
+    },
+    {
+      "name": "OutsideOpenWindow",
+      "inputs": [],
+      "signature": "OutsideOpenWindow()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[65]"
+      },
+      "selector": "0xea401eca"
+    },
+    {
+      "name": "PrintOutOfBounds",
+      "inputs": [],
+      "signature": "PrintOutOfBounds()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[66]"
+      },
+      "selector": "0xc3bd1a3c"
+    },
+    {
+      "name": "PrizeAlreadyPaid",
+      "inputs": [],
+      "signature": "PrizeAlreadyPaid()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[67]"
+      },
+      "selector": "0x360b8c54"
+    },
+    {
+      "name": "Reentrancy",
+      "inputs": [],
+      "signature": "Reentrancy()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[68]"
+      },
+      "selector": "0xab143c06"
+    },
+    {
+      "name": "SeriesLive",
+      "inputs": [],
+      "signature": "SeriesLive()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[69]"
+      },
+      "selector": "0x18e34113"
+    },
+    {
+      "name": "Slippage",
+      "inputs": [],
+      "signature": "Slippage()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[70]"
+      },
+      "selector": "0x7dd37f70"
+    },
+    {
+      "name": "TodayBelowTreasury",
+      "inputs": [],
+      "signature": "TodayBelowTreasury()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[71]"
+      },
+      "selector": "0x45511bb7"
+    },
+    {
+      "name": "TooEarly",
+      "inputs": [],
+      "signature": "TooEarly()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[72]"
+      },
+      "selector": "0x085de625"
+    },
+    {
+      "name": "TradingClosed",
+      "inputs": [],
+      "signature": "TradingClosed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[73]"
+      },
+      "selector": "0xe2c865df"
+    },
+    {
+      "name": "TransferFailed",
+      "inputs": [],
+      "signature": "TransferFailed()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[74]"
+      },
+      "selector": "0x90b8ec18"
+    },
+    {
+      "name": "TurnTooShort",
+      "inputs": [],
+      "signature": "TurnTooShort()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[75]"
+      },
+      "selector": "0xff0a6a48"
+    },
+    {
+      "name": "VaultTooSmall",
+      "inputs": [],
+      "signature": "VaultTooSmall()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[76]"
+      },
+      "selector": "0xdc167461"
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "signature": "ZeroAddress()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[77]"
+      },
+      "selector": "0xd92e233d"
+    },
+    {
+      "name": "ZeroAmount",
+      "inputs": [],
+      "signature": "ZeroAmount()",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[78]"
+      },
+      "selector": "0x1f2a2005"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "usdg_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "net_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "router_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "treasury_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "vault_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "sleeve_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "owner_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "grader_",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "barred_",
+          "type": "address[]",
+          "internalType": "address[]"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal _n, Unicode character offsets[347217,360036); consumer binding to predict; ABI entry[0]"
+      }
+    }
+  ],
+  "runtime_evidence": {
+    "address": "0x7ef9528408d99f98056922291048f0710001e015",
+    "runtime_bytes": 18317,
+    "runtime_keccak256": "0xe7a63f394ad5aaf5f737f49508c136ea5db2ecc90d3019f53215d3b3d6ad2c43",
+    "runtime_sha256": "5b74e7081cb89ea0f3b0f959a0722fd4e4e228fc9a7331a6f5d51c084bf8a649"
+  },
+  "source_evidence": "assets/contracts/predict-source-evidence.json"
+}

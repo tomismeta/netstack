@@ -21,6 +21,12 @@
           "locator": "cashcatToken.address",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netlong-margin-cashcat-token-explorer-20261010",
+          "locator": "Complete explorer-returned LaunchToken source and ABI; NetLong market-token identity, not fresh listing or permissions.",
+          "evidence_kind": "explorer_source_review_not_pinned_state",
+          "observed_on": "2026-10-10"
         }
       ],
       "publisher_verification_claim": "HUMAN-VERIFIED"

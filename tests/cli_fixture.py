@@ -19,6 +19,26 @@ sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import netstack_core as core
+import netstack_reserves as reserves
+import netstack_markets as markets
+
+
+def synthetic_reserve_source(path):
+    source = core.load_json(path)
+    if path == "assets/analytics/reserves-interface.json":
+        # This coherent toy contract implements the documented formula by
+        # construction. It does not certify the real deployment's unresolved POL.
+        source["methodology"]["pol_reconstruction_supported"] = True
+        source["methodology"]["pol_reconstruction_limit"] = "Synthetic fixture only"
+    return source
+
+
+def synthetic_market_source(path):
+    source = core.load_json(path)
+    if path == "assets/contracts/predict-source-evidence.json":
+        for row in source["runtime"].values():
+            row.update(runtime_bytes=2, runtime_keccak256="0x" + core.keccak256(bytes.fromhex("6000")).hex())
+    return source
 
 
 BLOCK_HASH = "0x" + "bb" * 32
@@ -260,7 +280,9 @@ def main():
     sys.addaudithook(forbid_network)
     fixture = Fixture(scenario, output)
     sys.argv = [str(ROOT / "scripts" / "analytics.py"), *arguments]
-    with patch.object(core, "_FixedHTTPSConnection", fixture.connection):
+    with patch.object(core, "_FixedHTTPSConnection", fixture.connection), \
+            patch.object(reserves, "load_json", side_effect=synthetic_reserve_source), \
+            patch.object(markets, "load_json", side_effect=synthetic_market_source):
         runpy.run_path(sys.argv[0], run_name="__main__")
 
 

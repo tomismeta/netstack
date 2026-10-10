@@ -1,0 +1,1067 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x068904944fcf4a18ab40ca112f385faa430f60f2",
+  "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
+  "chain_id": 4663,
+  "address": "0x068904944fCF4A18aB40cA112F385fAa430F60f2",
+  "generation": "netlong-margin-lending-account",
+  "provenance": [
+    {
+      "source_id": "netlong-margin-lending-account-explorer-20261010",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x068904944fCF4A18aB40cA112F385fAa430F60f2",
+      "observed_on": "2026-10-10",
+      "locator": "Complete explorer smart-contract response; source/ABI fields and deployed_bytecode where supplied"
+    },
+    {
+      "source_id": "netnet-trading-entry-20261010",
+      "url": "https://trading.netnet.capital/assets/index-BViJKZuW.js",
+      "sha256": "b62b66a56fbaa9d7b387761108e99e72633369c14f3a8ad6fda8444ba9be70bc",
+      "observed_on": "2026-10-10",
+      "locator": "Literal wu Unicode character range [856831, 858112]; bound consumer; not full contract ABI"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_partial_contract_abi",
+    "supplied_entry_count": 22,
+    "implementation": "targeted_static_runtime_review_with_explicit_unresolved_dispatchers",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+      "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
+      "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
+    ],
+    "runtime_dispatcher_count": 52,
+    "runtime_unresolved_signature_count": 24
+  },
+  "runtime_identity": {
+    "byte_count": 11043,
+    "sha256": "53a8f0a67f812441c293d9cd7b42db7c2532e18328487eea8ffc6562c38811e7",
+    "keccak256": "0xc4b995de0c7112076b487025a7ea658bba2db500f71770fd4998f0e0292704e9",
+    "evidence_kind": "explorer_indexed_unpinned_runtime",
+    "proxy_type": null,
+    "explorer_is_verified": null,
+    "explorer_is_fully_verified": null,
+    "verified_twin_address": null
+  },
+  "functions": [
+    {
+      "name": "cashUsdg",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "cashUsdg()",
+      "selector": "0x103ec6d0",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[0]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Actual USDG balanceOf(pot), not lender equity."
+      }
+    },
+    {
+      "name": "insuranceUsdg",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "insuranceUsdg()",
+      "selector": "0xe129a2fd",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[1]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "USDG insurance allocation ledger excluded from lendable/equity cash."
+      }
+    },
+    {
+      "name": "heldWs",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "heldWs()",
+      "selector": "0x84d3aa1a",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[2]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Seized plus donated wsNET custody ledger, not a USDG cash balance."
+      }
+    },
+    {
+      "name": "insuranceWs",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "insuranceWs()",
+      "selector": "0x453ed186",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[3]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Insurance-owned subset of heldWs; excluded from lender held-ws valuation."
+      }
+    },
+    {
+      "name": "owedUsdg",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "owedUsdg()",
+      "selector": "0xd52e6da8",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[4]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Unfunded dated withdrawal claims ledger; new lending refused while nonzero."
+      }
+    },
+    {
+      "name": "idleUsdg",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "idleUsdg()",
+      "selector": "0x39883d54",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[5]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "max(cashUsdg-insuranceUsdg-funded withdrawal reserve,0); runtime0x1033. Not all cash is lendable."
+      }
+    },
+    {
+      "name": "totalPrincipalUsdg",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "totalPrincipalUsdg()",
+      "selector": "0x426006f7",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[6]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Outstanding principal ledger, excludes accrued interest and pending unfunded open requests."
+      }
+    },
+    {
+      "name": "totalDebtUsdg",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "totalDebtUsdg()",
+      "selector": "0x78232a68",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[7]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "ceil(total scaled debt * current borrow index /1e18); accrued debt is not principal or gross token exposure."
+      }
+    },
+    {
+      "name": "utilizationBps",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "utilizationBps()",
+      "selector": "0x975e900e",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[8]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "floor(principal*10000/(principal+idle)); zero when principal zero. Excludes insurance/withdrawal reserve from idle."
+      }
+    },
+    {
+      "name": "borrowRateWad",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "borrowRateWad()",
+      "selector": "0x791b2d89",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[9]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Kinked annual rate evaluated from current utilization:4% at0%,20% at80%,60% at100%. Does not itself accrue state."
+      }
+    },
+    {
+      "name": "wsCreditPerWsWad",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "wsCreditPerWsWad()",
+      "selector": "0xb918c95a",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[10]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Uses oracle credit selector0x8a63c08d, catch fallback0x701c2d3f; seized asset valuation is credit/floor-dependent, not executable proceeds."
+      }
+    },
+    {
+      "name": "heldWsValueUsdg",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "heldWsValueUsdg()",
+      "selector": "0x3210b40c",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[11]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Floored credit valuation of heldWs minus insuranceWs, scaled from wsNET18/USDWad18 to USDG6."
+      }
+    },
+    {
+      "name": "equityUsdg",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "equityUsdg()",
+      "selector": "0x40f73c30",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[12]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "max(idle+principal+net accrued interest+lender held-ws value-owed,0). Gross cash/debt/held assets must not be double-counted."
+      }
+    },
+    {
+      "name": "totalShares",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "totalShares()",
+      "selector": "0x3a98ef39",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[13]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Lender share ledger; not ERC20 circulating supply."
+      }
+    },
+    {
+      "name": "sharesOf",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "sharesOf(address)",
+      "selector": "0xf5eb42dc",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[14]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Lender internal share ledger."
+      }
+    },
+    {
+      "name": "sharePriceWad",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "signature": "sharePriceWad()",
+      "selector": "0x2770c503",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[15]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Virtual-offset share conversion using equity+1 and totalShares+1e6; not a guaranteed instant withdrawal price."
+      }
+    },
+    {
+      "name": "canLend",
+      "inputs": [
+        {
+          "name": "amountUsdg",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "ok",
+          "type": "bool"
+        },
+        {
+          "name": "reason",
+          "type": "uint8"
+        }
+      ],
+      "signature": "canLend(uint256)",
+      "selector": "0x42a46520",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[16]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Returns false reason1 if dated owed nonzero, reason2 if amount>idle; otherwise true. Runtime0x10c9."
+      }
+    },
+    {
+      "name": "withdrawalOf",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "outputs": [
+        {
+          "name": "remainingUsdg",
+          "type": "uint256"
+        },
+        {
+          "name": "claimableUsdg",
+          "type": "uint256"
+        },
+        {
+          "name": "datedAt",
+          "type": "uint64"
+        }
+      ],
+      "signature": "withdrawalOf(address)",
+      "selector": "0x14bf9d2b",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[17]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Read interface; source-level public visibility does not guarantee no reverts."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Remaining and funded-claimable USDG plus datedAt for account; cohort reward/debt-index accounting, not transferable shares."
+      }
+    },
+    {
+      "name": "deposit",
+      "inputs": [
+        {
+          "name": "usdgAmount",
+          "type": "uint256"
+        },
+        {
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "outputs": [
+        {
+          "name": "shares",
+          "type": "uint256"
+        }
+      ],
+      "signature": "deposit(uint256,address)",
+      "selector": "0x6e553f65",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[18]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Permissionless USDG deposit to recipient; accrues, mints floor(amount*(shares+1e6)/(equity+1)), services dated withdrawals after receipt. Requires nonzero amount/recipient and nonzero shares."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Permissionless USDG deposit to recipient; accrues, mints floor(amount*(shares+1e6)/(equity+1)), services dated withdrawals after receipt. Requires nonzero amount/recipient and nonzero shares."
+      }
+    },
+    {
+      "name": "withdraw",
+      "inputs": [
+        {
+          "name": "shares",
+          "type": "uint256"
+        },
+        {
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "outputs": [
+        {
+          "name": "paidNowUsdg",
+          "type": "uint256"
+        },
+        {
+          "name": "datedUsdg",
+          "type": "uint256"
+        }
+      ],
+      "signature": "withdraw(uint256,address)",
+      "selector": "0x00f714ce",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[19]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Caller burns requested shares, values floor(shares*(equity+1)/(totalShares+1e6)), pays min(value,idle) now and dates remainder to caller. Recipient parameter only directs immediately paid cash."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Caller burns requested shares, values floor(shares*(equity+1)/(totalShares+1e6)), pays min(value,idle) now and dates remainder to caller. Recipient parameter only directs immediately paid cash."
+      }
+    },
+    {
+      "name": "claim",
+      "inputs": [
+        {
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "outputs": [
+        {
+          "name": "usdgOut",
+          "type": "uint256"
+        }
+      ],
+      "signature": "claim(address)",
+      "selector": "0x1e83409a",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[20]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Permissionless for account; beneficiary always receives its own funded cohort claim, capped by actual cash. Zero outstanding/cash returns zero rather than reverting solely for no payout."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Permissionless for account; beneficiary always receives its own funded cohort claim, capped by actual cash. Zero outstanding/cash returns zero rather than reverting solely for no payout."
+      }
+    },
+    {
+      "name": "buyHeldWs",
+      "inputs": [
+        {
+          "name": "ws",
+          "type": "uint256"
+        },
+        {
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "outputs": [
+        {
+          "name": "usdgIn",
+          "type": "uint256"
+        }
+      ],
+      "signature": "buyHeldWs(uint256,address)",
+      "selector": "0xf29fed71",
+      "evidence": {
+        "source_id": "netnet-trading-entry-20261010",
+        "locator": "ABI entry[21]"
+      },
+      "permissions": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Despite permissive-looking publisher client, runtime0x1e61 requires fixed admin caller; buys only heldWs-insuranceWs at rounded-up oracle credit, pays USDG into pot, transfers wsNET to recipient and services withdrawals."
+      },
+      "economic_meaning": {
+        "status": "publisher_interface_with_targeted_runtime_review",
+        "detail": "Despite permissive-looking publisher client, runtime0x1e61 requires fixed admin caller; buys only heldWs-insuranceWs at rounded-up oracle credit, pays USDG into pot, transfers wsNET to recipient and services withdrawals."
+      }
+    }
+  ],
+  "events": [],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": [],
+  "runtime_review": [
+    {
+      "scope": "cash,equity,share math",
+      "pcs": [
+        "0x0fc6-0x1104",
+        "0x1104-0x1318",
+        "0x0805-0x0a65"
+      ],
+      "detail": "idle=max(balance-insuranceUsdg-fundedWithdrawalReserve,0). Equity adds principal, lender net accrued interest, heldWs-insuranceWs valued at credit, then subtracts dated owed and clips0. Virtual1 asset/1e6 shares floors deposits and withdrawal value. Shares not a fungible ERC20 interface."
+    },
+    {
+      "scope": "interest index",
+      "pcs": [
+        "0x1318-0x156f",
+        "0x1a9c-0x1bbd",
+        "0x22bb-0x2388"
+      ],
+      "detail": "Rate uses principal/(principal+idle), kink80%,annual4/20/60%. Current index=storedIndex+floor(storedIndex*rate*elapsed/(1e18*31536000)); debt converts scaled units with ceil. Accrual updates index/timestamp, not continuously compounded per-block snapshots. Interest70% lenders,20% feeRouter,10% insurance at realization; projected lender interest excludes both cuts."
+    },
+    {
+      "scope": "repayment and impaired debt",
+      "pcs": [
+        "0x0bec-0x0fc6"
+      ],
+      "detail": "Desk-only repayment retires principal/scaled debt; realized shortfall draws USDG insurance then converts required insuranceWs by rounded-up credit and decreases that insurance subset, leaving residual loss to equity. Seized wsNET remains asset custody, not sold cash; insolvency is not repaired by reporting custody as USDG."
+    },
+    {
+      "scope": "queued withdrawals and permission",
+      "pcs": [
+        "0x244b-0x29a0",
+        "0x1e61-0x216f"
+      ],
+      "detail": "Dated withdrawals join cohort/index accounting, funded pro rata as idle arrives, reserved separately from unfunded owed; lend denied while unfunded owed>0. claim(account) pays only account and clips cash. buyHeldWs is ADMIN-only and excludes insuranceWs, despite unrestricted-looking frontend action."
+    }
+  ],
+  "source_files": [],
+  "runtime_dispatch": [
+    {
+      "selector": "0x00f714ce",
+      "entry_pc": "0x33e",
+      "candidate_signature": "withdraw(uint256,address)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x103ec6d0",
+      "entry_pc": "0x36b",
+      "candidate_signature": "cashUsdg()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x14bf9d2b",
+      "entry_pc": "0x381",
+      "candidate_signature": "withdrawalOf(address)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x1e83409a",
+      "entry_pc": "0x3b9",
+      "candidate_signature": "claim(address)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x2770c503",
+      "entry_pc": "0x3cc",
+      "candidate_signature": "sharePriceWad()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x28f69a2c",
+      "entry_pc": "0x3d4",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x3131fd71",
+      "entry_pc": "0x3e7",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x3210b40c",
+      "entry_pc": "0x414",
+      "candidate_signature": "heldWsValueUsdg()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x39883d54",
+      "entry_pc": "0x41c",
+      "candidate_signature": "idleUsdg()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x3a98ef39",
+      "entry_pc": "0x424",
+      "candidate_signature": "totalShares()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x3ba12e74",
+      "entry_pc": "0x42c",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x40f73c30",
+      "entry_pc": "0x466",
+      "candidate_signature": "equityUsdg()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x426006f7",
+      "entry_pc": "0x46e",
+      "candidate_signature": "totalPrincipalUsdg()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x42a46520",
+      "entry_pc": "0x477",
+      "candidate_signature": "canLend(uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x453ed186",
+      "entry_pc": "0x4a3",
+      "candidate_signature": "insuranceWs()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x6e553f65",
+      "entry_pc": "0x4ac",
+      "candidate_signature": "deposit(uint256,address)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x71270862",
+      "entry_pc": "0x4bf",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x76671808",
+      "entry_pc": "0x4e6",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x78232a68",
+      "entry_pc": "0x4ef",
+      "candidate_signature": "totalDebtUsdg()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x783f7322",
+      "entry_pc": "0x4f7",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x791b2d89",
+      "entry_pc": "0x51e",
+      "candidate_signature": "borrowRateWad()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x7dc0d1d0",
+      "entry_pc": "0x526",
+      "candidate_signature": "oracle()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x84d3aa1a",
+      "entry_pc": "0x565",
+      "candidate_signature": "heldWs()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x85a82a0e",
+      "entry_pc": "0x56e",
+      "candidate_signature": "rateAt(uint256)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0x87c8bcf2",
+      "entry_pc": "0x581",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0x975e900e",
+      "entry_pc": "0x596",
+      "candidate_signature": "utilizationBps()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xa8563088",
+      "entry_pc": "0x59e",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xb0c43082",
+      "entry_pc": "0x5c5",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xb1884744",
+      "entry_pc": "0x5ec",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xb918c95a",
+      "entry_pc": "0x5ff",
+      "candidate_signature": "wsCreditPerWsWad()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xbd7be5a4",
+      "entry_pc": "0x607",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xc12b293c",
+      "entry_pc": "0x61a",
+      "candidate_signature": "desk()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xc1b6ca9a",
+      "entry_pc": "0x641",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xc49dca40",
+      "entry_pc": "0x649",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xc6b61e4c",
+      "entry_pc": "0x652",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xcd9a26cf",
+      "entry_pc": "0x69b",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xcdacc2e9",
+      "entry_pc": "0x6a3",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xd52014e3",
+      "entry_pc": "0x6ac",
+      "candidate_signature": "wsNet()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xd52e6da8",
+      "entry_pc": "0x6d3",
+      "candidate_signature": "owedUsdg()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xd7a06abe",
+      "entry_pc": "0x6dc",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xe129a2fd",
+      "entry_pc": "0x703",
+      "candidate_signature": "insuranceUsdg()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xe2e70440",
+      "entry_pc": "0x70c",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xe4d1ad03",
+      "entry_pc": "0x714",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xf14faf6f",
+      "entry_pc": "0x727",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xf29ebf61",
+      "entry_pc": "0x73a",
+      "candidate_signature": "feeRouter()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xf29fed71",
+      "entry_pc": "0x761",
+      "candidate_signature": "buyHeldWs(uint256,address)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xf52b6c23",
+      "entry_pc": "0x774",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xf5b91b7b",
+      "entry_pc": "0x787",
+      "candidate_signature": "usdg()",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xf5eb42dc",
+      "entry_pc": "0x7ae",
+      "candidate_signature": "sharesOf(address)",
+      "review_status": "targeted_named_body_or_getter",
+      "coverage_gap": "Output layout and all paths are not established solely by selector match; see named ABI/runtime review."
+    },
+    {
+      "selector": "0xf851a440",
+      "entry_pc": "0x7cd",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xf8ba4cff",
+      "entry_pc": "0x7f4",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    },
+    {
+      "selector": "0xfb9ecef1",
+      "entry_pc": "0x7fc",
+      "candidate_signature": null,
+      "review_status": "signature_unresolved",
+      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+    }
+  ]
+}

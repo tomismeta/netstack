@@ -7,18 +7,23 @@ import unittest
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from netstack_core import RpcError, amount, resolve_routes
-from netstack_reserves import _comparison, _nav, _pol, _wad, run
+from netstack_reserves import _comparison, _morpho_counted, _nav, _pol, _wad, run
 
 
 class ReserveArithmetic(unittest.TestCase):
-    def test_recorded_mixed_decimal_core_reconciles_exactly(self):
+    def test_historical_documented_candidate_preserves_raw_vector_not_deployed_proof(self):
         cash = _wad(6126893532562, 6)
         gross = _wad(13392735404215, 6)
         pol = _pol(313896926377, 500720756488, 6, 9, 274022155549, 280905002055)
         self.assertEqual(pol, 24459497478012345324332)
-        rfv = cash + gross * 9800 // 10000 + pol
+        rfv = cash + _morpho_counted(gross) + pol
         self.assertEqual(rfv, 19276233726170712345324332)
         self.assertEqual(_nav(rfv, 110097287747921, 9), 175083638484406817094)
+
+    def test_morpho_subtracts_floored_haircut_instead_of_flooring_remaining_assets(self):
+        for gross, expected in ((1, 1), (49, 49), (50, 49), (51, 50), (10001, 9801)):
+            self.assertEqual(_morpho_counted(gross), expected)
+        self.assertNotEqual(_morpho_counted(51), 51 * 9800 // 10000)
 
     def test_root_and_ownership_floor_order_cannot_be_reversed(self):
         self.assertEqual(_pol(2, 3, 18, 18, 2, 3), 2)
@@ -76,6 +81,32 @@ class Snapshot:
 
 
 class ReserveReconciliation(unittest.TestCase):
+    def test_matching_documented_pol_candidate_cannot_certify_deployed_core(self):
+        ctx = Snapshot()
+        run(ctx, SimpleNamespace(scope="core"))
+        core = ctx.result["metrics"]["core_rfv"]
+        self.assertEqual(core["components"]["pol"]["value_wad"], str(100 * 10**18))
+        self.assertEqual(core["reconciliation"]["rfv"]["delta_raw"], "0")
+        self.assertFalse(core["pol_reconstruction_supported"])
+        self.assertEqual(core["status"], "partial")
+        self.assertFalse(ctx.result["coverage"]["collection_complete"])
+        self.assertTrue(any(e["scope"] == "core_rfv:pol_methodology" for e in ctx.result["errors"]))
+
+    def test_nondivisible_morpho_raw_value_reaches_core_components(self):
+        ctx = Snapshot()
+        ctx.values["usdg"].update(decimals=18, balanceOf=100 * 10**18)
+        ctx.values["vault"]["convertToAssets"] = 51
+        ctx.values["pair"]["getReserves"]["reserve1"] = 100 * 10**18
+        ctx.values["treasury"].update(morphoAssets=51, rfv=200 * 10**18 + 50,
+                                      backingPerToken=(200 * 10**18 + 50) // 10)
+        run(ctx, SimpleNamespace(scope="core"))
+        core = ctx.result["metrics"]["core_rfv"]
+        self.assertEqual(core["components"]["morpho"]["gross_wad"], "51")
+        self.assertEqual(core["components"]["morpho"]["haircut_wad"], "1")
+        self.assertEqual(core["components"]["morpho"]["value_wad"], "50")
+        self.assertEqual(core["reconciliation"]["rfv"]["delta_raw"], "0")
+        self.assertFalse(core["pol_reconstruction_supported"])
+
     def test_external_basis_replaces_haircut_and_geometric_pol_without_own_net(self):
         ctx = Snapshot()
         run(ctx, SimpleNamespace(scope="core"))

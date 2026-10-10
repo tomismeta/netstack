@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x63c12667638f2ae6fc6ae09b43d98ec84a8586ea",
+  "contract_record": "assets/addresses/contracts/weth-and-wsnet.json",
+  "chain_id": 4663,
+  "address": "0x63C12667638f2Ae6fC6ae09B43D98Ec84a8586eA",
+  "generation": "wrapped-snet",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal dT, Unicode character offsets[373911,374292); consumer binding to wrapped-snet",
+      "observed_on": "2026-10-07"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
+    "supplied_entry_count": 2,
+    "implementation": "unreviewed",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned code, storage, current permissions and financial reconciliation.",
+      "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+    ],
+    "literal_abi_sha256": "b54ce26fbb9458a42a5d923423b782b5d7b99b9d46b4910ce522889ae836f3a4",
+    "literal_character_range": [
+      373911,
+      374292
+    ]
+  },
+  "functions": [
+    {
+      "name": "wrap",
+      "inputs": [
+        {
+          "name": "sNetAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "wsOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "wrap(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal dT, Unicode character offsets[373911,374292); consumer binding to wrapped-snet; ABI entry[0]"
+      },
+      "selector": "0xea598cb0",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface wrap(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    },
+    {
+      "name": "unwrap",
+      "inputs": [
+        {
+          "name": "wsAmount",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "sNetOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "unwrap(uint256)",
+      "evidence": {
+        "source_id": "netnet-contract-interfaces-20261007",
+        "locator": "Literal dT, Unicode character offsets[373911,374292); consumer binding to wrapped-snet; ABI entry[1]"
+      },
+      "selector": "0xde0e9a3e",
+      "permissions": {
+        "status": "unreviewed",
+        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+      },
+      "economic_meaning": {
+        "status": "unreviewed",
+        "detail": "Descriptive interface unwrap(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+      }
+    }
+  ],
+  "events": [],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": []
+}

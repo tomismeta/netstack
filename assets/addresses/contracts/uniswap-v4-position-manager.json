@@ -10,10 +10,16 @@
         "hOHM/wsNET position manager"
       ],
       "status": "recorded_from_public_source",
-      "lifecycle_status": "fixed_block_interface_and_sleeve_ownership_observed",
-      "lifecycle_notes": "Publisher registry retains an unpromoted candidate, but independent same-block public RPC reads establish its PoolManager and two Sleeve-owned positions at block72320994. This is not source-equivalence, permission, current-ownership or safety verification. Rediscover every owned NFT rather than assuming these two remain complete.",
-      "live_chain_verification_status": "scoped_fixed_block_identity_and_ownership_only",
+      "lifecycle_status": "fixed_block_interface_and_pool_manager_identity_observed",
+      "lifecycle_notes": "September25 unpromoted publisher snapshot is historical. October7 registry marks PositionManager HUMAN-VERIFIED, attributing promotion to September25. Independent public RPC evidence separately establishes its PoolManager at block72320994. Promotion is not current ownership or an exhaustive position inventory; discover all owned NFTs fresh.",
+      "live_chain_verification_status": "scoped_fixed_block_identity_only",
       "provenance": [
+        {
+          "source_id": "netnet-contract-interfaces-20261007",
+          "locator": "uniswapV4PositionManager.status/source",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-07"
+        },
         {
           "source_id": "netnet-app-registry-20260925-refresh",
           "locator": "uniswapV4PositionManager source candidate; published zero-address placeholder is not imported",
@@ -22,14 +28,14 @@
         },
         {
           "source_id": "netnet-v4-position-identity-20260925",
-          "locator": "poolManager(); balanceOf(Sleeve); ownerOf/getPoolAndPositionInfo/getPositionLiquidity for3080718 and3269350; filtered incoming Transfer logs",
-          "evidence_kind": "fixed_block_rpc_identity_and_ownership",
+          "locator": "poolManager() identity getter and getPoolAndPositionInfo PoolKey interface evidence at pinned block",
+          "evidence_kind": "fixed_block_rpc_pool_identity",
           "observed_on": "2026-09-25"
         }
       ],
       "pool_manager_id": "robinhood-0x8366a39cc670b4001a1121b8f6a443a643e40951",
       "pool_manager_record": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
-      "position_inventory": "assets/addresses/v4-pools.json"
+      "pool_inventory": "assets/addresses/v4-pools.json"
     }
   ]
 }

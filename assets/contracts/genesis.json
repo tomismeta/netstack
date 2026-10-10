@@ -1,0 +1,1236 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x575b7b7c97ef3e21c82daeb427899d583e1e913f",
+  "contract_record": "assets/addresses/contracts/general-adapter-genesis-bond-and-googl.json",
+  "chain_id": 4663,
+  "address": "0x575b7B7c97Ef3E21C82DAeB427899d583e1E913f",
+  "generation": "genesis",
+  "provenance": [
+    {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
+      "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
+      "locator": "Literal Ms, Unicode character offsets[272315,274978); consumer binding to genesis",
+      "observed_on": "2026-10-07"
+    },
+    {
+      "source_id": "netnet-genesis-implementation-20261007",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x575b7B7c97Ef3E21C82DAeB427899d583e1E913f",
+      "sha256": "ec2397aebbc5296a9df7660459878770817b8c7e121a040abdee457c9cd56778",
+      "hash_scope": "compact JSON serialized abi array",
+      "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol",
+      "observed_on": "2026-10-07"
+    }
+  ],
+  "completeness": {
+    "supplied_interface": "complete_explorer_abi_list",
+    "supplied_entry_count": 45,
+    "implementation": "partial_source_review",
+    "pinned_state": "not_obtained",
+    "missing_evidence": [
+      "Independently pinned code, storage, current permissions and financial reconciliation.",
+      "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+    ],
+    "literal_abi_sha256": "1fffbcb2a4dcb07ff6a5cbaa25fda224c750b2914dfbc7b9351df88a363367ff",
+    "literal_character_range": [
+      272315,
+      274978
+    ],
+    "dispatcher_evidence": {
+      "source_id": "netnet-genesis-implementation-20261007",
+      "method": "PUSH4/EQ/PUSH2/JUMPI dispatcher patterns within first850 bytes; not exhaustive symbolic execution. Selectors alone do not identify absent names, outputs or permissions.",
+      "observed_selector_count": 26,
+      "unmatched_dispatcher_selectors": [],
+      "interface_selectors_not_seen_in_pattern": []
+    }
+  },
+  "functions": [
+    {
+      "name": "bondDepository",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "contract IBondDepository",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "bondDepository()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[19]"
+      },
+      "selector": "0xbbf8ff04",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter bondDepository; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x40a",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "certificate",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "contract ShareCertificate",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "certificate()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[20]"
+      },
+      "selector": "0x2dbf7b98",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter certificate; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x1c0",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "claim",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "netAmount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "signature": "claim()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[21]"
+      },
+      "selector": "0x4e71d92d",
+      "semantic_evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "assets/contracts/validation.json#genesis; claim"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Caller claims own purchased entitlement after finalized; no administrator arbitrary beneficiary."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Returns0 for zero claimable; increments claimedNet then transfers NET to caller. Five-day linear vest, floor(total*elapsed/432000) until fully vested; total purchased minus claimed remains custody liability."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x272",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "claimableNetOf",
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "claimableNetOf(address)",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[22]"
+      },
+      "selector": "0x4a7a31f2",
+      "semantic_evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "assets/contracts/validation.json#genesis; claimableNetOf"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public view; no caller restriction."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Zero before finalized; vested(total,elapsed)-claimedNet. Nonzero entitlement is not successful transfer or adequate custody proof."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x207",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "claimedNet",
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "claimedNet(address)",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[23]"
+      },
+      "selector": "0xbbd84d97",
+      "semantic_evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "assets/contracts/validation.json#genesis; claimedNet"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public getter."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Cumulative successfully committed claim amount in NET base units; distinguish paid from purchased and claimable."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x3eb",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "finalize",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "finalize()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[24]"
+      },
+      "selector": "0x4bb278f3",
+      "semantic_evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "assets/contracts/validation.json#genesis; finalize"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Permissionless once hard cap reached, or strictly after deadline with minimum raise, and wired; once only."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Atomically sends floor(raisedRaw*7000/10000) USDG to Treasury, remainder to pair; Treasury mints NET for POL and bonders, pair LP to Treasury; enables staking/bonds/tax and checkpoints oracle. Any reverting dependency reverts finalization."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x21a",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "finalizeTime",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "finalizeTime()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[25]"
+      },
+      "selector": "0x6a03eaf9",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter finalizeTime; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x2b2",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "finalized",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "finalized()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[26]"
+      },
+      "selector": "0xb3f05b97",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter finalized; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x3d7",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "net",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "contract INET",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "net()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[27]"
+      },
+      "selector": "0xc2fff4a5",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter net; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x421",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "oracle",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "contract IPairOracle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "oracle()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[28]"
+      },
+      "selector": "0x7dc0d1d0",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter oracle; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x33c",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "pairContract",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "contract IUniswapV2Pair",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "pairContract()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[29]"
+      },
+      "selector": "0x4d709adf",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter pairContract; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x24b",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "purchase",
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "usdgAmountRaw",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "purchase(uint256)",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[30]"
+      },
+      "selector": "0xefef39a1",
+      "semantic_evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "assets/contracts/validation.json#genesis; purchase"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Any caller while wired, not finalized and within deadline/caps; spends caller USDG."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Records actual successful transferFrom and per-account purchasedRaw, raisedRaw and append-only registry; best-effort certificate failure does not undo registry. Source uses Constants50k hard cap/2k wallet/15k minimum, not stale interface comments300k/10k."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x46f",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "purchasedNetOf",
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "purchasedNetOf(address)",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[31]"
+      },
+      "selector": "0xa2f77700",
+      "semantic_evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "assets/contracts/validation.json#genesis; purchasedNetOf"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public view; no caller restriction."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "floor(purchasedRaw[account]*usdgWadFactor*1e9/3e18) NET base units; aggregate floor per account, not per registry row."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x39d",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "purchasedRaw",
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "purchasedRaw(address)",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[32]"
+      },
+      "selector": "0xea84880c",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter purchasedRaw; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x450",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "raisedRaw",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "raisedRaw()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[33]"
+      },
+      "selector": "0x5cf340cf",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter raisedRaw; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x282",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "refund",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "refund()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[34]"
+      },
+      "selector": "0x590e1ae3",
+      "semantic_evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "assets/contracts/validation.json#genesis; refund"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Caller only for own purchase, not finalized, strictly after deadline below minimum raise."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Zeros caller purchasedRaw before refund transfer. raisedRaw and append-only registry are not decremented; registry sums are historical gross subscriptions, not remaining refund custody."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x27a",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "registryAt",
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "i",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "purchaser",
+              "type": "address"
+            },
+            {
+              "internalType": "uint96",
+              "name": "usdgAmountWad",
+              "type": "uint96"
+            },
+            {
+              "internalType": "uint64",
+              "name": "timestamp",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct IGenesisBond.PurchaseRecord",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "registryAt(uint256)",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[35]"
+      },
+      "selector": "0x6b03ec36",
+      "semantic_evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "assets/contracts/validation.json#genesis; registryAt"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public index getter; out-of-range reverts."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "PurchaseRecord(purchaser,usdgAmountWad,timestamp). Multiple purchases per account; deduplicate purchasers for entitlement reconciliation, not registry rows."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x2e6",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "registryLength",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "registryLength()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[36]"
+      },
+      "selector": "0x18e7c3c0",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter registryLength; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x1a9",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "saleDeadline",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "saleDeadline()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[37]"
+      },
+      "selector": "0x888ea120",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter saleDeadline; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x363",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "saleStart",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "uint64",
+          "name": "",
+          "type": "uint64"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "saleStart()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[38]"
+      },
+      "selector": "0xab0bcc41",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter saleStart; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x3b0",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "staking",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "contract IStaking",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "staking()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[39]"
+      },
+      "selector": "0x4cf088d9",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter staking; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x224",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "totalRaised",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "totalRaised()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[40]"
+      },
+      "selector": "0xc5c4744c",
+      "semantic_evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "assets/contracts/validation.json#genesis; totalRaised"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public view."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "raisedRaw*usdgWadFactor in WAD USDG; not NET balance or remaining refundable principal."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x448",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "treasury",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "contract ITreasury",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "treasury()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[41]"
+      },
+      "selector": "0x61d027b3",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter treasury; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x28b",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "usdg",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "usdg()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[42]"
+      },
+      "selector": "0xf5b91b7b",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter usdg; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x482",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "wire",
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "bondDepository_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "certificate_",
+          "type": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "signature": "wire(address,address)",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[43]"
+      },
+      "selector": "0x90e3677f",
+      "semantic_evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "assets/contracts/validation.json#genesis; wire"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Wired.wiring: immutable deployer only, once, nonzero addresses."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Sets BondDepository and certificate; not perpetual governance. Current wired state not read."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x38a",
+        "scope": "selector/branch identity only"
+      }
+    },
+    {
+      "name": "wired",
+      "inputs": [],
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "signature": "wired()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[44]"
+      },
+      "selector": "0x39d57b02",
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public Solidity getter without caller gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Read-only source getter wired; not a current observed value."
+      },
+      "dispatcher_match": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "entry_offset": "0x1eb",
+        "scope": "selector/branch identity only"
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "Claimed",
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "purchaser",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "netAmount",
+          "type": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Claimed(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[15]"
+      },
+      "topic0": "0xd8138f8a3f377c5259ca548e70e4c2de94f129f5a11036a15b69513cba2b426a"
+    },
+    {
+      "name": "Finalized",
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "raisedWad",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "toTreasuryWad",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "toPolWad",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "pair",
+          "type": "address"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Finalized(uint256,uint256,uint256,address)",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[16]"
+      },
+      "topic0": "0x3e5ffe0ba3edeca31d61a4adb32782202c2249e6897b701261fe3d9f026d1dca"
+    },
+    {
+      "name": "Purchased",
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "purchaser",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "usdgWad",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "netAmount",
+          "type": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Purchased(address,uint256,uint256)",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[17]"
+      },
+      "topic0": "0xf761777482b4b40d2bcc0d050cfba6829900a2d8b3484bd0244ec0feeb3db504"
+    },
+    {
+      "name": "Refunded",
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "purchaser",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "usdgWad",
+          "type": "uint256"
+        }
+      ],
+      "anonymous": false,
+      "signature": "Refunded(address,uint256)",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[18]"
+      },
+      "topic0": "0xd7dee2702d63ad89917b6a4da9981c90c4d24f8c2bdfd64c604ecae57d8d0651"
+    }
+  ],
+  "errors": [
+    {
+      "name": "AlreadyFinalized",
+      "inputs": [],
+      "signature": "AlreadyFinalized()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[1]"
+      },
+      "selector": "0x475a2535"
+    },
+    {
+      "name": "AlreadyWired",
+      "inputs": [],
+      "signature": "AlreadyWired()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[2]"
+      },
+      "selector": "0xda7c0e55"
+    },
+    {
+      "name": "CannotFinalize",
+      "inputs": [],
+      "signature": "CannotFinalize()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[3]"
+      },
+      "selector": "0x98a6eccc"
+    },
+    {
+      "name": "HardCapExceeded",
+      "inputs": [],
+      "signature": "HardCapExceeded()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[4]"
+      },
+      "selector": "0x3895e792"
+    },
+    {
+      "name": "MulDivOverflow",
+      "inputs": [],
+      "signature": "MulDivOverflow()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[5]"
+      },
+      "selector": "0x49248f77"
+    },
+    {
+      "name": "NotDeployer",
+      "inputs": [],
+      "signature": "NotDeployer()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[6]"
+      },
+      "selector": "0x8b906c97"
+    },
+    {
+      "name": "NotFinalized",
+      "inputs": [],
+      "signature": "NotFinalized()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[7]"
+      },
+      "selector": "0x1bee0d5a"
+    },
+    {
+      "name": "NotWired",
+      "inputs": [],
+      "signature": "NotWired()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[8]"
+      },
+      "selector": "0x3fcbf498"
+    },
+    {
+      "name": "SaleClosed",
+      "inputs": [],
+      "signature": "SaleClosed()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[9]"
+      },
+      "selector": "0x4c013bd7"
+    },
+    {
+      "name": "SaleNotFailed",
+      "inputs": [],
+      "signature": "SaleNotFailed()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[10]"
+      },
+      "selector": "0x67a9922c"
+    },
+    {
+      "name": "TransferFailed",
+      "inputs": [],
+      "signature": "TransferFailed()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[11]"
+      },
+      "selector": "0x90b8ec18"
+    },
+    {
+      "name": "WalletCapExceeded",
+      "inputs": [],
+      "signature": "WalletCapExceeded()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[12]"
+      },
+      "selector": "0x83ebf0b2"
+    },
+    {
+      "name": "ZeroAddress",
+      "inputs": [],
+      "signature": "ZeroAddress()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[13]"
+      },
+      "selector": "0xd92e233d"
+    },
+    {
+      "name": "ZeroAmount",
+      "inputs": [],
+      "signature": "ZeroAmount()",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[14]"
+      },
+      "selector": "0x1f2a2005"
+    }
+  ],
+  "special_entrypoints": [],
+  "constructors": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "net_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "usdg_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "treasury_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "staking_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "pair_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "oracle_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor",
+      "evidence": {
+        "source_id": "netnet-genesis-implementation-20261007",
+        "locator": "Explorer abi array; src/GenesisBond.sol,Constants.sol,Wired.sol; ABI entry[0]"
+      }
+    }
+  ]
+}

@@ -57,6 +57,7 @@ class PublisherBoundaries(unittest.TestCase):
         registry = {"registry_binding": "lM", "selector_binding": "uM"}
         profile["reviewed_bundles"] = [{"bundle_sha256": digest,
                                        "executable_sha256": methodology._registry_observation(BUNDLE, registry)[1],
+                                       "accounting_sha256": methodology._accounting_digest(profile),
                                        "registry_extraction": registry,
                                        "evidence": [{"id": "test_review", "source_sha256": digest,
                                                      "excerpt": "function report(core,v4){return core+v4}"}]}]
@@ -300,6 +301,26 @@ class PublisherBoundaries(unittest.TestCase):
         result, calls = self.collect(profile=profile)
         self.assertEqual(result["status"], "unsupported")
         self.assertEqual(calls, 0)
+
+    def test_accounting_policy_mutation_cannot_reuse_source_recognition(self):
+        for section, field in (("wallet", "fixed_stock_tokens"), ("v3", "assets"),
+                               ("credit", "market_ids"), ("advance", "principal_fields")):
+            profile = self.profile()
+            profile["selection_policy"][section][field] = []
+            result, calls = self.collect(profile=profile)
+            self.assertEqual(result["status"], "unsupported")
+            self.assertEqual(calls, 0)
+
+    def test_september26_policy_is_preserved_but_not_current(self):
+        profile = load_json("assets/analytics/reports-methodology.json")
+        historical = next(p for p in profile["historical_profiles"]
+                          if p["reviewed_at"] == "2026-09-26")
+        self.assertEqual(historical["selection_policy"]["advance"]["principal_fields"],
+                         ["unallocated", "escrowed", "inventory"])
+        self.assertEqual(len(historical["selection_policy"]["credit"]["market_ids"]), 6)
+        self.assertEqual(profile["selection_policy"]["advance"]["principal_fields"],
+                         ["unallocated", "receivable", "inventory"])
+        self.assertEqual(len(profile["selection_policy"]["credit"]["market_ids"]), 7)
 
 
 if __name__ == "__main__":

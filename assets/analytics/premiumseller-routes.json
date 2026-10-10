@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "workflow": "references/premium-seller-analytics.md",
+  "interface": "assets/analytics/premiumseller-interface.json",
+  "source_id": "netnet-premium-seller-implementation-20261010",
+  "reviewed_on": "2026-10-10",
+  "seller": {
+    "file": "assets/addresses/contracts/perp-oracles-pendle-lp-premium-seller-and-presser-prizes.json",
+    "id": "robinhood-0x346e1a31171a0f7ac73909010b5435768d3b5462"
+  },
+  "net": {
+    "file": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+    "id": "robinhood-0xca9c78dd337a67f6e0077f65f5e9218719d30edf"
+  },
+  "usdg": {
+    "file": "assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json",
+    "id": "robinhood-0x5fc5360d0400a0fd4f2af552add042d716f1d168"
+  },
+  "router": {
+    "file": "assets/addresses/contracts/underwriting-vaults-and-uniswap-infrastructure.json",
+    "id": "robinhood-0x89e5db8b5aa49aa85ac63f691524311aeb649eba"
+  },
+  "pair": {
+    "file": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+    "id": "robinhood-0x59f95461e68e0c77605299791e1449f175165b54"
+  },
+  "treasury": {
+    "file": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json",
+    "id": "robinhood-0x04822ea321a0dee6f40656172f29312104855d66"
+  },
+  "oracle": {
+    "file": "assets/addresses/contracts/pack-desk-pair-oracle-pendle-permit2-and-perp-fees.json",
+    "id": "robinhood-0x929631b33f4070d6f54477fba3fd27566567daca"
+  },
+  "genesis": {
+    "file": "assets/addresses/contracts/general-adapter-genesis-bond-and-googl.json",
+    "id": "robinhood-0x575b7b7c97ef3e21c82daeb427899d583e1e913f"
+  }
+}

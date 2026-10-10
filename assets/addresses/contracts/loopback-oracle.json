@@ -15,6 +15,13 @@
           "locator": "Lombard Credit Facility (Loopback) / LoopbackOracle",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-credit-implementation-20261010-loopback-oracle",
+          "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xCDE9599059f8Ae6D6B9F33A0aF7877827ec75F16",
+          "locator": "Explorer ABI/source/runtime identity; unpinned, no financial state",
+          "evidence_kind": "explorer_source_and_runtime",
+          "observed_on": "2026-10-10"
         }
       ],
       "price_source": {

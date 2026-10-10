@@ -1,6 +1,16 @@
 {
   "contracts": [
     {
+      "role": "SleeveBondDesk",
+      "aliases": ["Sleeve Bond Desk", "SLEEVE DESK", "rwaDesk current registry key"],
+      "file": "assets/addresses/contracts/sleeve-bond-desk.json"
+    },
+    {
+      "role": "STEAKUSDG historical adapter",
+      "aliases": [],
+      "file": "assets/addresses/contracts/historical-publisher-dependencies.json"
+    },
+    {
       "role": "ShareCertificate",
       "aliases": [],
       "file": "assets/addresses/contracts/share-certificate-snet-and-spacex-invaders.json"

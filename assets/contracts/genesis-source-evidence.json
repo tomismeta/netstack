@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "source_id": "netnet-genesis-implementation-20261007",
+  "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x575b7B7c97Ef3E21C82DAeB427899d583e1E913f",
+  "observed_on": "2026-10-07",
+  "scope": "Portable original-source identities, hashes and function line locators for the explorer-returned GenesisBond, Constants and Wired files. Full third-party AGPL source is not redistributed. Review findings live in validation.json and the descriptive Genesis catalog; hashes do not prove independent compilation or pinned deployment equivalence.",
+  "sources": [
+    {
+      "source_path": "src/GenesisBond.sol",
+      "sha256": "4d0e53b72c839e08c5acf9e2272742a5858da2f2e563161d635bf44c25d9c575",
+      "upstream_license": "AGPL-3.0-only",
+      "source_line_count": 225,
+      "function_locators": [
+        {
+          "name": "wire",
+          "line": 79
+        },
+        {
+          "name": "purchase",
+          "line": 87
+        },
+        {
+          "name": "refund",
+          "line": 123
+        },
+        {
+          "name": "finalize",
+          "line": 137
+        },
+        {
+          "name": "claim",
+          "line": 185
+        },
+        {
+          "name": "purchasedNetOf",
+          "line": 195
+        },
+        {
+          "name": "claimableNetOf",
+          "line": 202
+        },
+        {
+          "name": "totalRaised",
+          "line": 212
+        },
+        {
+          "name": "registryLength",
+          "line": 217
+        },
+        {
+          "name": "registryAt",
+          "line": 222
+        }
+      ]
+    },
+    {
+      "source_path": "src/Constants.sol",
+      "sha256": "1a02fd6a04c98a0119cc38b6d0bf244d2103715733f0d9d0e28ca2227ce02d5d",
+      "upstream_license": "AGPL-3.0-only",
+      "source_line_count": 80,
+      "function_locators": []
+    },
+    {
+      "source_path": "src/abstract/Wired.sol",
+      "sha256": "ddbc6b33496472b58626a52791fab32fc5fe26b2d1d7489623d3af67cde5b458",
+      "upstream_license": "AGPL-3.0-only",
+      "source_line_count": 40,
+      "function_locators": [
+        {
+          "name": "_checkWired",
+          "line": 32
+        },
+        {
+          "name": "_nonZero",
+          "line": 36
+        }
+      ]
+    }
+  ],
+  "findings_path": "assets/contracts/validation.json"
+}

@@ -1,6 +1,11 @@
 {
   "contracts": [
     {
+      "role": "Rialto historical resolved taker router",
+      "aliases": [],
+      "file": "assets/addresses/contracts/historical-publisher-dependencies.json"
+    },
+    {
       "role": "rialtoRouterRegistry",
       "aliases": [
         "Rialto Router Registry"
@@ -28,9 +33,10 @@
       "file": "assets/addresses/contracts/rialto-runner-and-rwa-desk-v1.json"
     },
     {
-      "role": "rwaDesk",
+      "role": "rwaDeskV2",
       "aliases": [
         "RWA Desk V2",
+        "rwaDesk historical V2",
         "AAPL trusted mark source contract"
       ],
       "file": "assets/addresses/contracts/rwa-desk-v2-and-feed-router-adapters.json"

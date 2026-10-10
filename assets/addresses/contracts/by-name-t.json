@@ -1,6 +1,11 @@
 {
   "contracts": [
     {
+      "role": "Third-party NVDA historical MorphoChainlinkOracleV2",
+      "aliases": [],
+      "file": "assets/addresses/contracts/historical-publisher-dependencies.json"
+    },
+    {
       "role": "TaxCollector",
       "aliases": [],
       "file": "assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json"

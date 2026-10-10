@@ -1,0 +1,29 @@
+{
+  "public_role_addresses": [
+    {
+      "id": "robinhood-role-perpv1halter",
+      "chain_id": 4663,
+      "address": "0xA849eAB402c34bcfe1e74E542A85657e49521054",
+      "role": "perpV1Halter",
+      "status": "publicly_published_role_only",
+      "account_kind": "unverified",
+      "ownership_status": "not_verified_no_legal_person_attribution",
+      "live_chain_verification_status": "not_performed",
+      "lifecycle_notes": "Current trading publisher registry names this futures halter role. Role publication and the publisher HUMAN-VERIFIED label do not establish current contract permissions, code/account kind, control or legal identity. Read the relevant contracts' current authority and halt-state getters at the requested block. No wallet activity, funding instructions or balance/nonce snapshot retained.",
+      "provenance": [
+        {
+          "source_id": "netnet-trading-entry-20261010",
+          "locator": "perpV1Halter.address",
+          "evidence_kind": "public_publisher_role_registry",
+          "observed_on": "2026-10-10"
+        },
+        {
+          "source_id": "netlong-futures-explorer-20261010-btc",
+          "locator": "Constructor arg6 and runtime halter-only setOpensPaused; repeated immutable group offsets1999,3190; current key control/account kind unverified.",
+          "evidence_kind": "explorer_runtime_immutable_binding_not_key_control",
+          "observed_on": "2026-10-10"
+        }
+      ]
+    }
+  ]
+}

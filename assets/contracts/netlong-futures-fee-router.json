@@ -1,0 +1,409 @@
+{
+  "schema_version": 1,
+  "contract_id": "robinhood-0x56a8816132579c6c080e65147682da2d6d20efb0",
+  "contract_record": "assets/addresses/contracts/netlong-futures.json",
+  "chain_id": 4663,
+  "address": "0x56a8816132579c6c080e65147682DA2d6D20efb0",
+  "generation": "netlong-futures-fee-router",
+  "provenance": [
+    {
+      "source_id": "netlong-futures-explorer-20261010-fee-router",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x56a8816132579c6c080e65147682DA2d6D20efb0",
+      "observed_on": "2026-10-10",
+      "locator": "Explorer-reported deployed_bytecode and creation_bytecode; no source_code or abi fields"
+    }
+  ],
+  "execution_authority": false,
+  "completeness": {
+    "supplied_interface": "partial_runtime_reconstructed_descriptive_interface",
+    "supplied_entry_count": 10,
+    "implementation": "material_runtime_paths_reviewed_source_unavailable",
+    "pinned_state": "not_obtained_rpc_denied",
+    "missing_evidence": [
+      "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+      "Compiler rebuild/source-runtime equivalence.",
+      "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
+    ]
+  },
+  "runtime_evidence": {
+    "sha256": "a0c0fdc91eda54cbeb18f7097ec12d7390ee1fc45fe7790c31ef520b8d1be85f",
+    "byte_length": 2903,
+    "bytecode_origin": "explorer_reported_not_rpc_pinned",
+    "selector_comparison": "Compiler dispatcher PUSH3/PUSH4 EQ PUSH2 JUMPI targets; selector presence is not full semantic equivalence.",
+    "source_verification": {
+      "is_verified": false,
+      "is_fully_verified": false,
+      "is_partially_verified": false,
+      "local_compilation_performed": false
+    },
+    "dispatch_function_count": 13,
+    "unrepresented_dispatch_selectors": [
+      {
+        "selector": "0xdeadbc14",
+        "entry_pc": "0x2a8",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x63f7324a",
+        "entry_pc": "0x197",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      },
+      {
+        "selector": "0x186f0354",
+        "entry_pc": "0xde",
+        "status": "not_in_supplied_interface; source_signature_or_semantics_gap"
+      }
+    ],
+    "creation_template_comparison": {
+      "runtime_bytes": 2903,
+      "embedded_template_sha256": "237467f2d6490adb3ce9329ec7c581bac97e05df77a64ad1d7e976c30c58d372",
+      "immutable_word_offsets": [
+        227,
+        295,
+        334,
+        373,
+        412,
+        467,
+        506,
+        578,
+        617,
+        685,
+        724,
+        773,
+        1001,
+        1050,
+        1103,
+        1191,
+        1347,
+        1502,
+        1612,
+        1682,
+        1765,
+        1852,
+        1894,
+        2037,
+        2088,
+        2196,
+        2239,
+        2387
+      ],
+      "normalization_matches_creation_template": true,
+      "constructor_runtime_offset": 1097
+    }
+  },
+  "functions": [
+    {
+      "name": "wsNet",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-fee-router",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[0]"
+      },
+      "signature": "wsNet()",
+      "selector": "0xd52014e3",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable wsNET18 input fee asset, 0x63c12667638f2ae6fc6ae09b43d98ec84a8586ea; unwrapped in route."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x264"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "sNet",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-fee-router",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[1]"
+      },
+      "signature": "sNet()",
+      "selector": "0x1adb8eb6",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable sNET9 asset 0xb773ec2c326b7f98a5a83fc098825492f020a4c7. Getter not a balance/index read."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x122"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "net",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-fee-router",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[2]"
+      },
+      "signature": "net()",
+      "selector": "0xc2fff4a5",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable NET9 asset 0xca9c78dd337a67f6e0077f65f5e9218719d30edf; current route burns this after unstaking."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x23d"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "staking",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-fee-router",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[3]"
+      },
+      "signature": "staking()",
+      "selector": "0x4cf088d9",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable unstaking contract0xb078cc304a0b264c5f3680dc0488954accd02e87; constructor approved sNET and route calls unstake(address,uint256)."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x149"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "treasury",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-fee-router",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[4]"
+      },
+      "signature": "treasury()",
+      "selector": "0x61d027b3",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable Treasury0x04822ea321a0dee6f40656172f29312104855d66, recipient in dormant swap branch; not current route output asset."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x170"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "pairOracle",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-fee-router",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[5]"
+      },
+      "signature": "pairOracle()",
+      "selector": "0xb1b9a7c5",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable pair TWAP0x929631b33f4070d6f54477fba3fd27566567daca used only by minUsdgOut/dormant swap branch."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x1f5"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "keeper",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-fee-router",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[6]"
+      },
+      "signature": "keeper()",
+      "selector": "0xaced1661",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable authority0xc73177390fb65f733f9c7b286c29fb9faa358213. Explorer contract endpoint404 does not prove EOA. Authority check is conditional on dormant swap boolean."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x1ce"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "usdg",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-fee-router",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[7]"
+      },
+      "signature": "usdg()",
+      "selector": "0xf5b91b7b",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Immutable USDG6 0x5fc5360d0400a0fd4f2af552add042d716f1d168; quote/output asset for dormant swap path, not active fee denomination."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x2cf"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "minUsdgOut",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "netAmount",
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-fee-router",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[8]"
+      },
+      "signature": "minUsdgOut(uint256)",
+      "selector": "0xb569305b",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "public read; pair TWAP may revert"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Runtime0x02f6-0x03e4. Converts raw NET9*pairOracle TWAP WAD/1e9/1e12 to USDG6, then applies (10000-500-30-100)/10000=93.7%, each division flooring. Only relevant to dormant true swap branch."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x21c"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    },
+    {
+      "name": "route",
+      "stateMutability": "nonpayable",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "evidence": {
+        "source_id": "netlong-futures-explorer-20261010-fee-router",
+        "locator": "Runtime selector/body reconstruction; no publisher or explorer ABI obtained; ABI entry[9]"
+      },
+      "signature": "route()",
+      "selector": "0xd96661ef",
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "current burn branch permissionless; other branch checks keeper or safe"
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Runtime0x03e5-0x09fa. Reads entire wsNET balance; zero returns zeroes. Unwraps wsNET, unstakes sNET into NET. Immutable boolean is false in current runtime, so burns NET via burn(uint256), rather than invoking dormant NET-to-USDG route. Alternative true branch uses router and Treasury recipient and computes received USDG by balance difference; do not confuse with margin fee router USDG-to-NET buyback."
+      },
+      "runtime_dispatch": {
+        "selector_present": true,
+        "entry_pc": "0x28b"
+      },
+      "source_gap": "Solidity unavailable; this function-specific runtime/interface analysis is not exhaustive source, reachability or safety verification."
+    }
+  ],
+  "events": [],
+  "errors": [],
+  "special_entrypoints": [],
+  "constructors": []
+}

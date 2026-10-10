@@ -1,0 +1,79 @@
+{
+  "contracts": [
+    {
+      "id": "robinhood-0xd5d418f95715bc0fadb35923d389fe3f627df80a",
+      "chain_id": 4663,
+      "address": "0xd5d418f95715bc0fadb35923d389fe3f627df80a",
+      "role": "PLP-sNET-15OCT2026",
+      "aliases": [
+        "Pendle sNET market 15OCT2026",
+        "PENDLE-LPT 15OCT2026"
+      ],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_active_market_not_live_verified",
+      "lifecycle_notes": "Official API reports October15 market active on October7; maturity-specific identity only. API activity is not pinned chain liquidity, deployment time, redemption or executable pricing. PT unit is NET, not guaranteed USD principal.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "pendle-snet-market-15oct2026",
+          "locator": "lp.address/symbol/decimals/expiry; isActive; sy/accountingAsset/underlyingAsset; extendedInfo",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-07"
+        }
+      ],
+      "decimals": 18,
+      "integration_role": "lp",
+      "expiry": "2026-10-15T00:00:00.000Z",
+      "sy_id": "robinhood-0x5d446a2be952f4f9ba241b382a73ad3b1819aaf5",
+      "sy_record": "assets/addresses/contracts/swap-router-and-pendle-sy.json",
+      "accounting_asset_id": "robinhood-0xba46fc84409589f369c107e869c06809df3d9727",
+      "accounting_asset_record": "assets/addresses/contracts/net-assets-pair-and-credit-vault.json",
+      "underlying_asset_id": "robinhood-0x53176cadd446700fa6b89f840357ac586d7e33db",
+      "underlying_asset_record": "assets/addresses/contracts/share-certificate-snet-and-spacex-invaders.json"
+    },
+    {
+      "id": "robinhood-0xc50f040f9a38f7cd94fe87be56325eaac48e770e",
+      "chain_id": 4663,
+      "address": "0xc50f040f9a38f7cd94fe87be56325eaac48e770e",
+      "role": "PT-sNET-15OCT2026",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_active_market_not_live_verified",
+      "lifecycle_notes": "Official API reports October15 market active on October7; maturity-specific identity only. API activity is not pinned chain liquidity, deployment time, redemption or executable pricing. PT unit is NET, not guaranteed USD principal.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "pendle-snet-market-15oct2026",
+          "locator": "pt.address/symbol/decimals/expiry; isActive; sy/accountingAsset/underlyingAsset; extendedInfo",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-07"
+        }
+      ],
+      "decimals": 18,
+      "integration_role": "pt",
+      "expiry": "2026-10-15T00:00:00.000Z"
+    },
+    {
+      "id": "robinhood-0x3d9e0f83834e015d25d07444de0296359ebfb6e3",
+      "chain_id": 4663,
+      "address": "0x3d9e0f83834e015d25d07444de0296359ebfb6e3",
+      "role": "YT-sNET-15OCT2026",
+      "aliases": [],
+      "status": "recorded_from_public_source",
+      "lifecycle_status": "publisher_reported_active_market_not_live_verified",
+      "lifecycle_notes": "Official API reports October15 market active on October7; maturity-specific identity only. API activity is not pinned chain liquidity, deployment time, redemption or executable pricing. PT unit is NET, not guaranteed USD principal.",
+      "live_chain_verification_status": "not_performed",
+      "provenance": [
+        {
+          "source_id": "pendle-snet-market-15oct2026",
+          "locator": "yt.address/symbol/decimals/expiry; isActive; sy/accountingAsset/underlyingAsset; extendedInfo",
+          "evidence_kind": "publisher_registry_or_documentation",
+          "observed_on": "2026-10-07"
+        }
+      ],
+      "decimals": 18,
+      "integration_role": "yt",
+      "expiry": "2026-10-15T00:00:00.000Z"
+    }
+  ]
+}

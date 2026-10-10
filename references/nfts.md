@@ -13,6 +13,8 @@ Both collection URLs were supplied by the user. On **2026-09-10**, each OpenSea 
 
 This is **marketplace-to-registry identity corroboration**, not a new live-chain verification, proof of contract safety, or independent validation of OpenSea's badge. Current prices, supply, owners, royalties, listings and transfer conditions are mutable and are not frozen into this reference.
 
+**October 7 identity refresh:** [Official Channels](https://docs.netnet.capital/official-channels) still names the same current NetNetGear; the [current arcade asset](https://play.netnet.capital/assets/index-D0SrFGE_.js) retains that Gear address and the same `buttonPresserCard`, links the Button Presser collection above, and constructs numbered OpenSea links using that card contract on Robinhood Chain. No replacement collection was established. This is fresh **publisher link/registry** corroboration, not a second OpenSea API review, live ownership check or marketplace safety assessment; the September 10 API evidence remains dated as such.
+
 **Publisher badge claim:** on [August 28](https://x.com/NetNetCap/status/2093438514117616056), the publisher said the Button collection was verified on OpenSea. The September 10 API check corroborates identity only—not the badge, wallet count, mint distribution, Training Grounds mechanics or current operation. [Games retains the August 25/28 launch, jackpot, commemorative-plate and Training Grounds chronology](games.md#the-button--permanent-eligibility-and-discretionary-rounds), added through 2026-09-12 in this unpublished update.
 
 ## Keep the identities separate
@@ -27,6 +29,16 @@ This is **marketplace-to-registry identity corroboration**, not a new live-chain
 For shared loot, see [Board Meeting](games.md#the-board-meeting--counterparties-choose-reward-systems-differ); for wallet eligibility versus card ownership, see [THE BUTTON](games.md#the-button--permanent-eligibility-and-discretionary-rounds). The founding certificate is covered in [Products](products.md#standard-bonds-staking-and-the-concluded-founding-offering) and [Glossary and FAQ](glossary-and-faq.md). Use [Addresses and roles](addresses-and-roles.md) for exact contracts and generations.
 
 An NFT's artwork, name, trait, collection badge or marketplace listing does not by itself establish a claim on Treasury reserves, RWA assets, staking distributions, game prizes, redemption proceeds, intellectual-property rights or future rewards. Tie each claim to the particular documented product and token; state missing evidence rather than generalizing across collections.
+
+## Arcade card market and lookup
+
+The October 7 static review of the [arcade](https://play.netnet.capital/assets/index-D0SrFGE_.js) and its actual linked [Presser Market client](https://play.netnet.capital/assets/presser-market-live-CT5Dh0kU.js) distinguishes three surfaces:
+
+- **PRESSER MARKET.exe** is a published Button Presser market design with USDG listings and standing offers, card-transfer approvals, buy/accept/cancel paths and a fee getter. **Its current registry entry is zero-address `PLACEHOLDER`, explicitly “not deployed yet.”** The promoted-address getter rejects it and initialization falls back to a **DEMONSTRATION** market with synthetic cards, prices and sales. Do not quote these as real supply, floor, volume or a live fee; a shipped client/ABI does not prove a deployed market, escrow safeguards, seller proceeds or revenue destination.
+- **LOOKUP.EXE** reads faction/character information by Presser number and links that same numbered card on OpenSea. Its “top 50” table is fixed card numbers 1–50, not a performance leaderboard. No character created yet does not establish a missing card, absent owner or lost eligibility.
+- **TELLER.EXE** displays arcade account USDG/COIN funding and transfer controls. It is neither an NFT collection nor a withdrawal route for all NFT/game liabilities. See [Games](games.md#other-arcade-surfaces-and-open-source-questions) for its limits.
+
+`buttonPresserCard`, `presserFaction`, `presserCharacter` and NetNetGear remain distinct identities. Lookup artwork/ratings, market transfer controls and character creation do not themselves establish that THE BUTTON's permanent wallet seat transfers with the souvenir, or that Gear already confers a future earning boost. [Builders](builders.md#keep-the-announced-concepts-separate) separates announced NFT/NetCorp utility from verified current rights.
 
 ## Read-only boundary
 
