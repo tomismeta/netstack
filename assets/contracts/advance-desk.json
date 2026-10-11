@@ -423,11 +423,11 @@
       "selector": "0x0aebeb4e",
       "semantic_evidence": {
         "source_id": "netnet-advance-desk-implementation-20261007",
-        "locator": "assets/contracts/validation.json#advance-desk; close"
+        "locator": "assets/contracts/validation.json#advance-desk; assets/analytics/advance-interface.json#/accounting_evidence/maturity and /accounting_evidence/close; retained close runtime byte offset 0x0d5a"
       },
       "permissions": {
         "status": "retained_conditional_runtime",
-        "detail": "Unpaid position requires maturity; any caller then. Paid early close requires owner; ordinary full repay finalizes immediately."
+        "detail": "No halt check in the analyzed runtime: close remains callable while halted, subject to position, maturity and caller gates. Unpaid position requires maturity; any caller then. Paid early close requires owner; ordinary full repay finalizes immediately. Dependency and transfer failures can still revert."
       },
       "economic_meaning": {
         "status": "retained_conditional_runtime",
@@ -1080,11 +1080,11 @@
       "selector": "0x268bd3aa",
       "semantic_evidence": {
         "source_id": "netnet-advance-desk-implementation-20261007",
-        "locator": "assets/contracts/validation.json#advance-desk; payTreasury"
+        "locator": "assets/contracts/validation.json#advance-desk; assets/analytics/advance-interface.json#/accounting_evidence/treasury; selector 0x268bd3aa, dispatcher entry 0x49e (identity only)"
       },
       "permissions": {
         "status": "retained_conditional_runtime",
-        "detail": "Permissionless and not halted; actual failed transfer can revert."
+        "detail": "Permissionless, including while halted; no halt gate in the retained runtime review. Strict transfer failure reverts, preserving treasuryOwed on EVM rollback."
       },
       "economic_meaning": {
         "status": "retained_conditional_runtime",
@@ -1530,11 +1530,11 @@
       "selector": "0xd8aed145",
       "semantic_evidence": {
         "source_id": "netnet-advance-desk-implementation-20261007",
-        "locator": "assets/contracts/validation.json#advance-desk; repay"
+        "locator": "assets/contracts/validation.json#advance-desk; assets/analytics/advance-interface.json#/accounting_evidence/repayment and /accounting_evidence/maturity; retained repay runtime byte offset 0x22e4"
       },
       "permissions": {
         "status": "retained_conditional_runtime",
-        "detail": "Permissionless for existing nonclosed position."
+        "detail": "Permissionless for existing nonclosed position, including before maturity or while halted; no halt check in the analyzed runtime."
       },
       "economic_meaning": {
         "status": "retained_conditional_runtime",
@@ -1906,11 +1906,11 @@
       "selector": "0x083893e1",
       "semantic_evidence": {
         "source_id": "netnet-advance-desk-implementation-20261007",
-        "locator": "assets/contracts/validation.json#advance-desk; withdrawInventory"
+        "locator": "assets/contracts/validation.json#advance-desk; assets/analytics/advance-interface.json#/accounting_evidence/inventory"
       },
       "permissions": {
         "status": "retained_conditional_runtime",
-        "detail": "House-only; lockedTotal not withdrawable through this entrypoint."
+        "detail": "House-only, including while halted; lockedTotal not withdrawable through this entrypoint."
       },
       "economic_meaning": {
         "status": "retained_conditional_runtime",

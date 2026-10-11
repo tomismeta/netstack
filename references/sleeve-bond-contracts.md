@@ -34,7 +34,11 @@ The current desk has no obtained mint or burn path. That proves a narrower state
 | `start`, `end`, `VEST` | Unix seconds / duration seconds |
 | `rwaOut` | Equity token raw amount, not scaled UI shares or dollars |
 
-Indexed runtime freezes `MAX_DISCOUNT_BPS=750`, `MIN_PREMIUM_WAD=1.2e18`, `INVENTORY_HARD_CAP=300e9` NET9, `MAX_ORACLE_DEV_BPS=500`, `VEST=172800` seconds and USDG WAD factor `1e12`. Mutable launch values are **not** current observations.
+Indexed runtime freezes `MAX_DISCOUNT_BPS=750`, `MIN_PREMIUM_WAD=1.2e18`, `INVENTORY_HARD_CAP=300e9` raw NET9 (**300 NET**, not 300 billion whole NET), `MAX_ORACLE_DEV_BPS=500`, `VEST=172800` seconds and USDG WAD factor `1e12`. Mutable launch values are **not** current observations.
+
+The cap was re-decoded from the retained indexed bytes, not inferred from an economically plausible size: dispatcher selector `0xe52442cc` at byte `0x007b` targets `0x06b5`; `PUSH32` at `0x06b9` carries `0x00000000000000000000000000000000000000000000000000000045d964b800` (immediate bytes `[0x06ba,0x06da)`). The return helper `0x02d9–0x02eb` ABI-encodes that uint256. `0x45d964b800 = 300000000000`; dividing raw9 by `1000000000` gives **300 NET**. There is no demonstrated numeric transcription mismatch.
+
+This is the immutable ceiling on **manager-set `inventoryMax`**, not a quote-price, USDG-input, lifetime-sale or total outstanding-note cap. `setInventoryMax(uint256)` (`0x3d17c5ab`, body `0x0f8e`) compares the input with the same `PUSH32` constant at `0x0fd8`, reverting above it and storing accepted input in slot 5 at `0x101d`. Deposits compare the measured NET receipt plus unsold inventory (slot 1) against slot 5 at `0x134d–0x1363`. Bonds instead compare their raw NET9 payout against available slot-1 inventory at `0x09c1–0x09cb`, then subtract it; they do not apply a separate hard-cap quote guard. Replenishment can therefore support cumulative sales above 300 NET, and `owedNet` is a separate liability rather than part of this deposit ceiling. These are static branch semantics, not observations of current inventory or liabilities.
 
 The oracle guard uses 18-decimal raw equity arithmetic: `floor(deskEquityDelta × unitPriceWad / 1e18) >= floor(usdgIn × 1e12 × (10000−500) / 10000)`. This is a downside oracle-value bound, not best execution, symmetric slippage, USDG parity, guaranteed stock liquidity or proof of the external feed's accuracy. Token units and scaled UI require their own evidence.
 

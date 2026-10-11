@@ -64,6 +64,22 @@
     "VEST_seconds": 172800,
     "usdgWadFactor": "1000000000000"
   },
+  "inventory_hard_cap_decoding": {
+    "status": "targeted_runtime_review",
+    "selector": "0xe52442cc",
+    "dispatcher_selector_offset": "0x007b",
+    "entry_offset": "0x06b5",
+    "push32_offset": "0x06b9",
+    "immediate_byte_range_half_open": ["0x06ba", "0x06da"],
+    "raw_hex": "0x00000000000000000000000000000000000000000000000000000045d964b800",
+    "return_helper_range": "0x02d9-0x02eb",
+    "raw_NET9": "300000000000",
+    "whole_NET": "300",
+    "decoding": "uint256(0x45d964b800)=300000000000; raw9/1000000000=300 NET. Payout helper uses PUSH4 0x3b9aca00 (1e9) at0x203a.",
+    "enforcement": "setInventoryMax selector0x3d17c5ab body0x0f8e: same PUSH32 at0x0fd8, reject input above cap, SSTORE slot5 at0x101d. depositInventory compares measured receipt+slot1 inventory<=slot5 at0x134d-0x1363. bond checks payout<=slot1 inventory at0x09c1-0x09cb.",
+    "scope": "Ceiling for manager-set inventoryMax governing unsold inventory deposits, not quote price, USDG input, cumulative sales or owedNet. No numeric transcription mismatch demonstrated; 300 NET is the indexed constant.",
+    "limitations": "Re-decoded retained indexed runtime matching runtime_evidence hash; no fresh network, pinned state, balances or history."
+  },
   "economic_paths": [
     {
       "range": "0x0752-0x0ce6",

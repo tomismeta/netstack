@@ -4,12 +4,12 @@ Use the bundled read-only `book` command for a **new pinned snapshot** and optio
 
 ```sh
 python3 scripts/analytics.py book --json
-python3 scripts/analytics.py book --market-id 1 --bet-id 1 --detail full --json
+python3 scripts/analytics.py book --market-id MARKET_ID --bet-id BET_ID --detail full --json
 python3 scripts/analytics.py book --max-markets 16 --max-bets 64 --deadline 120 --json
-python3 scripts/analytics.py book --block 123456 --from-block 123000 --detail full --json
+python3 scripts/analytics.py book --block SNAPSHOT_BLOCK --from-block START_BLOCK --detail full --json
 ```
 
-Numbers in the examples are **user-chosen scope placeholders**, not stored observed market IDs or an active historical period. Canonical RPC permission denial ends the run; never retry through an alternate provider/client or turn failure into zero. Current research could not exercise live collection because that RPC was already denied.
+Replace `MARKET_ID` and `BET_ID` with positive integer IDs selected for the question, and `SNAPSHOT_BLOCK` and `START_BLOCK` with the intended nonnegative block numbers (`START_BLOCK <= SNAPSHOT_BLOCK`). These are placeholders, not recorded observations; the numeric `--max-*` and `--deadline` examples are collection limits, not financial state. Canonical RPC permission denial ends the run; never retry through an alternate provider/client or turn failure into zero. Current research could not exercise live collection because that RPC was already denied.
 
 ## Options and finite scope
 

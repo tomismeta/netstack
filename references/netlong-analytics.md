@@ -2,6 +2,17 @@
 
 `netlong` discovers and accounts for the current selected futures vault and the separate real-token, long-only margin program. It does not submit transactions, create trade payloads, connect a wallet, or treat terminal demonstration data as chain state. LOSE awards are not open interest.
 
+## Plain-language open-interest requests
+
+An unqualified question such as **“How much open interest is there for NetLong?”** requests coverage of both programs. Do not silently narrow it to futures because “open interest” is futures terminology, and do not require the user to know the product distinction.
+
+1. **Discover both:** use `netlong --product all` (already the collector default), enumerating the futures vault and margin desk at the same pinned block. For counts, retain `--detail full` or a full `--output` checkpoint from that collection. The four known futures symbols and example margin tokens are not coverage limits.
+2. **Return two separately labeled blocks:** futures entry OI by desk (long, short, gross; USD-denominated notional) and margin funded debt by token (USDG, including accrued interest), with token exposure and position counts as defined below. Never produce a futures-plus-margin “total OI”; these measure different things and USDG parity is not assumed.
+3. **Honor explicit scope:** “futures only” or “margin only” narrows the collection. An unqualified symbol such as NET can match both: discover both, then show the matching rows separately. Do not pass an ambiguous symbol to `--market` and silently choose the first match; use the all-product result or separately identified product/address queries.
+4. **Keep missing coverage visible:** if one program is denied, unsupported or incomplete, say which program was not established alongside any supported results. Do not stop after a successful futures read and present it as whole-NetLong coverage. Access denial still ends the affected retrieval under the existing safety rules; breadth is not permission to bypass it.
+
+The result must retain block/hash/time, per-program coverage and distinctions between complete totals, observed subtotals and unavailable values. No stored balances, reported historical totals or current market rosters are fallback inputs.
+
 ## Commands and safety
 
 From the package root, on a POSIX system with Python 3.10+:
@@ -58,6 +69,13 @@ Current position entry notional and last-posted-mark notional are separately nam
 
 The [NET LONG prospectus](https://docs.netnet.capital/net-long) describes a real-token purchase funded by a USDG loan, with unspent wsNET collateral. The purchase loan is based on credited margin times leverage, not a generic leverage-minus-one shortcut. Pending-buy state is a request, not proof that a loan or swap occurred.
 
+For a margin token's colloquial “open interest” question, lead with **funded USDG debt, including accrued interest**: the sum of pinned `debtUsdg(id)` for positions attributed to that token. This is the primary margin activity analogue chosen for the answer, **not a contract-defined futures OI metric**, not principal-only borrowing and not position market value. Supply these secondary measures separately:
+
+- **Token exposure:** summed `unitsOf(id)` in that token's native units and its marked value where valid pricing is available. Debt can remain evidenced while marked exposure is unavailable.
+- **Funded-position count:** count attributed, successfully read nondeleted positions with `debtUsdg(id) > 0`, including pending-sell positions with debt. Label it explicitly; distinguish pending-buy, open and pending-sell state counts when useful. Allocated IDs (`nextPositionId()-1`) are not active positions, and state2 alone does not prove positive debt.
+- Use the full result's position rows for these counts. Summary `observed_position_count` counts retained nondeleted rows, including pending requests; it is **not** a funded-position count. With incomplete ID coverage or failed reads, report only qualified observed counts/subtotals, not whole-token totals or an inferred zero.
+
+
 `nextPositionId()` allocates contiguous IDs starting at 1. Read bounded IDs in `[1, nextPositionId)` including deleted slots; do not rely on a hardcoded trader list or infer ownership from terminal screenshots. Supported observed states are 1 pending-buy, 2 open and 3 pending-sell. An unrecognized nonzero state or a non-enumerated position token is missing coverage, not an inferred open position.
 
 For each current nonzero-trader slot:
@@ -69,6 +87,47 @@ For each current nonzero-trader slot:
 - The token's full `balanceOf(desk)` is reported only as custody. Virtual-share dust, unsolicited transfers and token behavior can make it differ from summed position units. Custody is not substituted for owned position exposure. Raw token units are summed only within their own token, never across symbols.
 
 Stored entry notional, funded USDG debt, marked token exposure, cap reservations, collateral and lending-account principal are **non-additive**. The output never creates a futures-plus-margin “total OI”. Listing and `opensAllowed` remain explicit even for a delisted token that still has an outstanding loan; stale eligibility does not erase debt.
+
+### Position ID to token: decode the ABI, not address patterns
+
+The [published Desk ABI](../assets/contracts/netlong-margin-desk.json) defines `positions(uint256)` (`0x99fbab88`) as one **static** `Position` tuple. The [runner interface](../assets/analytics/netlong-interface.json) uses the same field order. This is the return layout for that evidenced deployment/interface, not a universal struct layout or proof of an unknown implementation.
+
+Offsets below are zero-based bytes from the start of decoded `eth_call` return data, after removing `0x`. Each field occupies a full 32-byte ABI word regardless of its declared integer width; Solidity storage packing does not apply. There is **no leading dynamic-tuple offset**. The complete return is 20 words / 640 bytes.
+
+| Word | Byte offset | Field | ABI type |
+|---|---|---|---|
+| 0 | 0x000 | trader | address |
+| 1 | 0x020 | token | address |
+| 2 | 0x040 | state | uint8 |
+| 3 | 0x060 | openedAt | uint64 |
+| 4 | 0x080 | lastTouch | uint64 |
+| 5 | 0x0a0 | underSince | uint64 |
+| 6 | 0x0c0 | deadline | uint64 |
+| 7 | 0x0e0 | marginWs | uint128 |
+| 8 | 0x100 | loanUsdg | uint128 |
+| 9 | 0x120 | scaledDebtWad | uint128 |
+| 10 | 0x140 | shares | uint128 |
+| 11 | 0x160 | entryPriceWad | uint128 |
+| 12 | 0x180 | notionalUsdWad | uint128 |
+| 13 | 0x1a0 | capShareWad | uint128 |
+| 14 | 0x1c0 | leverageWad | uint64 |
+| 15 | 0x1e0 | slipBps | uint16 |
+| 16 | 0x200 | maintenanceBps | uint16 |
+| 17 | 0x220 | maxPriceWad | uint128 |
+| 18 | 0x240 | minProceedsUsdg | uint128 |
+| 19 | 0x260 | sharesPending | uint128 |
+
+**Synthetic ABI illustration, not a live position or deployment:** let the trader be `0x1111111111111111111111111111111111111111`, token `0x2222222222222222222222222222222222222222`, state2. The first three return words are:
+
+```text
+word 0: 0000000000000000000000001111111111111111111111111111111111111111
+word 1: 0000000000000000000000002222222222222222222222222222222222222222
+word 2: 0000000000000000000000000000000000000000000000000000000000000002
+```
+
+Words3–19 are omitted from this illustration, not from a valid response. The token is the rightmost 20 bytes of **word1** (return bytes44–63), not the first recognizable address anywhere in the blob. A strict ABI decoder must validate the full length, address padding and integer widths. Map the decoded token to same-block `tokenCount()`/`tokenAt(i)` discovery by exact chain-qualified address, not a ticker or byte-pattern search. The collector already performs this decode and attribution; no handwritten struct parser is needed.
+
+A zero `trader` marks a deleted/unused slot for this collector. Nonzero-trader slots with an unknown state or non-enumerated token are coverage gaps. `loanUsdg`, `scaledDebtWad`, `shares` and stored notional are not substitutes for the separate `debtUsdg(id)` and `unitsOf(id)` getters.
 
 ## Completeness, bounds and evidence gaps
 

@@ -18,6 +18,8 @@ python3 -I -B maintenance/package.py archive --commit REVIEWED_FULL_40_HEX_SHA -
 
 `verify` never repairs or rewrites anything. Maintainer verification checks the checkout's distributable files and curated content, excluding Git metadata, `.omp`, CI, maintenance, tests, handoffs and caches. The installed verifier is standalone and offline: it imports neither analytics nor network clients, checks exact installed membership, manifest counts, each SHA-256 and the declared runtime-bundle digest, and rejects extra files/directories, including repository artifacts. Neither command installs a skill or changes host permissions.
 
+The manifest's file list excludes `release-manifest.json` itself; reported total distributable files include it. A list of 299 entries therefore corresponds to 300 installed files, not a missing file.
+
 Export and archive read **committed blob bytes**, never dirty worktree bytes, and require that committed manifest/content verify. Destinations must be unused, with real parent directories; symlinks and overwrites are refused. Export creates sibling **`netstack.receipt.json`** for output `netstack`; its CLI response reports both actual paths. The portable receipt contains only full reviewed `commit`, `version`, `manifest_sha256`, `runtime_sha256` and an integrity-not-authenticity `note`. **`manifest_sha256` hashes the bytes of `release-manifest.json` itself**: compare it against a fresh file SHA-256 or installed verifier output. The manifest cannot self-declare its own hash. Compare the runtime digest and version with verifier output, and the full commit SHA with your independently reviewed revision.
 
 Use resolved parent paths for outputs; on macOS, `/tmp` and `/var` are symlinks, so their real paths typically begin with `/private/tmp` or `/private/var`. Resolve a trusted parent before choosing a new output name rather than relaxing the no-symlink check.
@@ -124,7 +126,7 @@ Acceptance answers based on public evidence must carry portable **public source 
 ### Candidate dogfood checklist
 
 1. Pin the development branch to a reviewed full commit SHA. Export the manifest-only package using the commands above; retain its sibling receipt outside the skill. Do not place an entire checkout, test fixtures or host logs in the runtime folder.
-2. Prefer an isolated host workspace/profile with a single discoverable `netstack` copy. Preserve the existing installation and normal host safety controls. Start a fresh agent session; confirm the actual loaded path, version and receipt/hash binding, not just the CLI's exit code.
+2. Use the host's normal supported installation method. When primary-skill dogfooding is requested, replace the primary `netstack` copy and retain the previous copy outside skill-discovery directories; an isolated workspace/profile is optional, not a requirement. Preserve normal host safety controls and avoid shadow copies. Start a fresh agent session; confirm the actual loaded path, version and receipt/hash binding, not just the CLI's exit code.
 3. First use package-only questions. Tell the agent this pass has no live-chain inputs and must not fetch them; label synthetic examples. Normal model-service access is distinct from permission to retrieve financial inputs.
 4. Run the prompts below as separate cases, retaining actual answers and attempted tool calls. For a later explicitly authorized live pass, remove the package-only restriction and require fresh block/hash/time and coverage. Never change host/provider to evade an access denial.
 5. Report each case as pass, answer failure, host/access blocked, or not exercised. Include commit, manifest/runtime hashes, host/model/version, loaded path, prompt, answer, evidence, timing where measured and exact sanitized failure. Keep records outside the installed package.
@@ -139,6 +141,8 @@ Acceptance answers based on public evidence must carry portable **public source 
 | `A House queued deposit later emits Deposited. Should I count both as new capital?` | Explains lazy synchronization and requires actual cash attribution; no double-counting |
 | `What can the Book collector establish about wagers, payouts and Sleeve receipts?` | Names selected-record/window limits; separates player credit from withdrawal and pot from revenue; no lifetime or full-liability guarantee |
 | `Show me a breakdown of true RFV.` | Separates Core, broader Reports composition and adjusted net assets; includes off-wallet claims/debt and discloses the unresolved Core POL blocker; no remembered headline substituted for reads |
+| `How much open interest is there for NetLong?` | Covers futures and margin without requiring a product qualifier; separate futures entry OI and margin funded debt/exposure/counts, never a combined total; one unavailable program is disclosed, not silently omitted |
+| `Given a margin position ID, which token is it for, and is it funded?` | Uses the evidenced static tuple's token field and same-block discovery, not address-pattern matching; funded debt comes from `debtUsdg`, not requested `loanUsdg`, allocated-ID count or state alone |
 | `A new NetLong market is not in the catalog. Can you investigate it?` | Catalog is not a research allowlist; dynamic discovery and implementation evidence are required, not a guessed ABI or zero exposure |
 
 ### Optional higher-assurance isolation

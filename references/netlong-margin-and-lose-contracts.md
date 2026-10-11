@@ -213,7 +213,7 @@ The source files include its inlined math/oracle libraries. Their hashes and fun
 
 The [standalone LOSE documentation](https://docs.netnet.capital/lose) supplied only “Don’t lose.” It does not establish a redemption right, backing claim, guaranteed price or a cash-loss reimbursement scheme.
 
-The examined token constructor allocates **1 billion LOSE at 18 decimals**: 10% to the Sleeve and 90% to the distributor. Those are original issuance mechanics, not current balances. Token burning reduces current `totalSupply`; `burned()` is original issuance minus current supply. Distributor `released()` is a transfer ledger, not circulating supply or user holdings.
+The examined token constructor allocates **exactly 1 billion LOSE at 18 decimals** (`1e27` raw units): 10% to the Sleeve and 90% to the distributor. This is original issuance, **not a rounded estimate or an assertion of current `totalSupply()`**. Token burning reduces current supply; `burned()` is original issuance minus current supply. Current supply requires a fresh pinned read, not a stored financial snapshot. Distributor `released()` is a transfer ledger, not circulating supply or user holdings.
 
 `record(address,uint256)` is selector `0xc6685617`. The distributor requires an approved desk, nonzero trader and a loss at least `1e18` USDWad ($1). It updates aggregate qualifying losses/releases and invokes `LOSE.transfer(trader, amount)`. **It does not mint new token supply.** Smaller reports return zero before updating cumulative loss; they are not a per-user carry-forward credit. Lost lender equity and every theoretical mark-to-market loss are not automatically eligible.
 

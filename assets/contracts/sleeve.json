@@ -74,7 +74,7 @@
       },
       "economic_meaning": {
         "status": "targeted_runtime_review",
-        "detail": "Immutable NET9 ceiling for manager-set inventoryMax; 300e9 in indexed runtime.",
+        "detail": "Immutable ceiling for manager-set inventoryMax: 300000000000 raw NET9 = 300 NET. Bounds unsold inventory deposits through inventoryMax; not a quote-price, USDG-input, lifetime-sale or owedNet cap. A bond payout is bounded by available inventory.",
         "source_id": "netnet-sleeve-bond-runtime-20261010"
       },
       "dispatcher_match": {
@@ -84,7 +84,7 @@
       },
       "implementation_evidence": {
         "source_id": "netnet-sleeve-bond-runtime-20261010",
-        "locator": "runtime dispatcher 0xe52442cc entry 0x6b5; references/sleeve-bond-contracts.md"
+        "locator": "runtime selector PUSH4 at 0x007b targets entry 0x06b5; PUSH32 at 0x06b9, immediate[0x06ba,0x06da)=0x00000000000000000000000000000000000000000000000000000045d964b800; uint256 return helper0x02d9-0x02eb; setter bound0x0fd8-0x101d; deposit comparison0x134d-0x1363; bond inventory comparison0x09c1-0x09cb; references/sleeve-bond-contracts.md"
       }
     },
     {

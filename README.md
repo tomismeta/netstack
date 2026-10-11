@@ -74,6 +74,15 @@ The October 7 baseline of the `0.5.0-dev` branch implemented the following refre
 - **Predict/House:** exact-runtime review covers all33/27 publisher functions and12 reconstructed functions for each of eight outcome deployments. House `Deposited` can represent lazy synchronization rather than new cash; ordinary transfer-to-zero is not proof of a supply burn. State/history, cash, outcomes and receipts must agree; inconsistent receipt payloads stop collection.
 - **Verification and limits:** real CLI/Context paths were exercised with synthetic transport for successful snapshots/receipt windows, inconsistent empty histories, independent zero-state corroboration, terminal denial and accounting defects. An isolated Predict single-series CLI run also completed. These are software checks, not live-chain validation: the canonical RPC denial was not retried or bypassed. No financial history was added, and the Core POL blocker, reporting methodology and unpublished status are unchanged.
 
+### Dogfood evidence corrections
+
+- **Advance permissions:** resolved catalog wording against retained conditional runtime findings: `payTreasury()` is permissionless while halted, and `close()` has no halt gate but retains its maturity/owner conditions. Dependency failures can still revert either operation.
+- **Sleeve inventory cap:** independently decoded and executed the retained runtime's `INVENTORY_HARD_CAP()` getter (`0xe52442cc`) through a bounded offline opcode interpreter. It returns `300000000000` raw NET9 units: **300 NET**, not a transcription error. This bounds configurable unsold inventory, not total custody, outstanding claims or lifetime subscriptions; exact offsets and hash remain in the [source evidence](assets/contracts/sleeve-bond-source-evidence.json). This was not a new chain read or full EVM audit.
+- **Supply and evidence boundaries:** LOSE's one billion is exact original issuance, not current supply. Unlabeled source-recorded addresses remain uncharacterized. No reported current supply, balances or transaction-history snapshot was added.
+- **Examples and installation:** Book ID/block examples now use named placeholders. Installation guidance explains manifest-entry versus installed-file counts and supports explicitly requested primary-skill dogfooding with rollback copies outside discovery.
+- **Broad NetLong questions:** unqualified open-interest requests cover both futures and margin, with separate non-additive results. Margin answers lead with funded USDG debt including accrued interest, then token exposure and explicitly defined funded-position counts. The [analytics guide](references/netlong-analytics.md#position-id-to-token-decode-the-abi-not-address-patterns) documents the published 20-word position return layout and exact token attribution; no live figures or alternate-provider fallback was added.
+- **Unchanged gates:** live financial analytics remain unvalidated under the earlier access denial; the Core POL reconciliation blocker remains open. These corrections do not certify a release or update pinned host installations.
+
 ## What you can ask
 
 | Question | What netstack brings |
