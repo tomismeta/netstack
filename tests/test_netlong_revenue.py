@@ -622,6 +622,26 @@ class NetLongRevenueTests(unittest.TestCase):
             self.assert_incomplete(document)
         self.assertTrue(full["coverage"]["requested_scope"]["boundaries_confirmed"])
 
+    def test_router_transfer_receipts_do_not_establish_router_event_activity(self):
+        fixture = RevenueFixture()
+        fixture.activity()
+        status, full, summary = fixture.run_cli()
+        self.assertEqual(status, 0, full)
+        for document in (full, summary):
+            rows = document["metrics"]["event_coverage"]
+            vault = next(row for row in rows if row["role"] == "vault")
+            self.assertEqual(vault["scan_status"], "completed")
+            self.assertEqual(vault["observed_named_event_count"], 1)
+            self.assertTrue(vault["selected_scan_complete"])
+            for role in ("pot", "futures_router", "margin_router", "treasury"):
+                row = next(row for row in rows if row["role"] == role)
+                self.assertEqual(row["scan_status"], "not_collected")
+                self.assertIsNone(row["observed_named_event_count"])
+                self.assertFalse(row["selected_scan_complete"])
+            router = next(row for row in document["metrics"]["observations"]["router_receipts"]
+                          if (row["endpoint"], row["asset"]) == ("futures_router", "wsnet"))
+            self.assertEqual(router["observed_subtotal"]["raw"], str(FUTURES_FEE + 11))
+
     def test_empty_selected_logs_is_scoped_zero_not_zero_protocol_revenue(self):
         fixture = RevenueFixture()
         status, full, summary = fixture.run_cli()

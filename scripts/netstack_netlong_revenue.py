@@ -253,7 +253,28 @@ def prepare_result(result):
         "snapshot_confirmation": confirmation,
         "missing_receipts": [row["transaction_hash"] for row in metrics["transactions"] if row["receipt_status"] != "verified"],
         "meaning": "Supported current-generation reads and selected named-event/scoped-transfer interval only; not complete economic history."}
-    projected = dict(metrics, discovery=qualify(metrics["discovery"]),
+    addresses = metrics["scope"]["addresses"]
+    emitters = [(role, addresses[role]) for role in
+                ("vault", "margin", "pot", "futures_router", "margin_router", "treasury")]
+    emitters.extend(("futures_desk", address) for address in metrics["scope"].get("futures_desks", []))
+    event_coverage = []
+    for role, address in emitters:
+        scopes = [scope for scope in metrics["event_scopes"] if scope["address"] == address]
+        scanned = bool(scopes) and any(coverage.get(scope["key"], {}).get("status", "not_started")
+                                      != "not_started" for scope in scopes)
+        scan_complete = bool(scopes) and all(_scan_complete(coverage, scope["key"]) for scope in scopes)
+        row = {"role": role, "address": address,
+               "selected_events": sorted({event["name"] for scope in scopes for event in scope["selected_events"]}),
+               "scan_status": "completed" if scan_complete else "partial" if scanned else "not_collected",
+               "observed_named_event_count": sum(event["address"] == address for event in metrics["events"])
+               if scanned else None,
+               "selected_scan_complete": scan_complete and confirmed,
+               "snapshot_confirmation": confirmation}
+        if not scanned:
+            row["limitation"] = ("No contract-event scan. Scoped token transfers do not establish unused topics, "
+                                 "absence of processing, or absence of calls.")
+        event_coverage.append(row)
+    projected = dict(metrics, discovery=qualify(metrics["discovery"]), event_coverage=event_coverage,
                      observations=_observations(metrics, coverage, raw, confirmation))
     return dict(result, metrics=projected, coverage=projected_coverage)
 
@@ -554,7 +575,7 @@ def summarize(text, checkpoint_status):
     metrics = result.get("metrics", {})
     # Project the already-qualified document, not a new calculation with omitted
     # evidence. The acquisition marker is omitted so serialization is idempotent.
-    keep = ("scope", "boundaries", "discovery", "observations", "warnings", "unsupported_surfaces")
+    keep = ("scope", "boundaries", "discovery", "event_coverage", "observations", "warnings", "unsupported_surfaces")
     result["metrics"] = {key: value for key, value in metrics.items() if key in keep}
     result["metrics"]["evidence_counts"] = {key: len(metrics.get(key, [])) for key in
         ("reads", "events", "transfers", "transactions", "implementation_checks")}
