@@ -58,7 +58,7 @@ Consequently:
 
 ### State 3 has a traced runtime entry, not just a publisher label
 
-Focused analysis **2026-10-12** reused the retained **2026-10-10 explorer-indexed** bytes, without another RPC request. The Desk's 24,403-byte runtime again hashes to SHA-256 `17b0806d172eab539e3fd362416666284dfb8656d2b93ec5b73e75cf4593555f` and Keccak-256 `0xa74be8a609bdb8472728ecea5b5f10b0695f5a016b80ceecec422ab2491d67e7`. This matches the reviewed generation; it is **not fresh pinned on-chain code**.
+Focused analysis **2026-10-12** reused the retained **2026-10-10 [MarginDesk explorer-indexed bytes](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xE1685b19367E066af3e499DD4B0E51866B762c84)**, without another RPC request. The Desk's 24,403-byte runtime again hashes to SHA-256 `17b0806d172eab539e3fd362416666284dfb8656d2b93ec5b73e75cf4593555f` and Keccak-256 `0xa74be8a609bdb8472728ecea5b5f10b0695f5a016b80ceecec422ab2491d67e7`. This matches the reviewed generation; it is **not fresh pinned on-chain code**.
 
 The omitted-from-publisher-ABI selector **`0x70c6cea8`** has a concrete **open state 2 → pending-sell state 3** path. Its dispatcher entry `0x0773` decodes three full calldata words at `0x4fbf` and jumps to body `0x1600`. Their runtime roles are position ID, requested token units and minimum USDG proceeds. **The source function name and canonical signature remain unresolved**: do not invent a `requestSell` ABI entry or use this analysis as transaction authorization.
 
@@ -233,9 +233,9 @@ The source files include its inlined math/oracle libraries. Their hashes and fun
 
 The [standalone LOSE documentation](https://docs.netnet.capital/lose) supplied only “Don’t lose.” It does not establish a redemption right, backing claim, guaranteed price or a cash-loss reimbursement scheme.
 
-The examined token constructor allocates **exactly 1 billion LOSE at 18 decimals** (`1e27` raw units): 10% to the Sleeve and 90% to the distributor. This is original issuance, **not a rounded estimate or an assertion of current `totalSupply()`**. Token burning reduces current supply; `burned()` is original issuance minus current supply. Current supply requires a fresh pinned read, not a stored financial snapshot. Distributor `released()` is a transfer ledger, not circulating supply or user holdings.
+The examined [token constructor](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xF4D567e3C0B7b24Bd2f379db8249701A6F929E93) allocates **exactly 1 billion LOSE at 18 decimals** (`1e27` raw units): 10% to the Sleeve and 90% to the distributor. This is original issuance, **not a rounded estimate or an assertion of current `totalSupply()`**. Token burning reduces current supply; `burned()` is original issuance minus current supply. Current supply requires a fresh pinned read, not a stored financial snapshot. Distributor `released()` is a transfer ledger, not circulating supply or user holdings.
 
-`record(address,uint256)` is selector `0xc6685617`. The distributor requires an approved desk, nonzero trader and a loss at least `1e18` USDWad ($1). It updates aggregate qualifying losses/releases and invokes `LOSE.transfer(trader, amount)`. **It does not mint new token supply.** Smaller reports return zero before updating cumulative loss; they are not a per-user carry-forward credit. Lost lender equity and every theoretical mark-to-market loss are not automatically eligible.
+`record(address,uint256)` is selector `0xc6685617`. The [distributor's indexed runtime](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x1DEdDa4dE44f406FD25CdD3A22ABb8e524368719), observed October 10, requires an approved desk, nonzero trader and a loss at least `1e18` USDWad ($1). It updates aggregate qualifying losses/releases and invokes `LOSE.transfer(trader, amount)`. **It does not mint new token supply.** Smaller reports return zero before updating cumulative loss; they are not a per-user carry-forward credit. Lost lender equity and every theoretical mark-to-market loss are not automatically eligible.
 
 ### Curve: exact numerator and rounding
 
