@@ -5,7 +5,7 @@
   "total_distributable_files": 300,
   "manifest_sha256": {
     "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
-    "README.md": "ffb6a313a19ef25c4ca4935d1f2a48f92edcaa4872b4655e774dc546e920b467",
+    "README.md": "37bc11434ca4eae5a92b20368cbe028c695d6fe31dab984743ba5ef6035bdb49",
     "SKILL.md": "c597d7313ca067c75cb2705892dfff3f60e4ab305814dfc0ea6f8c7bca33b42e",
     "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "assets/address-conventions.json": "36e8aac8ff6304cf752bafcb9d6a9f99fcc1258987aef18522d886914f44dbf4",
@@ -264,7 +264,7 @@
     "references/glossary-and-faq.md": "695cf53e7f8daf93dfa4287eef4293b32f6a18009884794904667d3335c5b0e5",
     "references/guardrail.md": "f8fe8e1f024b232fc6353a7803001dd2e4744119483ab4b18784166fd16148de",
     "references/installation.md": "8ad8903e2f8c5d83df96b55796ebae1707a452e0dd341fbacdd6c989241bc06d",
-    "references/integrations.md": "0caa8d90c8840a5c3308b7845ee9a03266de63aaaba720ea3888dce8dd81255e",
+    "references/integrations.md": "c7f692af5569204bf25c786816c4f6ca5caa245c285270fe60b27d2854f3b4c7",
     "references/interview-research.md": "cb79d6ef3f0e0e0487be0640e0528cc422bf17b3d45ce9a365029c63b95880de",
     "references/links.md": "e34277b7ae2c41822ba3493f48ba50b40dd2a8cdfb720d0cc0bc69e82ad32bf1",
     "references/liquidity-analytics.md": "f7259c61ef808fd62840fbed113562a7a3668e4d2504aaa1ca509af8e597b165",
@@ -288,7 +288,7 @@
     "scripts/analytics.py": "1cf73d4891fc835c4c00895816968390ecba289f2cf24bd73a1153671d5a3c63",
     "scripts/netstack_advance.py": "6bda012e0da6d790b6a0f485f159d97d47480f1f07741e62d9d411f8ebccf106",
     "scripts/netstack_book.py": "3e41b6893d032d1b7fbfe83374a48e195ee7fdeda5b34234d08fd5bcb74b9bde",
-    "scripts/netstack_core.py": "3361340e4761e259bc79791d55042a0524ebc08b11c2de1c0aed03db4c271aa5",
+    "scripts/netstack_core.py": "92ca3908ef8d1da3932928c7e2f2e2167f3d1641bd7fb684f32c165287c90e23",
     "scripts/netstack_credit.py": "f184f14cfe4c7b712933d4c4ef2b4113e81622211d8672646464aed924a19fe6",
     "scripts/netstack_discovery.py": "19238dbc796ac1707d745bb496998734b8cf39c9156c3d8cd569fe50f1d50f94",
     "scripts/netstack_lp.py": "93143ade57aa34cf35c7bba79c3d1e09fe29ab3a61f047c2863286fe5ba68e3c",
@@ -299,14 +299,14 @@
     "scripts/netstack_package.py": "f76b8e0dc5304e1076f0a1a8517568f8f3f496d6a8bd6ea0f49254dce7f1b140",
     "scripts/netstack_premiumseller.py": "28d446bf3d9e9c1857732fbc69adfcef36a7e40d87ac67cff23e6c3ab9c7c697",
     "scripts/netstack_reserves.py": "229db7470fedaf88e04645f49047b9a778a4415708c138db318de037abad18ed",
-    "scripts/netstack_sleeve.py": "e8081086303141f7b7c410e8463279040589bf2e45080656de5d81a8e6aa6ae0",
+    "scripts/netstack_sleeve.py": "b593cf144b8ec7dc32cf544d85eb7fa51f3aa0ee0e921edb735190149c273231",
     "scripts/netstack_sleeve_bonds.py": "8111b4adaeb4e0d45f74e2bea11a0afde18030fd7b93ec418ea6bc6058302996",
     "scripts/netstack_v4.py": "16681d2899d36125a1bb9f3cb893af29d531d40618dbdd9ae52d795aaed81b01",
     "scripts/verify.py": "84e354adc3c19ec59f26a95b4b995df7bf46fb227f61091994f7814595de66b6"
   },
   "runtime_bundle": {
     "files": 297,
-    "sha256": "12e03c6f00c355d082a2c203b46efeb21c8027ec09cd4e1da834ef9851ab6dd8",
+    "sha256": "08d2eb5bd0e64b78b46a5c576cea9f61cf9e87f2f954ecf8cc0de4851acc00c5",
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by NUL and file bytes",
     "scope": "SKILL.md, assets/**, references/** (including references/guardrail.md) and scripts/**; excludes README.md, root LICENSE, release-manifest.json and non-distributable maintenance/tests."
   }

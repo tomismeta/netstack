@@ -967,6 +967,22 @@ class Context:
         return RpcError("RPC returned an unclassified error", kind="remote")
 
     @staticmethod
+    def _http400_error(error, method):
+        classified = Context._remote_error(error)
+        if classified.kind == "permission":
+            return classified
+        # Alchemy serves this eth_getLogs range rejection as HTTP 400/-32600.
+        # Generic invalid-request errors (or incidental "range" text) are not
+        # evidence that splitting can help. Provider advice/URLs stay private.
+        if (method == "eth_getLogs" and isinstance(error, dict)
+                and type(error.get("code")) is int and error["code"] == -32600
+                and isinstance(error.get("message"), str)
+                and re.match(r"Under the Free tier plan, you can make eth_getLogs requests "
+                             r"with up to a [1-9][0-9]* block range\.", error["message"])):
+            return RpcError("Provider log range limit (HTTP 400)", kind="range", splittable=True)
+        return RpcError("RPC HTTP status 400", kind="http")
+
+    @staticmethod
     def _retry_after(value):
         if value is None:
             return None
@@ -1019,6 +1035,7 @@ class Context:
         self._attempt_end = min(self._collect_end, time.monotonic() + 15.0)
         self._arm()
         connection = None
+        http_error = None
         try:
             timeout = max(0.001, self._attempt_end - time.monotonic())
             endpoint = self._rpc_endpoint
@@ -1030,7 +1047,7 @@ class Context:
                                + "); no alternate provider attempted", kind="permission")
             if 300 <= response.status < 400:
                 raise RpcError("RPC redirect refused", kind="permission")
-            if response.status != 200:
+            if response.status not in (200, 400):
                 transient = response.status in (408, 429, 500, 502, 503, 504)
                 retry_after = self._retry_after(response.getheader("Retry-After")) if transient else None
                 if response.status == 429 or retry_after is not None:
@@ -1041,6 +1058,10 @@ class Context:
                 raise RpcError(message,
                                kind="rate_limit" if response.status == 429 else "http",
                                retryable=transient, retry_after=retry_after)
+            if response.status == 400:
+                # Only validated, recognized JSON-RPC errors may refine this
+                # status. Never accept an HTTP error body's success result.
+                http_error = RpcError("RPC HTTP status 400", kind="http")
             if response.getheader("Content-Encoding", "identity").lower() not in ("", "identity"):
                 raise RpcError("Compressed RPC responses are not accepted", kind="protocol")
             length = response.getheader("Content-Length")
@@ -1063,18 +1084,28 @@ class Context:
             values = [decoded] if len(entries) == 1 else decoded
             if not isinstance(values, list) or len(values) != len(entries):
                 raise RpcError("RPC response member count mismatch", kind="protocol")
-            expected = {entry["id"] for entry in entries}
+            expected = {entry["id"]: entry for entry in entries}
             indexed = {}
             for value in values:
                 if not isinstance(value, dict) or value.get("jsonrpc") != "2.0" or type(value.get("id")) is not int or value["id"] not in expected or value["id"] in indexed:
                     raise RpcError("RPC response IDs or protocol do not match", kind="protocol")
                 if ("result" in value) == ("error" in value):
                     raise RpcError("RPC response must contain one result or error", kind="protocol")
-                indexed[value["id"]] = self._remote_error(value["error"]) if "error" in value else value["result"]
+                if http_error is not None:
+                    if "error" not in value:
+                        raise http_error
+                    indexed[value["id"]] = self._http400_error(
+                        value["error"], expected[value["id"]]["method"])
+                else:
+                    indexed[value["id"]] = self._remote_error(value["error"]) if "error" in value else value["result"]
                 if isinstance(indexed[value["id"]], RpcError) and indexed[value["id"]].kind == "rate_limit":
                     self._retry_not_before = max(self._retry_not_before, time.monotonic() + 1.0)
             return [indexed[entry["id"]] for entry in entries]
         except StopRun:
+            raise
+        except RpcError as exc:
+            if http_error is not None and exc.kind in ("decode", "protocol", "size"):
+                raise http_error from None
             raise
         except socket.gaierror as exc:
             raise RpcError("RPC DNS resolution failed; no alternate provider attempted", kind="dns",

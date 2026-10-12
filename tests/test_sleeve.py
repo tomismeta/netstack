@@ -535,6 +535,77 @@ class SleeveLedger(unittest.TestCase):
         self.assertEqual(metrics["adjusted_net_assets"]["value_wad"], str(111*WAD))
         self.assertTrue(c.ctx.result["coverage"]["requested_scope"]["collection_complete"])
 
+    def test_null_methodology_scope_preserves_observations_and_unknown_totals(self):
+        # The retained b7bfd8b RFV run reached final publication with this
+        # unsupported-source shape, rather than the initializer's absent scope.
+        for status in ("unsupported", "unavailable"):
+            for core_complete in (True, False):
+                with self.subTest(status=status, core_complete=core_complete):
+                    c = self.collector()
+                    self.valued_v4(c, missing_fees=True)
+                    c.core["core_complete"] = core_complete
+                    c.publish()
+                    observed = c.families["v4"]["inventory"]
+                    rows = list(c.families["v4"]["rows"])
+                    evidence = {
+                        "status": status, "fetched_this_run": False,
+                        "reviewed_at": None, "profile_id": None, "recognition": None,
+                        "v4_principal_included": None, "v4_fees_included": None,
+                        "v4_position_scope": None, "sources": [], "evidence": [],
+                        "error": {"kind": status, "message":
+                                  "Publisher HTML execution envelope is unreviewed"
+                                  if status == "unsupported" else "Publisher source unavailable"}}
+                    with patch("netstack_methodology.collect_reports_methodology", return_value=evidence):
+                        c.check_methodology()
+                    # This is the same non-checkpointing finalization used by collect.
+                    c.publish(checkpoint=False)
+                    metrics = c.ctx.result["metrics"]
+                    self.assertIs(metrics["reports_methodology"], evidence)
+                    current = metrics["reports_true_rfv"]
+                    self.assertIsNone(current["value_wad"])
+                    self.assertFalse(current["collection_complete"])
+                    self.assertFalse(current["methodology_valid"])
+                    self.assertIn("methodology", current["required_missing"])
+                    self.assertFalse(c.ctx.result["coverage"]["collection_complete"])
+                    details = metrics["component_summary"]["v4"]["details"]
+                    self.assertIsNone(details["publisher_position_scope"])
+                    self.assertFalse(details["publisher_position_scope_supported"])
+                    self.assertIsNone(details["publisher_total_impact_wad"])
+                    self.assertIsNone(details["principal_if_included_wad"])
+                    self.assertEqual(details["impact_status"], "methodology_unverified")
+                    self.assertEqual(details["observed_positions"], observed["positions"])
+                    self.assertEqual(c.families["v4"]["rows"], rows)
+                    self.assertTrue(all(row["included_in_reports"] is None for row in rows))
+                    self.assertEqual(details["principal"]["reports_value_wad"], str(30*WAD))
+                    self.assertIsNone(details["fees"]["reports_value_wad"])
+                    self.assertFalse(details["fees"]["quantity_collection_complete"])
+                    self.assertIsNone(metrics["adjusted_net_assets"]["value_wad"])
+                    self.assertFalse(metrics["adjusted_net_assets"]["collection_complete"])
+                    historical = metrics["reports_historical_rfv"]
+                    self.assertEqual(historical["value_wad"], str(100*WAD) if core_complete else None)
+                    if not core_complete:
+                        self.assertIn("core", current["required_missing"])
+                        self.assertIn("Core RFV reconstruction incomplete",
+                                      metrics["adjusted_net_assets"]["required_missing"])
+
+    def test_null_methodology_scope_does_not_block_independent_economic_scope(self):
+        c = self.collector()
+        self.valued_v4(c)
+        c.scope = "net-assets"
+        c.ctx.check = lambda: None
+        # Exercise the real producer's unavailable result contract offline,
+        # including its explicit null scope, not a merged old verified policy.
+        with patch("netstack_methodology._fetch",
+                   side_effect=RpcError("Publisher source unavailable", kind="http")):
+            c.check_methodology()
+        c.publish(checkpoint=False)
+        metrics = c.ctx.result["metrics"]
+        self.assertEqual(metrics["reports_methodology"]["status"], "unavailable")
+        self.assertIsNone(metrics["reports_methodology"]["v4_position_scope"])
+        self.assertIsNone(metrics["reports_true_rfv"]["value_wad"])
+        self.assertEqual(metrics["adjusted_net_assets"]["value_wad"], str(111*WAD))
+        self.assertTrue(c.ctx.result["coverage"]["requested_scope"]["collection_complete"])
+
     def test_methodology_permission_and_integrity_failures_remain_terminal(self):
         for kind in ("permission", "integrity"):
             c = self.collector()

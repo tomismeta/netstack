@@ -1072,7 +1072,8 @@ class Collector:
         if "asset_desk_menu" in self.tokens.get(hohm, {}).get("sources", []):
             supported_tokens.add(hohm)
         scope = self.methodology.get("v4_position_scope", {})
-        scope_valid = (scope.get("selection") == "publisher_registry_allowlist" and
+        # Unavailable/unrecognized methodology explicitly leaves this scope null.
+        scope_valid = (isinstance(scope, dict) and scope.get("selection") == "publisher_registry_allowlist" and
                        scope.get("position_manager", "").lower() == inventory.get("position_manager") and
                        scope.get("owner", "").lower() == self.owner and
                        isinstance(scope.get("token_ids"), list))
