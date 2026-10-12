@@ -5,8 +5,8 @@
   "total_distributable_files": 308,
   "manifest_sha256": {
     "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
-    "README.md": "28f067dde997d9192511c36c7993d637865cf8bb89cb00b4a5d03386f2901072",
-    "SKILL.md": "8f2ae509f56d96ff39ebd8ce8ea15aebd53c3db45b2ca6b2df3f144f57fcb01a",
+    "README.md": "6060caaa34ea6691d2c9437243c10eb01e2c47fea8339a0e418524879ff99927",
+    "SKILL.md": "53cec55275d7e1109eae80307ad1089678417c8d7e3fd8311423859a175fa6d8",
     "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "assets/address-conventions.json": "36e8aac8ff6304cf752bafcb9d6a9f99fcc1258987aef18522d886914f44dbf4",
     "assets/address-index.json": "36a156680b2a9f1f48288e6fdb28191b7f1e2bbc929f4f8e7939aad448f9f5f8",
@@ -274,7 +274,7 @@
     "references/links.md": "e34277b7ae2c41822ba3493f48ba50b40dd2a8cdfb720d0cc0bc69e82ad32bf1",
     "references/liquidity-analytics.md": "f7259c61ef808fd62840fbed113562a7a3668e4d2504aaa1ca509af8e597b165",
     "references/lp-fee-inspection.md": "8b7996b17e62a0376bc59498ef3a8f4eb3c1d09e7f3a71e562b35ee180d79c7a",
-    "references/netlong-analytics.md": "e4d4ec00a9d0ec24c5c024ab1e765cbfe5da729ed5a82a8669ffb0c1aebecb85",
+    "references/netlong-analytics.md": "dc1356a418f2b75575fd30ad6e1e8d522371ff10e5d1219a92714256e756e208",
     "references/netlong-futures-contracts.md": "a79773ba66877874bcffb0d3ade1e0afb91e9528e6a6957bde0b46e0bb12d395",
     "references/netlong-margin-and-lose-contracts.md": "33e5ac4acb4365102015b90dcab341e2547f8589ebc32e2d017feae24134759e",
     "references/nfts.md": "e432c73ce7e352fbc7c8b4e67f50818647c07f106190604d988dce66261ad8af",
@@ -301,7 +301,7 @@
     "scripts/netstack_markets.py": "661c85b020ae08fa25e8ed98031da0d6a33d91661a1ac3915a9381aef6212a62",
     "scripts/netstack_methodology.py": "6df2ab3a7670fa0164111c2663d7a26fddc7f0e413ec187efe488143ea6603ed",
     "scripts/netstack_netlong.py": "696fa1cc9c73fd983ac0efd10c19e1a34f5f95616963751d6966987f2480b7fc",
-    "scripts/netstack_netlong_revenue.py": "a5196f7148e7bb9c3022a6029abc4e73520524b6eb40d989e70066a75a0703fc",
+    "scripts/netstack_netlong_revenue.py": "89f9244e1330a2d0e518e4244cd9e7a9b732bf845baebc50e2d4c914441f033c",
     "scripts/netstack_output.py": "c9c9f9bf7673b5440047106556d95ba80d1e4d34f9ee78e7580b42475e703337",
     "scripts/netstack_package.py": "f76b8e0dc5304e1076f0a1a8517568f8f3f496d6a8bd6ea0f49254dce7f1b140",
     "scripts/netstack_premiumseller.py": "28d446bf3d9e9c1857732fbc69adfcef36a7e40d87ac67cff23e6c3ab9c7c697",
@@ -314,7 +314,7 @@
   },
   "runtime_bundle": {
     "files": 305,
-    "sha256": "b80b573a3824aa0e62d58734c88885e9ae4474d153be525b2a6e5c82f9e5463d",
+    "sha256": "4db0a3c0585fa1d2956f248b3b14142702f70cf57d0a34164d0c116ed641f750",
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by NUL and file bytes",
     "scope": "SKILL.md, assets/**, references/** (including references/guardrail.md) and scripts/**; excludes README.md, root LICENSE, release-manifest.json and non-distributable maintenance/tests."
   }

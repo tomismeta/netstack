@@ -642,6 +642,26 @@ class NetLongRevenueTests(unittest.TestCase):
                           if (row["endpoint"], row["asset"]) == ("futures_router", "wsnet"))
             self.assertEqual(router["observed_subtotal"]["raw"], str(FUTURES_FEE + 11))
 
+    def test_router_transfer_to_zero_is_not_a_measured_processing_or_burn_operation(self):
+        fixture = RevenueFixture()
+        fixture.activity()
+        router = fixture.addresses["futures_router"]
+        fixture.set_call(fixture.addresses["net"], "balanceOf", 31, (router,), block=OPENING)
+        fixture.set_call(fixture.addresses["net"], "balanceOf", 0, (router,), block=END)
+        fixture.add_transfer("net", router, core.ZERO, 31, block=START + 5)
+        status, full, summary = fixture.run_cli()
+        self.assertEqual(status, 0, full)
+        for document in (full, summary):
+            observations = document["metrics"]["observations"]
+            bridge = next(row for row in observations["asset_bridges"]
+                          if (row["asset"], row["endpoint"]) == ("net", "futures_router"))
+            self.assertEqual(bridge["observed_outgoing"]["raw"], "31")
+            self.assertEqual(bridge["residual"]["raw"], "0")
+            disposition = observations["router_disposition"]
+            self.assertEqual(disposition["status"], "not_measured")
+            for operation in ("processing", "unwrap", "unstake", "net_burn"):
+                self.assertIsNone(disposition[operation])
+
     def test_empty_selected_logs_is_scoped_zero_not_zero_protocol_revenue(self):
         fixture = RevenueFixture()
         status, full, summary = fixture.run_cli()

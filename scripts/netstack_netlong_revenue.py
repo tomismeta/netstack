@@ -206,7 +206,13 @@ def _observations(metrics, coverage, complete, confirmation):
         treasury.append(qualified(q(sum(int(row["values"]["value"]) for row in direct), asset), complete,
             asset=asset, transfer_count=len(direct), meaning="Direct tracked NetLong-endpoint to Treasury receipts only, not global Treasury revenue or indirect routing."))
     return {"assessed_fees": fees, "fee_receipt_reconciliation": reconciliations,
-            "router_receipts": router_receipts, "vault_equity_delta": vault,
+            "router_receipts": router_receipts,
+            "router_disposition": {
+                "addresses": [routes["futures_router"], routes["margin_router"]],
+                "status": "not_measured", "processing": None, "unwrap": None,
+                "unstake": None, "net_burn": None,
+                "meaning": "Unmeasured, not zero. Token transfers and closing inventory do not by themselves measure processing, unwrap, unstake or supply burns. Report scoped transfers; stronger inferences need separate implementation and operation/supply evidence with explicit assumptions."},
+            "vault_equity_delta": vault,
             "pot_state_deltas": pot, "asset_bridges": bridges, "treasury_receipts": treasury}
 
 
