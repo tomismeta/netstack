@@ -56,6 +56,26 @@ Consequently:
 - `token.balanceOf(desk)` is custody. It can include donations and rebase effects; it is not automatically the sum of borrower-owned units.
 - `positionOf(trader, token)` is a lookup, not a complete trader registry. `nextPositionId()` supplies an exclusive upper bound for bounded ID discovery; zero/default/terminal records need explicit classification.
 
+### State 3 has a traced runtime entry, not just a publisher label
+
+Focused analysis **2026-10-12** reused the retained **2026-10-10 explorer-indexed** bytes, without another RPC request. The Desk's 24,403-byte runtime again hashes to SHA-256 `17b0806d172eab539e3fd362416666284dfb8656d2b93ec5b73e75cf4593555f` and Keccak-256 `0xa74be8a609bdb8472728ecea5b5f10b0695f5a016b80ceecec422ab2491d67e7`. This matches the reviewed generation; it is **not fresh pinned on-chain code**.
+
+The omitted-from-publisher-ABI selector **`0x70c6cea8`** has a concrete **open state 2 → pending-sell state 3** path. Its dispatcher entry `0x0773` decodes three full calldata words at `0x4fbf` and jumps to body `0x1600`. Their runtime roles are position ID, requested token units and minimum USDG proceeds. **The source function name and canonical signature remain unresolved**: do not invent a `requestSell` ABI entry or use this analysis as transaction authorization.
+
+The traced path:
+
+1. Acquire the reentrancy lock at slot 8; require a nonzero recorded trader equal to `CALLER` (`0x3fcc–0x4020`).
+2. Require state 2, no `underSince` checkpoint and a **nonzero minimum proceeds**, not nonzero requested units (`0x161e–0x16a0`).
+3. Convert units to pending shares (`0x41e1–0x428d`). Zero units, or a request at least as large as current position units, selects all position shares. Otherwise use `floor(positionShares × requestedUnits / currentPositionUnits)` and reject a zero rounded result. Current units use the balance/virtual-share formula below.
+4. For `B = keccak256(abi.encode(id, uint256(4)))`, `SSTORE` at **`0x16d2`** writes `(oldWord & ~(0xff << 160)) | (3 << 160)` to `B + 1`. The direct `PUSH21 0x03…00` at `0x16ba` supplies state 3. Subsequent writes set `sharesPending` (`B + 8`, low 128 bits, `0x16ef`), minimum proceeds (`B + 7`, high 128 bits, `0x1719`) and `lastTouch` (`B + 2`, low 64 bits, `0x1739`).
+5. Minimum proceeds must fit `uint128`; this check occurs after the first writes, but a revert rolls them all back. Successful token `balanceOf(desk)` reads and arithmetic are required through the event path (`LOG2 0x178c`); lock release is `0x1792`, then `STOP 0x0496`. **No library delegatecall is needed to create state 3.** This is a request, not an executed token sale or loan repayment.
+
+A bounded local opcode interpreter followed the complete dispatcher-to-STOP path with **synthetic storage and simulated token responses only**. With position/listing shares 2,000,000, token balance 2,999 and input words `(1, 100, 50)`, it reached state 3 with 100,000 pending shares, minimum proceeds 50 and the supplied timestamp as last touch in 1,009 opcodes. Zero units and oversized requests selected all shares; wrong caller, wrong starting state, active checkpoint, zero minimum, overflowing minimum, zero rounded shares and failed balance reads exercised reverting branches. These are conditional runtime witnesses, **not retained real positions, a consensus-client/gas cross-check, a constructor-to-live-state proof or exhaustive path verification**.
+
+Related paths corroborate the lifecycle without filling the missing ABI: selector `0x316e13a3` (`0x0482 → 0x115b`) requires the borrower and state 3, resets state 2 at `0x11be`, and clears the pending fields; that cancellation also completed offline. Selector `0xa99c38af` (`0x0afd → 0x23c6`) checks state 3/no checkpoint and consumes capped pending shares/stored proceeds through shared settlement. Published `closeNow` (`0x8c778fa1`, body `0x1ea3`) accepts states 2/3; it is not this pending-request creator. Shared settlement delegates at `0x3e96` to fixed SettleLib selector `0x0a48f8df`; retained SettleLib bytes contain the state-2 reset/pending-field clears at `0x2106/0x2121/0x2131`. Exhaustive settlement predicates and library storage-alias analysis remain outside this focused proof.
+
+The hash-bound publisher consumer still only supplies `cancelOpen`/`closeNow` exit interfaces and calls `closeNow` directly. Its enum at character range `[861247, 861294)` is presentation evidence; it neither proves nor disproves the additional runtime entry. No full ABI, Solidity source, fresh configuration or current use of state 3 was obtained.
+
 ### Exact token-share units
 
 The reviewed Desk path `unitsOf → 0x20fa → 0x3ca0 → 0x4b97` reads the actual token balance. With nonzero shares and listing total shares:

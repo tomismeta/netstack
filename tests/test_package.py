@@ -5,6 +5,7 @@ import io
 import json
 import os
 from pathlib import Path
+import shlex
 import stat
 import subprocess
 import sys
@@ -241,14 +242,14 @@ class ReviewedCommitExports(unittest.TestCase):
         self.git("init", "-q")
         self.commit = self.commit_files()
 
-    def git(self, *arguments):
+    def git(self, *arguments, input=None):
         environment = {key: value for key, value in os.environ.items() if not key.startswith("GIT_")}
         environment.update(GIT_CONFIG_NOSYSTEM="1", GIT_CONFIG_GLOBAL=os.devnull,
                            GIT_AUTHOR_NAME="Synthetic Test", GIT_AUTHOR_EMAIL="test@example.invalid",
                            GIT_COMMITTER_NAME="Synthetic Test", GIT_COMMITTER_EMAIL="test@example.invalid")
         return subprocess.run(["git", "-C", str(self.root), "-c", "core.hooksPath=" + os.devnull,
                                "-c", "commit.gpgsign=false", *arguments], check=True, capture_output=True,
-                              env=environment, timeout=10).stdout
+                              input=input, env=environment, timeout=10).stdout
 
     def commit_files(self):
         self.git("add", ".")
@@ -265,6 +266,61 @@ class ReviewedCommitExports(unittest.TestCase):
         self.assertEqual(integrity.read_package(output), self.source)
         self.assertEqual(integrity.verify_files(integrity.read_package(output))["manifest_sha256"], report["manifest_sha256"])
         self.assertFalse((output / "tests").exists())
+
+    def test_promised_missing_blob_fails_without_starting_transport(self):
+        blob = self.git("rev-parse", "HEAD:README.md").decode().strip()
+        tree = self.git("rev-parse", "HEAD^{tree}").decode().strip()
+        # A promisor pack's tree promises README.md, but does not contain its blob.
+        pack = self.git("pack-objects", ".git/objects/pack/pack",
+                        input=(self.commit + "\n" + tree + "\n").encode()).decode().strip()
+        (self.root / ".git/objects/pack" / ("pack-" + pack + ".promisor")).touch()
+        marker = self.parent / "transport-invoked"
+        helpers = self.parent / "helpers"
+        helpers.mkdir()
+        helper = helpers / "git-remote-netstackoffline"
+        helper.write_text("#!/bin/sh\nprintf 'invoked\\n' >> " + shlex.quote(str(marker)) + "\nexit 1\n")
+        helper.chmod(0o700)
+        for key, value in (("core.repositoryformatversion", "1"), ("extensions.partialClone", "origin"),
+                           ("remote.origin.url", "netstackoffline::owned-sentinel"),
+                           ("remote.origin.promisor", "true"), ("remote.origin.partialclonefilter", "blob:none"),
+                           ("protocol.allow", "never"), ("protocol.netstackoffline.allow", "always")):
+            self.git("config", key, value)
+        environment = {"PATH": str(helpers) + os.pathsep + os.environ.get("PATH", os.defpath),
+                       "GIT_ALLOW_PROTOCOL": "netstackoffline", "GIT_NO_LAZY_FETCH": "0"}
+        with patch.dict(os.environ, environment):
+            complete = self.parent / "complete"
+            packaging.export_package(self.root, self.commit, complete)
+            self.assertEqual(integrity.read_package(complete), self.source)
+            self.assertFalse(marker.exists())
+            object_path = self.root / ".git/objects" / blob[:2] / blob[2:]
+            object_path.unlink()
+            # Positive control: ordinary Git really invokes this harmless local helper,
+            # even with protocol.allow=never. No network or credential helper is involved.
+            with self.assertRaises(subprocess.CalledProcessError):
+                self.git("cat-file", "blob", blob)
+            self.assertEqual(marker.read_text(), "invoked\n")
+            marker.unlink()
+            popen = subprocess.Popen
+            for ignores_lazy_fetch_flag in (False, True):
+                with self.subTest(ignores_lazy_fetch_flag=ignores_lazy_fetch_flag):
+                    def start_git(command, **options):
+                        if ignores_lazy_fetch_flag:
+                            # Exercise the real transport denial on older Git semantics.
+                            options["env"].pop("GIT_NO_LAZY_FETCH", None)
+                        return popen(command, **options)
+
+                    with patch.object(packaging.subprocess, "Popen", side_effect=start_git):
+                        with self.assertRaises(ValueError):
+                            packaging._git(self.root, "cat-file", "blob", blob, limit=len(self.source["README.md"]))
+                        for action, name in ((packaging.export_package, "missing"),
+                                             (packaging.archive_package, "missing.zip")):
+                            output = self.parent / name
+                            with self.assertRaises(ValueError):
+                                action(self.root, self.commit, output)
+                            self.assertFalse(output.exists())
+                            self.assertFalse(output.with_name(name + ".receipt.json").exists())
+                    self.assertFalse(marker.exists())
+                    self.assertFalse(object_path.exists())
 
     def test_excluded_maintenance_modules_cannot_shadow_runtime_verifiers(self):
         marker = self.parent / "shadow-executed"

@@ -21,6 +21,20 @@
     "rfv_integer_order": "cashWad + grossMorphoWad - floor(grossMorphoWad*200/10000) + polWad; total remains unsupported until exact deployed POL is established",
     "nav_integer_order": "floor(rfvWad*10^netDecimals/totalNetSupplyRaw)"
   },
+  "validation_recovery": {
+    "local_review_on": "2026-10-12",
+    "status": "original_packet_unrecovered",
+    "scope": "Current repository, project-scoped archived prompts/transcripts and accounting handoffs, retained local evidence, and v0.4.0 release records. No fresh network request or pinned chain observation.",
+    "historical_packet_limit": "Earlier September25 snapshots and zero-delta claims are not identified as the user's September27-reported discrepancy packet and cannot replace it. October7 explorer bytes remain unbound to the original validation block.",
+    "deterministic_haircut_bound": "For nonnegative integer M in USDG wad, (M-floor(M*200/10000))-floor(M*9800/10000) is0 when M%50==0, otherwise1 wad (10^-18 USDG). With six-decimal USDG normalized first, M=assetsRaw*10^12 is divisible by50, so this ordering difference is0. This cannot account for18432.08 USDG and does not replace the user-validated subtract-floored order.",
+    "required_packet": [
+      "Original chain ID, block number/hash/timestamp, exact Treasury/dependency addresses and same-block provenance for every read.",
+      "Raw ABI request/response bytes for Treasury value/pointer getters; USDG/NET decimals, cash and NET supply; vault asset/shares/convertToAssets; pair token identities, reserves, LP held and LP supply.",
+      "Treasury runtime at that block and applicable dependency/implementation identity, with source/runtime binding where available; explorer labels or code presence alone are insufficient.",
+      "Original reconstruction script/version, unrounded intermediates and signed raw residual, including the display rounding that produced18432.08 USDG."
+    ],
+    "gate": "Keep pol_reconstruction_supported=false until applicable deployed arithmetic explains and reconciles the original packet; a match at another block or a residual-derived POL is not independent proof."
+  },
   "treasury_abi": [
     {"type":"function","name":"rfv","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint256"}]},
     {"type":"function","name":"liquidUsdg","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint256"}]},

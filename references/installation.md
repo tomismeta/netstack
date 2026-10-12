@@ -6,7 +6,7 @@ This Agent Skills directory includes dated references and an **optional read-onl
 
 ## Offline verification and reviewed exports
 
-With existing Python 3.10+ on Linux/macOS, run these commands from the reviewed checkout. Maintainer export/archive additionally require Git and a full 40-hex commit equal to the checkout's current `HEAD`; installed verification needs no Git:
+With existing Python 3.10+ on Linux/macOS, run these commands from the reviewed checkout. Maintainer export/archive additionally require Git 2.19+ and a full 40-hex commit equal to the checkout's current `HEAD`; installed verification needs no Git:
 
 ```sh
 python3 -I -B maintenance/package.py verify
@@ -21,6 +21,8 @@ python3 -I -B maintenance/package.py archive --commit REVIEWED_FULL_40_HEX_SHA -
 The manifest's file list excludes `release-manifest.json` itself; reported total distributable files include it. A list of 299 entries therefore corresponds to 300 installed files, not a missing file.
 
 Export and archive read **committed blob bytes**, never dirty worktree bytes, and require that committed manifest/content verify. Destinations must be unused, with real parent directories; symlinks and overwrites are refused. Export creates sibling **`netstack.receipt.json`** for output `netstack`; its CLI response reports both actual paths. The portable receipt contains only full reviewed `commit`, `version`, `manifest_sha256`, `runtime_sha256` and an integrity-not-authenticity `note`. **`manifest_sha256` hashes the bytes of `release-manifest.json` itself**: compare it against a fresh file SHA-256 or installed verifier output. The manifest cannot self-declare its own hash. Compare the runtime digest and version with verifier output, and the full commit SHA with your independently reviewed revision.
+
+Every reviewed object must already be available locally. Missing promised objects in a partial clone fail closed: export/archive disable Git lazy fetching and deny all transport protocols through [Git's configuration-overriding allowlist](https://raw.githubusercontent.com/git/git/v2.19.0/Documentation/git.txt). They do not retrieve missing objects or invoke a remote helper to repair the checkout. This boundary was exercised on Git 2.50.1, including with its lazy-fetch flag removed to test the transport allowlist independently; that is not an execution claim for older Git versions.
 
 Use resolved parent paths for outputs; on macOS, `/tmp` and `/var` are symlinks, so their real paths typically begin with `/private/tmp` or `/private/var`. Resolve a trusted parent before choosing a new output name rather than relaxing the no-symlink check.
 
@@ -130,6 +132,8 @@ Acceptance answers based on public evidence must carry portable **public source 
 3. First use package-only questions. Tell the agent this pass has no live-chain inputs and must not fetch them; label synthetic examples. Normal model-service access is distinct from permission to retrieve financial inputs.
 4. Run the prompts below as separate cases, retaining actual answers and attempted tool calls. For a later explicitly authorized live pass, remove the package-only restriction and require fresh block/hash/time and coverage. Never change host/provider to evade an access denial.
 5. Report each case as pass, answer failure, host/access blocked, or not exercised. Include commit, manifest/runtime hashes, host/model/version, loaded path, prompt, answer, evidence, timing where measured and exact sanitized failure. Keep records outside the installed package.
+
+Evaluate the natural first answer before requesting a repair. For substantive public-evidence cases, score portable source URLs and dated attribution separately from accounting correctness; local file links fail citation delivery even when the numbers or rules are correct. For a simple current-quantity question with no authorized live inputs, expect a concise unknown/coverage answer, not an unsolicited synthetic book or full contract tutorial. Do not add “include public citations” or the expected product scope to the initial prompt when testing whether the skill supplies these behaviors itself. Follow-ups may test corrections, but do not retroactively mark the first answer as passing.
 
 | Prompt | Acceptance |
 |---|---|

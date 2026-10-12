@@ -118,6 +118,48 @@ def select_markets(rows, query, discovery_complete):
     return matches
 
 
+def prepare_result(result):
+    """Project snapshot-qualified output without demoting live collection evidence."""
+    metrics = result.get("metrics", {})
+    if "aggregates" not in metrics:
+        return result
+    snapshot = result.get("snapshot", {})
+    invalid = (snapshot.get("recheck_status") == "mismatch"
+               or snapshot.get("confirmation") == "invalid"
+               or any(error.get("kind") == "integrity" for error in result.get("errors", [])))
+    valid = snapshot.get("recheck_status") == "confirmed" and not invalid
+    confirmation = "invalid" if invalid else ("confirmed" if valid else "unconfirmed")
+
+    def qualify(value):
+        projected = dict(value, snapshot_valid=valid, snapshot_confirmation=confirmation)
+        for key in ("collection_complete", "positions_complete", "event_coverage_complete"):
+            if key in value:
+                projected[key] = bool(valid and value[key])
+        return projected
+
+    def coverage_flags(value):
+        if not isinstance(value, dict):
+            return value
+        projected = {key: coverage_flags(child) for key, child in value.items()}
+        if any(key in value for key in ("collection_complete", "event_coverage_complete", "snapshot_valid")):
+            return qualify(projected)
+        return projected
+
+    aggregates = {}
+    for product, aggregate in metrics["aggregates"].items():
+        projected = qualify(aggregate)
+        for key, value in aggregate.items():
+            if isinstance(value, dict) and "total" in value:
+                projected[key] = qualify(value)
+                projected[key]["total"] = value["total"] if valid and value["collection_complete"] else None
+        aggregates[product] = projected
+    # Context checkpoints share nested objects with the active collector. Only
+    # copy changed shells; raw reads, positions and observed subtotals stay intact.
+    return dict(result, metrics=dict(metrics, aggregates=aggregates,
+                                    markets=[qualify(row) for row in metrics.get("markets", [])]),
+                coverage=coverage_flags(result.get("coverage", {})))
+
+
 def summarize(text, checkpoint_status):
     result = json.loads(text)
     metrics = result.get("metrics", {})

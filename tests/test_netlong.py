@@ -1,10 +1,14 @@
 """Synthetic consumer boundaries only; no packaged live positions or RPC probes."""
 
+from contextlib import ExitStack, redirect_stdout
 from copy import deepcopy
 import hashlib
+import io
 import json
 from pathlib import Path
 import sys
+import tempfile
+import time
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
@@ -13,7 +17,7 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import analytics
 import netstack_netlong as netlong
-from netstack_core import Context, RpcError, StopRun, ZERO, load_json, serialize_result
+from netstack_core import Context, RpcError, StopRun, ZERO, load_json, serialize_result, topic
 
 
 def address(number):
@@ -119,6 +123,269 @@ class SyntheticContext:
         with patch.object(netlong, "resolve_routes", return_value=self.routes), patch.object(netlong, "load_json", return_value=self.source):
             netlong.run(self, SimpleNamespace(product=product, market=market))
         return self.result
+
+
+def word(value):
+    return format((int(value, 16) if isinstance(value, str) else int(value)) % (1 << 256), "064x")
+
+
+def encode_value(field, value):
+    if field["type"] == "tuple":
+        return "".join(encode_value(child, value.get(child["name"], 0)) for child in field["components"])
+    return word(value)
+
+
+class TransportFixture(SyntheticContext):
+    """Reuse synthetic accounting inputs through the real Context and CLI."""
+    def __init__(self):
+        super().__init__()
+        self.selectors = {topic(item)[:10]: item for name, abi in self.source.items()
+                          if name.endswith("_abi") for item in abi if item["type"] == "function"}
+        self.recheck_error = None
+        self.header_reads = 0
+        self.documents = []
+        self.traders = [self.trader, address(201)]
+
+    def exchange(self, ctx, requests):
+        replies = []
+        for method, params in requests:
+            ctx._validate_payload(method, params)
+            ctx._members += 1
+            self.requests.append((method, params))
+            if method == "eth_chainId":
+                value = hex(4663)
+            elif method == "eth_getBlockByNumber":
+                number = int(params[0], 16)
+                self.header_reads += number == 200
+                recheck = number == 200 and self.header_reads > 1
+                if recheck and isinstance(self.recheck_error, StopRun):
+                    ctx._stop(self.recheck_error.reason)
+                if recheck and isinstance(self.recheck_error, RpcError):
+                    replies.append(self.recheck_error)
+                    continue
+                conflict = recheck and self.recheck_error == "mismatch"
+                value = {"number": hex(number), "hash": "0x" + word(number + 1000 + int(conflict)),
+                         "timestamp": hex(number * 5)}
+            elif method == "eth_getCode":
+                value = self.code_values.get(params[0], "0x6000") if int(params[1], 16) >= 100 else "0x"
+            elif method == "eth_call":
+                data = params[0]["data"]
+                item = self.selectors[data[:10]]
+                args = tuple("0x" + data[10 + i * 64 + 24:10 + (i + 1) * 64] if field["type"] == "address"
+                             else int(data[10 + i * 64:10 + (i + 1) * 64], 16)
+                             for i, field in enumerate(item["inputs"]))
+                raw = self.values[(params[0]["to"], item["name"], args)]
+                if isinstance(raw, RpcError):
+                    replies.append(raw)
+                    continue
+                fields = item["outputs"]
+                if len(fields) == 1 and fields[0]["type"] == "string":
+                    text = raw.encode()
+                    value = "0x" + word(32) + word(len(text)) + text.hex() + "00" * (-len(text) % 32)
+                elif len(fields) == 1:
+                    value = "0x" + encode_value(fields[0], raw)
+                else:
+                    value = "0x" + "".join(encode_value(field, raw[field["name"]]) for field in fields)
+            elif method == "eth_getLogs":
+                if self.event_error:
+                    replies.append(self.event_error)
+                    continue
+                event = next(item for item in self.source["futures_abi"] if item.get("name") == "Filled")
+                value = [{"address": self.future, "blockNumber": hex(150), "blockHash": "0x" + word(1150),
+                          "transactionHash": "0x" + word(150), "transactionIndex": "0x0", "logIndex": hex(index),
+                          "topics": [topic(event), "0x" + word(index), "0x" + word(trader)],
+                          "data": "0x" + word(0) * 6, "removed": False}
+                         for index, trader in enumerate(self.traders)]
+            else:
+                raise AssertionError(method)
+            replies.append(value)
+        return replies
+
+    def patches(self):
+        stack = ExitStack()
+        stack.enter_context(patch.object(netlong, "resolve_routes", return_value=self.routes))
+        stack.enter_context(patch.object(netlong, "load_json", return_value=self.source))
+        stack.enter_context(patch.object(Context, "_exchange_once", lambda ctx, requests: self.exchange(ctx, requests)))
+        original = Context._atomic_output
+
+        def capture(ctx, text):
+            self.documents.append(json.loads(text))
+            original(ctx, text)
+
+        stack.enter_context(patch.object(Context, "_atomic_output", capture))
+        return stack
+
+    def run_cli(self, product="all", detail="summary"):
+        stdout = io.StringIO()
+        with tempfile.TemporaryDirectory(prefix="netlong-confirmation-") as directory:
+            checkpoint = Path(directory).resolve() / "checkpoint.json"
+            with self.patches(), patch.object(analytics, "_PROCESS_STARTED", time.monotonic()), redirect_stdout(stdout):
+                status = analytics.main(["netlong", "--product", product, "--block", "200", "--deadline", "30",
+                                         "--detail", detail, "--output", str(checkpoint)])
+            full = json.loads(checkpoint.read_text())
+        return status, full, json.loads(stdout.getvalue())
+
+
+class NetLongConfirmationTests(unittest.TestCase):
+    def assert_unconfirmed(self, document, confirmation):
+        self.assertFalse(document["coverage"]["collection_complete"])
+        self.assertFalse(document["coverage"]["snapshot_valid"])
+        self.assertEqual(document["coverage"]["snapshot_confirmation"], confirmation)
+        for aggregate in document["metrics"]["aggregates"].values():
+            self.assertFalse(aggregate["collection_complete"])
+            self.assertFalse(aggregate["snapshot_valid"])
+            self.assertEqual(aggregate["snapshot_confirmation"], confirmation)
+            for field in aggregate.values():
+                if isinstance(field, dict) and "total" in field:
+                    self.assertIsNone(field["total"])
+                    self.assertFalse(field["collection_complete"])
+                    self.assertFalse(field["snapshot_valid"])
+                    self.assertEqual(field["snapshot_confirmation"], confirmation)
+        for row in document["metrics"]["markets"]:
+            self.assertFalse(row["collection_complete"])
+            self.assertFalse(row.get("positions_complete", False))
+            self.assertFalse(row["snapshot_valid"])
+            self.assertEqual(row["snapshot_confirmation"], confirmation)
+
+    def test_conflicting_recheck_revokes_full_checkpoint_and_summary_totals(self):
+        fixture = TransportFixture()
+        fixture.recheck_error = "mismatch"
+        status, full, summary = fixture.run_cli()
+        self.assertEqual(status, 2)
+        self.assertEqual(full["snapshot"]["confirmation"], "invalid")
+        self.assertTrue(any(error["kind"] == "integrity" for error in full["errors"]))
+        self.assert_unconfirmed(fixture.documents[-2], "unconfirmed")
+        for document in (full, summary):
+            self.assert_unconfirmed(document, "invalid")
+            aggregates = document["metrics"]["aggregates"]
+            self.assertEqual(aggregates["futures"]["entry_notional"]["observed_subtotal"]["gross"]["raw"],
+                             str(12 * netlong.WAD))
+            self.assertEqual(aggregates["margin"]["debt"]["observed_subtotal"]["raw"], "21000000")
+            self.assertEqual(aggregates["margin"]["marked_token_exposure"]["observed_subtotal"]["raw"],
+                             str(20 * netlong.WAD))
+            self.assertFalse(document["coverage"]["futures_discovery"]["collection_complete"])
+            self.assertFalse(document["coverage"]["margin_positions"]["collection_complete"])
+        self.assertEqual(full["metrics"]["aggregates"], summary["metrics"]["aggregates"])
+        self.assertEqual(summary["presentation"]["full_checkpoint"], "saved")
+        self.assertNotIn("reads", summary["metrics"])
+        self.assertNotIn("positions", summary["metrics"]["markets"][0])
+
+    def test_unconfirmed_and_terminal_rechecks_withhold_totals(self):
+        failures = (RpcError("Synthetic permission denial", kind="permission"),
+                    RpcError("Synthetic unavailable header", kind="unavailable"),
+                    StopRun("deadline_exhausted"))
+        for failure in failures:
+            with self.subTest(failure=str(failure)):
+                fixture = TransportFixture()
+                fixture.recheck_error = failure
+                status, full, summary = fixture.run_cli()
+                self.assertEqual(status, 2)
+                self.assertEqual(fixture.header_reads, 2)
+                self.assertEqual(full["snapshot"]["confirmation"], "unconfirmed")
+                for document in (fixture.documents[-2], full, summary):
+                    self.assert_unconfirmed(document, "unconfirmed")
+                    self.assertEqual(document["metrics"]["aggregates"]["margin"]["debt"]["observed_subtotal"]["raw"],
+                                     "21000000")
+                self.assertFalse(full["coverage"]["futures_positions:" + fixture.future]["event_coverage_complete"])
+                if isinstance(failure, StopRun):
+                    self.assertEqual(full["stopping_reason"], "deadline_exhausted")
+
+    def test_confirmed_collection_and_zeros_promote_after_interim_checkpoints(self):
+        for scenario in ("positions", "empty_positions", "empty_registries"):
+            for detail in ("full", "summary"):
+                with self.subTest(scenario=scenario, detail=detail):
+                    fixture = TransportFixture()
+                    vault = fixture.routes["vault"]["address"]
+                    margin = fixture.routes["margin"]["address"]
+                    if scenario != "positions":
+                        fixture.values[(vault, "totalOiUsdWad", ())] = 0
+                    if scenario == "empty_registries":
+                        fixture.values[(vault, "deskCount", ())] = 0
+                        fixture.values[(margin, "tokenCount", ())] = 0
+                    elif scenario == "empty_positions":
+                        fixture.traders = []
+                        fixture.values[(fixture.future, "oiLongUsdWad", ())] = 0
+                        fixture.values[(fixture.future, "oiShortUsdWad", ())] = 0
+                        fixture.values[(fixture.future, "lastMark", ())]["priceWad"] = 0
+                        fixture.values[(vault, "desks", (fixture.future,))].update(oiUsdWad=0, skewUsdWad=0)
+                        fixture.values[(margin, "nextPositionId", ())] = 1
+                        fixture.values[(margin, "listings", (fixture.token,))].update(totalShares=0, notionalUsdWad=0)
+                        fixture.values[(margin, "marks", (fixture.token,))]["twapLive"] = False
+                    status, full, printed = fixture.run_cli(detail=detail)
+                    self.assertEqual(status, 0)
+                    interim = fixture.documents[-2]
+                    self.assert_unconfirmed(interim, "unconfirmed")
+                    for document in (full, printed):
+                        self.assertEqual(document["status"], "completed")
+                        self.assertEqual(document["snapshot"]["recheck_status"], "confirmed")
+                        self.assertTrue(document["coverage"]["collection_complete"])
+                        self.assertTrue(document["coverage"]["snapshot_valid"])
+                        for product, aggregate in document["metrics"]["aggregates"].items():
+                            self.assertTrue(aggregate["collection_complete"])
+                            self.assertTrue(aggregate["snapshot_valid"])
+                            for name, field in aggregate.items():
+                                if not isinstance(field, dict) or "total" not in field:
+                                    continue
+                                self.assertTrue(field["collection_complete"])
+                                self.assertTrue(field["snapshot_valid"])
+                                self.assertIsNotNone(field["total"])
+                                self.assertEqual(field["total"], field["observed_subtotal"])
+                                self.assertEqual(field["observed_subtotal"],
+                                                 interim["metrics"]["aggregates"][product][name]["observed_subtotal"])
+                                if scenario != "positions":
+                                    quantity = field["total"].get("gross", field["total"])
+                                    self.assertEqual(quantity["raw"], "0")
+                        for row in document["metrics"]["markets"]:
+                            self.assertTrue(row["positions_complete"])
+                            self.assertTrue(row["collection_complete"])
+                            self.assertTrue(row["snapshot_valid"])
+
+    def test_confirmation_never_rebuilds_unsupported_or_partial_totals(self):
+        for scenario in ("partial_registry", "failed_registry", "unsupported", "desk_reconciliation",
+                         "vault_reconciliation", "position_history", "margin_position_bound"):
+            with self.subTest(scenario=scenario):
+                fixture = TransportFixture()
+                vault = fixture.routes["vault"]["address"]
+                product, field = "futures", "entry_notional"
+                subtotal = str(12 * netlong.WAD)
+                if scenario == "partial_registry":
+                    fixture.values[(vault, "deskCount", ())] = 2
+                    fixture.values[(vault, "deskAt", (1,))] = fixture.future
+                elif scenario == "failed_registry":
+                    fixture.values[(vault, "totalOiUsdWad", ())] = RpcError("Unavailable", kind="unavailable")
+                    subtotal = None
+                elif scenario == "unsupported":
+                    fixture.code_values[fixture.future] = "0x6001"
+                    subtotal = None
+                elif scenario == "desk_reconciliation":
+                    fixture.values[(vault, "desks", (fixture.future,))]["oiUsdWad"] = 13 * netlong.WAD
+                elif scenario == "vault_reconciliation":
+                    fixture.values[(vault, "totalOiUsdWad", ())] = 13 * netlong.WAD
+                elif scenario == "position_history":
+                    fixture.event_error = RpcError("Unavailable history", kind="unavailable")
+                    field, subtotal = "mark_notional", None
+                else:
+                    product, field, subtotal = "margin", "debt", "21000000"
+                with patch.object(netlong, "POSITION_LIMIT", 1 if scenario == "margin_position_bound" else 128):
+                    status, full, summary = fixture.run_cli(product=product)
+                self.assertEqual(status, 2)
+                for document in (full, summary):
+                    self.assertEqual(document["snapshot"]["recheck_status"], "confirmed")
+                    self.assertFalse(document["coverage"]["collection_complete"])
+                    aggregate = document["metrics"]["aggregates"][product]
+                    self.assertFalse(aggregate["collection_complete"])
+                    self.assertTrue(aggregate["snapshot_valid"])
+                    metric = aggregate[field]
+                    self.assertFalse(metric["collection_complete"])
+                    self.assertIsNone(metric["total"])
+                    if subtotal is None:
+                        self.assertIsNone(metric["observed_subtotal"])
+                    else:
+                        observed = metric["observed_subtotal"]
+                        self.assertEqual(observed.get("gross", observed)["raw"], subtotal)
+                    if scenario == "vault_reconciliation":
+                        self.assertFalse(document["metrics"]["vault_entry_reconciliation"]["matches"])
+                        self.assertIsNone(aggregate["mark_notional"]["total"])
 
 
 class NetLongBoundaries(unittest.TestCase):

@@ -31,10 +31,13 @@ MAX_TREE_BYTES = 1024 * 1024
 
 
 def _git(root, *arguments, limit=MAX_TREE_BYTES):
-    """Bound Git's stdout and duration; never execute filters, hooks or network commands."""
+    """Bound Git's stdout and duration; never execute filters, hooks or transports."""
     environment = {key: value for key, value in os.environ.items() if not key.startswith("GIT_")}
+    # Object reads can lazy-fetch in partial clones. Deny every transport as well:
+    # older Git may ignore GIT_NO_LAZY_FETCH, and per-protocol config overrides protocol.allow.
     environment.update(GIT_CONFIG_NOSYSTEM="1", GIT_CONFIG_GLOBAL=os.devnull,
-                       GIT_TERMINAL_PROMPT="0", GIT_OPTIONAL_LOCKS="0")
+                       GIT_TERMINAL_PROMPT="0", GIT_OPTIONAL_LOCKS="0",
+                       GIT_NO_LAZY_FETCH="1", GIT_ALLOW_PROTOCOL="")
     command = ["git", "--no-replace-objects", "-C", str(root), "-c", "core.fsmonitor=false",
                "-c", "core.hooksPath=" + os.devnull, *arguments]
     with subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, env=environment) as child:

@@ -2,6 +2,18 @@
 
 Baseline documentation reviewed September 10, 2026; later observations retain their own dates. The October 7 refresh read all 28 then-indexed documentation bodies. The October 10 NetLong sweep reviews the two added pages, the trading terminal and original launch thread; the directory now has 30 entries. This is not a complete social archive, security audit or verification of every current deployment. The [source catalog](../assets/sources.json) records retrieval depth and provenance; the [address index](../assets/address-index.json) routes exact chain-qualified identities. Public sources support ordinary read-only research, never override host restrictions or authorize wallet actions.
 
+## Portable evidence citations
+
+Packaged knowledge is usable offline, but an answer about public evidence should still let the reader follow its provenance. No network request is needed merely to cite an already-recorded public URL.
+
+1. Start with the specific reference section or contract/address record used for the answer. Follow its public source links, `provenance[].url`, or `source_id` into [sources.json](../assets/sources.json). Prefer the bounded selected record over loading the entire source catalog. Do not substitute a nearby product's documentation for the applicable generation.
+2. Attach the supporting public URL and its recorded review date/block to the material claim. For example, distinguish “the packaged October 10 review of the [NET LONG prospectus](https://docs.netnet.capital/net-long) describes a USDG-funded token purchase” from a claim about current loan balances. A documentation link supports publisher terms, not independent runtime enforcement.
+3. For decoded interfaces or runtime-derived mechanics, cite the recorded publisher bundle or exact contract's explorer/API evidence and identify the claim as scoped packaged analysis. A selector match alone does not establish semantics. Where the analysis itself must be cited, an independently known installed commit permits a pinned GitHub link to that review in `tomismeta/netstack`; never guess the commit from `0.5.0-dev` or use a moving branch as proof of the tested bytes.
+4. Do not turn `references/file.md`, `/home/.../skills/netstack/...`, a host artifact URL or a bare source ID into the final public citation. A derived explorer navigation link establishes an exact chain/address destination, not a fresh observation or proof of the asserted behavior. Preserve the original evidence URL when that is the source.
+5. Historical hashed assets can disappear. Attribute the retained review honestly; do not claim a link was fetched now or invent a replacement hash. If no appropriate public evidence link exists, state the actual provenance and gap. For confidential/user-supplied evidence, identify its role without publishing paths, credentials or private contents.
+
+Use a small number of directly relevant citations rather than a dump of links. Synthetic examples remain synthetic; their provenance is the supplied assumptions plus any cited contract rule, not an alleged chain event.
+
 ## Official documentation: complete indexed set
 
 The [llms.txt index](https://docs.netnet.capital/llms.txt), read October 10, lists **30 entries**, adding NET LONG and LOSE to the 28 bodies reviewed October 7. Both additions were read in full; the other bodies retain their individual review dates, with Futures and Official Channels revisited for generation conflicts. Earlier snapshots remain historical: September 26 had 28 entries, September 25 had 27, and the earlier index had 25. Retrieval dates do not date underlying changes. Documentation describes publisher mechanics, not independent verification of deployment or enforcement.

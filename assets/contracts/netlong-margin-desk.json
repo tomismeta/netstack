@@ -1352,6 +1352,41 @@
       "detail": "State1 pending request; deadline/freshness guards; pot lend called only in executeBuy; fee= floor(loanUsdg*25/10000), spend=loan-fee; actual received units measured and TWAP/trader-price floor checked; position debt/shares initialized after fill. Unknown all edge predicates remain non-certified."
     },
     {
+      "scope": "pending-sell entry: selector-level transition, not a recovered function name",
+      "pcs": [
+        "0x773-0x785",
+        "0x4fbf-0x4fe7",
+        "0x1600-0x1796",
+        "0x3fcc-0x4020",
+        "0x41e1-0x428d",
+        "0x428e-0x42b6"
+      ],
+      "detail": "Retained indexed bytes reanalyzed 2026-10-12; SHA-256 matches runtime_identity. Selector0x70c6cea8 decodes three full calldata words with runtime roles (positionId, units, minProceedsUsdg); its source name/canonical signature remains unresolved and is not added to the publisher ABI. Entry0x773 -> decoder0x4fbf -> body0x1600 acquires slot8 lock, requires nonzero stored trader == CALLER, state2, underSince==0 and nonzero minProceedsUsdg. Helper0x41e1 converts requested units to shares: zero units or units >= current position units selects all shares; otherwise floor(positionShares*units/currentUnits), rejecting a zero rounded result. At0x16d2 SSTORE writes (oldWord & ~(0xff<<160)) | (3<<160) to keccak256(abi.encode(id,4))+1. At0x16ef writes sharesPending (base+8 low128),0x1719 writes minProceedsUsdg (base+7 high128),0x1739 writes lastTouch (base+2 low64). Minimum must fit uint128, checked after the first writes; failure reverts all writes. Token balanceOf STATICCALL dependencies and checked arithmetic must succeed through event emission before STOP0x496. This establishes a conditional state2 -> state3 path, not merely a UI label, and not a live position observation."
+    },
+    {
+      "scope": "pending-sell offline witness and limits",
+      "pcs": [
+        "0x16d2",
+        "0x3cef",
+        "0x178c",
+        "0x1792",
+        "0x496"
+      ],
+      "detail": "A bounded local opcode interpreter executed the recovered Desk dispatcher from PC0 with synthetic state only: id1, trader0x1111, token0x2222, state2, underSince0, position/listing shares2000000, simulated balanceOf2999, timestamp100000; calldata selector0x70c6cea8 plus words(1,100,50). It reached STOP0x496 in1009 opcodes, state3, sharesPending100000, minProceeds50, lastTouch100000, lock0; two successful simulated balanceOf calls, no DELEGATECALL. Also observed zero units selecting all shares, nonzero requests >= units capped to all shares, and borrower selector0x316e13a3 returning state3 -> state2. Wrong caller, state3 input, active checkpoint, zero minimum, uint128 minimum overflow, zero rounded shares and failed balanceOf reverted in the exercised branches. This is research evidence from a custom interpreter without gas/fork validation or a consensus-client cross-check; dependencies were simulated, no RPC/wallet/transaction occurred, and constructor-to-live-position reachability or all-path correctness is not claimed."
+    },
+    {
+      "scope": "adjacent pending-sell dispatcher and library boundaries",
+      "pcs": [
+        "0x482-0x494",
+        "0x115b-0x1212",
+        "0xafd-0xb0f",
+        "0x23c6-0x252e",
+        "0x1ea3-0x1f93",
+        "0x3e0d-0x3ea4"
+      ],
+      "detail": "Unnamed selector0x316e13a3 decodes an id, requires borrower/state3, writes state2 at0x11be and clears sharesPending/minProceeds at0x11d0/0x11e1. Unnamed selector0xa99c38af body0x23c6 requires state3 and no underSince, takes capped pending shares/stored proceeds and reaches shared settlement0x3e0d; borrower/nonborrower floor/route predicates remain distinct. Published closeNow selector0x8c778fa1 body0x1ea3 accepts states2/3; it is not the pending-sell creator. Shared settlement pins SettleLib0x39Ce3cf58d65c96c86803556e4091F735efDaB17 and selector0x0a48f8df, DELEGATECALL0x3e96. Retained SettleLib SHA-256 a484f98a1ed21f3c57a0dae8573b16834a583134a1a04998318a982fa33dbf3f has a reset-to-state2 write at0x2106 and pending-field clears0x2121/0x2131. These support the lifecycle but are not an exhaustive settlement/library storage-alias proof. No library call is needed by the traced state3 creator."
+    },
+    {
       "scope": "units and debt",
       "pcs": [
         "0x20fa",
@@ -1419,7 +1454,7 @@
       "entry_pc": "0x482",
       "candidate_signature": null,
       "review_status": "signature_unresolved",
-      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+      "coverage_gap": "Canonical signature remains unresolved; id-decoding borrower/state3 cancellation path to state2 is traced in runtime_review. No function name is inferred from behavior."
     },
     {
       "selector": "0x33b3a857",
@@ -1496,7 +1531,7 @@
       "entry_pc": "0x773",
       "candidate_signature": null,
       "review_status": "signature_unresolved",
-      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+      "coverage_gap": "Canonical signature remains unresolved. Three-word input roles and conditional state2 -> state3 path are established in runtime_review with a synthetic offline witness; no publisher ABI addition or live-state claim."
     },
     {
       "selector": "0x743fba7e",
@@ -1629,7 +1664,7 @@
       "entry_pc": "0xafd",
       "candidate_signature": null,
       "review_status": "signature_unresolved",
-      "coverage_gap": "Full source/ABI unavailable: exact signature, authorization and exhaustive arithmetic path semantics not established. Entry location retained rather than inventing an ABI."
+      "coverage_gap": "Canonical signature remains unresolved; state3/no-checkpoint pending-share settlement path is traced to SettleLib in runtime_review. Exhaustive settlement authorization/route predicates remain partial."
     },
     {
       "selector": "0xabffc9ac",

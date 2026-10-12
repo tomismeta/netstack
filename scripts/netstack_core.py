@@ -457,6 +457,9 @@ def serialize_result(result):
         # Lazy import avoids a module cycle; every saved/printed body shares this contract.
         from netstack_advance import prepare_result
         prepare_result(result)
+    elif result.get("command") == "netlong":
+        from netstack_netlong import prepare_result
+        result = prepare_result(result)
     elif result.get("command") == "premiumseller":
         from netstack_premiumseller import prepare_result
         prepare_result(result)
