@@ -91,6 +91,50 @@
       "constructor_runtime_offset": 1097
     }
   },
+  "revenue_research": {
+    "analyzed_on": "2026-10-12",
+    "evidence": "Retained October 10 explorer-indexed deployed bytes, matching runtime_evidence.sha256; static disassembly, no RPC or independent compilation.",
+    "unnamed_read_surfaces": [
+      {
+        "selector": "0x186f0354",
+        "entry_pc": "0x00de",
+        "input_words": 0,
+        "output_words": 1,
+        "runtime_output_type": "address",
+        "meaning": "Immutable 0x3bb7a23316f82c0e984fa2e784846d8928a35f42; no source function name asserted."
+      },
+      {
+        "selector": "0x63f7324a",
+        "entry_pc": "0x0197",
+        "input_words": 0,
+        "output_words": 1,
+        "runtime_output_type": "bool",
+        "meaning": "Immutable false mode returned through bool-normalizing wrapper 0x01be. Active processing burns NET; source function name remains unknown."
+      },
+      {
+        "selector": "0xdeadbc14",
+        "entry_pc": "0x02a8",
+        "input_words": 0,
+        "output_words": 1,
+        "runtime_output_type": "address",
+        "meaning": "Immutable 0x89e5db8b5aa49aa85ac63f691524311aeb649eba; compiled swap-route dependency, not an active Treasury-receipt assertion."
+      }
+    ],
+    "unnamed_runtime_logs": [
+      {
+        "emitter": "0x56a8816132579c6c080e65147682DA2d6D20efb0",
+        "topic0": "0x1e9301528d148faec4e5a2a81ccbc4f4a66f801001fe2cc7437c6a8d17da9fc9",
+        "log_pc": "0x0a05",
+        "topic_count": 1,
+        "data_bytes": 160,
+        "data_layout": "Five consecutive 32-byte words. Numeric field names/types remain unresolved; no indexed argument beyond topic0.",
+        "signature": null,
+        "evidence_locator": "Memory writes 0x09b6-0x09d8; PUSH32 topic at 0x09d9; LOG1 at 0x0a05. Active burn call selector 0x42966c68 at 0x097d, CALL at 0x099f.",
+        "interpretation": "Processing-path witness only; decode amounts from independently evidenced wsNET/sNET/NET transfers and reconcile balances, not invented event field names."
+      }
+    ],
+    "accounting_boundary": "Incoming wsNET fees, subsequent unwrapping/unstaking and NET burn are different stages of one flow, not additive revenue. Compiled dormant Treasury swap branch is not evidence of an actual Treasury receipt."
+  },
   "functions": [
     {
       "name": "wsNet",

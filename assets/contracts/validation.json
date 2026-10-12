@@ -1,4 +1,34 @@
 {
+  "inverse_bond": {
+    "observed_on": "2026-10-12",
+    "source_id": "netnet-inverse-bond-implementation-20261012",
+    "source_evidence_path": "assets/contracts/inverse-bond-source-evidence.json",
+    "status": "complete_obtained_source_surface_independently_compiled_and_runtime_identity_pinned",
+    "function_count": 13,
+    "error_count": 7,
+    "event_count": 1,
+    "constructor_count": 1,
+    "source_file_count": 9,
+    "runtime_bytes": 3241,
+    "runtime_sha256": "fdd6194fdfc5960d7e78287f434e593145ee83378b7a019f2a7457e1ea4e7acd",
+    "compiler_correlation": "Exact solc-js0.8.30 settings; ABI and creation-prefix match; full indexed runtime matches after17compiler-declared immutable words. Constructor not independently executed.",
+    "runtime_pin_source_id": "netstack-inverse-runtime-identity-20261012",
+    "independently_pinned_runtime": true,
+    "full_validation": false,
+    "financial_state_packaged": false,
+    "material_findings": [
+      "First successful fill snapshots epoch budget; zero cap remains sentinel; genesis-anchored8hour epochs have no rollover.",
+      "active is a partial hint, not amount/minimum/allowance/liquidity assurance; nonzero NET can burn for zero USDG when minimum is zero.",
+      "Per-fill WAD floors consume budget independently of native USDG transfer; aggregate each fill before summing.",
+      "Gross burn may consume pre-existing NET when a taxed pull delivers less; receipt-local attribution must distinguish seller delivery.",
+      "Treasury outflow and own-token retirement are not earned revenue; source strict-accretion wording is conditional."
+    ],
+    "remaining_blockers": [
+      "Complete payment/event history, unique receipt matching and creation-boundary validation.",
+      "Account-specific settlement, historical permissions, USDG/vault behavior and exhaustive dependency/security review.",
+      "Original CorePOL validation packet and18432.08USDG discrepancy remain unresolved."
+    ]
+  },
   "predict_depth": {
     "observed_on": "2026-10-10",
     "source_id": "netnet-predict-runtime-depth-20261010",

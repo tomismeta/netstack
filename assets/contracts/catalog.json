@@ -1,16 +1,17 @@
 {
   "schema_version": 1,
-  "observed_on": "2026-10-10",
+  "observed_on": "2026-10-12",
   "scope": "Non-executable descriptive public/external interfaces. No wallet tooling, calldata, transaction payloads or validation warranty. Full supplied ABI != complete implementation.",
   "current_coverage": {
     "canonical_contract_records": 232,
     "bound_catalogs": 75,
     "catalogs_with_obtained_functions": 64,
     "runtime_only_catalogs_without_obtained_abi": 11,
-    "function_entries": 1554,
+    "function_entries": 1562,
     "unreviewed_identities": 157
   },
   "source_ids": [
+    "netnet-inverse-bond-implementation-20261012",
     "netnet-premium-seller-implementation-20261010",
     "netnet-trading-entry-20261010",
     "netnet-contract-interfaces-20261007",
@@ -1977,11 +1978,11 @@
       "chain_id": 4663,
       "address": "0x92166e94Eea5B7799b761653881692f881dFC4C9",
       "generation": "InverseBond (buyback program)",
-      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "interface_status": "complete_obtained_explorer_abi_source_reviewed_independent_compiler_correlation",
       "catalog_path": "assets/contracts/inverse-bond.json",
       "missing_evidence": [
-        "Independently pinned code, storage, current permissions and financial reconciliation.",
-        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+        "Current and historical dependency permissions, token/vault behavior, and payment-history reconciliation require fresh evidence.",
+        "Independent compilation correlates InverseBond with explorer-indexed runtime using declared immutable patches; dependency compiler equivalence and exhaustive security/economic validation are not established."
       ]
     },
     {

@@ -214,6 +214,8 @@ The official margin description sends open/close fees, 20% interest and half liq
 
 Thus do not model those USDG fees as a direct Treasury reserve deposit. NET tax on route legs, liquidity, oracle minimums and actual fill determine how much NET is burned. The presence of a burn path does not prove a particular fee was processed or how much backing changed.
 
+Use the [revenue and house-proceeds recipe](netlong-analytics.md#revenue-and-house-proceeds) for executed fee events, pot-wide accrued versus realized interest, insurance allocation/shortfall and actual router receipts/burn reconciliation. October 12 supplemental disassembly of retained router bytes establishes unnamed mode getter `0x3395b222` (one bool word), and `LOG1` topic `0xf19b38dc0f9599107b200aae774b4b4cb8248bc622a4a23f844799029efd0453` at PC `0x0ebe`: five 32-byte data words, word4 `CALLER`, no indexed arguments. Source event name and the other field meanings remain unresolved. The write-capable processing selector `0x15ce45a2` is not an accounting view; no guessed named ABI is added. The catalog records these structural observations without claiming full-function verification.
+
 ### Discovered WETH/USDG pool
 
 Executor immutable getter at `0x011b` points to `0x69bf…8d9a`, which is **UniswapV3Pool**, not a router. Its indexed immutable getters identify WETH token0, USDG token1, V3 factory `0x1f7d7550b1b028f7571e69a784071f0205fd2efa`, fee 500 (0.05%) and tick spacing 10.

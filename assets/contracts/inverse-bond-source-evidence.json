@@ -1,0 +1,588 @@
+{
+  "schema_version": 1,
+  "source_id": "netnet-inverse-bond-implementation-20261012",
+  "observed_on": "2026-10-12",
+  "contract_id": "robinhood-0x92166e94eea5b7799b761653881692f881dfc4c9",
+  "chain_id": 4663,
+  "address": "0x92166e94Eea5B7799b761653881692f881dFC4C9",
+  "review_scope": "Complete22-entry obtained ABI:13functions (including7generated getters),7errors,1event,1constructor; all9 compilation sources, all6explicit external/public functions plus3internal helpers and constructor reviewed. Relevant actual Treasury/NET/PairOracle/Genesis bodies and Wired reviewed; not an exhaustive dependency/security audit.",
+  "runtime_identity_probe": {
+    "source_id": "netstack-inverse-runtime-identity-20261012",
+    "observed_on": "2026-10-12",
+    "chain_id": 4663,
+    "block_number": 86729870,
+    "block_hash": "0xbf38fafe943e7adbabe1aaa204ec1d7a559f8a0b3948791f5f81ec85089cc50d",
+    "block_timestamp": 1791813880,
+    "header_recheck": "confirmed",
+    "provider": "host-authorized configured Alchemy; credential-bearing endpoint not retained",
+    "method": "eth_getCode at explicit block; decoded-byte SHA-256 compared to recorded indexed runtimes",
+    "inverse_and_dependency_runtime_matches": ["inverse", "treasury", "net", "oracle", "genesis"],
+    "scope": "All five runtime identities matched the hashes recorded in this asset. Financial values, permissions, balances, oracle observations and event history are not packaged or reusable as current inputs. No swap, wallet operation, full historical reconciliation or dependency compiler equivalence was established."
+  },
+  "source_provider": {
+    "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x92166e94Eea5B7799b761653881692f881dFC4C9",
+    "explorer_is_verified": true,
+    "explorer_is_fully_verified": true,
+    "explorer_proxy_type": null,
+    "compiler_version": "v0.8.30+commit.73712a01",
+    "settings": {
+      "evmVersion": "osaka",
+      "libraries": {},
+      "metadata": {
+        "appendCBOR": true,
+        "bytecodeHash": "ipfs",
+        "useLiteralContent": false
+      },
+      "optimizer": {
+        "enabled": true,
+        "runs": 800
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "*"
+          ],
+          "*": [
+            "*"
+          ]
+        }
+      },
+      "remappings": [
+        "forge-std/=lib/forge-std/src/"
+      ],
+      "viaIR": false
+    },
+    "abi_sha256": "6704bd8cee8f254d67f23da80841336b5f1074b1a48b33cc5f717daf3f83d819",
+    "source_files": [
+      {
+        "path": "src/InverseBond.sol",
+        "sha256": "3166432f39a6aec1e15d60331bbd4a87458c967695865c21517ea35e75795b8f",
+        "lines": 141
+      },
+      {
+        "path": "src/libraries/FixedPointMath.sol",
+        "sha256": "ec9413a896063a73bb56dacbef143610ce5b883b8e13c768263ce975d78214e2",
+        "lines": 98
+      },
+      {
+        "path": "src/Constants.sol",
+        "sha256": "1a02fd6a04c98a0119cc38b6d0bf244d2103715733f0d9d0e28ca2227ce02d5d",
+        "lines": 80
+      },
+      {
+        "path": "src/interfaces/IGenesisBond.sol",
+        "sha256": "4ee8e4d286cd0a26626f093b29ee37899c814353f0ff559d41374255bae55997",
+        "lines": 60
+      },
+      {
+        "path": "src/interfaces/IInverseBond.sol",
+        "sha256": "9c68d649c721bef64b359d20602e2a8ac319b7fc315097ed2836267bba9e9450",
+        "lines": 37
+      },
+      {
+        "path": "src/interfaces/INET.sol",
+        "sha256": "8c5833548f22f8aa00a512f1371f1ce397c6fd26f48db06195bdfc6b9eed0439",
+        "lines": 87
+      },
+      {
+        "path": "src/interfaces/IPairOracle.sol",
+        "sha256": "ff754e7dbfed580049324400497ddde0844609609cbb6250de3d849ce8524138",
+        "lines": 33
+      },
+      {
+        "path": "src/interfaces/ITreasury.sol",
+        "sha256": "e0574920aa8097bbd499dfc49cb7ed70941c1ae4bf45aa5122b40d217c57f679",
+        "lines": 60
+      },
+      {
+        "path": "src/interfaces/external/IERC20.sol",
+        "sha256": "3b2bdeac1b60996e9ef139ede11f53bce36a8115a3c3092f2ea2309d8243de1d",
+        "lines": 22
+      }
+    ],
+    "raw_response_retention": "Raw tool-returned JSON, Solidity, compiler input/output retained outside runtime package; distributed asset contains original analysis and hashes only. Programmatic urllib attempt received403; tool read supplied source response.",
+    "response_json_sha256": "464ccf3460fa386bed321d72e618527d3834817dcaa5be515c2a633adf3ba658",
+    "response_hash_scope": "Tool-returned pretty JSON representation, not HTTP wire bytes"
+  },
+  "runtime_evidence": {
+    "runtime_bytes": 3241,
+    "runtime_sha256": "fdd6194fdfc5960d7e78287f434e593145ee83378b7a019f2a7457e1ea4e7acd",
+    "meaning": "Explorer indexed runtime; separate runtime_identity_probe records the later pinned RPC identity match.",
+    "dispatcher": [
+      {
+        "selector": "0xc2fff4a5",
+        "compare_offset": "0x35",
+        "entry_offset": "0x1eb"
+      },
+      {
+        "selector": "0xd8862a5c",
+        "compare_offset": "0x40",
+        "entry_offset": "0x212"
+      },
+      {
+        "selector": "0xd96073cf",
+        "compare_offset": "0x4b",
+        "entry_offset": "0x21a"
+      },
+      {
+        "selector": "0xf5b91b7b",
+        "compare_offset": "0x56",
+        "entry_offset": "0x22d"
+      },
+      {
+        "selector": "0x7dc0d1d0",
+        "compare_offset": "0x65",
+        "entry_offset": "0x1b4"
+      },
+      {
+        "selector": "0xa035b1fe",
+        "compare_offset": "0x70",
+        "entry_offset": "0x1db"
+      },
+      {
+        "selector": "0xbf6f3bf3",
+        "compare_offset": "0x7b",
+        "entry_offset": "0x1e3"
+      },
+      {
+        "selector": "0x61d027b3",
+        "compare_offset": "0x95",
+        "entry_offset": "0x147"
+      },
+      {
+        "selector": "0x6dd5635d",
+        "compare_offset": "0xa0",
+        "entry_offset": "0x186"
+      },
+      {
+        "selector": "0x748a0ab0",
+        "compare_offset": "0xab",
+        "entry_offset": "0x18d"
+      },
+      {
+        "selector": "0x02fb0c5e",
+        "compare_offset": "0xba",
+        "entry_offset": "0xde"
+      },
+      {
+        "selector": "0x544b9b9f",
+        "compare_offset": "0xc5",
+        "entry_offset": "0xfb"
+      },
+      {
+        "selector": "0x57207fa0",
+        "compare_offset": "0xd0",
+        "entry_offset": "0x128"
+      }
+    ],
+    "all_obtained_function_selectors_match": true,
+    "unmatched_dispatcher_selectors": [],
+    "default_dispatch": "Unknown/short calldata reverts; global nonpayable check."
+  },
+  "independent_compilation": {
+    "performed": true,
+    "compiler": "solc-js0.8.30+commit.73712a01.Emscripten.clang (npm solc@0.8.30 isolated outside repository)",
+    "input_sha256": "90fed3ea28d65c84191d1b2d044cf9cc689237bc39b03265370fa0243ca824d1",
+    "output_sha256": "86a61c10b6ffad809535c94f83572006f07bdbc5bfb306fd5d4f65dae4531248",
+    "diagnostics": [],
+    "settings": "Exact explorer settings, all9 obtained sources under original paths; no network import callback.",
+    "abi_exact_match": true,
+    "creation_template_bytes": 4175,
+    "creation_template_sha256": "8d7a36157514b85d85b03940530e1fc1248b1dcf4b8f034f9a3f69afbc020b7a",
+    "creation_prefix_exact_match": true,
+    "constructor_suffix_bytes": 160,
+    "constructor_arguments": [
+      [
+        "0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+        {
+          "internalType": "address",
+          "name": "net_",
+          "type": "address"
+        }
+      ],
+      [
+        "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+        {
+          "internalType": "address",
+          "name": "usdg_",
+          "type": "address"
+        }
+      ],
+      [
+        "0x04822Ea321A0DEE6F40656172F29312104855d66",
+        {
+          "internalType": "address",
+          "name": "treasury_",
+          "type": "address"
+        }
+      ],
+      [
+        "0x929631b33F4070D6f54477fba3FD27566567dAca",
+        {
+          "internalType": "address",
+          "name": "oracle_",
+          "type": "address"
+        }
+      ],
+      [
+        "0x575b7B7c97Ef3E21C82DAeB427899d583e1E913f",
+        {
+          "internalType": "address",
+          "name": "genesisBond_",
+          "type": "address"
+        }
+      ]
+    ],
+    "runtime_template_bytes": 3241,
+    "runtime_template_sha256": "7cf93a787206e8aff8a1e0cfa800768add542d94d47552e4230204eae88820c3",
+    "runtime_exact_after_patching_all_and_only_compiler_immutable_ranges": true,
+    "immutable_bindings": [
+      {
+        "ast_id": "161",
+        "references": [
+          {
+            "length": 32,
+            "start": 496
+          },
+          {
+            "length": 32,
+            "start": 1928
+          },
+          {
+            "length": 32,
+            "start": 2093
+          }
+        ],
+        "values": [
+          "000000000000000000000000ca9c78dd337a67f6e0077f65f5e9218719d30edf"
+        ],
+        "name": "net"
+      },
+      {
+        "ast_id": "164",
+        "references": [
+          {
+            "length": 32,
+            "start": 562
+          }
+        ],
+        "values": [
+          "0000000000000000000000005fc5360d0400a0fd4f2af552add042d716f1d168"
+        ],
+        "name": "usdg"
+      },
+      {
+        "ast_id": "167",
+        "references": [
+          {
+            "length": 32,
+            "start": 332
+          },
+          {
+            "length": 32,
+            "start": 886
+          },
+          {
+            "length": 32,
+            "start": 2214
+          },
+          {
+            "length": 32,
+            "start": 2811
+          }
+        ],
+        "values": [
+          "00000000000000000000000004822ea321a0dee6f40656172f29312104855d66"
+        ],
+        "name": "treasury"
+      },
+      {
+        "ast_id": "170",
+        "references": [
+          {
+            "length": 32,
+            "start": 441
+          },
+          {
+            "length": 32,
+            "start": 1201
+          },
+          {
+            "length": 32,
+            "start": 1531
+          }
+        ],
+        "values": [
+          "000000000000000000000000929631b33f4070d6f54477fba3fd27566567daca"
+        ],
+        "name": "oracle"
+      },
+      {
+        "ast_id": "173",
+        "references": [
+          {
+            "length": 32,
+            "start": 402
+          },
+          {
+            "length": 32,
+            "start": 599
+          },
+          {
+            "length": 32,
+            "start": 1040
+          },
+          {
+            "length": 32,
+            "start": 1362
+          },
+          {
+            "length": 32,
+            "start": 2385
+          }
+        ],
+        "values": [
+          "000000000000000000000000575b7b7c97ef3e21c82daeb427899d583e1e913f"
+        ],
+        "name": "genesisBond"
+      },
+      {
+        "ast_id": "175",
+        "references": [
+          {
+            "length": 32,
+            "start": 1822
+          }
+        ],
+        "values": [
+          "000000000000000000000000000000000000000000000000000000e8d4a51000"
+        ],
+        "name": "_usdgWadFactor"
+      }
+    ],
+    "limits": "Compiler output matches provider-supplied creation prefix and indexed runtime after17compiler-declared immutable words are replaced with observed values. All occurrences agree; five addresses match decoded constructor suffix, USDG factor is1e12. Constructor was not executed independently; no live RPC pin, historical state identity, dependency compilation/equivalence or security audit implied."
+  },
+  "source_function_coverage": [
+    {
+      "name": "constructor",
+      "kind": "constructor",
+      "visibility": "public",
+      "state_mutability": "nonpayable",
+      "locator": "src/InverseBond.sol:48-65",
+      "reachable": "constructor only"
+    },
+    {
+      "name": "swap",
+      "kind": "function",
+      "visibility": "external",
+      "state_mutability": "nonpayable",
+      "locator": "src/InverseBond.sol:68-90",
+      "reachable": "external selector"
+    },
+    {
+      "name": "active",
+      "kind": "function",
+      "visibility": "external",
+      "state_mutability": "view",
+      "locator": "src/InverseBond.sol:93-100",
+      "reachable": "external selector"
+    },
+    {
+      "name": "oracleGate",
+      "kind": "function",
+      "visibility": "external",
+      "state_mutability": "view",
+      "locator": "src/InverseBond.sol:103-105",
+      "reachable": "external selector"
+    },
+    {
+      "name": "price",
+      "kind": "function",
+      "visibility": "public",
+      "state_mutability": "view",
+      "locator": "src/InverseBond.sol:108-112",
+      "reachable": "external selector"
+    },
+    {
+      "name": "capacityRemaining",
+      "kind": "function",
+      "visibility": "external",
+      "state_mutability": "view",
+      "locator": "src/InverseBond.sol:115-118",
+      "reachable": "external selector"
+    },
+    {
+      "name": "spreadBps",
+      "kind": "function",
+      "visibility": "external",
+      "state_mutability": "pure",
+      "locator": "src/InverseBond.sol:120-122",
+      "reachable": "external selector"
+    },
+    {
+      "name": "_epochIndex",
+      "kind": "function",
+      "visibility": "internal",
+      "state_mutability": "view",
+      "locator": "src/InverseBond.sol:124-126",
+      "reachable": "swap, active, capacityRemaining"
+    },
+    {
+      "name": "_liveCap",
+      "kind": "function",
+      "visibility": "internal",
+      "state_mutability": "view",
+      "locator": "src/InverseBond.sol:128-130",
+      "reachable": "swap, _capacityRemaining"
+    },
+    {
+      "name": "_capacityRemaining",
+      "kind": "function",
+      "visibility": "internal",
+      "state_mutability": "view",
+      "locator": "src/InverseBond.sol:135-140",
+      "reachable": "swap, active, capacityRemaining"
+    }
+  ],
+  "generated_getters": [
+    {
+      "name": "net",
+      "locator": "src/InverseBond.sol:33",
+      "semantics": "NET pull/burn dependency, raw9 units. InverseBond burns gross requested amount without measuring transfer receipt; no setter."
+    },
+    {
+      "name": "usdg",
+      "locator": "src/InverseBond.sol:34,64",
+      "semantics": "USDG address used at construction to cache 10^(18-decimals); indexed runtime caches1e12. No direct InverseBond USDG payment path; Treasury pays. Current proxy/token semantics and decimals need fresh checks."
+    },
+    {
+      "name": "treasury",
+      "locator": "src/InverseBond.sol:35",
+      "semantics": "Backing and liquid-cap source; spend intermediary and USDG payer. Does not prove wired state, spender permission or cash/vault liquidity."
+    },
+    {
+      "name": "oracle",
+      "locator": "src/InverseBond.sol:36",
+      "semantics": "PairOracle liveness dependency, not settlement price source; no setter or checkpoint call on swap."
+    },
+    {
+      "name": "genesisBond",
+      "locator": "src/InverseBond.sol:37",
+      "semantics": "Finalization and epoch-origin dependency. Returning an address does not establish finalized state; no setter."
+    },
+    {
+      "name": "filledInEpoch",
+      "locator": "src/InverseBond.sol:40-41",
+      "semantics": "Cumulative successful pre-USDG-conversion payoutWad for that epoch, not NET amount, fill count or actual raw USDG paid. Can remain zero despite a successful zero-payout burn."
+    },
+    {
+      "name": "capOfEpoch",
+      "locator": "src/InverseBond.sol:43-46",
+      "semantics": "Stored epoch USDG WAD budget. Zero is the unsnapshotted sentinel; views then use live cap. First successful fill records floor(liquidUsdg*100/10000), including a positive-cap zero-output fill. A zero cap remains sentinel and can be recomputed later. Not current cash or lifetime capacity."
+    }
+  ],
+  "math": {
+    "NET_unit": "1000000000",
+    "USDG_cached_WAD_factor": "1000000000000",
+    "BPS": 10000,
+    "spread_bps": 150,
+    "epoch_seconds": 28800,
+    "cap_bps_liquid": 100,
+    "ordered_formulas": [
+      "epoch=floor((block.timestamp-genesis.finalizeTime())/28800)",
+      "price=floor(backingPerToken*9850/10000)",
+      "payoutWad=mulDivFloor(netAmountRaw9,price,1000000000)",
+      "effectiveCap=capOfEpoch[epoch] if nonzero else floor(liquidUsdgWad*100/10000)",
+      "remaining=max(effectiveCap-filledInEpoch[epoch],0)",
+      "require payoutWad<=remaining; filled+=payoutWad",
+      "usdgOutRaw=floor(payoutWad/1000000000000); require usdgOutRaw>=caller minimum"
+    ],
+    "zero_guard": "Only netAmount==0 rejected. price/payoutWad/usdgOutRaw can be zero. Zero-payout fill can succeed subject to dependencies even if active()==false from zero capacity. Positive cap can snapshot on zero-output fill; zero cap remains sentinel.",
+    "non_full_precision_operations": "price backing*9850, live liquid*100, filled addition and epoch subtraction checked256-bit; not all math uses mulDiv.",
+    "residual": "payoutWad-usdgOutRaw*factor in[0,factor-1] per fill; consumes WAD budget without USDG transfer. Sum per-fill floors, never floor aggregate WAD to infer cash.",
+    "maximum_budget_limited_input": "For price>0, floor(((remaining+1)*1e9-1)/price), capped at uint256 max, using off-chain arbitrary precision. This only models floor payout<=remaining, not funding or execution; price==0 has no budget-derived bound."
+  },
+  "internal_helpers": [
+    {
+      "name": "_epochIndex",
+      "detail": "Genesis timestamp anchor, index0 in first8h; no staking epoch counter or UTC alignment. Checked subtraction; no internal zero/future-time guard."
+    },
+    {
+      "name": "_liveCap",
+      "detail": "1% of Treasury liquid USDG WAD only, not RFV/Morpho/LP; checked multiplication."
+    },
+    {
+      "name": "_capacityRemaining",
+      "detail": "Nonzero stored cap frozen; otherwise live cap; saturating subtraction at zero. Other epochs never carried forward."
+    }
+  ],
+  "library_review": {
+    "mulDiv": "Used by swap; floor512-bit multiplication/division; MulDivOverflow if quotient unrepresentable.",
+    "mulDivUp": "Read; unused by InverseBond; mulDiv plus1 for nonzero remainder.",
+    "sqrt": "Read; unused directly by InverseBond, used by Treasury.polRfv; integer-floor square root.",
+    "constants": "All supplied constants read; InverseBond uses NET_UNIT,BPS,EPOCH_LENGTH,INVERSE_SPREAD_BPS,INVERSE_EPOCH_CAP_BPS. Comments tagged TUNE do not make runtime constants mutable."
+  },
+  "dependencies": {
+    "treasury": {
+      "address": "0x04822Ea321A0DEE6F40656172F29312104855d66",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x04822Ea321A0DEE6F40656172F29312104855d66",
+      "explorer_is_fully_verified": true,
+      "main_source_path": "src/Treasury.sol",
+      "main_source_sha256": "cfb600922e870e626001e6138601b30c2470f002be91bb172b5eb8b44144ea5b",
+      "runtime_bytes": 6157,
+      "runtime_sha256": "d82c547c353a49760e798a14526e42048194538ba7cd7f5802d1f87aaac92af5",
+      "locator": "src/Treasury.sol:42-60,83-117,134-146,151-180;src/abstract/Wired.sol:18-39",
+      "semantics": "spendUsdg requires wired and isSpender[caller], reads raw USDG cash, withdraws exact shortfall from immutable ERC4626 vault to itself, emits MorphoWithdrawn, transfers requested raw USDG to seller checking Boolean, emits UsdgSpent(caller,to,raw). No InverseBond budget check or final balance-delta check in Treasury. Vault withdrawal can fail; code comment cannot guarantee liquidity. liquidUsdg=balance*cached factor; backing=0 for zero NET supply else floor(rfv*1e9/supply). Obtained source rfv=floor(MorphoWad*9800/10000)+liquid+polRfv. This conflicts with user-validated subtract-floor haircut; preserve original Core blocker, not silently replace arithmetic. polRfv uses NET raw*1e9 and quote raw*factor, floor sqrt, then LP fraction. One-time deployer wiring accepts arbitrary nonzero spender arrays; comment naming InverseBond is not permission evidence.",
+      "scope": "Actual obtained body inspection and separately recorded runtime identity match; not independent dependency compilation, historical permissions or settlement proof."
+    },
+    "net": {
+      "address": "0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+      "explorer_is_fully_verified": true,
+      "main_source_path": "src/NET.sol",
+      "main_source_sha256": "a92982a349acb4678daaed7fb54d0a30d5602bb5e840d58bbc338d7a5ff4a1dd",
+      "runtime_bytes": 6432,
+      "runtime_sha256": "cdc02859b4648a5c35ed22cfc8c67de29b5646dd65bcb79aee802e3ef7fff23d",
+      "locator": "src/NET.sol:67-88,104-145,158-176,184-254;src/abstract/Wired.sol:18-39",
+      "semantics": "transferFrom spends gross allowance (maxuint infinite allowance unchanged), then checks sender gross balance. Tax only when enabled, neither endpoint exempt and either endpoint mapped; floor(gross*500/10000) to taxCollector, optional Transfer+TaxCollected then remaining Transfer. Burn is permissionless from caller, balance>=gross, reduces caller balance and totalSupply, Transfer(caller,zero,gross); no tax or Treasury-only burn restriction. InverseBond does not measure receipt. A taxed pull can make burn revert absent pre-existing NET; pre-existing donations may cover shortfall, so successful burn does not prove seller delivered gross. Initial wiring can pre-map addresses and grant exemptions; current/historical map/exemptions need evidence.",
+      "scope": "Actual obtained body inspection and separately recorded runtime identity match; not independent dependency compilation, historical permissions or settlement proof."
+    },
+    "oracle": {
+      "address": "0x929631b33F4070D6f54477fba3FD27566567dAca",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x929631b33F4070D6f54477fba3FD27566567dAca",
+      "explorer_is_fully_verified": true,
+      "main_source_path": "src/PairOracle.sol",
+      "main_source_sha256": "ba8215e0118c0ef8a2c27c13049664b187dd556bbc15ea92d853191716c2cc2c",
+      "runtime_bytes": 2506,
+      "runtime_sha256": "53a081b46245d85a40d3d3ab1774dde0d75aac0ffe9fb58bed400228155b7488",
+      "locator": "src/PairOracle.sol:27-134",
+      "semantics": "Complete PairOracle body reviewed: constructor caches pair ordering and10^(27-USDGdecimals), no observations seeded.16slots; checkpoint ignores zero reserves/spacing<1800, stores timestamp bucket modulo16 with counterfactual cumulative. TWAP scans newest nonzero observation aged>=1800, rejects none or age>14400, computes wrapping cumulative difference/elapsed then floor(avgUQ112*priceScale/2^112), rejects zero. _currentCumulative extrapolates selected pair cumulative from current reserves over wrapping uint32 timestamp delta. No spot-vs-TWAP deviation guard. InverseBond calls read only; oracleGate has no checkpoint, no keeper operation performed.",
+      "scope": "Actual obtained body inspection and separately recorded runtime identity match; current oracle observations require fresh reads."
+    },
+    "genesis": {
+      "address": "0x575b7B7c97Ef3E21C82DAeB427899d583e1E913f",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x575b7B7c97Ef3E21C82DAeB427899d583e1E913f",
+      "explorer_is_fully_verified": true,
+      "main_source_path": "src/GenesisBond.sol",
+      "main_source_sha256": "4d0e53b72c839e08c5acf9e2272742a5858da2f2e563161d635bf44c25d9c575",
+      "runtime_bytes": 6585,
+      "runtime_sha256": "c7058b866aa3fd63906af477da978212f5f39d6ed5cfa8ffd3b1888bd06f557f",
+      "locator": "src/GenesisBond.sol:50-55,79-82,137-180;src/abstract/Wired.sol:18-39",
+      "semantics": "finalizeTime is public uint64 storage initially0; finalize requires wired, not finalized, hard cap hit OR deadline passed with min raise. Sets finalized and timestamp then atomically transfers Treasury share, mints/seeds pair, mints purchaser escrow, enables staking/bonds/tax and checkpoints oracle. Any later failure rolls timestamp back. No finalizeTime setter/reset. InverseBond uses timestamp, not finalized bool or staking.epoch; successful finalization does not ensure oracle has a sufficiently aged valid observation.",
+      "scope": "Actual obtained body inspection and separately recorded runtime identity match; not independent dependency compilation or a full historical finalization audit."
+    }
+  },
+  "accounting_classification": {
+    "product": "InverseBond",
+    "asset_out": "USDG from Treasury to indexed seller; optional preceding Morpho redemption to Treasury is internal reserve movement, not earned revenue.",
+    "asset_in": "NET seller to InverseBond then burn; own-token supply retirement, not new reserve income.",
+    "earned_revenue": "No InverseBond fee/revenue accrual path in obtained source; spread is a discount, not a separate cash receipt.",
+    "consolidation": "Do not count Treasury UsdgSpent, USDG Transfer and InverseBonded as3expenses; match same payment once. Do not count Morpho withdrawal principal as revenue. No holder distribution/profit inference."
+  },
+  "not_obtained": [
+    "Account-specific allowance/balance, complete USDG implementation and withdrawal-liquidity proof, and full historical dependency/permission evidence. Dated smoke reads do not replace fresh per-question observations.",
+    "Original user Core POL validation block/hash/raw/runtime packet; discrepancy18,432.08USDG remains ground truth and unresolved.",
+    "Independent transaction receipts and complete event history."
+  ],
+  "stored_financial_observations": false
+}

@@ -8,13 +8,30 @@
       "aliases": [],
       "status": "recorded_from_public_source",
       "lifecycle_status": "unspecified",
-      "live_chain_verification_status": "not_performed",
+      "live_chain_verification_status": "performed_pinned_runtime_identity_only",
+      "implementation_review_status": "complete_obtained_source_surface_reviewed_explorer_runtime_correlated",
+      "explorer_source_verification_status": "explorer_reports_fully_verified_20261012",
+      "independent_compilation_status": "solc_0_8_30_creation_prefix_and_immutable_patched_runtime_match_explorer",
+      "implementation_evidence": "assets/contracts/inverse-bond-source-evidence.json",
+      "review_limitations": "Pinned runtime identity is not settlement, historical permission, USDG/vault behavior or exhaustive security validation. Dynamic financial and permission observations are not retained as current inputs; fresh questions require fresh reads. Original Core POL discrepancy remains unresolved.",
       "provenance": [
+        {
+          "source_id": "netstack-inverse-runtime-identity-20261012",
+          "locator": "Chain4663 block86729870, confirmed header and eth_getCode; source-evidence runtime_identity_probe",
+          "evidence_kind": "direct_rpc_pinned_runtime_identity_only",
+          "observed_on": "2026-10-12"
+        },
         {
           "source_id": "netnet-docs-official-channels",
           "locator": "Contract addresses / InverseBond (buyback program)",
           "evidence_kind": "publisher_registry_or_documentation",
           "observed_on": "2026-09-10"
+        },
+        {
+          "source_id": "netnet-inverse-bond-implementation-20261012",
+          "locator": "Complete22-entry explorer ABI,9compilation sources, independent solc rebuild and indexed-runtime immutable correlation",
+          "evidence_kind": "explorer_source_and_independent_compiler_correlation_not_live_chain_pin",
+          "observed_on": "2026-10-12"
         }
       ]
     }

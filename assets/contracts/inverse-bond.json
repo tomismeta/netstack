@@ -12,199 +12,706 @@
       "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
       "locator": "Literal kl, Unicode character offsets[279998,281013); consumer binding to inverse-bond",
       "observed_on": "2026-10-07"
+    },
+    {
+      "source_id": "netnet-inverse-bond-implementation-20261012",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x92166e94Eea5B7799b761653881692f881dFC4C9",
+      "sha256": "6704bd8cee8f254d67f23da80841336b5f1074b1a48b33cc5f717daf3f83d819",
+      "hash_scope": "compact JSON serialized abi array; preserve explorer object-key and entry order",
+      "locator": "Complete22-entry explorer ABI and9 supplied compilation sources; evidence file records independent compiler correlation",
+      "observed_on": "2026-10-12"
     }
   ],
   "completeness": {
-    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
-    "supplied_entry_count": 6,
-    "implementation": "unreviewed",
-    "pinned_state": "not_obtained",
+    "supplied_interface": "complete_explorer_abi_list",
+    "supplied_entry_count": 22,
+    "implementation": "obtained_source_functions_reviewed_independently_compiled_runtime_correlated",
+    "pinned_state": "runtime_identity_evidenced_financial_state_not_retained",
     "missing_evidence": [
-      "Independently pinned code, storage, current permissions and financial reconciliation.",
-      "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      "Runtime identity pin is recorded separately; current and historical permission, token/vault behavior and account-specific settlement evidence must be obtained for each question.",
+      "No exhaustive security/symbolic audit or live settlement; dependency implementations reviewed for the relevant paths, not all dependency equivalence.",
+      "Fresh receipt/log reconciliation and complete historical coverage; no financial snapshots or activity history stored.",
+      "Original Core POL validation packet and discrepancy remain unresolved; this source review does not certify RFV reconstruction."
     ],
-    "literal_abi_sha256": "eacbc9673fdcd130e3f8d1164f77bdd00373aa2a05f7a9378eed9c8d224c6faf",
-    "literal_character_range": [
-      279998,
-      281013
-    ]
+    "prior_publisher_literal": {
+      "source_id": "netnet-contract-interfaces-20261007",
+      "entry_count": 6,
+      "function_count": 5,
+      "literal_abi_sha256": "eacbc9673fdcd130e3f8d1164f77bdd00373aa2a05f7a9378eed9c8d224c6faf",
+      "literal_character_range": [
+        279998,
+        281013
+      ],
+      "difference": "Explorer ABI adds8functions,7errors,constructor; spreadBps mutability is pure rather than prior view."
+    },
+    "dispatcher_evidence": {
+      "source_id": "netnet-inverse-bond-implementation-20261012",
+      "method": "Opcode-width decode of runtime prefix[0,0xda); PUSH4/EQ/PUSH2/JUMPI matches all13 obtained function selectors. Independent solc rebuild separately correlates runtime after immutable patching.",
+      "observed_selector_count": 13,
+      "unmatched_dispatcher_selectors": [],
+      "interface_selectors_not_seen_in_pattern": []
+    },
+    "source_evidence_path": "assets/contracts/inverse-bond-source-evidence.json"
   },
   "functions": [
     {
+      "inputs": [],
       "name": "active",
-      "inputs": [],
       "outputs": [
         {
+          "internalType": "bool",
           "name": "",
-          "type": "bool",
-          "internalType": "bool"
+          "type": "bool"
         }
       ],
       "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[9]"
+      },
       "signature": "active()",
-      "evidence": {
-        "source_id": "netnet-contract-interfaces-20261007",
-        "locator": "Literal kl, Unicode character offsets[279998,281013); consumer binding to inverse-bond; ABI entry[0]"
-      },
       "selector": "0x02fb0c5e",
+      "semantic_evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "src/InverseBond.sol:93-100"
+      },
       "permissions": {
-        "status": "unreviewed",
-        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+        "status": "source_reviewed",
+        "detail": "No caller restriction; only the oracleGate external self-call is caught. Genesis calls and capacity arithmetic/dependency failures outside try/catch can revert."
       },
       "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface active(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+        "status": "source_reviewed",
+        "detail": "False before finalizeTime!=0 or on oracle failure; otherwise remaining WAD budget>0. Does not call price or test size, positive USDG output, caller balance/allowance, tax, Treasury permission, current cash or vault/token settlement. Not a quote guarantee or historical activity proof."
+      },
+      "dispatcher_match": {
+        "selector": "0x02fb0c5e",
+        "compare_offset": "0xba",
+        "entry_offset": "0xde"
       }
     },
     {
-      "name": "capacityRemaining",
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256",
-          "internalType": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "signature": "capacityRemaining()",
-      "evidence": {
-        "source_id": "netnet-contract-interfaces-20261007",
-        "locator": "Literal kl, Unicode character offsets[279998,281013); consumer binding to inverse-bond; ABI entry[1]"
-      },
-      "selector": "0xbf6f3bf3",
-      "permissions": {
-        "status": "unreviewed",
-        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
-      },
-      "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface capacityRemaining(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
-      }
-    },
-    {
-      "name": "price",
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256",
-          "internalType": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "signature": "price()",
-      "evidence": {
-        "source_id": "netnet-contract-interfaces-20261007",
-        "locator": "Literal kl, Unicode character offsets[279998,281013); consumer binding to inverse-bond; ABI entry[2]"
-      },
-      "selector": "0xa035b1fe",
-      "permissions": {
-        "status": "unreviewed",
-        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
-      },
-      "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface price(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
-      }
-    },
-    {
-      "name": "spreadBps",
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256",
-          "internalType": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "signature": "spreadBps()",
-      "evidence": {
-        "source_id": "netnet-contract-interfaces-20261007",
-        "locator": "Literal kl, Unicode character offsets[279998,281013); consumer binding to inverse-bond; ABI entry[3]"
-      },
-      "selector": "0x6dd5635d",
-      "permissions": {
-        "status": "unreviewed",
-        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
-      },
-      "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface spreadBps(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
-      }
-    },
-    {
-      "name": "swap",
       "inputs": [
         {
-          "name": "netAmount",
-          "type": "uint256",
-          "internalType": "uint256"
-        },
-        {
-          "name": "minUsdgOutRaw",
-          "type": "uint256",
-          "internalType": "uint256"
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
         }
       ],
+      "name": "capOfEpoch",
       "outputs": [
         {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[10]"
+      },
+      "signature": "capOfEpoch(uint256)",
+      "selector": "0x57207fa0",
+      "semantic_evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "src/InverseBond.sol:43-46"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public mapping getter; any uint256 index, no genesis gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Stored epoch USDG WAD budget. Zero is the unsnapshotted sentinel; views then use live cap. First successful fill records floor(liquidUsdg*100/10000), including a positive-cap zero-output fill. A zero cap remains sentinel and can be recomputed later. Not current cash or lifetime capacity."
+      },
+      "dispatcher_match": {
+        "selector": "0x57207fa0",
+        "compare_offset": "0xd0",
+        "entry_offset": "0x128"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "capacityRemaining",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[11]"
+      },
+      "signature": "capacityRemaining()",
+      "selector": "0xbf6f3bf3",
+      "semantic_evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "src/InverseBond.sol:115-118,124-141"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public view; returns zero if genesis unfinalized. Genesis, liquidUsdg and checked arithmetic failures may propagate. No oracle gate."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Current epoch max(effective cap-filled,0), USDG WAD. Effective cap is stored nonzero cap or live 1% liquid Treasury USDG. No rollover, current cash/withdrawability check or token amount guarantee."
+      },
+      "dispatcher_match": {
+        "selector": "0xbf6f3bf3",
+        "compare_offset": "0x7b",
+        "entry_offset": "0x1e3"
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "filledInEpoch",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[12]"
+      },
+      "signature": "filledInEpoch(uint256)",
+      "selector": "0x544b9b9f",
+      "semantic_evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "src/InverseBond.sol:40-41"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public mapping getter; any uint256 index."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Cumulative successful pre-USDG-conversion payoutWad for that epoch, not NET amount, fill count or actual raw USDG paid. Can remain zero despite a successful zero-payout burn."
+      },
+      "dispatcher_match": {
+        "selector": "0x544b9b9f",
+        "compare_offset": "0xc5",
+        "entry_offset": "0xfb"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "genesisBond",
+      "outputs": [
+        {
+          "internalType": "contract IGenesisBond",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[13]"
+      },
+      "signature": "genesisBond()",
+      "selector": "0x748a0ab0",
+      "semantic_evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "src/InverseBond.sol:37"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Unrestricted immutable address getter."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Finalization and epoch-origin dependency. Returning an address does not establish finalized state; no setter."
+      },
+      "dispatcher_match": {
+        "selector": "0x748a0ab0",
+        "compare_offset": "0xab",
+        "entry_offset": "0x18d"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "net",
+      "outputs": [
+        {
+          "internalType": "contract INET",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[14]"
+      },
+      "signature": "net()",
+      "selector": "0xc2fff4a5",
+      "semantic_evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "src/InverseBond.sol:33"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Unrestricted immutable address getter."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "NET pull/burn dependency, raw9 units. InverseBond burns gross requested amount without measuring transfer receipt; no setter."
+      },
+      "dispatcher_match": {
+        "selector": "0xc2fff4a5",
+        "compare_offset": "0x35",
+        "entry_offset": "0x1eb"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "oracle",
+      "outputs": [
+        {
+          "internalType": "contract IPairOracle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[15]"
+      },
+      "signature": "oracle()",
+      "selector": "0x7dc0d1d0",
+      "semantic_evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "src/InverseBond.sol:36"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Unrestricted immutable address getter."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "PairOracle liveness dependency, not settlement price source; no setter or checkpoint call on swap."
+      },
+      "dispatcher_match": {
+        "selector": "0x7dc0d1d0",
+        "compare_offset": "0x65",
+        "entry_offset": "0x1b4"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "oracleGate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[16]"
+      },
+      "signature": "oracleGate()",
+      "selector": "0xd8862a5c",
+      "semantic_evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "src/InverseBond.sol:103-105"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public view helper, not only-self; propagates oracle failure."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Returns oracle TWAP in WAD USDG per whole NET. active calls through external self-call to catch failure. No genesis, price, amount, cap or permission checks."
+      },
+      "dispatcher_match": {
+        "selector": "0xd8862a5c",
+        "compare_offset": "0x40",
+        "entry_offset": "0x212"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "price",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[17]"
+      },
+      "signature": "price()",
+      "selector": "0xa035b1fe",
+      "semantic_evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "src/InverseBond.sol:108-112"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Public view; no genesis, oracle or capacity gate. Treasury backing failure or checked backing*9850 overflow propagates."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "floor(Treasury.backingPerToken()*9850/10000), WAD USDG per whole NET, 150 bps below reported backing. Can be zero. No market-below-backing condition, no guaranteed NAV accretion or USDG redemption floor."
+      },
+      "dispatcher_match": {
+        "selector": "0xa035b1fe",
+        "compare_offset": "0x70",
+        "entry_offset": "0x1db"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "spreadBps",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[18]"
+      },
+      "signature": "spreadBps()",
+      "selector": "0x6dd5635d",
+      "semantic_evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "src/InverseBond.sol:120-122"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Unrestricted pure constant, no setter."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "150 bps (1.5%) reduction to reported backing; not a collected fee, Treasury inflow or USDG-denominated revenue."
+      },
+      "dispatcher_match": {
+        "selector": "0x6dd5635d",
+        "compare_offset": "0xa0",
+        "entry_offset": "0x186"
+      }
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "netAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minUsdgOutRaw",
+          "type": "uint256"
+        }
+      ],
+      "name": "swap",
+      "outputs": [
+        {
+          "internalType": "uint256",
           "name": "usdgOutRaw",
-          "type": "uint256",
-          "internalType": "uint256"
+          "type": "uint256"
         }
       ],
       "stateMutability": "nonpayable",
-      "signature": "swap(uint256,uint256)",
       "evidence": {
-        "source_id": "netnet-contract-interfaces-20261007",
-        "locator": "Literal kl, Unicode character offsets[279998,281013); consumer binding to inverse-bond; ABI entry[4]"
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[19]"
       },
+      "signature": "swap(uint256,uint256)",
       "selector": "0xd96073cf",
+      "semantic_evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "src/InverseBond.sol:68-90"
+      },
       "permissions": {
-        "status": "unreviewed",
-        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+        "status": "source_reviewed",
+        "detail": "Permissionless nonpayable seller-initiated path; netAmount>0, finalized genesis, oracle success, payoutWad<=budget, raw payout>=caller minimum, NET allowance/balance and dependency settlement required. No manager gate or explicit reentrancy modifier. Descriptive only; not a permitted skill transaction."
       },
       "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface swap(uint256,uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+        "status": "source_reviewed",
+        "detail": "Compute floor(netAmount*price()/1e9), snapshot epoch cap if zero, increment filled in WAD, floor payoutWad/cached1e12, check caller minimum, pull gross NET from caller, burn same gross NET, Treasury.spendUsdg(caller,raw), emit caller/gross burn/payoutWad. All effects roll back on revert. No positive-payout/raw-output guard; zero minimum permits zero USDG if dependencies allow. No receipt-delta or post-fill NAV check."
+      },
+      "dispatcher_match": {
+        "selector": "0xd96073cf",
+        "compare_offset": "0x4b",
+        "entry_offset": "0x21a"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "treasury",
+      "outputs": [
+        {
+          "internalType": "contract ITreasury",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[20]"
+      },
+      "signature": "treasury()",
+      "selector": "0x61d027b3",
+      "semantic_evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "src/InverseBond.sol:35"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Unrestricted immutable address getter."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "Backing and liquid-cap source; spend intermediary and USDG payer. Does not prove wired state, spender permission or cash/vault liquidity."
+      },
+      "dispatcher_match": {
+        "selector": "0x61d027b3",
+        "compare_offset": "0x95",
+        "entry_offset": "0x147"
+      }
+    },
+    {
+      "inputs": [],
+      "name": "usdg",
+      "outputs": [
+        {
+          "internalType": "contract IERC20Metadata",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[21]"
+      },
+      "signature": "usdg()",
+      "selector": "0xf5b91b7b",
+      "semantic_evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "src/InverseBond.sol:34,64"
+      },
+      "permissions": {
+        "status": "source_reviewed",
+        "detail": "Unrestricted immutable address getter."
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "USDG address used at construction to cache 10^(18-decimals); indexed runtime caches1e12. No direct InverseBond USDG payment path; Treasury pays. Current proxy/token semantics and decimals need fresh checks."
+      },
+      "dispatcher_match": {
+        "selector": "0xf5b91b7b",
+        "compare_offset": "0x56",
+        "entry_offset": "0x22d"
       }
     }
   ],
   "events": [
     {
-      "name": "InverseBonded",
+      "anonymous": false,
       "inputs": [
         {
-          "name": "seller",
-          "type": "address",
           "indexed": true,
-          "internalType": "address"
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
         },
         {
+          "indexed": false,
+          "internalType": "uint256",
           "name": "netBurned",
-          "type": "uint256",
-          "indexed": false,
-          "internalType": "uint256"
+          "type": "uint256"
         },
         {
-          "name": "usdgPaidWad",
-          "type": "uint256",
           "indexed": false,
-          "internalType": "uint256"
+          "internalType": "uint256",
+          "name": "usdgPaidWad",
+          "type": "uint256"
         }
       ],
-      "anonymous": false,
-      "signature": "InverseBonded(address,uint256,uint256)",
+      "name": "InverseBonded",
       "evidence": {
-        "source_id": "netnet-contract-interfaces-20261007",
-        "locator": "Literal kl, Unicode character offsets[279998,281013); consumer binding to inverse-bond; ABI entry[5]"
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[8]"
       },
-      "topic0": "0x47e163d7ecea0a4fcc846a2d8ec421d101f4ca2b9bebe3fcd4a26f5a722f1861"
+      "signature": "InverseBonded(address,uint256,uint256)",
+      "topic0": "0x47e163d7ecea0a4fcc846a2d8ec421d101f4ca2b9bebe3fcd4a26f5a722f1861",
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "Seller indexed; netBurned raw NET9 gross burned; usdgPaidWad pre-conversion payoutWad and budget debit. Actual requested USDG raw transfer=floor(usdgPaidWad/1e12); residual<1e12 WAD remains unspent but consumes budget. Event is reserve expenditure/supply retirement, not earned revenue or NAV proof."
+      }
     }
   ],
-  "errors": [],
+  "errors": [
+    {
+      "inputs": [],
+      "name": "ExceedsCapacity",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[1]"
+      },
+      "signature": "ExceedsCapacity()",
+      "selector": "0x2aa2ed72",
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "payoutWad>remaining; equality is allowed. Applied before raw-USDG flooring."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "MulDivOverflow",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[2]"
+      },
+      "signature": "MulDivOverflow()",
+      "selector": "0x49248f77",
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "Imported full-precision mulDiv quotient cannot fit uint256; ordinary checked multiplications/additions/subtractions can panic separately."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "NotActive",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[3]"
+      },
+      "signature": "NotActive()",
+      "selector": "0x80cb55e2",
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "swap finds Genesis.finalizeTime()==0. Oracle reverts propagate as their own payload, not this error."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "SlippageExceeded",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[4]"
+      },
+      "signature": "SlippageExceeded()",
+      "selector": "0x8199f5f3",
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "floor(payoutWad/cached USDG factor)<minUsdgOutRaw. Equality passes; there is no implicit positive minimum."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "TransferFailed",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[5]"
+      },
+      "signature": "TransferFailed()",
+      "selector": "0x90b8ec18",
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "InverseBond NET.transferFrom returned false. NET or Treasury/token/vault dependency reverts or malformed return data may instead propagate."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "ZeroAddress",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[6]"
+      },
+      "signature": "ZeroAddress()",
+      "selector": "0xd92e233d",
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "Any constructor address argument is zero."
+      }
+    },
+    {
+      "inputs": [],
+      "name": "ZeroAmount",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[7]"
+      },
+      "signature": "ZeroAmount()",
+      "selector": "0x1f2a2005",
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "swap netAmount==0 only; not zero payoutWad or zero usdgOutRaw."
+      }
+    }
+  ],
   "special_entrypoints": [],
-  "constructors": []
+  "constructors": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "net_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "usdg_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "treasury_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "oracle_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "genesisBond_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "evidence": {
+        "source_id": "netnet-inverse-bond-implementation-20261012",
+        "locator": "Explorer abi array[0]"
+      },
+      "meaning": {
+        "status": "source_reviewed",
+        "detail": "Nonpayable five-address constructor; rejects zero addresses, stores immutables, caches10^(18-USDG.decimals()). Decimals>18 panic; external metadata failures propagate. No dependency code/wiring/NET-decimals/oracle-pair validation, owner, setter or upgrade initialization."
+      }
+    }
+  ],
+  "special_entrypoint_review": {
+    "status": "source_and_dispatcher_reviewed",
+    "detail": "No receive/fallback; short calldata and unknown selectors revert. Global nonpayable value check. No owner, setter, rescue, upgrade or arbitrary-call entrypoint in complete obtained source/ABI."
+  }
 }
