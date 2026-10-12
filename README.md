@@ -113,6 +113,13 @@ The October 7 baseline of the `0.5.0-dev` branch implemented the following refre
 - **Research execution:** documented projection from descriptive event records to standard JSON ABI, canonical Keccak/topic checks and deployed indexed/data-layout verification. A real settlement decoded through that projection and its fee matched the receipt-local wsNET transfer exactly; a deliberately wrong indexed layout was rejected despite the same topic0. This verifies one receipt, not a complete revenue interval.
 - **Transfer-index boundaries:** optional independently authorized transfer discovery has explicit interval/category/direction/pagination/deduplication checks. Receipts for discovered transactions do not establish complete economic-event coverage; both boundary hashes must be rechecked. Scoped router remittances, whole-Treasury flows, lifetime earnings and endpoint balances/claims/capacity stay distinct. No automatic denial failover, new collector permissions or wallet operations.
 
+### October 12 bounded receipt research helper
+
+- **Reusable collection:** `analytics.py receipts` projects named catalog events, scans an explicit emitter and inclusive interval, and reconciles decoded events with successful receipts and raw ERC20-shaped transfer legs. Ten-block chunks avoid the eleven-inclusive-block mistake; witness receipts never substitute for missing scan coverage.
+- **Failure discipline:** existing guarded transport, terminal permission/integrity handling and sanitized provider classification are reused. Deadlines and interruption preserve partial checkpoints; both boundary hashes must be confirmed before scoped completion. Endpoint code hashes do not certify source equivalence or complete economic history.
+- **Exercised verification:** 378 regression tests passed. An independently authorized configured-provider run completed an eleven-block historical interval, decoded a real settlement, matched its fee to the receipt-local wsNET transfer and confirmed both boundary hashes with no missing ranges or receipts. This is live retrieval of bounded historical evidence, not a current revenue total.
+- **Unchanged scope:** no financial observations are stored in the runtime, no global revenue formula or automatic provider failover is added, and supplemental authorized research remains available. The candidate remains unpublished and untagged.
+
 ## What you can ask
 
 | Question | What netstack brings |
@@ -248,6 +255,8 @@ python3 -I -B scripts/analytics.py rfv --scope reports --deadline 600 --json
 python3 -I -B scripts/analytics.py rfv --scope net-assets --deadline 600 --json
 python3 -I -B scripts/analytics.py netlong --product all --detail full --deadline 600 --json
 ```
+
+For bounded event and receipt evidence, use [`analytics.py receipts`](references/integrations.md#bounded-receipt-research) with an explicit catalog/emitter, event selection and block interval. It shares the guarded transport and partial-checkpoint machinery; no ad-hoc HTTP client or universal revenue formula is needed. The helper's complete selected-event collection is not complete protocol revenue.
 
 For smaller RFV or Advance stdout, add `--detail summary`; keep full same-collection evidence with `--output /absolute/path/outside-the-skill/evidence.json`. Advance capacity/provenance summaries omit catalog narratives and routine read detail, but expose failures and missing coverage. Summary and checkpoint share verification and exact amount fields, including unit-bearing `display`; missing decimals stay unknown. Without `--output`, omitted evidence is not saved. See [output semantics](references/integrations.md#live-analytics-execution-limits).
 

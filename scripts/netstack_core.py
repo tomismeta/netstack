@@ -474,6 +474,9 @@ def serialize_result(result):
     elif result.get("command") == "book":
         from netstack_book import prepare_result
         prepare_result(result)
+    elif result.get("command") == "receipts":
+        from netstack_receipts import prepare_result
+        prepare_result(result)
     elif result.get("command") in ("predict", "house"):
         from netstack_markets import prepare_result
         prepare_result(result)
@@ -602,7 +605,7 @@ class _FixedHTTPSConnection(http.client.HTTPSConnection):
 
 class Context:
     def __init__(self, command, deadline=120, output=None, *, offline=False):
-        if command not in ("lp", "predict", "house", "rfv", "advance", "netlong", "premiumseller", "sleeve-bonds", "credit", "book"):
+        if command not in ("lp", "predict", "house", "rfv", "advance", "netlong", "premiumseller", "sleeve-bonds", "credit", "book", "receipts"):
             raise RpcError("Unknown analytics command", kind="input")
         if not isinstance(deadline, (int, float)) or not math.isfinite(deadline) or not 0 < deadline <= 600:
             raise RpcError("Deadline must be positive and at most 600 seconds", kind="input")
@@ -641,7 +644,7 @@ class Context:
         self._retry_not_before = 0.0
         self._retry_wait_seconds = 0.0
         self._member_limit = (4000 if command in ("premiumseller", "sleeve-bonds") else
-                              750 if command in ("rfv", "advance", "netlong", "credit", "book", "predict", "house") else 250)
+                              750 if command in ("rfv", "advance", "netlong", "credit", "book", "predict", "house", "receipts") else 250)
         self._row_limit = 50000 if command == "lp" else 10000
         self._allowed = None
         self._last_body = serialize_result(self.result)
@@ -853,6 +856,8 @@ class Context:
                 filenames = ("credit-interface.json",)
             elif self.command == "book":
                 filenames = ("book-interface.json",)
+            elif self.command == "receipts":
+                filenames = ()
             else:
                 filenames = ("v2-interface.json", "predict-interface.json", "house-interface.json")
                 if self.command == "rfv":
@@ -1353,17 +1358,24 @@ class Context:
                 high = middle - 1
         return low
 
-    def receipt(self, tx_hash):
+    def receipt(self, tx_hash, *, allow_after_snapshot=False):
         self.check()
+        if type(allow_after_snapshot) is not bool or (allow_after_snapshot and self.command != "receipts"):
+            raise RpcError("Unapproved receipt interval override", kind="permission")
         tx_hash = _hex(tx_hash, 32)
         if tx_hash in self._receipts:
-            return self._receipts[tx_hash]
+            cached = self._receipts[tx_hash]
+            if not allow_after_snapshot and self.block is not None and _quantity(cached["blockNumber"]) > self.block:
+                raise RpcError("Receipt is newer than the pinned snapshot", kind="integrity")
+            return cached
         raw = self._rpc("eth_getTransactionReceipt", [tx_hash])
+        if raw is None:
+            raise RpcError("Transaction receipt is unavailable", kind="unavailable")
         if not isinstance(raw, dict) or _hex(raw.get("transactionHash"), 32) != tx_hash:
-            raise RpcError("Transaction receipt missing or identity mismatch", kind="integrity")
+            raise RpcError("Transaction receipt identity mismatch", kind="integrity")
         block, tx_index = _quantity(raw.get("blockNumber")), _quantity(raw.get("transactionIndex"))
         block_hash = _hex(raw.get("blockHash"), 32)
-        if self.block is not None and block > self.block:
+        if not allow_after_snapshot and self.block is not None and block > self.block:
             raise RpcError("Receipt is newer than the pinned snapshot", kind="integrity")
         self._observe_identity(block, block_hash, tx_hash, tx_index)
         status_value = _quantity(raw.get("status"))

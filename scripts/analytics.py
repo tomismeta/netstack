@@ -20,7 +20,7 @@ import os
 import re
 import select
 
-from netstack_core import Context, RpcError, SERIALIZATION_RESERVE, StopRun, load_json, serialize_result
+from netstack_core import Context, MAX_LOG_BLOCKS, RpcError, SERIALIZATION_RESERVE, StopRun, load_json, serialize_result
 from netstack_output import full_fallback, summarize_advance, summarize_rfv
 
 
@@ -88,6 +88,12 @@ def account_address(text):
         raise argparse.ArgumentTypeError("must be a 20-byte hexadecimal address")
     return text.lower()
 
+def transaction_hash(text):
+    if not re.fullmatch(r"0x[0-9a-fA-F]{64}", text):
+        raise argparse.ArgumentTypeError("must be a 32-byte hexadecimal transaction hash")
+    return text.lower()
+
+
 
 
 
@@ -105,7 +111,8 @@ def parser():
                                ("premiumseller", "fresh PremiumSeller NET sales, realized prices and Treasury USDG remittances"),
                                ("sleeve-bonds", "Sleeve bond inventory, subscription flows and claims"),
                                ("credit", "Credit vault, allocation and Loopback lending evidence"),
-                               ("book", "THE BOOK market, wager and settlement evidence")):
+                               ("book", "THE BOOK market, wager and settlement evidence"),
+                               ("receipts", "bounded selected-emitter event and receipt research, not revenue totals")):
         child = commands.add_parser(command, help=help_text, description=help_text)
         child.add_argument("--deadline", type=positive_seconds, default=120.0, metavar="SECONDS",
                            help="whole-process walltime, including a 2-second serialization reserve (default: 120; maximum: 600)")
@@ -157,6 +164,19 @@ def parser():
                                help="recent-bet enumeration limit (default: 32; maximum: 512)")
             child.add_argument("--from-block", type=historical_block, metavar="BLOCK",
                                help="opt into event/receipt history from this block through the snapshot")
+        if command == "receipts":
+            child.add_argument("--catalog", required=True, metavar="assets/contracts/NAME.json",
+                               help="one packaged contract catalog; no arbitrary ABI or function calls")
+            child.add_argument("--address", type=account_address,
+                               help="discovered emitter override; catalog interface applicability remains unverified")
+            child.add_argument("--event", action="append", default=[], metavar="NAME_OR_SIGNATURE",
+                               help="exact event name or signature; repeat to select several (default: all named nonanonymous events)")
+            child.add_argument("--from-block", type=series_id, required=True, metavar="BLOCK",
+                               help="positive inclusive interval start; opening code/header is read at BLOCK-1")
+            child.add_argument("--chunk-blocks", type=lambda text: bounded_count(text, MAX_LOG_BLOCKS),
+                               default=10, metavar="COUNT", help="initial inclusive log chunk size (default: 10; maximum: 100000)")
+            child.add_argument("--tx", type=transaction_hash, action="append", default=[], metavar="HASH",
+                               help="candidate witness receipt; repeat up to 128 times; only in-interval receipts are included")
         if command == "rfv":
             child.add_argument("--scope", choices=("core", "reports", "net-assets"), default="core",
                                help="Core reserves, publisher Reports composition, or adjusted net assets (default: core)")
@@ -191,6 +211,8 @@ def _provenance(ctx):
         modules.append("netstack_credit.py")
     elif ctx.command == "book":
         modules.append("netstack_book.py")
+    elif ctx.command == "receipts":
+        modules.append("netstack_receipts.py")
     else:
         modules.extend(("netstack_reserves.py", "netstack_sleeve.py", "netstack_v4.py", "netstack_discovery.py", "netstack_methodology.py", "netstack_output.py") if ctx.command == "rfv"
                        else ("netstack_lp.py",) if ctx.command == "lp" else ("netstack_markets.py",))
@@ -289,6 +311,13 @@ def main(argv=None):
                 from netstack_advance import provenance
                 provenance(ctx)
             else:
+                if args.command == "receipts":
+                    from netstack_receipts import load_catalog
+                    args._receipt_catalog = load_catalog(args.catalog, args.event, args.address)
+                    if len(args.tx) > 128:
+                        raise RpcError("Witness receipt seeds exceed the supported bound", kind="input")
+                    if args.block != "latest-2" and args.from_block > int(args.block):
+                        raise RpcError("Receipt interval start exceeds closing block", kind="input")
                 ctx.pin(args.block)
                 if args.command == "lp":
                     from netstack_lp import run
@@ -308,11 +337,17 @@ def main(argv=None):
                     from netstack_credit import run
                 elif args.command == "book":
                     from netstack_book import run
+                elif args.command == "receipts":
+                    from netstack_receipts import run
                 else:
                     from netstack_markets import run_house as run
                 run(ctx, args)
                 ctx.check()
-                ctx.recheck()
+                if args.command == "receipts":
+                    from netstack_receipts import recheck
+                    recheck(ctx)
+                else:
+                    ctx.recheck()
                 if args.command == "premiumseller":
                     from netstack_premiumseller import prepare_result
                     prepare_result(result)
@@ -324,6 +359,9 @@ def main(argv=None):
                     prepare_result(result)
                 elif args.command == "book":
                     from netstack_book import prepare_result
+                    prepare_result(result)
+                elif args.command == "receipts":
+                    from netstack_receipts import prepare_result
                     prepare_result(result)
                 elif args.command in ("predict", "house"):
                     from netstack_markets import prepare_result
@@ -366,7 +404,11 @@ def main(argv=None):
             and not any(isinstance(error, dict) and error.get("kind") in ("permission", "integrity")
                         for error in result["errors"])):
         try:
-            ctx.recheck()
+            if args.command == "receipts":
+                from netstack_receipts import recheck
+                recheck(ctx)
+            else:
+                ctx.recheck()
         except StopRun as exc:
             result["stopping_reason"] = exc.reason
             result["status"] = "partial"
