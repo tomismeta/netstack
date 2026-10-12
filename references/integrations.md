@@ -19,9 +19,19 @@ Use ordinary host-authorized research under [Safety](safety.md#everyday-public-r
 
 ## Live analytics execution limits
 
-For supported **RFV/Sleeve, NET/USDG v2, Predict, House, NET Advance, NetLong, PremiumSeller, Sleeve bonds, Credit and Book scopes**, prefer the optional reviewed [runner](../scripts/analytics.py) under normal host permission. It uses **Python 3.10+, Linux/macOS, standard library only**, a fixed public Robinhood RPC origin and packaged canonical routes/ABIs. Non-core RFV also checks the current official shareholder app's calculation source as bounded, unexecuted text; no browser is required. No custom endpoint, credentials, wallet or arbitrary-RPC mode. Knowledge-only use needs no Python.
+For supported **RFV/Sleeve, NET/USDG v2, Predict, House, NET Advance, NetLong, PremiumSeller, Sleeve bonds, Credit and Book scopes**, prefer the optional reviewed [runner](../scripts/analytics.py) under normal host permission. It uses **Python 3.10+, Linux/macOS, standard library only**, one authorized HTTPS RPC endpoint selected before collection, and packaged canonical routes/ABIs. Prefer the configured provider via host-injected `NETSTACK_RPC_URL`; when absent, the public Robinhood endpoint is the optional no-credential default. Non-core RFV also checks the current official shareholder app's calculation source as bounded, unexecuted text; no browser is required. There are no wallet, credential-bearing CLI or arbitrary-RPC arguments. Knowledge-only use needs no Python.
 
 These commands define helper coverage, **not research permission**. RFV's non-core scopes include a Book house-pot/state snapshot; the separate [Book collector](book-analytics.md) handles selected market/bet state and opt-in history. Neither is automatically a complete settlement or all-player ledger. Deeper research may choose a finite scope within actual host deadlines, quotas and approved costs. Do not execute untrusted sources or bypass denials.
+
+### Provider selection and confidential configuration
+
+The host selects `NETSTACK_RPC_URL` before starting a live run; the collection captures it once and retains that endpoint for reads, retries and the final block recheck. An absent variable selects `https://rpc.mainnet.chain.robinhood.com`; an empty or invalid value fails rather than falling back. The configured URL must use HTTPS, without userinfo or fragments. Existing chain-ID, public-address/DNS, TLS, no-proxy/no-redirect and bounded read controls still apply. Provider configuration does not expand methods, disable identity checks or authorize private-network access. Offline `advance provenance` does not parse this variable or initialize RPC access.
+
+Use the host's approved secret store/process-launch environment injection for an already authorized endpoint. The operator supplies any key outside the conversation; invoke the ordinary commands below without a URL or key in their arguments. Do not paste a credential-bearing URL into chat, shell history, source files, `.env` files in the package, screenshots or diagnostics, and do not print the process environment. Avoid shell tracing and environment dumps. Do not create an account, provision a key, enable billing, alter host configuration or inject a secret without authority; an official provider recommendation is not authorization.
+
+Live output records `rpc_provider` as `configured` or `public`, including when retrieval is denied before a block is pinned. Block fields require successful chain verification and pinning; provider metadata alone proves neither. For configured endpoints `rpc_origin` is null, because even a hostname can contain a credential; public mode can expose its public origin. The random per-collection `rpc_run_id` correlates reads within that run, not endpoint identity or equality across runs. Keep any needed cross-run provider attribution in authorized, sanitized host records, never by publishing or hashing the secret URL. Errors must not disclose provider URLs, headers or raw provider response text. Offline provenance has no provider metadata.
+
+There is **no automatic failover** between configured and public endpoints or among providers. A denial terminates the affected retrieval; changing hosts, endpoints, credentials or tools to evade it is prohibited. A separately authorized provider chosen before a new run, or a deliberate archive/capability investigation within its own authority, is distinct from bypassing a denial. Named providers and bundled helper limits are not research allowlists.
 
 ### Invocation and deadline
 
@@ -49,7 +59,7 @@ For Credit and Loopback, use `python3 -I -B scripts/analytics.py credit --detail
 
 For THE BOOK, use `python3 -I -B scripts/analytics.py book --detail summary`. The [Book recipe](book-analytics.md) covers bounded recent or explicitly selected markets/bets; repeat `--market-id ID` or `--bet-id ID` to select records. History is opt-in with `--from-block BLOCK`. A bounded recent subset is not a complete all-time wager or payout ledger.
 
-For catalog-only inspection, `python3 -I -B scripts/analytics.py advance provenance --json` resolves Desk/Zap identities, deployment provenance and cited source records **without network calls**. It does not verify live state or the host-loaded revision. General bounded address lookups use the indexed catalog rather than a `lookup` CLI command.
+For catalog-only inspection, `python3 -I -B scripts/analytics.py advance provenance --json` resolves Desk/Zap identities, deployment provenance and cited source records **without network calls**. It ignores `NETSTACK_RPC_URL`, even if invalid, and emits no provider metadata. It does not verify live state or the host-loaded revision. General bounded address lookups use the indexed catalog rather than a `lookup` CLI command.
 
 `core` is the default: Treasury RFV/component reconciliation and total-supply NAV, without a publisher-source request. `reports` reconstructs the current supported publisher composition only when its methodology check and required RPC collection succeed. `net-assets` exposes separate economic adjustments and missing liabilities/fees/ownership evidence, not guaranteed complete net equity. **Website numbers are never calculation inputs**: all quantities and valuation getters come from the same pinned RPC block. Publisher-source retrieval has its own observation time; it is not block-pinned chain evidence. An independently observed website headline is only a comparison, never a replacement input. [Scope definitions](rwa-strategy.md#four-values-four-questions) prevent adding overlapping totals.
 
@@ -67,7 +77,7 @@ RFV and Advance accept `--detail summary`; **full JSON remains the default**. `-
 
 ### Interpreting results and completeness
 
-The JSON separates pinned snapshot/provenance, metric results, coverage ledgers, errors, stopping reason and `not_proven`. Raw financial integers and exact rational numerators/denominators are not floating-point approximations. Coverage records requested, covered and missing ranges; no detected truncation is conditional on the public provider returning complete responses, not independent proof of an honest indexer. Read each metric's status and reconciliation before using it.
+The JSON separates pinned snapshot/provenance, metric results, coverage ledgers, errors, stopping reason and `not_proven`. Raw financial integers and exact rational numerators/denominators are not floating-point approximations. Coverage records requested, covered and missing ranges; no detected truncation is conditional on the selected provider returning complete responses, not independent proof of an honest indexer. Read each metric's status and reconciliation before using it.
 
 **An empty `eth_getLogs` response is not an inactive contract.** First validate chain, canonical address/generation, ABI event topic, indexed filters, requested block bounds, provider errors and covered versus missing ranges. Then reconcile applicable counters, last-execution timestamps or state transitions with events. PremiumSeller's nonzero `lastExecuteAt()` inside the scanned interval requires a matching sale; a missing sale invalidates a zero-total claim. A last sale before a deliberately narrower window does not contradict an empty window. Do not silently widen that window, retry denied access or label current execution ineligibility as historical non-use. Even a complete served scan remains conditional on provider completeness.
 
@@ -89,13 +99,14 @@ Exit status **0** means the selected collection completed, not that every econom
 
 ## Robinhood Chain and provider options
 
-The [official network documentation](https://docs.robinhood.com/chain/connecting/) gives:
+The [official network documentation](https://docs.robinhood.com/chain/connecting/), re-read **October 12, 2026 UTC** for provider guidance, gives:
 
 - Mainnet chain ID **4663**; testnet **46630**. This address book is mainnet; do not cross-resolve the same address on testnet.
 - Native gas asset ETH. No gas or wallet is required for permitted RPC reads.
 - Public RPC: `https://rpc.mainnet.chain.robinhood.com`. Officially rate-limited and not recommended for production use.
 - Alchemy: recommended provider, with free-account signup and provider-managed plans. The documented mainnet URL has the form `https://robinhood-mainnet.g.alchemy.com/v2/{API_KEY}`. The braces are documentation, not a credential to request from the user or expose to the model.
-- QuickNode, Blockdaemon, dRPC, and Validation Cloud are also listed providers. Obtain service capabilities, availability, limits, retention, and current pricing from the selected provider; do not assume parity.
+- For historical reads and indexing, use an **archive endpoint**, available through providers such as Alchemy. A provider name or successful latest read alone does not establish archive coverage for the required block/method.
+- Chainstack, QuickNode, Blockdaemon, dRPC, Validation Cloud and GlobalStake are also listed providers. These examples are not an allowlist. Obtain service capabilities, availability, limits, retention and current pricing from the selected provider; do not assume parity.
 
 The same network page advertises wallet, gas-sponsorship, sequencer and write APIs. **Agent wallet operation and live mutation through them are excluded.** Describing user-operated mechanics or inspecting established read-only quote/simulation interfaces is allowed. Provider plans are background information, not permission to expose credentials, provision unapproved accounts or activate billing. Host-authorized non-wallet research authentication may use host-managed credentials outside the model under [Safety's credential controls](safety.md#optional-higher-assurance-host-controls).
 
@@ -115,12 +126,12 @@ For the **Book quick pass**, spacing, backoff and retries consume the original [
 
 ## Read-only verification workflow
 
-1. Determine whether a packaged dated answer suffices. For mutable data, name the fields and date/block needed.
+1. For current questions, default to fresh authorized reads unless the user requests offline/package-only work; no separate permission to “go live” is needed beyond existing host authority. Name mutable fields and the date/block needed. Packaged dated answers suffice for historical/mechanism questions within their evidence scope.
 2. Select suitable host-authorized access and confirm `eth_chainId` before interpreting chain-specific records.
 3. For related balances, supply, prices, collateral, or claims, use one block/hash where supported. Record block number, hash, timestamp and coverage separately from source publication time.
 4. Bound the target, method, authorized arguments and resources, including every batch member, under [Safety's RPC rules](safety.md#everyday-public-research). The example methods are nonexhaustive: establish semantics before invoking a new interface. Isolated non-broadcasting simulations and read-only quotes are allowed without wallet credentials, real-wallet impersonation, signing, submission or live-chain/node mutation; simulated outputs are not observations of actual outcomes.
 5. Do not report a partial or failed log range as complete. Do not turn missing data into zero or treat explorer labels as runtime verification. Separate observations from derived calculations and conditional models/forecasts, including accrual estimates.
-6. If a capability is unavailable, identify the unverified claim and deliberately investigate another authorized source, archive provider or interface. If suitable access remains unavailable, use available evidence, bounds, conditional scenarios or the dated package; do not bypass an access denial or invent observations.
+6. If a capability is unavailable, identify the unverified claim and deliberately investigate another independently authorized source, archive provider or interface. If suitable access remains unavailable, report unavailable/partial current evidence. Available dated evidence, bounds and conditional scenarios must be labeled separately, never substituted as current measurements. Do not bypass an access denial or invent observations.
 
 The [structured safety policy](../assets/safety-policy.json) documents method boundaries; it is not an active firewall or evidence of runtime enforcement. See [host-control requirements](safety.md#optional-higher-assurance-host-controls) before making enforced-safety claims.
 

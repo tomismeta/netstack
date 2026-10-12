@@ -2,7 +2,7 @@
 
 from collections import defaultdict
 
-from netstack_core import CHAIN_ID, RPC_HOST, ZERO, RpcError, amount, load_json, resolve_routes
+from netstack_core import CHAIN_ID, ZERO, RpcError, amount, load_json, resolve_routes
 
 
 POSITION_LIMIT = 128
@@ -184,7 +184,7 @@ def run(ctx, args):
                   "view": view, "snapshot_block": ctx.block,
                   "selected_deployment_only": True, "limits": routes["_route"]["scope"]},
         "provenance": {"reference": "/provenance/analysis"},
-        "read_context": {"block": ctx.block, "rpc_origin": "https://" + RPC_HOST},
+        "read_context": {"block": ctx.block, **ctx.rpc_provenance},
         "tokens": {}, "identity": {}, "params": {}, "capacity": {}, "balances": [],
         "positions": [], "holders": [], "totals": None,
         "read_provenance": [],

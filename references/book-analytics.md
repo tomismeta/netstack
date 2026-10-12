@@ -11,7 +11,7 @@ python3 scripts/analytics.py book --max-markets 16 --max-bets 64 --deadline 120 
 python3 scripts/analytics.py book --block SNAPSHOT_BLOCK --from-block START_BLOCK --detail full --json
 ```
 
-Replace `MARKET_ID` and `BET_ID` with positive integer IDs selected for the question, and `SNAPSHOT_BLOCK` and `START_BLOCK` with the intended nonnegative block numbers (`START_BLOCK <= SNAPSHOT_BLOCK`). These are placeholders, not recorded observations; the numeric `--max-*` and `--deadline` examples are collection limits, not financial state. Canonical RPC permission denial ends the run; never retry through an alternate provider/client or turn failure into zero. Current research could not exercise live collection because that RPC was already denied.
+Replace `MARKET_ID` and `BET_ID` with positive integer IDs selected for the question, and `SNAPSHOT_BLOCK` and `START_BLOCK` with the intended nonnegative block numbers (`START_BLOCK <= SNAPSHOT_BLOCK`). These are placeholders, not recorded observations; the numeric `--max-*` and `--deadline` examples are collection limits, not financial state. The [shared provider contract](integrations.md#provider-selection-and-confidential-configuration) selects an authorized configured HTTPS endpoint or the optional public default before the run. Permission denial ends the affected retrieval; never automatically switch providers/clients to evade it or turn failure into zero. The October 10 research could not exercise live collection because the public RPC was already denied; that dated gap does not restrict independently authorized supplemental research.
 
 ## Options and finite scope
 

@@ -17,6 +17,8 @@ import secrets
 import time
 from fractions import Fraction
 from email.utils import parsedate_to_datetime
+from dataclasses import dataclass
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 ZERO = "0x" + "0" * 40
@@ -100,8 +102,8 @@ def _invalid_constant(value):
 def _parse_json(raw):
     try:
         return json.loads(raw, object_pairs_hook=_json_pairs, parse_constant=_invalid_constant)
-    except (ValueError, UnicodeError, RecursionError) as exc:
-        raise RpcError("Invalid or ambiguous JSON response", kind="decode") from exc
+    except (ValueError, UnicodeError, RecursionError):
+        raise RpcError("Invalid or ambiguous JSON response", kind="decode") from None
 
 
 def load_json(relative_path):
@@ -499,20 +501,91 @@ def _missing_ranges(start, end, covered):
     return missing
 
 
+def _public_address(address):
+    return (address.is_global and not any((address.is_multicast, address.is_reserved,
+            address.is_unspecified, address.is_loopback, address.is_link_local, address.is_private))
+            and getattr(address, "ipv4_mapped", None) is None)
+
+
+@dataclass(frozen=True, repr=False)
+class _RpcEndpoint:
+    host: str
+    port: int
+    target: str
+    configured: bool
+
+
+def _rpc_endpoint():
+    """Capture host-provided configuration without retaining or displaying the URL."""
+    value = os.environ.get("NETSTACK_RPC_URL")
+    if value is None:
+        return _RpcEndpoint(RPC_HOST, 443, "/", False)
+    try:
+        # urlsplit strips some controls; reject them before parsing. Require
+        # URI encoding, not implicit transformations of credential-bearing text.
+        if (not value or len(value) > 8192 or not value.isascii()
+                or any(ord(char) <= 32 or ord(char) == 127 for char in value)
+                or "\\" in value or "#" in value):
+            raise ValueError
+        url = urlsplit(value)
+        if (url.scheme != "https" or not url.netloc or url.username is not None
+                or url.password is not None):
+            raise ValueError
+        host, port = url.hostname, url.port
+        if not host or port == 0:
+            raise ValueError
+        if url.netloc.startswith("["):
+            if not re.fullmatch(r"\[[0-9a-fA-F:.]+\](?::[0-9]+)?", url.netloc):
+                raise ValueError
+            address = ipaddress.IPv6Address(host)
+            if not _public_address(address):
+                raise ValueError
+        else:
+            if not re.fullmatch(r"[A-Za-z0-9.-]+(?::[0-9]+)?", url.netloc):
+                raise ValueError
+            if len(host) > 253 or any(not re.fullmatch(
+                    r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?", label)
+                    for label in host.removesuffix(".").split(".")):
+                raise ValueError
+            try:
+                address = ipaddress.IPv4Address(host)
+            except ValueError:
+                pass  # DNS answers, including noncanonical numeric forms, are checked below.
+            else:
+                if not _public_address(address):
+                    raise ValueError
+        target = (url.path or "/") + ("?" + url.query if "?" in value else "")
+        if (not target.startswith("/")
+                or not re.fullmatch(r"[A-Za-z0-9._~!$&'()*+,;=:@/?%\[\]+-]+", target)
+                or re.search(r"%(?![0-9a-fA-F]{2})", target)):
+            raise ValueError
+        return _RpcEndpoint(host, port or 443, target, True)
+    except (ValueError, UnicodeError):
+        raise RpcError("Invalid NETSTACK_RPC_URL; expected an HTTPS endpoint without userinfo or fragments",
+                       kind="input") from None
+
+
 class _FixedHTTPSConnection(http.client.HTTPSConnection):
-    """Resolve once, reject nonpublic addresses, and retain fixed TLS SNI."""
+    """Validate every DNS answer and connect numerically using the selected TLS SNI."""
+    def __init__(self, host, port, *, timeout=None, context=None):
+        super().__init__(host, port, timeout=timeout, context=context)
+        self._destination = (host, port)
+
     def connect(self):
-        if self.host != RPC_HOST or self.port != 443 or self._tunnel_host:
-            raise RpcError("Unapproved HTTPS destination or tunnel", kind="permission")
-        answers = socket.getaddrinfo(RPC_HOST, 443, type=socket.SOCK_STREAM, proto=socket.IPPROTO_TCP)
+        if ((self.host, self.port) != self._destination or self._tunnel_host
+                or not self._context.check_hostname or self._context.verify_mode != ssl.CERT_REQUIRED):
+            raise RpcError("Unapproved HTTPS destination, tunnel or TLS configuration", kind="permission")
+        answers = socket.getaddrinfo(self.host, self.port, type=socket.SOCK_STREAM, proto=socket.IPPROTO_TCP)
         if not answers or len(answers) > 16:
             raise RpcError("RPC DNS answer count is invalid", kind="permission")
         for family, socktype, protocol, canonical, destination in answers:
-            address = ipaddress.ip_address(destination[0])
-            if (family not in (socket.AF_INET, socket.AF_INET6) or not address.is_global
-                    or address.is_multicast or address.is_reserved or address.is_unspecified
-                    or address.is_loopback or address.is_link_local or address.is_private
-                    or getattr(address, "ipv4_mapped", None) is not None):
+            try:
+                address = ipaddress.ip_address(destination[0])
+            except ValueError:
+                raise RpcError("RPC DNS returned an invalid address", kind="permission") from None
+            if (family not in (socket.AF_INET, socket.AF_INET6) or not _public_address(address)
+                    or socktype != socket.SOCK_STREAM or protocol != socket.IPPROTO_TCP
+                    or destination[1] != self.port):
                 raise RpcError("RPC DNS resolved to a nonpublic destination", kind="permission")
         # A single validated numeric destination prevents both proxy use and
         # a second hostname lookup between policy enforcement and connection.
@@ -521,19 +594,24 @@ class _FixedHTTPSConnection(http.client.HTTPSConnection):
         try:
             sock.settimeout(self.timeout)
             sock.connect(destination)
-            self.sock = self._context.wrap_socket(sock, server_hostname=RPC_HOST)
+            self.sock = self._context.wrap_socket(sock, server_hostname=self.host)
         except BaseException:
             sock.close()
             raise
 
 
 class Context:
-    def __init__(self, command, deadline=120, output=None):
+    def __init__(self, command, deadline=120, output=None, *, offline=False):
         if command not in ("lp", "predict", "house", "rfv", "advance", "netlong", "premiumseller", "sleeve-bonds", "credit", "book"):
             raise RpcError("Unknown analytics command", kind="input")
         if not isinstance(deadline, (int, float)) or not math.isfinite(deadline) or not 0 < deadline <= 600:
             raise RpcError("Deadline must be positive and at most 600 seconds", kind="input")
-        self.result = {"schema_version": 1, "command": command, "snapshot": {}, "metrics": {},
+        self._rpc_endpoint = None if offline else _rpc_endpoint()
+        self.rpc_provenance = ({} if offline else {
+            "rpc_provider": "configured" if self._rpc_endpoint.configured else "public",
+            "rpc_origin": None if self._rpc_endpoint.configured else "https://" + RPC_HOST,
+            "rpc_run_id": secrets.token_hex(16)})
+        self.result = {"schema_version": 1, "command": command, "snapshot": dict(self.rpc_provenance), "metrics": {},
                        "coverage": {}, "not_proven": [], "errors": []}
         self.command, self.output = command, output
         self.block = self.timestamp = None
@@ -873,7 +951,6 @@ class Context:
     def _remote_error(error):
         if not isinstance(error, dict) or type(error.get("code")) is not int or not isinstance(error.get("message"), str):
             return RpcError("Malformed RPC error object", kind="protocol")
-        code = error["code"]
         message = error["message"].lower()
         if any(term in message for term in ("permission", "unauthor", "forbidden", "access denied", "not allowed")):
             return RpcError("RPC permission denied; no alternate provider attempted", kind="permission")
@@ -887,7 +964,7 @@ class Context:
             return RpcError("Provider log range or response limit", kind="range", splittable=True)
         if any(term in message for term in ("timeout", "timed out", "temporarily", "busy")):
             return RpcError("Transient RPC service failure", kind="transient", retryable=True, splittable=True)
-        return RpcError("RPC returned error code " + str(code), kind="remote")
+        return RpcError("RPC returned an unclassified error", kind="remote")
 
     @staticmethod
     def _retry_after(value):
@@ -923,6 +1000,8 @@ class Context:
 
     def _exchange_once(self, requests):
         self.check()
+        if self._rpc_endpoint is None:
+            raise RpcError("Offline context does not permit RPC requests", kind="permission")
         if self._members + len(requests) > self._member_limit:
             self._stop("rpc_member_limit")
         if time.monotonic() < self._retry_not_before:
@@ -942,11 +1021,13 @@ class Context:
         connection = None
         try:
             timeout = max(0.001, self._attempt_end - time.monotonic())
-            connection = _FixedHTTPSConnection(RPC_HOST, 443, timeout=timeout, context=ssl.create_default_context())
-            connection.request("POST", "/", body=body, headers={"Content-Type": "application/json", "Accept": "application/json", "Accept-Encoding": "identity", "User-Agent": "netstack-analytics/1"})
+            endpoint = self._rpc_endpoint
+            connection = _FixedHTTPSConnection(endpoint.host, endpoint.port, timeout=timeout, context=ssl.create_default_context())
+            connection.request("POST", endpoint.target, body=body, headers={"Content-Type": "application/json", "Accept": "application/json", "Accept-Encoding": "identity", "User-Agent": "netstack-analytics/1"})
             response = connection.getresponse()
             if response.status in (401, 403, 407):
-                raise RpcError("RPC permission denied; no alternate provider attempted", kind="permission")
+                raise RpcError("RPC HTTP access denied (status " + str(response.status)
+                               + "); no alternate provider attempted", kind="permission")
             if 300 <= response.status < 400:
                 raise RpcError("RPC redirect refused", kind="permission")
             if response.status != 200:
@@ -955,7 +1036,9 @@ class Context:
                 if response.status == 429 or retry_after is not None:
                     self._retry_not_before = max(self._retry_not_before,
                                                 time.monotonic() + max(1.0, retry_after or 0.0))
-                raise RpcError("RPC HTTP status " + str(response.status),
+                message = ("RPC HTTP rate limit (status 429); bounded cooldown required"
+                           if response.status == 429 else "RPC HTTP status " + str(response.status))
+                raise RpcError(message,
                                kind="rate_limit" if response.status == 429 else "http",
                                retryable=transient, retry_after=retry_after)
             if response.getheader("Content-Encoding", "identity").lower() not in ("", "identity"):
@@ -993,16 +1076,23 @@ class Context:
             return [indexed[entry["id"]] for entry in entries]
         except StopRun:
             raise
-        except (PermissionError, ssl.SSLCertVerificationError) as exc:
-            raise RpcError("RPC transport permission or certificate verification denied", kind="permission") from exc
-        except (socket.timeout, TimeoutError) as exc:
-            raise RpcError("RPC transport timeout", kind="timeout", retryable=True, splittable=True) from exc
+        except socket.gaierror as exc:
+            raise RpcError("RPC DNS resolution failed; no alternate provider attempted", kind="dns",
+                           retryable=exc.errno == socket.EAI_AGAIN) from None
+        except ssl.SSLCertVerificationError:
+            raise RpcError("RPC TLS certificate verification denied", kind="permission") from None
+        except ssl.SSLError:
+            raise RpcError("RPC TLS connection failed", kind="tls") from None
+        except PermissionError:
+            raise RpcError("RPC transport permission denied; no alternate provider attempted", kind="permission") from None
+        except (socket.timeout, TimeoutError):
+            raise RpcError("RPC transport timeout", kind="timeout", retryable=True, splittable=True) from None
         except OSError as exc:
             if exc.errno in (errno.EPERM, errno.EACCES):
-                raise RpcError("RPC transport permission denied; no alternate provider attempted", kind="permission") from exc
-            raise RpcError("RPC transport unavailable", kind="transport", retryable=True) from exc
-        except http.client.HTTPException as exc:
-            raise RpcError("Invalid or interrupted HTTPS response", kind="transport", retryable=True) from exc
+                raise RpcError("RPC transport permission denied; no alternate provider attempted", kind="permission") from None
+            raise RpcError("RPC transport unavailable", kind="transport", retryable=True) from None
+        except http.client.HTTPException:
+            raise RpcError("Invalid or interrupted HTTPS response", kind="transport", retryable=True) from None
         finally:
             if connection is not None:
                 connection.close()
@@ -1184,7 +1274,7 @@ class Context:
             raise RpcError("Block must be latest-2 or a nonnegative integer", kind="input")
         header = self.header(number)
         self.block, self.timestamp = header["number"], header["timestamp"]
-        self.result["snapshot"] = {"chain_id": CHAIN_ID, "rpc_origin": "https://" + RPC_HOST,
+        self.result["snapshot"] = {"chain_id": CHAIN_ID, **self.rpc_provenance,
                                    "block_number": self.block, "block_hash": header["hash"],
                                    "timestamp": self.timestamp, "requested_block": block_spec,
                                    "recheck_status": "not_performed"}

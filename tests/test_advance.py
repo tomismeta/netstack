@@ -28,6 +28,8 @@ def event(name, identifier, values, index):
 class SyntheticContext:
     def __init__(self):
         self.block, self.timestamp = 20, 500
+        self.rpc_provenance = {"rpc_provider": "configured", "rpc_origin": None,
+                               "rpc_run_id": "00" * 16}
         self.result = {"metrics": {}, "coverage": {}, "errors": [], "not_proven": []}
         self.routes = {role: {"address": address(number)} for number, role in enumerate(
             ("desk", "zap", "usdg", "wsnet", "snet", "net", "sleeve", "treasury"), 1)}
@@ -127,6 +129,7 @@ class AdvanceAccounting(unittest.TestCase):
         ctx.values[(ctx.routes["desk"]["address"], "capacity", ())] = 123456789012345678901
         ctx.values[(ctx.routes["wsnet"]["address"], "decimals", ())] = RpcError("Missing precision")
         ctx.run("capacity")
+        self.assertEqual(ctx.result["metrics"]["read_context"], {"block": ctx.block, **ctx.rpc_provenance})
         ctx.result.update(command="advance", snapshot={"block_number": ctx.block})
         full = json.loads(serialize_result(ctx.result))
         amounts = full["metrics"]["capacity"]["amounts"]

@@ -20,7 +20,9 @@ Bundled catalogs, address records, schemas, interfaces, scripts, examples and me
 
 Use suitable host-authorized tools and evidence to investigate uncatalogued targets, supplemental interfaces, public metadata, balances, ownership, historical events and independently supported calculations. Establish source provenance, exact identities, interface semantics and applicability; do not require prior inclusion in the package. Consulting new evidence does not authorize automatic changes to the package or its policy.
 
-Allow agent-authored analysis code, decoding, research delegation and suitable data sources under existing host permissions. A helper's fixed provider, query shapes, ABI support or collection limits govern that helper, not every research method. Quick-answer recipes and budgets are defaults, not universal ceilings on requested deeper research; actual host limits, provider quotas and authorized costs still apply.
+Allow agent-authored analysis code, decoding, research delegation and suitable data sources under existing host permissions. A helper's selected provider, query shapes, ABI support or collection limits govern that helper, not every research method. Quick-answer recipes and budgets are defaults, not universal ceilings on requested deeper research; actual host limits, provider quotas and authorized costs still apply.
+
+Current questions default to fresh authorized reads unless the user explicitly requests offline/package-only work. A configured provider is a host-authorized research choice, not a global provider allowlist or permission to change configuration, provision services or expose secrets. Unavailable or partial reads remain explicit gaps; no automatic switching evades a denial, and dated observations or prior snapshots never replace current inputs. Historical comparisons remain separately labeled.
 
 ## Calculations, forecasts and simulations are allowed
 

@@ -93,6 +93,8 @@ The October 7 baseline of the `0.5.0-dev` branch implemented the following refre
 - **Evidence boundaries:** these are local analysis and software-hardening changes, not an ecosystem freshness sweep. Original source observation dates remain unchanged. Live collector acceptance still requires established authorized access; the earlier denial was not retried or bypassed. No current financial totals or transaction-history snapshot was added, and these changes do not establish release readiness.
 - **Primary-host dogfood follow-through:** natural answers exposed missing claim-specific runtime citations and an unsupported present-tense roster exclusion. Relevant references now place recorded runtime URLs beside those findings and link the collector rule to immutable implementation source. Answer delivery explicitly dates catalog membership and absence; this adds no financial snapshot or fresh-source claim.
 - **Cross-product liability scope:** an independently checked dogfood answer incorrectly put THE BOOK winner credits into Predict House equity. Both answer recipes now explicitly separate Book's wsNET ledger from Predict House's USDG/share ledger, with source links and no implied inter-product liability or duplicate settlement deduction.
+- **Fresh-read/provider defaults:** current questions use fresh authorized reads unless the user requests offline/package-only work. The runner accepts an authorized HTTPS endpoint through host-injected `NETSTACK_RPC_URL` before collection; absent configuration uses the optional public no-credential default. There is no automatic failover on denial, and provider examples/helper limits are not research allowlists. [Provider guidance](references/integrations.md#robinhood-chain-and-provider-options), re-read October 12, confirms Robinhood recommends Alchemy for developers, labels public RPC rate-limited/not recommended for production, and calls for archive endpoints for historical reads/indexing. No accounts, billing or host configuration are provisioned by this change.
+- **NetLong comparison discipline:** broad questions cover futures and margin at one pinned block/provider when feasible, with unavailable/partial products explicit and no stale replacement. Funded USDG margin debt is not futures OI. Separately dated comparisons must establish like-for-like coverage; a net count decline alone does not prove an exact number of closures. No financial state was copied into the package, and the Core POL blocker remains unresolved.
 
 ## What you can ask
 
@@ -192,6 +194,10 @@ The [pricing walkthrough](references/addresses-and-roles.md#read-only-pricing-wa
 
 ### Live-analytics research
 
+Current questions default to fresh reads under existing host authority; a separate “go live” request is unnecessary. Explicit offline/package-only requests stay offline. Report unavailable or partial current evidence rather than replacing it with an earlier run; historical comparisons belong in their own dated scope.
+
+Prefer a suitable authorized configured provider. Have the host inject `NETSTACK_RPC_URL` through its approved secret-management/process-launch mechanism **before** invoking the runner. The variable selects one HTTPS endpoint for that collection; when absent, the public no-credential endpoint is the optional default. Do not put a credential-bearing URL/key in CLI arguments, chat, shell history, logs or package files, and do not dump the environment. Do not provision services, activate billing or change host configuration without authority. The [provider contract](references/integrations.md#provider-selection-and-confidential-configuration) explains validation, sanitized provenance and terminal denial without automatic switching.
+
 ```text
 Use netstack: how much third-party NET/USDG LP is there now,
 and what fees accrued over the last seven days?
@@ -204,9 +210,9 @@ Use netstack: how much House capital is fund-controlled versus other or unknown,
 what is queued or claimable, and what settled return is actually established?
 ```
 
-[Reserve accounting](references/reserve-analytics.md), [v2 liquidity](references/liquidity-analytics.md) and [Predict/House analytics](references/predict-analytics.md) define canonical routes, units and reconciliations. The [runner](scripts/analytics.py) uses packaged read interfaces and the fixed public Robinhood RPC; no wallet, credential, custom endpoint or arbitrary-method arguments. [Website labels](references/website-metrics.md) route user questions to these reads, not to scraped values or website balance APIs.
+[Reserve accounting](references/reserve-analytics.md), [v2 liquidity](references/liquidity-analytics.md) and [Predict/House analytics](references/predict-analytics.md) define canonical routes, units and reconciliations. The [runner](scripts/analytics.py) uses packaged read interfaces and the single configured-or-public endpoint selected before the run; no wallet, credential-bearing CLI or arbitrary-method arguments. [Website labels](references/website-metrics.md) route user questions to these reads, not to scraped values or website balance APIs. Bundled coverage does not restrict independently authorized supplemental research.
 
-[THE BOOK](references/games.md#book-snapshot-first) has **no activity subcommand**. The `rfv` Sleeve scopes include its house-pot position, not all betting activity. For a live how-to, identify the actual Book market and use its packaged read/event interface. Current frontend evidence can establish clicks or terminology, but is neither a mandatory preflight nor a numerical data source. Supplemental research remains available for unsupported questions.
+[THE BOOK](references/book-analytics.md) has a bounded `book` collector for recent/selected markets and bets, plus opt-in event/receipt history. The `rfv` Sleeve scopes include its house-pot position, not all betting activity. For a live how-to, identify the actual Book market and use its evidenced read/event interface. Current frontend evidence can establish clicks or terminology, but is neither a mandatory preflight nor a numerical data source. Supplemental research remains available for unsupported questions.
 
 From the reviewed package directory, run only the requested subcommand:
 
@@ -220,6 +226,7 @@ python3 -I -B scripts/analytics.py advance --view totals --deadline 600 --json
 python3 -I -B scripts/analytics.py rfv --scope core --deadline 120 --json
 python3 -I -B scripts/analytics.py rfv --scope reports --deadline 600 --json
 python3 -I -B scripts/analytics.py rfv --scope net-assets --deadline 600 --json
+python3 -I -B scripts/analytics.py netlong --product all --detail full --deadline 600 --json
 ```
 
 For smaller RFV or Advance stdout, add `--detail summary`; keep full same-collection evidence with `--output /absolute/path/outside-the-skill/evidence.json`. Advance capacity/provenance summaries omit catalog narratives and routine read detail, but expose failures and missing coverage. Summary and checkpoint share verification and exact amount fields, including unit-bearing `display`; missing decimals stay unknown. Without `--output`, omitted evidence is not saved. See [output semantics](references/integrations.md#live-analytics-execution-limits).

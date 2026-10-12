@@ -93,8 +93,8 @@ def account_address(text):
 
 def parser():
     result = Parser(
-        description="Read-only Robinhood mainnet analytics using one pinned block and the fixed public HTTPS RPC.",
-        epilog="No wallet, authentication, proxy, redirect, installation, or write RPC. JSON is emitted even for partial collections. Exit 0: requested collection completed; 2: partial/blocked; 1: invalid arguments/fatal error.")
+        description="Read-only Robinhood mainnet analytics using one pinned block and one HTTPS RPC selected before the run.",
+        epilog="NETSTACK_RPC_URL selects a host-authorized HTTPS endpoint; absent uses the public RPC. No credential CLI arguments, wallet, proxy, redirect, provider failover, installation, or write RPC. JSON is emitted even for partial collections. Exit 0: requested collection completed; 2: partial/blocked; 1: invalid arguments/fatal error.")
     commands = result.add_subparsers(dest="command", required=True)
     for command, help_text in (("lp", "NET/USDG v2 LP holders, flows and conditional gross fees"),
                                ("predict", "selected Predict Desk series and observed trading flows"),
@@ -274,7 +274,8 @@ def main(argv=None):
                       "collector_deadline_seconds": args.deadline}
             exit_code = 2
         else:
-            ctx = Context(args.command, deadline=remaining, output=args.output)
+            offline = args.command == "advance" and args.action == "provenance"
+            ctx = Context(args.command, deadline=remaining, output=args.output, offline=offline)
             ctx._started = _PROCESS_STARTED
             ctx._deadline = args.deadline
             ctx._hard_end = _PROCESS_STARTED + args.deadline
@@ -284,7 +285,6 @@ def main(argv=None):
             if args.output is not None:
                 ctx._open_output_parent()
             _provenance(ctx)
-            offline = args.command == "advance" and args.action == "provenance"
             if offline:
                 from netstack_advance import provenance
                 provenance(ctx)
