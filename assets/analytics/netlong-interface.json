@@ -5,6 +5,14 @@
   "source_sha256": "b62b66a56fbaa9d7b387761108e99e72633369c14f3a8ad6fda8444ba9be70bc",
   "reviewed_on": "2026-10-10",
   "scope": "Exact bounded read-only executable subset. No transaction/write ABI. Publisher tuples and events; runtime identities independently fetched from explorer, not independent RPC verification. Fixed-supply LOSE distribution is not OI.",
+  "ui_mechanics_review": {
+    "source_id": "netnet-trading-ui-mechanics-20261012",
+    "reviewed_on": "2026-10-12",
+    "source_url": "https://trading.netnet.capital/assets/index-B2kg2jv7.js",
+    "source_sha256": "8aa63936a140ac2e944899f48704db762bb7519f115219b0c19a5190199a53d2",
+    "references": ["references/netlong-futures-contracts.md#rendered-terminal-review-october-12", "references/netlong-margin-and-lose-contracts.md#rendered-margin-lending-and-lose-review-october-12"],
+    "scope": "Disconnected rendered UI and targeted current frontend consumer review only. Does not replace the October 10 ABI provenance or runtime models, certify execution, or supply financial state. Source registry pins discovered HTML and lazy modules; references separate frontend policies, runtime findings and discrepancies."
+  },
   "margin_libraries": [
     {"address": "0xa8ad2540af00381b8acd7e41fa6fdb7e0a1fd048", "family": "marginListerLib"},
     {"address": "0x39ce3cf58d65c96c86803556e4091f735efdab17", "family": "marginSettleLib"}

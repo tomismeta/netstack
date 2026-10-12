@@ -120,6 +120,13 @@ The October 7 baseline of the `0.5.0-dev` branch implemented the following refre
 - **Exercised verification:** 378 regression tests passed. An independently authorized configured-provider run completed an eleven-block historical interval, decoded a real settlement, matched its fee to the receipt-local wsNET transfer and confirmed both boundary hashes with no missing ranges or receipts. This is live retrieval of bounded historical evidence, not a current revenue total.
 - **Unchanged scope:** no financial observations are stored in the runtime, no global revenue formula or automatic provider failover is added, and supplemental authorized research remains available. The candidate remains unpublished and untagged.
 
+### October 12 rendered terminal mechanics and research workflow
+
+- **Actual UI coverage:** exercised all displayed futures/margin markets, Advanced and Details panels, collateral/leverage controls, TP/SL previews, Desk Watch/tooltips, Vault underwriting/lending, Account gating and LOSE in a disconnected browser. Twenty-eight screenshots and current HTML/lazy-bundle evidence remain outside the runtime; the source catalog now has 321 records.
+- **New consumer guidance:** documented all-in futures sizing and leverage buffer, margin USDG preview versus client rejection, route-quote fallback and Safe-cap preview limits, ambiguous `UNMEASURED` labeling, conditional liquidation estimates, projected lender rates and original-issuance LOSE supply display. Existing LOSE-curve and buy-held-wsNET authorization discrepancies remain explicit. UI claims do not promote contract verification.
+- **Research delivery:** plan supplemental boundary reads with the event collection, apply provider-supported chunks to supplemental scans as well, and include retained values in synthesis. The Hermes dogfood harness's artificial 18-round cap was identified as forcing a separate slow toolless summary; the corrected external harness restores normal host iteration policy while retaining the same 300-second scoring target. No model, safety or global research-limit change is implied.
+- **Limits:** wallet-gated actions were not exercised. Public UI depth-quality methodology remains an attributed publisher claim where obtained contract evidence is insufficient; no live trade demonstrated the code-level preview discrepancies.
+
 ## What you can ask
 
 | Question | What netstack brings |
@@ -274,7 +281,7 @@ The address catalog keeps identities, statuses and dated evidence per record; sh
 
 ## What's covered
 
-Baseline documentation dates from **September 10, 2026**, with targeted additions through **October 10**. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
+Baseline documentation dates from **September 10, 2026**, with targeted additions through **October 12**. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
 
 - **30 indexed official documentation entries**, represented by original summaries and source links; LOSE's standalone page remains sparse. Individual review dates differ.
 - Canonical contracts, feeds, market and pool IDs, plus a separately qualified deployer-discovery inventory. Counts and boundaries live in [address conventions](assets/address-conventions.json), not a competing inventory here.

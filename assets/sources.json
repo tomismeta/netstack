@@ -14,6 +14,32 @@
   },
   "sources": [
     {
+      "id": "netnet-trading-ui-mechanics-20261012",
+      "type": "public_frontend",
+      "label": "NetLong disconnected rendered mechanics sweep and current consumer assets",
+      "url": "https://trading.netnet.capital/",
+      "observed_on": "2026-10-12",
+      "reviewed_on": "2026-10-12",
+      "content_review_status": "rendered_disconnected_surfaces_and_targeted_current_consumer_code_review",
+      "source_bytes": 2243,
+      "source_sha256": "133f0a4cf0c76eb02a68e5a4eb70a6059ddbcf6251bc0a811bf3f2455b0abb33",
+      "summary": "Real browser exercised four futures and four margin rows, direction/leverage/collateral previews, Advanced/Details/TP/SL inputs, chart controls, Desk Watch/tooltips, vault subscription/redemption and lending withdrawal/details, account gate and LOSE curve/tax details. Current HTML and entry imports discover a new entry plus Vault/Account/LOSE modules. New guidance distinguishes all-in futures sizing, 1% max-leverage buffer, tape versus executable reports, unsupported USDG margin opening despite preview, quote fallbacks/caps, label versus eligibility state, lender-rate projection, LP notice versus payment and original issuance versus supply.",
+      "limits": "Publisher/UI observations, not independent pinned state, complete frontend audit, wallet-specific execution or a contract revalidation. No wallet connection, signing, transaction, direct RPC probe or authenticated workflow. Existing buyHeldWs permission and LOSE numerator/best-effort discrepancies persist; tooltip aging/top-holder exclusion is not independently established. No screenshots, raw frontend archives or transient financial values are distributed.",
+      "reference": "references/netlong-futures-contracts.md#rendered-terminal-review-october-12",
+      "supporting_references": ["references/netlong-margin-and-lose-contracts.md#rendered-margin-lending-and-lose-review-october-12"],
+      "supporting_urls": ["https://trading.netnet.capital/#/vault", "https://trading.netnet.capital/#/account", "https://trading.netnet.capital/#/lose", "https://docs.netnet.capital/net-long", "https://docs.netnet.capital/futures", "https://docs.netnet.capital/lose"],
+      "asset_evidence": [
+        {"url": "https://trading.netnet.capital/assets/index-B2kg2jv7.js", "discovery": "HTML script[type=module].src", "bytes": 1175997, "sha256": "8aa63936a140ac2e944899f48704db762bb7519f115219b0c19a5190199a53d2"},
+        {"url": "https://trading.netnet.capital/assets/VaultPage-BjHvFhQg.js", "discovery": "Entry __vite__mapDeps and rendered #/vault navigation", "bytes": 13467, "sha256": "919027e2535b613d32a4a6d9e977d4b3298ec4865fdc59f95078655a3f15d2c0"},
+        {"url": "https://trading.netnet.capital/assets/AccountPage-CkLrpRZq.js", "discovery": "Entry __vite__mapDeps and rendered #/account navigation", "bytes": 8172, "sha256": "d1abaa8271bebb00b2d00e8a3cc8759964dbdb849b6e2ebd433d658ba0630135"},
+        {"url": "https://trading.netnet.capital/assets/LosePage-C5jbiDOd.js", "discovery": "Entry __vite__mapDeps and rendered #/lose navigation", "bytes": 3265, "sha256": "63dc7654e88ccfff7f13c20c42372d256c5f9802fae28d3c49d918a6750a8c80"},
+        {"url": "https://trading.netnet.capital/assets/Page-C9ZdQHcg.js", "discovery": "Entry __vite__mapDeps and lazy page imports", "bytes": 1154, "sha256": "a20605a3a6b8838a8ad137afb3c4f226caa5595593bd0d9e07f8779130ac6634"},
+        {"url": "https://trading.netnet.capital/assets/index-CQgZkDkk.css", "discovery": "HTML link[rel=stylesheet].href; visual support, not economic rules", "bytes": 71222, "sha256": "7a3c5a8fabf089cdc8a16e3cececaf00ca24e4f93ed0e3802370b6051da7e388"}
+      ],
+      "locator_convention": "Zero-based UTF-16 character offsets in exact UTF-8-decoded hashed JavaScript, plus rendered route/control labels in the linked references. Not byte offsets or contract PCs.",
+      "execution_authority": false
+    },
+    {
       "id": "netlong-catalog-rpc-20261012",
       "type": "public_rpc_observation",
       "label": "NetLong targeted getter and Settled layout verification",
@@ -6461,7 +6487,7 @@
       "Core POL reconstruction remains an explicit release blocker: the reported18432.08 USDG discrepancy and original validation block/raw/runtime packet are unresolved. Corrected haircut arithmetic does not establish complete Core reconciliation."
     ],
     "counts": {
-      "source_records": 320,
+      "source_records": 321,
       "contract_records_unique_by_chain_and_address": 232,
       "public_role_address_records": 12,
       "trusted_product_mark_relationships": 6,
@@ -6479,7 +6505,7 @@
       "contract_provenance_count_method": "Each contract counted once per source in its parent provenance array, including the publisher-directory observations for feed metadata. Chainlink directory coverage is 37 because that metadata evidence is held at the parent contract, not because of new observations or live verification.",
       "source_types": {
         "explorer_contract_runtime": 16,
-        "public_frontend": 1,
+        "public_frontend": 2,
         "explorer_contract_source_and_runtime": 9,
         "explorer_contract_runtime_and_dependency_source": 1,
         "explorer_contract_source": 2,
