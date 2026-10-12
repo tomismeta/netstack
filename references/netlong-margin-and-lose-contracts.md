@@ -10,7 +10,7 @@ The [address shard](../assets/addresses/contracts/netlong-margin-and-lose.json) 
 
 | Contract | Address | Catalog / evidence obtained |
 |---|---|---|
-| MarginDesk | `0xE1685b19367E066af3e499DD4B0E51866B762c84` | [Desk](../assets/contracts/netlong-margin-desk.json): 23 published functions, 4 events; full indexed runtime, no Solidity/full ABI |
+| MarginDesk | `0xE1685b19367E066af3e499DD4B0E51866B762c84` | [Desk](../assets/contracts/netlong-margin-desk.json): 23 published functions plus 5 runtime-reviewed getters, 4 events; indexed runtime with targeted RPC confirmation, no Solidity/full ABI |
 | Lending Account | `0x068904944fCF4A18aB40cA112F385fAa430F60f2` | [Pot](../assets/contracts/netlong-margin-lending-account.json): 22 published functions; full indexed runtime, no Solidity/full ABI |
 | Fee router | `0x56AE9Dd336525A9C29a10E80963cCbCaF4b3CfA0` | [Fee router](../assets/contracts/netlong-margin-fee-router.json): full indexed runtime; complete ABI/source missing |
 | TWAP source | `0x2Ff4b46B6BF08ecAf0c374676b9a5baa15524311` | [TWAP](../assets/contracts/netlong-margin-twap-source.json): full indexed runtime; complete ABI/source missing |
@@ -30,7 +30,7 @@ The shared margin oracle `0x90f5B57A7236A1447Ce786B1ebE42433e55D9fD0` belongs to
 
 ### What was and was not accessible
 
-The individual Blockscout `api/v2/smart-contracts/<address>` responses provided complete indexed creation/deployed bytecode. They did **not** return Solidity or ABI for the new margin contracts, linked libraries, LOSE token or distributor. A MarginDesk Etherscan source request returned HTTP 403; an IPFS metadata request derived from the runtime hash returned 429; the Sourcify full-match metadata path returned 404. Denied/rate-limited requests were stopped, not circumvented. The coordinated current canonical RPC accessibility probe also returned 403; **no fresh pinned RPC implementation/configuration/financial state is claimed**.
+The individual Blockscout `api/v2/smart-contracts/<address>` responses provided complete indexed creation/deployed bytecode. They did **not** return Solidity or ABI for the new margin contracts, linked libraries, LOSE token or distributor. A MarginDesk Etherscan source request returned HTTP 403; an IPFS metadata request derived from the runtime hash returned 429; the Sourcify full-match metadata path returned 404. Denied/rate-limited requests were stopped, not circumvented. The October 10 canonical RPC probe also returned 403. Separately authorized October 12 research used the host's existing configured Alchemy provider, without retrying the denied route: Desk code and five read-only getters were pinned to block **86749326**, hash `0xe732dff53a34fcd596dca76bb236df54ea36b9b2e32c9095ccb13001d020d125`, with a matching header recheck. Code matches the reviewed SHA-256; this narrow historical witness is not current permissions, complete financial state or compiler equivalence. Raw responses and transient state remain outside the package.
 
 PONS, CASHCAT, AI implementation and bridge pool responses say `is_verified=true`, `is_fully_verified=false`. These flags are explorer assertions, not independent recompilation. LOSE pair itself says `is_verified=false`; its source is attributed to [verified twin `0xb9C67…A08`](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xb9C67A370D6c2E1426Df424E53430408aCe21A08). Separately retrieved pair and twin **indexed deployed runtimes are byte-for-byte identical**. This materially supports the pair implementation analysis, but still is not a pinned RPC/code-state or independent compiler equivalence claim.
 
@@ -55,6 +55,8 @@ Consequently:
 - `notionalUsdWad` is stored entry/reservation accounting. Neither it nor `capUsedWad` is automatically current marked exposure.
 - `token.balanceOf(desk)` is custody. It can include donations and rebase effects; it is not automatically the sum of borrower-owned units.
 - `positionOf(trader, token)` is a lookup, not a complete trader registry. `nextPositionId()` supplies an exclusive upper bound for bounded ID discovery; zero/default/terminal records need explicit classification.
+
+The five supplemental catalog getters mirror the existing executable `margin_abi`, not newly recovered publisher literal entries. `nextPositionId()` (`0x899346c7`) enters at `0x812`, reads **slot 6** at `0x818`, and returns one full uint256 through `0x462–0x46f` and `0x3c7–0x3cf`; retained creation bytes initialize slot 6 to 1 at `0x6–0xa`. The `pot`, `marginOracle`, `twapSource` and `usdg` bodies return embedded address words through the masking/32-byte return path `0x3b3–0x3cf`. Their body/return layouts and successful block-pinned calls support the named entries beyond selector plausibility. None proves dependency safety or authorizes writes.
 
 ### State 3 has a traced runtime entry, not just a publisher label
 

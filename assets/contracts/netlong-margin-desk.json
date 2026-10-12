@@ -18,15 +18,21 @@
       "sha256": "b62b66a56fbaa9d7b387761108e99e72633369c14f3a8ad6fda8444ba9be70bc",
       "observed_on": "2026-10-10",
       "locator": "Literal zn Unicode character range [852982, 856823]; bound consumer; not full contract ABI"
+    },
+    {
+      "source_id": "netlong-catalog-rpc-20261012",
+      "url": "https://robinhood-mainnet.g.alchemy.com",
+      "observed_on": "2026-10-12",
+      "locator": "Authorized configured-provider eth_getCode and five getter eth_call reads at block86749326, hash0xe732dff53a34fcd596dca76bb236df54ea36b9b2e32c9095ccb13001d020d125; header rechecked. Raw responses retained outside package; no credential URL or position history bundled."
     }
   ],
   "completeness": {
     "supplied_interface": "complete_publisher_literal_partial_contract_abi",
     "supplied_entry_count": 27,
     "implementation": "targeted_static_runtime_review_with_explicit_unresolved_dispatchers",
-    "pinned_state": "not_obtained",
+    "pinned_state": "targeted_code_and_five_getters_at_block86749326",
     "missing_evidence": [
-      "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+      "Current configuration/permissions and complete financial reconciliation beyond the targeted historical code/getter witness.",
       "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
       "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
     ],
@@ -37,13 +43,107 @@
     "byte_count": 24403,
     "sha256": "17b0806d172eab539e3fd362416666284dfb8656d2b93ec5b73e75cf4593555f",
     "keccak256": "0xa74be8a609bdb8472728ecea5b5f10b0695f5a016b80ceecec422ab2491d67e7",
-    "evidence_kind": "explorer_indexed_unpinned_runtime",
+    "evidence_kind": "explorer_indexed_runtime_with_targeted_rpc_confirmation",
     "proxy_type": null,
     "explorer_is_verified": null,
     "explorer_is_fully_verified": null,
-    "verified_twin_address": null
+    "verified_twin_address": null,
+    "rpc_confirmation": {
+      "source_id": "netlong-catalog-rpc-20261012",
+      "block_number": 86749326,
+      "block_hash": "0xe732dff53a34fcd596dca76bb236df54ea36b9b2e32c9095ccb13001d020d125",
+      "header_rechecked": true,
+      "matches_explorer_runtime": true,
+      "scope": "Exact byte identity and successful nextPositionId/pot/marginOracle/twapSource/usdg calls; not compiler equivalence, current state, or full contract validation."
+    }
   },
   "functions": [
+    {
+      "name": "nextPositionId",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [{"name": "", "type": "uint256"}],
+      "signature": "nextPositionId()",
+      "selector": "0x899346c7",
+      "evidence": {
+        "source_id": "netlong-margin-desk-explorer-20261010",
+        "locator": "Runtime0x812-0x81a reads slot6; uint256 return0x462-0x46f ->0x3c7-0x3cf. Creation0x6-0xa initializes slot6 to1. Cross-checked against assets/analytics/netlong-interface.json margin_abi and netlong-catalog-rpc-20261012 successful pinned call; not a publisher literal entry."
+      },
+      "permissions": {
+        "status": "runtime_reviewed_subset",
+        "detail": "Public nonpayable view getter; direct SLOAD with no caller authorization or external call."
+      },
+      "economic_meaning": {
+        "status": "runtime_and_interface_review_not_source_verified",
+        "detail": "Exclusive upper bound for allocated position IDs, starting at1. Enumerate bounded [1,nextPositionId), including deleted slots; allocated IDs are not active or funded position counts."
+      },
+      "runtime_dispatch": {"selector_present": true, "entry_pc": "0x812"},
+      "source_gap": "Solidity/compiler equivalence unavailable; getter-body review and pinned call do not establish every allocation/settlement path."
+    },
+    {
+      "name": "pot",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [{"name": "", "type": "address"}],
+      "signature": "pot()",
+      "selector": "0x4ba2363a",
+      "evidence": {
+        "source_id": "netlong-margin-desk-explorer-20261010",
+        "locator": "Runtime0x534-0x55a PUSH32 immutable -> address encoder0x3b3-0x3cf; executable margin_abi and netlong-catalog-rpc-20261012 pinned call agree. Not a publisher literal entry."
+      },
+      "permissions": {"status": "runtime_reviewed_subset", "detail": "Public nonpayable view; constant return, no caller authorization or external call."},
+      "economic_meaning": {"status": "runtime_and_interface_review_not_source_verified", "detail": "Immutable lending account0x068904944fcf4a18ab40ca112f385faa430f60f2; binding is not evidence of available liquidity or loan approval."},
+      "runtime_dispatch": {"selector_present": true, "entry_pc": "0x534"},
+      "source_gap": "Getter-body evidence only; dependency behavior and compiler equivalence are not established."
+    },
+    {
+      "name": "marginOracle",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [{"name": "", "type": "address"}],
+      "signature": "marginOracle()",
+      "selector": "0x9ae5668c",
+      "evidence": {
+        "source_id": "netlong-margin-desk-explorer-20261010",
+        "locator": "Runtime0xa77-0xa9d PUSH32 immutable -> address encoder0x3b3-0x3cf; executable margin_abi and netlong-catalog-rpc-20261012 pinned call agree. Not a publisher literal entry."
+      },
+      "permissions": {"status": "runtime_reviewed_subset", "detail": "Public nonpayable view; constant return, no caller authorization or external call."},
+      "economic_meaning": {"status": "runtime_and_interface_review_not_source_verified", "detail": "Immutable shared oracle0x90f5b57a7236a1447ce786b1ebe42433e55d9fd0; binding alone does not establish a live, correct or executable credit mark."},
+      "runtime_dispatch": {"selector_present": true, "entry_pc": "0xa77"},
+      "source_gap": "Getter-body evidence only; dependency behavior and compiler equivalence are not established."
+    },
+    {
+      "name": "twapSource",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [{"name": "", "type": "address"}],
+      "signature": "twapSource()",
+      "selector": "0x33b3a857",
+      "evidence": {
+        "source_id": "netlong-margin-desk-explorer-20261010",
+        "locator": "Runtime0x497-0x4bd PUSH32 immutable -> address encoder0x3b3-0x3cf; executable margin_abi and netlong-catalog-rpc-20261012 pinned call agree. Not a publisher literal entry."
+      },
+      "permissions": {"status": "runtime_reviewed_subset", "detail": "Public nonpayable view; constant return, no caller authorization or external call."},
+      "economic_meaning": {"status": "runtime_and_interface_review_not_source_verified", "detail": "Immutable token TWAP source0x2ff4b46b6bf08ecaf0c374676b9a5baa15524311; a bound source is not proof of token eligibility or price freshness."},
+      "runtime_dispatch": {"selector_present": true, "entry_pc": "0x497"},
+      "source_gap": "Getter-body evidence only; dependency behavior and compiler equivalence are not established."
+    },
+    {
+      "name": "usdg",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [{"name": "", "type": "address"}],
+      "signature": "usdg()",
+      "selector": "0xf5b91b7b",
+      "evidence": {
+        "source_id": "netlong-margin-desk-explorer-20261010",
+        "locator": "Runtime0xd0d-0xd33 PUSH32 immutable -> address encoder0x3b3-0x3cf; executable margin_abi and netlong-catalog-rpc-20261012 pinned call agree. Not a publisher literal entry."
+      },
+      "permissions": {"status": "runtime_reviewed_subset", "detail": "Public nonpayable view; constant return, no caller authorization or external call."},
+      "economic_meaning": {"status": "runtime_and_interface_review_not_source_verified", "detail": "Immutable loan/settlement asset0x5fc5360d0400a0fd4f2af552add042d716f1d168; address identity is not a dollar-parity or redeemability claim. Read token precision separately."},
+      "runtime_dispatch": {"selector_present": true, "entry_pc": "0xd0d"},
+      "source_gap": "Getter-body evidence only; dependency behavior and compiler equivalence are not established."
+    },
     {
       "name": "listings",
       "inputs": [

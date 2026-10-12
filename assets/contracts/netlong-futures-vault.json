@@ -18,6 +18,12 @@
       "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x50dC51CE9e633bed99D1D826fa0E2CaAc3183bF6",
       "observed_on": "2026-10-10",
       "locator": "Explorer-reported deployed_bytecode and creation_bytecode; no source_code or abi fields"
+    },
+    {
+      "source_id": "netlong-catalog-rpc-20261012",
+      "url": "https://robinhood-mainnet.g.alchemy.com",
+      "observed_on": "2026-10-12",
+      "locator": "Authorized configured-provider receipt, code and rechecked block headers; interval86339654..86760853 used only for bounded transfer-index candidate discovery. Raw evidence retained outside package; no financial history bundled."
     }
   ],
   "execution_authority": false,
@@ -25,9 +31,9 @@
     "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
     "supplied_entry_count": 88,
     "implementation": "material_runtime_paths_reviewed_source_unavailable",
-    "pinned_state": "not_obtained_rpc_denied",
+    "pinned_state": "targeted_code_and_settled_receipt_at_block86749326",
     "missing_evidence": [
-      "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+      "Complete block-pinned storage, permission and financial reconciliation beyond the targeted historical runtime/receipt witness.",
       "Compiler rebuild/source-runtime equivalence.",
       "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
     ],
@@ -40,8 +46,18 @@
   "runtime_evidence": {
     "sha256": "cdf15f1c649e2b46728ac5d9c9a41662147d02c8ecd3f131fa9515599c0801dd",
     "byte_length": 17874,
-    "bytecode_origin": "explorer_reported_not_rpc_pinned",
+    "bytecode_origin": "explorer_reported_with_targeted_rpc_confirmation",
     "selector_comparison": "Compiler dispatcher PUSH3/PUSH4 EQ PUSH2 JUMPI targets; selector presence is not full semantic equivalence.",
+    "rpc_confirmation": {
+      "source_id": "netlong-catalog-rpc-20261012",
+      "code_blocks": [86339654, 86749326, 86760853],
+      "matches_explorer_runtime": true,
+      "receipt_block_number": 86749326,
+      "receipt_block_hash": "0xe732dff53a34fcd596dca76bb236df54ea36b9b2e32c9095ccb13001d020d125",
+      "receipt_block_timestamp": 1791815859,
+      "headers_rechecked": true,
+      "scope": "Exact runtime identity at three historical blocks and one successful settlement receipt; neither full interval log coverage nor compiler/source equivalence."
+    },
     "source_verification": {
       "is_verified": false,
       "is_fully_verified": false,
@@ -1967,6 +1983,23 @@
       "evidence": {
         "source_id": "netnet-trading-entry-20261010",
         "locator": "Literal is, Unicode character offsets[602817,611439); ABI entry[53]"
+      },
+      "runtime_receipt_evidence": {
+        "source_id": "netlong-catalog-rpc-20261012",
+        "transaction_hash": "0x206d586246ff1d4c8f1aac7a4dc97c87d6cdeb21016af714b76214183041c7a0",
+        "block_number": 86749326,
+        "block_hash": "0xe732dff53a34fcd596dca76bb236df54ea36b9b2e32c9095ccb13001d020d125",
+        "log_index": 4,
+        "receipt_status": 1,
+        "emitter_matches_catalog_address": true,
+        "topic_count": 3,
+        "data_byte_length": 192,
+        "indexed_fields": ["desk", "trader"],
+        "data_fields": ["pnlWs", "feeWs", "penaltyWs", "paidWs", "deferredWs", "adlClaimWs"],
+        "runtime_log_pc": "0x27b7",
+        "runtime_log_opcode": "LOG3",
+        "publisher_agreement": "The observed layout agrees with publisher ABI entry53: topic0 plus indexed desk and trader, followed by six data words. An alleged desk-only indexed layout is contradicted by this receipt and reviewed runtime; do not shift fee/penalty offsets.",
+        "limits": "One independently fetched successful receipt, discovered via a bounded provider transfer index. Not a complete event scan, proof of lifetime event count, or revenue total."
       },
       "signature": "Settled(address,address,int256,uint256,uint256,uint256,uint256,uint256)",
       "topic0": "0x5801a05bd0687aeef40fe9328d1c6d6090d59d1321a736108e6dc508a81d5eb3"

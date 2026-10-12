@@ -7,10 +7,11 @@
     "bound_catalogs": 75,
     "catalogs_with_obtained_functions": 64,
     "runtime_only_catalogs_without_obtained_abi": 11,
-    "function_entries": 1562,
+    "function_entries": 1567,
     "unreviewed_identities": 157
   },
   "source_ids": [
+    "netlong-catalog-rpc-20261012",
     "netnet-inverse-bond-implementation-20261012",
     "netnet-premium-seller-implementation-20261010",
     "netnet-trading-entry-20261010",
@@ -99,7 +100,7 @@
       "interface_status": "complete_publisher_literal_not_deployed_abi_guarantee",
       "catalog_path": "assets/contracts/netlong-futures-vault.json",
       "missing_evidence": [
-        "Independent block-pinned RPC runtime, storage, permission and financial reconciliation.",
+        "Complete storage, permission and financial reconciliation; targeted pinned runtime/Settled layout evidence does not establish these.",
         "Compiler rebuild/source-runtime equivalence.",
         "Solidity source and exhaustive deployed ABI absent; omitted runtime entrypoints remain explicit gaps."
       ]
@@ -141,7 +142,7 @@
       "interface_status": "complete_publisher_literal_partial_contract_abi",
       "catalog_path": "assets/contracts/netlong-margin-desk.json",
       "missing_evidence": [
-        "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+        "Complete state, current configuration/permissions and financial reconciliation beyond targeted pinned runtime/getter evidence.",
         "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
         "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
       ]

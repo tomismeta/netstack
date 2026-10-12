@@ -321,6 +321,11 @@
         "full_validation": false,
         "source_status": "No Solidity/ABI in explorer response; complete publisher literal or explicitly partial runtime reconstruction, material runtime review only.",
         "source_evidence_path": "assets/contracts/netlong-futures-vault.json",
+        "supplemental_evidence": {
+          "source_id": "netlong-catalog-rpc-20261012",
+          "observed_on": "2026-10-12",
+          "scope": "Receipt-block runtime identity and Settled LOG3/topic/data layout; see source_evidence_path. Original October10 indexed evidence retained; no complete financial or security validation."
+        },
         "missing_interface_selectors": [
           "0xfaa20b9c",
           "0xf29ebf61",
@@ -477,6 +482,11 @@
         "contract_id": "robinhood-0xe1685b19367e066af3e499dd4b0e51866b762c84",
         "contract_record": "assets/addresses/contracts/netlong-margin-and-lose.json",
         "source_evidence_path": "assets/contracts/netlong-margin-desk.json",
+        "supplemental_evidence": {
+          "source_id": "netlong-catalog-rpc-20261012",
+          "observed_on": "2026-10-12",
+          "scope": "Receipt-block runtime identity and five named getter body/read-shape checks; original October10 indexed evidence retained. No stored current allocation counter or complete permission/financial validation."
+        },
         "source_ids": [
           "netlong-margin-desk-explorer-20261010",
           "netnet-trading-entry-20261010"
@@ -536,7 +546,7 @@
           }
         ],
         "missing_evidence": [
-          "Independently pinned runtime/state, current configuration/permissions and complete financial reconciliation.",
+          "Complete state, current configuration/permissions and financial reconciliation beyond targeted pinned runtime/getter evidence.",
           "Independent compiler/source equivalence; explorer verification/twin attribution is provider evidence, not an audit.",
           "Verified Solidity/source bodies and complete deployed ABI were not returned by the explorer. Unknown dispatcher signatures and exhaustive path predicates remain explicit gaps."
         ]

@@ -90,8 +90,14 @@
       ],
       "status": "recorded_from_public_source",
       "lifecycle_status": "current_publisher_deployment",
-      "live_chain_verification_status": "explorer_evidence_observed_not_pinned_rpc",
+      "live_chain_verification_status": "performed_pinned_runtime_identity_only",
       "provenance": [
+        {
+          "source_id": "netlong-catalog-rpc-20261012",
+          "locator": "Runtime identity at block86749326/hash0xe732dff53a34fcd596dca76bb236df54ea36b9b2e32c9095ccb13001d020d125; targeted getter body/read-shape evidence in interface catalog, no stored allocation counter or full-contract validation",
+          "evidence_kind": "direct_rpc_pinned_runtime_identity",
+          "observed_on": "2026-10-12"
+        },
         {
           "source_id": "netlong-margin-desk-explorer-20261010",
           "locator": "Explorer smart-contract endpoint; indexed runtime and available source/ABI",

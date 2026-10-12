@@ -14,6 +14,31 @@
   },
   "sources": [
     {
+      "id": "netlong-catalog-rpc-20261012",
+      "type": "public_rpc_observation",
+      "label": "NetLong targeted getter and Settled layout verification",
+      "url": "https://robin.etherscan.io/tx/0x206d586246ff1d4c8f1aac7a4dc97c87d6cdeb21016af714b76214183041c7a0",
+      "chain_id": 4663,
+      "observed_on": "2026-10-12",
+      "reviewed_on": "2026-10-12",
+      "content_review_status": "targeted_runtime_getter_and_receipt_structure_review",
+      "summary": "Independently authorized configured RPC matched the reviewed vault and margin-desk runtime identities at receipt block86749326 with a header recheck. Settled has three topics including topic0 and192 data bytes, corroborating both desk and trader indexed and the runtime LOG3 path. Five named margin getters are supported by reviewed dispatcher/body evidence and pinned read-shape checks.",
+      "limits": "Targeted code, getter and event-layout evidence only; not exhaustive ABI equivalence, current state, financial history, full revenue coverage or security validation. Transfer-index discovery located a receipt, not a complete economic census. No event amounts or position counters retained.",
+      "execution_authority": false
+    },
+    {
+      "id": "alchemy-transfer-index-method-20261012",
+      "type": "integration_documentation",
+      "label": "Alchemy transfer-index method and coverage boundaries",
+      "url": "https://www.alchemy.com/docs/data/transfers-api/transfers-endpoints/alchemy-get-asset-transfers",
+      "observed_on": "2026-10-12",
+      "reviewed_on": "2026-10-12",
+      "content_review_status": "targeted_method_parameter_and_coverage_review",
+      "summary": "Provider documentation describes explicit block bounds, address and contract filters, transfer categories, zero-value filtering and pageKey pagination. Native internal-transfer support is chain-limited; index values are not substitutes for receipt-level raw token amounts.",
+      "limits": "Method documentation does not establish support or complete indexing on every chain, include no-transfer economic events, authorize access or permit automatic failover after denial.",
+      "execution_authority": false
+    },
+    {
       "id": "netstack-inverse-runtime-identity-20261012",
       "type": "public_rpc_observation",
       "label": "Pinned InverseBond and dependency runtime identity",
@@ -6436,7 +6461,7 @@
       "Core POL reconstruction remains an explicit release blocker: the reported18432.08 USDG discrepancy and original validation block/raw/runtime packet are unresolved. Corrected haircut arithmetic does not establish complete Core reconciliation."
     ],
     "counts": {
-      "source_records": 318,
+      "source_records": 320,
       "contract_records_unique_by_chain_and_address": 232,
       "public_role_address_records": 12,
       "trusted_product_mark_relationships": 6,
@@ -6469,7 +6494,7 @@
         "integration_source": 14,
         "official_article": 2,
         "integration_api": 6,
-        "integration_documentation": 3,
+        "integration_documentation": 4,
         "dashboard": 8,
         "documentation_index": 1,
         "official_app_or_site": 10,
@@ -6486,7 +6511,7 @@
         "marketplace_api": 2,
         "official_app_configuration": 1,
         "official_app_api": 2,
-        "public_rpc_observation": 3,
+        "public_rpc_observation": 4,
         "community_social_post": 1,
         "publisher_social_post": 7,
         "official_social_article": 1,
@@ -6494,6 +6519,7 @@
         "documentation_search": 1
       },
       "contract_records_by_provenance_source_overlapping": {
+        "netlong-catalog-rpc-20261012": 2,
         "netstack-inverse-runtime-identity-20261012": 1,
         "netnet-inverse-bond-implementation-20261012": 1,
         "netnet-predict-series-4-indexed-20261007": 2,
@@ -6597,7 +6623,7 @@
     "contract_function_catalog": {
       "bound_catalogs": 75,
       "runtime_only_catalogs_without_obtained_abi": 11,
-      "function_entries": 1562,
+      "function_entries": 1567,
       "canonical_identities": 232,
       "bound_interfaces": 64,
       "unreviewed_identities": 157,

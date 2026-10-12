@@ -12,6 +12,8 @@ The separately bound [Chainlink VerifierProxy](https://robinhoodchain.blockscout
 
 A single fresh read-only `eth_chainId` POST to the canonical public RPC returned **HTTP403, `error code: 1010`**. No denied RPC was retried or rerouted. No live permission, balance, position, OI or financial reconciliation is claimed, and none is packaged as state. Browser product availability is not RPC proof.
 
+Supplemental research **2026-10-12** used the host's separately authorized existing Alchemy provider, never the denied public route. Vault code at blocks **86339654**, **86749326** and **86760853** matches the reviewed 17,874-byte runtime SHA-256 `cdf15f1c649e2b46728ac5d9c9a41662147d02c8ecd3f131fa9515599c0801dd`; headers were rechecked. A bounded transfer-index query discovered a candidate transaction, whose receipt independently confirms the `Settled` layout below. This is targeted historical implementation/event evidence, not complete interval logs, revenue or current financial state. Credentials stayed process-only; raw responses remain outside the package.
+
 ## Current and historical bindings
 
 | Publisher role | Address | Catalog |
@@ -90,6 +92,8 @@ Outflow accounting uses 600-second windows and a 20% opening-pot budget, adjuste
 A registered desk can lock/unlock trader collateral, update risk and submit settlement through runtime entrypoints omitted by the frontend ABI. Caller checks use registered-desk mapping. The observed risk-update path limits per-desk and aggregate absolute skew against floor-valued capacity and gross OI to three times capacity. Registrar may append desks and seal registration; the publisher says it sealed the current registry, but fresh registrar storage was not obtained. There is no source-backed proof of a globally immutable authority surface simply because publisher ABI omits admin functions.
 
 Profits are subject to reserve/equity funding and outflow limits. Cash-dated claims and ADL episode claims have different accumulators and liability timing. `closeAdlEpisode` requires a flat book, pays what it can, zeroes residual unpaid current episode and advances epoch: **bankruptcy closeout is not full repayment**. Existing funded entitlements remain distinguishable from written-off unfunded residue. Fee and penalty collections are capped by collateral actually available. Runtime penalty routing allocates half to reserve, a conditional caller rebate, and residual plus collected ordinary fee to fee router; no unlimited collectible debt is inferred.
+
+**Settlement event indexing:** `Settled(address,address,int256,uint256,uint256,uint256,uint256,uint256)` indexes **both desk and trader**, agreeing with publisher ABI entry 53. [Receipt `0x206d5862…41c7a0`](https://robinhoodchain.blockscout.com/tx/0x206d586246ff1d4c8f1aac7a4dc97c87d6cdeb21016af714b76214183041c7a0) succeeded at block **86749326**, hash `0xe732dff53a34fcd596dca76bb236df54ea36b9b2e32c9095ccb13001d020d125`; vault log index **4** has **three topics including topic0**, and **192 data bytes**. The same block's vault code matches the reviewed runtime; its event path pushes the signature at `0x278b` and executes **LOG3 at `0x27b7`** with six data words. The alleged desk-only indexing discrepancy is not supported: keep trader in topic 2, and decode data words 0–5 as `pnlWs`, `feeWs`, `penaltyWs`, `paidWs`, `deferredWs`, `adlClaimWs`. Preserve signed `pnlWs`; a plausible fee magnitude is not layout evidence. This witness does not establish a total event count or earned revenue.
 
 ## Shared margin collateral oracle
 
