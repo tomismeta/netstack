@@ -59,6 +59,29 @@
   },
   "functions": [
     {
+      "name": "feeRouter",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [{"name": "", "type": "address"}],
+      "signature": "feeRouter()",
+      "selector": "0xf29ebf61",
+      "evidence": {
+        "source_id": "netlong-margin-desk-explorer-20261010",
+        "locator": "Runtime dispatcher0xf29ebf61 entry0xcde; direct immutable address-return path covered by runtime_review and netlong-revenue-interface binding_abi. Supplemental reconstruction, not a publisher literal entry.",
+        "runtime_sha256": "17b0806d172eab539e3fd362416666284dfb8656d2b93ec5b73e75cf4593555f"
+      },
+      "permissions": {
+        "status": "runtime_body_review_not_source_verified",
+        "detail": "Permissionless immutable-address read; reviewed body has no state write, authorization gate or external call."
+      },
+      "economic_meaning": {
+        "status": "runtime_body_review_not_source_verified",
+        "detail": "Fee-router dependency for margin fee allocations. A configured destination is not evidence of fees received, processing, burning or Treasury remittance."
+      },
+      "runtime_dispatch": {"selector_present": true, "entry_pc": "0xcde"},
+      "source_gap": "Compatible getter signature and return-body reconstruction, not independently compiled Solidity or a complete deployed ABI. The original publisher interface and five-getter pinned witness retain their original scopes."
+    },
+    {
       "name": "nextPositionId",
       "inputs": [],
       "stateMutability": "view",

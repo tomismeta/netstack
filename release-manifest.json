@@ -5,7 +5,7 @@
   "total_distributable_files": 308,
   "manifest_sha256": {
     "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
-    "README.md": "e23b1ec2df7870511bbf4b0ec51752c324d69ee3e120f8b6557fc04b03320052",
+    "README.md": "4d6fa0a1b164eea490347899ef5ef7e9caf0adfef80b743b33485c1b18fb1c55",
     "SKILL.md": "8f2ae509f56d96ff39ebd8ce8ea15aebd53c3db45b2ca6b2df3f144f57fcb01a",
     "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "assets/address-conventions.json": "36e8aac8ff6304cf752bafcb9d6a9f99fcc1258987aef18522d886914f44dbf4",
@@ -173,7 +173,7 @@
     "assets/contracts/asset-bond-zap.json": "683055487a5852c1567356c0292c0bc7eed5d440ed0500fa384a1b1c770679e8",
     "assets/contracts/bond-depository.json": "59b21284fce2ab3b31354abdecabb385c55242cce1fe68a63a5a6b8d629abd3e",
     "assets/contracts/book-source-evidence.json": "51b1d117a95b69c652f823ca818424fd05c6e687aeaf27766ac12a5bd3f265c2",
-    "assets/contracts/catalog.json": "0de8386e5e168b86dd7703bd7069418f9eec17061d80484fcb18b7b7ef90e0b5",
+    "assets/contracts/catalog.json": "dfb58eb17ed0e7727695b7611fa08bde0de4cad3ed6013cb9126ea9acf9c5ce8",
     "assets/contracts/credit-irm.json": "824f02e894297fe8009e60e672ff623920d58a41b5871ef943ba830fbd60d16f",
     "assets/contracts/credit-oracle-aapl.json": "40ffe9a4ced7c61c94792119a313837997c77266d1bbc5d3b9bcb6740b9c37fd",
     "assets/contracts/credit-oracle-coin.json": "a43687c424865db568ac3db19aa7f60262170bb1ebd2ff09d9cc20fa9fd2e9ea",
@@ -212,7 +212,7 @@
     "assets/contracts/netlong-margin-ai-implementation.json": "b809f1be8572c7ce268468a18ca4d8d3ede535e62826fdd350af9bbe04c867e3",
     "assets/contracts/netlong-margin-ai-token.json": "b24bfe21b31d51a416a573d29e86271d304f9618b4eb8a40b8f9ce30a809a2c2",
     "assets/contracts/netlong-margin-cashcat-token.json": "66f956fe6be29a7bd159280378d3801da6ccfc3820594886bbbc25b89fc37677",
-    "assets/contracts/netlong-margin-desk.json": "5fa2aa997dd88d264149a51ed6d946744bc3f6d7e4b05d487c34af55f09163d8",
+    "assets/contracts/netlong-margin-desk.json": "a1d46e55e5d36efed8201e6c72afcaca6101fcfd5e044ec25434cfa061d1b504",
     "assets/contracts/netlong-margin-fee-router.json": "639b2c224a5c7a76a01f6133fe95574cf353de6cf3cdd963eb005492d30422c6",
     "assets/contracts/netlong-margin-lending-account.json": "155c57ffc9f59e4cfedcb524c4571e3e902bd4724cb9796831905a5865d6b004",
     "assets/contracts/netlong-margin-lister-lib.json": "f389aafe2f03a6ac34a3155b125b1245bca553bf1df89a4b854040f619bfb899",
@@ -253,7 +253,7 @@
     "assets/contracts/vault.json": "a470a8f9346d3978730a81966a34a84b11aab0aef4bddb8476747ba4bb08e72a",
     "assets/contracts/wrapped-snet.json": "95e32de4a431c4b8f3bf608d2b79f352430667d88b5d0a5f3a973746ea0423cf",
     "assets/safety-policy.json": "3def2bf53a66550b24dcec7a8d6f5213642ed8e0a890ef69f6d67ea8a830caf6",
-    "assets/sources.json": "8fdd71bc01bf5cbada6714d098e80201a496f18469eb002a977852de7dcd76eb",
+    "assets/sources.json": "5acf67d7c257f9b35eccde0919fc44b610c22cec864d3f2b3fcd0c0c95fbc517",
     "references/addresses-and-roles.md": "7262d877945c6db5306d42e3b820fe9edb1918379551aa73004d3f3ca5392fd4",
     "references/announcements-and-history.md": "10fff1914f5761ce4ee3dd1ece289d3ad9d47d98939d5ecbf39791ff7d72d55d",
     "references/book-analytics.md": "0e797d16211865e7b922b33d2302a5e3947663c394b621678d3113f61e8a5c6b",
@@ -314,7 +314,7 @@
   },
   "runtime_bundle": {
     "files": 305,
-    "sha256": "571fae22ad12ff8a2b7b083806748df948f5d65ed5ba7d3f295e8f37a907ed91",
+    "sha256": "7079b36161484fc500a681196084b10e53084ad1dd3826c2049a232364caabbc",
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by NUL and file bytes",
     "scope": "SKILL.md, assets/**, references/** (including references/guardrail.md) and scripts/**; excludes README.md, root LICENSE, release-manifest.json and non-distributable maintenance/tests."
   }
