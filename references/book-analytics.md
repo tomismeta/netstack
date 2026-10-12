@@ -2,6 +2,8 @@
 
 Use the bundled read-only `book` command for a **new pinned snapshot** and optional bounded event/receipt collection. No cached financial state, market/bet list, transaction history, holdings or balances are loaded. [Contract evidence](book-contracts.md) describes the exact-generation publisher ABI, runtime correlation and unavailable Solidity boundary.
 
+**THE BOOK's house pot is not Predict House Vault.** In the October 10 retained [SportsBookDesk evidence](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x3174dE69a84c53F82F6B6Dca5C64E705cFFe8Dd6), a settled winner's free **wsNET** credit belongs to the Book player ledger. It is not a liability, cashflow or profit adjustment of the separate **USDG** [Predict House Vault](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xb488368902b1CbD7533F1536C3F860065398D3e9). A shared Sleeve beneficiary and the word “house” do not merge those ledgers. For a separately scoped Book or consolidated analysis, establish ownership and claim treatment, and do not deduct settled credits again if the measured house pot already reflects settlement. These are dated identity/accounting findings, not fresh chain observations.
+
 ```sh
 python3 scripts/analytics.py book --json
 python3 scripts/analytics.py book --market-id MARKET_ID --bet-id BET_ID --detail full --json

@@ -5,7 +5,7 @@
   "total_distributable_files": 300,
   "manifest_sha256": {
     "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
-    "README.md": "3057b7411f6f4bbf1eb767d55331aa0e314a0451963db54a627591699b4278cf",
+    "README.md": "96cb9b9fa224d1081d7f1914cf48d2694733e64fbf4f4ee323e2ec7c4a7fce2b",
     "SKILL.md": "3a5291d086f2b8a2cc46f97fa2d1521760a0cdee28037e9df3ab5fe8aee1ec1e",
     "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "assets/address-conventions.json": "36e8aac8ff6304cf752bafcb9d6a9f99fcc1258987aef18522d886914f44dbf4",
@@ -253,7 +253,7 @@
     "assets/sources.json": "25ccaeaf5b5e4d5475e29c8195e80428b126bd03c67022b294d0548d1414bd5b",
     "references/addresses-and-roles.md": "7262d877945c6db5306d42e3b820fe9edb1918379551aa73004d3f3ca5392fd4",
     "references/announcements-and-history.md": "10fff1914f5761ce4ee3dd1ece289d3ad9d47d98939d5ecbf39791ff7d72d55d",
-    "references/book-analytics.md": "c9d691561c05b92324785aa0221cdcb7cbbe1a40b2302053ec0d410e380ff415",
+    "references/book-analytics.md": "cc6ba930fe53f7e805face1938cbc52a6d81b9a5c8918d9276d4d7e2101ea587",
     "references/book-contracts.md": "0d9682283e9999fa8ad44abbb3a61277a9a168a97c29940ce2fae3b4fce77f80",
     "references/builders.md": "6b2bce055d60cecfe0da2507d18eaec5bf08207891189ee25bbcac09052b4a73",
     "references/contract-capabilities.md": "5f4e738686335b62e31b627b683e24d86d017e92ecfdfb47ad323c933e1e2cbb",
@@ -273,7 +273,7 @@
     "references/netlong-futures-contracts.md": "5812c046e034ef0e3ec6afa2ab176144a93911d78719730eb00cab1066903d76",
     "references/netlong-margin-and-lose-contracts.md": "26d98c8e9eea1d2c9f09cffedb626ce0814793c322a52a480e0baf4288875aab",
     "references/nfts.md": "e432c73ce7e352fbc7c8b4e67f50818647c07f106190604d988dce66261ad8af",
-    "references/predict-analytics.md": "c370f85a41c33fe2c4ff9b054ba747293e5054d8966f58c892a4d3d33d1b10bc",
+    "references/predict-analytics.md": "f93cd80969e267896f8116cbf8c746143629847023de736d6edcb5b0e8e6ca2a",
     "references/predict-contracts.md": "4c5e708bbe7ab5e30deb2567bf9db98feed41df1785b54cfda9414d9ddea7d4c",
     "references/premium-seller-analytics.md": "9028178601106a3384ec4a0b1d5e32e76893b9060435ad3bdc0b08f3e739c30d",
     "references/premium-seller-contracts.md": "7652f53d989732c0a8c34a612dca82d375eeb2251d8b1750dab81ee91778c06b",
@@ -306,7 +306,7 @@
   },
   "runtime_bundle": {
     "files": 297,
-    "sha256": "4c3479dca1570c7d6c1e5d9aa5a0be34a573375e450a8f987d7009fa2ad4e027",
+    "sha256": "092e0f59786a349b28dd33d09d49584a1481f9c8480c27999d088610405cc1fa",
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by NUL and file bytes",
     "scope": "SKILL.md, assets/**, references/** (including references/guardrail.md) and scripts/**; excludes README.md, root LICENSE, release-manifest.json and non-distributable maintenance/tests."
   }
