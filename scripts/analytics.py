@@ -108,6 +108,7 @@ def parser():
                                ("rfv", "reconciled Core RFV and RPC-backed Sleeve asset accounting"),
                                ("advance", "NET Advance positions, holders, totals, capacity and parameters"),
                                ("netlong", "discovered futures OI and real-token margin debt/exposure"),
+                               ("netlong-revenue", "bounded NetLong fees, balance bridges and equity/accrual evidence; never total profit"),
                                ("premiumseller", "fresh PremiumSeller NET sales, realized prices and Treasury USDG remittances"),
                                ("sleeve-bonds", "Sleeve bond inventory, subscription flows and claims"),
                                ("credit", "Credit vault, allocation and Loopback lending evidence"),
@@ -177,10 +178,15 @@ def parser():
                                default=10, metavar="COUNT", help="initial inclusive log chunk size (default: 10; maximum: 100000)")
             child.add_argument("--tx", type=transaction_hash, action="append", default=[], metavar="HASH",
                                help="candidate witness receipt; repeat up to 128 times; only in-interval receipts are included")
+        if command == "netlong-revenue":
+            child.add_argument("--from-block", type=series_id, required=True, metavar="BLOCK",
+                               help="positive inclusive start; opening accounting state is read at BLOCK-1")
+            child.add_argument("--chunk-blocks", type=lambda text: bounded_count(text, MAX_LOG_BLOCKS),
+                               default=10, metavar="COUNT", help="initial inclusive log chunk size (default: 10)")
         if command == "rfv":
             child.add_argument("--scope", choices=("core", "reports", "net-assets"), default="core",
                                help="Core reserves, publisher Reports composition, or adjusted net assets (default: core)")
-        if command in ("rfv", "advance", "netlong", "premiumseller", "sleeve-bonds", "credit", "book"):
+        if command in ("rfv", "advance", "netlong", "netlong-revenue", "premiumseller", "sleeve-bonds", "credit", "book"):
             child.add_argument("--detail", choices=("summary", "full"), default="full",
                                help="stdout evidence detail (default: full); --output always preserves full checkpoints")
         child.add_argument("--json", action="store_true", help="emit machine-readable JSON (also the default)")
@@ -203,6 +209,8 @@ def _provenance(ctx):
         modules.extend(("netstack_advance.py", "netstack_output.py"))
     elif ctx.command == "netlong":
         modules.append("netstack_netlong.py")
+    elif ctx.command == "netlong-revenue":
+        modules.extend(("netstack_netlong_revenue.py", "netstack_netlong.py", "netstack_receipts.py"))
     elif ctx.command == "premiumseller":
         modules.append("netstack_premiumseller.py")
     elif ctx.command == "sleeve-bonds":
@@ -329,6 +337,8 @@ def main(argv=None):
                     from netstack_advance import run
                 elif args.command == "netlong":
                     from netstack_netlong import run
+                elif args.command == "netlong-revenue":
+                    from netstack_netlong_revenue import run
                 elif args.command == "premiumseller":
                     from netstack_premiumseller import run
                 elif args.command == "sleeve-bonds":
@@ -345,6 +355,9 @@ def main(argv=None):
                 ctx.check()
                 if args.command == "receipts":
                     from netstack_receipts import recheck
+                    recheck(ctx)
+                elif args.command == "netlong-revenue":
+                    from netstack_netlong_revenue import recheck
                     recheck(ctx)
                 else:
                     ctx.recheck()
@@ -363,6 +376,9 @@ def main(argv=None):
                 elif args.command == "receipts":
                     from netstack_receipts import prepare_result
                     prepare_result(result)
+                elif args.command == "netlong-revenue":
+                    from netstack_netlong_revenue import prepare_result
+                    result["coverage"]["requested_scope"] = prepare_result(result)["coverage"]["requested_scope"]
                 elif args.command in ("predict", "house"):
                     from netstack_markets import prepare_result
                     prepare_result(result)
@@ -407,6 +423,9 @@ def main(argv=None):
             if args.command == "receipts":
                 from netstack_receipts import recheck
                 recheck(ctx)
+            elif args.command == "netlong-revenue":
+                from netstack_netlong_revenue import recheck
+                recheck(ctx)
             else:
                 ctx.recheck()
         except StopRun as exc:
@@ -445,7 +464,7 @@ def main(argv=None):
         exit_code = 2
         # Reuse a valid aggregate body without repeating expensive serialization.
         text = ctx.partial_json(ctx._stopped or "deadline_exhausted") if ctx is not None else serialize_result(result)
-    if args.command in ("rfv", "advance", "netlong", "premiumseller", "sleeve-bonds", "credit", "book") and args.detail == "summary":
+    if args.command in ("rfv", "advance", "netlong", "netlong-revenue", "premiumseller", "sleeve-bonds", "credit", "book") and args.detail == "summary":
         try:
             # Finalization can reuse an older valid checkpoint or add an output
             # error. Project exactly that document, not the mutable ctx.result.
@@ -453,6 +472,9 @@ def main(argv=None):
                 text = summarize_advance(text, checkpoint_status, args.output)
             elif args.command == "netlong":
                 from netstack_netlong import summarize
+                text = summarize(text, checkpoint_status)
+            elif args.command == "netlong-revenue":
+                from netstack_netlong_revenue import summarize
                 text = summarize(text, checkpoint_status)
             elif args.command == "premiumseller":
                 from netstack_premiumseller import summarize

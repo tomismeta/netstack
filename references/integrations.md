@@ -35,9 +35,13 @@ There is **no automatic failover** between configured and public endpoints or am
 
 Optional supplemental transfer-index research, including `alchemy_getAssetTransfers` where independently authorized and supported, follows the [shared period-ledger procedure](protocol-revenue-analytics.md#shared-period-ledger): explicit interval/assets/address directions, supported categories, pagination, deduplication, receipts and boundary reconciliation. It is not bundled collector support, a provider-only restriction or automatic denial failover. An index's returned transactions do not establish complete economic-event history.
 
+### Bounded NetLong revenue evidence
+
+For a supported current-generation NetLong interval, prefer [`netlong-revenue`](netlong-analytics.md#bounded-revenue-evidence-collector). One guarded pass combines endpoint discovery/identity, supported accounting and balance reads, catalog events, canonical receipts and scoped token-transfer reconciliation. It uses the same configured transport and a curated read-only interface, not an arbitrary-selector escape hatch. Keep its full checkpoint outside the skill and use `--detail summary` for the observations and remaining gaps. Both boundary confirmations and scoped completeness govern reporting; collection does not establish all economic events, beneficiary ownership or whole-protocol profit.
+
 ### Bounded receipt research
 
-Use `receipts` for the collection and decoding portion of a revenue investigation. It is a reusable **selected-emitter/event evidence helper**, not a whole-protocol revenue calculator. It reuses the runner's configured HTTPS transport, read-only method guards, sanitized HTTP/RPC classification, deadlines and checkpoint handling; do not replace these with a handwritten HTTP client when this scope fits.
+Use `receipts` for selected catalog-event/receipt scopes not already covered by the NetLong procedure above. It is a reusable **selected-emitter/event evidence helper**, not a whole-protocol revenue calculator. It reuses the runner's configured HTTPS transport, read-only method guards, sanitized HTTP/RPC classification, deadlines and checkpoint handling; do not replace these with a handwritten HTTP client when this scope fits.
 
 ```sh
 python3 -I -B scripts/analytics.py receipts \

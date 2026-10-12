@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "source_ids": [
+    "netnet-trading-entry-20261010",
+    "netlong-futures-explorer-20261010-vault",
+    "netlong-futures-explorer-20261010-fee-router",
+    "netlong-margin-desk-explorer-20261010",
+    "netlong-margin-lending-account-explorer-20261010",
+    "netlong-margin-fee-router-explorer-20261010"
+  ],
+  "scope": "Read-only accounting and named router bindings. Complements netlong-interface; no unnamed mode selector, routing transaction or arbitrary ABI permission.",
+  "getter_evidence": {
+    "vault_abi": "assets/contracts/netlong-futures-vault.json#/functions; exact publisher output widths and targeted runtime getter review; references/netlong-analytics.md#safe-read-plan-and-native-units",
+    "pot_abi": "assets/contracts/netlong-margin-lending-account.json#/functions; exact publisher output widths and targeted runtime accounting review; references/netlong-analytics.md#safe-read-plan-and-native-units",
+    "router_abi": "assets/contracts/netlong-futures-fee-router.json#/functions; named immutable address getter body reconstruction, not selector-name guesses",
+    "binding_abi": {
+      "margin": "assets/contracts/netlong-margin-desk.json#/runtime_review direct immutable fee router getter; selector0xf29ebf61 entry0xcde, address return. Named getter, not processing selector.",
+      "pot": "assets/contracts/netlong-margin-lending-account.json#/runtime_dispatch selector0xf29ebf61 entry0x73a. Explorer deployed_bytecode inspected 2026-10-12: JUMPDEST PUSH2 0x054d PUSH32 immutable DUP2 JUMP; encoder0x054d masks to uint160, stores one 32-byte ABI word and returns via0x0362. Constant address read; no state write, authorization or external call. Constructor arg3 is the same router immutable used by the repayment transfer path.",
+      "pot_source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x068904944fCF4A18aB40cA112F385fAa430F60f2",
+      "limit": "Explorer runtime-body evidence, not source/compiler equivalence or a fresh block-pinned financial observation; runtime matching is required at both collector boundaries."
+    }
+  },
+  "vault_abi": [
+    {"type":"function","name":"balanceWs","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"totalFreeWs","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"totalLockedWs","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"clearingReserveWs","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"totalOwedWs","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"equityWs","stateMutability":"view","inputs":[],"outputs":[{"type":"int256"}]},
+    {"type":"function","name":"totalShares","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"sharePriceWad","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"subscribedWs","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"pendingRedeemWs","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"adlEpoch","stateMutability":"view","inputs":[],"outputs":[{"type":"uint64"}]},
+    {"type":"function","name":"adlUnpaidWs","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]}
+  ],
+  "pot_abi": [
+    {"type":"function","name":"cashUsdg","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"idleUsdg","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"insuranceUsdg","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"insuranceWs","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"totalPrincipalUsdg","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"totalDebtUsdg","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"heldWs","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"heldWsValueUsdg","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"owedUsdg","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"equityUsdg","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"totalShares","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]},
+    {"type":"function","name":"sharePriceWad","stateMutability":"view","inputs":[],"outputs":[{"type":"uint256"}]}
+  ],
+  "router_abi": [
+    {"type":"function","name":"wsNet","stateMutability":"view","inputs":[],"outputs":[{"type":"address"}]},
+    {"type":"function","name":"sNet","stateMutability":"view","inputs":[],"outputs":[{"type":"address"}]},
+    {"type":"function","name":"net","stateMutability":"view","inputs":[],"outputs":[{"type":"address"}]},
+    {"type":"function","name":"usdg","stateMutability":"view","inputs":[],"outputs":[{"type":"address"}]},
+    {"type":"function","name":"treasury","stateMutability":"view","inputs":[],"outputs":[{"type":"address"}]}
+  ],
+  "models": [
+    {"id":"netlongFuturesFeeRouter","family":"futures_router","runtime_bytes":2903,"normalized_sha256":"a0c0fdc91eda54cbeb18f7097ec12d7390ee1fc45fe7790c31ef520b8d1be85f","immutable_ranges":[],"source_id":"netlong-futures-explorer-20261010-fee-router","catalog":"assets/contracts/netlong-futures-fee-router.json","runtime_source_url":"https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x56a8816132579c6c080e65147682DA2d6D20efb0"},
+    {"id":"netlongMarginFeeRouter","family":"margin_router","runtime_bytes":5390,"normalized_sha256":"5b55167c5c5fb24ac73a6eb44b71e38a8b305197508b8356752dddb0bd014aff","immutable_ranges":[],"source_id":"netlong-margin-fee-router-explorer-20261010","catalog":"assets/contracts/netlong-margin-fee-router.json","runtime_source_url":"https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x56AE9Dd336525A9C29a10E80963cCbCaF4b3CfA0"}
+  ],
+  "binding_abi": [
+    {"type":"function","name":"feeRouter","stateMutability":"view","inputs":[],"outputs":[{"type":"address"}]}
+  ],
+  "event_catalogs": {
+    "vault":"assets/contracts/netlong-futures-vault.json",
+    "margin":"assets/contracts/netlong-margin-desk.json",
+    "futures_stream":"assets/contracts/netlong-futures-btc.json",
+    "futures_net":"assets/contracts/netlong-futures-net.json"
+  },
+  "unsupported_surfaces": [
+    "Pot has no supplied named event ABI; transfers/state do not establish complete lender capital or realized-interest history.",
+    "Router mode selectors and processing topics have unresolved names/signatures and are not exposed as fabricated functions/events.",
+    "Vault immutable asset/router bindings are covered by exact runtime identity and the reviewed runtime-surface dependency map, not an invented supplemental getter ABI."
+  ]
+}

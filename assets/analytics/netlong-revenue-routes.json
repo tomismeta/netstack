@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "interface": "assets/analytics/netlong-revenue-interface.json",
+  "exposure_interface": "assets/analytics/netlong-interface.json",
+  "scope": "Current configured futures vault and margin generation; enumerate both endpoint registries, never filter by ticker.",
+  "vault": {"file":"assets/addresses/contracts/netlong-futures.json","id":"robinhood-0x50dc51ce9e633bed99d1d826fa0e2caac3183bf6"},
+  "oracle": {"file":"assets/addresses/contracts/netlong-futures.json","id":"robinhood-0x90f5b57a7236a1447ce786b1ebe42433e55d9fd0"},
+  "margin": {"file":"assets/addresses/contracts/netlong-margin-and-lose.json","id":"robinhood-0xe1685b19367e066af3e499dd4b0e51866b762c84"},
+  "pot": {"file":"assets/addresses/contracts/netlong-margin-and-lose.json","id":"robinhood-0x068904944fcf4a18ab40ca112f385faa430f60f2"},
+  "twap": {"file":"assets/addresses/contracts/netlong-margin-and-lose.json","id":"robinhood-0x2ff4b46b6bf08ecaf0c374676b9a5baa15524311"},
+  "futures_router": {"file":"assets/addresses/contracts/netlong-futures.json","id":"robinhood-0x56a8816132579c6c080e65147682da2d6d20efb0"},
+  "margin_router": {"file":"assets/addresses/contracts/netlong-margin-and-lose.json","id":"robinhood-0x56ae9dd336525a9c29a10e80963ccbcaf4b3cfa0"},
+  "wsnet": {"file":"assets/addresses/contracts/weth-and-wsnet.json","id":"robinhood-0x63c12667638f2ae6fc6ae09b43d98ec84a8586ea"},
+  "snet": {"file":"assets/addresses/contracts/share-certificate-snet-and-spacex-invaders.json","id":"robinhood-0xb773ec2c326b7f98a5a83fc098825492f020a4c7"},
+  "net": {"file":"assets/addresses/contracts/net-assets-pair-and-credit-vault.json","id":"robinhood-0xca9c78dd337a67f6e0077f65f5e9218719d30edf"},
+  "usdg": {"file":"assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json","id":"robinhood-0x5fc5360d0400a0fd4f2af552add042d716f1d168"},
+  "treasury": {"file":"assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json","id":"robinhood-0x04822ea321a0dee6f40656172f29312104855d66"}
+}

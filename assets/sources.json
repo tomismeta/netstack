@@ -6649,7 +6649,7 @@
     "contract_function_catalog": {
       "bound_catalogs": 75,
       "runtime_only_catalogs_without_obtained_abi": 11,
-      "function_entries": 1567,
+      "function_entries": 1568,
       "canonical_identities": 232,
       "bound_interfaces": 64,
       "unreviewed_identities": 157,

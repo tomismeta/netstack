@@ -81,6 +81,7 @@
     "reserve_accounting": "assets/analytics/reserves-routes.json",
     "net_advance": "assets/analytics/advance-routes.json",
     "netlong": "assets/analytics/netlong-routes.json",
+    "netlong_revenue": "assets/analytics/netlong-revenue-routes.json",
     "premiumseller": "assets/analytics/premiumseller-routes.json",
     "sleeve_bonds": "assets/analytics/sleeve-bonds-routes.json",
     "credit": "assets/analytics/credit-routes.json",

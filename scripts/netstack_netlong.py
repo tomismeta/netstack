@@ -43,12 +43,12 @@ def _optional(ctx, address, abi, method, args=()):
         return None
 
 
-def _identity(ctx, address, models, family):
+def _identity(ctx, address, models, family, *, block=None):
     """Match only reviewed runtime bytes; selectors or an ABI are not identity."""
-    raw = bytes.fromhex(ctx.code(address)[2:])
+    raw = bytes.fromhex(ctx.code(address, block)[2:] if block is not None else ctx.code(address)[2:])
     observed = hashlib.sha256(raw).hexdigest()
     evidence = {"address": address, "runtime_sha256": observed, "family": family,
-                "status": "unsupported", "model": None}
+                "status": "unsupported", "model": None, "block": ctx.block if block is None else block}
     ctx.result["metrics"]["implementation_checks"].append(evidence)
     for model in models:
         if model["family"] != family or len(raw) != model["runtime_bytes"]:

@@ -129,7 +129,7 @@ def load_json(relative_path):
 
 
 def resolve_routes(workflow):
-    if workflow not in ("liquidity", "predict", "reserves", "sleeve", "v4", "advance", "netlong", "premiumseller", "sleeve-bonds", "credit", "book"):
+    if workflow not in ("liquidity", "predict", "reserves", "sleeve", "v4", "advance", "netlong", "netlong-revenue", "premiumseller", "sleeve-bonds", "credit", "book"):
         raise RpcError("Unknown canonical route set", kind="input")
     route = load_json("assets/analytics/" + workflow + "-routes.json")
     resolved = {"_route": route}
@@ -462,6 +462,9 @@ def serialize_result(result):
     elif result.get("command") == "netlong":
         from netstack_netlong import prepare_result
         result = prepare_result(result)
+    elif result.get("command") == "netlong-revenue":
+        from netstack_netlong_revenue import prepare_result
+        result = prepare_result(result)
     elif result.get("command") == "premiumseller":
         from netstack_premiumseller import prepare_result
         prepare_result(result)
@@ -605,7 +608,7 @@ class _FixedHTTPSConnection(http.client.HTTPSConnection):
 
 class Context:
     def __init__(self, command, deadline=120, output=None, *, offline=False):
-        if command not in ("lp", "predict", "house", "rfv", "advance", "netlong", "premiumseller", "sleeve-bonds", "credit", "book", "receipts"):
+        if command not in ("lp", "predict", "house", "rfv", "advance", "netlong", "netlong-revenue", "premiumseller", "sleeve-bonds", "credit", "book", "receipts"):
             raise RpcError("Unknown analytics command", kind="input")
         if not isinstance(deadline, (int, float)) or not math.isfinite(deadline) or not 0 < deadline <= 600:
             raise RpcError("Deadline must be positive and at most 600 seconds", kind="input")
@@ -644,7 +647,7 @@ class Context:
         self._retry_not_before = 0.0
         self._retry_wait_seconds = 0.0
         self._member_limit = (4000 if command in ("premiumseller", "sleeve-bonds") else
-                              750 if command in ("rfv", "advance", "netlong", "credit", "book", "predict", "house", "receipts") else 250)
+                              750 if command in ("rfv", "advance", "netlong", "netlong-revenue", "credit", "book", "predict", "house", "receipts") else 250)
         self._row_limit = 50000 if command == "lp" else 10000
         self._allowed = None
         self._last_body = serialize_result(self.result)
@@ -848,6 +851,8 @@ class Context:
                 filenames = ("advance-interface.json",)
             elif self.command == "netlong":
                 filenames = ("netlong-interface.json",)
+            elif self.command == "netlong-revenue":
+                filenames = ("netlong-interface.json", "netlong-revenue-interface.json")
             elif self.command == "premiumseller":
                 filenames = ("premiumseller-interface.json",)
             elif self.command == "sleeve-bonds":
@@ -1182,7 +1187,10 @@ class Context:
     def call(self, address, abi, name, args=(), block=None):
         return self.calls([(address, abi, name, args)], block=block)[0]
 
-    def calls(self, specs, block=None):
+    def calls(self, specs, block=None, *, allow_errors=False):
+        """Return decoded reads, optionally retaining nonterminal member errors."""
+        if type(allow_errors) is not bool:
+            raise RpcError("Invalid partial batch-read option", kind="input")
         tag = self._block_tag(block)
         prepared = []
         for address, abi, name, args in specs:
@@ -1196,6 +1204,7 @@ class Context:
             if key not in self._cache and key not in seen:
                 pending.append((key, item))
                 seen.add(key)
+        failed = {}
         for start in range(0, len(pending), 20):
             batch = pending[start:start + 20]
 
@@ -1214,9 +1223,15 @@ class Context:
                 [("eth_call", [{"to": key[0], "data": key[1]}, key[2]]) for key, item in batch],
                 accept=accept)
             failures = [value for value in values if isinstance(value, RpcError)]
-            if failures:
+            terminal = next((error for error in failures if error.kind in ("permission", "integrity")), None)
+            if terminal is not None:
+                raise terminal
+            if failures and not allow_errors:
                 raise failures[0]
-        return [self._cache[key] for key, item in prepared]
+            for (key, item), value in zip(batch, values):
+                if isinstance(value, RpcError):
+                    failed[key] = value
+        return [self._cache[key] if key in self._cache else failed[key] for key, item in prepared]
 
     def _invalidate_identity(self, message):
         self._integrity_invalid = True

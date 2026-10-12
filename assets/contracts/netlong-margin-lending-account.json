@@ -45,6 +45,29 @@
   },
   "functions": [
     {
+      "name": "feeRouter",
+      "inputs": [],
+      "stateMutability": "view",
+      "outputs": [{"name": "", "type": "address"}],
+      "signature": "feeRouter()",
+      "selector": "0xf29ebf61",
+      "evidence": {
+        "source_id": "netlong-margin-lending-account-explorer-20261010",
+        "locator": "Supplemental getter-body review 2026-10-12: dispatcher entry0x73a jumps through encoder0x054d with a PUSH32 immutable, masked to uint160 and returned as one ABI word via0x0362. Constructor arg3 and repayment routing identify the fee-router dependency.",
+        "runtime_sha256": "53a8f0a67f812441c293d9cd7b42db7c2532e18328487eea8ffc6562c38811e7"
+      },
+      "permissions": {
+        "status": "runtime_body_review_not_source_verified",
+        "detail": "Permissionless immutable-address read; reviewed body has no state write, authorization gate or external call."
+      },
+      "economic_meaning": {
+        "status": "runtime_body_review_not_source_verified",
+        "detail": "Fee-router dependency used by the lending account's realization allocations. The address is not an amount, receipt, Treasury beneficiary or proof that routing occurred."
+      },
+      "runtime_dispatch": {"selector_present": true, "entry_pc": "0x73a"},
+      "source_gap": "Compatible getter signature and return-body reconstruction, not independently compiled Solidity or a complete deployed ABI. The original supplied publisher interface still contains22 entries."
+    },
+    {
       "name": "cashUsdg",
       "inputs": [],
       "stateMutability": "view",
