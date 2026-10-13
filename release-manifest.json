@@ -285,7 +285,7 @@
     "references/products.md": "5a6d60317a78f398fc577679de011410e3e9d9a5632d7be689666d7be9662671",
     "references/protocol-revenue-analytics.md": "31adf405f6bbc85208acddb404f885e3a1af578bad4d6183fc90e624c5e1b812",
     "references/protocol.md": "67beeaa88afbc7ce96a41fd8759cfbb1ebdc15f8a2971ac7318c0c3dfa885af2",
-    "references/reserve-analytics.md": "95cb2e2ae630da3ce699f7cf9a1666ac34c3db28af6af850bd33b63eeb50a6f4",
+    "references/reserve-analytics.md": "b4e7c0feb211a8307ddbe568f4f2976fcb73f2e3ba2a10680afd0fd7ae7b06d7",
     "references/rwa-strategy.md": "0503314ae125494b4ce028b6a0f6980ca02f9f412d1c67b35a9525ff390cfd69",
     "references/safety.md": "0a938dc4f492d1b08bebe904eae7bfd736a7bd8c19da4d895cc3b65dcb7a17f1",
     "references/sleeve-bond-analytics.md": "8ae3a9ebd9614b714f634f35c54deca254f63f736d6df96932e2ac3c4df85a55",
@@ -314,7 +314,7 @@
   },
   "runtime_bundle": {
     "files": 305,
-    "sha256": "8216a7bf2d2d1e480cf7777799ef9e381d0baf5d20504fab92dea839c0ba4824",
+    "sha256": "61ce8cb2651462799a49be9cd1810e44a37c17489344bbd1e9be2fbc02b804db",
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by NUL and file bytes",
     "scope": "SKILL.md, assets/**, references/** (including references/guardrail.md) and scripts/**; excludes README.md, root LICENSE, release-manifest.json and non-distributable maintenance/tests."
   }
