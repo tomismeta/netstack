@@ -41,7 +41,7 @@ Optional supplemental transfer-index research, including `alchemy_getAssetTransf
 
 ### Bounded NetLong revenue evidence
 
-For a supported current-generation NetLong interval, prefer [`netlong-revenue`](netlong-analytics.md#bounded-revenue-evidence-collector). One guarded pass combines endpoint discovery/identity, supported accounting and balance reads, catalog events, canonical receipts and scoped token-transfer reconciliation. It uses the same configured transport and a curated read-only interface, not an arbitrary-selector escape hatch. Keep its full checkpoint outside the skill and use `--detail summary` for the observations and remaining gaps. Both boundary confirmations and scoped completeness govern reporting; collection does not establish all economic events, beneficiary ownership or whole-protocol profit.
+For a supported current-generation NetLong interval, prefer [`netlong-revenue`](netlong-analytics.md#bounded-revenue-evidence-collector). Use explicit `--from-block FIRST --block LAST`, or `--recent-blocks COUNT --block latest-2` to resolve and record a recent interval inside the same guarded context. Boundary code/state reads perform capability checking before history scans; no separate HTTP head/archive preflight is needed. One pass combines endpoint discovery/identity, supported accounting and balance reads, catalog events, canonical receipts and scoped token-transfer reconciliation. Keep its full checkpoint outside the skill and use `--detail summary` for observations and gaps. Both boundary confirmations and scoped completeness govern reporting; collection does not establish all economic events, beneficial ownership or whole-protocol profit.
 
 ### Bounded receipt research
 

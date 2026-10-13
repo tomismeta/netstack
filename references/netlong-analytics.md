@@ -168,7 +168,7 @@ The bundled `netlong` command collects **exposure**; `netlong-revenue` collects 
 
 ### Bounded revenue evidence collector
 
-For an explicit inclusive interval, first check the selected endpoint's [historical-state capability](protocol-revenue-analytics.md#historical-state-capability-before-reconciliation); then start the guarded collection for its supported scope before writing supplemental RPC code:
+For an explicit inclusive interval, start the guarded collector below. Its boundary code/state reads are the [historical-capability check](protocol-revenue-analytics.md#historical-state-capability-before-reconciliation), performed before its history scans; a separate hand-written HTTP preflight is unnecessary:
 
 ```sh
 python3 -I -B scripts/analytics.py netlong-revenue \
@@ -178,6 +178,8 @@ python3 -I -B scripts/analytics.py netlong-revenue \
 ```
 
 Replace the boundary placeholders with the requested positive starting block and closing block; opening state is `FIRST_BLOCK-1`. Choose the deadline within the host's whole-answer allowance and leave time to report the result. One pass shares its transport, resource/deadline accounting and checkpoints across the current selected vault, dynamically discovered desks, margin program, supported boundary getters and scoped token transfers. It does not reset the budget for each emitter. Keep the full checkpoint outside the installed skill; summary output supplies observations and gaps for the answer, not just a file-written acknowledgment.
+
+For a requested recent block count, replace `--from-block FIRST_BLOCK --block LAST_BLOCK` with **`--recent-blocks COUNT --block latest-2`**. The collector obtains the head through its guarded transport, pins B once, then records inclusive `[B-COUNT+1,B]` and opening state `B-COUNT` before collection. `--recent-blocks` and `--from-block` are mutually exclusive; counts must be positive and leave a nonnegative opening block. There is no silent genesis clipping, repeated head selection or separate provider/deadline for preflight. Use the same option with an explicit `--block` for a fixed-end count. Do not query the head or probe archive support with a bare `urllib`, `requests` or curl replacement first; use the guarded pass for this supported task. Independently authorized supplemental interfaces remain available, but their transport must retain destination/TLS, redirect, credential and permission protections.
 
 Read the returned scope and confirmation before using a subtotal. Both boundary hashes, relevant discovery/implementation/binding checks, served log ranges, receipts and reconciliation matter. Unknown deployments, missing reads, registry changes, unconfirmed boundaries and residuals remain explicit. Endpoint registries do not prove no transient market existed between them. A successful selected-event scan is not complete economic history or deployment-to-date revenue.
 

@@ -179,8 +179,11 @@ def parser():
             child.add_argument("--tx", type=transaction_hash, action="append", default=[], metavar="HASH",
                                help="candidate witness receipt; repeat up to 128 times; only in-interval receipts are included")
         if command == "netlong-revenue":
-            child.add_argument("--from-block", type=series_id, required=True, metavar="BLOCK",
-                               help="positive inclusive start; opening accounting state is read at BLOCK-1")
+            interval = child.add_mutually_exclusive_group(required=True)
+            interval.add_argument("--from-block", type=series_id, metavar="BLOCK",
+                                  help="positive inclusive start; opening accounting state is read at BLOCK-1")
+            interval.add_argument("--recent-blocks", type=series_id, metavar="COUNT",
+                                  help="positive inclusive block count ending at --block; resolves inside the guarded pinned context")
             child.add_argument("--chunk-blocks", type=lambda text: bounded_count(text, MAX_LOG_BLOCKS),
                                default=10, metavar="COUNT", help="initial inclusive log chunk size (default: 10)")
         if command == "rfv":
@@ -327,6 +330,10 @@ def main(argv=None):
                     if args.block != "latest-2" and args.from_block > int(args.block):
                         raise RpcError("Receipt interval start exceeds closing block", kind="input")
                 ctx.pin(args.block)
+                if args.command == "netlong-revenue" and args.recent_blocks is not None:
+                    if args.recent_blocks > ctx.block:
+                        raise RpcError("Recent interval needs a preceding nonnegative opening block", kind="input")
+                    args.from_block = ctx.block - args.recent_blocks + 1
                 if args.command == "lp":
                     from netstack_lp import run
                 elif args.command == "predict":

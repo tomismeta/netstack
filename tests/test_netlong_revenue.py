@@ -293,13 +293,13 @@ class RevenueFixture(HTTPSFixture):
         stack.enter_context(patch.object(core.Context, "_atomic_output", capture))
         return stack
 
-    def run_cli(self, *extra, detail="summary"):
+    def run_cli(self, *extra, detail="summary", interval=None):
         with tempfile.TemporaryDirectory(prefix="netlong-revenue-") as directory:
             checkpoint = Path(directory).resolve() / "evidence.json"
             with self.patches(), patch.object(analytics, "_PROCESS_STARTED", time.monotonic()), \
                     redirect_stdout(io.StringIO()) as output:
                 status = analytics.main([
-                    "netlong-revenue", "--from-block", str(START), "--block", str(END),
+                    "netlong-revenue", *(interval or ("--from-block", str(START))), "--block", str(END),
                     "--chunk-blocks", "10", "--deadline", "30", "--detail", detail,
                     "--output", str(checkpoint), *extra,
                 ])
@@ -324,6 +324,41 @@ class NetLongRevenueTests(unittest.TestCase):
             if "requested_window_total" in row:
                 self.assertIsNone(row["requested_window_total"])
                 self.assertFalse(row["collection_complete"])
+
+    def test_recent_interval_uses_guarded_pin_and_exact_inclusive_boundaries(self):
+        fixture = RevenueFixture()
+        fixture.activity()
+        status, full, _ = fixture.run_cli("--block", "latest-2", interval=("--recent-blocks", "11"))
+        self.assertEqual(status, 0, full)
+        scope = full["metrics"]["scope"]
+        self.assertEqual((scope["opening_block"], scope["from_block"], scope["to_block"]),
+                         (OPENING, START, END))
+        self.assertTrue(all(row["recheck_status"] == "confirmed"
+                            for row in full["metrics"]["boundaries"].values()))
+        log_ranges = [(int(params[0]["fromBlock"], 16), int(params[0]["toBlock"], 16))
+                      for method, params in fixture.requests if method == "eth_getLogs"]
+        self.assertEqual(set(log_ranges), {(START, END - 1), (END, END)})
+        self.assertEqual(sum(params[0] == "latest" for method, params in fixture.requests
+                             if method == "eth_getBlockByNumber"), 1)
+        self.assertTrue(full["coverage"]["requested_scope"]["collection_complete"])
+
+    def test_recent_interval_rejects_invalid_or_conflicting_counts_before_network(self):
+        for interval in (("--recent-blocks", "0"), ("--recent-blocks", "-1"),
+                         ("--recent-blocks", "1", "--from-block", "10")):
+            with self.subTest(interval=interval):
+                fixture = RevenueFixture()
+                status, _, result = fixture.run_cli(interval=interval)
+                self.assertEqual(status, 1, result)
+                self.assertEqual(fixture.requests, [])
+                self.assertEqual(fixture.connections, [])
+
+    def test_recent_interval_does_not_silently_clip_at_genesis(self):
+        fixture = RevenueFixture()
+        status, _, result = fixture.run_cli(interval=("--recent-blocks", str(END + 1)))
+        self.assertNotEqual(status, 0, result)
+        self.assertTrue(result["errors"])
+        self.assertTrue(all(method in ("eth_chainId", "eth_getBlockByNumber")
+                            for method, _ in fixture.requests))
 
     def test_both_products_dynamic_registry_and_exact_signed_evidence(self):
         fixture = RevenueFixture()
