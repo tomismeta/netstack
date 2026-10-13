@@ -1062,7 +1062,7 @@ class Context:
             return RpcError("RPC permission denied; no alternate provider attempted", kind="permission")
         if any(term in message for term in ("pruned", "missing trie", "historical state", "archive", "state unavailable")):
             return RpcError("Historical RPC state unavailable or pruned; this state read requires an authorized archive-capable RPC", kind="pruned")
-        if any(term in message for term in ("rate limit", "too many requests", "request quota")):
+        if error["code"] == 429 or any(term in message for term in ("rate limit", "too many requests", "request quota")):
             return RpcError("RPC rate limit; bounded cooldown required", kind="rate_limit", retryable=True)
         if "revert" in message:
             return RpcError("Read-only contract call reverted", kind="revert")
@@ -1414,9 +1414,10 @@ class Context:
         requested = [_integer(number, "block number") for number in numbers]
         pending = list(dict.fromkeys(number for number in requested
                                      if fresh or number not in self._headers))
-        for start in range(0, len(pending), 20):
+        # Keep long historical-header passes from issuing large request bursts.
+        for start in range(0, len(pending), 5):
             self.check()
-            batch = pending[start:start + 20]
+            batch = pending[start:start + 5]
             accepted = set()
 
             def accept(values):

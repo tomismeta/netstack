@@ -509,5 +509,8 @@ def summarize(text, checkpoint_status):
     for epoch in metrics.get("epochs", []):
         for key in ("reconstruction", "transaction_hashes", "state_checks"):
             epoch.pop(key, None)
+    coverage = result.get("coverage", {})
+    rechecks = coverage.pop("historical_header_rechecks", [])
+    coverage["historical_header_recheck_count"] = len(rechecks)
     result.update(detail="summary", checkpoint_status=checkpoint_status)
     return serialize_result(result)

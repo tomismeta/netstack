@@ -175,6 +175,37 @@ class ProviderSelection(unittest.TestCase):
         self.assertEqual(failed.exception.kind, "integrity")
         self.assertTrue(ctx._integrity_invalid)
 
+    def test_json_rpc_compute_capacity_429_recovers_but_permission_takes_precedence(self):
+        for denied in (False, True):
+            with self.subTest(denied=denied):
+                ctx = self.context()
+                calls = []
+                clock = [time.monotonic()]
+
+                def sleep(seconds):
+                    clock[0] += seconds
+                message = "Your app has exceeded its compute units per second capacity."
+                if denied:
+                    message = "Access denied. " + message
+
+                def connect(*args, **kwargs):
+                    calls.append(True)
+                    return Response(self, error={"code": 429, "message": message}) if len(calls) == 1 else Response(self)
+
+                with patch.object(core, "_FixedHTTPSConnection", side_effect=connect), \
+                     patch.object(core.time, "monotonic", side_effect=lambda: clock[0]), \
+                     patch.object(core.time, "sleep", side_effect=sleep):
+                    if denied:
+                        with self.assertRaises(core.RpcError) as failed:
+                            ctx._rpc("eth_chainId", [])
+                        self.assertEqual(failed.exception.kind, "permission")
+                        self.assertEqual(len(calls), 1)
+                    else:
+                        self.assertEqual(ctx._rpc("eth_chainId", []), hex(4663))
+                        self.assertEqual(ctx._recoveries, 1)
+                        self.assertEqual(len(calls), 2)
+                ctx.close()
+
     def test_run_attribution_is_not_a_stable_endpoint_fingerprint(self):
         os.environ["NETSTACK_RPC_URL"] = URL
         first = self.context()
