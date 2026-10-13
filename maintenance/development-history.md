@@ -10,7 +10,7 @@ Source-only maintenance record relocated from the installed README. The entries 
 - Live acceptance exposed compute-unit throttling as JSON-RPC `429` inside HTTP 200. That now follows the existing bounded cooldown with permission-denial precedence. Historical headers use small batches with unchanged identity checks; concise output retains a recheck count while full checkpoints retain every header witness.
 - Added scoped PremiumSeller catalog bindings and wsNET Transfer evidence. Independently confirmed the correct `lastExecuteAt()` selector against a pinned deployed read; the feedback's different selector did not justify deleting the getter. Returned activity history is not retained.
 - Composed existing NetLong 360/position/wallet and revenue procedures instead of creating a second accounting recipe. Documented Sleeve borrower attribution and debt enumeration without treating a historical balance or USDG recipient as the borrower.
-- Integrated offline verification passed **478 tests**. Package/source/link validation passed; actual live and host-agent acceptance evidence is retained externally and must be checked for the exact installed candidate. No tag, merge or release is authorized by this entry.
+- Integrated offline verification passed **480 tests**. CI exposed a timing-sensitive large-history regression; it now exercises the same event-budget boundary with two sales and a two-row allowance, rather than depending on runner speed. Package/source/link validation and exact-candidate live/host-agent evidence remain separate checks. No tag, merge or release is authorized by this entry.
 
 
 ## Earlier release and development context

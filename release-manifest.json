@@ -269,7 +269,7 @@
     "references/games.md": "4d6b28b8ca575d80db0bd7a2f34493dc5399965a663dd6e3bff073fefb6367c2",
     "references/glossary-and-faq.md": "5eb217f94f000b4d32714d774784c679d5ff32f585459a46477842d835d6ad4d",
     "references/guardrail.md": "f8fe8e1f024b232fc6353a7803001dd2e4744119483ab4b18784166fd16148de",
-    "references/installation.md": "7e06697e50bdaa601ae92cfca36719a7b2aec59309a17e154c1bf0849dc76138",
+    "references/installation.md": "bcf7c288e94b846910762b9660dfed0b62c736872de333583ec1f5ac7393c552",
     "references/integrations.md": "d605169a113815b99d27f5f21c99a8fc14f5ff1b95c42881bd440474cb2ac660",
     "references/interview-research.md": "cb79d6ef3f0e0e0487be0640e0528cc422bf17b3d45ce9a365029c63b95880de",
     "references/inverse-bond-analytics.md": "9a2d09fdc16a9c1734fc32a4e69240c58e7e4efc50d81a841a48750873de8d4c",
@@ -293,7 +293,7 @@
     "references/safety.md": "0a938dc4f492d1b08bebe904eae7bfd736a7bd8c19da4d895cc3b65dcb7a17f1",
     "references/sleeve-bond-analytics.md": "8ae3a9ebd9614b714f634f35c54deca254f63f736d6df96932e2ac3c4df85a55",
     "references/sleeve-bond-contracts.md": "5b3c11e274a6accdf11939cd61bded7112fe933a610d9e5a01b2dc4e06c21556",
-    "references/standard-bond-analytics.md": "62b526afefc2630e1cef9f71b0bd980a4cbb35e5f22c49a8f992aee47fb35051",
+    "references/standard-bond-analytics.md": "35a411d44032f1e350341b171f0b97277aef223e94197cc9938b920cd064d3e0",
     "references/website-metrics.md": "b3e91c1071342496486f895e1a0263f4afa92e2758cdc94ea77b7100b823c26a",
     "scripts/analytics.py": "d935b246dfebd567278be6f3bf543c1589349682d309561ac8e006a4c82c3962",
     "scripts/netstack_advance.py": "6bda012e0da6d790b6a0f485f159d97d47480f1f07741e62d9d411f8ebccf106",
@@ -319,7 +319,7 @@
   },
   "runtime_bundle": {
     "files": 310,
-    "sha256": "dbf648baee1d23e09927b5ac084d2d87ec40997c6bc50e7f5758c59209e16f9d",
+    "sha256": "62e1730628a1582571c5e939715273cdfb5bfa39dd45ab6f6456caccc61047b4",
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by NUL and file bytes",
     "scope": "SKILL.md, assets/**, references/** (including references/guardrail.md) and scripts/**; excludes README.md, root LICENSE, release-manifest.json and non-distributable maintenance/tests."
   }

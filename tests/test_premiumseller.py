@@ -138,10 +138,12 @@ class Fixture:
         stack.enter_context(patch.object(Context, "_exchange_once", lambda ctx, requests: fixture.exchange(ctx, requests)))
         return stack
 
-    def run(self, since_days=None, block=200):
+    def run(self, since_days=None, block=200, row_limit=None):
         with self.patches():
             ctx = Context("premiumseller", deadline=30)
             try:
+                if row_limit is not None:
+                    ctx._row_limit = row_limit
                 ctx.pin(str(block))
                 seller.run(ctx, SimpleNamespace(since_days=since_days))
                 ctx.recheck()
@@ -169,7 +171,7 @@ def smoke(args=None, denial=False, scenario="sale"):
 class PremiumSellerTests(unittest.TestCase):
     def test_receipt_logs_do_not_consume_scanned_sale_budget(self):
         fixture = Fixture()
-        for block in range(101, 1253):
+        for block in (101, 102):
             event = fixture.add_sale(block=block, tx=hash_value(block + 10000))
             # Real receipts also contain router/pair/approval and other logs.
             # Validate them all without charging them as additional sales.
@@ -177,10 +179,11 @@ class PremiumSellerTests(unittest.TestCase):
                 fixture.raw_log(fixture.routes["router"]["address"], block,
                                 event["transactionHash"], index, [], "0x")
                 for index in range(5, 10))
-        result = fixture.run(block=2000)
-        self.assertEqual(result["resources"]["event_rows_accepted"], 1152)
-        self.assertEqual(result["resources"]["receipt_log_rows_validated"], 11520)
-        self.assertEqual(result["metrics"]["receipt_confirmed"]["lifetime_total"]["sale_count"], 1152)
+        # Exercise the exact scan boundary without a timing-sensitive history benchmark.
+        result = fixture.run(row_limit=2)
+        self.assertEqual(result["resources"]["event_rows_accepted"], 2)
+        self.assertEqual(result["resources"]["receipt_log_rows_validated"], 20)
+        self.assertEqual(result["metrics"]["receipt_confirmed"]["lifetime_total"]["sale_count"], 2)
         self.assertEqual(result["coverage"][seller.SALE_COVERAGE]["missing_ranges"], [])
 
     def test_history_does_not_request_historical_contract_state(self):
