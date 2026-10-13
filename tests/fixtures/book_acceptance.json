@@ -1,6 +1,6 @@
 {
   "fixture_kind": "synthetic model/host replay cases, not chain captures",
-  "scope": "Feed each input and question to the skill and assess its response/actions against required and forbidden criteria. No collector is implemented here. Supplied observations are hypothetical; these cases do not prove deployed behavior, live provider recovery, host timing, ABI equivalence or settlement enforcement.",
+  "scope": "Feed each input and question to the skill and assess its response/actions against required and forbidden criteria. This file is an evidence replay, not a collector execution; the bundled book command exists separately. Supplied observations are hypothetical; these cases do not prove deployed behavior, live provider recovery, host timing, ABI equivalence or settlement enforcement.",
   "conventions": "All monetary raw values are decimal strings. Addresses, block IDs, transaction IDs and revision IDs in inputs are synthetic unless a field explicitly supplies a public source URL. Missing evidence stays unknown. Budget counters include recovery attempts; they are replay inputs, not measured runs. For scenarios supplying a budget, treat that budget and the stated retry/member/row caps as binding host limits for this replay, not universal skill limits. No budget extension is available in those cases; a request to continue cannot override the host. Separately authorized deeper research is covered by research_acceptance.json.",
   "scenarios": [
     {
@@ -45,7 +45,7 @@
       },
       "question": "Continue the useful snapshot after the host rejects batches and the sequential calls hit 429. Is this provider unusable?",
       "required": ["Use paced sequential JSON-RPC objects; retain request-ID matching and block 10000", "Allow at most one transient retry of potsOf within the remaining original allowance", "Charge retry-after sleep, backoff and retry to the same clock and counters", "Retain marketCount and successful recovered pots", "Describe supplied recovery as synthetic, not an executed live result", "Prefer useful core and bounded history over exhaustive betOf reads"],
-      "forbidden": ["Retrying a JSON-RPC array to confirm the known host rejection", "Unpaced object burst", "Declaring the provider unusable solely from this recoverable 429", "New deadline, credentials, provider bypass or a Book runner", "Presenting replay observations as live RPC proof"]
+      "forbidden": ["Retrying a JSON-RPC array to confirm the known host rejection", "Unpaced object burst", "Declaring the provider unusable solely from this recoverable 429", "New deadline, credentials or provider bypass; launching the bundled Book collector as a fresh pass instead of respecting this replay's original transport observations and remaining budget", "Presenting replay observations as live RPC proof"]
     },
     {
       "id": "recovery_caps_do_not_restart_original_budget",

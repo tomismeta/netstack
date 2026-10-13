@@ -940,7 +940,16 @@ class Context:
                         continue
                     for item in items:
                         if item.get("type") == "function" and item.get("stateMutability") in ("view", "pure"):
-                            allowed[signature(item)] = item
+                            sig = signature(item)
+                            previous = allowed.get(sig)
+                            if previous is not None:
+                                # view and pure are both admitted reads; separate
+                                # contracts may legitimately declare either.
+                                if (tuple(_canonical_type(output) for output in previous["outputs"])
+                                        != tuple(_canonical_type(output) for output in item["outputs"])):
+                                    raise RpcError(f"Incompatible packaged ABI definitions for {sig}", kind="abi")
+                                continue
+                            allowed[sig] = item
             self._allowed = allowed
         return self._allowed
 

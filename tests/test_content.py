@@ -4,11 +4,13 @@ import json
 from pathlib import Path
 import sys
 import unittest
+from unittest.mock import patch
 
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "scripts"), str(ROOT / "maintenance")]
-from content import verify_content
+from content import _interface_bindings, verify_content
+from netstack_core import Context, RpcError
 
 
 ALPHA = "0x" + "11" * 20
@@ -234,6 +236,24 @@ class ContentVerificationTests(unittest.TestCase):
         }
         return detail
 
+    def test_content_pipeline_enforces_explicit_catalog_bindings(self):
+        detail = self.add_function_catalog()
+        self.docs[SOURCES]["sources"][0]["type"] = "official_app_contract_interface"
+        self.docs[SOURCES]["coverage"]["counts"]["source_types"] = {"official_app_contract_interface": 1}
+        entry = self.docs[detail]["functions"][0]
+        entry.update(signature="balanceOf(address)", selector="0x70a08231",
+                     inputs=[{"type": "address"}], outputs=[{"type": "uint256"}],
+                     stateMutability="view")
+        interface = self.docs[INTERFACE]
+        interface.update(catalog_binding_scope="Offline layout equality, not deployed verification.",
+                         catalog_bindings=[{"abi_key": "abi", "catalogs": [detail],
+                                            "evidence_scope": "publisher_interface",
+                                            "functions": ["balanceOf(address)"], "events": []}],
+                         catalog_binding_exceptions=[])
+        verify_content(encode(self.docs))
+        entry["outputs"][0]["type"] = "int256"
+        self.reject("catalog binding layout mismatch")
+
     def test_descriptive_write_catalog_does_not_enable_analytics_writes(self):
         detail = self.add_function_catalog()
         result = verify_content(encode(self.docs))
@@ -263,6 +283,183 @@ class ContentVerificationTests(unittest.TestCase):
     def test_version_is_required_in_metadata_not_the_body(self):
         self.docs["SKILL.md"] = self.docs["SKILL.md"].replace('  version: "0.4.0"\n', '') + '\nversion: "0.4.0"\n'
         self.reject("metadata.version|metadata mapping")
+
+
+class NetLongBindingTests(unittest.TestCase):
+    """Mutate real relationships, not copied inventories or expected entry counts."""
+
+    NETLONG = "assets/analytics/netlong-interface.json"
+    REVENUE = "assets/analytics/netlong-revenue-interface.json"
+
+    def setUp(self):
+        self.docs = {}
+        paths = [self.NETLONG, self.REVENUE, "assets/contracts/catalog.json", SOURCES]
+        for path in paths:
+            self.docs[path] = json.loads((ROOT / path).read_bytes())
+        for path in (self.NETLONG, self.REVENUE):
+            for binding in self.docs[path]["catalog_bindings"]:
+                for target in binding["catalogs"]:
+                    if target not in self.docs:
+                        self.docs[target] = json.loads((ROOT / target).read_bytes())
+
+    def function(self, path, key, name):
+        return next(item for item in self.docs[path][key] if item.get("name") == name)
+
+    def reject(self, message):
+        with self.assertRaisesRegex(ValueError, message):
+            _interface_bindings(self.docs)
+
+    def test_reviewed_bindings_accept_existing_repetition_and_evidence_gaps(self):
+        _interface_bindings(self.docs)
+        # Names and internalType affect presentation, not canonical wire types.
+        output = self.function(self.NETLONG, "vault_abi", "desks")["outputs"][0]
+        output["internalType"] = "struct Renamed"
+        output["components"][0]["name"] = "renamed"
+        self.function(self.REVENUE, "pot_abi", "totalPrincipalUsdg")["outputs"][0]["type"] = "uint"
+        _interface_bindings(self.docs)
+
+    def test_binding_scope_cannot_promote_reconstructed_getters_to_publisher_abi(self):
+        original = deepcopy(self.docs)
+        for signature, wrong_scope in (("nextPositionId()", "publisher_interface"),
+                                       ("tokenCount()", "runtime_body_review")):
+            with self.subTest(signature=signature):
+                self.docs = deepcopy(original)
+                binding = next(row for row in self.docs[self.NETLONG]["catalog_bindings"]
+                               if signature in row["functions"])
+                binding["evidence_scope"] = wrong_scope
+                self.reject("catalog binding evidence scope mismatch")
+
+    def test_bound_entry_cannot_silently_change_source_family(self):
+        entry = self.function("assets/contracts/netlong-margin-desk.json", "functions", "nextPositionId")
+        entry["evidence"]["source_id"] = "netnet-trading-entry-20261010"
+        self.reject("catalog binding evidence scope mismatch")
+
+    def test_tuple_signedness_width_order_and_nesting_are_semantic(self):
+        original = deepcopy(self.docs)
+        for change in ("signedness", "width", "order", "nesting"):
+            with self.subTest(change=change):
+                self.docs = deepcopy(original)
+                output = self.function(self.NETLONG, "futures_abi", "positions")["outputs"][0]
+                components = output["components"]
+                if change == "signedness":
+                    components[7]["type"] = "uint128"
+                elif change == "width":
+                    components[2]["type"] = "uint256"
+                elif change == "order":
+                    components[0], components[1] = components[1], components[0]
+                else:
+                    output["type"] = "tuple[]"
+                self.reject("catalog binding layout mismatch")
+
+    def test_input_signature_and_read_mutability_drift_are_rejected(self):
+        original = deepcopy(self.docs)
+        self.function(self.NETLONG, "vault_abi", "deskAt")["inputs"][0]["type"] = "uint128"
+        self.reject("binding executable entry missing")
+        self.docs = original
+        self.function(self.NETLONG, "vault_abi", "deskAt")["stateMutability"] = "pure"
+        self.reject("catalog binding layout mismatch")
+
+    def test_reviewed_output_drift_is_detected_from_either_side(self):
+        target = "assets/contracts/netlong-futures-vault.json"
+        item = next(item for item in self.docs[target]["functions"] if item["signature"] == "equityWs()")
+        item["outputs"][0]["type"] = "uint256"
+        self.reject("catalog binding layout mismatch")
+
+    def test_event_signature_indexing_and_anonymity_are_compared(self):
+        original = deepcopy(self.docs)
+        for change in ("signature", "indexing", "anonymous"):
+            with self.subTest(change=change):
+                self.docs = deepcopy(original)
+                event = self.function(self.NETLONG, "futures_abi", "Filled")
+                if change == "signature":
+                    event["inputs"][5]["type"] = "uint16"
+                elif change == "indexing":
+                    event["inputs"][0]["indexed"] = False
+                else:
+                    event["anonymous"] = True
+                self.reject("binding executable entry missing|catalog binding layout mismatch")
+
+    def test_missing_catalog_or_selected_entry_is_not_runtime_authority(self):
+        original = deepcopy(self.docs)
+        binding = self.docs[self.REVENUE]["catalog_bindings"][2]
+        binding["catalogs"] = ["assets/contracts/absent.json"]
+        self.reject("missing or duplicate binding catalog")
+        self.docs = original
+        target = "assets/contracts/netlong-futures-fee-router.json"
+        self.docs[target]["functions"] = [item for item in self.docs[target]["functions"]
+                                        if item["signature"] != "treasury()"]
+        self.reject("binding catalog entry missing")
+
+    def test_net_catalog_is_not_assumed_to_have_stream_getters(self):
+        binding = next(binding for binding in self.docs[self.NETLONG]["catalog_bindings"]
+                       if binding["catalogs"] == ["assets/contracts/netlong-futures-net.json"])
+        binding["functions"].append("streamId()")
+        self.reject("binding catalog entry missing")
+
+    def test_generic_and_runtime_only_entries_require_explicit_gaps(self):
+        original = deepcopy(self.docs)
+        for key in ("token_abi", "pot_abi"):
+            with self.subTest(key=key):
+                self.docs = deepcopy(original)
+                self.docs[self.NETLONG]["catalog_binding_exceptions"] = [
+                    row for row in self.docs[self.NETLONG]["catalog_binding_exceptions"] if row["abi_key"] != key]
+                self.reject("lacks catalog binding or explicit exception")
+
+    def test_new_executable_entry_does_not_inherit_catalog_authority(self):
+        self.docs[self.NETLONG]["vault_abi"].append({
+            "type": "function", "name": "balanceWs", "inputs": [],
+            "outputs": [{"type": "uint256"}], "stateMutability": "view"})
+        self.reject("lacks catalog binding or explicit exception")
+
+    def test_exception_cannot_mask_a_bound_entry(self):
+        self.docs[self.NETLONG]["catalog_binding_exceptions"].append({
+            "abi_key": "vault_abi", "functions": ["deskCount()"], "events": [],
+            "reason": "A reason does not override an existing reviewed binding."})
+        self.reject("bound entry also declared")
+
+    def test_effective_set_conflicts_fail_before_last_definition_wins(self):
+        original = deepcopy(self.docs)
+        for change in ("output", "mutability"):
+            with self.subTest(change=change):
+                self.docs = deepcopy(original)
+                item = self.function(self.REVENUE, "pot_abi", "totalPrincipalUsdg")
+                if change == "output":
+                    item["outputs"][0]["type"] = "uint128"
+                else:
+                    item["stateMutability"] = "pure"
+                self.reject("catalog binding layout mismatch" if change == "mutability"
+                            else "incompatible effective ABI definition")
+
+    def test_effective_event_conflicts_are_not_silently_merged(self):
+        event = deepcopy(self.function(self.NETLONG, "futures_abi", "Filled"))
+        event["inputs"][0]["indexed"] = False
+        self.docs[self.REVENUE]["extra_abi"] = [event]
+        self.reject("incompatible effective ABI definition")
+
+    def test_runtime_allowlist_accepts_compatible_repetition_and_rejects_conflicts(self):
+        original = deepcopy(self.docs)
+        for change in (None, "output", "mutability", "tuple"):
+            with self.subTest(change=change):
+                self.docs = deepcopy(original)
+                if change == "tuple":
+                    item = deepcopy(self.function(self.NETLONG, "futures_abi", "positions"))
+                    item["outputs"][0]["components"][7]["type"] = "uint128"
+                    self.docs[self.REVENUE]["extra_abi"] = [item]
+                elif change:
+                    item = self.function(self.REVENUE, "pot_abi", "totalPrincipalUsdg")
+                    if change == "output":
+                        item["outputs"][0]["type"] = "uint128"
+                    else:
+                        item["stateMutability"] = "pure"
+                context = object.__new__(Context)
+                context.command, context._allowed = "netlong-revenue", None
+                with patch("netstack_core.load_json", side_effect=self.docs.__getitem__):
+                    if change in ("output", "tuple"):
+                        with self.assertRaisesRegex(RpcError, "Incompatible packaged ABI definitions"):
+                            context._functions()
+                        self.assertIsNone(context._allowed)
+                    else:
+                        self.assertIn("totalPrincipalUsdg()", context._functions())
 
 
 if __name__ == "__main__":

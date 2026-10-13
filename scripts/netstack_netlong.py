@@ -127,6 +127,8 @@ def prepare_result(result):
     invalid = (snapshot.get("recheck_status") == "mismatch"
                or snapshot.get("confirmation") == "invalid"
                or any(error.get("kind") == "integrity" for error in result.get("errors", [])))
+    # Exposure qualifies one pinned snapshot; interval revenue additionally
+    # requires two boundary rechecks and treats terminal permission as invalid.
     valid = snapshot.get("recheck_status") == "confirmed" and not invalid
     confirmation = "invalid" if invalid else ("confirmed" if valid else "unconfirmed")
 

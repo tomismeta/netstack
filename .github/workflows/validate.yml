@@ -50,6 +50,12 @@ jobs:
                         "--commit", commit, "--output", str(installed)))
               print(run(sys.executable, "-I", "-B", str(installed / "scripts/verify.py")))
               run(sys.executable, "-I", "-B", str(installed / "scripts/analytics.py"), "rfv", "--help")
+              subprocess.run(
+                  [sys.executable, "-I", "-B", str(Path("tests/test_cli.py").resolve()),
+                   "--runtime-root", str(installed),
+                   "AnalyticsCLI.test_runtime_success_and_terminal_denial_consumer_contract"],
+                  cwd=root, check=True, timeout=30)
+              print(run(sys.executable, "-I", "-B", str(installed / "scripts/verify.py")))
               archives = [root / "first.zip", root / "second.zip"]
               for archive in archives:
                   print(run(sys.executable, "-I", "-B", "maintenance/package.py", "archive",

@@ -5,6 +5,66 @@
   "source_sha256": "b62b66a56fbaa9d7b387761108e99e72633369c14f3a8ad6fda8444ba9be70bc",
   "reviewed_on": "2026-10-10",
   "scope": "Exact bounded read-only executable subset. No transaction/write ABI. Publisher tuples and events; runtime identities independently fetched from explorer, not independent RPC verification. Fixed-supply LOSE distribution is not OI.",
+  "catalog_binding_scope": "Offline equality of explicitly selected executable ABI layouts and reviewed descriptive entries only. Catalog provenance retains its own publisher/runtime evidence limits; these bindings establish neither source verification, deployed behavior nor permission to execute additional reads or writes.",
+  "catalog_bindings": [
+    {
+      "abi_key": "vault_abi",
+      "catalogs": ["assets/contracts/netlong-futures-vault.json"],
+      "evidence_scope": "publisher_interface",
+      "functions": ["deskCount()", "deskAt(uint256)", "desks(address)", "totalOiUsdWad()"],
+      "events": []
+    },
+    {
+      "abi_key": "futures_abi",
+      "catalogs": ["assets/contracts/netlong-futures-btc.json", "assets/contracts/netlong-futures-eth.json", "assets/contracts/netlong-futures-sol.json"],
+      "evidence_scope": "publisher_interface",
+      "functions": ["streamId()", "verifierProxy()", "tapeVerifier()", "vault()", "oracle()", "positions(address)", "lastMark()", "oiLongUsdWad()", "oiShortUsdWad()"],
+      "events": ["Filled(uint256,address,bool,uint256,uint256,uint8,uint256,uint256)"]
+    },
+    {
+      "abi_key": "futures_abi",
+      "catalogs": ["assets/contracts/netlong-futures-net.json"],
+      "evidence_scope": "publisher_interface",
+      "functions": ["vault()", "oracle()", "positions(address)", "lastMark()", "oiLongUsdWad()", "oiShortUsdWad()"],
+      "events": ["Filled(uint256,address,bool,uint256,uint256,uint8,uint256,uint256)"],
+      "scope": "NET pool-mark futures only; streamId, verifierProxy and tapeVerifier are stream-market reads and are deliberately not bound to NET."
+    },
+    {
+      "abi_key": "margin_abi",
+      "catalogs": ["assets/contracts/netlong-margin-desk.json"],
+      "evidence_scope": "publisher_interface",
+      "functions": ["listings(address)", "tokenCount()", "tokenAt(uint256)", "marks(address)", "opensAllowed(address)", "positions(uint256)", "unitsOf(uint256)", "debtUsdg(uint256)"],
+      "events": []
+    },
+    {
+      "abi_key": "margin_abi",
+      "catalogs": ["assets/contracts/netlong-margin-desk.json"],
+      "evidence_scope": "runtime_body_review",
+      "functions": ["pot()", "marginOracle()", "twapSource()", "usdg()", "nextPositionId()"],
+      "events": []
+    },
+    {
+      "abi_key": "pot_abi",
+      "catalogs": ["assets/contracts/netlong-margin-lending-account.json"],
+      "evidence_scope": "publisher_interface",
+      "functions": ["totalPrincipalUsdg()", "totalDebtUsdg()"],
+      "events": []
+    }
+  ],
+  "catalog_binding_exceptions": [
+    {
+      "abi_key": "pot_abi",
+      "functions": ["desk()", "usdg()"],
+      "events": [],
+      "reason": "Existing runtime dependency reads have no corresponding named function entries in the lending-account descriptive catalog. Do not fabricate catalog entries or treat another contract's same-named getter as authority."
+    },
+    {
+      "abi_key": "token_abi",
+      "functions": ["symbol()", "decimals()", "balanceOf(address)"],
+      "events": [],
+      "reason": "Generic token probes apply to discovered tokens, not one authoritative reviewed token implementation. This pilot makes no catalog-equivalence claim for them."
+    }
+  ],
   "ui_mechanics_review": {
     "source_id": "netnet-trading-ui-mechanics-20261012",
     "reviewed_on": "2026-10-12",

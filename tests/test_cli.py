@@ -10,6 +10,12 @@ import unittest
 sys.dont_write_bytecode = True
 FIXTURE = Path(__file__).resolve().with_name("cli_fixture.py")
 BLOCK_HASH = "0x" + "bb" * 32
+RUNTIME_OPTIONS = []
+if __name__ == "__main__" and sys.argv[1:2] == ["--runtime-root"]:
+    if len(sys.argv) < 3:
+        raise SystemExit("--runtime-root requires a directory")
+    RUNTIME_OPTIONS = ["--runtime-root", str(Path(sys.argv[2]).resolve(strict=True))]
+    del sys.argv[1:3]
 
 
 class AnalyticsCLI(unittest.TestCase):
@@ -17,7 +23,7 @@ class AnalyticsCLI(unittest.TestCase):
         args = (["predict", "--series", "2"] if command == "predict"
                 else ["rfv", "--scope", "core"])
         process = subprocess.run(
-            [sys.executable, "-I", "-B", str(FIXTURE), scenario,
+            [sys.executable, "-I", "-B", str(FIXTURE), *RUNTIME_OPTIONS, scenario,
              *args, "--deadline", "8", *options],
             capture_output=True, timeout=15,
         )
@@ -28,7 +34,7 @@ class AnalyticsCLI(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory).resolve() / "provenance.json"
             process = subprocess.run(
-                [sys.executable, "-I", "-B", str(FIXTURE), "offline",
+                [sys.executable, "-I", "-B", str(FIXTURE), *RUNTIME_OPTIONS, "offline",
                  "advance", "provenance", "--json", "--output", str(output)],
                 capture_output=True, timeout=15)
             self.assertEqual(process.returncode, 0, process.stderr)
@@ -49,7 +55,7 @@ class AnalyticsCLI(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory).resolve() / "denied.json"
             process = subprocess.run(
-                [sys.executable, "-I", "-B", str(FIXTURE), "permission",
+                [sys.executable, "-I", "-B", str(FIXTURE), *RUNTIME_OPTIONS, "permission",
                  "advance", "--view", "capacity", "--detail", "summary",
                  "--output", str(output)], capture_output=True, timeout=15)
             self.assertEqual(process.returncode, 2, process.stderr)
@@ -78,7 +84,7 @@ class AnalyticsCLI(unittest.TestCase):
             with self.subTest(command=args[0]), tempfile.TemporaryDirectory() as directory:
                 output = Path(directory).resolve() / "denied.json"
                 process = subprocess.run(
-                    [sys.executable, "-I", "-B", str(FIXTURE), "permission",
+                    [sys.executable, "-I", "-B", str(FIXTURE), *RUNTIME_OPTIONS, "permission",
                      *args, "--output", str(output)], capture_output=True, timeout=15)
                 self.assertEqual(process.returncode, 2, process.stderr)
                 self.assertEqual(process.stderr, b"")
@@ -105,7 +111,7 @@ class AnalyticsCLI(unittest.TestCase):
             for command, detail in (("book", ("--detail", "summary")), ("house", ())):
                 output = Path(directory).resolve() / (command + ".json")
                 process = subprocess.run(
-                    [sys.executable, "-I", "-B", str(FIXTURE), "permission",
+                    [sys.executable, "-I", "-B", str(FIXTURE), *RUNTIME_OPTIONS, "permission",
                      command, *detail, "--output", str(output)], capture_output=True, timeout=15)
                 self.assertEqual(process.returncode, 2, process.stderr)
                 stdout, saved = json.loads(process.stdout), json.loads(output.read_bytes())
@@ -158,6 +164,43 @@ class AnalyticsCLI(unittest.TestCase):
         self.assertFalse(report["coverage"]["collection_complete"])
         self.assertTrue(any(row.get("scope") == "core_rfv:vault.convertToAssets"
                             for row in report["errors"]))
+
+    def test_runtime_success_and_terminal_denial_consumer_contract(self):
+        # Also selected explicitly by exported-package CI and package tests.
+        # The fixture changes only transport and synthetic source applicability;
+        # dispatch, collection, math, projection and checkpointing are real.
+        for scenario in ("success", "permission"):
+            with self.subTest(scenario=scenario), tempfile.TemporaryDirectory() as directory:
+                output = Path(directory).resolve() / "evidence.json"
+                process, summary = self.invoke(scenario, "--detail", "summary",
+                                               "--output", str(output))
+                full = json.loads(output.read_bytes())
+                self.assertEqual(process.returncode, 0 if scenario == "success" else 2)
+                self.assertEqual(stat.S_IMODE(output.stat().st_mode), 0o600)
+                self.assertEqual(list(output.parent.iterdir()), [output])
+                self.assert_summary_companion(summary, full)
+                if scenario == "success":
+                    self.assert_confirmed(full)
+                    self.assert_independent_core(full)
+                    self.assertEqual(full["status"], "completed")
+                    self.assertEqual(full["stopping_reason"], "completed_requested_collection")
+                    self.assertTrue(full["coverage"]["collection_complete"])
+                    self.assertEqual(full["errors"], [])
+                    self.assertEqual(full["metrics"]["core_rfv"]["reconciliation"]["rfv"]["delta_raw"], "0")
+                else:
+                    self.assertEqual(full["status"], "partial")
+                    self.assertEqual(full["stopping_reason"], "rpc_or_evidence_failure")
+                    self.assertEqual(full["errors"][0]["kind"], "permission")
+                    self.assertNotIn("block_number", full["snapshot"])
+                    scope = full["coverage"]["requested_scope"]
+                    self.assertEqual(scope["status"], "not_collected")
+                    self.assertFalse(scope["collection_complete"])
+                    self.assertFalse(scope["raw_acquisition_complete"])
+                    self.assertEqual(scope["snapshot_confirmation"], "unconfirmed")
+                    self.assertTrue(full["not_proven"])
+                    self.assertEqual(full["resources"]["rpc_members_used"], 1)
+                    self.assertEqual(full["resources"]["response_bytes"], 0)
+                    self.assertEqual(full["resources"]["recovery_attempts"], 0)
 
     def test_core_default_and_explicit_full_stdout_equal_atomic_output(self):
         for detail in ((), ("--detail", "full")):
@@ -297,6 +340,9 @@ class AnalyticsCLI(unittest.TestCase):
             self.assertEqual(summary[key], full[key], key)
         self.assertNotIn("output_detail", full)
         self.assertEqual(summary["output_detail"]["full_evidence"]["checkpoint_status"], "saved")
+        if "core_rfv" not in full["metrics"]:
+            self.assertEqual(summary["metrics"], full["metrics"])
+            return
         reads = summary["metrics"]["core_rfv"]["reads"]
         if full["status"] == "completed":
             self.assertEqual(reads["summary_omitted"], "successful_raw_reads")

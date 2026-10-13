@@ -318,6 +318,79 @@ def dictionaries(value):
 
 
 class NetLongRevenueTests(unittest.TestCase):
+    def test_projection_preserves_evidence_and_qualifies_boundaries_independently(self):
+        fixture = RevenueFixture()
+        fixture.activity()
+        status, full, _ = fixture.run_cli()
+        self.assertEqual(status, 0, full)
+        for checkpoint in fixture.documents:
+            before = deepcopy(checkpoint)
+            projected = revenue.prepare_result(checkpoint)
+            self.assertEqual(checkpoint, before)
+            self.assertEqual(projected, revenue.prepare_result(checkpoint))
+            self.assertEqual(projected, revenue.prepare_result(projected))
+
+        baseline = deepcopy(full)
+        observed = [
+            row["observed_subtotal"]
+            for row in dictionaries(full["metrics"]["observations"])
+            if "observed_subtotal" in row]
+        for side in revenue.SIDES:
+            for state in ("absent", "unconfirmed", "mismatch"):
+                with self.subTest(side=side, state=state):
+                    source = deepcopy(full)
+                    if state == "absent":
+                        del source["metrics"]["boundaries"][side]
+                    else:
+                        source["metrics"]["boundaries"][side]["recheck_status"] = state
+                    before = deepcopy(source)
+                    projected = revenue.prepare_result(source)
+                    self.assertEqual(source, before)
+                    self.assert_incomplete(projected)
+                    scope = projected["coverage"]["requested_scope"]
+                    self.assertTrue(scope["raw_acquisition_complete"])
+                    self.assertFalse(scope["boundaries_confirmed"])
+                    self.assertEqual(scope["snapshot_confirmation"],
+                                     "invalid" if state == "mismatch" else "unconfirmed")
+                    self.assertEqual(observed, [
+                        row["observed_subtotal"]
+                        for row in dictionaries(projected["metrics"]["observations"])
+                        if "observed_subtotal" in row])
+                    self.assertEqual(projected, revenue.prepare_result(projected))
+                    other = next(boundary for boundary in revenue.SIDES if boundary != side)
+                    self.assertEqual(projected["metrics"]["boundaries"][other]["recheck_status"], "confirmed")
+                    self.assertEqual(projected["metrics"]["events"], full["metrics"]["events"])
+                    # Retained raw discovery facts permit fresh qualification;
+                    # previously demoted flags are not failed acquisition.
+                    recovered = deepcopy(projected)
+                    recovered["metrics"]["boundaries"][side] = deepcopy(full["metrics"]["boundaries"][side])
+                    restored = revenue.prepare_result(recovered)
+                    self.assertTrue(restored["coverage"]["requested_scope"]["collection_complete"])
+                    self.assertEqual(restored["metrics"]["observations"], full["metrics"]["observations"])
+                    self.assertEqual(projected["metrics"]["transfers"], full["metrics"]["transfers"])
+
+        for kind in ("permission", "integrity"):
+            source = deepcopy(full)
+            source["errors"].append({"kind": kind})
+            projected = revenue.prepare_result(source)
+            self.assert_incomplete(projected)
+            self.assertEqual(projected["coverage"]["requested_scope"]["snapshot_confirmation"], "invalid")
+            self.assertTrue(projected["coverage"]["requested_scope"]["raw_acquisition_complete"])
+
+        # Boundary confirmation cannot compensate for unfinished acquisition,
+        # even when all observations from a prior checkpoint remain available.
+        source = deepcopy(full)
+        source["metrics"]["acquisition_finished"] = False
+        projected = revenue.prepare_result(source)
+        self.assert_incomplete(projected)
+        self.assertTrue(projected["coverage"]["requested_scope"]["boundaries_confirmed"])
+        self.assertFalse(projected["coverage"]["requested_scope"]["raw_acquisition_complete"])
+        self.assertEqual(observed, [
+            row["observed_subtotal"]
+            for row in dictionaries(projected["metrics"]["observations"])
+            if "observed_subtotal" in row])
+        self.assertEqual(full, baseline)
+
     def assert_incomplete(self, document):
         self.assertFalse(document["coverage"].get("requested_scope", {}).get("collection_complete", False))
         for row in dictionaries(document["metrics"].get("observations", {})):

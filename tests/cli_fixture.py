@@ -1,6 +1,7 @@
 """Synthetic raw RPC launcher for the real CLI; never contacts a network.
 
-Usage: python3 -I -B tests/cli_fixture.py SCENARIO [analytics arguments...]
+Usage: python3 -I -B tests/cli_fixture.py [--runtime-root PATH] SCENARIO [analytics arguments...]
+The optional root selects an exported runtime; the harness stays outside it.
 Without analytics arguments this runs `rfv --scope core --deadline 8`.
 `predict` defaults to `predict --series 2 --deadline 8`. Other scenarios are
 success, read-failure, reconciliation-mismatch, header-mismatch,
@@ -16,7 +17,34 @@ import sys
 from unittest.mock import patch
 
 sys.dont_write_bytecode = True
-ROOT = Path(__file__).resolve().parents[1]
+CHECKOUT = Path(__file__).resolve().parents[1]
+ROOT = CHECKOUT
+if __name__ == "__main__" and sys.argv[1:2] == ["--runtime-root"]:
+    if len(sys.argv) < 4:
+        raise SystemExit("--runtime-root requires a directory and scenario")
+    ROOT = Path(sys.argv[2]).resolve(strict=True)
+    del sys.argv[1:3]
+    if ROOT == CHECKOUT or not (ROOT / "scripts/analytics.py").is_file():
+        raise SystemExit("--runtime-root must select an exported runtime, not the checkout")
+
+
+class FixtureViolation(BaseException):
+    """Bypass analytics' exception-to-JSON handling for fixture mistakes."""
+
+
+def forbid_external_access(event, args):
+    if event.startswith("socket.") or event in ("subprocess.Popen", "os.system", "os.posix_spawn"):
+        raise FixtureViolation("Real network/process operation forbidden: " + event)
+    if ROOT != CHECKOUT and event == "open" and isinstance(args[0], (str, bytes)):
+        path = Path(args[0].decode() if isinstance(args[0], bytes) else args[0]).resolve()
+        if path.is_relative_to(CHECKOUT) and not path.is_relative_to(ROOT):
+            raise FixtureViolation("Exported runner attempted checkout access: " + str(path))
+
+
+# Install before runtime imports in the isolated launcher. Importing the fixture
+# for in-process tests must not install an irreversible process-wide audit hook.
+if __name__ == "__main__":
+    sys.addaudithook(forbid_external_access)
 sys.path.insert(0, str(ROOT / "scripts"))
 import netstack_core as core
 import netstack_reserves as reserves
@@ -47,10 +75,6 @@ SCENARIOS = (
     "success", "read-failure", "reconciliation-mismatch", "header-mismatch",
     "header-unavailable", "stop", "deadline", "checkpoint-failure", "predict", "offline", "permission",
 )
-
-
-class FixtureViolation(BaseException):
-    """Bypass analytics' exception-to-JSON handling for fixture mistakes."""
 
 
 def require(condition, message):
@@ -219,10 +243,12 @@ class Fixture:
         return dict(envelope, result=result)
 
     def connection(self, host, port, *, timeout, context, network_policy):
+        require(not self.stopped, "Transport resumed after terminal denial")
         require(self.scenario != "offline", "Offline command attempted RPC transport")
         require(host == core.RPC_HOST and port == 443 and timeout > 0,
                 "Unexpected transport destination")
         if self.scenario == "permission":
+            self.stopped = True
             raise core.RpcError("Synthetic permission denial", kind="permission")
         return Connection(self)
 
@@ -258,11 +284,6 @@ class Connection:
         pass
 
 
-def forbid_network(event, args):
-    if event.startswith("socket."):
-        raise FixtureViolation("Real network operation forbidden: " + event)
-
-
 def main():
     if len(sys.argv) < 2 or sys.argv[1] not in SCENARIOS:
         raise SystemExit("Usage: cli_fixture.py " + "|".join(SCENARIOS) + " [analytics arguments...]")
@@ -277,7 +298,6 @@ def main():
             output = Path(arguments[index + 1])
         elif argument.startswith("--output="):
             output = Path(argument.split("=", 1)[1])
-    sys.addaudithook(forbid_network)
     fixture = Fixture(scenario, output)
     sys.argv = [str(ROOT / "scripts" / "analytics.py"), *arguments]
     with patch.object(core, "_FixedHTTPSConnection", fixture.connection), \

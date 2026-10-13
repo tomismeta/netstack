@@ -9,6 +9,38 @@
     "netlong-margin-fee-router-explorer-20261010"
   ],
   "scope": "Read-only accounting and named router bindings. Complements netlong-interface; no unnamed mode selector, routing transaction or arbitrary ABI permission.",
+  "catalog_binding_scope": "Offline equality of selected executable layouts and reviewed descriptive entries, not source/compiler verification or a fresh runtime/financial observation. Revenue events are consumed directly from event_catalogs rather than copied into an executable event ABI. The router binding covers the futures router only: the margin-router descriptive catalog has no named function entries; runtime reconstruction there is not silently promoted into catalog authority.",
+  "catalog_bindings": [
+    {
+      "abi_key": "vault_abi",
+      "catalogs": ["assets/contracts/netlong-futures-vault.json"],
+      "evidence_scope": "publisher_interface",
+      "functions": ["balanceWs()", "totalFreeWs()", "totalLockedWs()", "clearingReserveWs()", "totalOwedWs()", "equityWs()", "totalShares()", "sharePriceWad()", "subscribedWs()", "pendingRedeemWs()", "adlEpoch()", "adlUnpaidWs()"],
+      "events": []
+    },
+    {
+      "abi_key": "pot_abi",
+      "catalogs": ["assets/contracts/netlong-margin-lending-account.json"],
+      "evidence_scope": "publisher_interface",
+      "functions": ["cashUsdg()", "idleUsdg()", "insuranceUsdg()", "insuranceWs()", "totalPrincipalUsdg()", "totalDebtUsdg()", "heldWs()", "heldWsValueUsdg()", "owedUsdg()", "equityUsdg()", "totalShares()", "sharePriceWad()"],
+      "events": []
+    },
+    {
+      "abi_key": "router_abi",
+      "catalogs": ["assets/contracts/netlong-futures-fee-router.json"],
+      "evidence_scope": "runtime_body_review",
+      "functions": ["wsNet()", "sNet()", "net()", "usdg()", "treasury()"],
+      "events": []
+    },
+    {
+      "abi_key": "binding_abi",
+      "catalogs": ["assets/contracts/netlong-margin-desk.json", "assets/contracts/netlong-margin-lending-account.json"],
+      "evidence_scope": "runtime_body_review",
+      "functions": ["feeRouter()"],
+      "events": []
+    }
+  ],
+  "catalog_binding_exceptions": [],
   "getter_evidence": {
     "vault_abi": "assets/contracts/netlong-futures-vault.json#/functions; exact publisher output widths and targeted runtime getter review; references/netlong-analytics.md#safe-read-plan-and-native-units",
     "pot_abi": "assets/contracts/netlong-margin-lending-account.json#/functions; exact publisher output widths and targeted runtime accounting review; references/netlong-analytics.md#safe-read-plan-and-native-units",

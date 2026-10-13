@@ -260,6 +260,111 @@ def _contract_catalog(documents, contracts):
             _require(target in detailed, target, "detailed function catalog missing from coverage ledger")
 
 
+def _abi_layout(item, kind):
+    """Wire layout only: names/internalType are not ABI compatibility evidence."""
+    inputs = tuple(_catalog_type(arg) for arg in item["inputs"])
+    if kind == "function":
+        return inputs, tuple(_catalog_type(arg) for arg in item["outputs"]), item["stateMutability"]
+    return inputs, tuple(arg["indexed"] for arg in item["inputs"]), item["anonymous"]
+
+
+def _interface_bindings(documents):
+    # These are the pilot commands' effective sets, matching Context._functions.
+    # A shared signature is allowed only when every definition has the same layout.
+    netlong = "assets/analytics/netlong-interface.json"
+    revenue = "assets/analytics/netlong-revenue-interface.json"
+    for paths in ((netlong,), (netlong, revenue)):
+        definitions = {}
+        for path in paths:
+            for key, entries in documents.get(path, {}).items():
+                if key != "abi" and not key.endswith("_abi"):
+                    continue
+                for item in entries:
+                    identity = item["type"], signature(item)
+                    layout = _abi_layout(item, item["type"])
+                    if item["type"] == "function":
+                        # Cross-contract reads may differ as view versus pure;
+                        # each exact catalog binding still checks mutability.
+                        layout = layout[:2]
+                    _require(identity not in definitions or definitions[identity] == layout,
+                             path + "/" + key, f"incompatible effective ABI definition: {identity[1]}")
+                    definitions[identity] = layout
+
+    catalog_paths = {row.get("catalog_path") for row in
+                     documents.get("assets/contracts/catalog.json", {}).get("contracts", [])}
+    source_types = {row["id"]: row.get("type") for row in
+                    documents.get("assets/sources.json", {}).get("sources", [])}
+    binding_source_types = {
+        "publisher_interface": {"official_app_contract_interface"},
+        "runtime_body_review": {"explorer_api", "explorer_contract_runtime"},
+    }
+    for path, doc in documents.items():
+        if not path.startswith("assets/analytics/"):
+            continue
+        if path not in (netlong, revenue) and "catalog_bindings" not in doc:
+            continue
+        _require(isinstance(doc.get("catalog_binding_scope"), str) and doc["catalog_binding_scope"],
+                 path, "missing catalog binding scope")
+        _require(isinstance(doc.get("catalog_bindings"), list)
+                 and isinstance(doc.get("catalog_binding_exceptions"), list),
+                 path, "missing catalog bindings or exceptions")
+        executable = {(key, item["type"], signature(item)): item
+                      for key, entries in doc.items() if key == "abi" or key.endswith("_abi")
+                      for item in entries}
+        covered, excepted, relationships = set(), set(), set()
+        for exception, rows in ((False, doc["catalog_bindings"]), (True, doc["catalog_binding_exceptions"])):
+            for row in rows:
+                _require(isinstance(row, dict), path, "invalid catalog binding")
+                key = row.get("abi_key")
+                _require(isinstance(key, str) and (key == "abi" or key.endswith("_abi"))
+                         and isinstance(doc.get(key), list), path, "unknown binding ABI key")
+                if exception:
+                    _require(isinstance(row.get("reason"), str) and row["reason"].strip(),
+                             path, "catalog binding exception needs an evidence gap")
+                else:
+                    catalogs = row.get("catalogs")
+                    _require(isinstance(catalogs, list) and catalogs
+                             and all(isinstance(target, str) and target in catalog_paths
+                                     and target in documents for target in catalogs)
+                             and len(set(catalogs)) == len(catalogs),
+                             path, "missing or duplicate binding catalog")
+                    _require(row.get("evidence_scope") in ("publisher_interface", "runtime_body_review"),
+                             path, "invalid catalog binding evidence scope")
+                selected = 0
+                for group, kind in (("functions", "function"), ("events", "event")):
+                    signatures = row.get(group)
+                    _require(isinstance(signatures, list) and all(isinstance(sig, str) for sig in signatures)
+                             and len(set(signatures)) == len(signatures), path, "invalid binding signatures")
+                    for sig in signatures:
+                        selected += 1
+                        identity = key, kind, sig
+                        _require(identity in executable, path, f"binding executable entry missing: {sig}")
+                        if exception:
+                            _require(identity not in excepted, path, "duplicate catalog binding exception")
+                            excepted.add(identity)
+                            continue
+                        covered.add(identity)
+                        for target in catalogs:
+                            relationship = identity, target
+                            _require(relationship not in relationships, path, "duplicate catalog binding")
+                            relationships.add(relationship)
+                            matches = [item for item in documents[target].get(group, [])
+                                       if item["signature"] == sig]
+                            _require(len(matches) == 1, path,
+                                     f"binding catalog entry missing or ambiguous: {target} {sig}")
+                            _require(_abi_layout(executable[identity], kind) == _abi_layout(matches[0], kind),
+                                     path, f"catalog binding layout mismatch: {target} {sig}")
+                            # Check the recorded source family, not the truth of
+                            # publisher declarations or runtime-analysis findings.
+                            source_id = matches[0].get("evidence", {}).get("source_id")
+                            _require(source_types.get(source_id) in binding_source_types[row["evidence_scope"]],
+                                     path, f"catalog binding evidence scope mismatch: {target} {sig}")
+                _require(selected > 0, path, "empty catalog binding")
+        _require(not covered.intersection(excepted), path, "bound entry also declared a catalog exception")
+        _require(covered.union(excepted) == set(executable), path,
+                 "executable ABI entry lacks catalog binding or explicit exception")
+
+
 def verify_content(files):
     """Validate a POSIX-relative-path -> bytes mapping; raise ValueError on drift.
 
@@ -483,6 +588,7 @@ def _verify_content(files):
                     _require(sum(i["indexed"] for i in item["inputs"]) <= (4 if item["anonymous"] else 3), path, "too many indexed event fields")
                 abi_count += 1
     _contract_catalog(documents, contracts)
+    _interface_bindings(documents)
 
     promoted = [row for row in candidates if "canonical_record" in row]
     for row in candidates:

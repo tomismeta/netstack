@@ -267,6 +267,19 @@ class ReviewedCommitExports(unittest.TestCase):
         self.assertEqual(integrity.verify_files(integrity.read_package(output))["manifest_sha256"], report["manifest_sha256"])
         self.assertFalse((output / "tests").exists())
 
+    def test_exported_runtime_collects_and_delivers_terminal_denial_without_checkout(self):
+        output = self.parent / "installed"
+        packaging.export_package(self.root, self.commit, output)
+        result = subprocess.run(
+            [sys.executable, "-I", "-B", str(ROOT / "tests/test_cli.py"),
+             "--runtime-root", str(output),
+             "AnalyticsCLI.test_runtime_success_and_terminal_denial_consumer_contract"],
+            cwd=self.parent, capture_output=True, timeout=30)
+        self.assertEqual(result.returncode, 0, result.stderr.decode("utf-8", "replace"))
+        # Consumer output belongs outside the runtime; strict verification also
+        # detects bytecode, fixture files or other accidental runtime writes.
+        self.assertEqual(integrity.read_package(output), self.source)
+
     def test_promised_missing_blob_fails_without_starting_transport(self):
         blob = self.git("rev-parse", "HEAD:README.md").decode().strip()
         tree = self.git("rev-parse", "HEAD^{tree}").decode().strip()

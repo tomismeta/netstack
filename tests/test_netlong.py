@@ -227,6 +227,54 @@ class TransportFixture(SyntheticContext):
 
 
 class NetLongConfirmationTests(unittest.TestCase):
+    def test_projection_is_deterministic_idempotent_and_does_not_demote_acquisition(self):
+        subtotal = netlong.quantity(17, 18, "synthetic")
+        raw = {
+            "snapshot": {"recheck_status": "unconfirmed"}, "errors": [],
+            "coverage": {"collection_complete": True,
+                         "positions": {"event_coverage_complete": True}},
+            "metrics": {
+                "aggregates": {"futures": {
+                    "collection_complete": True,
+                    "entry_notional": {"collection_complete": True,
+                                       "observed_subtotal": subtotal, "total": subtotal}}},
+                "markets": [{"collection_complete": True, "positions_complete": True}]}}
+        original = deepcopy(raw)
+        interim = netlong.prepare_result(raw)
+        self.assertEqual(raw, original)
+        self.assertEqual(interim, netlong.prepare_result(raw))
+        self.assertEqual(interim, netlong.prepare_result(interim))
+        self.assert_unconfirmed(interim, "unconfirmed")
+        raw["snapshot"]["recheck_status"] = "confirmed"
+        confirmed = netlong.prepare_result(raw)
+        self.assertTrue(confirmed["coverage"]["collection_complete"])
+        field = confirmed["metrics"]["aggregates"]["futures"]["entry_notional"]
+        self.assertEqual(field["total"], subtotal)
+        self.assertEqual(confirmed, netlong.prepare_result(confirmed))
+        self.assertEqual(interim["metrics"]["aggregates"]["futures"]["entry_notional"]["total"], None)
+        # A previously publishable projection must be revocable without losing
+        # its measured subtotal or mutating the previously returned checkpoint.
+        for signal in ("snapshot", "integrity"):
+            revoked = deepcopy(confirmed)
+            if signal == "snapshot":
+                revoked["snapshot"]["confirmation"] = "invalid"
+            else:
+                revoked["errors"].append({"kind": "integrity"})
+            before = deepcopy(revoked)
+            invalid = netlong.prepare_result(revoked)
+            self.assert_unconfirmed(invalid, "invalid")
+            self.assertEqual(invalid["metrics"]["aggregates"]["futures"]["entry_notional"]["observed_subtotal"],
+                             subtotal)
+            self.assertEqual(revoked, before)
+            self.assertEqual(invalid, netlong.prepare_result(invalid))
+        self.assertEqual(field["total"], subtotal)
+        # Confirmation is not evidence of successful acquisition.
+        raw["metrics"]["aggregates"]["futures"]["entry_notional"]["collection_complete"] = False
+        incomplete = netlong.prepare_result(raw)
+        self.assertIsNone(incomplete["metrics"]["aggregates"]["futures"]["entry_notional"]["total"])
+        self.assertEqual(incomplete["metrics"]["aggregates"]["futures"]["entry_notional"]["observed_subtotal"],
+                         subtotal)
+
     def assert_unconfirmed(self, document, confirmation):
         self.assertFalse(document["coverage"]["collection_complete"])
         self.assertFalse(document["coverage"]["snapshot_valid"])

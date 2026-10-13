@@ -247,6 +247,7 @@ def prepare_result(result):
     boundaries = metrics["boundaries"]
     invalid = (result.get("snapshot", {}).get("confirmation") == "invalid"
                or result.get("snapshot", {}).get("recheck_status") == "mismatch"
+               or any(boundaries.get(side, {}).get("recheck_status") == "mismatch" for side in SIDES)
                or any(error.get("kind") in ("integrity", "permission") for error in result.get("errors", [])))
     confirmed = (not invalid and result.get("snapshot", {}).get("recheck_status") == "confirmed"
                  and all(boundaries.get(side, {}).get("recheck_status") == "confirmed" for side in SIDES))
