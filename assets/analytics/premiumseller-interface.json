@@ -8,6 +8,25 @@
     "runtime_sha256": "e221c12443a8c1c39a7921d53341c8b689546777ccbc990a2e68ae8aa2e4a067",
     "meaning": "Explorer-returned deployed bytecode; not independently recompiled. Fresh exact pinned-block match required; not a historical implementation audit."
   },
+  "catalog_binding_scope": "Offline equality with explicitly selected explorer ABI/source-reviewed descriptive entries only. Source-to-runtime equivalence is not independently compiled; pinned runtime matching remains a separate collector check. Bindings neither authorize new reads nor verify every dependency ABI.",
+  "catalog_bindings": [
+    {
+      "abi_key": "abi",
+      "catalogs": ["assets/contracts/premium-seller.json"],
+      "evidence_scope": "reviewed_source_abi",
+      "functions": ["active()", "clipSize()", "genesisBond()", "lastExecuteAt()", "net()", "oracle()", "pairContract()", "premiumThresholdWad()", "router()", "treasury()", "twapIfAbove()", "usdg()"],
+      "events": ["PremiumSold(uint256,uint256)"],
+      "source_evidence_path": "assets/contracts/premium-seller-source-evidence.json"
+    }
+  ],
+  "catalog_binding_exceptions": [
+    {
+      "abi_key": "token_abi",
+      "functions": ["decimals()"],
+      "events": ["Transfer(address,address,uint256)"],
+      "reason": "Standard ERC20 read/event layouts applied to NET and USDG; not an independent deployed or historical token-implementation equivalence claim. Runtime decimal reads and receipt-local identity checks remain required."
+    }
+  ],
   "abi": [
     {
       "anonymous": false,

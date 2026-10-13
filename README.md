@@ -22,6 +22,7 @@ It is an independent [Agent Skills](https://agentskills.io/specification) packag
 | “How much open interest is there on NET, BTC, SOL or a new market?” | Fresh registry discovery, separate futures and margin measures, implementation checks and explicit partial coverage; no saved OI |
 | “How does LOSE work, and is the displayed reward rate right?” | Fixed issuance, allocation-funded release curve, pool-transfer levy/burn, authority, best-effort award and documented UI/runtime conflicts |
 | “How much has PremiumSeller sold NET for, and how much went to Treasury?” | Fresh gross NET, sale proceeds, realized prices and receipt-confirmed USDG remittances; explicit coverage and no cached sales |
+| “Show the last ten standard-bond epochs: NET sold, USDG received, sellout time, opening NAV and market price, with totals.” | [Epoch analytics](references/standard-bond-analytics.md) reconstruct shared capacity from historical supply and sales; sellout is strictly below one NET remaining, LP consideration stays separate, and unconfirmed or incomplete figures stay qualified |
 | “What is overall protocol revenue, broken down by product and asset?” | Product discovery and beneficiary-aware accounting; separate earned revenue, actual receipts, financing and distributions, with internal transfers eliminated and gaps explicit |
 | “How much revenue or house proceeds has NetLong generated?” | Bounded `netlong-revenue` evidence plus deeper research for uncovered economics; fees, receipt flows, LP/lender results and Treasury inflows remain separate |
 | “How does InverseBond work, what capacity remains, and how much has it burned or paid?” | Source-backed function and dependency review, fresh price/epoch-capacity research and NET-burn/Treasury-payout reconciliation; no execution guarantee or stored totals |
@@ -149,6 +150,7 @@ python3 -I -B scripts/analytics.py rfv --scope core --deadline 120 --json
 python3 -I -B scripts/analytics.py rfv --scope reports --deadline 600 --json
 python3 -I -B scripts/analytics.py rfv --scope net-assets --deadline 600 --json
 python3 -I -B scripts/analytics.py netlong --product all --detail full --deadline 600 --json
+python3 -I -B scripts/analytics.py standard-bonds --epochs 10 --detail summary --deadline 600 --json
 ```
 
 For bounded event and receipt evidence, use [`analytics.py receipts`](references/integrations.md#bounded-receipt-research) with an explicit catalog/emitter, event selection and block interval. It shares the guarded transport and partial-checkpoint machinery; no ad-hoc HTTP client or universal revenue formula is needed. The helper's complete selected-event collection is not complete protocol revenue.

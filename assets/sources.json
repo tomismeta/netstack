@@ -14,6 +14,44 @@
   },
   "sources": [
     {
+      "id": "netnet-premium-seller-getter-rpc-20261013",
+      "type": "public_rpc_observation",
+      "label": "Scoped PremiumSeller lastExecuteAt selector/read validation",
+      "url": "https://robin.etherscan.io/address/0x346e1a31171A0f7aC73909010b5435768d3B5462",
+      "observed_on": "2026-10-13",
+      "chain_id": 4663,
+      "address": "0x346e1a31171A0f7aC73909010b5435768d3B5462",
+      "block_number": 87837034,
+      "block_hash": "0x7002dabe0164203b70b7c6e259b36412972b6cfea07179e86e76fcd21b9e9852",
+      "selector": "0x44120c56",
+      "scope": "Authorized configured-RPC eth_call returned one ABI word successfully decoded as uint64; closing pinned-block hash/time recheck confirmed. The returned historical execution timestamp is deliberately not packaged.",
+      "limits": "One getter at one pinned block, not current eligibility, activity totals, ownership or complete runtime/source equivalence. The reported 0x65d962ca selector is not lastExecuteAt().",
+      "execution_authority": false
+    },
+    {
+      "id": "netnet-standard-bonds-implementation-20261013",
+      "type": "explorer_contract_source",
+      "label": "Standard BondDepository epoch, capacity and accounting implementation review",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xff32a969A0c567129eECD926D04657728E1980C1",
+      "observed_on": "2026-10-13",
+      "reference": "references/standard-bond-analytics.md",
+      "source_evidence": "assets/contracts/bond-depository-source-evidence.json",
+      "scope": "Obtained BondDepository and NET main bodies and Constants; targeted epoch, dynamic capacity, mint/burn, receipt and vesting semantics. Retained source hashes and same-response runtime identities; independently pinned runtime byte equality. No historical financial observations packaged.",
+      "limits": "Not independent compiler reproduction, exhaustive dependency/security audit or current financial-state certification. Every analytical collection must obtain and reconcile its own pinned evidence.",
+      "execution_authority": false
+    },
+    {
+      "id": "netnet-wsnet-transfer-source-20261013",
+      "type": "explorer_contract_source",
+      "label": "wsNET scoped Transfer event source and ABI evidence",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x63C12667638f2Ae6fC6ae09B43D98Ec84a8586eA",
+      "observed_on": "2026-10-13",
+      "scope": "Only Transfer(address,address,uint256) ABI, src/perp/WrappedStakedNET.sol:22 and source emission semantics reviewed; not independently pinned runtime/compiler or financial state.",
+      "source_sha256": "21c40a8fca588f5d99ce96f2fb649211e7b301a12ce21e9a6f8b98af67506036",
+      "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+      "execution_authority": false
+    },
+    {
       "id": "netnet-reports-methodology-20261013-current",
       "type": "official_app_contract_interface",
       "label": "October 13 Reports: Sleeve LOSE spot and distinct Team Safe LP principal",
@@ -6528,7 +6566,7 @@
       "Core POL reconstruction remains an explicit release blocker: the reported18432.08 USDG discrepancy and original validation block/raw/runtime packet are unresolved. Corrected haircut arithmetic does not establish complete Core reconciliation."
     ],
     "counts": {
-      "source_records": 323,
+      "source_records": 326,
       "contract_records_unique_by_chain_and_address": 232,
       "public_role_address_records": 12,
       "trusted_product_mark_relationships": 6,
@@ -6549,7 +6587,7 @@
         "public_frontend": 3,
         "explorer_contract_source_and_runtime": 9,
         "explorer_contract_runtime_and_dependency_source": 1,
-        "explorer_contract_source": 2,
+        "explorer_contract_source": 4,
         "explorer_api": 49,
         "official_app_contract_interface": 21,
         "official_documentation": 31,
@@ -6578,7 +6616,7 @@
         "marketplace_api": 2,
         "official_app_configuration": 1,
         "official_app_api": 2,
-        "public_rpc_observation": 4,
+        "public_rpc_observation": 5,
         "community_social_post": 1,
         "publisher_social_post": 7,
         "official_social_article": 1,

@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "source_id": "netnet-standard-bonds-implementation-20261013",
+  "observed_on": "2026-10-13",
+  "chain_id": 4663,
+  "contract_id": "robinhood-0xff32a969a0c567129eecd926d04657728e1980c1",
+  "review_scope": "Obtained BondDepository.sol complete main body (199 lines), NET.sol complete main body (254 lines), Constants.sol (80 lines), existing publisher Bond ABI; selected economic and capacity claims bound to source excerpts and exact retained runtime bytes. Not a new compiler reproduction, exhaustive dependency review, or security audit. No financial history is packaged.",
+  "source_association": "Retained source_code and deployed_bytecode fields from the same explorer smart-contract endpoint; collector matches exact decoded-byte SHA256 at snapshot and interval start. Explorer association is not independent compiler equivalence.",
+  "contracts": {
+    "bond": {
+      "address": "0xff32a969A0c567129eECD926D04657728E1980C1",
+      "source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xff32a969A0c567129eECD926D04657728E1980C1",
+      "source_path": "src/BondDepository.sol",
+      "source_sha256": "a87ca6c895d85e3bb53f33ff415d4b87c8c4d57cb94c5c4e365c77172219cd6f",
+      "source_lines": 199,
+      "runtime_bytes": 5680,
+      "runtime_sha256": "af1678d804451df1bc91f225f906e316e25ee670f18645a50cc38cac92f8c569",
+      "excerpts": [
+        {
+          "locator": "src/BondDepository.sol:41-99",
+          "text": "    INET public immutable net;\n    IERC20 public immutable usdg;\n    IUniswapV2Pair public immutable pairContract;\n    IPairOracle public immutable oracle;\n    ITreasury public immutable treasury;\n    bool private immutable _netIsToken0;\n    uint256 private immutable _usdgWadFactor;\n\n    address public genesisBond;\n    bool public enabled;\n    uint64 public startTime;\n\n    mapping(address => Note[]) public notes;\n    /// @notice NET payout already committed per epoch index.\n    mapping(uint256 => uint256) public payoutInEpoch;\n\n    constructor(address net_, address usdg_, address pair_, address oracle_, address treasury_) {\n        net = INET(_nonZero(net_));\n        usdg = IERC20(_nonZero(usdg_));\n        pairContract = IUniswapV2Pair(_nonZero(pair_));\n        oracle = IPairOracle(_nonZero(oracle_));\n        treasury = ITreasury(_nonZero(treasury_));\n        _netIsToken0 = IUniswapV2Pair(pair_).token0() == net_;\n        _usdgWadFactor = 10 ** (18 - IERC20Metadata(usdg_).decimals());\n    }\n\n    /// @notice One-time wiring (GenesisBond \u2194 BondDepository deploy cycle).\n    function wire(address genesisBond_) external wiring {\n        genesisBond = _nonZero(genesisBond_);\n    }\n\n    /// @inheritdoc IBondDepository\n    function enable() external {\n        _checkWired();\n        if (msg.sender != genesisBond) revert NotGenesisBond();\n        if (enabled) revert AlreadyEnabled();\n        enabled = true;\n        startTime = uint64(block.timestamp);\n    }\n\n    /// @inheritdoc IBondDepository\n    function marketCount() external pure returns (uint256) {\n        return 2;\n    }\n\n    /// @inheritdoc IBondDepository\n    function quoteToken(uint256 marketId) external view returns (address) {\n        if (marketId == 0) return address(usdg);\n        if (marketId == 1) return address(pairContract);\n        revert InvalidMarket();\n    }\n\n    /// @inheritdoc IBondDepository\n    function bondPrice(uint256 marketId) public view returns (uint256) {\n        if (marketId > 1) revert InvalidMarket();\n        uint256 discounted =\n            oracle.twapNetUsdg() * (Constants.BPS - Constants.BOND_DISCOUNT_BPS) / Constants.BPS;\n        uint256 backing = treasury.backingPerToken();\n        return discounted > backing ? discounted : backing;"
+        },
+        {
+          "locator": "src/BondDepository.sol:102-139",
+          "text": "    /// @inheritdoc IBondDepository\n    function deposit(uint256 marketId, uint256 amount, uint256 maxPriceWad, address to)\n        external\n        returns (uint256 noteId, uint256 payout)\n    {\n        if (!enabled) revert NotEnabled();\n        if (amount == 0) revert ZeroAmount();\n        uint256 price = bondPrice(marketId); // reverts on stale TWAP (D1)\n        if (price > maxPriceWad) revert PriceAboveMax();\n\n        uint256 valueWad;\n        if (marketId == 0) {\n            valueWad = amount * _usdgWadFactor;\n            if (!usdg.transferFrom(msg.sender, address(treasury), amount)) {\n                revert TransferFailed();\n            }\n        } else {\n            valueWad = _lpValueWad(amount);\n            if (!pairContract.transferFrom(msg.sender, address(treasury), amount)) {\n                revert TransferFailed();\n            }\n        }\n\n        payout = FixedPointMath.mulDiv(valueWad, Constants.NET_UNIT, price);\n        _checkEpochCap(payout);\n\n        treasury.mintNet(address(this), payout);\n        noteId = notes[to].length;\n        notes[to].push(\n            Note({\n                payout: payout,\n                claimed: 0,\n                start: uint64(block.timestamp),\n                end: uint64(block.timestamp + Constants.BOND_VEST)\n            })\n        );\n        emit BondCreated(to, marketId, amount, payout, price);\n    }"
+        },
+        {
+          "locator": "src/BondDepository.sol:142-197",
+          "text": "    function redeem(address to) external returns (uint256 paid) {\n        Note[] storage userNotes = notes[msg.sender];\n        for (uint256 i = 0; i < userNotes.length; i++) {\n            uint256 claimable = _claimable(userNotes[i]);\n            if (claimable == 0) continue;\n            userNotes[i].claimed += claimable;\n            paid += claimable;\n            emit BondRedeemed(msg.sender, i, claimable);\n        }\n        if (paid != 0 && !net.transfer(to, paid)) revert TransferFailed();\n    }\n\n    /// @inheritdoc IBondDepository\n    function pendingFor(address account)\n        external\n        view\n        returns (uint256 totalPending, uint256 claimableNow)\n    {\n        Note[] storage userNotes = notes[account];\n        for (uint256 i = 0; i < userNotes.length; i++) {\n            totalPending += userNotes[i].payout - userNotes[i].claimed;\n            claimableNow += _claimable(userNotes[i]);\n        }\n    }\n\n    function noteCount(address account) external view returns (uint256) {\n        return notes[account].length;\n    }\n\n    /// @dev LP valued exactly as the Treasury RFV values it (Q14): share of\n    ///      2\u00b7\u221a(xWad\u00b7yWad), NET leg at 1 USDG intrinsic.\n    function _lpValueWad(uint256 lpAmount) internal view returns (uint256) {\n        (uint112 r0, uint112 r1,) = pairContract.getReserves();\n        (uint112 netR, uint112 quoteR) = _netIsToken0 ? (r0, r1) : (r1, r0);\n        uint256 xWad = uint256(quoteR) * _usdgWadFactor;\n        uint256 yWad = uint256(netR) * Constants.NET_UNIT;\n        uint256 rfvAll = 2 * FixedPointMath.sqrt(xWad * yWad);\n        return FixedPointMath.mulDiv(rfvAll, lpAmount, pairContract.totalSupply());\n    }\n\n    function _checkEpochCap(uint256 payout) internal {\n        uint256 epochIdx = (block.timestamp - startTime) / Constants.EPOCH_LENGTH;\n        uint256 cap = net.totalSupply() * Constants.BOND_EPOCH_CAP_BPS / Constants.BPS;\n        uint256 used = payoutInEpoch[epochIdx];\n        if (used + payout > cap) revert EpochCapExceeded();\n        payoutInEpoch[epochIdx] = used + payout;\n    }\n\n    function _claimable(Note storage note) internal view returns (uint256) {\n        uint256 vested;\n        if (block.timestamp >= note.end) {\n            vested = note.payout;\n        } else {\n            vested = note.payout * (block.timestamp - note.start) / (note.end - note.start);\n        }\n        return vested - note.claimed;"
+        }
+      ]
+    },
+    "net": {
+      "address": "0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+      "source_url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xCA9c78Dd337A67F6e0077F65F5E9218719d30eDf",
+      "source_path": "src/NET.sol",
+      "source_sha256": "a92982a349acb4678daaed7fb54d0a30d5602bb5e840d58bbc338d7a5ff4a1dd",
+      "source_lines": 254,
+      "runtime_bytes": 6432,
+      "runtime_sha256": "cdc02859b4648a5c35ed22cfc8c67de29b5646dd65bcb79aee802e3ef7fff23d",
+      "excerpts": [
+        {
+          "locator": "src/NET.sol:34-37",
+          "text": "    uint8 public constant decimals = 9;\n\n    uint256 public totalSupply;\n    mapping(address => uint256) public balanceOf;"
+        },
+        {
+          "locator": "src/NET.sol:122-175",
+          "text": "    function _transfer(address from, address to, uint256 value) internal {\n        if (to == address(0)) revert ZeroAddress();\n        uint256 fromBal = balanceOf[from];\n        if (fromBal < value) revert InsufficientBalance();\n        unchecked {\n            balanceOf[from] = fromBal - value;\n        }\n\n        uint256 tax = 0;\n        if (\n            taxEnabled && !isTaxExempt[from] && !isTaxExempt[to]\n                && (isTaxedPair[from] || isTaxedPair[to])\n        ) {\n            tax = value * Constants.TAX_TOTAL_BPS / Constants.BPS;\n            if (tax != 0) {\n                balanceOf[taxCollector] += tax;\n                emit Transfer(from, taxCollector, tax);\n                emit TaxCollected(from, isTaxedPair[to] ? to : from, tax);\n            }\n        }\n        uint256 received = value - tax;\n        balanceOf[to] += received;\n        emit Transfer(from, to, received);\n    }\n\n    // \u2500\u2500 Mint / burn \u2500\u2500\n\n    function mint(address to, uint256 amount) external {\n        _checkWired();\n        if (msg.sender != treasury) revert NotTreasury();\n        if (to == address(0)) revert ZeroAddress();\n        totalSupply += amount;\n        balanceOf[to] += amount;\n        emit Transfer(address(0), to, amount);\n    }\n\n    function burn(uint256 amount) external {\n        _burn(msg.sender, amount);\n    }\n\n    function burnFrom(address from, uint256 amount) external {\n        _spendAllowance(from, msg.sender, amount);\n        _burn(from, amount);\n    }\n\n    function _burn(address from, uint256 amount) internal {\n        uint256 bal = balanceOf[from];\n        if (bal < amount) revert InsufficientBalance();\n        unchecked {\n            balanceOf[from] = bal - amount;\n            totalSupply -= amount;\n        }\n        emit Transfer(from, address(0), amount);\n    }"
+        }
+      ]
+    }
+  },
+  "constants": {
+    "source_path": "src/Constants.sol",
+    "source_sha256": "1a02fd6a04c98a0119cc38b6d0bf244d2103715733f0d9d0e28ca2227ce02d5d",
+    "epoch_seconds": 28800,
+    "net_unit": "1000000000",
+    "cap_bps": 25,
+    "bps": 10000,
+    "discount_bps": 300,
+    "vesting_seconds": 172800,
+    "excerpts": [
+      {
+        "locator": "src/Constants.sol:11-17",
+        "text": "    uint256 internal constant WAD = 1e18;\n    uint256 internal constant BPS = 10_000;\n    /// @dev NET has 9 decimals; 1 whole NET = 1e9 base units.\n    uint256 internal constant NET_UNIT = 1e9;\n\n    // \u2500\u2500 Emissions (IMMUTABLE at deploy \u2014 specs/mechanism.md \u00a72) \u2500\u2500\n    uint256 internal constant EPOCH_LENGTH = 8 hours;"
+      },
+      {
+        "locator": "src/Constants.sol:75-79",
+        "text": "    // \u2500\u2500 BondDepository (Q11 resolution) \u2500\u2500\n    uint256 internal constant BOND_VEST = 2 days;\n    uint256 internal constant BOND_DISCOUNT_BPS = 300; // TUNE (Q11)\n    /// @dev Per-epoch payout cap as bps of totalSupply (scales with supply).\n    uint256 internal constant BOND_EPOCH_CAP_BPS = 25; // TUNE (Q11)"
+      }
+    ]
+  },
+  "reviewed_claims": {
+    "epoch": "floor((timestamp-startTime)/28800); startTime written once on enable, not genesis finalization or a UTC/staking epoch.",
+    "capacity": "Every deposit computes floor(current NET totalSupply*25/10000) before its own mint; used payoutInEpoch shared by both markets; cap is not snapshotted. Availability=max(0,cap-used).",
+    "threshold": "NET mint/burn are the only totalSupply writes and emit Transfer from/to zero; ordinary transfer to zero forbidden. Group all supply changes and BondCreated by transaction, never test transient intermediate writes. First observed post-transaction availability strictly<1e9; no initial-zero-capacity instant sellout.",
+    "deposit": "Market0 transferFrom(caller,Treasury,amount) USDG; market1 canonical LP. Payout=floor(valueWad*1e9/price); cap check then Treasury mint to BondDepository then note and BondCreated. Event depositor is beneficiary to, not necessarily payer.",
+    "prices": "bondPrice=max(floor(TWAP*9700/10000),Treasury.backingPerToken), WAD USDG/NET. Requested opening NAV is fresh historical Treasury getter; requested opening spot is canonical v2 reserve ratio, neither bondPrice nor TWAP.",
+    "vesting": "BOND_VEST=2 days; any older interface comment saying5days is stale. Redeem moves already-minted custody and does not increment payoutInEpoch or totalSupply.",
+    "lp": "LP quote valued by source 2*floor(sqrt(quoteRaw*USDGfactor*netRaw*1e9))*lpAmount/LPsupply with floor mulDiv; this is not actual USDG delivered.",
+    "permissions": "deposit requires enabled, nonzero amount, valid market, oracle read, caller max price and shared cap; external token/Treasury authorization remains a dependency. enable requires wired and GenesisBond caller once. No user transaction is authorized by this catalog."
+  },
+  "limits": [
+    "NET/USDG/LP decimals and canonical pointers checked live; constants are source-generation rules, not historical output.",
+    "No independently reproduced Solidity compiler output. No static current financial state; runtime identity alone does not prove complete event history.",
+    "Treasury NAV getter is reported, not used to clear existing independent Core POL/haircut reconstruction blocker.",
+    "Exact receipt transfers are gross attributed incoming; other receipt cash is excluded, not silently attributed to bonds."
+  ]
+}

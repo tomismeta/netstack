@@ -2,6 +2,16 @@
 
 Source-only maintenance record relocated from the installed README. The entries below preserve their original chronology, counts and verification limits; they describe work at those dates, not current acceptance or deployed state. For current usage and limitations, read [README](../README.md), the installed references and the exact candidate’s external verification records. Nothing here authorizes publication.
 
+## October 13 standard-bond analytics and dogfood corrections
+
+- Added `standard-bonds`: consecutive completed epochs including quiet epochs; NET issuance, receipt-confirmed Treasury USDG, separate LP consideration, opening NAV/spot and first post-transaction capacity strictly below one NET. Source review establishes a dynamically recomputed supply-based cap, not an opening snapshot. No financial history is shipped.
+- Restricted log providers can use an explicit, bounded transaction-discovery handoff from authorized research. Receipts, archive states and header confirmations remain freshly collected; index completeness stays a disclosed assumption rather than becoming proof through receipt decoding.
+- Corrected receipt-versus-discovery event accounting, finite adaptive range splitting and reserved bounded-stop rechecks. Adversarial review additionally caught the shared identity-map limit, uncharged imported discovery events and loss of the original stop reason during failed confirmation; each was corrected with behavioral regressions.
+- Added scoped PremiumSeller catalog bindings and wsNET Transfer evidence. Independently confirmed the correct `lastExecuteAt()` selector against a pinned deployed read; the feedback's different selector did not justify deleting the getter. Returned activity history is not retained.
+- Composed existing NetLong 360/position/wallet and revenue procedures instead of creating a second accounting recipe. Documented Sleeve borrower attribution and debt enumeration without treating a historical balance or USDG recipient as the borrower.
+- Integrated offline verification passed **478 tests**. Package/source/link validation passed; actual live and host-agent acceptance evidence is retained externally and must be checked for the exact installed candidate. No tag, merge or release is authorized by this entry.
+
+
 ## Earlier release and development context
 
 **Development branch: `feat/v0.5.0` (`0.5.0-dev`, unpublished).** The October 7 ecosystem refresh covers contract identities, functions, scoped validation, accounting and source recovery. The October 10 extensions add NetLong/current futures/LOSE and deeper PremiumSeller, Sleeve bonds, Credit/Loopback, THE BOOK and Predict/House research and read-only analytics. This branch does not authorize a tag, release or registry submission. Candidate installations require explicit approval and an immutable revision.

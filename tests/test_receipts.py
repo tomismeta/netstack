@@ -219,6 +219,18 @@ class ReceiptTests(unittest.TestCase):
         self.assertEqual({event["transactionHash"] for event in events}, {TX, OTHER_TX})
         self.assertTrue(all(event["receipt_verified"] for event in events))
 
+    def test_packaged_wsnet_transfer_catalog_decodes_receipt_layout(self):
+        with patch.object(receipts, "ROOT", core.ROOT):
+            catalog = receipts.load_catalog("assets/contracts/wrapped-snet.json", ["Transfer"])
+        self.assertEqual(catalog["events"][0]["topic0"], core.TRANSFER_TOPIC)
+        log = raw_log()
+        log.update(address=catalog["address"],
+                   topics=[core.TRANSFER_TOPIC, "0x" + "00" * 32,
+                           "0x" + ACCOUNT[2:].rjust(64, "0")],
+                   data="0x" + (10**18).to_bytes(32, "big").hex())
+        decoded = core.decode_event(log, catalog["abi"])
+        self.assertEqual(decoded["values"], {"from": core.ZERO, "to": ACCOUNT, "value": 10**18})
+
     def test_descriptive_catalog_projects_standard_abi_and_decodes_signed_value(self):
         projected = receipts.load_catalog(self.catalog_path)
         self.assertEqual(projected["abi"], [EVENT])
@@ -347,7 +359,8 @@ class ReceiptTests(unittest.TestCase):
                 if classified:
                     self.assertEqual(code, 0, result)
                     self.assertEqual(fixture.ranges(), [(10, 19), (10, 14), (15, 19), (20, 20)])
-                    self.assertEqual(fixture.contexts[0]._recoveries, 1)
+                    self.assertEqual(fixture.contexts[0]._recoveries, 0)
+                    self.assertEqual(fixture.contexts[0]._range_splits, 1)
                     self.assertTrue(result["coverage"]["receipt_scan"]["event_coverage_complete"])
                 else:
                     self.assertEqual(code, 2, result)

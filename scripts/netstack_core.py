@@ -130,7 +130,7 @@ def load_json(relative_path):
 
 
 def resolve_routes(workflow):
-    if workflow not in ("liquidity", "predict", "reserves", "sleeve", "v4", "advance", "netlong", "netlong-revenue", "premiumseller", "sleeve-bonds", "credit", "book"):
+    if workflow not in ("liquidity", "predict", "reserves", "sleeve", "v4", "advance", "netlong", "netlong-revenue", "premiumseller", "standard-bonds", "sleeve-bonds", "credit", "book"):
         raise RpcError("Unknown canonical route set", kind="input")
     route = load_json("assets/analytics/" + workflow + "-routes.json")
     resolved = {"_route": route}
@@ -455,7 +455,16 @@ def json_safe(value):
     return value
 
 
+def _settle_coverage(result, reason=None):
+    reason = reason or result.get("stopping_reason")
+    if reason not in (None, "collection_in_progress"):
+        for coverage in result.get("coverage", {}).values():
+            if isinstance(coverage, dict) and coverage.get("status") == "in_progress":
+                coverage.update(status="partial", stopping_reason=reason)
+
+
 def serialize_result(result):
+    _settle_coverage(result)
     if result.get("command") == "advance":
         # Lazy import avoids a module cycle; every saved/printed body shares this contract.
         from netstack_advance import prepare_result
@@ -468,6 +477,9 @@ def serialize_result(result):
         result = prepare_result(result)
     elif result.get("command") == "premiumseller":
         from netstack_premiumseller import prepare_result
+        prepare_result(result)
+    elif result.get("command") == "standard-bonds":
+        from netstack_standard_bonds import prepare_result
         prepare_result(result)
     elif result.get("command") == "sleeve-bonds":
         from netstack_sleeve_bonds import prepare_result
@@ -672,7 +684,7 @@ class _FixedHTTPSConnection(http.client.HTTPSConnection):
 
 class Context:
     def __init__(self, command, deadline=120, output=None, *, offline=False):
-        if command not in ("lp", "predict", "house", "rfv", "advance", "netlong", "netlong-revenue", "premiumseller", "sleeve-bonds", "credit", "book", "receipts"):
+        if command not in ("lp", "predict", "house", "rfv", "advance", "netlong", "netlong-revenue", "premiumseller", "standard-bonds", "sleeve-bonds", "credit", "book", "receipts"):
             raise RpcError("Unknown analytics command", kind="input")
         if not isinstance(deadline, (int, float)) or not math.isfinite(deadline) or not 0 < deadline <= 600:
             raise RpcError("Deadline must be positive and at most 600 seconds", kind="input")
@@ -710,9 +722,12 @@ class Context:
         self._receipts = {}
         self._next_id = 1
         self._members = self._rows = self._raw_bytes = self._recoveries = 0
+        self._receipt_rows = self._range_splits = 0
+        self._rechecking = False
         self._retry_not_before = 0.0
         self._retry_wait_seconds = 0.0
-        self._member_limit = (4000 if command in ("rfv", "premiumseller", "sleeve-bonds") else
+        self._member_limit = (5000 if command == "standard-bonds" else
+                              4000 if command in ("rfv", "premiumseller", "sleeve-bonds") else
                               750 if command in ("advance", "netlong", "netlong-revenue", "credit", "book", "predict", "house", "receipts") else 250)
         self._row_limit = 50000 if command == "lp" else 10000
         self._allowed = None
@@ -887,8 +902,12 @@ class Context:
                     pass
 
     def checkpoint(self):
+        _settle_coverage(self.result, self._stopped)
         self.result["resources"] = {"rpc_members_used": self._members, "rpc_member_limit": self._member_limit,
                                     "event_rows_accepted": self._rows, "event_row_limit": self._row_limit,
+                                    "receipt_log_rows_validated": self._receipt_rows,
+                                    "log_range_splits": self._range_splits,
+                                    "snapshot_recheck_members_reserved": 1,
                                     "response_bytes": self._raw_bytes, "recovery_attempts": self._recoveries,
                                     "recovery_limit": 10, "recovery_wait_seconds": self._retry_wait_seconds,
                                     "initial_log_block_limit": MAX_LOG_BLOCKS}
@@ -921,6 +940,8 @@ class Context:
                 filenames = ("netlong-interface.json", "netlong-revenue-interface.json")
             elif self.command == "premiumseller":
                 filenames = ("premiumseller-interface.json",)
+            elif self.command == "standard-bonds":
+                filenames = ("standard-bonds-interface.json",)
             elif self.command == "sleeve-bonds":
                 filenames = ("sleeve-bonds-interface.json",)
             elif self.command == "credit":
@@ -1040,7 +1061,7 @@ class Context:
         if any(term in message for term in ("permission", "unauthor", "forbidden", "access denied", "not allowed")):
             return RpcError("RPC permission denied; no alternate provider attempted", kind="permission")
         if any(term in message for term in ("pruned", "missing trie", "historical state", "archive", "state unavailable")):
-            return RpcError("Historical RPC state unavailable or pruned", kind="pruned")
+            return RpcError("Historical RPC state unavailable or pruned; this state read requires an authorized archive-capable RPC", kind="pruned")
         if any(term in message for term in ("rate limit", "too many requests", "request quota")):
             return RpcError("RPC rate limit; bounded cooldown required", kind="rate_limit", retryable=True)
         if "revert" in message:
@@ -1103,7 +1124,7 @@ class Context:
         self.check()
         if self._rpc_endpoint is None:
             raise RpcError("Offline context does not permit RPC requests", kind="permission")
-        if self._members + len(requests) > self._member_limit:
+        if self._members + len(requests) > self._member_limit - (0 if self._rechecking else 1):
             self._stop("rpc_member_limit")
         if time.monotonic() < self._retry_not_before:
             self._recover(RpcError("Provider cooldown", kind="rate_limit"))
@@ -1361,8 +1382,8 @@ class Context:
             if previous != fingerprint:
                 self._invalidate_identity("Observed event identity has conflicting emitter, topics or data")
         else:
-            if len(self._observed_logs) >= self._row_limit:
-                self._stop("event_row_limit")
+            # Receipt identities share conflict detection, not the scan-event
+            # allowance. Raw-response/member and per-receipt limits bound them.
             self._observed_logs[identity] = fingerprint
 
 
@@ -1372,10 +1393,13 @@ class Context:
         if not fresh and tag != "latest" and number in self._headers:
             return self._headers[number]
         raw = self._rpc("eth_getBlockByNumber", [tag, False])
+        return self._accept_header(number, raw)
+
+    def _accept_header(self, number, raw):
         if not isinstance(raw, dict):
             raise RpcError("Requested block header is unavailable", kind="unavailable")
         value = {"number": _quantity(raw.get("number")), "hash": _hex(raw.get("hash"), 32), "timestamp": _quantity(raw.get("timestamp"))}
-        if tag != "latest" and value["number"] != number:
+        if number != "latest" and value["number"] != number:
             self._invalidate_identity("RPC returned the wrong block header")
         existing = self._headers.get(value["number"])
         if existing is not None and existing != value:
@@ -1383,6 +1407,34 @@ class Context:
         self._observe_identity(value["number"], value["hash"])
         self._headers[value["number"]] = value
         return value
+
+    def headers(self, numbers, *, fresh=False):
+        """Batch explicit historical headers with the same identity checks as header()."""
+        self.check()
+        requested = [_integer(number, "block number") for number in numbers]
+        pending = list(dict.fromkeys(number for number in requested
+                                     if fresh or number not in self._headers))
+        for start in range(0, len(pending), 20):
+            self.check()
+            batch = pending[start:start + 20]
+            accepted = set()
+
+            def accept(values):
+                for index, (number, raw) in enumerate(zip(batch, values)):
+                    if isinstance(raw, RpcError) or number in accepted:
+                        continue
+                    try:
+                        self._accept_header(number, raw)
+                        accepted.add(number)
+                    except RpcError as exc:
+                        values[index] = exc
+
+            values = self._exchange(
+                [("eth_getBlockByNumber", [hex(number), False]) for number in batch], accept=accept)
+            failure = next((value for value in values if isinstance(value, RpcError)), None)
+            if failure is not None:
+                raise failure
+        return [self._headers[number] for number in requested]
 
     def pin(self, block_spec):
         self.check()
@@ -1413,13 +1465,45 @@ class Context:
             raise RpcError("Snapshot has not been pinned", kind="input")
         snapshot = self.result["snapshot"]
         snapshot["recheck_status"] = "unconfirmed"
-        value = self.header(self.block, fresh=True)
+        self._rechecking = True
+        try:
+            value = self.header(self.block, fresh=True)
+        finally:
+            self._rechecking = False
         if value["hash"] != snapshot["block_hash"] or value["timestamp"] != self.timestamp:
             self._invalidate_identity("Pinned snapshot changed; coverage is invalid")
         snapshot["recheck_status"] = "confirmed"
         for coverage in self.result["coverage"].values():
             if isinstance(coverage, dict) and "snapshot_valid" in coverage:
                 coverage["snapshot_valid"] = True
+
+    def recheck_after_bounded_stop(self):
+        """Spend the reserved header read, never restart collection or a denial."""
+        reason = self._stopped
+        if (reason not in ("event_row_limit", "rpc_member_limit")
+                or self.block is None or self._terminal_error is not None
+                or self._integrity_invalid or time.monotonic() >= self._collect_end
+                or time.monotonic() < self._retry_not_before
+                or any(error.get("kind") in ("permission", "integrity")
+                       for error in self.result["errors"])):
+            return False
+        self._stopped = None
+        try:
+            self.recheck()
+            return True
+        except StopRun as exc:
+            self.result["snapshot"]["recheck_failure"] = {"kind": "stop", "reason": exc.reason}
+            if exc.reason == "deadline_exhausted" or exc.reason.startswith("interrupted_by_"):
+                raise
+            raise StopRun(reason) from exc
+        except RpcError as exc:
+            self.result["snapshot"]["recheck_failure"] = {"kind": exc.kind, "message": str(exc)}
+            raise
+        finally:
+            # A deadline/interrupt that arrives during the read is stronger.
+            if self._stopped != "deadline_exhausted" and not (self._stopped or "").startswith("interrupted_by_"):
+                self._stopped = reason
+            self._arm()
 
     def code(self, address, block=None):
         self.check()
@@ -1480,8 +1564,6 @@ class Context:
         rows = raw.get("logs")
         if not isinstance(rows, list) or len(rows) >= MAX_PAGE_ROWS:
             raise RpcError("Receipt log list missing or reaches suspected cap", kind="integrity")
-        if self._rows + len(rows) > self._row_limit:
-            self._stop("event_row_limit")
         seen = {}
         for log in rows:
             normalized = _validated_log(log)
@@ -1492,7 +1574,9 @@ class Context:
             if key in seen:
                 raise RpcError("Duplicate receipt log index", kind="integrity")
             seen[key] = normalized
-        self._rows += len(rows)
+        # Receipt corroboration is not another scanned event. All raw logs are
+        # still validated and bounded by per-receipt and total-response caps.
+        self._receipt_rows += len(rows)
         self._receipts[tx_hash] = raw
         return raw
 
@@ -1616,10 +1700,11 @@ class Context:
         seen = {}
         block_hashes, tx_positions, tx_hash_positions = {}, {}, {}
         chunk = min(chunk, MAX_LOG_BLOCKS)
-        intervals = (((max(start, right - chunk + 1), right) for right in range(end, start - 1, -chunk))
-                     if newest_first else
-                     ((left, min(end, left + chunk - 1)) for left in range(start, end + 1, chunk)))
-        for interval in intervals:
+        cursor = end if newest_first else start
+        while start <= cursor <= end:
+            interval = ((max(start, cursor - chunk + 1), cursor) if newest_first else
+                        (cursor, min(end, cursor + chunk - 1)))
+            cursor = interval[0] - 1 if newest_first else interval[1] + 1
             pending = [interval]
             while pending:
                 self.check()
@@ -1634,12 +1719,20 @@ class Context:
                     if len(raw) >= MAX_PAGE_ROWS:
                         raise RpcError("Log page reaches suspected provider row cap", kind="cap", splittable=True)
                 except RpcError as exc:
-                    if not exc.splittable or left == right or self._recoveries >= 10:
+                    if not exc.splittable or left == right:
                         coverage["status"] = "partial"
                         coverage["failure_kind"] = exc.kind
                         coverage["failure"] = str(exc)
+                        coverage["failed_range"] = [left, right]
+                        if exc.splittable:
+                            coverage["range_split_status"] = "single_block_limit"
                         raise
-                    self._recoveries += 1
+                    # Range reduction is finite subdivision, not a transient
+                    # retry. Learn the smaller width for subsequent intervals;
+                    # member/byte/deadline bounds still cap the whole traversal.
+                    self._range_splits += 1
+                    chunk = min(chunk, (right - left + 2) // 2)
+                    coverage["effective_chunk_blocks"] = chunk
                     middle = (left + right) // 2
                     pending.extend([(left, middle), (middle + 1, right)] if newest_first else
                                    [(middle + 1, right), (left, middle)])

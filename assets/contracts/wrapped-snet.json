@@ -12,17 +12,26 @@
       "sha256": "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201",
       "locator": "Literal dT, Unicode character offsets[373911,374292); consumer binding to wrapped-snet",
       "observed_on": "2026-10-07"
+    },
+    {
+      "source_id": "netnet-wsnet-transfer-source-20261013",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x63C12667638f2Ae6fC6ae09B43D98Ec84a8586eA",
+      "sha256": "21c40a8fca588f5d99ce96f2fb649211e7b301a12ce21e9a6f8b98af67506036",
+      "hash_scope": "Exact UTF-8 source_code string returned by explorer",
+      "locator": "src/perp/WrappedStakedNET.sol:22 and explorer abi Transfer event; only this event added to the prior publisher subset",
+      "observed_on": "2026-10-13"
     }
   ],
   "completeness": {
-    "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
-    "supplied_entry_count": 2,
-    "implementation": "unreviewed",
+    "supplied_interface": "publisher_literal_plus_source_reviewed_transfer_event_subset",
+    "supplied_entry_count": 3,
+    "implementation": "transfer_event_source_reviewed_not_runtime_equivalence",
     "pinned_state": "not_obtained",
     "missing_evidence": [
       "Independently pinned code, storage, current permissions and financial reconciliation.",
       "Compiler/source equivalence and exhaustive implementation/function reachability audit."
     ],
+    "prior_publisher_entry_count": 2,
     "literal_abi_sha256": "b54ce26fbb9458a42a5d923423b782b5d7b99b9d46b4910ce522889ae836f3a4",
     "literal_character_range": [
       373911,
@@ -95,7 +104,27 @@
       }
     }
   ],
-  "events": [],
+  "events": [
+    {
+      "anonymous": false,
+      "name": "Transfer",
+      "inputs": [
+        {"indexed": true, "internalType": "address", "name": "from", "type": "address"},
+        {"indexed": true, "internalType": "address", "name": "to", "type": "address"},
+        {"indexed": false, "internalType": "uint256", "name": "value", "type": "uint256"}
+      ],
+      "signature": "Transfer(address,address,uint256)",
+      "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+      "evidence": {
+        "source_id": "netnet-wsnet-transfer-source-20261013",
+        "locator": "Explorer abi Transfer entry and src/perp/WrappedStakedNET.sol:22"
+      },
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "wsNET raw18 transfer amount; source emits this layout for wrap mint, unwrap burn and transfers. This is event-interface evidence, not a pinned runtime audit, balance proof or valuation."
+      }
+    }
+  ],
   "errors": [],
   "special_entrypoints": [],
   "constructors": []

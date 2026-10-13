@@ -5,7 +5,15 @@
   "chain_id": 4663,
   "address": "0xff32a969A0c567129eECD926D04657728E1980C1",
   "generation": "bond-depository",
+  "source_evidence": "assets/contracts/bond-depository-source-evidence.json",
+  "procedure": "references/standard-bond-analytics.md",
   "provenance": [
+    {
+      "source_id": "netnet-standard-bonds-implementation-20261013",
+      "url": "https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xff32a969A0c567129eECD926D04657728E1980C1",
+      "locator": "BondDepository.sol complete main body; NET.sol supply-changing bodies; Constants.sol; exact source excerpts and runtime hashes in bond-depository-source-evidence.json",
+      "observed_on": "2026-10-13"
+    },
     {
       "source_id": "netnet-contract-interfaces-20261007",
       "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
@@ -17,11 +25,11 @@
   "completeness": {
     "supplied_interface": "complete_publisher_literal_not_deployed_abi_guarantee",
     "supplied_entry_count": 36,
-    "implementation": "unreviewed",
-    "pinned_state": "not_obtained",
+    "implementation": "source_reviewed_runtime_bound_epoch_analytics",
+    "pinned_state": "fresh_collector_required_no_packaged_financial_state",
     "missing_evidence": [
-      "Independently pinned code, storage, current permissions and financial reconciliation.",
-      "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+      "Fresh current state, permissions and complete requested financial history require collector evidence.",
+      "Independent compiler/source equivalence and exhaustive dependency/security audit."
     ],
     "literal_abi_sha256": "50cc7b0ee098387b8e4cc17889dcd1e850b8874b942d8bf6020e4a6af800352b",
     "literal_character_range": [
@@ -58,8 +66,8 @@
         "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
       },
       "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface bondPrice(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+        "status": "source_reviewed",
+        "detail": "BondDepository.sol:94-99: max(floor(oracle TWAP*9700/10000),Treasury.backingPerToken), WAD USDG per whole NET for either market; stale oracle may revert. Not market spot. Evidence netnet-standard-bonds-implementation-20261013."
       }
     },
     {
@@ -106,12 +114,12 @@
       },
       "selector": "0xfad3cc4b",
       "permissions": {
-        "status": "unreviewed",
-        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+        "status": "source_reviewed",
+        "detail": "Requires enabled, amount>0, valid market, live oracle, price<=caller max and payout within shared epoch cap. Caller quote transfer and Treasury mint authorization/dependencies can revert. This catalog does not authorize a transaction."
       },
       "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface deposit(uint256,uint256,uint256,address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+        "status": "source_reviewed",
+        "detail": "BondDepository.sol:103-139,182-188: market0 sends raw USDG directly caller->Treasury; market1 sends canonical LP, not USDG cash. Payout NET9=floor(valueWad*1e9/price); shared cap floor(current supply*25/10000) checked before mint, not epoch-snapshotted. Then mint to depository and note vesting2days. BondCreated depositor is beneficiary to, not necessarily payer. Evidence netnet-standard-bonds-implementation-20261013."
       }
     },
     {
@@ -126,12 +134,12 @@
       },
       "selector": "0xa3907d71",
       "permissions": {
-        "status": "unreviewed",
-        "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
+        "status": "source_reviewed",
+        "detail": "BondDepository.sol:73-79: requires wired and msg.sender==genesisBond, enabled must be false; one-time enable."
       },
       "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface enable(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+        "status": "source_reviewed",
+        "detail": "Sets enabled=true and startTime=uint64(block.timestamp); epoch origin belongs to BondDepository, not an assumed UTC or staking counter."
       }
     },
     {
@@ -156,8 +164,8 @@
         "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
       },
       "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface enabled(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+        "status": "source_reviewed",
+        "detail": "Generated boolean getter; set once by enable. It does not prove current quote liquidity, price, capacity or successful execution."
       }
     },
     {
@@ -208,8 +216,8 @@
         "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
       },
       "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface marketCount(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+        "status": "source_reviewed",
+        "detail": "BondDepository.sol:82-84 returns2: market0 USDG reserve bonds and market1 canonical NET/USDG v2 LP bonds; both consume payoutInEpoch."
       }
     },
     {
@@ -402,8 +410,8 @@
         "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
       },
       "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface payoutInEpoch(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+        "status": "source_reviewed",
+        "detail": "Cumulative committed NET9 payout for epoch floor((timestamp-startTime)/28800), shared across both markets. Counter is not purchase count, claimed payout or a stored cap. Supply changes reprice capacity. Evidence netnet-standard-bonds-implementation-20261013 BondDepository.sol:182-188."
       }
     },
     {
@@ -471,8 +479,8 @@
         "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
       },
       "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface quoteToken(uint256). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+        "status": "source_reviewed",
+        "detail": "BondDepository.sol:87-91 returns USDG for0, canonical pair LP for1; other IDs revert. LP amount/value must not be labeled cash USDG receipts."
       }
     },
     {
@@ -503,8 +511,8 @@
         "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
       },
       "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface redeem(address). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+        "status": "source_reviewed",
+        "detail": "BondDepository.sol:142-151,190-197: moves linearly vested already-minted NET custody from caller notes to chosen recipient, emits per-note BondRedeemed. No new mint or payoutInEpoch increment. Actual Constants.BOND_VEST is2days, not stale5day interface prose."
       }
     },
     {
@@ -529,8 +537,8 @@
         "detail": "Permission checks not established from ABI labels; view/pure mutability is publisher/compiler metadata, not proof of absence of conditional reverts."
       },
       "economic_meaning": {
-        "status": "unreviewed",
-        "detail": "Descriptive interface startTime(). Inputs/outputs preserved exactly; economic units and implementation semantics not separately reviewed."
+        "status": "source_reviewed",
+        "detail": "BondDepository.sol:41-79: uint64 timestamp written once by enable. Completed epoch e spans[startTime+e*28800,startTime+(e+1)*28800); historical opening observation is last block strictly before its start."
       }
     },
     {
@@ -679,7 +687,11 @@
         "source_id": "netnet-contract-interfaces-20261007",
         "locator": "Literal yr, Unicode character offsets[274982,279994); consumer binding to bond-depository; ABI entry[21]"
       },
-      "topic0": "0xd52c75b244055af9364c0a5dc0da7868f6ae104012f245ad2702031af04d9b8e"
+      "topic0": "0xd52c75b244055af9364c0a5dc0da7868f6ae104012f245ad2702031af04d9b8e",
+      "economic_meaning": {
+        "status": "source_reviewed",
+        "detail": "BondDepository.sol:138: depositor is beneficiary to; marketId0 amountIn rawUSDG6, marketId1 amountIn rawLP18, payout NET9, priceWad USDG/NET18. Event amount is not receipt proof: match unique preceding quote transfer to Treasury and mint to depository. Evidence netnet-standard-bonds-implementation-20261013."
+      }
     },
     {
       "name": "BondRedeemed",

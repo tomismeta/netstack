@@ -123,6 +123,58 @@ class ProviderSelection(unittest.TestCase):
         self.assertNotIn(SECRET, repr(ctx._rpc_endpoint))
         self.assertNotIn("Authorization", self.requests[0][3])
 
+    def test_member_stop_reserves_one_header_without_resetting_collection_budget(self):
+        ctx = self.context()
+        with patch.object(core, "_FixedHTTPSConnection", side_effect=self.connection):
+            ctx.pin("10")
+            ctx._members = ctx._member_limit - 1
+            with self.assertRaises(core.StopRun) as stopped:
+                ctx._rpc("eth_chainId", [])
+            self.assertEqual(stopped.exception.reason, "rpc_member_limit")
+            self.assertTrue(ctx.recheck_after_bounded_stop())
+        self.assertEqual(ctx._members, ctx._member_limit)
+        self.assertEqual(ctx.result["snapshot"]["recheck_status"], "confirmed")
+        self.assertEqual(ctx._stopped, "rpc_member_limit")
+        self.assertEqual(len(self.connections), 3)
+
+    def test_reserved_recheck_backoff_preserves_original_collection_stop(self):
+        ctx = self.context()
+        with patch.object(core, "_FixedHTTPSConnection", side_effect=self.connection):
+            ctx.pin("10")
+        ctx._stopped = "event_row_limit"
+        response = Response(self, status=429, headers={"Retry-After": "3600"})
+        with patch.object(core, "_FixedHTTPSConnection", return_value=response):
+            with self.assertRaises(core.StopRun) as stopped:
+                ctx.recheck_after_bounded_stop()
+        self.assertEqual(stopped.exception.reason, "event_row_limit")
+        self.assertEqual(ctx._stopped, "event_row_limit")
+        self.assertEqual(ctx.result["snapshot"]["recheck_status"], "unconfirmed")
+        self.assertEqual(ctx.result["snapshot"]["recheck_failure"]["reason"], "provider_backoff_exceeds_budget")
+
+    def test_batched_historical_headers_match_ids_and_reject_changed_history(self):
+        ctx = self.context()
+        changed = [False]
+
+        def transform(values):
+            requests = self.requests[-1][2]
+            by_id = {entry["id"]: int(entry["params"][0], 16) for entry in requests}
+            for value in values:
+                number = by_id[value["id"]]
+                digest = number + (1000 if changed[0] and number == 11 else 0)
+                value["result"] = {"number": hex(number), "timestamp": hex(number * 10),
+                                   "hash": "0x" + format(digest, "064x")}
+            return list(reversed(values))
+
+        with patch.object(core, "_FixedHTTPSConnection",
+                          side_effect=lambda *a, **k: Response(self, transform=transform)):
+            values = ctx.headers([10, 11])
+            self.assertEqual([(row["number"], row["timestamp"]) for row in values], [(10, 100), (11, 110)])
+            changed[0] = True
+            with self.assertRaises(core.RpcError) as failed:
+                ctx.headers([10, 11], fresh=True)
+        self.assertEqual(failed.exception.kind, "integrity")
+        self.assertTrue(ctx._integrity_invalid)
+
     def test_run_attribution_is_not_a_stable_endpoint_fingerprint(self):
         os.environ["NETSTACK_RPC_URL"] = URL
         first = self.context()
@@ -231,12 +283,12 @@ class ProviderSelection(unittest.TestCase):
         self.assertEqual([(int(query["fromBlock"], 16), int(query["toBlock"], 16)) for query in queries],
                          [(0, 31), (0, 15), (0, 7), (8, 15), (16, 31), (16, 23), (24, 31)])
         self.assertEqual(self.connections, [(SECRET + ".example", 8443)] * 7)
-        self.assertEqual((ctx._members, ctx._recoveries), (7, 3))
+        self.assertEqual((ctx._members, ctx._recoveries, ctx._range_splits), (7, 0, 3))
         self.assertTrue(ctx.result["coverage"]["range"]["event_coverage_complete"])
         self.assertTrue(all(response.closed for response in responses))
         self.assertNotIn(SECRET, core.serialize_result(ctx.result))
 
-    def test_http400_range_error_stops_at_recovery_budget_with_honest_coverage(self):
+    def test_http400_range_error_reaches_single_block_independently_of_retry_budget(self):
         ctx = self.context()
         ctx.block = 31
         ctx._recoveries = 10
@@ -247,11 +299,13 @@ class ProviderSelection(unittest.TestCase):
                 list(ctx.logs("range", LOG_ADDRESS, abi, ["Transfer"], 0, 31))
         self.assertEqual(failure.exception.kind, "range")
         self.assertFalse(failure.exception.retryable)
-        self.assertEqual((transport.call_count, ctx._recoveries), (1, 10))
+        self.assertEqual((transport.call_count, ctx._recoveries, ctx._range_splits), (6, 10, 5))
         coverage = ctx.result["coverage"]["range"]
         self.assertEqual(coverage["covered_ranges"], [])
         self.assertEqual(coverage["missing_ranges"], [[0, 31]])
         self.assertEqual(coverage["failure_kind"], "range")
+        self.assertEqual(coverage["range_split_status"], "single_block_limit")
+        self.assertEqual(coverage["failed_range"], [0, 0])
         self.assertFalse(coverage["event_coverage_complete"])
         self.assertNotIn(SECRET, core.serialize_result(ctx.result))
 

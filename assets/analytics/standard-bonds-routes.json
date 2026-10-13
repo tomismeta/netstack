@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "workflow": "references/standard-bond-analytics.md",
+  "interface": "assets/analytics/standard-bonds-interface.json",
+  "bond": {"file":"assets/addresses/contracts/boardroom-bonds-bonus-bundler-and-button.json","id":"robinhood-0xff32a969a0c567129eecd926d04657728e1980c1"},
+  "net": {"file":"assets/addresses/contracts/net-assets-pair-and-credit-vault.json","id":"robinhood-0xca9c78dd337a67f6e0077f65f5e9218719d30edf"},
+  "usdg": {"file":"assets/addresses/contracts/uniswap-position-manager-routers-and-usdg.json","id":"robinhood-0x5fc5360d0400a0fd4f2af552add042d716f1d168"},
+  "treasury": {"file":"assets/addresses/contracts/tax-team-safe-tick-lens-tnet-and-treasury.json","id":"robinhood-0x04822ea321a0dee6f40656172f29312104855d66"},
+  "pair": {"file":"assets/addresses/contracts/net-assets-pair-and-credit-vault.json","id":"robinhood-0x59f95461e68e0c77605299791e1449f175165b54"},
+  "scope": "Standard BondDepository only, with shared USDG/LP epoch capacity. Verify pointers, code identities, token ordering and units before historical reconstruction. Sleeve, Genesis and Inverse bonds are separate products. No cached epoch financial observations."
+}

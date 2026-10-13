@@ -704,7 +704,8 @@ class NetLongRevenueTests(unittest.TestCase):
         status, full, _ = fixture.run_cli()
         self.assertEqual(status, 0, full)
         self.assertEqual(fixture.ranges()[:4], [(10, 19), (10, 14), (15, 19), (20, 20)])
-        self.assertEqual(fixture.contexts[0]._recoveries, 1)
+        self.assertEqual(fixture.contexts[0]._recoveries, 0)
+        self.assertEqual(fixture.contexts[0]._range_splits, 1)
         self.assertTrue(full["coverage"]["requested_scope"]["collection_complete"])
         self.assertNotIn(SECRET, json.dumps(full))
 

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "observed_on": "2026-10-12",
+  "observed_on": "2026-10-13",
   "scope": "Non-executable descriptive public/external interfaces. No wallet tooling, calldata, transaction payloads or validation warranty. Full supplied ABI != complete implementation.",
   "current_coverage": {
     "canonical_contract_records": 232,
@@ -11,6 +11,9 @@
     "unreviewed_identities": 157
   },
   "source_ids": [
+    "netnet-premium-seller-getter-rpc-20261013",
+    "netnet-standard-bonds-implementation-20261013",
+    "netnet-wsnet-transfer-source-20261013",
     "netlong-catalog-rpc-20261012",
     "netnet-inverse-bond-implementation-20261012",
     "netnet-premium-seller-implementation-20261010",
@@ -3082,11 +3085,12 @@
       "chain_id": 4663,
       "address": "0xff32a969A0c567129eECD926D04657728E1980C1",
       "generation": "BondDepository (primary offerings)",
-      "interface_status": "catalogued_supplied_interface_implementation_partial",
+      "interface_status": "source_reviewed_runtime_bound_epoch_analytics",
       "catalog_path": "assets/contracts/bond-depository.json",
+      "source_evidence": "assets/contracts/bond-depository-source-evidence.json",
       "missing_evidence": [
-        "Independently pinned code, storage, current permissions and financial reconciliation.",
-        "Compiler/source equivalence and exhaustive implementation/function reachability audit."
+        "Fresh current state, permissions and complete requested financial history require collector evidence; no financial state is packaged.",
+        "Independent compiler/source equivalence and exhaustive dependency/security audit."
       ]
     }
   ],

@@ -297,6 +297,7 @@ def _interface_bindings(documents):
     binding_source_types = {
         "publisher_interface": {"official_app_contract_interface"},
         "runtime_body_review": {"explorer_api", "explorer_contract_runtime"},
+        "reviewed_source_abi": {"explorer_contract_source"},
     }
     for path, doc in documents.items():
         if not path.startswith("assets/analytics/"):
@@ -328,7 +329,7 @@ def _interface_bindings(documents):
                                      and target in documents for target in catalogs)
                              and len(set(catalogs)) == len(catalogs),
                              path, "missing or duplicate binding catalog")
-                    _require(row.get("evidence_scope") in ("publisher_interface", "runtime_body_review"),
+                    _require(row.get("evidence_scope") in binding_source_types,
                              path, "invalid catalog binding evidence scope")
                 selected = 0
                 for group, kind in (("functions", "function"), ("events", "event")):

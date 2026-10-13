@@ -167,6 +167,62 @@ def smoke(args=None, denial=False, scenario="sale"):
 
 
 class PremiumSellerTests(unittest.TestCase):
+    def test_receipt_logs_do_not_consume_scanned_sale_budget(self):
+        fixture = Fixture()
+        for block in range(101, 1253):
+            event = fixture.add_sale(block=block, tx=hash_value(block + 10000))
+            # Real receipts also contain router/pair/approval and other logs.
+            # Validate them all without charging them as additional sales.
+            fixture.receipts[event["transactionHash"]]["logs"].extend(
+                fixture.raw_log(fixture.routes["router"]["address"], block,
+                                event["transactionHash"], index, [], "0x")
+                for index in range(5, 10))
+        result = fixture.run(block=2000)
+        self.assertEqual(result["resources"]["event_rows_accepted"], 1152)
+        self.assertEqual(result["resources"]["receipt_log_rows_validated"], 11520)
+        self.assertEqual(result["metrics"]["receipt_confirmed"]["lifetime_total"]["sale_count"], 1152)
+        self.assertEqual(result["coverage"][seller.SALE_COVERAGE]["missing_ranges"], [])
+
+    def test_history_does_not_request_historical_contract_state(self):
+        fixture = Fixture()
+        fixture.add_sale()
+        original = fixture.exchange
+        def exchange(ctx, requests):
+            for method, params in requests:
+                if method in ("eth_call", "eth_getCode"):
+                    self.assertEqual(params[-1], hex(200))
+            return original(ctx, requests)
+        with patch.object(fixture, "exchange", side_effect=exchange):
+            result = fixture.run()
+        self.assertTrue(result["coverage"]["collection_complete"])
+
+    def test_last_execute_selector_matches_reviewed_uint64_getter(self):
+        interface = load_json("assets/analytics/premiumseller-interface.json")
+        getter = next(item for item in interface["abi"] if item.get("name") == "lastExecuteAt")
+        self.assertEqual(topic(getter)[:10], "0x44120c56")
+        self.assertEqual(getter["outputs"][0]["type"], "uint64")
+        self.assertNotEqual(topic(getter)[:10], "0x65d962ca")
+
+    def test_real_cli_row_stop_confirms_endpoint_but_keeps_partial_history(self):
+        fixture = Fixture()
+        fixture.add_sale()
+        original = fixture.exchange
+        def exchange(ctx, requests):
+            if requests[0][0] == "eth_getLogs":
+                ctx._row_limit = 0
+            return original(ctx, requests)
+        stream = io.StringIO()
+        with patch.object(fixture, "exchange", side_effect=exchange), fixture.patches(), \
+                redirect_stdout(stream), patch.object(analytics, "_PROCESS_STARTED", time.monotonic()):
+            code = analytics.main(["premiumseller", "--detail", "summary", "--deadline", "30"])
+        result = json.loads(stream.getvalue())
+        self.assertEqual(code, 2)
+        self.assertEqual(result["stopping_reason"], "event_row_limit")
+        self.assertEqual(result["snapshot"]["recheck_status"], "confirmed")
+        self.assertEqual(result["coverage"][seller.SALE_COVERAGE]["status"], "partial")
+        self.assertEqual(result["coverage"][seller.SALE_COVERAGE]["missing_ranges"], [[100, 200]])
+        self.assertIsNone(result["metrics"]["event_reported"]["lifetime_total"])
+
     def test_units_vwap_tax_and_unrelated_cash_are_disjoint(self):
         fixture = Fixture()
         fixture.add_sale(block=120, net=10**9, usdg=2*10**6, unrelated=True, tax=50_000_000, duplicate=True)

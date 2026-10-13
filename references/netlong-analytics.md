@@ -2,6 +2,36 @@
 
 `netlong` discovers and accounts for the current selected futures vault and the separate real-token, long-only margin program. It does not submit transactions, create trade payloads, connect a wallet, or treat terminal demonstration data as chain state. LOSE awards are not open interest.
 
+## Common NetLong questions
+
+### A 360 summary in one evidence pass
+
+For “NetLong overview”, “360 summary” or “how is NetLong doing?”, compose the existing procedures below; do not invent a combined profit/OI metric or collect each section again independently. Pin a fresh closing block B, state the requested activity interval (use the [revenue period convention](protocol-revenue-analytics.md#1-answer-the-question-without-hiding-the-accounting-choice) for cumulative wording), and reuse full checkpoints across sections. Run exposure at B and bounded revenue ending at B; separately identified runs retain their own provider, boundary confirmation and coverage.
+
+| Answer section | Existing evidence owner | Keep distinct |
+|---|---|---|
+| Current exposure | [Both-product OI](#plain-language-open-interest-requests) | Futures USD entry OI versus margin accrued USDG debt and token exposure |
+| Fees and proceeds | [Six-step revenue procedure](#evidence-and-fresh-interval-procedure) | Assessed fees, actual receipts, accruals, burns and Treasury receipts |
+| House and lenders | [Entity scope](#scope-the-entity-and-measure-without-unnecessary-clarification), [capital-adjusted result](#vaultlp-and-lender-net-result) | Selected futures vault versus margin pot; outside ownership and liabilities |
+| Usage | Full exposure position rows plus [lifecycle events](#exact-event-decoding-and-attribution) already collected for the interval | Current funded/open/pending counts, distinct active traders and interval executions are different populations; IDs allocated and net count changes are not gross trades/closures |
+| LOSE | [Fixed issuance and loss distribution](netlong-margin-and-lose-contracts.md#lose-fixed-issuance-loss-triggered-distribution-no-redemption), [levy conversion](netlong-margin-and-lose-contracts.md#lose-transfer-tax-conversion-and-pair-mechanics) | Qualifying recorded losses, successful awards, current supply, released tokens and Sleeve receipts; none is OI or reimbursement |
+
+Lead with a compact table of supported values and effective coverage, then the missing interval/market/position/event/state dependencies. LOSE needs fresh supplemental catalog reads/receipts; neither NetLong helper supplies a complete rewards ledger. Reuse known deployment identities, covered logs and receipts rather than launching a duplicate census. Do not copy dated observations into a current answer.
+
+### Top positions and liquidation thresholds
+
+Use `netlong --product all --block B --detail full --output /absolute/research/netlong-positions.json` with an actual pinned block number. Rank futures by current slot `sizeUsdWad` (entry USD WAD), or explicitly choose last-posted-mark notional; rank margin separately by fresh `debtUsdg(id)` (USDG6), or marked token exposure with valid marks. Never rank unlike units together. The helper already enumerates futures through [`Filled` → `positions(address)`](#futures-entry-oi-versus-marked-notional) and margin through bounded IDs; it is incorrect to call futures position enumeration nonexistent. A partial candidate set yields “largest observed”, not a complete top-N.
+
+For margin liquidation questions, supplement the selected IDs with same-block `health(id)` and `liquidationPrices(id)` using the [exact read layout and checkpoint rules](netlong-margin-and-lose-contracts.md#reading-liquidation-thresholds-for-a-position). These are not fields promised by the exposure helper and must not be fabricated from its summary. Return ID, trader, token, state, accrued debt, native units, both conditional thresholds, liveness and checkpoint age. Futures follow their separate [report/exit/liquidation model](netlong-futures-contracts.md#reports-fallback-exits-and-liquidation); do not apply margin selectors or its five-minute policy to futures.
+
+### Wallet lookup without connecting a wallet
+
+1. At B, discover all margin tokens with `tokenCount()`/`tokenAt(i)`, including retained delisted entries. Read `positionOf(wallet,token)` (`0x892f928e`, two ABI address words → one uint256 ID) for each token, then each nonzero ID's [20-word `positions(id)`](#position-id-to-token-decode-the-abi-not-address-patterns), `debtUsdg(id)` and `unitsOf(id)`. Match returned trader/token to the query; a zero lookup establishes no currently registered ID for that pair, not no past borrowing. Use the full bounded ID inventory to cross-check ownership when available; deleted slots have no recoverable former owner in current state and require lifecycle receipts for history.
+2. Discover all futures desks and directly read `positions(wallet)` (`0x55f57510`) at each supported desk. Its static 12-word tuple has size at word4, wsNET margin at word5, entry price at word6, signed carry at word7, pending-close ID at word10 and `underSince` at word11. Decode against the exact [desk catalog](../assets/contracts/netlong-futures-btc.json), not storage packing. A zero-size slot means no current position on that desk, not no pending intent or historical activity.
+3. If pending intents are requested, inspect their separate evidenced surface: futures `nextCommitId()` (`0xb9f5f4e6`) bounds IDs `1 <= id < nextCommitId`; `commits(id)` (`0xc7c4a615`) returns eight static words (`trader,isLong,isClose,commitTs,deadline,sizeUsdWad,marginWs,limitPriceWad`). Bound the scan explicitly and retain deleted/default slots and expired-but-not-cleared requests separately. This is supplemental catalog research, not existing exposure-helper coverage. Filled/cleared commit IDs cannot reconstruct current positions. Margin pending-buy/open/pending-sell states stay separate from funded debt.
+4. Preserve runtime/binding checks, B/hash/time and final hash confirmation for supplemental reads too. Report searched desks/tokens/IDs and unknowns. Funding-token transfers can suggest candidates, but miss internal balances, reused collateral and on-behalf flows; they are not a complete trader, position or pending-intent census. No wallet connection, signature or transaction is needed.
+
+
 ## Plain-language open-interest requests
 
 An unqualified question such as **“How much open interest is there for NetLong?”** requests fresh authorized coverage of both programs unless the user explicitly asks for offline/package-only work. Do not silently narrow it to futures because “open interest” is futures terminology, require an extra live-read instruction, or require the user to know the product distinction.
@@ -69,6 +99,8 @@ A changed model requires new reviewed identity and accounting evidence; changing
 The desk's gross/net are reconciled against its vault registration `oiUsdWad`/`skewUsdWad`; all-market entry gross is compared with `vault.totalOiUsdWad()`.
 
 To reprice current positions, scan bounded `Filled` events from the desk's recorded creation boundary, deduplicate trader addresses, and read each trader's current `positions(address)`. Closed/zero-size slots do not contribute. A newly discovered desk without a recorded deployment uses the common bounded historical-code binary search; that boundary assumes monotonic code existence and does not disprove historical redeployment. Event coverage remains explicit and assumes the provider has not silently omitted logs.
+
+This event-based enumeration is already implemented, despite the absence of a direct on-chain trader-array getter. It covers filled-position candidates, **not never-filled pending-open intents**; use the [separate pending-intent procedure](#wallet-lookup-without-connecting-a-wallet) when requested. Funding transfers alone are only a candidate heuristic, not a replacement for complete `Filled` history and current-slot reconciliation.
 
 For each nonempty position:
 
@@ -208,7 +240,7 @@ These are different views of overlapping flows, **not additive revenue categorie
 
 ### Evidence and fresh interval procedure
 
-Implementation evidence is the [futures review](netlong-futures-contracts.md), [margin review](netlong-margin-and-lose-contracts.md) and their exact catalogs, based on the [publisher entry](https://trading.netnet.capital/assets/index-BViJKZuW.js) and explorer-indexed runtimes observed October 10, 2026. Supplemental router disassembly was analyzed October 12 from those retained bytes. These are neither independently compiled source nor current block-pinned financial observations. A static explorer read succeeded for the margin router; a separate programmatic request returned HTTP403 and stopped. No revenue balances/history are packaged.
+Implementation evidence is the [futures review](netlong-futures-contracts.md), [margin review](netlong-margin-and-lose-contracts.md) and their exact catalogs, based on the [publisher entry](https://trading.netnet.capital/assets/index-BViJKZuW.js) and explorer-indexed runtimes observed October 10, 2026. Supplemental router disassembly was analyzed October 12 from those retained bytes. These are neither independently compiled source nor current block-pinned financial observations. During that October 12 review a static explorer read succeeded for the margin router; a separate programmatic request returned HTTP403 and stopped. That dated client-specific result is not a blanket current source/RPC refusal. No revenue balances/history are packaged.
 
 Use `netlong-revenue` first for its covered boundary/event/receipt/transfer plan. For an additional named-event/emitter scope, use the [bounded `receipts` helper](integrations.md#bounded-receipt-research) with its catalog and explicit interval. It projects descriptive catalog events to standard ABI and reuses guarded collection. Unnamed router topics and uncovered economic/ownership reconciliation still require their evidenced supplemental procedures. A partial result is useful evidence to report, not a reason to silently abandon the answer or declare revenue unsupported.
 
@@ -276,6 +308,8 @@ The reviewed realization split is 20% fee router, 10% USDG insurance, remainder 
 - Attribute actual Treasury/Sleeve receipts only from the **destination's token transfer evidence and transaction cause**, with beginning/ending recipient inventory if claiming net receipts. The selected router modes do not directly send their fees there. NET tax arising on a swap leg can feed a separate tax mechanism; prove that path and classify it once. LOSE levy conversion can send USDG to Sleeve, but is a distinct LOSE-tax stream, not another booking of NetLong realized trading loss or initial LOSE allocation. When funds mix, report the supported destination and product-unattributed amount instead of fabricating per-market tracing.
 
 A complete zero **scoped router-to-Treasury remittance** is not zero Treasury revenue from every route: tax conversion, other products, historical routers and indirect paths require their own discovery and attribution. Lifetime receipt/processing flows also differ from the endpoint router inventory, LP/lender claim or available capacity; none substitutes for another.
+
+**Disposition gap retained:** the October 12 router catalogs support these raw topics/layouts, not named canonical event signatures or full numeric-field attribution. Therefore the bundled `router_disposition` remains unmeasured; do not add guessed event ABIs to clear it. A supplemental raw-topic scan must pin each emitter's matching runtime, cover explicit ranges, validate one topic and exactly 160 data bytes, join successful canonical receipts and reconcile the actual token/conversion/burn effects. Even a processing witness is not by itself the amount earned or its originating market. Keep unmatched fields, inventory provenance and missing processing history unresolved.
 
 ### Vault/LP and lender net result
 

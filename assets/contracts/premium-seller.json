@@ -230,6 +230,10 @@
         "locator": "Explorer abi array[12]"
       },
       "selector": "0x44120c56",
+      "runtime_read_evidence": {
+        "source_id": "netnet-premium-seller-getter-rpc-20261013",
+        "scope": "Exact selector successfully decoded as uint64 at the cited confirmed pin; no returned execution timestamp or current activity claim retained."
+      },
       "semantic_evidence": {
         "source_id": "netnet-premium-seller-implementation-20261010",
         "locator": "src/PremiumSeller.sol:40-41,69-74"

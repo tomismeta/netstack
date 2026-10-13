@@ -32,6 +32,8 @@ The shared margin oracle `0x90f5B57A7236A1447Ce786B1ebE42433e55D9fD0` belongs to
 
 The individual Blockscout `api/v2/smart-contracts/<address>` responses provided complete indexed creation/deployed bytecode. They did **not** return Solidity or ABI for the new margin contracts, linked libraries, LOSE token or distributor. A MarginDesk Etherscan source request returned HTTP 403; an IPFS metadata request derived from the runtime hash returned 429; the Sourcify full-match metadata path returned 404. Denied/rate-limited requests were stopped, not circumvented. The October 10 canonical RPC probe also returned 403. Separately authorized October 12 research used the host's existing configured Alchemy provider, without retrying the denied route: Desk code and five read-only getters were pinned to block **86749326**, hash `0xe732dff53a34fcd596dca76bb236df54ea36b9b2e32c9095ccb13001d020d125`, with a matching header recheck. Code matches the reviewed SHA-256; this narrow historical witness is not current permissions, complete financial state or compiler equivalence. Raw responses and transient state remain outside the package.
 
+These access observations are dated October 10–12, 2026 and scoped to the stated client/provider/method. They are not a permanent refusal of all public research or proof that the presently authorized provider lacks historical state. Preserve an actual denial as terminal for its affected retrieval; establish any separate research authority and capability rather than silently failing over.
+
 PONS, CASHCAT, AI implementation and bridge pool responses say `is_verified=true`, `is_fully_verified=false`. These flags are explorer assertions, not independent recompilation. LOSE pair itself says `is_verified=false`; its source is attributed to [verified twin `0xb9C67…A08`](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0xb9C67A370D6c2E1426Df424E53430408aCe21A08). Separately retrieved pair and twin **indexed deployed runtimes are byte-for-byte identical**. This materially supports the pair implementation analysis, but still is not a pinned RPC/code-state or independent compiler equivalence claim.
 
 Each runtime-only catalog inventories **every detected dispatcher**, including unnamed selectors and their entry PCs. A selector-name match is not a complete ABI, and an unknown selector is not silently deleted. For those entries the missing prerequisite is the complete source/ABI plus exhaustive path/storage-layout analysis. Source-file hashes and function-declaration line locators are retained for obtained source, without vendoring the files.
@@ -168,6 +170,20 @@ under  = (value - debt) / value < (slipBps + 200) / 10000
 There are two risk legs: token price and NET/wsNET credit. A stable token can still be called by falling NET credit. Read the contract's health tuple and **both** liveness flags; derived thresholds are not guaranteed execution prices.
 
 The documentation describes an under-maintenance checkpoint, five minutes of persistence, recovery/margin-addition clearance, then partial sale first if it can restore health. That policy is not an assumption that every fresh request below maintenance immediately liquidates. The all-path timing/state-machine proof remains incomplete with unavailable Desk source.
+
+### Reading liquidation thresholds for a position
+
+For a current margin position, first resolve its ID/token/trader with the [wallet or top-position procedure](netlong-analytics.md#top-positions-and-liquidation-thresholds). The [Desk catalog](../assets/contracts/netlong-margin-desk.json) supplies these publisher interfaces with targeted runtime review, **not independently compiled source or a fresh call witness for every getter**:
+
+| Call | Exact static return order | Units |
+|---|---|---|
+| `liquidationPrices(uint256)` → `0xef7d2bc5` | word0 `tokenPriceWad`, word1 `netPriceWad`, both uint256; 64 bytes, no leading offset | USD-denominated price WAD per whole token / NET, not raw USDG6 or wsNET18 |
+| `health(uint256)` → `0x783b6d60` | seven words: `tokenValueUsdWad`, `marginCreditUsdWad`, `debtUsdWad`, `ltvBps`, `under`, `tokenTwapLive`, `netOracleLive`; first four uint256, last three bool | First three are USD WAD; LTV basis points; validated ABI booleans |
+
+Append the ID as one 32-byte uint256 calldata word. Require the selected Desk and linked-library identities, exact response length and valid ABI fields at the same pinned block as `positions(id)`, fresh `debtUsdg(id)` and token marks. `debtUsdWad` in health and `debtUsdg` in raw USDG6 are not interchangeable scales. A revert or unsupported implementation yields an unavailable threshold, not zero; a returned zero/dash must not be interpreted as immunity from liquidation.
+
+Return **both** conditional price legs and both oracle-live flags. Read `positions(id).underSince` (word5, uint64 seconds), state and the pinned block timestamp; an absent checkpoint or one younger than the documented 300 seconds is not an immediately executable liquidation. Even an old checkpoint plus `under=true` is only evidence of current checkpoint/health conditions, not proof of uninterrupted health history, an all-path timing proof or a guaranteed sale. Keep the separate 600-second last-touch fallback distinct. Do not execute a checkpoint, post an oracle report or liquidate to obtain a read.
+
 
 ### SettleLib: actual sale and waterfall
 

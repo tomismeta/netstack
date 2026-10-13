@@ -125,6 +125,49 @@ class CollectorIntegrity(unittest.TestCase):
         self.assertEqual(saved['coverage']['split']['covered_ranges'], [[10, 11]])
         self.assertEqual(saved['metrics']['accepted_transfer_value'], 1)
 
+    def test_range_splits_learn_width_without_spending_transient_retries(self):
+        queries = []
+        def exchange(requests):
+            query = requests[0][1][0]
+            left, right = int(query['fromBlock'], 16), int(query['toBlock'], 16)
+            queries.append((left, right))
+            return [core.RpcError('Range limited', kind='range', splittable=True)
+                    if right - left + 1 > 2 else []]
+        with patch.object(self.ctx, '_exchange_once', side_effect=exchange):
+            pages = list(self.ctx.logs('adaptive', ADDRESS, self.abi, ['Transfer'], 0, 15, chunk=8))
+        self.assertEqual(len(pages), 8)
+        self.assertEqual(queries[-4:], [(8, 9), (10, 11), (12, 13), (14, 15)])
+        self.assertEqual(self.ctx._recoveries, 0)
+        self.assertEqual(self.ctx._range_splits, 3)
+        self.assertEqual(self.ctx.result['coverage']['adaptive']['missing_ranges'], [])
+
+    def test_bounded_stop_rechecks_without_restarting_collection(self):
+        self.ctx.timestamp = 1000
+        self.ctx.result['snapshot'] = {'block_hash': HASH, 'recheck_status': 'not_performed'}
+        self.ctx.result['coverage']['scan'] = {'status': 'in_progress', 'missing_ranges': [[0, 99]]}
+        self.ctx._stopped = 'event_row_limit'
+        self.responses.append({'number': '0x64', 'hash': HASH, 'timestamp': '0x3e8'})
+        self.assertTrue(self.ctx.recheck_after_bounded_stop())
+        self.assertEqual(self.ctx.result['snapshot']['recheck_status'], 'confirmed')
+        with self.assertRaises(core.StopRun):
+            self.ctx.check()
+        self.ctx.checkpoint()
+        saved = json.loads(self.ctx.partial_json('event_row_limit'))
+        self.assertEqual(saved['coverage']['scan']['status'], 'partial')
+        self.assertEqual(saved['coverage']['scan']['missing_ranges'], [[0, 99]])
+
+    def test_bounded_recheck_does_not_override_terminal_conditions(self):
+        for reason in ('deadline_exhausted', 'interrupted_by_SIGTERM', 'provider_backoff_exceeds_budget'):
+            self.ctx._stopped = reason
+            self.assertFalse(self.ctx.recheck_after_bounded_stop())
+        self.ctx._stopped = 'rpc_member_limit'
+        self.ctx._terminal_error = core.RpcError('Denied', kind='permission')
+        self.assertFalse(self.ctx.recheck_after_bounded_stop())
+        self.ctx._terminal_error = None
+        self.ctx._integrity_invalid = True
+        self.assertFalse(self.ctx.recheck_after_bounded_stop())
+        self.assertEqual(self.ctx._exchange_once.call_count, 0)
+
     def test_oversized_initial_request_is_bounded_without_discarding_progress(self):
         self.ctx.block = core.MAX_LOG_BLOCKS + 5
         self.responses.extend([[], core.RpcError('Unavailable', kind='pruned')])

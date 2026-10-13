@@ -110,6 +110,7 @@ def parser():
                                ("netlong", "discovered futures OI and real-token margin debt/exposure"),
                                ("netlong-revenue", "bounded NetLong fees, balance bridges and equity/accrual evidence; never total profit"),
                                ("premiumseller", "fresh PremiumSeller NET sales, realized prices and Treasury USDG remittances"),
+                               ("standard-bonds", "completed standard-bond epochs, sale receipts, opening prices and dynamic sellout thresholds"),
                                ("sleeve-bonds", "Sleeve bond inventory, subscription flows and claims"),
                                ("credit", "Credit vault, allocation and Loopback lending evidence"),
                                ("book", "THE BOOK market, wager and settlement evidence"),
@@ -147,6 +148,14 @@ def parser():
                                help="market enumeration limit (default: 32; maximum: 256)")
             child.add_argument("--max-adapters", type=lambda text: bounded_count(text, 128), default=16, metavar="COUNT",
                                help="adapter enumeration limit (default: 16; maximum: 128)")
+        if command == "standard-bonds":
+            child.add_argument("--epochs", type=lambda text: bounded_count(text, 30), default=10, metavar="COUNT",
+                               help="last completed epochs, including quiet epochs (default: 10; maximum: 30)")
+            child.add_argument("--chunk-blocks", type=lambda text: bounded_count(text, MAX_LOG_BLOCKS),
+                               default=100000, metavar="COUNT",
+                               help="initial inclusive log chunk size, adapted to provider limits (default: 100000)")
+            child.add_argument("--discovery", metavar="PATH",
+                               help="bounded local transaction-discovery handoff for the exact pin/window; receipts and state are independently checked")
         if command == "sleeve-bonds":
             child.add_argument("--account", type=account_address,
                                help="public account whose bond notes should be inspected")
@@ -189,7 +198,7 @@ def parser():
         if command == "rfv":
             child.add_argument("--scope", choices=("core", "reports", "net-assets"), default="core",
                                help="Core reserves, publisher Reports composition, or adjusted net assets (default: core)")
-        if command in ("rfv", "advance", "netlong", "netlong-revenue", "premiumseller", "sleeve-bonds", "credit", "book"):
+        if command in ("rfv", "advance", "netlong", "netlong-revenue", "premiumseller", "standard-bonds", "sleeve-bonds", "credit", "book"):
             child.add_argument("--detail", choices=("summary", "full"), default="full",
                                help="stdout evidence detail (default: full); --output always preserves full checkpoints")
         child.add_argument("--json", action="store_true", help="emit machine-readable JSON (also the default)")
@@ -216,6 +225,8 @@ def _provenance(ctx):
         modules.extend(("netstack_netlong_revenue.py", "netstack_netlong.py", "netstack_receipts.py"))
     elif ctx.command == "premiumseller":
         modules.append("netstack_premiumseller.py")
+    elif ctx.command == "standard-bonds":
+        modules.extend(("netstack_standard_bonds.py", "netstack_package.py"))
     elif ctx.command == "sleeve-bonds":
         modules.append("netstack_sleeve_bonds.py")
     elif ctx.command == "credit":
@@ -268,6 +279,9 @@ def _not_collected(result, args):
     if args.command == "netlong-revenue":
         requested.update(from_block=args.from_block, recent_blocks=args.recent_blocks,
                          boundaries_confirmed=False)
+    elif args.command == "standard-bonds":
+        requested.update(completed_epochs=args.epochs, sellout_threshold_net="1",
+                         threshold_comparison="strictly_less_than")
     result["coverage"]["requested_scope"] = requested
     result["not_proven"].append(
         "Requested live observations were not collected. Event coverage and absence of activity "
@@ -367,6 +381,8 @@ def main(argv=None):
                     from netstack_netlong_revenue import run
                 elif args.command == "premiumseller":
                     from netstack_premiumseller import run
+                elif args.command == "standard-bonds":
+                    from netstack_standard_bonds import run
                 elif args.command == "sleeve-bonds":
                     from netstack_sleeve_bonds import run
                 elif args.command == "credit":
@@ -390,6 +406,9 @@ def main(argv=None):
                     ctx.recheck()
                 if args.command == "premiumseller":
                     from netstack_premiumseller import prepare_result
+                    prepare_result(result)
+                elif args.command == "standard-bonds":
+                    from netstack_standard_bonds import prepare_result
                     prepare_result(result)
                 elif args.command == "sleeve-bonds":
                     from netstack_sleeve_bonds import prepare_result
@@ -439,8 +458,21 @@ def main(argv=None):
         result["status"] = "failed"
         result["stopping_reason"] = "fatal_error"
         exit_code = 1
+    # A bounded collection stop may spend its reserved header read, never resume
+    # collection or override a deadline, cancellation, denial or identity conflict.
+    if ctx is not None and ctx._stopped in ("event_row_limit", "rpc_member_limit"):
+        try:
+            ctx.recheck_after_bounded_stop()
+        except StopRun as exc:
+            result["stopping_reason"] = exc.reason
+            result["status"] = "partial"
+            exit_code = 2
+        except RpcError as exc:
+            result["errors"].append({"kind": exc.kind, "message": str(exc)})
+            result["status"] = "partial"
+            exit_code = 2
     # A useful partial collection can still confirm B when retrieval failed
-    # without cancellation or a permission/integrity failure. Never restart after a stop.
+    # without cancellation or a permission/integrity failure.
     if (ctx is not None and ctx.block is not None and ctx._stopped is None
             and ctx._terminal_error is None
             and result["snapshot"].get("recheck_status") == "not_performed"
@@ -493,7 +525,7 @@ def main(argv=None):
         exit_code = 2
         # Reuse a valid aggregate body without repeating expensive serialization.
         text = ctx.partial_json(ctx._stopped or "deadline_exhausted") if ctx is not None else serialize_result(result)
-    if args.command in ("rfv", "advance", "netlong", "netlong-revenue", "premiumseller", "sleeve-bonds", "credit", "book") and args.detail == "summary":
+    if args.command in ("rfv", "advance", "netlong", "netlong-revenue", "premiumseller", "standard-bonds", "sleeve-bonds", "credit", "book") and args.detail == "summary":
         try:
             # Finalization can reuse an older valid checkpoint or add an output
             # error. Project exactly that document, not the mutable ctx.result.
@@ -507,6 +539,9 @@ def main(argv=None):
                 text = summarize(text, checkpoint_status)
             elif args.command == "premiumseller":
                 from netstack_premiumseller import summarize
+                text = summarize(text, checkpoint_status)
+            elif args.command == "standard-bonds":
+                from netstack_standard_bonds import summarize
                 text = summarize(text, checkpoint_status)
             elif args.command == "sleeve-bonds":
                 from netstack_sleeve_bonds import summarize
