@@ -139,7 +139,7 @@ class Fixture:
             return deepcopy(self.receipts.get(params[0]))
         raise AssertionError("Unexpected RPC method: " + method)
 
-    def connect(self, host, port, *, timeout, context):
+    def connect(self, host, port, *, timeout, context, network_policy):
         if not context.check_hostname or context.verify_mode != ssl.CERT_REQUIRED:
             raise AssertionError("Collector weakened TLS verification")
         if not 0 < timeout <= 15:

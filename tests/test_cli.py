@@ -68,6 +68,55 @@ class AnalyticsCLI(unittest.TestCase):
             self.assertEqual(full["stopping_reason"], "rpc_or_evidence_failure")
             self.assertEqual(full["resources"]["recovery_attempts"], 0)
 
+    def test_pin_denial_is_explicitly_uncollected_for_every_live_command(self):
+        commands = (
+            ("lp",), ("predict",), ("house",), ("rfv",), ("advance",),
+            ("netlong",), ("netlong-revenue", "--recent-blocks", "11"),
+            ("premiumseller",), ("sleeve-bonds",), ("credit",), ("book",),
+        )
+        for args in commands:
+            with self.subTest(command=args[0]), tempfile.TemporaryDirectory() as directory:
+                output = Path(directory).resolve() / "denied.json"
+                process = subprocess.run(
+                    [sys.executable, "-I", "-B", str(FIXTURE), "permission",
+                     *args, "--output", str(output)], capture_output=True, timeout=15)
+                self.assertEqual(process.returncode, 2, process.stderr)
+                self.assertEqual(process.stderr, b"")
+                self.assertEqual(output.read_bytes(), process.stdout)
+                result = json.loads(process.stdout)
+                scope = result["coverage"]["requested_scope"]
+                self.assertEqual(scope["status"], "not_collected")
+                self.assertFalse(scope["collection_complete"])
+                self.assertFalse(scope["raw_acquisition_complete"])
+                self.assertEqual(scope["snapshot_confirmation"], "unconfirmed")
+                self.assertTrue(result["not_proven"])
+                self.assertNotIn("block_number", result["snapshot"])
+                self.assertEqual(result["errors"][0]["kind"], "permission")
+                self.assertEqual(result["status"], "partial")
+                self.assertEqual(result["stopping_reason"], "rpc_or_evidence_failure")
+                # Attempt-budget accounting is not a count of successful replies.
+                self.assertEqual(result["resources"]["rpc_members_used"], 1)
+                self.assertEqual(result["resources"]["response_bytes"], 0)
+                self.assertEqual(result["resources"]["recovery_attempts"], 0)
+
+    def test_book_summary_checkpoint_metadata_does_not_imply_house_failed_to_save(self):
+        with tempfile.TemporaryDirectory() as directory:
+            reports = {}
+            for command, detail in (("book", ("--detail", "summary")), ("house", ())):
+                output = Path(directory).resolve() / (command + ".json")
+                process = subprocess.run(
+                    [sys.executable, "-I", "-B", str(FIXTURE), "permission",
+                     command, *detail, "--output", str(output)], capture_output=True, timeout=15)
+                self.assertEqual(process.returncode, 2, process.stderr)
+                stdout, saved = json.loads(process.stdout), json.loads(output.read_bytes())
+                for key in ("coverage", "not_proven", "errors", "status", "stopping_reason"):
+                    self.assertEqual(stdout[key], saved[key])
+                reports[command] = stdout
+                if command == "house":
+                    self.assertEqual(output.read_bytes(), process.stdout)
+                    self.assertNotIn("checkpoint_status", stdout)
+            self.assertEqual(reports["book"]["checkpoint_status"], "saved")
+
     def assert_confirmed(self, report):
         snapshot = report["snapshot"]
         self.assertEqual(snapshot["chain_id"], 4663)

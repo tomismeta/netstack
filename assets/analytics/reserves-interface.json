@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "source_id": "netnet-core-reserves-interface-20260925",
-  "reviewed_on": "2026-10-07",
-  "scope": "Read-only Treasury RFV diagnostics. User validation establishes subtract-floored Morpho haircut; documented POL remains a known-wrong deployed reconstruction and cannot certify Core or downstream totals. No website numeric inputs.",
+  "reviewed_on": "2026-10-13",
+  "scope": "Read-only Treasury RFV diagnostics. Preserve user-validated subtract-floored Morpho haircut; applicability of documented geometric POL to the unresolved historical discrepancy is unproven. Individual matching blocks do not certify independent Core or downstream totals. No website numeric inputs.",
   "provenance": [
     {"url":"https://app.netnet.capital/assets/index-BssLYnjl.js","locator":"Treasury getters and live RFV consumer inspected in the recorded ecosystem audit","scope":"Historical interface evidence; URL returned 404 on the later same-day recheck."},
     {"url":"https://app.netnet.capital/assets/index-hABaJsIB.js","locator":"Treasury ABI fr; live consumer rfv/liquidUsdg/morphoAssets/backingPerToken; to=200; ERC-4626 convertToAssets","scope":"Current app asset statically inspected 2026-09-25, never executed. Consumer derives POL by subtraction; this collector independently reconstructs POL from RPC reserves and LP ownership."},
@@ -16,7 +16,7 @@
     "bps_denominator": 10000,
     "parameter_status": "User validation establishes deployed M-floor(M*200/10000); original block/raw/runtime packet unrecovered. Current explorer source/runtime conflicts, so its verified label is not applicability proof.",
     "pol_reconstruction_supported": false,
-    "pol_reconstruction_limit": "Release blocker: documented POL underreproduced user-validated on-chain RFV by18432.08 USDG. Original block/hash/raw inputs and applicable runtime were not recovered from repository/current-project archive. October7 explorer source/runtime conflicts with validated haircut; approved RPC read attempt403. No balancing constant, rerun-to-confirm, or claimed validation-block reconciliation.",
+    "pol_reconstruction_limit": "Historical reconciliation blocker: documented POL underreproduced user-validated on-chain RFV by18432.08 USDG. Original block/hash/raw inputs and applicable runtime remain unrecovered. October13 feedback reports a fresh-block geometric match and runtime binding; that does not reconcile the original packet or justify a universal no-match claim. No balancing constant, rerun-to-confirm or claimed historical reconciliation.",
     "pol_integer_order": "HISTORICAL DOCUMENTED CANDIDATE ONLY: x=floor(usdgReserveRaw*10^18/10^usdgDecimals); y=floor(netReserveRaw*10^18/10^netDecimals); root=isqrt(x*y); polWad=floor(2*root*treasuryLpRaw/totalLpRaw)",
     "rfv_integer_order": "cashWad + grossMorphoWad - floor(grossMorphoWad*200/10000) + polWad; total remains unsupported until exact deployed POL is established",
     "nav_integer_order": "floor(rfvWad*10^netDecimals/totalNetSupplyRaw)"
@@ -33,7 +33,8 @@
       "Treasury runtime at that block and applicable dependency/implementation identity, with source/runtime binding where available; explorer labels or code presence alone are insufficient.",
       "Original reconstruction script/version, unrounded intermediates and signed raw residual, including the display rounding that produced18432.08 USDG."
     ],
-    "gate": "Keep pol_reconstruction_supported=false until applicable deployed arithmetic explains and reconciles the original packet; a match at another block or a residual-derived POL is not independent proof."
+    "gate": "Keep pol_reconstruction_supported=false until applicable deployed arithmetic explains and reconciles the original packet; a match at another block or a residual-derived POL is not independent proof.",
+    "later_observation_scope": "A complete same-block runtime/dependency/raw-input packet can substantiate that block's candidate match, not close the missing historical discrepancy. Runtime code digest is distinct from block hash. Reports of later matches and residual-derived POL do not replace original evidence."
   },
   "treasury_abi": [
     {"type":"function","name":"rfv","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint256"}]},

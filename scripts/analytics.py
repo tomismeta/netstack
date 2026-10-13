@@ -257,6 +257,23 @@ def _pending_coverage(value):
         return any(_pending_coverage(item) for item in value)
     return False
 
+
+def _not_collected(result, args):
+    """Distinguish a blocked pre-collector run from an observed empty scope."""
+    requested = {"status": "not_collected", "collection_complete": False,
+                 "raw_acquisition_complete": False,
+                 "snapshot_confirmation": result.get("snapshot", {}).get("confirmation", "unconfirmed"),
+                 "requested_block": args.block,
+                 "meaning": "The requested collector did not start; empty metrics are not measured zero activity."}
+    if args.command == "netlong-revenue":
+        requested.update(from_block=args.from_block, recent_blocks=args.recent_blocks,
+                         boundaries_confirmed=False)
+    result["coverage"]["requested_scope"] = requested
+    result["not_proven"].append(
+        "Requested live observations were not collected. Event coverage and absence of activity "
+        "are not established; no zero balance, fee, revenue or profit follows from empty output.")
+
+
 def _emit(text, hard_end=None):
     """Do not let a blocked stdout pipe outlive the process deadline."""
     try:
@@ -287,6 +304,7 @@ def _emit(text, hard_end=None):
 
 def main(argv=None):
     ctx = None
+    collector_started = False
     try:
         args = parser().parse_args(argv)
         if (args.command == "advance" and args.action == "provenance"
@@ -320,6 +338,7 @@ def main(argv=None):
             _provenance(ctx)
             if offline:
                 from netstack_advance import provenance
+                collector_started = True
                 provenance(ctx)
             else:
                 if args.command == "receipts":
@@ -358,6 +377,7 @@ def main(argv=None):
                     from netstack_receipts import run
                 else:
                     from netstack_markets import run_house as run
+                collector_started = True
                 run(ctx, args)
                 ctx.check()
                 if args.command == "receipts":
@@ -443,6 +463,8 @@ def main(argv=None):
             result["errors"].append({"kind": exc.kind, "message": str(exc)})
             result["status"] = "partial"
             exit_code = 2
+    if not collector_started and not (args.command == "advance" and args.action == "provenance"):
+        _not_collected(result, args)
     text = None
     checkpoint_status = "not_requested" if args.output is None else "not_confirmed"
     try:

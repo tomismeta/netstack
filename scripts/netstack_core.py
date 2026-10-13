@@ -31,6 +31,7 @@ MAX_PAGE_ROWS = 2000
 SERIALIZATION_RESERVE = 2.0
 MAX_LOG_BLOCKS = 100000
 MAX_RECOVERY_WAIT = 30.0
+_MANAGED_EGRESS_IPV4 = ipaddress.IPv4Network("198.18.0.0/15")
 TRANSFER_TOPIC = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
 _HEX = re.compile(r"0x(?:[0-9a-fA-F]{2})*\Z")
 _QUANTITY = re.compile(r"0x(?:0|[1-9a-fA-F][0-9a-fA-F]*)\Z")
@@ -514,6 +515,51 @@ def _public_address(address):
 
 
 @dataclass(frozen=True, repr=False)
+class _NetworkPolicy:
+    mode: str = "public"
+    managed_cidrs: tuple[ipaddress.IPv4Network, ...] = ()
+
+
+def _network_policy():
+    """Capture operator-approved routing once, independently of provider credentials."""
+    mode = os.environ.get("NETSTACK_NETWORK_MODE", "public")
+    if mode not in ("public", "managed-egress"):
+        raise RpcError("Invalid NETSTACK_NETWORK_MODE; expected public or managed-egress", kind="input")
+    if mode == "public":
+        if "NETSTACK_MANAGED_EGRESS_CIDRS" in os.environ:
+            raise RpcError("NETSTACK_MANAGED_EGRESS_CIDRS requires managed-egress mode", kind="input")
+        return _NetworkPolicy()
+    value = os.environ.get("NETSTACK_MANAGED_EGRESS_CIDRS", "")
+    try:
+        if not value or len(value) > 1024:
+            raise ValueError
+        entries = value.split(",")
+        if len(entries) > 16 or any("/" not in entry for entry in entries):
+            raise ValueError
+        networks = tuple(ipaddress.IPv4Network(entry, strict=True) for entry in entries)
+        if any(entry != str(network) for entry, network in zip(entries, networks)) or any(not network.subnet_of(_MANAGED_EGRESS_IPV4) or
+               any(network.overlaps(previous) for previous in networks[:index])
+               for index, network in enumerate(networks)):
+            raise ValueError
+    except ValueError:
+        raise RpcError("Managed egress requires NETSTACK_MANAGED_EGRESS_CIDRS: "
+                       "up to 16 explicit IPv4 CIDRs within 198.18.0.0/15", kind="input") from None
+    return _NetworkPolicy(mode, networks)
+
+
+def _dns_hostname(host):
+    host = host.removesuffix(".")
+    try:
+        ipaddress.ip_address(host)
+    except ValueError:
+        try:
+            socket.inet_aton(host)
+        except OSError:
+            return True
+    return False
+
+
+@dataclass(frozen=True, repr=False)
 class _RpcEndpoint:
     host: str
     port: int
@@ -572,10 +618,15 @@ def _rpc_endpoint():
 
 
 class _FixedHTTPSConnection(http.client.HTTPSConnection):
-    """Validate every DNS answer and connect numerically using the selected TLS SNI."""
-    def __init__(self, host, port, *, timeout=None, context=None):
+    """Resolve once; keep TLS identity and numeric destination policy together."""
+    def __init__(self, host, port, *, timeout=None, context=None, network_policy=None):
+        policy = _NetworkPolicy() if network_policy is None else network_policy
+        if not isinstance(policy, _NetworkPolicy) or policy.mode not in ("public", "managed-egress"):
+            raise RpcError("Invalid HTTPS network policy", kind="input")
         super().__init__(host, port, timeout=timeout, context=context)
         self._destination = (host, port)
+        self._network_policy = policy
+        self._managed_dns = policy.mode == "managed-egress" and _dns_hostname(host)
 
     def connect(self):
         if ((self.host, self.port) != self._destination or self._tunnel_host
@@ -584,17 +635,30 @@ class _FixedHTTPSConnection(http.client.HTTPSConnection):
         answers = socket.getaddrinfo(self.host, self.port, type=socket.SOCK_STREAM, proto=socket.IPPROTO_TCP)
         if not answers or len(answers) > 16:
             raise RpcError("RPC DNS answer count is invalid", kind="permission")
-        for family, socktype, protocol, canonical, destination in answers:
+        for answer in answers:
+            if not isinstance(answer, tuple) or len(answer) != 5:
+                raise RpcError("RPC DNS returned a malformed answer", kind="permission")
+            family, socktype, protocol, canonical, destination = answer
+            if (family not in (socket.AF_INET, socket.AF_INET6)
+                    or not isinstance(destination, tuple)
+                    or len(destination) != (2 if family == socket.AF_INET else 4)
+                    or not isinstance(destination[0], str) or "%" in destination[0]
+                    or type(destination[1]) is not int):
+                raise RpcError("RPC DNS returned a malformed destination", kind="permission")
             try:
                 address = ipaddress.ip_address(destination[0])
             except ValueError:
                 raise RpcError("RPC DNS returned an invalid address", kind="permission") from None
-            if (family not in (socket.AF_INET, socket.AF_INET6) or not _public_address(address)
-                    or socktype != socket.SOCK_STREAM or protocol != socket.IPPROTO_TCP
+            permitted = (_public_address(address) or
+                         (self._managed_dns and address.version == 4 and address in _MANAGED_EGRESS_IPV4
+                          and any(address in network for network in self._network_policy.managed_cidrs)))
+            if (family != (socket.AF_INET if address.version == 4 else socket.AF_INET6)
+                    or not permitted or socktype != socket.SOCK_STREAM or protocol != socket.IPPROTO_TCP
                     or destination[1] != self.port):
                 raise RpcError("RPC DNS resolved to a nonpublic destination", kind="permission")
-        # A single validated numeric destination prevents both proxy use and
-        # a second hostname lookup between policy enforcement and connection.
+        # Connect to the validated numeric result without a second DNS lookup.
+        # In managed mode the operator trusts the host's synthetic DNS routing;
+        # neither the connected intermediary nor a chain ID proves its upstream.
         family, socktype, protocol, canonical, destination = answers[0]
         sock = socket.socket(family, socktype, protocol)
         try:
@@ -612,10 +676,12 @@ class Context:
             raise RpcError("Unknown analytics command", kind="input")
         if not isinstance(deadline, (int, float)) or not math.isfinite(deadline) or not 0 < deadline <= 600:
             raise RpcError("Deadline must be positive and at most 600 seconds", kind="input")
+        self._network_policy = _NetworkPolicy() if offline else _network_policy()
         self._rpc_endpoint = None if offline else _rpc_endpoint()
         self.rpc_provenance = ({} if offline else {
             "rpc_provider": "configured" if self._rpc_endpoint.configured else "public",
             "rpc_origin": None if self._rpc_endpoint.configured else "https://" + RPC_HOST,
+            "network_mode": self._network_policy.mode,
             "rpc_run_id": secrets.token_hex(16)})
         self.result = {"schema_version": 1, "command": command, "snapshot": dict(self.rpc_provenance), "metrics": {},
                        "coverage": {}, "not_proven": [], "errors": []}
@@ -646,8 +712,8 @@ class Context:
         self._members = self._rows = self._raw_bytes = self._recoveries = 0
         self._retry_not_before = 0.0
         self._retry_wait_seconds = 0.0
-        self._member_limit = (4000 if command in ("premiumseller", "sleeve-bonds") else
-                              750 if command in ("rfv", "advance", "netlong", "netlong-revenue", "credit", "book", "predict", "house", "receipts") else 250)
+        self._member_limit = (4000 if command in ("rfv", "premiumseller", "sleeve-bonds") else
+                              750 if command in ("advance", "netlong", "netlong-revenue", "credit", "book", "predict", "house", "receipts") else 250)
         self._row_limit = 50000 if command == "lp" else 10000
         self._allowed = None
         self._last_body = serialize_result(self.result)
@@ -1049,7 +1115,8 @@ class Context:
         try:
             timeout = max(0.001, self._attempt_end - time.monotonic())
             endpoint = self._rpc_endpoint
-            connection = _FixedHTTPSConnection(endpoint.host, endpoint.port, timeout=timeout, context=ssl.create_default_context())
+            connection = _FixedHTTPSConnection(endpoint.host, endpoint.port, timeout=timeout,
+                                               context=ssl.create_default_context(), network_policy=self._network_policy)
             connection.request("POST", endpoint.target, body=body, headers={"Content-Type": "application/json", "Accept": "application/json", "Accept-Encoding": "identity", "User-Agent": "netstack-analytics/1"})
             response = connection.getresponse()
             if response.status in (401, 403, 407):

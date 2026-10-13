@@ -218,7 +218,7 @@ class Fixture:
             raise FixtureViolation("Unexpected RPC method: " + str(method))
         return dict(envelope, result=result)
 
-    def connection(self, host, port, *, timeout, context):
+    def connection(self, host, port, *, timeout, context, network_policy):
         require(self.scenario != "offline", "Offline command attempted RPC transport")
         require(host == core.RPC_HOST and port == 443 and timeout > 0,
                 "Unexpected transport destination")

@@ -147,6 +147,14 @@ The October 7 baseline of the `0.5.0-dev` branch implemented the following refre
 - **Verification:** 408 regressions passed, including guarded head selection, exact inclusive boundaries, invalid/conflicting counts before network access and rejection instead of clipping at genesis. The existing Reports recognizer was also exercised against the newly fetched source and rejected it as unsupported. These checks do not establish support for the new Reports formula or for Grokbot's managed-egress transport.
 - **CI fixture portability:** the missing-promised-blob regression now constructs an object database that excludes the target blob instead of assuming loose-object storage. Its local transport positive control and fail-closed export assertions remain intact. The rate-limit regression uses a synthetic monotonic origin for construction and retries, avoiding host-uptime floating-point noise without weakening the exact wait or quota assertions. Local regression results are not a substitute for the completed GitHub platform/Python matrix.
 
+### October 13 host-aware transport and Reports integration
+
+- **Explicit managed egress:** host-selected network mode and narrow synthetic-DNS CIDRs apply consistently to RPC and Reports source fetching. Public-DNS mode remains the default; TLS verification, immutable destination policy, chain identity and terminal denials remain enforced. No automatic provider switching or general private-network allowance.
+- **Current Reports profile:** reviewed the complete October 13 accounting dependency chain and added distinct Sleeve LOSE spot and Team Safe LP principal rows. Fresh pair identities/reserves and native-unit LP floors govern valuation; ownership and executable-value caveats remain explicit. The historical Core POL discrepancy remains unresolved. Source inventory: 323 records.
+- **Advance and leverage:** enumerate the pinned Advance population in pages under shared collection budgets rather than stopping at 128 positions. Expose publisher and external-only G/D/E leverage with stored-debt, liability and ownership boundaries; incomplete inputs never become complete ratios.
+- **Blocked evidence:** pre-collection failures now explicitly identify uncollected scope, unknown event counts and unmeasured router/burn disposition. Attempt counters and checkpoint presentation are documented without inventing a different persistence guarantee.
+- **Verified feedback corrections:** fixed Credit block syntax, current LOSE source locators, issuance-versus-curve allocation wording and revenue spacing; clarified review dates and surfaced supplemental plans. Repeated empty scans are not positive controls, receipt samples do not prove lifetime delivery, and common Safe control does not prove beneficial ownership. No supplied financial observations were packaged.
+
 ## What you can ask
 
 | Question | What netstack brings |
@@ -301,7 +309,7 @@ The address catalog keeps identities, statuses and dated evidence per record; sh
 
 ## What's covered
 
-Baseline documentation dates from **September 10, 2026**, with targeted additions through **October 12**. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
+Baseline documentation dates from **September 10, 2026**, with targeted additions through **October 13**. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
 
 - **30 indexed official documentation entries**, represented by original summaries and source links; LOSE's standalone page remains sparse. Individual review dates differ.
 - Canonical contracts, feeds, market and pool IDs, plus a separately qualified deployer-discovery inventory. Counts and boundaries live in [address conventions](assets/address-conventions.json), not a competing inventory here.

@@ -6,18 +6,16 @@ import hashlib
 import json
 from html.parser import HTMLParser
 import http.client
-import ipaddress
 import re
-import socket
 import ssl
 import time
 from urllib.parse import urljoin, urlsplit
 
-from netstack_core import MAX_TOTAL_BYTES, RpcError, StopRun, load_json
+from netstack_core import MAX_TOTAL_BYTES, RpcError, StopRun, _FixedHTTPSConnection, load_json
 
 HOST = "app.netnet.capital"
 ENTRY_URL = "https://" + HOST + "/"
-PROFILE_ID = "reports-20261007-loopback-advance-principal"
+PROFILE_ID = "reports-20261013-lose-team-lp"
 MAX_HTML_BYTES = 128 * 1024
 MAX_BUNDLE_BYTES = 2 * 1024 * 1024
 MAX_REQUESTS = 2
@@ -112,33 +110,12 @@ def _destination(url):
     return parts.path
 
 
-class _PublisherHTTPSConnection(http.client.HTTPSConnection):
-    """The core RPC transport's resolve-once/public-IP/TLS policy, fixed to publisher."""
+class _PublisherHTTPSConnection(_FixedHTTPSConnection):
+    """Share the run's RPC DNS/TLS policy, with a fixed publisher destination."""
     def connect(self):
-        if self.host != HOST or self.port != 443 or self._tunnel_host:
-            raise RpcError("Publisher destination or tunnel refused", kind="permission")
-        answers = socket.getaddrinfo(HOST, 443, type=socket.SOCK_STREAM, proto=socket.IPPROTO_TCP)
-        if not answers or len(answers) > 16:
-            raise RpcError("Publisher DNS answer count is invalid", kind="permission")
-        for family, socktype, protocol, canonical, destination in answers:
-            try:
-                address = ipaddress.ip_address(destination[0])
-            except ValueError as exc:
-                raise RpcError("Publisher DNS returned a malformed address", kind="permission") from exc
-            if (family not in (socket.AF_INET, socket.AF_INET6) or not address.is_global
-                    or address.is_multicast or address.is_reserved or address.is_unspecified
-                    or address.is_loopback or address.is_link_local or address.is_private
-                    or getattr(address, "ipv4_mapped", None) is not None):
-                raise RpcError("Publisher DNS resolved to a nonpublic destination", kind="permission")
-        family, socktype, protocol, canonical, destination = answers[0]
-        sock = socket.socket(family, socktype, protocol)
-        try:
-            sock.settimeout(self.timeout)
-            sock.connect(destination)
-            self.sock = self._context.wrap_socket(sock, server_hostname=HOST)
-        except BaseException:
-            sock.close()
-            raise
+        if self.host != HOST or self.port != 443:
+            raise RpcError("Publisher destination refused", kind="permission")
+        super().connect()
 
 
 def _fetch(ctx, url, cap, role, result, end):
@@ -156,7 +133,8 @@ def _fetch(ctx, url, cap, role, result, end):
     ctx._arm()
     connection = None
     try:
-        connection = _PublisherHTTPSConnection(HOST, 443, timeout=remaining, context=ssl.create_default_context())
+        connection = _PublisherHTTPSConnection(HOST, 443, timeout=remaining,
+                                               context=ssl.create_default_context(), network_policy=ctx._network_policy)
         connection.request("GET", path, headers={"Accept-Encoding": "identity", "Cache-Control": "no-cache",
                                                 "User-Agent": "netstack-analytics/1"})
         response = connection.getresponse()
@@ -196,7 +174,7 @@ def _fetch(ctx, url, cap, role, result, end):
         return raw
     except (PermissionError, ssl.SSLCertVerificationError) as exc:
         raise RpcError("Publisher transport permission or TLS verification denied", kind="permission") from exc
-    except (socket.timeout, TimeoutError) as exc:
+    except TimeoutError as exc:
         raise RpcError("Publisher transport timeout", kind="timeout") from exc
     except (OSError, http.client.HTTPException) as exc:
         raise RpcError("Publisher transport unavailable", kind="transport") from exc
@@ -257,7 +235,7 @@ def _accounting_digest(profile):
 def _reviewed_profile():
     profile = load_json("assets/analytics/reports-methodology.json")
     if (profile.get("schema_version") != 2 or profile.get("profile_id") != PROFILE_ID
-            or profile.get("source_id") != "netnet-reports-methodology-20261007-current"
+            or profile.get("source_id") != "netnet-reports-methodology-20261013-current"
             or profile.get("entry_url") != ENTRY_URL or profile.get("v4_principal_included") is not True
             or profile.get("v4_fees_included") is not False
             or profile.get("normalization") != "reviewed_reports_v4_registry_v1"):

@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "source_id": "netnet-reports-methodology-20261007-current",
-  "profile_id": "reports-20261007-loopback-advance-principal",
-  "reviewed_at": "2026-10-07",
+  "source_id": "netnet-reports-methodology-20261013-current",
+  "profile_id": "reports-20261013-lose-team-lp",
+  "reviewed_at": "2026-10-13",
   "entry_url": "https://app.netnet.capital/",
-  "entry_shell_sha256": "7fe58415a5a331c81a6cf6d93b4212d61d8fca8a9a42d0d2a3083d4b72870601",
+  "entry_shell_sha256": "de3d59a13571b0c8cd0d77969971c7ba69c6e1126c8d4aa88a1a658b9600312d",
   "normalization": "reviewed_reports_v4_registry_v1",
   "normalization_limits": "Only the exact Reports-consumed V4 literal registry object may vary under its bounded, data-only grammar. Registry keys, canonical uint256 token IDs, status and source strings are extracted from each freshly fetched bundle; duplicate keys/IDs, malformed syntax, executable expressions or ambiguous bindings fail closed. Every byte outside that object, including presentation, the selector, Reports routing, accounting and dependencies, remains fingerprint-bound. No JavaScript is executed and no semantic equivalence is inferred.",
   "v4_principal_included": true,
@@ -77,7 +77,7 @@
       "rwa_desk": "0x732b3d1d3e8912cae75164fa14a6e1c4c64615b3"
     },
     "credit": {
-      "selection": "six HUMAN-VERIFIED stock markets plus the canonical Loopback wsNET market",
+      "selection": "Union of six HUMAN-VERIFIED stock market IDs and canonical Loopback wsNET market; each ID counted once",
       "vault": "0x99347d5f70d3838763f6bddcf80304c8aa953b57",
       "market_ids": [
         "0x8b16891f032a93b771347c9cb470a780e6699dd701553d3402aa3cdba6189c3e",
@@ -99,9 +99,18 @@
       "collateral_included": true,
       "borrow_shares_debt_subtracted": true,
       "supply_shares_included": false,
-      "debt_basis": "qx: zero when borrower or total borrow shares is zero; otherwise ceil(borrowShares*(totalBorrowAssets+1)/(totalBorrowShares+1000000)); stored totals, no elapsed accrual. Collector rejects inconsistent nonzero borrower shares above market total.",
+      "debt_basis": "KT: zero when borrower or total borrow shares is zero; otherwise ceil(borrowShares*(totalBorrowAssets+1)/(totalBorrowShares+1000000)); stored totals, no elapsed accrual. Collector rejects inconsistent nonzero borrower shares above market total.",
       "loopback_market_id": "0xaa586d26a6fe62d9c0f0948fede6e2130500ac7a655587447e2d4a37e6330589",
-      "loopback_collateral": "posted wsNET included once at NET TWAP times index; same market debt subtracted once"
+      "loopback_collateral": "posted wsNET included once at NET TWAP times index; same market debt subtracted once",
+      "stock_market_ids": [
+        "0x8b16891f032a93b771347c9cb470a780e6699dd701553d3402aa3cdba6189c3e",
+        "0x9b4b47cdf7e295341c6c6cdfd3efb9805c4a5b3d580dba0c0c39d3a4232b297b",
+        "0xdeb4782d012d5fd3b24962538c2f6559049d70bda4dabd2e4212dacb96c28d45",
+        "0x7fa81b10e5d21b2e4c571f862442bc11aff2ed14f02335868d0ff933fd40d0ba",
+        "0x2e1859aa8f143b7220088f80562c6dfe0bf8e52b87d9cedf8da8805f231994ce",
+        "0x3ebd43d91c3960a9fac32bedd5c60428e0e414de5bdd67fda770207afb0eb615"
+      ],
+      "registry_keys_scope": "Six stock IDs only; Loopback ID is derived separately from canonical USDG/wsNET/oracle/IRM/LLTV parameters, not zipped to a seventh stock token/feed"
     },
     "turbo": {
       "selection": "asset0,asset1,asset2 intersect supported V3 stock list",
@@ -156,13 +165,28 @@
       "position_reader": {
         "getter": "position",
         "ids": "1..positionCount inclusive",
-        "max_collector_positions": 128,
         "principal_numerator": 10000,
         "fee_numerator": 1000,
         "denominator": 11500,
         "principal_rule": "sum floor((owed-paid)*10000/11500) for each !closed && owed>paid",
-        "failed_read": "unknown; never skipped or zero; complete coverage required"
+        "failed_read": "unknown; never skipped or zero; complete coverage required",
+        "collector_page_size": 32,
+        "collector_bound": "Complete pinned 1..positionCount, subject to shared RPC member, response-byte and deadline budgets; no fixed128 truncation"
       }
+    },
+    "lose": {
+      "selection": "Sleeve token balance plus Team Safe LP underlying, separate custody",
+      "token": "0xf4d567e3c0b7b24bd2f379db8249701a6f929e93",
+      "pair": "0x718b03bcc00b1a585e6aa58c5d081170bee93b6e",
+      "spot_owner": "0x498752d5fa0600cbd613074c151abe15b3fec7cb",
+      "lp_owner": "0x3bb7a23316f82c0e984fa2e784846d8928a35f42",
+      "token_decimals": 18,
+      "usdg_decimals": 6,
+      "lp_decimals": 18,
+      "beneficial_attribution": "Publisher inclusion only; Team Safe LP economic Sleeve ownership unproven",
+      "pair_orientation": "Publisher address order; collector independently requires actual token0/token1 identities",
+      "lp_principal": "Each native reserve leg multiplied by holder LP and divided by totalSupply, floored before marking",
+      "zero_and_missing": "Zero LP yields zero principal on valid pair inputs; missing inputs, zero reserves or invalid supply do not inherit publisher null-to-zero fallback"
     }
   },
   "valuation_conventions": {
@@ -178,7 +202,8 @@
     "net_wallet": "(NET+sNET+(wallet wsNET+Loopback posted wsNET)*index)*NET TWAP; posted quantity belongs to the Credit ledger, not an additional wallet row",
     "sportsbook": "housePotWs*index*NET TWAP",
     "credit_debt": "stored Morpho market totals with virtual assets/shares, rounded up; not accrued to current timestamp",
-    "advance": "(unallocated + sum floor((owed-paid)*10000/11500) for each open indebted position)/1e6 + inventory/1e18*NET TWAP*sNET.index; escrow, fee accrual and borrower collateral excluded"
+    "advance": "(unallocated + sum floor((owed-paid)*10000/11500) for each open indebted position)/1e6 + inventory/1e18*NET TWAP*sNET.index; escrow, fee accrual and borrower collateral excluded",
+    "lose": "LOSE/USDG reserve-ratio spot; Sleeve balance and integer-floored Team Safe LP legs at same mark. Not executable proceeds, independent fair value or beneficial ownership."
   },
   "accounting_caveats": [
     "Current publisher source is observed over HTTP independently of the pinned RPC block and may change after retrieval.",
@@ -189,7 +214,10 @@
     "V4 Reports selection is derived from the freshly fetched HUMAN-VERIFIED registry entries, not every independently discovered Sleeve NFT. An empty selection is valid only after the registry grammar and complete calculation fingerprint both match.",
     "Existing browser sessions, wallet-provider behavior and dynamically imported wallet/CCIP paths are not executed or certified by this source check; supported accounting trace uses ordinary read-only RPC results.",
     "September26 used unallocated+escrowed+inventory and excluded Loopback posted wsNET/debt from publisher selection; its full selection/marks and bundle evidence are retained under historical_profiles/historical_reviewed_bundles, not eligible for current recognition.",
-    "Current publisher Advance reader catches failed positions as null and silently skips them. This collector requires every position1..positionCount and withholds the total on any missing read or bounded remainder. Principal receivable is a Reports convention, not a new independent net-assets or fair-value model."
+    "Current publisher Advance reader catches failed positions as null and silently skips them. This collector requires every position1..positionCount and withholds the total on any missing read or bounded remainder. Principal receivable is a Reports convention, not a new independent net-assets or fair-value model.",
+    "October13 adds direct Sleeve LOSE at pair spot and Team Safe LP principal. The distinct Safe holders must never be merged merely because signers coincide. Safe owners/thresholds/modules and beneficiary rights are separate evidence.",
+    "LOSE spot is endogenous to the same pool backing the included LP; report reserve depth and holding/reserve ratio. Taxes, fees, slippage and exit capacity are not in this mark.",
+    "Credit market_ids is the deduplicated accounting union, stock_market_ids/registry_keys are the six stock loop, and loopback_market_id belongs to the separate wsNET reader. Never run the union as a stock-token/feed zip or add Loopback again."
   ],
   "historical_reviewed_bundles": [
     {
@@ -430,10 +458,7 @@
           "meaning": "Eight required public read fields gate the Advance snapshot; mark/openMark are optional caught-null reads. USDG units are 1e6 and wsNET units 1e18; Reports uses only unallocated, escrowed and inventory."
         }
       ]
-    }
-  ],
-  "historical_review_policy": "Dated September25 and September26 source records and prior complete selection policies are historical evidence only; never current runtime recognition or dynamic identity defaults.",
-  "reviewed_bundles": [
+    },
     {
       "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
       "bytes": 1259006,
@@ -564,6 +589,247 @@
           "character_offset": 702850,
           "excerpt": "function xP(){return{loanToken:Ae(\"USDG\"),collateralToken:Ae(\"wsNET\"),oracle:Ae(\"loopbackOracle\"),irm:Ae(\"adaptiveCurveIrm\"),lltv:gP}}function kP(e){return",
           "meaning": "Canonical USDG/wsNET/LoopbackOracle/AdaptiveCurveIRM market hash."
+        }
+      ]
+    }
+  ],
+  "historical_review_policy": "Dated September25, September26 and October7 source records and complete selection policies are historical evidence only; never current recognition or dynamic identity defaults.",
+  "reviewed_bundles": [
+    {
+      "url": "https://app.netnet.capital/assets/index-UZiJxJT6.js",
+      "bytes": 1281195,
+      "bundle_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+      "executable_sha256": "e0235b0748680b89d85f3a50709c4c538e7139260f77d0de02b0986d8316ef54",
+      "accounting_sha256": "dbbb362a0a812b4c6532b828ddb8d973bedbea77e64771e0a98f8d13bc6c9ee2",
+      "registry_extraction": {
+        "registry_binding": "w4",
+        "selector_binding": "v4"
+      },
+      "review_scope": "Static full Reports accounting dependency/selection trace TH->UA; Du->XO; rA->HO->UO,zO; oA->O_->I_; AA; fixed registry and math dependencies reviewed. Only the literal V4 registry may vary. No JavaScript execution, rendered numeric headline, live RPC valuation or contract audit.",
+      "evidence": [
+        {
+          "id": "reports_aggregate",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 1199200,
+          "utf8_byte_offset": 1199906,
+          "excerpt": "function UA({rwa:e,positions:t,turbo:n,advance:i,snapshot:r,mode:u,predictEnabled:c}){var X,B;const p=(e==null?void 0:e.predictVault)!=null&&(u===\"live\"||c),f=p?((X=e==null?void 0:e.predictVault)==null?void 0:X.assetsUsdg)??0:0,m=u===\"live\"&&su.predictVault.status===\"HUMAN-VERIFIED\"&&e!=null&&e.predictVault==null,h=(e==null?void 0:e.sportsBook)??null,g=h!=null?h.housePotWs*((r==null?void 0:r.dividendIndex)??0):0,v=h!=null&&(r==null?void 0:r.marketPriceUsdg)!=null?g*r.marketPriceUsdg:null,T=u===\"live\"&&Jf.sportsBookDesk.status===\"HUMAN-VERIFIED\"&&e!=null&&v==null,x=(e==null?void 0:e.netHoldings)??null,k=x!=null?x.net+x.sNet+(x.wsNet+x.wsNetPosted)*((r==null?void 0:r.dividendIndex)??0):0,R=x!=null&&(r==null?void 0:r.marketPriceUsdg)!=null?k*r.marketPriceUsdg:null,A=u===\"live\"&&e!=null&&e.holdings.length>0&&R==null,_=(e==null?void 0:e.deskHoldings)??[],O=_.reduce((H,K)=>H+(K.valueUsd??0),0),L=u===\"live\"&&_.some(H=>H.valueUsd==null),M=(r==null?void 0:r.marketPriceUsdg)!=null&&r.dividendIndex>0?r.marketPriceUsdg*r.dividendIndex:null,w=((t==null?void 0:t.v4Positions)??[]).map(H=>{var J,$;const K=(J=H.legs.find(Z=>Z.asset===\"hOHM\"))==null?void 0:J.token.toLowerCase(),ee={wsNET:M,USDG:1,hOHM:(($=_.find(Z=>Z.token.toLowerCase()===K))==null?void 0:$.markUsd)??null};return{p:H,..._O(H,ee)}}),S=w.reduce((H,K)=>H+(K.valueUsd??0),0),N=w.some(H=>H.valueUsd==null),I=u===\"live\"&&N,j=i!=null?i.unallocatedUsdg:0,C=i!=null?i.receivableUsdg:0,P=i!=null?i.inventoryWs===0?0:M!=null?i.inventoryWs*M:null:0,z=P!=null?j+C+P:null,q=u===\"live\"&&t0.advanceDesk.status===\"HUMAN-VERIFIED\"&&(i==null||z==null),E=(e==null?void 0:e.lose)??null,D=(E==null?void 0:E.loseValueUsd)??null,F=((B=E==null?void 0:E.lp)==null?void 0:B.valueUsd)??null,V=u===\"live\"&&au.loseToken.status===\"HUMAN-VERIFIED\"&&au.losePair.status===\"HUMAN-VERIFIED\"&&e!=null&&E==null,G=e!=null&&t!=null&&n!=null&&!m&&!T&&!A&&!L&&!I&&!q&&!V?e.totalValueUsd+O+t.totalValueUsd+S+n.totalValueUsd+f+(v??0)+(R??0)+(z??0)+(D??0)+(F??0):null;return{predictShown:p,predictUsdg:f,bookUsd:v,heldNetUsd:R,deskUsd:O,deskPending:L,v4Rows:w,v4Usd:S,v4Unmarked:N,advUsdgHeld:j,advReceivable:C,advInventoryUsd:P,advUsd:z,loseUsd:D,loseLpUsd:F,total:G}}const fn=\"\u2014\u2014\",Hk=10n**18n,e$=3e4,MA=\"nn.predictTicket\",DA=\"nn.predictMode\",t$=[5,25,100,500],Md=e=>Number(e)/1e6,ko=e=>Number(e)/1e18,kr={higher:\"HIGHER\",lower:\"LOWER\"},Uo=e=>`$${(Number(e/10n**14n)/1e4).toFixed(2)}M`,Xc=e=>`$${(e/1e6).toFixed(2)}M`,nu=(e,t=1)=>`${Fc(e).toFixed(t)}\u00a2`,Zn=e=>`$${Ce(Md(e))}`,Kf=e=>`$${Sa(Md(e))}`,Gk=e=>`$${(Number(e)/1e6).toFixed(4)}`,H0=(e,t=2)=>`${e>=0?\"+\":\"\"}${(e*100).toFixed(t)}%`,CA=[\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\",\"Jul\",\"Aug\",\"Sep\",\"Oct\",\"Nov\",\"Dec\"],RA=[\"Sun\",\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\"];",
+          "meaning": "All memo terms including LOSE spot and Team Safe LP; strict collector rejects publisher null-to-zero and missing-position fallbacks."
+        },
+        {
+          "id": "lose_valuation",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 805353,
+          "utf8_byte_offset": 805418,
+          "excerpt": "function A8(e){const t=10**e.usdgDecimals,n=e.loseIsToken0?e.reserve0:e.reserve1,i=e.loseIsToken0?e.reserve1:e.reserve0,r=Number(n)/Eb,u=Number(i)/t,c=Number(e.sleeveLoseRaw)/Eb,p=n>0n&&i>0n,f=p?u/r:null,m=f!==null?c*f:null;let h=null;if(p&&e.lpRaw>0n&&e.lpTotalSupply>0n){const g=Number(i*e.lpRaw/e.lpTotalSupply)/t,v=Number(n*e.lpRaw/e.lpTotalSupply)/Eb;h={lpUnits:Number(e.lpRaw)/tO,share:Number(e.lpRaw)/Number(e.lpTotalSupply),usdg:g,lose:v,valueUsd:g+v*(f??0)}}return{loseUnits:c,reserveLose:r,reserveUsdg:u,priceUsdg:f,loseValueUsd:m,lp:h}}const Vf=864e5;",
+          "meaning": "Oriented reserve-ratio spot; integer-floored proportional LP native legs before marking; LOSE and LP decimals18."
+        },
+        {
+          "id": "advance_live_reader",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 1192467,
+          "utf8_byte_offset": 1193171,
+          "excerpt": "function AA(e){return e.mode===\"mock\"?async()=>(await new Promise(t=>setTimeout(t,300)),Vz()):async()=>{const t=Gz();if(t===null)return null;const n=Mu(e),i=O=>n.readContract({address:t,abi:o2,functionName:O}),r=async O=>{try{return await O}catch{return null}},[u,c,p,f,m,h,g,v,T,x]=await Promise.all([i(\"capacity\"),i(\"unallocated\"),i(\"escrowed\"),i(\"inventory\"),i(\"inventoryNet\"),i(\"lockedTotal\"),i(\"positionCount\"),i(\"halted\"),r(i(\"mark\")),r(i(\"openMark\"))]),k=Number(g);let R=0n,A=0n,_=0;if(k>0){const O=Array.from({length:k},(M,w)=>BigInt(w+1)),L=await Promise.all(O.map(M=>r(n.readContract({address:t,abi:o2,functionName:\"position\",args:[M]}))));for(const M of L){if(M===null||M.closed||M.owed<=M.paid)continue;const w=M.owed-M.paid;R+=w*10000n/11500n,A+=w*1000n/11500n,_+=1}}return{desk:t,receivableUsdg:Number(R)/fo,feeAccruingUsdg:Number(A)/fo,openLocks:_,unallocatedUsdg:Number(c)/fo,escrowedUsdg:Number(p)/fo,capacityUsdg:Number(u)/fo,inventoryWs:Number(f)/Lk,inventoryNet:Number(m)/Hz,lockedWs:Number(h)/Lk,locksIssued:Number(g),halted:v,markUsdgPerWs:T!==null&&T>0n?Number(T)/fo:null,openMarkUsdgPerWs:x!==null&&x>0n?Number(x)/fo:null,asOfMs:Date.now()}}}const Oc=34,Pf=14,Of=14,Kb=22,Qb=[\"Sun\",\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\"],Fk=\"(max-width: 560px)\";",
+          "meaning": "All position IDs1..positionCount, principal10000/11500 per open unpaid position; skipped failed reads are not inherited."
+        },
+        {
+          "id": "stored_debt",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 853540,
+          "utf8_byte_offset": 853621,
+          "excerpt": "function KT(e,t,n){if(e===0n||n===0n)return 0n;const i=n+1000000n;return(e*(t+1n)+i-1n)/i}",
+          "meaning": "Zero-share guard and stored debt ceil(shares*(assets+1)/(totalShares+1000000)); no elapsed accrual."
+        },
+        {
+          "id": "v4_registry_binding",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 847959,
+          "utf8_byte_offset": 848038,
+          "excerpt": "function FO(){let e=null;try{e=Ue(\"uniswapV4PositionManager\")}catch{}return{positionManager:e,tokenIds:v4()}}async ",
+          "meaning": "Fresh w4/v4 selection drives Reports V4, no runtime packaged IDs."
+        },
+        {
+          "id": "v4_read_and_filter",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 848068,
+          "utf8_byte_offset": 848147,
+          "excerpt": "async function zO(e,t,n){const i=[...n.tokenIds];if(i.length===0)return{positions:[],skipped:0};if(n.positionManager===null)return{positions:[],skipped:i.length};const r=C1(e),u=n.positionManager,c=Ue(\"uniswapV4PoolManager\"),p=DO(),f=x=>p.find(k=>k.token.toLowerCase()===x.toLowerCase()),m=await Promise.all(i.map(x=>Promise.all([Wf(r(u,qT,\"ownerOf\",[x]),null),r(u,qT,\"getPoolAndPositionInfo\",[x])])));let h=0;const g=[];m.forEach(([x,[k,R]],A)=>{const _=f(k.currency0),O=f(k.currency1);if(x===null||x.toLowerCase()!==t.toLowerCase()||k.hooks.toLowerCase()!==jO||!_||!O){h++;return}g.push({tokenId:i[A],key:k,poolId:M8({currency0:k.currency0,currency1:k.currency1,fee:Number(k.fee),tickSpacing:Number(k.tickSpacing),hooks:k.hooks}),t0:_,t1:O,tickLower:WT(R,8n),tickUpper:WT(R,32n)})});const v=await Promise.all(g.map(x=>r(c,LO,\"extsload\",[IO({poolId:x.poolId,owner:u,tickLower:x.tickLower,tickUpper:x.tickUpper,salt:x.tokenId})]))),T=[];return g.forEach((x,k)=>{const R=(v[k]??[]).map($=>BigInt($));if(R.length!==10)throw new Error(`extsload returned ${R.length} words for v4 position ${x.tokenId}`);const[A,_,O,L,M,w,S,N,I,j]=R,{sqrtPriceX96:C,tick:P}=D8(A);if(C===0n){h++;return}const z=N&BO,{amount0:q,amount1:E}=D1({liquidity:z,tickLower:x.tickLower,tickUpper:x.tickUpper,sqrtPriceX96:C}),{inside0:D,inside1:F}=PO({tick:P,tickLower:x.tickLower,tickUpper:x.tickUpper,global0:_,global1:O,lowerOutside0:L,lowerOutside1:M,upperOutside0:w,upperOutside1:S}),{fees0:V,fees1:G}=OO({liquidity:z,inside0:D,inside1:F,last0:I,last1:j}),X=Number(x.key.tickSpacing),B=Math.trunc(j8/X)*X,H=Math.trunc(I8/X)*X,K=P>=x.tickLower&&P<x.tickUpper,ee=Number(x.key.fee),J=($,Z)=>Number($)/10**Z.decimals;T.push({name:`${x.t0.asset}/${x.t1.asset} ${ee/1e4}%`,tokenId:x.tokenId,poolId:x.poolId,fee:ee,tickLower:x.tickLower,tickUpper:x.tickUpper,tick:P,fullRange:x.tickLower<=B&&x.tickUpper>=H,inRange:K,status:K?\"in\":P<x.tickLower?\"below\":\"above\",liquidity:z,legs:[{asset:x.t0.asset,token:x.t0.token,amount:J(q,x.t0),fees:J(V,x.t0)},{asset:x.t1.asset,token:x.t1.token,amount:J(E,x.t1),fees:J(G,x.t1)}]})}),T.sort((x,k)=>x.tokenId<k.tokenId?-1:x.tokenId>k.tokenId?1:0),{positions:T,skipped:h}}const $O=6e4,kf=new Map;",
+          "meaning": "Manager owner, zero hook, supported currency, initialized pool, exact position principal; fees separate."
+        },
+        {
+          "id": "v3_principal_reader",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 842692,
+          "utf8_byte_offset": 842771,
+          "excerpt": "async function UO(e,t,n){const i=C1(e),r=Ue(\"uniswapV3PositionManager\"),u=Ue(\"USDG\"),c=u.toLowerCase(),p=km(),m=!uo||n-uo.at>=gO?NO():null,h=m?{at:n,value:m.promise}:null;h&&(uo=h);const g=()=>{h&&uo===h&&(uo=null)};let v=null;try{const T=Number(await i(r,Cb,\"balanceOf\",[t]));if(T===0)return m==null||m.resolve(new Map),{positions:[],totalValueUsd:0,totalFeesUsd:0,skipped:0,asOfMs:n};m&&(v=AO(e,p));const x=await Promise.all(Array.from({length:T},(S,N)=>i(r,Cb,\"tokenOfOwnerByIndex\",[t,BigInt(N)]))),k=v!==null,[R,A]=await Promise.all([Promise.all(x.map(S=>i(r,Cb,\"positions\",[S]))),Promise.all(p.map(async S=>{const[N,I,j,C]=await Promise.all([i(S.pool,Yl,\"slot0\"),Wf(i(S.feed,TO,\"latestRoundData\"),null),Wf(i(S.token,kO,\"uiMultiplier\"),null),k?Wf(Promise.all([i(S.pool,Yl,\"liquidity\"),i(S.token,zT,\"balanceOf\",[S.pool]),i(u,zT,\"balanceOf\",[S.pool]),i(S.pool,Yl,\"feeGrowthGlobal0X128\"),i(S.pool,Yl,\"feeGrowthGlobal1X128\")]).then(([q,E,D,F,V])=>({liquidity:q,stockBalance:E,usdgBalance:D,global0:F,global1:V})),null):Promise.resolve(null)]),P=I?I[1]:0n,z=P>0n&&j!==null&&j>0n?Number(P)/1e8*(Number(j)/1e18):null;return{...S,sqrtPriceX96:N[0],tick:Number(N[1]),markUsd:z,...C?{now:C}:{}}}))]);let _;if(m&&v){const S=await v;_=new Map;for(const N of A){const I=N.pool.toLowerCase(),j=S==null?void 0:S.globals.get(I),C=N.now;if(!S||!j||!C||N.markUsd===null){_.set(I,null);continue}const P=EO(N.token,u);_.set(I,xO({global0Then:j.global0,global1Then:j.global1,global0Now:C.global0,global1Now:C.global1,liquidityNow:C.liquidity,balance0:P?C.stockBalance:C.usdgBalance,balance1:P?C.usdgBalance:C.stockBalance,decimals0:P?Mc:Dc,decimals1:P?Dc:Mc,price0Usd:P?N.markUsd:1,price1Usd:P?1:N.markUsd,elapsedSec:n/1e3-S.thenTimestampSec}))}m.resolve(_)}else _=uo?await uo.value:new Map;const O=[];let L=0;R.forEach((S,N)=>{const I=x[N],[,,j,C,P,z,q,E,,,D,F]=S,V=j.toLowerCase(),G=C.toLowerCase();let X=null,B=!0;for(const Ve of A){const ft=Ve.token.toLowerCase();if(V===ft&&G===c){X=Ve,B=!0;break}if(G===ft&&V===c){X=Ve,B=!1;break}}if(!X||Number(P)!==bO){L++;return}const H={assetIsToken0:B,assetDecimals:Mc,usdgDecimals:Dc},K=Number(z),ee=Number(q),{amount0:J,amount1:$}=D1({liquidity:E,tickLower:K,tickUpper:ee,sqrtPriceX96:X.sqrtPriceX96}),[Z,Y]=B?[J,$]:[$,J],[ne,re]=B?[D,F]:[F,D],be=Ve=>Number(D0(M0(Ve),H))/1e18,Me=be(K),ve=be(ee),$e=Math.min(Me,ve),Le=Math.max(Me,ve),De=Number(D0(X.sqrtPriceX96,H))/1e18,ze=X.tick>=K&&X.tick<ee,Ge=ze?\"in\":De<$e?\"below\":\"above\",we=Number(Z)/10**Mc,Be=Number(Y)/10**Dc,Ke=Number(ne)/10**Mc,rt=Number(re)/10**Dc,nt=X.markUsd;O.push({name:`${X.symbol}/USDG 0.05%`,symbol:X.symbol,tokenId:I,pool:X.pool,tickLower:K,tickUpper:ee,priceLowUsd:$e,priceHighUsd:Le,priceUsd:De,markUsd:nt,inRange:ze,status:Ge,stockTokens:we,usdg:Be,valueUsd:nt!==null?we*nt+Be:null,feesStock:Ke,feesUsdg:rt,feesUsd:nt!==null?Ke*nt+rt:null,poolApr:_.get(X.pool.toLowerCase())??null})}),O.sort((S,N)=>S.tokenId<N.tokenId?-1:S.tokenId>N.tokenId?1:0);const M=O.reduce((S,N)=>S+(N.valueUsd??0),0),w=O.reduce((S,N)=>S+(N.feesUsd??0),0);return{positions:O,totalValueUsd:M,totalFeesUsd:w,skipped:L,asOfMs:n}}catch(T){throw g(),m==null||m.resolve(new Map),T}}const MO=[{asset:\"wsNET\",entry:\"wsNET\",decimals:18},{asset:\"hOHM\",entry:\"hohmToken\",decimals:18},{asset:\"USDG\",entry:\"USDG\",decimals:6}];",
+          "meaning": "Owner enumeration and four fee500 stock pools; feed*uiMultiplier; principal separated from fees/APR."
+        },
+        {
+          "id": "v4_principal_not_fees",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 847062,
+          "utf8_byte_offset": 847141,
+          "excerpt": "function _O(e,t){const n=i=>{let r=0;for(const u of e.legs){const c=i(u);if(c===0)continue;const p=t[u.asset];if(p==null)return null;r+=c*p}return r};return{valueUsd:n(i=>i.amount),feesUsd:n(i=>i.fees)}}const qT=[{type:\"function\",name:\"ownerOf\",stateMutability:\"view\",inputs:[{name:\"tokenId\",type:\"uint256\"}],outputs:[{type:\"address\"}]},{type:\"function\",name:\"getPoolAndPositionInfo\",stateMutability:\"view\",inputs:[{name:\"tokenId\",type:\"uint256\"}],outputs:[{name:\"poolKey\",type:\"tuple\",components:[{name:\"currency0\",type:\"address\"},{name:\"currency1\",type:\"address\"},{name:\"fee\",type:\"uint24\"},{name:\"tickSpacing\",type:\"int24\"},{name:\"hooks\",type:\"address\"}]},{name:\"info\",type:\"uint256\"}]}],LO=[{type:\"function\",name:\"extsload\",stateMutability:\"view\",inputs:[{name:\"slots\",type:\"bytes32[]\"}],outputs:[{type:\"bytes32[]\"}]}],WT=(e,t)=>{const n=Number(e>>t&0xffffffn);return n>=8388608?n-16777216:n};",
+          "meaning": "Nonzero principal legs require marks; fee sum separate."
+        },
+        {
+          "id": "turbo_selection",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 937721,
+          "utf8_byte_offset": 937822,
+          "excerpt": "async function I_(e,t){const n=(T,x,k,R=[])=>e.readContract({address:T,abi:x,functionName:k,args:R}),i=Ue(\"turboDesk\"),r=km(),[u,c,p]=await Promise.all([Promise.all([n(i,jc,\"asset0\"),n(i,jc,\"asset1\"),n(i,jc,\"asset2\")]),n(i,jc,\"usdgFees\"),Promise.all(r.map(async T=>{const[x,k,R]=await Promise.all([n(i,jc,\"bookOf\",[T.token]),rk(n(T.feed,R_,\"latestRoundData\"),null),rk(n(T.token,B_,\"uiMultiplier\"),null)]),A=k?k[1]:0n,_=A>0n&&R!==null&&R>0n?Number(A)/1e8*(Number(R)/1e18):null;return{...T,book:x,markUsd:_}}))]),f=[];let m=0,h=0;for(const T of u){const x=p.find(R=>R.token.toLowerCase()===T.toLowerCase());if(!x){m++;continue}if(j_(x.book))continue;const k=C_({...x.book,markUsd:x.markUsd});h+=k.feesUsd??0,f.push({...k,symbol:x.symbol,asset:x.token,markUsd:x.markUsd})}const g=Number(c.feeManager)/10**a2,v=Number(c.feeSleeve)/10**a2;return h+=g+v,{pots:f,totalValueUsd:f.reduce((T,x)=>T+(x.valueUsd??0),0),usdgFeeManager:g,usdgFeeSleeve:v,totalFeesUsd:h,skipped:m,asOfMs:t}}const P_=6e4;let Pl=null;",
+          "meaning": "asset0..2 intersect four-stock map; feed*uiMultiplier; fees not principal."
+        },
+        {
+          "id": "turbo_principal",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 935965,
+          "utf8_byte_offset": 936066,
+          "excerpt": "function C_(e){const t=10**D_,n=10**a2,i=Number(e.potUnits)/t,r=Number(e.reservedUnits)/t,u=Number(e.putPotUsdg)/n,c=Number(e.putReservedUsdg)/n,p=Number(e.premiumUsdg)/n,f=Number(e.feeManagerTok)/t,m=Number(e.feeSleeveTok)/t,h=e.markUsd;return{potTokens:i,reservedTokens:r,putPotUsdg:u,putReservedUsdg:c,premiumUsdg:p,valueUsd:h!==null?(i+r)*h+u+c+p:null,feeManagerTokens:f,feeSleeveTokens:m,feesUsd:h!==null?(f+m)*h:null}}const jc=[{type:\"function\",name:\"asset0\",stateMutability:\"view\",inputs:[],outputs:[{type:\"address\"}]},{type:\"function\",name:\"asset1\",stateMutability:\"view\",inputs:[],outputs:[{type:\"address\"}]},{type:\"function\",name:\"asset2\",stateMutability:\"view\",inputs:[],outputs:[{type:\"address\"}]},{type:\"function\",name:\"bookOf\",stateMutability:\"view\",inputs:[{name:\"asset\",type:\"address\"}],outputs:[{type:\"tuple\",components:[{name:\"potUnits\",type:\"uint256\"},{name:\"reservedUnits\",type:\"uint256\"},{name:\"putPotUsdg\",type:\"uint256\"},{name:\"putReservedUsdg\",type:\"uint256\"},{name:\"premiumUsdg\",type:\"uint256\"},{name:\"feeManagerTok\",type:\"uint256\"},{name:\"feeSleeveTok\",type:\"uint256\"}]}]},{type:\"function\",name:\"usdgFees\",stateMutability:\"view\",inputs:[],outputs:[{type:\"tuple\",components:[{name:\"feeManager\",type:\"uint256\"},{name:\"feeSleeve\",type:\"uint256\"}]}]}],R_=[{type:\"function\",name:\"latestRoundData\",stateMutability:\"view\",inputs:[],outputs:[{type:\"uint80\"},{type:\"int256\"},{type:\"uint256\"},{type:\"uint256\"},{type:\"uint80\"}]}],B_=[{type:\"function\",name:\"uiMultiplier\",stateMutability:\"view\",inputs:[],outputs:[{type:\"uint256\"}]}],j_=e=>e.potUnits===0n&&e.reservedUnits===0n&&e.putPotUsdg===0n&&e.putReservedUsdg===0n&&e.premiumUsdg===0n&&e.feeManagerTok===0n&&e.feeSleeveTok===0n;async ",
+          "meaning": "Free+reserved stock and put USDG plus premiums; gross of open option liabilities."
+        },
+        {
+          "id": "lp_live_routing",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 850263,
+          "utf8_byte_offset": 850342,
+          "excerpt": "function HO(e,t={}){const n=t.now??Date.now,i=t.ttlMs??$O,r=t.sleeve??Ue(\"managerSleeve\"),u=r.toLowerCase(),c=n(),p=kf.get(u);if(p&&c-p.at<i)return p.value;const f=Promise.all([UO(e,r,c),zO(e,r,t.v4??FO())]).then(([h,g])=>({...h,v4Positions:g.positions,skipped:h.skipped+g.skipped})),m={at:c,value:f};return kf.set(u,m),f.catch(()=>{kf.get(u)===m&&kf.delete(u)}),f}const GO=[{type:\"function\",name:\"potsOf\",inputs:[],outputs:[{name:\"housePot\",type:\"uint256\",internalType:\"uint256\"},{name:\"reservedTotal\",type:\"uint256\",internalType:\"uint256\"},{name:\"lockedWagers\",type:\"uint256\",internalType:\"uint256\"},{name:\"lockedPrincipal\",type:\"uint256\",internalType:\"uint256\"}],stateMutability:\"view\"},{type:\"function\",name:\"freePot\",inputs:[],outputs:[{name:\"\",type:\"uint256\",internalType:\"uint256\"}],stateMutability:\"view\"},{type:\"function\",name:\"marketCount\",inputs:[],outputs:[{name:\"\",type:\"uint256\",internalType:\"uint256\"}],stateMutability:\"view\"}],YT=[{type:\"function\",name:\"menuAssets\",stateMutability:\"view\",inputs:[],outputs:[{type:\"address[]\"}]},{type:\"function\",name:\"feedOf\",stateMutability:\"view\",inputs:[{type:\"address\"}],outputs:[{type:\"address\"}]}],jl=e=>Number(e)/1e9,Cc=e=>Number(e)/1e18,Sf=e=>Number(e)/1e8,VO=e=>BigInt(Math.round(e*1e18)),qO=e=>BigInt(Math.floor(e*1e18)),WO=2n**256n-1n,Ef=[{type:\"function\",name:\"latestRoundData\",stateMutability:\"view\",inputs:[],outputs:[{type:\"uint80\"},{type:\"int256\"},{type:\"uint256\"},{type:\"uint256\"},{type:\"uint80\"}]}],YO=[{type:\"error\",name:\"PayoutBelowMinimum\",inputs:[]},{type:\"error\",name:\"BelowMinPrice\",inputs:[]},{type:\"error\",name:\"BadRecipient\",inputs:[]},{type:\"error\",name:\"NotSleeveOrManager\",inputs:[]}],ZT=[..._a,...YO],ZO={PayoutBelowMinimum:\"That subscription is below the desk minimum of 0.01 NET.\",BelowMinPrice:\"The desk price is under the Manager's reserve price. Subscriptions resume when the price recovers.\",Halted:\"The desk is suspended by the Manager. Subscriptions are closed.\",TooManyNotes:\"This account holds the maximum number of vesting notes. Redeem some first.\",PriceAboveMax:\"NET moved above your quoted price while you were signing. Try again for a fresh quote.\",FloorGuard:\"The floor guard is active \u2014 the desk price is too close to backing to sell.\",ZeroPayout:\"That subscription is too small to produce any NET.\",InsufficientInventory:\"The desk does not hold enough NET for this size.\",TransferFailed:\"A USDG transfer failed. Check your balance and that the Desk is approved.\",RouterUnavailable:\"The Rialto router is unavailable. Try again shortly.\",SwapFailed:\"The equity purchase failed at the router. Try again for a fresh quote.\",SlippageExceeded:\"The equity purchase came back short of the quoted minimum. Try again.\",OracleValueTooLow:\"The equity delivered was worth less than the desk's oracle bound allows.\",NotOnMenu:\"That equity is not on the desk's active menu.\",StaleFeed:\"The equity price feed is stale. Subscriptions resume when it updates.\"};",
+          "meaning": "Sleeve V3+fresh-registry V4 adapter; async cache not copied by pinned collector."
+        },
+        {
+          "id": "registry_resolution",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 274366,
+          "utf8_byte_offset": 274409,
+          "excerpt": "function Ue(e){const t=e in Kc?Kc[e]:e in n0?n0[e]:e in ex?ex[e]:e in tx?tx[e]:e in e0?e0[e]:e in on?on[e]:e in Mo?Mo[e]:e in Qc?Qc[e]:e in t0?t0[e]:e in ix?ix[e]:e in rx?rx[e]:e in lx?lx[e]:e in ux?ux[e]:e in cx?cx[e]:e in dx?dx[e]:e in px?px[e]:e in fx?fx[e]:e in sx?sx[e]:e in au?au[e]:e in tg?tg[e]:e in Jf?Jf[e]:e in su?su[e]:e in ng?ng[e]:Jc[e];if(t.status!==\"HUMAN-VERIFIED\")throw new nS(e);return t.address}",
+          "meaning": "All canonical resolution branches require HUMAN-VERIFIED; static labels not audits."
+        },
+        {
+          "id": "asset_desk_menu",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 834512,
+          "utf8_byte_offset": 834591,
+          "excerpt": "async function sO(e,t){const n=await Ab(e(t,dn,\"assetList\"),[]);return(await Promise.all(n.map(async r=>{const[u,c]=await Promise.all([Ab(e(t,dn,\"assetInfo\",[r]),null),Ab(e(r,Ie,\"symbol\"),\"\")]);return!u||c===\"\"?null:{token:r,symbol:c,decimals:Number(u.decimals),oracle:u.oracle,active:u.active}}))).filter(r=>r!==null)}",
+          "meaning": "assetList/assetInfo/token symbol, including inactive entries; read failures filtered by publisher, not collector."
+        },
+        {
+          "id": "lp_storage_slots",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 846351,
+          "utf8_byte_offset": 846430,
+          "excerpt": "function IO(e){const t=GT(e.poolId,CO),n=VT(e.tickLower,t+$T),i=VT(e.tickUpper,t+$T),r=Qt(uB([\"address\",\"int24\",\"int24\",\"bytes32\"],[e.owner,e.tickLower,e.tickUpper,HT(e.salt)])),u=GT(r,t+RO);return[t,t+1n,t+2n,n+1n,n+2n,i+1n,i+2n,u,u+1n,u+2n].map(HT)}",
+          "meaning": "PoolManager mapping slots6, ticks4 and positions6, manager salt=NFT ID."
+        },
+        {
+          "id": "lp_principal_math",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 838882,
+          "utf8_byte_offset": 838961,
+          "excerpt": "function LT(e,t,n){const[i,r]=M1(e,t);return P8(n<<96n,r-i,r)/i}",
+          "meaning": "Integer native-liquidity amount0 function."
+        },
+        {
+          "id": "lp_principal_math1",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 838946,
+          "utf8_byte_offset": 839025,
+          "excerpt": "function FT(e,t,n){const[i,r]=M1(e,t);return P8(n,r-i,hO)}",
+          "meaning": "Integer native-liquidity amount1 function."
+        },
+        {
+          "id": "loopback_parameters",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 721784,
+          "utf8_byte_offset": 721835,
+          "excerpt": "function N7(){return{loanToken:Ue(\"USDG\"),collateralToken:Ue(\"wsNET\"),oracle:Ue(\"loopbackOracle\"),irm:Ue(\"adaptiveCurveIrm\"),lltv:T7}}",
+          "meaning": "Canonical USDG/wsNET/oracle/IRM and LLTV .625 bind separately derived market ID."
+        },
+        {
+          "id": "live_lp_client_selection",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 1018574,
+          "utf8_byte_offset": 1018851,
+          "excerpt": "function rA(e){return e.mode===\"mock\"?async()=>(await new Promise(t=>setTimeout(t,300)),ZL()):async()=>HO(Mu(e))}",
+          "meaning": "Non-mock branch dispatches live LP adapter."
+        },
+        {
+          "id": "live_turbo_client_selection",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 1019431,
+          "utf8_byte_offset": 1019708,
+          "excerpt": "function oA(e){return e.mode===\"mock\"?async()=>(await new Promise(t=>setTimeout(t,300)),XL()):async()=>O_(Mu(e))}",
+          "meaning": "Non-mock branch dispatches live TURBO adapter."
+        },
+        {
+          "id": "live_sleeve_client_selection",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 1082764,
+          "utf8_byte_offset": 1083089,
+          "excerpt": "function Du(e){let t=Uk.get(e);return t||(t=e.mode===\"mock\"?aO(YF(),{assetDesk:wA()!==\"dark\"}):XO({rpcUrl:Go()}),Uk.set(e,t)),t}const Mk=new WeakMap;",
+          "meaning": "Live mode dispatches XO rather than synthetic mock amounts."
+        },
+        {
+          "id": "sleeve_wallet_credit_and_marks",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 860537,
+          "utf8_byte_offset": 860626,
+          "excerpt": "async getSleeve(){const w=Date.now();if(!t||!u)return{holdings:[],totalValueUsd:0,deskHoldings:[],cumulativeRemittanceUsdg:0,cumulativeVolumeUsdg:0,cumulativeNetDistributed:0,predictVault:null,sportsBook:null,netHoldings:null,lose:null,asOfMs:w};const S=i&&su.predictVault.status===\"HUMAN-VERIFIED\"?gt(Promise.all([c(Ue(\"predictVault\"),en,\"sharesOf\",[i]),c(Ue(\"predictVault\"),en,\"assetsOf\",[i])]),null):Promise.resolve(null),N=Jf.sportsBookDesk.status===\"HUMAN-VERIFIED\"?gt(c(Ue(\"sportsBookDesk\"),GO,\"potsOf\"),null):Promise.resolve(null),I=i?gt((async()=>{const B=Ue(\"morphoBlue\"),H=d8();return Promise.all([c(Ue(\"NET\"),Ie,\"balanceOf\",[i]),c(Ue(\"sNET\"),Ie,\"balanceOf\",[i]),c(Ue(\"wsNET\"),Ie,\"balanceOf\",[i]),c(B,vt,\"position\",[H,i]),c(B,vt,\"market\",[H])])})(),null):Promise.resolve(null),j=i&&au.loseToken.status===\"HUMAN-VERIFIED\"&&au.losePair.status===\"HUMAN-VERIFIED\"?gt((async()=>{const B=Ue(\"loseToken\"),H=Ue(\"losePair\"),K=Ue(\"teamMultisig\"),ee=Ue(\"USDG\");return{words:await Promise.all([c(B,Ie,\"balanceOf\",[i]),c(H,Sr,\"getReserves\"),c(H,Sr,\"totalSupply\"),c(H,Sr,\"balanceOf\",[K])]),loseIsToken0:B.toLowerCase()<ee.toLowerCase()}})(),null):Promise.resolve(null),C=i&&Qc.assetBondDesk.status===\"HUMAN-VERIFIED\"?gt((async()=>{const B=Ue(\"assetBondDesk\"),H=Ue(\"USDG\"),K=await Wl(c,B);return Promise.all(K.map(async ee=>{const[J,$]=await Promise.all([gt(c(ee.token,Ie,\"balanceOf\",[i]),0n),gt(c(ee.oracle,Jn,\"priceWad\"),null)]);let Z=$,Y=$!==null?\"twap\":null;if(Z===null){const be=await gt(c(ee.oracle,Jn,\"liveSqrtPriceX96\"),null);be!==null&&be>0n&&(Z=D0(be,{assetIsToken0:ee.token.toLowerCase()<H.toLowerCase(),assetDecimals:ee.decimals,usdgDecimals:6}),Y=\"spot\")}const ne=Number(J)/10**ee.decimals,re=Z!==null&&Z>0n?Cc(Z):null;return{token:ee.token,symbol:ee.symbol,units:ne,markUsd:re,markSource:re!==null?Y:null,valueUsd:re!==null?ne*re:null}}))})(),[]):Promise.resolve([]),P=await _(),z=P.map(B=>({symbol:B.symbol,name:B.name,tokens:B.sleeveTokens,markUsd:B.markUsd,targetWeightBps:B.targetWeightBps,marketOpen:B.marketOpen})),q=new Set(P.map(B=>B.token.toLowerCase()));try{if(Jc.packDesk.status===\"HUMAN-VERIFIED\"&&i){const B=Jc.packDesk.address,H=await c(B,YT,\"menuAssets\"),K=Nf(Date.now());for(const ee of H){if(q.has(ee.toLowerCase()))continue;q.add(ee.toLowerCase());const[J,$,Z]=await Promise.all([h(ee,`${ee.slice(0,6)}\u2026`),c(B,YT,\"feedOf\",[ee]),gt(c(ee,Ie,\"balanceOf\",[i]),0n)]),{symbol:Y,name:ne}=J,re=await gt(c($,Ef,\"latestRoundData\"),null),be=re?Sf(re[1]):null;z.push({symbol:Y,name:ne||Y,tokens:Number(Z)/1e18,markUsd:be!==null&&Number.isFinite(be)&&be>0?be:null,targetWeightBps:null,marketOpen:K.open})}}}catch{}const E=[[\"coinStockToken\",\"chainlinkCoinUsd\",\"COIN\"],[\"spcxStockToken\",\"chainlinkSpcxUsd\",\"SPCX\"],[\"nvdaStockToken\",\"chainlinkNvdaUsd\",\"NVDA\"],[\"aaplStockToken\",\"chainlinkAaplUsd\",\"AAPL\"],[\"msftStockToken\",\"chainlinkMsftUsd\",\"MSFT\"],[\"googlStockToken\",\"chainlinkGooglUsd\",\"GOOGL\"]];if(i){const B=Nf(Date.now());for(const[H,K,ee]of E)try{const J=Ue(H);if(q.has(J.toLowerCase()))continue;q.add(J.toLowerCase());const $=Ue(K),[Z,Y,ne]=await Promise.all([h(J,ee),gt(c(J,Ie,\"balanceOf\",[i]),0n),gt(c($,Ef,\"latestRoundData\"),null)]),{symbol:re,name:be}=Z,Me=ne?Sf(ne[1]):null;z.push({symbol:re,name:be||re,tokens:Number(Y)/1e18,markUsd:Me!==null&&Number.isFinite(Me)&&Me>0?Me:null,targetWeightBps:null,marketOpen:B.open})}catch{}}if(i)try{const B=Ue(\"USDG\"),[H,K]=await Promise.all([gt(c(B,Ie,\"balanceOf\",[i]),0n),k()]);z.push({symbol:\"USDG\",name:\"USDG, cash on hand\",tokens:Number(H)/10**K,markUsd:1,targetWeightBps:null,marketOpen:!0})}catch{}if(i&&on.usdgVault.status===\"HUMAN-VERIFIED\")try{const B=on.usdgVault.address,[H,K]=await Promise.all([gt(c(B,pn,\"balanceOf\",[i]),0n),k()]),ee=H>0n?await gt(c(B,pn,\"convertToAssets\",[H]),0n):0n;z.push({symbol:\"nnUSDG\",name:\"NetNet Credit deposit\",tokens:Number(ee)/10**K,markUsd:1,targetWeightBps:null,marketOpen:!0})}catch{}if(i){const B=[[\"nvdaMarketId\",\"nvdaStockToken\",\"chainlinkNvdaUsd\",\"NVDA\"],[\"spcxMarketId\",\"spcxStockToken\",\"chainlinkSpcxUsd\",\"SPCX\"],[\"aaplMarketId\",\"aaplStockToken\",\"chainlinkAaplUsd\",\"AAPL\"],[\"googlMarketId\",\"googlStockToken\",\"chainlinkGooglUsd\",\"GOOGL\"],[\"msftMarketId\",\"msftStockToken\",\"chainlinkMsftUsd\",\"MSFT\"],[\"coinMarketId\",\"coinStockToken\",\"chainlinkCoinUsd\",\"COIN\"]];try{const H=Ue(\"morphoBlue\"),K=10**await k();let ee=0n;await Promise.all(B.map(async([$,Z,Y,ne])=>{const re=on[$];if(re.status!==\"HUMAN-VERIFIED\")return;const be=re.address,[Me,ve]=await Promise.all([gt(c(H,vt,\"position\",[be,i]),null),gt(c(H,vt,\"market\",[be]),null)]);if(!Me||!ve)return;const[,$e,Le]=Me,[,,De,ze]=ve;if(Le>0n){const Ge=Ue(Z),we=Ue(Y),[Be,Ke]=await Promise.all([h(Ge,ne),gt(c(we,Ef,\"latestRoundData\"),null)]),rt=Ke?Sf(Ke[1]):null;z.push({symbol:Be.symbol,name:`${Be.symbol}, posted as collateral (NetNet Credit)`,tokens:Number(Le)/1e18,markUsd:rt!==null&&Number.isFinite(rt)&&rt>0?rt:null,targetWeightBps:null,marketOpen:Nf(Date.now()).open})}ee+=KT($e,De,ze)})),ee>0n&&z.push({symbol:\"USDG\",name:\"USDG borrowed (NetNet Credit), owed\",tokens:-Number(ee)/K,markUsd:1,targetWeightBps:null,marketOpen:!0});const J=await I;if(J){const[,$]=J[3],[,,Z,Y]=J[4],ne=KT($,Z,Y);ne>0n&&z.push({symbol:\"USDG\",name:\"USDG borrowed against wsNET (Loopback), owed\",tokens:-Number(ne)/K,markUsd:1,targetWeightBps:null,marketOpen:!0})}}catch{}}const D=z.reduce((B,H)=>B+H.tokens*(H.markUsd??0),0);z.sort((B,H)=>{const K=B.markUsd!==null?B.tokens*B.markUsd:-1;return(H.markUsd!==null?H.tokens*H.markUsd:-1)-K||B.symbol.localeCompare(H.symbol)});const F=z.map(B=>{const H=B.markUsd!==null?B.tokens*B.markUsd:null;return{symbol:B.symbol,name:B.name,tokens:B.tokens,markUsd:B.markUsd,valueUsd:H,weightBps:H!==null&&D>0?H/D*1e4:null,targetWeightBps:B.targetWeightBps,marketOpen:B.marketOpen}});let V=0,G=0,X=0;try{const B=10**await k(),H=await u.getBlockNumber(),K=H>100000n?H-100000n:0n,ee=await u.getContractEvents({address:Ue(\"rwaDesk\"),abi:_a,eventName:\"DeskBond\",fromBlock:K});for(const J of ee){const $=J.args;G+=Number($.usdgIn??0n)/B,V+=Number($.fee??0n)/B,X+=jl($.payout??0n)}}catch{V=0,G=0,X=0}return{holdings:F,totalValueUsd:D,deskHoldings:await C,cumulativeRemittanceUsdg:V,cumulativeVolumeUsdg:G,cumulativeNetDistributed:X,predictVault:await S.then(B=>B?{shares:Number(B[0])/1e18,assetsUsdg:Number(B[1])/1e6}:null),sportsBook:await N.then(B=>{if(!B)return null;const H=Number(B[0])/1e18,K=Number(B[1])/1e18;return{housePotWs:H,reservedWs:K,freePotWs:Math.max(H-K,0)}}),netHoldings:await I.then(B=>B?{net:Number(B[0])/1e9,sNet:Number(B[1])/1e9,wsNet:Number(B[2])/1e18,wsNetPosted:Number(B[3][2])/1e18}:null),lose:await j.then(async B=>{if(!B)return null;const[H,K,ee,J]=B.words;return A8({sleeveLoseRaw:H,reserve0:K[0],reserve1:K[1],loseIsToken0:B.loseIsToken0,lpRaw:J,lpTotalSupply:ee,usdgDecimals:await k()})}),asOfMs:w}",
+          "meaning": "Menus and six stock collateral/debt loop, distinct Loopback wsNET/debt, Predict assets, Book housePot, asset oracle fallback; separate Sleeve LOSE and Team Safe LP holders."
+        },
+        {
+          "id": "reports_route",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 1250740,
+          "utf8_byte_offset": 1251499,
+          "excerpt": "function TH(){const{snapshot:e,client:t}=dt(),{predictEnabled:n}=Dm(),i=ue.useMemo(()=>Du(t),[t]),u=xn(`sleeve:${t.mode}`,()=>i.getSleeve(),6e4).data,c=ue.useMemo(()=>rA(t),[t]),p=xn(`sleeve-lp:${t.mode}`,c,6e4),f=p.data,m=ue.useMemo(()=>oA(t),[t]),h=xn(`sleeve-turbo:${t.mode}`,m,6e4),g=h.data,v=ue.useMemo(()=>AA(t),[t]),x=xn(`sleeve-advance:${t.mode}`,v,6e4).data,k=(u==null?void 0:u.sportsBook)??null,R=(u==null?void 0:u.netHoldings)??null,A=(u==null?void 0:u.lose)??null,_=(u==null?void 0:u.deskHoldings)??[],{predictShown:O,predictUsdg:L,bookUsd:M,heldNetUsd:w,deskUsd:S,deskPending:N,v4Rows:I,v4Usd:j,v4Unmarked:C,advUsdgHeld:P,advReceivable:z,advInventoryUsd:q,advUsd:E,loseUsd:D,loseLpUsd:F,total:V}=UA({rwa:u??null,positions:f??null,turbo:g??null,advance:x,snapshot:e,mode:t.mode,predictEnabled:n}),G=Rn(\"blockExplorerUrl\",{throwOnPlaceholder:!1}),X=u!=null&&(u.holdings.length>0||((f==null?void 0:f.positions.length)??0)>0||I.length>0||x!=null||((g==null?void 0:g.pots.length)??0)>0),B=U4();if(e&&e.phase===\"genesis\")return l.jsx(Fr,{title:\"Reports\",program:\"reserve portfolio report\"});const H=e!=null&&V!=null?e.rfv.totalUsdg+V:null,K=(e==null?void 0:e.circulatingMarketCapUsd)??null,ee=H!=null&&e!=null&&e.circulatingNet>0?H/e.circulatingNet:null,J=H!=null&&e!=null&&e.totalSupplyNet>0?H/e.totalSupplyNet:null,$=e?1-e.rfv.morphoHaircutBps/1e4:1,Z=e?e.rfv.morphoUsdg*$:0;",
+          "meaning": "Reports client adapters feed UA; Core snapshot.rfv.totalUsdg added once."
+        },
+        {
+          "id": "core_snapshot",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 885557,
+          "utf8_byte_offset": 885658,
+          "excerpt": "async getSnapshot(){const[Q,se,ie,fe,oe,Se]=await Promise.all([w(n.genesisBond,ds,\"finalized\"),_(\"netSupply\",()=>w(n.net,Gn,\"totalSupply\")),w(n.treasury,wr,\"rfv\"),w(n.treasury,wr,\"liquidUsdg\"),w(n.treasury,wr,\"morphoAssets\"),_(\"backing\",()=>w(n.treasury,wr,\"backingPerToken\"))]),Ne=oe*BigInt(1e4-ho)/10000n,Te=ie-fe-Ne,Ae=xt(se),Fe=Q&&Ae>0?En(Se):null;let je=null;try{je=En(await _(\"twap\",()=>w(n.pairOracle,_c,\"twapNetUsdg\")))}catch{je=null}const[Oe,ye,_e,Qe,Pe,it,ot,lt,Ye]=await Promise.all([w(n.staking,ro,\"totalStaked\"),w(n.sNet,mo,\"index\"),w(n.staking,ro,\"epoch\"),w(n.net,Gn,\"taxTotalBps\"),w(n.genesisBond,ds,\"finalizeTime\"),w(n.distributor,D4,\"rateWad\").catch(()=>0n),w(n.net,Gn,\"balanceOf\",[n",
+          "meaning": "Core getter.rfv and NET TWAP; derived POL residual is not independent geometric reconstruction."
+        },
+        {
+          "id": "rwa_menu",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 856457,
+          "utf8_byte_offset": 856540,
+          "excerpt": "async function _(){const w=Ue(\"rwaDesk\"),S=await gt(c(w,_a,\"menu\"),[]),N=Date.now();return Promise.all(S.map(async I=>{const[j,C,P,z]=await Promise.all([gt(c(I.token,Ie,\"symbol\"),`${I.token.slice(0,6)}\u2026`),gt(c(I.token,Ie,\"name\"),\"\"),gt(c(I.feed,Ef,\"latestRoundData\"),null),i?gt(c(I.token,Ie,\"balanceOf\",[i]),0n):Promise.resolve(0n)]),q=P?Sf(P[1]):null,E=q!==null&&Number.isFinite(q)&&q>0?q:null,D=Nf(N);return{token:I.token,feed:I.feed,symbol:j,name:C||j,targetWeightBps:Number(I.targetWeightBps),active:I.active,marketOpen:D.open,resumesAtUtc:D.resumesAtUtc,markUsd:E,sleeveTokens:Number(z)/1e18}}))}",
+          "meaning": "Complete RWA menu including inactive entries; raw wallet stock balance /1e18 and feed /1e8."
+        },
+        {
+          "id": "identity_managerSleeve",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 235701,
+          "utf8_byte_offset": 235716,
+          "excerpt": "managerSleeve:{address:\"0x498752D5fa0600CBd613074C151Abe15B3FeC7CB\",status:\"HUMAN-VERIFIED\"",
+          "meaning": "Exact fixed custody/asset registry address and status; independently check pinned on-chain inputs."
+        },
+        {
+          "id": "identity_teamMultisig",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 203851,
+          "utf8_byte_offset": 203854,
+          "excerpt": "teamMultisig:{address:\"0x3Bb7A23316f82C0e984fA2E784846d8928a35f42\",status:\"HUMAN-VERIFIED\"",
+          "meaning": "Exact fixed custody/asset registry address and status; independently check pinned on-chain inputs."
+        },
+        {
+          "id": "identity_loseToken",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 213941,
+          "utf8_byte_offset": 213944,
+          "excerpt": "loseToken:{address:\"0xF4D567e3C0B7b24Bd2f379db8249701A6F929E93\",status:\"HUMAN-VERIFIED\"",
+          "meaning": "Exact fixed custody/asset registry address and status; independently check pinned on-chain inputs."
+        },
+        {
+          "id": "identity_losePair",
+          "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+          "character_offset": 216335,
+          "utf8_byte_offset": 216338,
+          "excerpt": "losePair:{address:\"0x718B03bcC00b1A585E6aA58c5d081170BEE93b6e\",status:\"HUMAN-VERIFIED\"",
+          "meaning": "Exact fixed custody/asset registry address and status; independently check pinned on-chain inputs."
         }
       ]
     }
@@ -740,6 +1006,196 @@
       ],
       "reviewed_bundle_sha256": [
         "5faf6a3a9b30da127413925896f91d90dc6df1934d1d8b9fc97ee21be9ea5dfa"
+      ]
+    },
+    {
+      "profile_id": "reports-20261007-loopback-advance-principal",
+      "source_id": "netnet-reports-methodology-20261007-current",
+      "reviewed_at": "2026-10-07",
+      "selection_policy": {
+        "v3": {
+          "selection": "owner_enumeration",
+          "position_manager": "0x73991a25c818bf1f1128deaab1492d45638de0d3",
+          "fee": 500,
+          "usdg": "0x5fc5360d0400a0fd4f2af552add042d716f1d168",
+          "assets": [
+            {
+              "symbol": "NVDA",
+              "token": "0xd0601ce157db5bdc3162bbac2a2c8af5320d9eec",
+              "pool": "0xd4eb21209c4d6093f80b5b84f5c45cc093ea14a3"
+            },
+            {
+              "symbol": "AAPL",
+              "token": "0xaf3d76f1834a1d425780943c99ea8a608f8a93f9",
+              "pool": "0xaae0d815ee56e4092a5e5c2911e676fea50b2d6d"
+            },
+            {
+              "symbol": "SPCX",
+              "token": "0x4a0e65a3eccec6dbe60ae065f2e7bb85fae35eea",
+              "pool": "0xc61284332117c3fb23a2a56cceffd07f7af60029"
+            },
+            {
+              "symbol": "GOOGL",
+              "token": "0x2e0847e8910a9732eb3fb1bb4b70a580adad4fe3",
+              "pool": "0x34d0dc122cf9a8eb296fc5e0d3a233625d7d19b7"
+            }
+          ],
+          "fees_included": false
+        },
+        "wallet": {
+          "selection": [
+            "rwaDesk.menu including inactive entries",
+            "packDesk.menuAssets de-duplicated against rwaDesk",
+            "six fixed stock tokens de-duplicated against both menus",
+            "USDG balance",
+            "nnUSDG convertToAssets"
+          ],
+          "fixed_stock_tokens": [
+            "0x6330d8c3178a418788df01a47479c0ce7ccf450b",
+            "0x4a0e65a3eccec6dbe60ae065f2e7bb85fae35eea",
+            "0xd0601ce157db5bdc3162bbac2a2c8af5320d9eec",
+            "0xaf3d76f1834a1d425780943c99ea8a608f8a93f9",
+            "0xe93237c50d904957cf27e7b1133b510c669c2e74",
+            "0x2e0847e8910a9732eb3fb1bb4b70a580adad4fe3"
+          ],
+          "stock_decimals": 18,
+          "net_family_separate": true,
+          "asset_desk_holdings_separate": true,
+          "rwa_desk": "0x732b3d1d3e8912cae75164fa14a6e1c4c64615b3"
+        },
+        "credit": {
+          "selection": "six HUMAN-VERIFIED stock markets plus the canonical Loopback wsNET market",
+          "vault": "0x99347d5f70d3838763f6bddcf80304c8aa953b57",
+          "market_ids": [
+            "0x8b16891f032a93b771347c9cb470a780e6699dd701553d3402aa3cdba6189c3e",
+            "0x9b4b47cdf7e295341c6c6cdfd3efb9805c4a5b3d580dba0c0c39d3a4232b297b",
+            "0xdeb4782d012d5fd3b24962538c2f6559049d70bda4dabd2e4212dacb96c28d45",
+            "0x7fa81b10e5d21b2e4c571f862442bc11aff2ed14f02335868d0ff933fd40d0ba",
+            "0x2e1859aa8f143b7220088f80562c6dfe0bf8e52b87d9cedf8da8805f231994ce",
+            "0x3ebd43d91c3960a9fac32bedd5c60428e0e414de5bdd67fda770207afb0eb615",
+            "0xaa586d26a6fe62d9c0f0948fede6e2130500ac7a655587447e2d4a37e6330589"
+          ],
+          "registry_keys": [
+            "nvdaMarketId",
+            "spcxMarketId",
+            "aaplMarketId",
+            "googlMarketId",
+            "msftMarketId",
+            "coinMarketId"
+          ],
+          "collateral_included": true,
+          "borrow_shares_debt_subtracted": true,
+          "supply_shares_included": false,
+          "debt_basis": "qx: zero when borrower or total borrow shares is zero; otherwise ceil(borrowShares*(totalBorrowAssets+1)/(totalBorrowShares+1000000)); stored totals, no elapsed accrual. Collector rejects inconsistent nonzero borrower shares above market total.",
+          "loopback_market_id": "0xaa586d26a6fe62d9c0f0948fede6e2130500ac7a655587447e2d4a37e6330589",
+          "loopback_collateral": "posted wsNET included once at NET TWAP times index; same market debt subtracted once"
+        },
+        "turbo": {
+          "selection": "asset0,asset1,asset2 intersect supported V3 stock list",
+          "fees_included": false
+        },
+        "predict": {
+          "selection": "managerSleeve assetsOf only",
+          "pending_and_notice_excluded": true
+        },
+        "sportsbook": {
+          "selection": "housePot from potsOf at wsNET market value",
+          "locked_wagers_or_reserves_not_separately_added": true
+        },
+        "advance": {
+          "selection": "HUMAN-VERIFIED advanceDesk registry",
+          "registry_key": "advanceDesk",
+          "desk": "0xde9df88aba59b644d4d7f6305e52ab982a3cfcac",
+          "principal_fields": [
+            "unallocated",
+            "receivable",
+            "inventory"
+          ],
+          "usdg_decimals": 6,
+          "wsnet_decimals": 18,
+          "reader_fields": [
+            "capacity",
+            "unallocated",
+            "escrowed",
+            "inventory",
+            "inventoryNet",
+            "lockedTotal",
+            "positionCount",
+            "halted"
+          ],
+          "optional_reader_fields": [
+            "mark",
+            "openMark"
+          ],
+          "not_added": [
+            "capacity",
+            "inventoryNet",
+            "lockedTotal",
+            "positionCount",
+            "mark",
+            "openMark",
+            "escrowed",
+            "feeAccruing",
+            "borrower locked collateral"
+          ],
+          "reader_unavailable": "Reports unavailable when the reviewed advanceDesk is HUMAN-VERIFIED",
+          "inventory_mark": "NET TWAP times sNET.index; only zero inventory needs no mark",
+          "position_reader": {
+            "getter": "position",
+            "ids": "1..positionCount inclusive",
+            "max_collector_positions": 128,
+            "principal_numerator": 10000,
+            "fee_numerator": 1000,
+            "denominator": 11500,
+            "principal_rule": "sum floor((owed-paid)*10000/11500) for each !closed && owed>paid",
+            "failed_read": "unknown; never skipped or zero; complete coverage required"
+          }
+        }
+      },
+      "valuation_conventions": {
+        "core": "Treasury.rfv on chain; USDG WAD",
+        "v4_principal": "Concentrated liquidity principal, tick bounds and pool sqrtPriceX96; sums principal legs only",
+        "v4_wsnet": "pairOracle.twapNetUsdg times sNET.index",
+        "v4_usdg": "one USD per USDG",
+        "v4_hohm": "matching assetBondDesk-listed token oracle.priceWad; publisher may fall back to liveSqrtPriceX96 spot if call fails",
+        "v3_stock": "Chainlink positive latest answer /1e8 times positive uiMultiplier /1e18, stock decimals18",
+        "wallet_stock": "Chainlink positive latest answer /1e8, no uiMultiplier, stock decimals18",
+        "turbo_stock": "Chainlink latest answer times uiMultiplier; pot/reserved/put/premium principal only",
+        "fees": "V3,V4 and Turbo fees excluded from True RFV",
+        "net_wallet": "(NET+sNET+(wallet wsNET+Loopback posted wsNET)*index)*NET TWAP; posted quantity belongs to the Credit ledger, not an additional wallet row",
+        "sportsbook": "housePotWs*index*NET TWAP",
+        "credit_debt": "stored Morpho market totals with virtual assets/shares, rounded up; not accrued to current timestamp",
+        "advance": "(unallocated + sum floor((owed-paid)*10000/11500) for each open indebted position)/1e6 + inventory/1e18*NET TWAP*sNET.index; escrow, fee accrual and borrower collateral excluded"
+      },
+      "v4_position_scope": {
+        "selection": "publisher_registry_allowlist",
+        "position_manager": "0x58daec3116aae6d93017baaea7749052e8a04fa7",
+        "owner": "0x498752d5fa0600cbd613074c151abe15b3fec7cb",
+        "currencies": [
+          "wsNET",
+          "hOHM",
+          "USDG"
+        ],
+        "hooks": "zero_only",
+        "uninitialized_pool": "skipped",
+        "unknown_or_other_owner_position": "skipped",
+        "fee_filter": null,
+        "pool_filter": "NFT pool key, not a hardcoded pool ID",
+        "token_id_source": "fresh source registry extraction only; no packaged identity fallback"
+      },
+      "accounting_caveats": [
+        "Current publisher source is observed over HTTP independently of the pinned RPC block and may change after retrieval.",
+        "Recognition is static source matching, not an independent Solidity audit or execution of the frontend.",
+        "No rendered/static numerical headline was available in the reviewed HTML; no website number is imported or compared.",
+        "Publisher catches some unavailable reads as zero or skips unsupported positions; the collector must retain stricter unavailable/unsupported handling rather than certifying partial totals.",
+        "Publisher uses JavaScript Number; RPC replica uses exact integer/rational arithmetic and can differ by rounding.",
+        "V4 Reports selection is derived from the freshly fetched HUMAN-VERIFIED registry entries, not every independently discovered Sleeve NFT. An empty selection is valid only after the registry grammar and complete calculation fingerprint both match.",
+        "Existing browser sessions, wallet-provider behavior and dynamically imported wallet/CCIP paths are not executed or certified by this source check; supported accounting trace uses ordinary read-only RPC results.",
+        "September26 used unallocated+escrowed+inventory and excluded Loopback posted wsNET/debt from publisher selection; its full selection/marks and bundle evidence are retained under historical_profiles/historical_reviewed_bundles, not eligible for current recognition.",
+        "Current publisher Advance reader catches failed positions as null and silently skips them. This collector requires every position1..positionCount and withholds the total on any missing read or bounded remainder. Principal receivable is a Reports convention, not a new independent net-assets or fair-value model."
+      ],
+      "reviewed_bundle_sha256": [
+        "270f7c5c0a19f3e034d2ca1f6309fdb6edad9d80e2dec53c93b80afe57a63201"
       ]
     }
   ]

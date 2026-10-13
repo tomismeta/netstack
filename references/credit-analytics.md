@@ -3,8 +3,8 @@
 Use the read-only `credit` workflow for nnUSDG claims, current lending liquidity, accrued debt and pending fee-share entitlement. Contract semantics and exact evidence limits: [Credit contracts](credit-contracts.md). No packaged financial observations, transaction history, account positions or balances are used. Requests go through the existing bounded Context/canonical RPC; an access denial is terminal, not a reason to switch providers.
 
 ```sh
-python3 scripts/analytics.py credit --block latest --detail full --json
-python3 scripts/analytics.py credit --account 0x0000000000000000000000000000000000000001 --block latest --detail summary --json
+python3 scripts/analytics.py credit --block latest-2 --detail full --json
+python3 scripts/analytics.py credit --account 0x0000000000000000000000000000000000000001 --block latest-2 --detail summary --json
 ```
 
 `--account` is an optional exact20-byte address, not a wallet connection. `--max-markets` defaults32; `--max-adapters` defaults16. Collection is bounded by the existing750 RPC-member budget and deadline. Increase bounds only for a deliberately broader bounded snapshot; hitting them leaves unknown totals rather than truncating silently. `--output` may checkpoint **outside** the installed package. Do not turn checkpoints into durable packaged financial history.

@@ -15,6 +15,7 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import analytics
 import netstack_core as core
+import netstack_methodology as methodology
 
 SECRET = "provider-secret-do-not-print"
 URL = "https://" + SECRET + ".example:8443/v2/" + SECRET + "?key=" + SECRET
@@ -82,7 +83,7 @@ class ProviderSelection(unittest.TestCase):
         self.addCleanup(ctx.close)
         return ctx
 
-    def connection(self, host, port, *, timeout, context):
+    def connection(self, host, port, *, timeout, context, network_policy):
         self.assertGreater(timeout, 0)
         self.assertLessEqual(timeout, 15)
         self.assertTrue(context.check_hostname)
@@ -419,8 +420,9 @@ class ProviderSelection(unittest.TestCase):
 
     def test_rate_limit_recovers_only_on_selected_provider_with_existing_budget(self):
         os.environ["NETSTACK_RPC_URL"] = URL
-        ctx = self.context()
-        clock = [ctx._started]
+        clock = [0.0]
+        with patch.object(core.time, "monotonic", side_effect=lambda: clock[0]):
+            ctx = self.context()
         waits = []
         def sleep(seconds):
             waits.append(seconds)
@@ -482,6 +484,7 @@ class ProviderSelection(unittest.TestCase):
 
     def test_offline_cli_ignores_invalid_config_and_has_no_rpc_capability(self):
         os.environ["NETSTACK_RPC_URL"] = "http://user:" + SECRET + "@localhost/#fragment"
+        os.environ.update(NETSTACK_NETWORK_MODE="invalid", NETSTACK_MANAGED_EGRESS_CIDRS=SECRET)
         with patch.object(core, "_FixedHTTPSConnection", side_effect=AssertionError("Transport forbidden")), \
              patch.object(analytics, "_PROCESS_STARTED", time.monotonic()), \
              patch.object(analytics, "_emit", return_value=True) as emit:
@@ -526,11 +529,134 @@ class ProviderSelection(unittest.TestCase):
         self.assertEqual(json.loads(text)["errors"][-1]["kind"], "input")
 
 
+    def test_managed_policy_is_captured_before_pin_and_never_discloses_ranges(self):
+        os.environ.update(NETSTACK_RPC_URL=URL, NETSTACK_NETWORK_MODE="managed-egress",
+                          NETSTACK_MANAGED_EGRESS_CIDRS="198.18.0.1/32")
+        ctx = self.context()
+        os.environ.update(NETSTACK_NETWORK_MODE="public", NETSTACK_MANAGED_EGRESS_CIDRS="invalid")
+        policies = []
+        def connect(*args, **kwargs):
+            policies.append(kwargs["network_policy"])
+            return self.connection(*args, **kwargs)
+        with patch.object(core, "_FixedHTTPSConnection", side_effect=connect):
+            ctx.pin("10")
+            ctx.recheck()
+        self.assertEqual(ctx.result["snapshot"]["recheck_status"], "confirmed")
+        self.assertEqual(ctx.result["snapshot"]["network_mode"], "managed-egress")
+        self.assertTrue(all(policy is ctx._network_policy for policy in policies))
+        self.assertNotIn("198.18.0.1", core.serialize_result(ctx.result) + repr(ctx._network_policy))
+        self.assertNotIn(SECRET, core.serialize_result(ctx.result))
+
+    def test_invalid_managed_configuration_fails_before_transport(self):
+        cases = [("unexpected", None), ("managed-egress", None), ("managed-egress", ""),
+                 ("public", "198.18.0.1/32"), ("managed-egress", "0.0.0.0/0"),
+                 ("managed-egress", "198.18.0.1"), ("managed-egress", "198.18.0.1/15"),
+                 ("managed-egress", "198.18.0.1/032"), ("managed-egress", "198.18.0.1/255.255.255.255"),
+                 ("managed-egress", "198.18.0.1/32,"), ("managed-egress", " 198.18.0.1/32"),
+                 ("managed-egress", "198.18.0.1/32,198.18.0.1/32"),
+                 ("managed-egress", "198.18.0.0/15,198.18.0.1/32"),
+                 ("managed-egress", "::ffff:198.18.0.1/128"),
+                 ("managed-egress", ",".join("198.18.0.%d/32" % i for i in range(17))),
+                 ("managed-egress", SECRET * 100)]
+        for mode, cidrs in cases:
+            with self.subTest(mode=mode, cidrs=cidrs), patch.dict(os.environ, {}, clear=True), \
+                    patch.object(core, "_FixedHTTPSConnection", side_effect=AssertionError("Transport forbidden")):
+                os.environ["NETSTACK_NETWORK_MODE"] = mode
+                if cidrs is not None:
+                    os.environ["NETSTACK_MANAGED_EGRESS_CIDRS"] = cidrs
+                with self.assertRaises(core.RpcError) as failure:
+                    self.context()
+                self.assertEqual(failure.exception.kind, "input")
+                self.assertNotIn(SECRET, "".join(traceback.format_exception(failure.exception)))
+
+    def test_managed_mode_does_not_retry_denial_redirect_or_wrong_chain(self):
+        os.environ.update(NETSTACK_NETWORK_MODE="managed-egress", NETSTACK_MANAGED_EGRESS_CIDRS="198.18.0.1/32")
+        for status, chain_id, kind in ((403, 4663, "permission"), (302, 4663, "permission"), (200, 1, "integrity")):
+            with self.subTest(status=status, chain_id=chain_id):
+                ctx = self.context()
+                with patch.object(core, "_FixedHTTPSConnection",
+                                  return_value=Response(self, status=status, chain_id=chain_id)) as transport:
+                    with self.assertRaises(core.RpcError) as failure:
+                        ctx.pin("10")
+                self.assertEqual(failure.exception.kind, kind)
+                self.assertEqual(transport.call_count, 1)
+                self.assertIsNone(ctx.block)
+                ctx.close()
+
 class ConnectionSafety(unittest.TestCase):
     def answer(self, address, port=8443):
         family = socket.AF_INET6 if ":" in address else socket.AF_INET
         destination = (address, port, 0, 0) if family == socket.AF_INET6 else (address, port)
         return (family, socket.SOCK_STREAM, socket.IPPROTO_TCP, "", destination)
+
+    def managed_policy(self, cidr="198.18.0.1/32"):
+        return core._NetworkPolicy("managed-egress", (core.ipaddress.IPv4Network(cidr),))
+
+    def test_managed_rpc_and_publisher_connect_only_to_operator_pinned_dns(self):
+        for cls, host, port in ((core._FixedHTTPSConnection, "rpc.example", 8443),
+                                (methodology._PublisherHTTPSConnection, methodology.HOST, 443)):
+            with self.subTest(host=host):
+                context, sock, wrapped = ssl.create_default_context(), Mock(), Mock()
+                with patch.object(core.socket, "getaddrinfo", return_value=[self.answer("198.18.0.1", port)]) as lookup, \
+                        patch.object(core.socket, "socket", return_value=sock), \
+                        patch.object(context, "wrap_socket", return_value=wrapped) as tls:
+                    connection = cls(host, port, timeout=5, context=context, network_policy=self.managed_policy())
+                    connection.connect()
+                    lookup.assert_called_once_with(host, port, type=socket.SOCK_STREAM, proto=socket.IPPROTO_TCP)
+                    sock.connect.assert_called_once_with(("198.18.0.1", port))
+                    tls.assert_called_once_with(sock, server_hostname=host)
+                    self.assertIs(connection.sock, wrapped)
+                    connection.close()
+
+    def test_managed_cidr_is_not_a_general_private_or_literal_ip_permission(self):
+        for host, address in (("rpc.example", "198.18.0.2"), ("rpc.example", "127.0.0.1"),
+                              ("rpc.example", "169.254.169.254"), ("rpc.example", "10.0.0.1"),
+                              ("rpc.example", "::ffff:198.18.0.1"), ("198.18.0.1", "198.18.0.1"),
+                              ("198.18.0.1.", "198.18.0.1"), ("198.18.1", "198.18.0.1"),
+                              ("0xc6120001", "198.18.0.1"), ("3323068417", "198.18.0.1")):
+            with self.subTest(host=host, address=address), \
+                    patch.object(core.socket, "getaddrinfo", return_value=[self.answer(address)]), \
+                    patch.object(core.socket, "socket", side_effect=AssertionError("TCP forbidden")):
+                with self.assertRaises(core.RpcError) as failure:
+                    core._FixedHTTPSConnection(host, 8443, network_policy=self.managed_policy()).connect()
+                self.assertEqual(failure.exception.kind, "permission")
+        with patch.object(core.socket, "getaddrinfo", return_value=[self.answer("198.18.0.1")]), \
+                patch.object(core.socket, "socket", side_effect=AssertionError("TCP forbidden")):
+            with self.assertRaises(core.RpcError):
+                core._FixedHTTPSConnection("rpc.example", 8443).connect()
+
+    def test_mixed_or_malformed_dns_answers_are_rejected_before_any_connect(self):
+        invalid = [self.answer("198.18.0.2"), self.answer("198.18.0.1", 443), None, (),
+                   (socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP, "", ("198.18.0.1", 8443)),
+                   (socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP, "", (b"198.18.0.1", 8443)),
+                   (socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP, "", ("198.18.0.1", 8443, 0, 0)),
+                   (socket.AF_INET6, socket.SOCK_STREAM, socket.IPPROTO_TCP, "", ("198.18.0.1", 8443, 0, 0)),
+                   (socket.AF_INET6, socket.SOCK_STREAM, socket.IPPROTO_TCP, "", ("2606:4700::1111%lo0", 8443, 0, 0))]
+        for answer in invalid:
+            with self.subTest(answer=answer), \
+                    patch.object(core.socket, "getaddrinfo", return_value=[self.answer("198.18.0.1"), answer]), \
+                    patch.object(core.socket, "socket", side_effect=AssertionError("TCP forbidden")):
+                with self.assertRaises(core.RpcError) as failure:
+                    core._FixedHTTPSConnection("rpc.example", 8443, network_policy=self.managed_policy()).connect()
+                self.assertEqual(failure.exception.kind, "permission")
+
+    def test_managed_route_still_requires_tls_identity_and_fixed_publisher(self):
+        for cls, host, port in ((core._FixedHTTPSConnection, "rpc.example", 8443),
+                                (methodology._PublisherHTTPSConnection, methodology.HOST, 443)):
+            for mutation in ("tls", "host", "tunnel"):
+                with self.subTest(host=host, mutation=mutation):
+                    context = ssl.create_default_context()
+                    connection = cls(host, port, context=context, network_policy=self.managed_policy())
+                    if mutation == "tls":
+                        context.check_hostname = False
+                    elif mutation == "host":
+                        connection.host = "other.example"
+                    else:
+                        connection.set_tunnel("other.example", 443)
+                    with patch.object(core.socket, "getaddrinfo", side_effect=AssertionError("DNS forbidden")):
+                        with self.assertRaises(core.RpcError) as failure:
+                            connection.connect()
+                    self.assertEqual(failure.exception.kind, "permission")
 
     def test_all_dns_answers_must_be_public_before_socket_creation(self):
         addresses = ("127.0.0.1", "10.0.0.1", "169.254.169.254", "0.0.0.0", "224.0.0.1",

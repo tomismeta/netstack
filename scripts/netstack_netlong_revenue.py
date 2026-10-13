@@ -216,10 +216,32 @@ def _observations(metrics, coverage, complete, confirmation):
             "pot_state_deltas": pot, "asset_bridges": bridges, "treasury_receipts": treasury}
 
 
+def _uncollected_result(result):
+    """Project a pre-collector failure without inventing addresses or amounts."""
+    metrics = dict(result.get("metrics", {}))
+    metrics["event_coverage"] = [
+        {"role": role, "address": None, "selected_events": None,
+         "scan_status": "not_collected", "observed_named_event_count": None,
+         "selected_scan_complete": False, "snapshot_confirmation": "unconfirmed",
+         "limitation": "Emitter discovery and contract-event scans did not run; no absence of events or calls is established."}
+        for role in ("vault", "margin", "pot", "futures_router", "margin_router", "treasury")]
+    metrics["observations"] = {
+        "status": "not_collected", "requested_window_total": None,
+        "raw_acquisition_complete": False, "collection_complete": False,
+        "router_disposition": {
+            "addresses": None, "status": "not_measured", "processing": None,
+            "unwrap": None, "unstake": None, "net_burn": None,
+            "meaning": "Unmeasured, not zero. Router identity, receipts, inventory and processing were not collected."}}
+    return dict(result, metrics=metrics)
+
+
 def prepare_result(result):
     """Project every checkpoint without erasing raw acquisition evidence."""
     metrics = result.get("metrics", {})
     if "acquisition_finished" not in metrics:
+        if (result.get("coverage", {}).get("requested_scope", {}).get("status") == "not_collected"
+                and "observations" not in metrics):
+            return _uncollected_result(result)
         return result
     coverage = result.get("coverage", {})
     boundaries = metrics["boundaries"]

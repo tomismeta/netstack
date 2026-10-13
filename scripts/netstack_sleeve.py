@@ -9,8 +9,9 @@ WAD = 10**18
 Q128 = 1 << 128
 MOD256 = 1 << 256
 MAX_ITEMS = 128
+ADVANCE_PAGE_SIZE = 32
 FEED_MAX_AGE = 14400
-FAMILIES = ("wallet", "credit", "v3", "turbo", "predict", "book", "v4", "advance", "treasury_extra")
+FAMILIES = ("wallet", "credit", "v3", "turbo", "predict", "book", "v4", "advance", "lose", "treasury_extra")
 
 
 def _raw(value):
@@ -42,6 +43,20 @@ def advance_receivable(position):
         return 0, 0
     outstanding = position["owed"] - position["paid"]
     return outstanding * 10000 // 11500, outstanding * 1000 // 11500
+
+def leverage_ratios(gross, debt, complete):
+    """Publisher-mark financing ratios; nonpositive equity is not finite leverage."""
+    equity = gross - debt
+    valid = complete and equity > 0
+    return {"gross_assets_wad": _value_wad(gross) if complete else None,
+            "debt_wad": _value_wad(debt) if complete else None,
+            "equity_wad": _value_wad(equity) if complete else None,
+            "known_gross_assets_subtotal_wad": _value_wad(gross),
+            "known_debt_subtotal_wad": _value_wad(debt),
+            "gross_to_equity": ratio(gross / equity) if valid else None,
+            "debt_to_equity": ratio(debt / equity) if valid else None,
+            "collection_complete": bool(complete),
+            "ratio_status": "available" if valid else "nonpositive_equity" if complete else "incomplete"}
 
 
 
@@ -161,6 +176,8 @@ class Collector:
         self.abis["book_abi"] = load_json("assets/analytics/book-interface.json")["abi"]
         self.abis["predict_abi"] = load_json("assets/analytics/predict-interface.json")["abi"]
         self.abis["advance_abi"] = load_json("assets/analytics/advance-interface.json")["desk_abi"]
+        self.abis["pair_abi"] = load_json("assets/analytics/v2-interface.json")["pair_abi"]
+        self.lose_policy = load_json("assets/analytics/reports-methodology.json")["selection_policy"].get("lose")
         self.owner = core["sleeve"].lower()
         self.usdg = core["usdg"].lower()
         self.net = core["net"].lower()
@@ -179,7 +196,7 @@ class Collector:
                         "components": self.families, "tokens": self.tokens,
                         "price_observations": self.prices, "reads": [],
                         "universe": {"arbitrary_erc20_exhaustive": False,
-                                     "scope": "canonical six stocks plus live RWA/Pack/Asset menus, discovered collateral and NFT currencies; direct Sleeve custody only"},
+                                     "scope": "canonical six stocks plus live menus, collateral, NFT currencies and Sleeve LOSE; publisher-only Team Safe LP is separately identified, not economic Sleeve custody"},
                         "product_settlement": "Independent reconstruction only; never Predict's posted printWad or historical settlement."}
         ctx.result["metrics"]["sleeve"] = self.metrics
         self.values, self.economic_values = {}, {}
@@ -276,6 +293,8 @@ class Collector:
 
     def mark(self, token, basis="wallet"):
         token = token.lower()
+        if basis == "lose_spot":
+            return self.values.get("lose_spot")
         if token == self.usdg:
             return Fraction(1)
         if token in self.own_tokens:
@@ -450,7 +469,8 @@ class Collector:
         self.metrics["universe"]["menu_discovery_complete"] = all(v is not None for v in (menu, pack, assets))
 
     def wallet(self):
-        observed = {row["token"] for row in self.families["wallet"]["rows"]}
+        observed = {row["token"] for name in ("wallet", "lose")
+                    for row in self.families[name]["rows"] if row.get("account", self.owner) == self.owner}
         tokens = [token for token in self.tokens if token not in observed]
         specs = [(token, "token_abi", "balanceOf", (self.owner,)) for token in tokens]
         balances = self.many(specs)
@@ -916,33 +936,44 @@ class Collector:
         if not family["reader_complete"]:
             self.missing("advance", "Publisher Advance reader or dependency bindings incomplete")
         count = state["positionCount"]
-        positions_complete = count is not None and 0 <= count <= MAX_ITEMS
+        positions_complete = count is not None and 0 <= count < MOD256
         family["positions"] = []
-        family["position_coverage"] = {
-            "expected_count": _raw(count), "read_count": 0,
+        coverage = family["position_coverage"] = {
+            "expected_count": _raw(count), "read_count": 0, "attempted_count": 0,
             "id_range": [1, count] if count else [],
-            "uninspected_ranges": [[MAX_ITEMS + 1, count]] if count is not None and count > MAX_ITEMS else [],
+            "uninspected_ranges": [[1, count]] if count else [],
+            "failed_ids": [], "page_size": ADVANCE_PAGE_SIZE,
+            "bound": "Pinned positionCount; shared RPC member, response-byte and deadline budgets",
             "collection_complete": False}
         principal, fee = 0, 0
-        for pid in range(1, min(count or 0, MAX_ITEMS) + 1):
-            position = self.read(desk, "advance_abi", "position", (pid,))
-            item = {"position_id": str(pid), "raw": _raw(position),
-                    "principal_receivable_raw": None, "fee_accruing_raw": None}
-            family["positions"].append(item)
-            if position is None or position["owner"] == ZERO:
-                positions_complete = False
-                self.missing("advance", "Advance position unavailable or nonexistent: " + str(pid), supplemental=True)
-            else:
-                p, f = advance_receivable(position)
-                principal += p
-                fee += f
-                item.update(principal_receivable_raw=str(p), fee_accruing_raw=str(f))
-                family["position_coverage"]["read_count"] += 1
-            self.ctx.checkpoint()
-        family["position_coverage"]["collection_complete"] = positions_complete
+        family["observed_principal_receivable_raw"] = "0"
+        family["observed_fee_accruing_raw"] = "0"
+        family["receivable_complete"] = False
+        for first in range(1, (count or 0) + 1, ADVANCE_PAGE_SIZE):
+            last = min(first + ADVANCE_PAGE_SIZE - 1, count)
+            positions = self.many([(desk, "advance_abi", "position", (pid,))
+                                   for pid in range(first, last + 1)])
+            for pid, position in zip(range(first, last + 1), positions):
+                item = {"position_id": str(pid), "raw": _raw(position),
+                        "principal_receivable_raw": None, "fee_accruing_raw": None}
+                family["positions"].append(item)
+                coverage["attempted_count"] += 1
+                coverage["uninspected_ranges"] = [[pid + 1, count]] if pid < count else []
+                if position is None or position["owner"] == ZERO:
+                    positions_complete = False
+                    coverage["failed_ids"].append(str(pid))
+                    self.missing("advance", "Advance position unavailable or nonexistent: " + str(pid), supplemental=True)
+                else:
+                    p, f = advance_receivable(position)
+                    principal += p
+                    fee += f
+                    item.update(principal_receivable_raw=str(p), fee_accruing_raw=str(f))
+                    coverage["read_count"] += 1
+                family["observed_principal_receivable_raw"] = str(principal)
+                family["observed_fee_accruing_raw"] = str(fee)
+                self.ctx.checkpoint()
+        coverage["collection_complete"] = positions_complete
         family["receivable_complete"] = family["reader_complete"] and positions_complete
-        family["observed_principal_receivable_raw"] = str(principal)
-        family["observed_fee_accruing_raw"] = str(fee)
         if not positions_complete:
             self.missing("advance", "Complete position1..positionCount coverage required for current principal receivable",
                          supplemental=True)
@@ -957,6 +988,60 @@ class Collector:
         family["economic_missing"] = [
             "advance: custody, receivable ownership and escrow liabilities not independently reconstructed; no gross balances, collateral or owed amounts added to net assets."]
         self.finish("advance", family["reader_complete"])
+
+    def lose(self):
+        """Publisher custody scope is not economic beneficial ownership."""
+        f, policy = self.families["lose"], self.lose_policy
+        if policy is None:
+            self.finish("lose", True)
+            return
+        token, pair, holder = (policy[k] for k in ("token", "pair", "lp_owner"))
+        f["selection_policy"] = policy
+        f["ownership"] = {
+            "spot_holder": self.owner, "lp_holder": holder,
+            "lp_beneficial_attribution": "unproven; excluded from economic Sleeve",
+            "safe_control": "Not measured; shared signers/threshold do not merge ownership or establish beneficiary rights"}
+        self.register(token, "publisher_lose", symbol="LOSE")
+        specs = [(pair, "pair_abi", name, ()) for name in ("token0", "token1", "getReserves", "totalSupply")]
+        specs += [(pair, "pair_abi", "balanceOf", (holder,)),
+                  (token, "token_abi", "balanceOf", (self.owner,))]
+        token0, token1, reserves, supply, lp, held = self.many(specs)
+        token_decimals, usdg_decimals = self.decimals(token), self.decimals(self.usdg)
+        f["raw"] = _raw(dict(token0=token0, token1=token1, reserves=reserves,
+                             lp_total_supply=supply, lp_balance=lp, sleeve_balance=held,
+                             token_decimals=token_decimals, usdg_decimals=usdg_decimals))
+        valid = (None not in (token0, token1, reserves, supply, lp, held) and
+                 self.owner == policy["spot_owner"] and holder != self.owner and
+                 {token0, token1} == {token, self.usdg} and
+                 token_decimals == policy["token_decimals"] and usdg_decimals == policy["usdg_decimals"] and
+                 supply > 0 and 0 <= lp <= supply)
+        lose_reserve = usdg_reserve = None
+        if valid:
+            lose_reserve = reserves["reserve0" if token0 == token else "reserve1"]
+            usdg_reserve = reserves["reserve1" if token0 == token else "reserve0"]
+            valid = lose_reserve > 0 and usdg_reserve > 0
+        self.values["lose_spot"] = (
+            Fraction(usdg_reserve * 10**token_decimals, lose_reserve * 10**usdg_decimals) if valid else None)
+        f["spot_price_usdg"] = ratio(self.values["lose_spot"]) if valid else None
+        f["liquidity"] = {
+            "reserve_lose_raw": _raw(lose_reserve), "reserve_usdg_raw": _raw(usdg_reserve),
+            "holding_to_pool_lose_ratio": ratio(Fraction(held, lose_reserve)) if valid else None,
+            "valuation_limit": "Reserve-ratio spot, not executable proceeds; depth, levy, fees, slippage and LP withdrawal impact excluded"}
+        if not valid:
+            self.missing("lose", "LOSE pair identities, decimals, nonzero reserves or LP ownership fraction unavailable/inconsistent")
+        for asset, raw, label, owner, economic in (
+                (token, held, "Sleeve LOSE at pair spot", self.owner, True),
+                (self.usdg, usdg_reserve * lp // supply if valid else None, "Team Safe LP USDG principal", holder, False),
+                (token, lose_reserve * lp // supply if valid else None, "Team Safe LP LOSE principal", holder, False)):
+            row = self.quantity("lose", asset, raw, label, basis="lose_spot" if asset == token else "wallet",
+                                reports=False, extra={"account": owner, "contract": token if owner == self.owner else pair,
+                                                      "included_in_economic": economic,
+                                                      "publisher_only_custody": owner != self.owner})
+            if not economic:
+                row["economic_value_wad"] = None
+                self.economic_values[id(row)] = None
+        f["publisher_complete"] = valid and all(self.values.get(id(row)) is not None for row in f["rows"])
+        self.finish("lose", valid)
 
     def credit_discovery(self):
         key = "sleeve_morpho_discovery"
@@ -1017,6 +1102,11 @@ class Collector:
             if candidate["asset_kind"] == "erc20" and candidate["ownership"]["status"] == "verified_direct":
                 if audit["owner"] == self.owner and token == self.address("credit_vault"):
                     disposition(candidate, "excluded", "Credit ERC4626 claim already represented; receipt token is not an additional asset.")
+                    continue
+                represented = next((r for r in self.families["lose"]["rows"]
+                                    if r["token"] == token and r.get("account") == audit["owner"]), None)
+                if represented is not None:
+                    disposition(candidate, "excluded", "Direct custody already represented in LOSE ledger; its economic mark remains separate.")
                     continue
                 if token in self.tokens:
                     if token not in observed:
@@ -1171,6 +1261,15 @@ class Collector:
         gaps = [] if supported else ["Publisher component selection policy is unavailable or incompatible with collector routes."]
         if advance is not None and not advance_supported:
             gaps.append("Publisher Advance selection policy is incompatible with the observed desk.")
+        lose_policy = policy.get("lose")
+        if lose_policy is not None and lose_policy != self.families["lose"].get("selection_policy"):
+            gaps.append("Publisher LOSE selection policy is incompatible with collected custody.")
+        if lose_policy is not None and any(row["token"] == lose_policy["token"] and
+                                           row["quantity_raw"] not in (None, "0")
+                                           for row in self.families["wallet"]["rows"]):
+            message = "lose: overlapping wallet/menu custody requires publisher multiplicity and economic de-duplication review."
+            gaps.append(message)
+            self.families["lose"]["economic_missing"] = [message]
         assets = v3.get("assets", []) if supported else []
         pools = {asset["pool"] for asset in assets}
         stocks = {asset["token"] for asset in assets}
@@ -1182,6 +1281,8 @@ class Collector:
                 continue
             for row in family["rows"]:
                 include = row["included_in_historical_reports"]
+                if name == "lose":
+                    include = policy.get("lose") is not None and policy["lose"] == self.families["lose"].get("selection_policy")
                 if name == "advance":
                     include = advance_supported and row.get("getter") in advance["principal_fields"]
                     if include and row["decimals"] != (6 if row["token"] == self.usdg else 18):
@@ -1219,7 +1320,7 @@ class Collector:
                              self.methodology.get("fetched_this_run") is True and
                              type(self.methodology.get("v4_principal_included")) is bool)
         inclusion = self.methodology["v4_principal_included"] if methodology_valid else None
-        replica_names = tuple(name for name in FAMILIES if name not in ("v4", "advance", "treasury_extra"))
+        replica_names = tuple(name for name in FAMILIES if name not in ("v4", "advance", "lose", "treasury_extra"))
         core_complete = self.core.get("core_complete", False) and self.core.get("rfv_wad") is not None
         historical_complete = core_complete and all(
             self.families[name]["historical_reports_collection_complete"] for name in replica_names)
@@ -1257,6 +1358,11 @@ class Collector:
              (not needs_receivable or advance_family.get("receivable_complete", False)) and
              len(advance_rows) == 3 and
              all(self.values.get(id(row)) is not None for row in advance_rows)))
+        lose_selected = self.methodology.get("selection_policy", {}).get("lose") is not None
+        publisher_family_complete["lose"] = (
+            not lose_selected or
+            (self.methodology["selection_policy"]["lose"] == self.families["lose"].get("selection_policy") and
+             self.families["lose"].get("publisher_complete", False)))
         pinned_complete = core_complete and all(publisher_family_complete.values()) and (inclusion is False or v4_principal is not None)
         complete = methodology_valid and not selection_gaps and pinned_complete
         subtotal = (sum((self.values.get(id(r)) or Fraction()) for r in selected_rows) +
@@ -1268,6 +1374,8 @@ class Collector:
         if not publisher_family_complete["advance"]:
             missing["advance"] = advance_family["missing"] + advance_family["supplemental_missing"] or [
                 "Publisher Advance snapshot, dependency bindings or marks incomplete."]
+        if not publisher_family_complete["lose"]:
+            missing["lose"] = self.families["lose"]["missing"] or ["Publisher LOSE custody, pair marks or principal legs incomplete."]
         if not methodology_valid:
             missing["methodology"] = ["Current supported publisher calculation was not fetched and verified in this run."]
         if selection_gaps:
@@ -1302,6 +1410,27 @@ class Collector:
                 "reason": "No independent comparable displayed headline observation; static source review does not observe a rendered value."},
             "excluded_known_exposure": "Each component summary discloses selected, excluded and unclassified rows, unresolved valuations, and distinct economic treatment.",
             "rounding": "Sum exact rational row values, floor once to 18 decimals; never sum displayed values."}
+        leverage_complete = (methodology_valid and not selection_gaps and
+                             all(publisher_family_complete.values()) and
+                             (inclusion is False or v4_principal is not None))
+        leverage_rows = selected_rows + [r for r in self.families["v4"]["rows"] if r["included_in_reports"] is True]
+        leverage = {}
+        for basis in ("publisher", "external_only"):
+            rows = leverage_rows if basis == "publisher" else [
+                r for r in leverage_rows if not r["own_net_exposure"] and
+                not r.get("publisher_only_custody") and
+                r["token"] != (self.lose_policy or {}).get("token")]
+            gross = sum((self.values.get(id(r)) or Fraction()) for r in rows if r["sign"] > 0)
+            debt = -sum((self.values.get(id(r)) or Fraction()) for r in rows if r["sign"] < 0)
+            leverage[basis] = leverage_ratios(gross, debt, leverage_complete)
+        metrics["sleeve_leverage"] = {
+            "unit": "USDG under Reports marks", "block": self.ctx.block,
+            "definition": "G=selected gross positive assets; D=positive stored-share borrowing; E=G-D; gross/equity=G/E; debt/equity=D/E",
+            "publisher": leverage["publisher"], "external_only": leverage["external_only"],
+            "external_only_scope": "Same publisher selection/marks, minus NET/sNET/wsNET, LOSE and all Team Safe LP legs; debt retained. Not adjusted net assets or independently proved beneficial ownership.",
+            "exclusions": ["Elapsed Morpho interest accrual", "Open TURBO CALL/PUT liabilities",
+                           "Uncollected LP fees", "Assets and liabilities outside publisher selection"],
+            "required_missing": {k: v for k, v in missing.items() if k != "core"}}
         own = Fraction()
         external, own_ledger, net_values = {}, [], []
         gaps = list(self.economic_gaps)
@@ -1328,6 +1457,7 @@ class Collector:
             "book": "Own-NET house backing and obligations disclosed separately and excluded from external backing; attributable external claims only.",
             "v4": "External LP principal and attributable pending fees included once; own-token principal and fees excluded.",
             "advance": "Versioned publisher reserve/principal-receivable convention only; not independent net House equity. Custody, escrow liabilities, receivable fair value and ownership remain unresolved.",
+            "lose": "Direct Sleeve LOSE quantity retained without an independent economic mark; Team Safe LP legs excluded, regardless of common signer control.",
             "treasury_extra": "Discovered external Treasury custody not already represented in Core; own-token holdings excluded."}
         for name, family in self.families.items():
             selected = []
@@ -1495,6 +1625,7 @@ def collect(ctx, args, core):
         c.v3()
         c.v4()
         c.advance()
+        c.lose()
         c.turbo_series(turbo_count)
         c.book_markets(book_count)
         c.credit_discovery()

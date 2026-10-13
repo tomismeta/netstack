@@ -8,9 +8,9 @@ import unittest
 from unittest.mock import patch
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from netstack_core import RpcError, keccak256
+from netstack_core import RpcError, StopRun, keccak256
 from netstack_sleeve import (Collector, FAMILIES, WAD, Q128, MOD256, accrued_owed, accrued_market,
-                            advance_receivable, book_exposure, book_claim, debt_assets, feed_valid, predict_claims, settled)
+                            advance_receivable, book_exposure, book_claim, debt_assets, feed_valid, leverage_ratios, predict_claims, settled)
 
 A = "0x" + "11" * 20
 B = "0x" + "22" * 20
@@ -32,6 +32,19 @@ class AccountingBoundaries(unittest.TestCase):
         small = {"closed": False, "owed": 2, "paid": 0}
         self.assertEqual(2 * advance_receivable(small)[0], 2)
         self.assertEqual(4 * 10000 // 11500, 3)
+
+    def test_leverage_requires_complete_positive_equity(self):
+        for gross, debt, complete, status in (
+                (10, 2, True, "available"), (10, 10, True, "nonpositive_equity"),
+                (10, 11, True, "nonpositive_equity"), (10, 2, False, "incomplete")):
+            result = leverage_ratios(Fraction(gross), Fraction(debt), complete)
+            self.assertEqual(result["ratio_status"], status)
+            if status == "available":
+                self.assertEqual(result["gross_to_equity"], {"numerator": "5", "denominator": "4"})
+                self.assertEqual(result["debt_to_equity"], {"numerator": "1", "denominator": "4"})
+            else:
+                self.assertIsNone(result["gross_to_equity"])
+                self.assertIsNone(result["debt_to_equity"])
 
     def test_fee_accrual_uses_lower_inclusive_upper_exclusive_and_wraps(self):
         self.assertEqual(accrued_owed(1, 0, 0, 10, 100*Q128, 20*Q128, 30*Q128, 0, 7), (57, 50))
@@ -349,7 +362,8 @@ class SleeveLedger(unittest.TestCase):
         if missing:
             state[missing] = None
         position = {"owner": c.owner, "closed": False, "owed": 575_000, "paid": 0}
-        with patch.object(c, "many", side_effect=lambda specs: [state[method] for _, _, method, _ in specs]), \
+        with patch.object(c, "many", side_effect=lambda specs: [
+                position if method == "position" else state[method] for _, _, method, _ in specs]), \
                 patch.object(c, "read", return_value=position):
             c.advance()
         c.methodology["selection_policy"]["advance"] = {
@@ -660,7 +674,7 @@ class SleeveLedger(unittest.TestCase):
                 self.assertEqual(f["obligations"]["decided_unsettled_payouts_raw"], "20")
                 self.assertEqual(f["obligations"]["house_after_decided_settlement_raw"], "94")
 
-    def advance_snapshot(self, missing=None, count=2):
+    def advance_snapshot(self, missing=None, count=2, stop_at=None):
         c = self.collector()
         c.register(c.wsnet, "test")["decimals"] = 18
         c.register(c.snet, "test")["decimals"] = 9
@@ -673,12 +687,18 @@ class SleeveLedger(unittest.TestCase):
         def read(address, abi, method, args=()):
             if method == "position":
                 observed.append(args[0])
+                if args[0] == stop_at:
+                    raise StopRun("rpc_member_limit")
                 return None if args[0] == missing else {
                     "owner": A, "closed": False, "owed": 1_150_001, "paid": 1}
             return state[method]
         c.read = read
         c.many = lambda specs: [read(*spec) for spec in specs]
-        c.advance()
+        if stop_at is None:
+            c.advance()
+        else:
+            with self.assertRaises(StopRun):
+                c.advance()
         c.methodology["selection_policy"]["advance"] = {
             "desk": c.families["advance"]["contract"],
             "principal_fields": ["unallocated", "receivable", "inventory"],
@@ -703,8 +723,8 @@ class SleeveLedger(unittest.TestCase):
         c.publish()
         self.assertEqual(metrics["reports_true_rfv"]["value_wad"], str(120 * WAD))
 
-    def test_missing_or_bounded_advance_position_cannot_silently_lower_total(self):
-        for missing, count in ((2, 2), (None, 129)):
+    def test_missing_advance_position_cannot_silently_lower_total(self):
+        for missing, count in ((2, 2), (129, 316)):
             c, observed = self.advance_snapshot(missing=missing, count=count)
             c.publish()
             family = c.families["advance"]
@@ -712,8 +732,32 @@ class SleeveLedger(unittest.TestCase):
             self.assertIsNone(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"])
             receivable = next(r for r in family["rows"] if r["getter"] == "receivable")
             self.assertIsNone(receivable["quantity_raw"])
-            self.assertEqual(len(observed), min(count, 128))
+            self.assertEqual(len(observed), count)
             self.assertGreater(int(family["observed_principal_receivable_raw"]), 0)
+
+    def test_advance_pages_cover_all_pinned_ids_including_above_old_bound(self):
+        for count in (0, 1, 32, 33, 316):
+            c, observed = self.advance_snapshot(count=count)
+            c.publish()
+            coverage = c.families["advance"]["position_coverage"]
+            self.assertEqual(observed, list(range(1, count + 1)))
+            self.assertTrue(coverage["collection_complete"])
+            self.assertEqual(coverage["read_count"], count)
+            self.assertEqual(coverage["uninspected_ranges"], [])
+            self.assertEqual(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"],
+                             str((117 + count) * WAD))
+
+    def test_interrupted_advance_retains_accounted_pages_without_certifying_subtotal(self):
+        c, observed = self.advance_snapshot(count=316, stop_at=65)
+        c.publish()
+        family = c.families["advance"]
+        self.assertEqual(observed, list(range(1, 66)))
+        self.assertEqual(family["position_coverage"]["read_count"], 64)
+        self.assertEqual(family["position_coverage"]["uninspected_ranges"], [[65, 316]])
+        self.assertEqual(family["observed_principal_receivable_raw"], "64000000")
+        self.assertFalse(family["position_coverage"]["collection_complete"])
+        self.assertFalse(family["receivable_complete"])
+        self.assertIsNone(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"])
 
     def test_loopback_posted_wsnet_and_stored_debt_enter_current_selection_once(self):
         c = self.collector()
@@ -734,9 +778,96 @@ class SleeveLedger(unittest.TestCase):
         self.assertEqual(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"], str(114 * WAD))
         self.assertTrue(collateral["included_in_reports"])
         self.assertTrue(debt["included_in_reports"])
+        c.methodology["selection_policy"]["credit"]["market_ids"].append("loopback")
+        c.publish()
+        self.assertEqual(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"], str(114 * WAD))
+        self.assertEqual(c.ctx.result["metrics"]["sleeve_leverage"]["publisher"]["debt_wad"], str(6 * WAD))
         c.families["credit"]["stored_position_valuation_complete"]["loopback"] = False
         c.publish()
         self.assertIsNone(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"])
+
+    def test_named_leverage_keeps_publisher_external_and_accrued_bases_distinct(self):
+        c = self.collector()
+        c.net_mark = Fraction(10)
+        c.register(C, "NET")["decimals"] = 9
+        c.quantity("wallet", B, 100_000_000, "cash")
+        c.quantity("wallet", C, 2 * 10**9, "own NET")
+        c.quantity("credit", B, 20_000_000, "Stored-share debt", sign=-1,
+                   extra={"market_id": "selected-market", "included_in_economic": False})
+        c.quantity("credit", B, 30_000_000, "Accrued Morpho debt", sign=-1, reports=False)
+        for name in FAMILIES:
+            c.finish(name, True)
+        c.publish()
+        metrics = c.ctx.result["metrics"]["sleeve_leverage"]
+        self.assertEqual(metrics["publisher"]["gross_assets_wad"], str(120 * WAD))
+        self.assertEqual(metrics["publisher"]["debt_wad"], str(20 * WAD))
+        self.assertEqual(metrics["publisher"]["gross_to_equity"], {"numerator": "6", "denominator": "5"})
+        self.assertEqual(metrics["external_only"]["gross_to_equity"], {"numerator": "5", "denominator": "4"})
+        self.assertEqual(metrics["external_only"]["debt_to_equity"], {"numerator": "1", "denominator": "4"})
+        c.core["core_complete"] = False
+        c.publish()
+        self.assertTrue(c.ctx.result["metrics"]["sleeve_leverage"]["publisher"]["collection_complete"])
+
+    def lose_snapshot(self, reverse=False, lp=1, reserve=10 * WAD, missing=None):
+        c = self.collector()
+        c.lose_policy = dict(c.lose_policy, token=D, pair="0x" + "55" * 20,
+                             spot_owner=A, lp_owner="0x" + "66" * 20)
+        c.methodology["selection_policy"]["lose"] = c.lose_policy
+        c.register(D, "test")["decimals"] = 18
+        state = {"token0": B if reverse else D, "token1": D if reverse else B,
+                 "getReserves": {"reserve0": 100_000_000 if reverse else reserve,
+                                 "reserve1": reserve if reverse else 100_000_000},
+                 "totalSupply": 3}
+        def read(address, abi, method, args=()):
+            if method == missing:
+                return None
+            if method == "balanceOf":
+                return 2 * WAD if address == D else lp
+            return state[method]
+        c.many = lambda specs: [read(*spec) for spec in specs]
+        c.lose()
+        for name in FAMILIES:
+            if name != "lose":
+                c.finish(name, True)
+        return c
+
+    def test_lose_spot_and_team_lp_are_separate_claims_not_economic_sleeve(self):
+        for reverse in (False, True):
+            c = self.lose_snapshot(reverse=reverse)
+            c.publish()
+            family = c.families["lose"]
+            rows = family["rows"]
+            self.assertEqual([r["quantity_raw"] for r in rows],
+                             [str(2 * WAD), "33333333", str(10 * WAD // 3)])
+            contribution = 20 * WAD + 33333333 * 10**12 + (10 * WAD // 3) * 10
+            self.assertEqual(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"], str(100 * WAD + contribution))
+            self.assertEqual(rows[0]["account"], A)
+            self.assertNotEqual(rows[1]["account"], A)
+            self.assertTrue(all(r["included_in_reports"] for r in rows))
+            economic = c.ctx.result["metrics"]["adjusted_net_assets"]["external_asset_ledger"]["lose"]["rows"]
+            self.assertEqual(len(economic), 1)
+            self.assertIsNone(economic[0]["economic_value_wad"])
+            self.assertEqual(c.ctx.result["metrics"]["sleeve_leverage"]["external_only"]["gross_assets_wad"], "0")
+            self.assertEqual(family["liquidity"]["reserve_usdg_raw"], "100000000")
+
+    def test_lose_zero_lp_is_zero_but_missing_or_empty_pool_is_unknown(self):
+        c = self.lose_snapshot(lp=0)
+        c.publish()
+        self.assertEqual(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"], str(120 * WAD))
+        for kwargs in ({"reserve": 0}, {"lp": 4}, {"missing": "token0"}, {"missing": "getReserves"}):
+            c = self.lose_snapshot(**kwargs)
+            c.publish()
+            self.assertIsNone(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"])
+            self.assertFalse(c.families["lose"]["publisher_complete"])
+
+    def test_lose_overlap_is_not_silently_added_as_second_economic_asset(self):
+        c = self.lose_snapshot()
+        c.quantity("wallet", D, 2 * WAD, "Overlapping menu token")
+        c.publish()
+        self.assertIsNone(c.ctx.result["metrics"]["reports_true_rfv"]["value_wad"])
+        self.assertIsNone(c.ctx.result["metrics"]["adjusted_net_assets"]["value_wad"])
+        self.assertTrue(any("overlapping" in message for message in
+                            c.ctx.result["metrics"]["reports_true_rfv"]["required_missing"]["publisher_selection"]))
 
     def test_permission_denial_is_terminal_not_optional_missing_balance(self):
         c = self.collector()

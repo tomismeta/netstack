@@ -325,6 +325,57 @@ class NetLongRevenueTests(unittest.TestCase):
                 self.assertIsNone(row["requested_window_total"])
                 self.assertFalse(row["collection_complete"])
 
+
+    def test_pin_denial_reports_uncollected_events_and_unmeasured_router_disposition(self):
+        for detail in ("full", "summary"):
+            for denied_method in ("eth_chainId", "eth_getBlockByNumber"):
+                for interval in (("--from-block", "10"), ("--recent-blocks", "11")):
+                    with self.subTest(detail=detail, denied_method=denied_method, interval=interval):
+                        fixture = RevenueFixture()
+                        fixture.override = lambda method, params: (
+                            (True, ProviderFailure("denied " + URL, status=403))
+                            if method == denied_method else (False, None))
+                        status, full, stdout = fixture.run_cli(detail=detail, interval=interval)
+                        self.assertEqual(status, 2, stdout)
+                        self.assertEqual(fixture.requests[-1][0], denied_method)
+                        self.assertEqual(fixture.contexts[0]._recoveries, 0)
+                        self.assertFalse(any(method in ("eth_call", "eth_getLogs", "eth_getCode")
+                                             for method, _ in fixture.requests))
+                        self.assertTrue(all(response.closed for response in fixture.responses))
+                        for document in (full, stdout):
+                            self.assert_incomplete(document)
+                            scope = document["coverage"]["requested_scope"]
+                            self.assertEqual(scope["status"], "not_collected")
+                            self.assertFalse(scope["raw_acquisition_complete"])
+                            self.assertFalse(scope["boundaries_confirmed"])
+                            self.assertEqual(scope["from_block"], 10 if interval[0] == "--from-block" else None)
+                            self.assertEqual(scope["recent_blocks"], 11 if interval[0] == "--recent-blocks" else None)
+                            self.assertTrue(document["not_proven"])
+                            self.assertEqual(document["errors"][0]["kind"], "permission")
+                            self.assertNotIn(SECRET, json.dumps(document))
+                            self.assertNotIn("block_number", document["snapshot"])
+                            self.assertTrue(document["metrics"]["event_coverage"])
+                            for row in document["metrics"]["event_coverage"]:
+                                self.assertEqual(row["scan_status"], "not_collected")
+                                self.assertIsNone(row["address"])
+                                self.assertIsNone(row["selected_events"])
+                                self.assertIsNone(row["observed_named_event_count"])
+                                self.assertFalse(row["selected_scan_complete"])
+                            observations = document["metrics"]["observations"]
+                            self.assertEqual(observations["status"], "not_collected")
+                            self.assertIsNone(observations["requested_window_total"])
+                            disposition = observations["router_disposition"]
+                            self.assertEqual(disposition["status"], "not_measured")
+                            for key in ("addresses", "processing", "unwrap", "unstake", "net_burn"):
+                                self.assertIsNone(disposition[key])
+                        if detail == "full":
+                            self.assertEqual(stdout, full)
+                        else:
+                            self.assertEqual(stdout["presentation"]["full_checkpoint"], "saved")
+                            self.assertEqual(stdout["metrics"]["event_coverage"], full["metrics"]["event_coverage"])
+                            self.assertEqual(stdout["metrics"]["observations"]["router_disposition"],
+                                             full["metrics"]["observations"]["router_disposition"])
+
     def test_recent_interval_uses_guarded_pin_and_exact_inclusive_boundaries(self):
         fixture = RevenueFixture()
         fixture.activity()

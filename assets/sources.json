@@ -14,9 +14,25 @@
   },
   "sources": [
     {
+      "id": "netnet-reports-methodology-20261013-current",
+      "type": "official_app_contract_interface",
+      "label": "October 13 Reports: Sleeve LOSE spot and distinct Team Safe LP principal",
+      "url": "https://app.netnet.capital/assets/index-UZiJxJT6.js",
+      "discovery_url": "https://app.netnet.capital/",
+      "reviewed_on": "2026-10-13",
+      "content_review_status": "complete_entry_bytes_targeted_static_reports_calculation_and_dependency_review",
+      "source_bytes": 1281195,
+      "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+      "locator": "TH->UA; Du->XO live getSleeve and RWA menu; rA->HO->UO and FO->v4/w4->zO; oA->O_->I_ and C_; AA/Gz Advance; A8 LOSE marks; KT stored debt; N7/S7/E7 Loopback; Ue registry resolution; IO/D1/M0/LT/FT LP math. Exact excerpts, normalized registry fingerprint and complete accounting policy hash in assets/analytics/reports-methodology.json.",
+      "summary": "Reports adds Sleeve-held LOSE at oriented pair reserve-ratio spot and Team Safe LOSE/USDG LP principal, with each native LP reserve leg integer-floored before marking. Holders remain distinct; publisher inclusion is not economic Sleeve ownership. Six stock Credit markets and separately derived Loopback form a union counted once, with stored debt rather than elapsed accrual. Advance scans all pinned position IDs subject to shared collection budgets and complete-read requirements, not publisher silent skips. Asset menus, stock V3 pools, fresh-source V4 registry, asset desk fallbacks, TURBO, House and Book retain reviewed selection rules. October 7 policy remains historical, not a current fallback.",
+      "limits": "Static text and exact bytes only; no downloaded JavaScript execution, website numeric input, rendered-headline reconciliation, live financial-state certification or deployed contract audit. Source recognition permits only bounded data-only V4 registry variation; current source and pinned inputs must still pass runtime checks. The historical Core POL discrepancy remains unresolved. LOSE spot is not executable depth-adjusted proceeds; Team LP beneficial attribution is unproven.",
+      "reference": "references/reserve-analytics.md",
+      "execution_authority": false
+    },
+    {
       "id": "netnet-reports-live-drift-20261013",
       "type": "public_frontend",
-      "label": "Current Reports LOSE and Team Safe LP methodology drift",
+      "label": "Initial October 13 Reports LOSE and Team Safe LP drift observation",
       "url": "https://app.netnet.capital/assets/index-UZiJxJT6.js",
       "entry_url": "https://app.netnet.capital/",
       "observed_on": "2026-10-13",
@@ -33,7 +49,8 @@
       ],
       "reference": "references/reserve-analytics.md",
       "supporting_references": ["references/rwa-strategy.md"],
-      "limits": "Targeted static publisher-source review, not complete dependency/registry/fallback equivalence, rendered headline verification, pinned balances or beneficial ownership proof. The existing runtime profile remains unsupported for this source and must fail closed. No current financial figures or raw frontend archive are distributed.",
+      "limits": "Initial targeted static comparison, not complete dependency equivalence or financial-state verification. Superseded for current source recognition by the subsequent full accounting dependency review; retain this observation as review history. No current financial figures or raw frontend archive are distributed.",
+      "superseded_for_current_recognition_by": "netnet-reports-methodology-20261013-current",
       "execution_authority": false
     },
     {
@@ -5948,7 +5965,7 @@
     {
       "id": "netnet-reports-methodology-20261007-current",
       "type": "official_app_contract_interface",
-      "label": "October 7 Reports: Loopback collateral/debt and Advance principal receivable",
+      "label": "Historical October 7 Reports: Loopback collateral/debt and Advance principal receivable",
       "url": "https://app.netnet.capital/assets/index-BbeISxZe.js",
       "discovery_url": "https://app.netnet.capital/",
       "reviewed_on": "2026-10-07",
@@ -5959,6 +5976,7 @@
       "summary": "Current Reports adds posted Loopback wsNET to own NET-family exposure and subtracts its stored-share USDG debt. Advance now adds unallocated cash, per-open-position floor((owed-paid)*10000/11500) principal receivable, and desk inventory wsNET; excludes escrow and fee receivable from that contribution. The six stock-market positions, source-selected V4 principal, v3, Turbo, pro-rata House, Book and configured Safe assets retain separately specified selection/marks. The CLI requires complete selected Advance reads rather than reproducing publisher null-position skips. September 26 policy/source fingerprints remain historical, not eligible current fallbacks.",
       "limits": "Static text only; complete byte count/hash/footer, no downloaded JS execution, website numeric input or rendered-headline assertion. No financial observation or deployed ABI/source equivalence. Runtime only permits bounded data-only variation inside the exact source-consumed V4 registry; accounting metadata is also fingerprint bound. Core aggregate completeness remains blocked by unresolved applicable deployed POL arithmetic.",
       "reference": "references/reserve-analytics.md",
+      "superseded_for_current_recognition_by": "netnet-reports-methodology-20261013-current",
       "execution_authority": false
     },
     {
@@ -6510,7 +6528,7 @@
       "Core POL reconstruction remains an explicit release blocker: the reported18432.08 USDG discrepancy and original validation block/raw/runtime packet are unresolved. Corrected haircut arithmetic does not establish complete Core reconciliation."
     ],
     "counts": {
-      "source_records": 322,
+      "source_records": 323,
       "contract_records_unique_by_chain_and_address": 232,
       "public_role_address_records": 12,
       "trusted_product_mark_relationships": 6,
@@ -6533,7 +6551,7 @@
         "explorer_contract_runtime_and_dependency_source": 1,
         "explorer_contract_source": 2,
         "explorer_api": 49,
-        "official_app_contract_interface": 20,
+        "official_app_contract_interface": 21,
         "official_documentation": 31,
         "official_social_post": 74,
         "social_commentary": 1,

@@ -12,7 +12,7 @@ from unittest.mock import patch
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from netstack_core import RpcError, StopRun, load_json
+from netstack_core import RpcError, StopRun, _NetworkPolicy, load_json
 import netstack_methodology as methodology
 
 HTML = b'<html><script type="module" crossorigin src="/assets/current.js"></script></html>'
@@ -47,7 +47,7 @@ class PublisherBoundaries(unittest.TestCase):
         def stop(reason):
             raise StopRun(reason)
         return SimpleNamespace(result={"metrics": {}}, _collect_end=time.monotonic()+30,
-                               _attempt_end=None, _raw_bytes=0, _arm=lambda: None,
+                               _attempt_end=None, _raw_bytes=0, _arm=lambda: None, _network_policy=_NetworkPolicy(),
                                check=lambda: None, _stop=stop)
 
     def profile(self):
@@ -243,8 +243,8 @@ class PublisherBoundaries(unittest.TestCase):
                         socket.SOCK_STREAM, socket.IPPROTO_TCP, "", (address, 443))]
             connection = methodology._PublisherHTTPSConnection(methodology.HOST, 443,
                                                                 context=ssl.create_default_context())
-            with patch.object(methodology.socket, "getaddrinfo", return_value=answers), \
-                    patch.object(methodology.socket, "socket") as create_socket:
+            with patch.object(socket, "getaddrinfo", return_value=answers), \
+                    patch.object(socket, "socket") as create_socket:
                 with self.assertRaises(RpcError) as error:
                     connection.connect()
                 self.assertEqual(error.exception.kind, "permission")
@@ -304,7 +304,8 @@ class PublisherBoundaries(unittest.TestCase):
 
     def test_accounting_policy_mutation_cannot_reuse_source_recognition(self):
         for section, field in (("wallet", "fixed_stock_tokens"), ("v3", "assets"),
-                               ("credit", "market_ids"), ("advance", "principal_fields")):
+                               ("credit", "market_ids"), ("advance", "principal_fields"),
+                               ("lose", "lp_owner"), ("lose", "pair"), ("lose", "token")):
             profile = self.profile()
             profile["selection_policy"][section][field] = []
             result, calls = self.collect(profile=profile)
@@ -321,6 +322,24 @@ class PublisherBoundaries(unittest.TestCase):
         self.assertEqual(profile["selection_policy"]["advance"]["principal_fields"],
                          ["unallocated", "receivable", "inventory"])
         self.assertEqual(len(profile["selection_policy"]["credit"]["market_ids"]), 7)
+
+
+    def test_october13_profile_preserves_dated_policy_without_reusing_its_recognition(self):
+        profile = load_json("assets/analytics/reports-methodology.json")
+        self.assertEqual(profile["profile_id"], "reports-20261013-lose-team-lp")
+        prior = next(p for p in profile["historical_profiles"] if p["reviewed_at"] == "2026-10-07")
+        self.assertNotIn("lose", prior["selection_policy"])
+        self.assertIn("lose", profile["selection_policy"])
+        policy = profile["selection_policy"]["credit"]
+        self.assertEqual(len(policy["stock_market_ids"]), len(policy["registry_keys"]))
+        self.assertEqual(set(policy["market_ids"]), set(policy["stock_market_ids"]) | {policy["loopback_market_id"]})
+        self.assertNotIn(policy["loopback_market_id"], policy["stock_market_ids"])
+        active = profile["reviewed_bundles"]
+        self.assertEqual(len(active), 1)
+        self.assertEqual(active[0]["registry_extraction"], {"registry_binding": "w4", "selector_binding": "v4"})
+        self.assertNotIn(active[0]["bundle_sha256"], prior["reviewed_bundle_sha256"])
+        self.assertEqual(active[0]["accounting_sha256"], methodology._accounting_digest(profile))
+        self.assertIn("lose_valuation", {row["id"] for row in active[0]["evidence"]})
 
 
 if __name__ == "__main__":
