@@ -14,6 +14,29 @@
   },
   "sources": [
     {
+      "id": "netnet-reports-live-drift-20261013",
+      "type": "public_frontend",
+      "label": "Current Reports LOSE and Team Safe LP methodology drift",
+      "url": "https://app.netnet.capital/assets/index-UZiJxJT6.js",
+      "entry_url": "https://app.netnet.capital/",
+      "observed_on": "2026-10-13",
+      "reviewed_on": "2026-10-13",
+      "content_review_status": "targeted_static_methodology_comparison_not_supported_runtime_profile",
+      "source_bytes": 1281195,
+      "source_sha256": "21954f569d9afd61dd26d612528e64a99e0f5f5a61a62eabb54a09d95c8ef894",
+      "summary": "Fresh publisher entry selects this bundle. Reports aggregate UA adds Sleeve LOSE value and Team Safe LOSE/USDG LP value; getSleeve reads token balance for Sleeve but LP balance for teamMultisig. A8 marks LOSE from pair reserve ratio and computes integer-floored proportional LP asset legs. The October7 profile is not current-method certification.",
+      "locators": [
+        {"name": "UA Reports aggregate", "utf8_byte_offset": 1199906},
+        {"name": "A8 LOSE and LP valuation", "utf8_byte_offset": 805418},
+        {"name": "live getSleeve reader", "utf8_byte_offset": 860626},
+        {"name": "TH Reports route", "utf8_byte_offset": 1251499}
+      ],
+      "reference": "references/reserve-analytics.md",
+      "supporting_references": ["references/rwa-strategy.md"],
+      "limits": "Targeted static publisher-source review, not complete dependency/registry/fallback equivalence, rendered headline verification, pinned balances or beneficial ownership proof. The existing runtime profile remains unsupported for this source and must fail closed. No current financial figures or raw frontend archive are distributed.",
+      "execution_authority": false
+    },
+    {
       "id": "netnet-trading-ui-mechanics-20261012",
       "type": "public_frontend",
       "label": "NetLong disconnected rendered mechanics sweep and current consumer assets",
@@ -6487,7 +6510,7 @@
       "Core POL reconstruction remains an explicit release blocker: the reported18432.08 USDG discrepancy and original validation block/raw/runtime packet are unresolved. Corrected haircut arithmetic does not establish complete Core reconciliation."
     ],
     "counts": {
-      "source_records": 321,
+      "source_records": 322,
       "contract_records_unique_by_chain_and_address": 232,
       "public_role_address_records": 12,
       "trusted_product_mark_relationships": 6,
@@ -6505,7 +6528,7 @@
       "contract_provenance_count_method": "Each contract counted once per source in its parent provenance array, including the publisher-directory observations for feed metadata. Chainlink directory coverage is 37 because that metadata evidence is held at the parent contract, not because of new observations or live verification.",
       "source_types": {
         "explorer_contract_runtime": 16,
-        "public_frontend": 2,
+        "public_frontend": 3,
         "explorer_contract_source_and_runtime": 9,
         "explorer_contract_runtime_and_dependency_source": 1,
         "explorer_contract_source": 2,

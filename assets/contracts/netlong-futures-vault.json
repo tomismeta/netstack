@@ -64,6 +64,25 @@
       "is_partially_verified": false,
       "local_compilation_performed": false
     },
+    "unresolved_event_like_constants": [
+      {
+        "push_offset": "0x2b48",
+        "constant": "0xd3d369c8be63df19c1de5499cdaeb135ddd46102dc5a1424cf268346cd530b4b",
+        "log_opcode": "LOG2",
+        "log_pc": "0x2b83",
+        "receipt_evidence": {
+          "source_id": "netlong-catalog-rpc-20261012",
+          "transaction_hash": "0x206d586246ff1d4c8f1aac7a4dc97c87d6cdeb21016af714b76214183041c7a0",
+          "block_number": 86749326,
+          "log_index": 2,
+          "emitter": "0x50dC51CE9e633bed99D1D826fa0E2CaAc3183bF6",
+          "topic_count": 2,
+          "data_bytes": 64
+        },
+        "status": "receipt_confirmed_topic0_not_in_supplied_interface; source_signature_and_field_semantics_unresolved"
+      }
+    ],
+    "unresolved_event_limit": "The retained successful receipt confirms this vault-emitted topic0, one additional topic and 64 data bytes; the hash-matched runtime contains its PUSH32 and LOG2 path. No event name, canonical signature, argument types, units or accounting meaning was recovered. This evidence is not a decoded ABI event or an exhaustive event inventory; the 15 publisher-supplied events remain unchanged.",
     "dispatch_function_count": 68,
     "unrepresented_dispatch_selectors": [
       {

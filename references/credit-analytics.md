@@ -26,6 +26,14 @@ Unsupported adapters/IRMs/assets, bounded discovery, runtime mismatches, failed 
 
 Do not sum vault assets + adapter claims + market assets: these are overlapping accounting layers. Do not sum depositor claims into protocol-owned reserves. RFV remains responsible for Sleeve beneficial exposure. Its explicit Reports stored-debt convention is preserved; this workflow's economically accrued debt is not a silent change to that publisher figure. Historical earnings cannot be derived from current assets minus deposits without full cash flows, shares/ownership changes, liabilities, fees, losses and distribution history. Core POL reconstruction remains unsupported; the18432.08USDG discrepancy is unchanged.
 
+## Routing “Sleeve leverage”
+
+“Sleeve leverage” is not one contract getter or the leverage of a typical Credit user. For a Sleeve-wide question, use [reserve/Sleeve accounting](reserve-analytics.md#plain-language-rfv-requests) to establish the beneficially attributable portfolio, including off-wallet collateral and claims, then use Credit reads for the Sleeve's supported markets and Loopback debt. The [RWA strategy](rwa-strategy.md#bought-inventory-and-credit-funded-recycling) explains the financing path; it is not evidence of current leverage.
+
+State the ratio explicitly: **gross assets / net equity** uses `A / (A − L)`, while **debt / net equity** uses `D / (A − L)`, where `A` is attributable assets counted once, `L` all included liabilities and `D` the interest-bearing debt subset. Use one pinned block, a common evidenced valuation unit, and disclose the ownership/asset/liability perimeter. These are analyst-defined balance-sheet ratios, not publisher “True RFV,” liquidation thresholds or guaranteed unwind proceeds. Missing marks, ownership or liabilities leave a complete ratio unavailable; nonpositive equity leaves these leverage multiples undefined. A known-scope ratio must be labelled as such, not “all Sleeve leverage.”
+
+For a specific borrowing position, report collateral value, accrued debt and the market's evidenced LTV/health separately. Collateral/debt coverage is not gross-assets/equity leverage. Preserve Reports' stored-debt convention only when reproducing that publisher memo; do not substitute it for economically accrued debt in a separately labelled leverage analysis.
+
 ## Fresh historical fee/receipt investigation recipe
 
 The CLI intentionally does not advertise automatic lifetime fee or earnings reconstruction. A supported historical answer requires all of the following, collected fresh for a user-selected interval and never persisted into package assets:
