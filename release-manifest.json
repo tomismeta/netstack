@@ -6,7 +6,7 @@
   "manifest_sha256": {
     "LICENSE": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "README.md": "dadcd7d641e6f503692d9f453a580da6834df80ba29e2ee84c6f1837b2591bc7",
-    "SKILL.md": "cc6b6f2b4c1d978ec88b364af20a0addaed5438467aef50d0523d4dbe1d8f2ca",
+    "SKILL.md": "f437acd0de1233452a3b42fd698f279eda71683341e2a51dd6974c340be2c231",
     "assets/LICENSE.txt": "14b82531e814378b84e97596f68a98c70becee3251b206c545d4f07d73105af3",
     "assets/address-conventions.json": "36e8aac8ff6304cf752bafcb9d6a9f99fcc1258987aef18522d886914f44dbf4",
     "assets/address-index.json": "36a156680b2a9f1f48288e6fdb28191b7f1e2bbc929f4f8e7939aad448f9f5f8",
@@ -270,7 +270,7 @@
     "references/glossary-and-faq.md": "5eb217f94f000b4d32714d774784c679d5ff32f585459a46477842d835d6ad4d",
     "references/guardrail.md": "f8fe8e1f024b232fc6353a7803001dd2e4744119483ab4b18784166fd16148de",
     "references/installation.md": "bcf7c288e94b846910762b9660dfed0b62c736872de333583ec1f5ac7393c552",
-    "references/integrations.md": "d605169a113815b99d27f5f21c99a8fc14f5ff1b95c42881bd440474cb2ac660",
+    "references/integrations.md": "e6f99439b2ff339c9f8fd849b2974bfb6e4d2b8df32e682c641ccca6f8c79c94",
     "references/interview-research.md": "cb79d6ef3f0e0e0487be0640e0528cc422bf17b3d45ce9a365029c63b95880de",
     "references/inverse-bond-analytics.md": "9a2d09fdc16a9c1734fc32a4e69240c58e7e4efc50d81a841a48750873de8d4c",
     "references/inverse-bond-contracts.md": "1cd12b178c1bc3ecdfffa589f388661d5f8ddb1cece9f80238dd5df559d7fc9d",
@@ -319,7 +319,7 @@
   },
   "runtime_bundle": {
     "files": 310,
-    "sha256": "62e1730628a1582571c5e939715273cdfb5bfa39dd45ab6f6456caccc61047b4",
+    "sha256": "d8b90291ead8d7dd03d4f067d7febc4e3fcc69215965567dd4f244291e0983a9",
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by NUL and file bytes",
     "scope": "SKILL.md, assets/**, references/** (including references/guardrail.md) and scripts/**; excludes README.md, root LICENSE, release-manifest.json and non-distributable maintenance/tests."
   }
