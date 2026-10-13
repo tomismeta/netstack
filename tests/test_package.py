@@ -274,6 +274,15 @@ class ReviewedCommitExports(unittest.TestCase):
         pack = self.git("pack-objects", ".git/objects/pack/pack",
                         input=(self.commit + "\n" + tree + "\n").encode()).decode().strip()
         (self.root / ".git/objects/pack" / ("pack-" + pack + ".promisor")).touch()
+        # Construct the missing-object store explicitly: Git may store the original
+        # blob in a pack rather than at a loose-object filesystem path.
+        missing_objects = self.parent / "missing-objects"
+        (missing_objects / "pack").mkdir(parents=True)
+        objects = self.git("rev-list", "--objects", "--no-object-names", self.commit).splitlines()
+        remaining = b"\n".join(oid for oid in objects if oid != blob.encode()) + b"\n"
+        missing_pack = self.git("pack-objects", str(missing_objects / "pack/pack"),
+                                input=remaining).decode().strip()
+        (missing_objects / "pack" / ("pack-" + missing_pack + ".promisor")).touch()
         marker = self.parent / "transport-invoked"
         helpers = self.parent / "helpers"
         helpers.mkdir()
@@ -292,8 +301,10 @@ class ReviewedCommitExports(unittest.TestCase):
             packaging.export_package(self.root, self.commit, complete)
             self.assertEqual(integrity.read_package(complete), self.source)
             self.assertFalse(marker.exists())
-            object_path = self.root / ".git/objects" / blob[:2] / blob[2:]
-            object_path.unlink()
+            object_store = self.root / ".git/objects"
+            object_store.rename(self.parent / "complete-objects")
+            missing_objects.rename(object_store)
+            object_path = object_store / blob[:2] / blob[2:]
             # Positive control: ordinary Git really invokes this harmless local helper,
             # even with protocol.allow=never. No network or credential helper is involved.
             with self.assertRaises(subprocess.CalledProcessError):

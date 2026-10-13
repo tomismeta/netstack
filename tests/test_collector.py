@@ -229,8 +229,8 @@ class RetryBudgets(unittest.TestCase):
         def sleep(seconds):
             waits.append(seconds)
             clock[0] += seconds
-        ctx = core.Context('rfv', deadline=30)
-        clock[0] = ctx._started
+        with patch.object(core.time, 'monotonic', side_effect=lambda: clock[0]):
+            ctx = core.Context('rfv', deadline=30)
         try:
             with patch.object(core, '_FixedHTTPSConnection', side_effect=lambda *a, **kw: Response()), \
                  patch.object(core.time, 'monotonic', side_effect=lambda: clock[0]), \
