@@ -2,6 +2,11 @@
 
 Source-only maintenance record relocated from the installed README. The entries below preserve their original chronology, counts and verification limits; they describe work at those dates, not current acceptance or deployed state. For current usage and limitations, read [README](../README.md), the installed references and the exact candidate’s external verification records. Nothing here authorizes publication.
 
+## Standard-bond archive degradation
+
+- Historical code reads that are pruned/unavailable now retain snapshot-only identity evidence and allow independent log/receipt collection. Missing historical identity prevents complete totals and sellout reconstruction, even if other archive calls work; runtime mismatch and permission/integrity failures remain terminal.
+- Added behavioral regressions for USDG/LP observed subtotals with missing code/state, identity-only gaps, and historical denial/mismatch before log collection. The real CLI was exercised with synthetic pruned transport: confirmed snapshot, retained receipt subtotal, null totals/prices and unknown sellout. No historical financial answers are packaged.
+
 ## October 13 bounded official-account refresh
 
 - Indexed fourteen newly discovered October 11–13 official post URLs, including the six-part RW-PLAY/Cabinet Kit thread, management/bond strategy and distribution commentary. Updated existing source, chronology and builder references rather than adding a competing announcement index.

@@ -293,7 +293,7 @@
     "references/safety.md": "0a938dc4f492d1b08bebe904eae7bfd736a7bd8c19da4d895cc3b65dcb7a17f1",
     "references/sleeve-bond-analytics.md": "8ae3a9ebd9614b714f634f35c54deca254f63f736d6df96932e2ac3c4df85a55",
     "references/sleeve-bond-contracts.md": "5b3c11e274a6accdf11939cd61bded7112fe933a610d9e5a01b2dc4e06c21556",
-    "references/standard-bond-analytics.md": "35a411d44032f1e350341b171f0b97277aef223e94197cc9938b920cd064d3e0",
+    "references/standard-bond-analytics.md": "35f581dd1f50c43c22d5fbf14156b83852bca97a878b21261f17048c3e40d48b",
     "references/website-metrics.md": "b3e91c1071342496486f895e1a0263f4afa92e2758cdc94ea77b7100b823c26a",
     "scripts/analytics.py": "d935b246dfebd567278be6f3bf543c1589349682d309561ac8e006a4c82c3962",
     "scripts/netstack_advance.py": "6bda012e0da6d790b6a0f485f159d97d47480f1f07741e62d9d411f8ebccf106",
@@ -313,13 +313,13 @@
     "scripts/netstack_reserves.py": "229db7470fedaf88e04645f49047b9a778a4415708c138db318de037abad18ed",
     "scripts/netstack_sleeve.py": "89bfc4dec4144a14983f0d63ecad87d1a2f57935e54e51af763a8db264752af5",
     "scripts/netstack_sleeve_bonds.py": "8111b4adaeb4e0d45f74e2bea11a0afde18030fd7b93ec418ea6bc6058302996",
-    "scripts/netstack_standard_bonds.py": "f2e242b876152ce4efec5b11b26d4bf5c5541a92918fa15adc96f9e6cf3e2f36",
+    "scripts/netstack_standard_bonds.py": "da519cf62a255f50a878c8e503ee8ccc4d514812a4affc60931e51a64640225e",
     "scripts/netstack_v4.py": "16681d2899d36125a1bb9f3cb893af29d531d40618dbdd9ae52d795aaed81b01",
     "scripts/verify.py": "84e354adc3c19ec59f26a95b4b995df7bf46fb227f61091994f7814595de66b6"
   },
   "runtime_bundle": {
     "files": 310,
-    "sha256": "3bb11bcdf7c7eed1c878cf3bfa695a65d22ba165250e2df4f441fef68279503a",
+    "sha256": "2ef73ca572ef990dc9f641c261075d36f71ecfc0aeaa0ea13973e486fb89e37d",
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by NUL and file bytes",
     "scope": "SKILL.md, assets/**, references/** (including references/guardrail.md) and scripts/**; excludes README.md, root LICENSE, release-manifest.json and non-distributable maintenance/tests."
   }

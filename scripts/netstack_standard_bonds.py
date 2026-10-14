@@ -305,7 +305,8 @@ def prepare_result(result):
     scanned = (discovery.get("supplied_source_complete") and discovery.get("canonical_receipts_complete")
                if discovery is not None else
                all(coverage.get(key, {}).get("event_coverage_complete") for key in SCAN_KEYS))
-    history_ok = bool(snapshot_ok and coverage.get("historical_headers_confirmed") and scanned)
+    history_ok = bool(snapshot_ok and coverage.get("historical_runtime_identity_complete") and
+                      coverage.get("historical_headers_confirmed") and scanned)
     receipts = metrics["receipts"]
     checked = {row["transaction_hash"]: row for row in receipts if row["status"] == "checked" and row["matched"]}
     all_receipts = all(row["transactionHash"] in checked for row in metrics["events"])
@@ -341,7 +342,8 @@ def run(ctx, args):
     metrics, coverage = ctx.result["metrics"], ctx.result["coverage"]
     metrics.update(source_id=evidence["source_id"], epochs=[], events=[], receipts=[],
                    implementations=[], bindings=[], bindings_complete=False, totals=None)
-    coverage.update(collection_complete=False, historical_headers_confirmed=False)
+    coverage.update(collection_complete=False, historical_headers_confirmed=False,
+                    historical_runtime_identity_complete=False)
     ctx.result["not_proven"].extend([
         "Source-reviewed arithmetic with exact BondDepository/NET runtime identity checks; not independent compiler equivalence or a security audit.",
         "Served logs and receipts plus boundary/touched-block counters constrain omissions, but cannot disprove a provider silently omitting offsetting intra-block changes.",
@@ -395,8 +397,21 @@ def run(ctx, args):
         first, last = boundaries[selected[0]]+1, boundaries[ongoing]
         coverage["window"] = {"requested_range": [first, last], "epoch_selection": "Last completed consecutive epochs; zero-activity epochs retained"}
         # These contracts have no upgrade/redeployment path in the reviewed source.
+        historical_identity = True
         for role in ("bond", "net"):
-            metrics["implementations"].append(_runtime(ctx, routes, evidence, role, first))
+            try:
+                implementation = _runtime(ctx, routes, evidence, role, first)
+            except RpcError as error:
+                if error.kind not in ("pruned", "unavailable"):
+                    raise
+                historical_identity = False
+                ctx.result["errors"].append({"scope": "historical_runtime", "role": role,
+                                             "kind": error.kind, "message": str(error)})
+                implementation = {"role": role, "block": first,
+                                  "status": "historical_code_unavailable",
+                                  "identity_scope": "snapshot_only"}
+            metrics["implementations"].append(implementation)
+        coverage["historical_runtime_identity_complete"] = historical_identity
         for epoch in selected:
             opening, closing = boundaries[epoch], boundaries[epoch+1]
             row = {"epoch": epoch, "start_timestamp": start+epoch*EPOCH_SECONDS,
@@ -475,7 +490,7 @@ def run(ctx, args):
             row["transaction_hashes"] = sorted({event["transactionHash"] for event in events})
             sales = [event for event in events if event["event"] == "BondCreated"]
             row["observed_subtotal"] = _observed_totals(sales, receipts)
-            if row["opening_state"] is None or row["closing_state"] is None:
+            if not historical_identity or row["opening_state"] is None or row["closing_state"] is None:
                 continue
             model = reconstruct_epoch(events, *row["opening_state"], row["start_timestamp"], timestamps)
             row["reconstruction"] = {key: value for key, value in model.items() if key != "block_states"}

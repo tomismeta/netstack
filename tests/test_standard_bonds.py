@@ -52,6 +52,8 @@ class Fixture:
         self.fail_method = None
         self.fail_kind = "permission"
         self.archive_unavailable = False
+        self.historical_code_error = None
+        self.historical_runtime = None
         self.reorg = False
         self.header_reads = {}
 
@@ -116,7 +118,11 @@ class Fixture:
                 changed = self.reorg and self.header_reads[block] > 1
                 value = {"number": hex(block), "hash": hash_value(block+10000+int(changed)), "timestamp": hex(block*100)}
             elif method == "eth_getCode":
-                value = self.runtime
+                historical = int(params[1], 16) < self.snapshot
+                if historical and self.historical_code_error:
+                    responses.append(RpcError("Historical code unavailable", kind=self.historical_code_error))
+                    continue
+                value = self.historical_runtime if historical and self.historical_runtime is not None else self.runtime
             elif method == "eth_call":
                 block = int(params[1],16)
                 if self.archive_unavailable and block < self.snapshot:
@@ -295,6 +301,54 @@ class StandardBondTests(unittest.TestCase):
         result = fixture.run()
         self.assertIsNone(result["metrics"]["totals"])
         self.assertTrue(all(row["sellout"]["status"] == "unknown" for row in result["metrics"]["epochs"]))
+
+    def test_pruned_code_and_state_preserve_receipt_subtotals(self):
+        fixture = Fixture()
+        fixture.historical_code_error = "pruned"
+        fixture.archive_unavailable = True
+        fixture.sale(payout=UNIT)
+        fixture.sale(market=1, payout=UNIT, quote=10**18, block=2892, tx=901)
+        result = fixture.run()
+        epoch = next(row for row in result["metrics"]["epochs"] if row["epoch"] == 10)
+        self.assertEqual(epoch["observed_subtotal"]["purchases"], 2)
+        self.assertEqual(epoch["observed_subtotal"]["net_sold"]["raw"], str(2*UNIT))
+        self.assertEqual(epoch["observed_subtotal"]["direct_usdg_received"]["raw"], "3000000")
+        self.assertEqual(epoch["observed_subtotal"]["lp_received"]["raw"], str(10**18))
+        self.assertIsNone(epoch["opening_prices"])
+        self.assertIsNone(epoch["totals"])
+        self.assertFalse(epoch["reconstruction_complete"])
+        self.assertEqual(epoch["sellout"]["status"], "unknown")
+        self.assertIsNone(result["metrics"]["totals"])
+        self.assertFalse(result["coverage"]["historical_runtime_identity_complete"])
+        self.assertTrue(result["coverage"]["historical_headers_confirmed"])
+        self.assertEqual(result["coverage"]["receipt_reconciliation"]["checked_transactions"], 2)
+        self.assertEqual([row["identity_scope"] for row in result["metrics"]["implementations"]
+                          if row["status"] == "historical_code_unavailable"], ["snapshot_only"]*2)
+
+    def test_missing_historical_code_alone_cannot_publish_complete_totals(self):
+        fixture = Fixture()
+        fixture.historical_code_error = "unavailable"
+        fixture.sale()
+        result = fixture.run()
+        epoch = next(row for row in result["metrics"]["epochs"] if row["epoch"] == 10)
+        self.assertIsNotNone(epoch["opening_prices"])
+        self.assertEqual(epoch["observed_subtotal"]["purchases"], 1)
+        self.assertFalse(epoch["reconstruction_complete"])
+        self.assertIsNone(result["metrics"]["totals"])
+        self.assertFalse(result["coverage"]["collection_complete"])
+
+    def test_historical_denial_and_runtime_mismatch_stop_before_logs(self):
+        for failure in ("permission", "integrity", "runtime"):
+            with self.subTest(failure=failure):
+                fixture = Fixture()
+                fixture.sale()
+                if failure == "runtime":
+                    fixture.historical_runtime = "0x6001"
+                else:
+                    fixture.historical_code_error = failure
+                with self.assertRaises(RpcError):
+                    fixture.run()
+                self.assertFalse(any(method == "eth_getLogs" for method, _ in fixture.requests))
 
     def test_permission_reorg_and_wrong_runtime_fail_closed(self):
         for failure in ("permission","reorg","runtime"):
