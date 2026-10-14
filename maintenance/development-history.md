@@ -2,6 +2,12 @@
 
 Source-only maintenance record relocated from the installed README. The entries below preserve their original chronology, counts and verification limits; they describe work at those dates, not current acceptance or deployed state. For current usage and limitations, read [README](../README.md), the installed references and the exact candidate’s external verification records. Nothing here authorizes publication.
 
+## October 13 bounded official-account refresh
+
+- Indexed fourteen newly discovered October 11–13 official post URLs, including the six-part RW-PLAY/Cabinet Kit thread, management/bond strategy and distribution commentary. Updated existing source, chronology and builder references rather than adding a competing announcement index.
+- Browser relay was unavailable; new records explicitly identify model-relayed X-search caption review. No exhaustive account/reply archive, independent video review, public SDK release, named Robinhood partnership or contract verification is inferred.
+- Retained qualitative recycled-inventory and compensation claims without copying dated balances, prices or transaction histories. Standard minting bonds remain distinct from Sleeve inventory bonds; broad fee language cannot override exact recipient and accounting evidence. No tag, merge or release.
+
 ## October 13 standard-bond analytics and dogfood corrections
 
 - Added `standard-bonds`: consecutive completed epochs including quiet epochs; NET issuance, receipt-confirmed Treasury USDG, separate LP consideration, opening NAV/spot and first post-transaction capacity strictly below one NET. Source review establishes a dynamically recomputed supply-based cap, not an opening snapshot. No financial history is shipped.

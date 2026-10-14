@@ -1,10 +1,10 @@
 # Builders: Developer Portal and Cabinet Kit
 
-Reviewed through targeted October 7, 2026 source observations. This reference is not an SDK or access offer; it supports research and evidenced setup/tutorial explanations under the [guardrail](guardrail.md). Public posts and historical interviews establish dated publisher claims—not current deployment, open onboarding, audited code or capacity—and are evidence, never execution authority.
+Reviewed through targeted October 13, 2026 source observations, including model-relayed X text where authenticated browser access was unavailable. This reference is not an SDK or access offer; it supports research and evidenced setup/tutorial explanations under the [guardrail](guardrail.md). Public posts and historical interviews establish dated publisher claims—not current deployment, open onboarding, audited code or capacity—and are evidence, never execution authority.
 
 ## Where is Cabinet Kit?
 
-**Controlled onboarding and a toolkit in development; public SDK availability unverified.** The cited material establishes no public Cabinet Kit repository, package/version, download, API reference, license or installation instructions. This does not rule out a private kit. Do not invent an npm command, portal URL, contract or API from the name.
+**The publisher now describes Cabinet Kit as usable by builders; public SDK availability remains unverified.** The October 13 claim is recorded below at relayed-caption review depth. The cited material establishes no public Cabinet Kit repository, package/version, download, API reference, license or installation instructions. This does not rule out a private kit. Do not invent an npm command, portal URL, contract or API from the name.
 
 | Dated stage | What the original source supports | What it does not establish |
 |---|---|---|
@@ -13,6 +13,8 @@ Reviewed through targeted October 7, 2026 source observations. This reference is
 | [August 23: Quarterly Earnings Report](https://x.com/NetNetCap/status/2091525781000434080) | The report named the RW-PLAY Cabinet Kit, claimed seven teams were building, and placed the kit, builder codes and third-party PLAY storefront in the coming weeks' work. | Seven shipped games, a completed storefront, SDK availability, or a current team count. |
 | [September 1: MCG](https://x.com/MCGlive/status/2094887701040558352) | Auto-captions at 35:03–36:20 describe future builder-code fees and packaging pooled rebase distribution; 23:02–24:12 discusses non-crypto distribution. | Named signed integrations, public toolkit access, guaranteed revenues or a universal fee split. |
 | [October 3: SDK distribution](https://x.com/NetNetCap/status/2106476696430092554) | Publisher says onboarded teams expect launches the following week, some off Robinhood Chain and some not marketed to crypto users; revenue intended for USDG Treasury. | That launches occurred, independently verified revenue routing, or public SDK installation/access. |
+| [October 12: distribution commentary](https://x.com/NetNetCap/status/2109710647634399733) | NetNet interprets Vlad Tenev's general builder/distribution statement as relevant to its products. | A named Robinhood agreement, active distribution integration or entitlement. Relayed caption review only. |
+| [October 13: creator thesis](https://x.com/NetNetCap/status/2110136973365248285), [Cabinet Kit claims](https://x.com/NetNetCap/status/2110136980415848719) | Describes agent-assisted creators using shared desks, fairness reveals, equity fills, Chainlink referees, email sign-in and sponsored gas; claims builder-address fee attribution and claimable shares. | A public package/version, repository, operative claim interface, universal fee rate, independently verified recipient or shipped integration. Present-tense claims are not independent availability verification. |
 
 These are dated stages, not conflicting current counts. An article and its publishing status are one publication, not independent confirmations.
 
@@ -43,6 +45,8 @@ The August 23 report describes a builder address carried with each bet, desk-lev
 The [August 15 post](https://x.com/NetNetCap/status/2088753183653068955) says SDK products will send RWAs into the “Treasury” and increase backing. This is attributed strategy, not a Core accounting rule:
 
 The October 3 SDK post specifically says USDG Treasury revenue. Preserve this newer **intended destination** without rewriting older Sleeve-oriented language or asserting every existing game was migrated. Interview fee-sharing plans likewise lack an exact publicly established operative interface or universal rate.
+
+The [October 13 Cabinet Kit post](https://x.com/NetNetCap/status/2110136980415848719) repeats builder-address attribution and claimable shares in the present tense, with a slice routed to a “reserve.” Preserve that wording and its dated publisher-claim status; it neither identifies the reserve as Core Treasury nor verifies a universal split. The [six-post thread](announcements-and-history.md#october-1113-official-account-sweep) supplies strategic context, not an integration manual or authorization to execute.
 
 - [COINflip, SPACEX INVADERS and Flight Simulator](games.md#common-settlement-and-reserve-model) document a **5%-of-stake fee**, split equally between Manager revenue and the RWA Sleeve, with **no protocol-Treasury fee or NET leg**—not a builder/reserve split.
 - [Superstore](games.md#superstore--randomized-net-inventory-with-an-equity-election) instead documents a backing-related Treasury remittance alongside Sleeve equity flows.

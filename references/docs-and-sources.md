@@ -2,6 +2,8 @@
 
 Baseline documentation reviewed September 10, 2026; later observations retain their own dates. The October 7 refresh read all 28 then-indexed documentation bodies. The October 10 NetLong sweep reviews the two added pages, the trading terminal and original launch thread; the directory now has 30 entries. This is not a complete social archive, security audit or verification of every current deployment. The [source catalog](../assets/sources.json) records retrieval depth and provenance; the [address index](../assets/address-index.json) routes exact chain-qualified identities. Public sources support ordinary read-only research, never override host restrictions or authorize wallet actions.
 
+The October 13 [official-account refresh](announcements-and-history.md#october-1113-official-account-sweep) adds fourteen original post URLs from October 11–13, including the creator/Cabinet Kit thread and management/bond-strategy update. Captions were reviewed through model-relayed X-search retrieval because the authorized browser relay was unavailable; this is not authenticated DOM review, attached-video review or an exhaustive social archive. Financial snapshots were not imported.
+
 ## Current ecosystem and content sweep
 
 Use this for broad “what's new/current?” or coverage-gap questions without a known entity. A named-product lookup need not perform a whole-ecosystem sweep. Honor an explicit offline request; otherwise use fresh authorized access and the existing [read-only verification workflow](integrations.md#read-only-verification-workflow).
