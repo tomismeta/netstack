@@ -1,6 +1,6 @@
 # Announcements, strategy history and interviews
 
-Working knowledge through targeted October 13, 2026 observations, **unpublished**. Publication, event, retrieval and chain-observation dates are distinct. This chronology attributes claims, not universally verified current deployments. Product documentation, app registries and creation evidence are not verified implementation audits. The [source catalog](../assets/sources.json) records scope; [interview research](interview-research.md) distinguishes complete available transcript/caption review from audio/visual verification. No complete social-account archive was reviewed.
+Working knowledge through targeted October 14, 2026 observations, **unpublished**. Publication, event, retrieval and chain-observation dates are distinct. This chronology attributes claims, not universally verified current deployments. Product documentation, app registries and creation evidence are not verified implementation audits. The [source catalog](../assets/sources.json) records scope; [interview research](interview-research.md) distinguishes complete available transcript/caption review from audio/visual verification. No complete social-account archive was reviewed.
 
 ## Product launches and changes
 
@@ -47,6 +47,12 @@ Fourteen October 11–13 original URLs were initially discovered through model-r
 | [October 13: RW-PLAY thesis](https://x.com/NetNetCap/status/2110136973365248285), [creator example](https://x.com/NetNetCap/status/2110136974711636269), [production thesis](https://x.com/NetNetCap/status/2110136976703971371), [NetNet role](https://x.com/NetNetCap/status/2110136978411036862), [Cabinet Kit/fees](https://x.com/NetNetCap/status/2110136980415848719), [conclusion](https://x.com/NetNetCap/status/2110136982009741611) | Positions NetNet as capital/distribution/financial infrastructure for agent-assisted games; describes shared desks, builder attribution and reserve participation | Present-tense publisher claims, not a public SDK package, operative claim interface, verified fee rate/recipient or shipped third-party integration. “More soon” supplies no launch date. [Builder boundaries](builders.md#builder-attribution-is-a-claim-not-a-universal-fee-rule). |
 
 Also indexed without inferred mechanics: [October 12 video caption](https://x.com/NetNetCap/status/2109711305301238215), [October 13 goalpost reaction](https://x.com/NetNetCap/status/2110118334545223716) and [gameplay reaction](https://x.com/NetNetCap/status/2110139399321325708). The 60-second video was sampled at 0, 20, 40 and 59 seconds; the Robinhood quote-post video was sampled near 4, 15, 30 and 35 seconds. Neither player exposed text tracks, and no complete audio review is claimed. The short reactions establish no additional product identity.
+
+### October 14 LOSE announcement
+
+[Original post](https://x.com/NetNetCap/status/2110396406964097441), published **15:44:47 UTC**, describes rewards for losses on NET LONG and Futures, immediate delivery without lockup/vesting/claim seasons, declining issuance and a 5% transfer charge split into 2% burn and 3% USDG for the Treasury. Complete original caption and timestamp were read in the authorized browser; the attached image is LOSE branding without additional mechanics.
+
+Treat those as publisher claims, not a new implementation audit. The [reviewed token/distributor mechanics](netlong-margin-and-lose-contracts.md#curve-exact-numerator-and-rounding) transfer preissued LOSE, keep the initial qualifying-loss rate flat before decay, and make settlement awards best effort. The [reviewed tax path](netlong-margin-and-lose-contracts.md#lose-transfer-tax-conversion-and-pair-mechanics) applies to flagged-pool transfers with exemptions and routes converted levy USDG to the fixed Sleeve recipient, not Core Treasury. The post alone establishes no changed contract, universal transfer tax, guaranteed award/sale timing or actual Treasury receipt. No engagement counters or financial observations are retained.
 
 ## Developer platform and roadmap
 

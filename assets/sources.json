@@ -14,6 +14,23 @@
   },
   "sources": [
     {
+      "id": "netnet-post-2110396406964097441",
+      "type": "official_social_post",
+      "label": "LOSE loss-reward mechanics announcement",
+      "url": "https://x.com/NetNetCap/status/2110396406964097441",
+      "source_account": "NetNetCap",
+      "published_at": "2026-10-14T15:44:47Z",
+      "reviewed_on": "2026-10-14",
+      "content_review_status": "complete_original_caption_timestamp_and_image_reviewed_authenticated_browser",
+      "summary": "Announces LOSE rewards for losses on NET LONG and Futures, describing immediate wallet delivery, no lockup/vesting/claim season, a declining reward rate and a 5% transfer charge split into 2% burn and 3% USDG for the Treasury. These are attributed publisher claims, not newly verified contract behavior.",
+      "limits": "Original caption and publication timestamp read directly in the authorized browser; attached image is LOSE branding without additional mechanics. Reviewed implementation instead transfers preissued tokens, has a flat initial 150 LOSE/USD qualifying-loss segment before decay, best-effort settlement delivery, pool-touching tax with exemptions, and levy conversion to the fixed Sleeve recipient. The post alone proves neither an implementation change nor Treasury receipts, guaranteed delivery or sale before settlement. No fresh chain review, thread/reply census, engagement counters or financial snapshots retained.",
+      "reference": "references/announcements-and-history.md",
+      "supporting_urls": [
+        "https://pbs.twimg.com/media/HUmiKItaIAAYQUk?format=jpg&name=medium"
+      ],
+      "execution_authority": false
+    },
+    {
       "id": "netlong-futures-creation-rpc-20261014",
       "type": "public_rpc_observation",
       "label": "NetLong BTC, ETH, SOL and NET desk creation receipts",
@@ -6801,7 +6818,7 @@
       "Core certification requires block-specific implementation/dependency identity, units/arithmetic, reconciliation and final confirmation under references/reserve-analytics.md. The historical POL discrepancy and missing original packet remain unresolved, not a universal present-block prohibition."
     ],
     "counts": {
-      "source_records": 343,
+      "source_records": 344,
       "contract_records_unique_by_chain_and_address": 232,
       "public_role_address_records": 12,
       "trusted_product_mark_relationships": 6,
@@ -6827,7 +6844,7 @@
         "explorer_api": 49,
         "official_app_contract_interface": 21,
         "official_documentation": 31,
-        "official_social_post": 88,
+        "official_social_post": 89,
         "social_commentary": 1,
         "interview": 5,
         "user_reported_chain_observation": 2,

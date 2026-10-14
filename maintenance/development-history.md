@@ -2,6 +2,12 @@
 
 Source-only maintenance record relocated from the installed README. The entries below preserve their original chronology, counts and verification limits; they describe work at those dates, not current acceptance or deployed state. For current usage and limitations, read [README](../README.md), the installed references and the exact candidate’s external verification records. Nothing here authorizes publication.
 
+## October 14 final announcement intake and release preflight
+
+- Indexed the requested official LOSE post published October14 at15:44:47UTC after reading the complete original caption and timestamp in the authorized browser and inspecting its branding image. Preserved publisher claims separately from reviewed preissuance, flat-then-decaying curve, best-effort delivery, pool-scoped tax and Sleeve recipient. No engagement counters or financial observations retained.
+- Corrected the installed README's stale blanket Core POL prohibition to match the approved and verified block-specific certification policy. Earlier curation had missed that paragraph.
+- The maintainer requires the established release security procedure, including Cisco, before the joint publication decision. No tag, merge, release or registry submission is authorized by preparation or scan results.
+
 ## October 14 futures creation-boundary correction
 
 - Recorded independently corroborated BTC/ETH/SOL/NET desk creation transactions, successful receipts, exact created addresses and canonical creation headers. These are significant deployment identities, not position or financial-history snapshots.
