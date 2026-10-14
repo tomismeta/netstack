@@ -171,7 +171,7 @@ The address catalog keeps identities, statuses and dated evidence per record; sh
 
 ## What's covered
 
-Baseline documentation dates from **September 10, 2026**, with targeted additions through **October 13**. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
+Baseline documentation dates from **September 10, 2026**, with targeted additions through **October 14**. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
 
 - **30 indexed official documentation entries**, represented by original summaries and source links; LOSE's standalone page remains sparse. Individual review dates differ.
 - Canonical contracts, feeds, market and pool IDs, plus a separately qualified deployer-discovery inventory. Counts and boundaries live in [address conventions](assets/address-conventions.json), not a competing inventory here.
