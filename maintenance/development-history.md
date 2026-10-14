@@ -5,7 +5,7 @@ Source-only maintenance record relocated from the installed README. The entries 
 ## October 13 bounded official-account refresh
 
 - Indexed fourteen newly discovered October 11–13 official post URLs, including the six-part RW-PLAY/Cabinet Kit thread, management/bond strategy and distribution commentary. Updated existing source, chronology and builder references rather than adding a competing announcement index.
-- Browser relay was unavailable; new records explicitly identify model-relayed X-search caption review. No exhaustive account/reply archive, independent video review, public SDK release, named Robinhood partnership or contract verification is inferred.
+- Initial discovery used model-relayed X-search captions while the browser relay was disconnected. After user reconnection, all fourteen original captions/timestamps, embedded quoted text and the visible six-post sequence were checked directly; no substantive summary corrections were needed. Two videos were visually sampled with exact limits recorded, not fully audio/visually reviewed. No exhaustive archive, public SDK release, named Robinhood partnership or contract verification is inferred.
 - Retained qualitative recycled-inventory and compensation claims without copying dated balances, prices or transaction histories. Standard minting bonds remain distinct from Sleeve inventory bonds; broad fee language cannot override exact recipient and accounting evidence. No tag, merge or release.
 
 ## October 13 standard-bond analytics and dogfood corrections
