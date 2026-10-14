@@ -1,13 +1,26 @@
 """Core RFV arithmetic and consumer-visible reconciliation failures; no network."""
+import hashlib
+import json
 import sys
 from pathlib import Path
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from netstack_core import RpcError, amount, resolve_routes
-from netstack_reserves import _comparison, _morpho_counted, _nav, _pol, _wad, run
+import netstack_core as core_module
+import netstack_reserves as reserves_module
+from netstack_core import RpcError, amount, resolve_routes, serialize_result
+from netstack_reserves import _comparison, _morpho_counted, _nav, _pol, _wad, prepare_result, run
+
+
+def synthetic_source(path):
+    source = core_module.load_json(path)
+    if path == "assets/analytics/reserves-interface.json":
+        for model in source["implementations"].values():
+            model.update(runtime_bytes=2, runtime_sha256=hashlib.sha256(bytes.fromhex("6000")).hexdigest())
+    return source
 
 
 class ReserveArithmetic(unittest.TestCase):
@@ -49,11 +62,19 @@ class ReserveArithmetic(unittest.TestCase):
         self.assertEqual(_comparison(0, 0, "USDG wad")["status"], "match")
 
 
+    def test_checked_source_products_and_full_precision_allocation(self):
+        with self.assertRaises(RpcError):
+            _pol(2**128, 2**128, 18, 18, 1, 1)
+        self.assertEqual(_pol(2**127, 2**127, 18, 18, 2**200, 2**201), 2**127)
+        self.assertEqual(_nav(2**255, 2**255, 9), 10**9)
+
+
 class Snapshot:
     """Small self-consistent reserve state, with independently adjustable reads."""
     def __init__(self):
         self.block = 10
-        self.result = {"metrics": {}, "coverage": {}, "errors": [], "not_proven": []}
+        self.result = {"command": "rfv", "metrics": {}, "coverage": {}, "errors": [], "not_proven": [],
+                       "snapshot": {"recheck_status": "confirmed"}}
         a = {name: record["address"] for name, record in resolve_routes("reserves").items() if name != "_route"}
         self.values = {
             "treasury": {"rfv": 298 * 10**18, "liquidUsdg": 100 * 10**18, "morphoAssets": 100 * 10**18,
@@ -62,10 +83,14 @@ class Snapshot:
             "usdg": {"decimals": 6, "balanceOf": 100 * 10**6},
             "net": {"decimals": 9, "totalSupply": 10 * 10**9},
             "vault": {"asset": a["usdg"], "decimals": 18, "balanceOf": 80 * 10**18, "convertToAssets": 100 * 10**6},
-            "pair": {"token0": a["net"], "token1": a["usdg"], "getReserves": {"reserve0": 100 * 10**9, "reserve1": 100 * 10**6, "blockTimestampLast": 9},
+            "pair": {"token0": a["usdg"], "token1": a["net"], "getReserves": {"reserve0": 100 * 10**6, "reserve1": 100 * 10**9, "blockTimestampLast": 9},
                      "totalSupply": 1000, "balanceOf": 500, "decimals": 18},
         }
         self.addresses = {address: name for name, address in a.items()}
+        self.codes = {address: "0x6000" for address in self.addresses}
+        self.implementation_address = synthetic_source("assets/analytics/reserves-interface.json")[
+            "implementations"]["usdg_implementation"]["address"]
+        self.codes[self.implementation_address] = "0x6000"
 
     def call(self, address, abi, getter, args=()):
         value = self.values[self.addresses[address]][getter]
@@ -74,29 +99,144 @@ class Snapshot:
         return value
 
     def code(self, address):
-        return "0x01"
+        value = self.codes[address]
+        if isinstance(value, Exception):
+            raise value
+        return value
+
+    def implementation(self, address):
+        return self.implementation_address
 
     def checkpoint(self):
         pass
 
 
 class ReserveReconciliation(unittest.TestCase):
-    def test_matching_documented_pol_candidate_cannot_certify_deployed_core(self):
+    def setUp(self):
+        patcher = patch.object(reserves_module, "load_json", side_effect=synthetic_source)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def test_supported_matching_pinned_reconstruction_certifies_only_observed_block(self):
         ctx = Snapshot()
         run(ctx, SimpleNamespace(scope="core"))
-        core = ctx.result["metrics"]["core_rfv"]
+        emitted = json.loads(serialize_result(ctx.result))
+        core = emitted["metrics"]["core_rfv"]
         self.assertEqual(core["components"]["pol"]["value_wad"], str(100 * 10**18))
         self.assertEqual(core["reconciliation"]["rfv"]["delta_raw"], "0")
-        self.assertFalse(core["pol_reconstruction_supported"])
-        self.assertEqual(core["status"], "partial")
-        self.assertFalse(ctx.result["coverage"]["collection_complete"])
-        self.assertTrue(any(e["scope"] == "core_rfv:pol_methodology" for e in ctx.result["errors"]))
+        self.assertTrue(core["pol_reconstruction_supported"])
+        self.assertEqual(core["status"], "reconciled")
+        self.assertTrue(emitted["coverage"]["collection_complete"])
+        self.assertFalse(core["historical_discrepancy_resolved"])
+        self.assertTrue(all(row["status"] == "matched" for row in core["implementations"].values()))
+        self.assertEqual(ctx.result["errors"], [])
+
+    def test_unknown_or_changed_runtime_stays_partial_even_with_zero_residual(self):
+        for role in ("treasury", "usdg", "net", "vault", "pair", "usdg_implementation"):
+            for code in ("0x", "0x6001", "0x600000"):
+                with self.subTest(role=role, code=code):
+                    ctx = Snapshot()
+                    address = (ctx.implementation_address if role == "usdg_implementation"
+                               else resolve_routes("reserves")[role]["address"])
+                    ctx.codes[address] = code
+                    run(ctx, SimpleNamespace(scope="core"))
+                    report = prepare_result(ctx.result)
+                    result = report["metrics"]["core_rfv"]
+                    self.assertEqual(result["reconciliation"]["rfv"]["delta_raw"], "0")
+                    self.assertFalse(result["pol_reconstruction_supported"])
+                    self.assertEqual(result["implementations"][role + ".code"]["status"], "unsupported")
+                    self.assertEqual(result["status"], "partial")
+                    self.assertFalse(report["coverage"]["collection_complete"])
+
+    def test_unavailable_runtime_or_proxy_slot_preserves_independent_evidence(self):
+        for unavailable in ("code", "slot"):
+            with self.subTest(unavailable=unavailable):
+                ctx = Snapshot()
+                if unavailable == "code":
+                    ctx.codes[resolve_routes("reserves")["treasury"]["address"]] = RpcError("Pruned", kind="pruned")
+                    run(ctx, SimpleNamespace(scope="core"))
+                else:
+                    with patch.object(ctx, "implementation", side_effect=RpcError("Pruned", kind="pruned")):
+                        run(ctx, SimpleNamespace(scope="core"))
+                result = ctx.result["metrics"]["core_rfv"]
+                self.assertEqual(result["assembled"]["rfv_wad"], str(298 * 10**18))
+                self.assertFalse(result["pol_reconstruction_supported"])
+                self.assertEqual(result["status"], "partial")
+                self.assertFalse(ctx.result["coverage"]["collection_complete"])
+
+    def test_unchanged_proxy_runtime_cannot_hide_changed_implementation(self):
+        ctx = Snapshot()
+        ctx.implementation_address = "0x" + "12" * 20
+        run(ctx, SimpleNamespace(scope="core"))
+        result = ctx.result["metrics"]["core_rfv"]
+        self.assertEqual(result["relationships"]["usdg.implementation"]["status"], "mismatch")
+        self.assertNotIn("usdg_implementation.code", result["reads"])
+        self.assertFalse(result["pol_reconstruction_supported"])
+
+    def test_units_and_dependency_assumptions_fail_closed(self):
+        for role, getter, value, group, diagnostic in (
+                ("usdg", "decimals", 7, "assumptions", "usdg.decimals"),
+                ("net", "decimals", 18, "assumptions", "net.decimals"),
+                ("treasury", "net", "0x" + "12" * 20, "relationships", "treasury.net"),
+                ("vault", "asset", "0x" + "12" * 20, "relationships", "vault.asset")):
+            with self.subTest(role=role, getter=getter):
+                ctx = Snapshot()
+                ctx.values[role][getter] = value
+                run(ctx, SimpleNamespace(scope="core"))
+                result = ctx.result["metrics"]["core_rfv"]
+                self.assertEqual(result[group][diagnostic]["status"], "mismatch")
+                self.assertFalse(result["pol_reconstruction_supported"])
+                self.assertFalse(ctx.result["coverage"]["collection_complete"])
+
+    def test_live_pair_orientation_must_match_runtime_cached_orientation(self):
+        ctx = Snapshot()
+        pair = ctx.values["pair"]
+        pair["token0"], pair["token1"] = pair["token1"], pair["token0"]
+        pair["getReserves"]["reserve0"], pair["getReserves"]["reserve1"] = (
+            pair["getReserves"]["reserve1"], pair["getReserves"]["reserve0"])
+        run(ctx, SimpleNamespace(scope="core"))
+        result = ctx.result["metrics"]["core_rfv"]
+        self.assertEqual(result["reconciliation"]["rfv"]["delta_raw"], "0")
+        self.assertEqual(result["assumptions"]["pair.cached_net_is_token0"]["status"], "mismatch")
+        self.assertFalse(result["pol_reconstruction_supported"])
+
+    def test_final_confirmation_qualifies_core_and_dependent_checkpoints_without_mutation(self):
+        ctx = Snapshot()
+        ctx.result["snapshot"]["recheck_status"] = "not_performed"
+        run(ctx, SimpleNamespace(scope="core"))
+        ctx.result["metrics"]["reports_true_rfv"] = {"value_wad": "12", "value": "0.000000000000000012",
+                                                   "collection_complete": True, "core_complete": True}
+        ctx.result["metrics"]["adjusted_net_assets"] = {"value_wad": "10", "collection_complete": True}
+        ctx.result["metrics"]["component_summary"] = {"core": {"observed": {"collection_complete": True},
+                                                              "valuation": {"reports_basis_complete": True}}}
+        ctx.result["coverage"]["requested_scope"] = {"scope": "reports", "collection_complete": True}
+        for state in ("not_performed", "unconfirmed", "mismatch"):
+            with self.subTest(state=state):
+                ctx.result["snapshot"]["recheck_status"] = state
+                emitted = json.loads(serialize_result(ctx.result))
+                self.assertEqual(emitted["metrics"]["core_rfv"]["status"], "partial")
+                self.assertFalse(emitted["coverage"]["core_rfv"]["collection_complete"])
+                self.assertFalse(emitted["coverage"]["requested_scope"]["collection_complete"])
+                self.assertIsNone(emitted["metrics"]["reports_true_rfv"]["value_wad"])
+                self.assertIsNone(emitted["metrics"]["adjusted_net_assets"]["value_wad"])
+                self.assertFalse(emitted["metrics"]["component_summary"]["core"]["valuation"]["reports_basis_complete"])
+                self.assertEqual(emitted["metrics"]["core_rfv"]["assembled"]["rfv_wad"], str(298 * 10**18))
+        self.assertTrue(ctx.result["coverage"]["core_rfv"]["collection_complete"])
+        ctx.result["snapshot"]["recheck_status"] = "confirmed"
+        confirmed = json.loads(serialize_result(ctx.result))
+        self.assertEqual(confirmed["metrics"]["core_rfv"]["status"], "reconciled")
+        self.assertEqual(confirmed["metrics"]["reports_true_rfv"]["value_wad"], "12")
+        ctx.result["errors"].append({"kind": "integrity", "message": "Conflicting pinned evidence"})
+        invalid = json.loads(serialize_result(ctx.result))
+        self.assertEqual(invalid["metrics"]["core_rfv"]["status"], "partial")
+        self.assertFalse(invalid["coverage"]["collection_complete"])
+        self.assertIsNone(invalid["metrics"]["reports_true_rfv"]["value_wad"])
 
     def test_nondivisible_morpho_raw_value_reaches_core_components(self):
         ctx = Snapshot()
         ctx.values["usdg"].update(decimals=18, balanceOf=100 * 10**18)
         ctx.values["vault"]["convertToAssets"] = 51
-        ctx.values["pair"]["getReserves"]["reserve1"] = 100 * 10**18
+        ctx.values["pair"]["getReserves"]["reserve0"] = 100 * 10**18
         ctx.values["treasury"].update(morphoAssets=51, rfv=200 * 10**18 + 50,
                                       backingPerToken=(200 * 10**18 + 50) // 10)
         run(ctx, SimpleNamespace(scope="core"))
@@ -106,6 +246,7 @@ class ReserveReconciliation(unittest.TestCase):
         self.assertEqual(core["components"]["morpho"]["value_wad"], "50")
         self.assertEqual(core["reconciliation"]["rfv"]["delta_raw"], "0")
         self.assertFalse(core["pol_reconstruction_supported"])
+        self.assertEqual(core["assumptions"]["morpho.haircut_equivalence"]["status"], "mismatch")
 
     def test_external_basis_replaces_haircut_and_geometric_pol_without_own_net(self):
         ctx = Snapshot()

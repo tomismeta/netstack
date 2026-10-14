@@ -32,7 +32,7 @@
 
 Commands above are abbreviated: use the existing Python runner, block/deadline options and [execution guidance](integrations.md#live-analytics-execution-limits). A missing dedicated helper is not a research prohibition. The [reserve recipe](reserve-analytics.md) defines implemented coverage and output fields; this table does not promise that every website metric has a dedicated CLI command.
 
-**October 7 methodology is versioned, not a silent new valuation model.** [Reports evidence](../assets/analytics/reports-methodology.json) retains September 26's unallocated + escrowed + inventory recipe and six-stock-market scope separately from current Loopback/principal-receivable treatment. Core's corrected subtract-floored haircut does not repair the still-unresolved deployed POL formula; [the release blocker](reserve-analytics.md) prevents falsely complete Core/dependent totals while retaining raw reads.
+**October 7 methodology is versioned, not a silent new valuation model.** [Reports evidence](../assets/analytics/reports-methodology.json) retains September 26's unallocated + escrowed + inventory recipe and six-stock-market scope separately from current Loopback/principal-receivable treatment. Publisher methodology recognition does not certify Core: apply the [block-specific validation requirements](reserve-analytics.md#evidence-boundaries), preserving raw reads and withholding unsupported totals.
 
 ## Answer contract
 

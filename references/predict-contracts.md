@@ -52,7 +52,7 @@ Settlement converts the mark to a raw USDG payout, reserving each outcome side w
 
 The October 7 documentation describes Treasury plus Reports Sleeve **part for part**, including Asset Bond Desk assets, V3/V4, TURBO, House deposit, THE BOOK, NET/sNET/wsNET and Advance cash/principal/inventory. Stock marks use live Rialto one-share quotes with Reports fallback; NET uses market/index. September 25 fee additions, NET-inventory exclusion and frozen opening House claim are historical definitions, not current instructions.
 
-No reachable versioned print script/constituent ledger was recovered from the inspected official surfaces. Exact independent reconstruction still needs the script/version, print block/hash, positions and liabilities, Rialto quote/fallback ledger and actual grader submission. Neither the website Reports figure nor stored `printWad` fills those gaps. The existing Core **18,432.08 USDG POL discrepancy** and `pol_reconstruction_supported=false` remain unchanged.
+No reachable versioned print script/constituent ledger was recovered from the inspected official surfaces. Exact independent reconstruction still needs the script/version, print block/hash, positions and liabilities, Rialto quote/fallback ledger and actual grader submission. Neither the website Reports figure nor stored `printWad` fills those gaps. Core certification separately requires [block-specific validation](reserve-analytics.md#evidence-boundaries).
 
 ## House deposits, queues, share claims and generations
 

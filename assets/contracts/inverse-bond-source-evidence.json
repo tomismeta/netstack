@@ -532,7 +532,7 @@
       "runtime_bytes": 6157,
       "runtime_sha256": "d82c547c353a49760e798a14526e42048194538ba7cd7f5802d1f87aaac92af5",
       "locator": "src/Treasury.sol:42-60,83-117,134-146,151-180;src/abstract/Wired.sol:18-39",
-      "semantics": "spendUsdg requires wired and isSpender[caller], reads raw USDG cash, withdraws exact shortfall from immutable ERC4626 vault to itself, emits MorphoWithdrawn, transfers requested raw USDG to seller checking Boolean, emits UsdgSpent(caller,to,raw). No InverseBond budget check or final balance-delta check in Treasury. Vault withdrawal can fail; code comment cannot guarantee liquidity. liquidUsdg=balance*cached factor; backing=0 for zero NET supply else floor(rfv*1e9/supply). Obtained source rfv=floor(MorphoWad*9800/10000)+liquid+polRfv. This conflicts with user-validated subtract-floor haircut; preserve original Core blocker, not silently replace arithmetic. polRfv uses NET raw*1e9 and quote raw*factor, floor sqrt, then LP fraction. One-time deployer wiring accepts arbitrary nonzero spender arrays; comment naming InverseBond is not permission evidence.",
+      "semantics": "spendUsdg requires wired and isSpender[caller], reads raw USDG cash, withdraws exact shortfall from immutable ERC4626 vault to itself, emits MorphoWithdrawn, transfers requested raw USDG to seller checking Boolean, emits UsdgSpent(caller,to,raw). No InverseBond budget check or final balance-delta check in Treasury. Vault withdrawal can fail; code comment cannot guarantee liquidity. liquidUsdg=balance*cached factor; backing=0 for zero NET supply else floor(rfv*1e9/supply). Obtained source rfv=floor(MorphoWad*9800/10000)+liquid+polRfv. Preserve user-validated subtract-floor haircut and establish block-specific source/runtime applicability; do not silently replace arithmetic. polRfv uses NET raw*1e9 and quote raw*factor, floor sqrt, then LP fraction. One-time deployer wiring accepts arbitrary nonzero spender arrays; comment naming InverseBond is not permission evidence.",
       "scope": "Actual obtained body inspection and separately recorded runtime identity match; not independent dependency compilation, historical permissions or settlement proof."
     },
     "net": {
@@ -581,7 +581,7 @@
   },
   "not_obtained": [
     "Account-specific allowance/balance, complete USDG implementation and withdrawal-liquidity proof, and full historical dependency/permission evidence. Dated smoke reads do not replace fresh per-question observations.",
-    "Original user Core POL validation block/hash/raw/runtime packet; discrepancy18,432.08USDG remains ground truth and unresolved.",
+    "Original user Core POL validation packet remains missing; historical discrepancy unresolved. Present-block certification is a separate evidence claim.",
     "Independent transaction receipts and complete event history."
   ],
   "stored_financial_observations": false

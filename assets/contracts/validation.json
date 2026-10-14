@@ -26,7 +26,7 @@
     "remaining_blockers": [
       "Complete payment/event history, unique receipt matching and creation-boundary validation.",
       "Account-specific settlement, historical permissions, USDG/vault behavior and exhaustive dependency/security review.",
-      "Original CorePOL validation packet and18432.08USDG discrepancy remain unresolved."
+      "Core certification requires separate block-specific validation; the historical discrepancy remains unresolved."
     ]
   },
   "predict_depth": {
@@ -76,7 +76,7 @@
       "Canonical RPC denied403; no live totals or pinned dependency closure.",
       "Verified Solidity/source ABI unavailable from obtained explorer responses.",
       "Print script/version, print block/hash and constituent/liability/quote/fallback ledger unavailable.",
-      "Core18432.08USDG POL mismatch remains; pol_reconstruction_supported=false."
+      "Predict review does not independently certify Core; apply references/reserve-analytics.md block-specific evidence requirements."
     ]
   },
   "book": {
@@ -1542,7 +1542,7 @@
       "Vault uses one liquidityAdapter/data, not withdrawal queues.",
       "Loopback currentLtvWad uses stored totals/no virtual offsets; fresh collector uses protocol accrued health.",
       "Fee shares are entitlement, not USDG receipts; all lifetime earnings remain null.",
-      "Core18432.08USDG POL discrepancy and pol_reconstruction_supported=false unchanged."
+      "Credit accounting alone does not certify Core reconstruction; apply references/reserve-analytics.md block-specific evidence requirements."
     ],
     "checks_run": [],
     "prior_observations": [

@@ -17,7 +17,7 @@ The three X tracks reviewed October 7 were discovered in original-post static vi
 ## MCG introduction — August 14
 
 - **06:01–10:20:** guest distinguishes the protocol from products built around it and argues Treasury growth should outpace emissions to justify a trading premium. This is a thesis, not a token-price invariant.
-- **14:21–15:34; 17:17–22:14:** describes Real World Bond equity purchases entering the **RWA Sleeve**, while later comparing roughly **$13 USDG backing per NET** with roughly **$17 including RWAs**. These are historical spoken figures, not independently reconciled state. They support preserving the [Core/Sleeve distinction](rwa-strategy.md#the-non-negotiable-accounting-boundary), not treating equity value as redeemable Core USDG.
+- **14:21–15:34; 17:17–22:14:** describes Real World Bond equity purchases entering the **RWA Sleeve**, then compares Core backing with a sleeve-inclusive value. Historical spoken amounts are not retained. This supports preserving the [Core/Sleeve distinction](rwa-strategy.md#the-non-negotiable-accounting-boundary), not treating equity value as redeemable Core USDG.
 - **18:51–19:18:** “cannot go to zero” rhetoric is an attributed financial claim, not guaranteed market price, liquidity, principal or asset solvency. Captions' bond discounts, supply and emission numbers are not controlling parameters.
 - **30:17–30:34; 49:20–50:00:** proposes APIs/SDKs and distribution through existing financial platforms. No public SDK release or named completed integration follows from these remarks.
 - **47:47–48:24:** MMORPG described as work in progress, with uncertainty about completing it. **51:05–52:03:** guest says development funding would require a separate raise rather than taking Core Treasury money. This is historical financing intent, not proof of a completed raise or universal custody restrictions.
@@ -33,7 +33,7 @@ The three X tracks reviewed October 7 were discovered in original-post static vi
 
 ## MCG update — September 1
 
-- **02:45–06:51:** host frames nearly $10 million as including the Sleeve; guest describes taxes, bonds and game revenue and reports almost $100,000 of NVDA contribution from Runner against roughly $15,000 initial capital. These unreconciled, historical claims do not turn turnover, house P&L or equities into Core income. At **20:44–21:09**, guest calls $9.7 million “RFV” before discussing $150 NAV; retain the vocabulary ambiguity rather than silently equating the figures.
+- **02:45–06:51:** host frames assets as including the Sleeve; guest describes taxes, bonds and game revenue and reports Runner NVDA contributions. These unreconciled claims do not turn turnover, house P&L or equities into Core income. At **20:44–21:09**, guest shifts between “RFV” and NAV; retain the vocabulary ambiguity without retaining routine financial amounts.
 - **10:10–12:09:** describes Gear as ecosystem loot, equippable in Training Grounds, with intended future earning benefits. No promised NFT price, scarcity or yield follows.
 - **16:18–19:37; 22:33–26:51:** games framed as tests of composable primitives; wrapped-staked liquidity and non-crypto sports/investing distribution discussed. Guest acknowledges downtime and scaling work. These are historical plans/observations, not a performance benchmark, live integration or Robinhood endorsement.
 - **29:35–30:39; 35:03–36:20:** hypothetical distribution fees shared with Treasury; builder codes compared with Hyperliquid; WinNET-style pooled rebase redistribution being packaged for others. No exact active fee rate/interface or public SDK is established.
@@ -42,7 +42,7 @@ The three X tracks reviewed October 7 were discovered in original-post static vi
 
 ## Market Bubble — September 9
 
-- **01:47–04:20; 09:09–10:38:** guest connects taxes/bonds, Treasury growth and modular financial games; reports roughly $11 million Treasury and $10.5 million growth over a prior period. The stated period and Core/Sleeve scope are not reconciled. Market-price appreciation is a belief, not a mathematical guarantee.
+- **01:47–04:20; 09:09–10:38:** guest connects taxes/bonds, Treasury growth and modular financial games. The stated period and Core/Sleeve scope are not reconciled; routine financial amounts are not retained. Market-price appreciation is a belief, not a mathematical guarantee.
 - **05:19–05:41; 20:47–21:55:** describes a newly launched split-or-steal PvP game as “Boardroom,” with historical play/volume claims and stress-testing aims. Use [game-specific evidence](games.md), not this spoken nickname or figures, to identify current Board Meeting rules or capacity.
 - **11:24–15:20:** describes MMORPG development with experienced game designers and intended NFT loot utility; not a finished game or guaranteed rewards.
 - **20:14–24:20:** prioritizes outside distribution and users who may never know NET exists; Robinhood “signal” and unnamed conversations do not establish a partnership. **16:37–17:02:** declines to specify gaming-industry conversations; no GTA integration is confirmed.
@@ -64,7 +64,7 @@ The [original recording](https://x.com/MCGlive/status/2108272718567346568) was q
 ## Newer interview-related posts
 
 - [October 3 Block Runner clip](https://x.com/TheBlockRunner/status/2106521754474606861) and [link reply](https://x.com/TheBlockRunner/status/2106521756181647860), plus [October 6 clip](https://x.com/TheBlockRunner/status/2107473034101559556) and [link reply](https://x.com/TheBlockRunner/status/2107473036064501789), resolve to #328 above. Captions/expanded links were reviewed; clip audio/visuals were not separately reviewed.
-- [MCG October 7 commentary](https://x.com/MCGlive/status/2107639545030385840) attributes a NAV-discount/inflation thesis to mynt_josh with roughly $30 million assets and planned deployment. Caption only; not a founder interview, reconciled NAV or reviewed recording.
+- [MCG October 7 commentary](https://x.com/MCGlive/status/2107639545030385840) attributes a NAV-discount/inflation thesis and planned asset deployment to mynt_josh. Caption only; not a founder interview, reconciled NAV or reviewed recording.
 - [NetNet October 5 announcement](https://x.com/NetNetCap/status/2107136534378066018) and [MCG October 4 schedule](https://x.com/MCGlive/status/2106840732522672390) advertised **October 8, 12:30 ET**. The October 10 sweep recovered the completed October 8 original and full available captions above, superseding the earlier future-event-only review status.
 
 For current mechanics use domain references and fresh scoped evidence. For quotations, verify the relevant audio rather than trusting recognition errors or transferring a host's speculation to the guest.

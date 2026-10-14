@@ -1,11 +1,20 @@
 """Pinned-block Core RFV, independently reconstructed from canonical custody."""
 
+import hashlib
 from math import isqrt
 
 from netstack_core import RpcError, amount, load_json, resolve_routes
 
 
 WAD = 10**18
+UINT256_MAX = 2**256 - 1
+
+
+def _uint256(value):
+    _unsigned(value)
+    if value > UINT256_MAX:
+        raise RpcError("Treasury arithmetic exceeds uint256", kind="integrity")
+    return value
 
 
 def _raw(value):
@@ -40,8 +49,8 @@ def _morpho_counted(gross, haircut_bps=200, bps=10000):
 
 
 def _pol(usdg_raw, net_raw, usdg_decimals, net_decimals, held, supply):
-    """Historical documented POL candidate, not validated deployed arithmetic."""
-    x, y = _wad(usdg_raw, usdg_decimals), _wad(net_raw, net_decimals)
+    """Geometric endpoint reconstruction; applicability is checked separately."""
+    x, y = _uint256(_wad(usdg_raw, usdg_decimals)), _uint256(_wad(net_raw, net_decimals))
     _unsigned(held)
     _unsigned(supply)
     if held > supply:
@@ -51,7 +60,9 @@ def _pol(usdg_raw, net_raw, usdg_decimals, net_decimals, held, supply):
             raise RpcError("Nonempty pair has zero LP supply", kind="integrity")
         return 0
     # Do not floor the ownership share or LP underlying before the square root.
-    return 2 * isqrt(x * y) * held // supply
+    if held == 0:
+        return 0
+    return _uint256(_uint256(2 * isqrt(_uint256(x * y))) * held // supply)
 
 
 def _nav(rfv_wad, supply, decimals):
@@ -60,7 +71,7 @@ def _nav(rfv_wad, supply, decimals):
     _wad(0, decimals)
     if supply == 0:
         raise RpcError("NAV is undefined at zero NET total supply", kind="integrity")
-    return rfv_wad * 10**decimals // supply
+    return _uint256(rfv_wad * 10**decimals // supply)
 
 
 def _comparison(observed, expected, unit):
@@ -78,6 +89,39 @@ def _problem(ctx, scope, message):
     ctx.result["errors"].append({"scope": "core_rfv:" + scope, "error": str(message)})
 
 
+def prepare_result(result):
+    """Qualify emitted evidence without mutating an active Core/Sleeve collector."""
+    metrics = result.get("metrics", {})
+    if "core_rfv" not in metrics:
+        return result
+    snapshot = result.get("snapshot", {})
+    invalid = (snapshot.get("recheck_status") == "mismatch"
+               or snapshot.get("confirmation") == "invalid"
+               or any(error.get("kind") in ("permission", "integrity") for error in result.get("errors", [])))
+    confirmed = snapshot.get("recheck_status") == "confirmed" and not invalid
+    confirmation = "invalid" if invalid else "confirmed" if confirmed else "unconfirmed"
+
+    def qualify(value):
+        if isinstance(value, list):
+            return [qualify(item) for item in value]
+        if not isinstance(value, dict):
+            return value
+        return {key: False if not confirmed and type(child) is bool and
+                (key.endswith("_complete") or key == "snapshot_valid") else qualify(child)
+                for key, child in value.items()}
+
+    projected = metrics if confirmed else qualify(metrics)
+    core = dict(projected["core_rfv"], snapshot_confirmation=confirmation)
+    core["status"] = "reconciled" if confirmed and core.get("reconstruction_complete") else "partial"
+    projected = dict(projected, core_rfv=core)
+    if not confirmed:
+        for name in ("reports_true_rfv", "reports_historical_rfv", "adjusted_net_assets"):
+            if name in projected:
+                projected[name] = dict(projected[name], value=None, value_wad=None,
+                                       snapshot_confirmation=confirmation)
+    return dict(result, metrics=projected, coverage=qualify(result.get("coverage", {})))
+
+
 class _Reads:
     def __init__(self, ctx, report):
         self.ctx, self.report = ctx, report
@@ -90,7 +134,7 @@ class _Reads:
             value = self.ctx.call(address, abi, getter, args)
         except RpcError as error:
             row["error"] = str(error)
-            if error.kind == "permission":
+            if error.kind in ("permission", "integrity"):
                 raise
             _problem(self.ctx, key, error)
             value = None
@@ -99,23 +143,51 @@ class _Reads:
         self.ctx.checkpoint()
         return value
 
-    def code(self, key, address):
+    def code(self, key, address, expected):
         row = {"contract": address, "getter": "eth_getCode", "arguments": [],
-               "block": self.ctx.block, "unit": "code presence", "status": "unavailable"}
+               "block": self.ctx.block, "unit": "runtime bytecode", "status": "unavailable"}
         self.report["reads"][key] = row
+        binding = self.report["implementations"][key] = {
+            "address": address, "block": self.ctx.block, "status": "unavailable",
+            "expected_runtime_sha256": expected["runtime_sha256"],
+            "expected_runtime_bytes": expected["runtime_bytes"],
+            "source_id": expected["source_id"],
+            "binding_scope": expected["binding"],
+        }
+        matched = False
         try:
-            present = self.ctx.code(address) not in ("0x", "0x0", "0x00")
-            row.update(status="observed", present=present)
-            if not present:
-                _problem(self.ctx, key, "No deployed code at pinned block")
+            raw = bytes.fromhex(self.ctx.code(address)[2:])
+            digest = hashlib.sha256(raw).hexdigest()
+            matched = len(raw) == expected["runtime_bytes"] and digest == expected["runtime_sha256"]
+            row.update(status="observed", runtime_bytes=len(raw), runtime_sha256=digest)
+            binding.update(status="matched" if matched else "unsupported",
+                           runtime_bytes=len(raw), runtime_sha256=digest)
+            if not matched:
+                _problem(self.ctx, key, "Pinned runtime differs from reviewed implementation")
         except RpcError as error:
-            row["error"] = str(error)
-            if error.kind == "permission":
+            row["error"] = binding["error"] = str(error)
+            if error.kind in ("permission", "integrity"):
                 raise
             _problem(self.ctx, key, error)
-            present = False
         self.ctx.checkpoint()
-        return present
+        return matched
+
+    def implementation(self, key, address):
+        row = {"contract": address, "getter": "eth_getStorageAt",
+               "arguments": ["0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc"],
+               "block": self.ctx.block, "unit": "address", "status": "unavailable", "raw": None}
+        self.report["reads"][key] = row
+        value = None
+        try:
+            value = self.ctx.implementation(address)
+            row.update(status="observed", raw=value)
+        except RpcError as error:
+            row["error"] = str(error)
+            if error.kind in ("permission", "integrity"):
+                raise
+            _problem(self.ctx, key, error)
+        self.ctx.checkpoint()
+        return value
 
 
 def run(ctx, args):
@@ -131,7 +203,8 @@ def run(ctx, args):
         "scope": "Canonical Treasury Core RFV formula only; not an inventory of every Treasury holding",
         "source_id": source["source_id"], "interface_provenance": source["provenance"],
         "methodology": source["methodology"], "reads": {}, "components": {},
-        "reported": {}, "reconciliation": {}, "relationships": {},
+        "arithmetic_assumptions": source["arithmetic_assumptions"],
+        "reported": {}, "reconciliation": {}, "relationships": {}, "implementations": {}, "assumptions": {},
     }
     coverage = ctx.result["coverage"]
     coverage["collection_complete"] = False
@@ -160,12 +233,26 @@ def run(ctx, args):
     for getter, name in (("net", "net"), ("usdg", "usdg"), ("morphoVault", "vault"), ("canonicalPair", "pair")):
         value = reads.get("treasury." + getter, treasury, ta, getter)
         compare(report["relationships"], "treasury." + getter, value, addresses[name], "address")
+    models = source["implementations"]
     code_ok = True
     for name in ("treasury", "usdg", "net", "vault", "pair"):
-        code_ok = reads.code(name + ".code", addresses[name]) and code_ok
+        code_ok = reads.code(name + ".code", addresses[name], models[name]) and code_ok
+    implementation = reads.implementation("usdg.implementation", usdg)
+    implementation_ok = compare(report["relationships"], "usdg.implementation", implementation,
+                                models["usdg_implementation"]["address"], "address")
+    if implementation_ok:
+        code_ok = reads.code("usdg_implementation.code", implementation, models["usdg_implementation"]) and code_ok
+    else:
+        code_ok = False
 
     ud = reads.get("usdg.decimals", usdg, token_abi, "decimals", unit="decimal places")
     nd = reads.get("net.decimals", net, token_abi, "decimals", unit="decimal places")
+    assumptions = source["arithmetic_assumptions"]
+    compare(report["assumptions"], "usdg.decimals", ud, assumptions["usdg_decimals"], "decimal places")
+    compare(report["assumptions"], "net.decimals", nd, assumptions["net_decimals"], "decimal places")
+    factor = 10**(18 - ud) if type(ud) is int and 0 <= ud <= 18 else None
+    compare(report["assumptions"], "usdg.cached_wad_factor", factor,
+            int(assumptions["usdg_wad_factor"]), "raw USDG to wad multiplier")
     cash = reads.get("usdg.treasury_balance", usdg, token_abi, "balanceOf", (treasury,), "USDG raw")
     supply = reads.get("net.totalSupply", net, token_abi, "totalSupply", unit="NET raw")
     report["denominator"] = {"basis": "total NET supply, not circulating supply", "contract": net,
@@ -189,17 +276,19 @@ def run(ctx, args):
         }
         ctx.checkpoint()
 
-    cash_wad = calculate("liquid_usdg", _wad, cash, ud)
+    cash_wad = calculate("liquid_usdg", lambda raw, decimals: _uint256(_wad(raw, decimals)), cash, ud)
     component("liquid_usdg", cash_wad, ["usdg.treasury_balance", "usdg.decimals"], raw=_raw(cash), decimals=ud)
     asset = reads.get("vault.asset", vault, va, "asset")
     compare(report["relationships"], "vault.asset", asset, usdg, "address")
     vd = reads.get("vault.decimals", vault, va, "decimals", unit="decimal places")
     shares = reads.get("vault.treasury_shares", vault, va, "balanceOf", (treasury,), "vault shares raw")
     assets = None if shares is None else reads.get("vault.convertToAssets", vault, va, "convertToAssets", (shares,), "vault asset raw")
-    gross = calculate("morpho_gross", _wad, assets, ud) if asset == usdg else None
+    gross = calculate("morpho_gross", lambda raw, decimals: _uint256(_wad(raw, decimals)), assets, ud) if asset == usdg else None
     policy = source["methodology"]
     haircut_bps, bps = policy["morpho_haircut_bps"], policy["bps_denominator"]
     counted = None if gross is None else _morpho_counted(gross, haircut_bps, bps)
+    source_counted = calculate("source_morpho", lambda value: _uint256(value * (bps - haircut_bps)) // bps, gross)
+    compare(report["assumptions"], "morpho.haircut_equivalence", counted, source_counted, "USDG wad")
     component("morpho", counted, ["vault.asset", "vault.treasury_shares", "vault.convertToAssets", "usdg.decimals"],
               gross_wad=_raw(gross), gross_usdg=None if gross is None else amount(gross, 18),
               assets_raw=_raw(assets), asset_decimals=ud, shares_raw=_raw(shares), share_decimals=vd,
@@ -210,6 +299,8 @@ def run(ctx, args):
     t1 = reads.get("pair.token1", pair, pa, "token1")
     pair_tokens_ok = None if t0 is None or t1 is None else {t0, t1} == {usdg, net}
     compare(report["relationships"], "pair.tokens", pair_tokens_ok, True, "canonical USDG/NET identity")
+    compare(report["assumptions"], "pair.cached_net_is_token0",
+            None if t0 is None else t0 == net, assumptions["net_is_token0"], "boolean")
     reserves = reads.get("pair.getReserves", pair, pa, "getReserves", unit="token raw reserves; uint32 timestamp")
     lp_supply = reads.get("pair.totalSupply", pair, pa, "totalSupply", unit="LP raw")
     held = reads.get("pair.treasury_balance", pair, pa, "balanceOf", (treasury,), "LP raw")
@@ -229,12 +320,13 @@ def run(ctx, args):
     component("pol", pol, ["pair.token0", "pair.token1", "pair.getReserves", "pair.totalSupply", "pair.treasury_balance", "usdg.decimals", "net.decimals"],
               held_raw=_raw(held), total_supply_raw=_raw(lp_supply), lp_decimals=ld,
               integer_order=policy["pol_integer_order"], look_through_memo=memo)
-    assembled = None if any(value is None for value in (cash_wad, counted, pol)) else cash_wad + counted + pol
+    assembled = calculate("rfv_sum", lambda cash_value, vault_value, pol_value:
+                          _uint256(cash_value + vault_value + pol_value), cash_wad, counted, pol)
     nav = calculate("nav", _nav, assembled, supply, nd)
     reported_nav = calculate("reported_nav", _nav, tv["rfv"], supply, nd)
     report["assembled"] = {"rfv_wad": _raw(assembled), "rfv_usdg": None if assembled is None else amount(assembled, 18),
                            "nav_wad": _raw(nav), "nav_usdg_per_net": None if nav is None else amount(nav, 18),
-                           "basis": "canonical endpoint calculation using documented POL candidate; not certified deployed RFV while methodology.pol_reconstruction_supported is false"}
+                           "basis": "Independent canonical endpoint reconstruction; certification requires supported implementation/units, exact reconciliation and confirmed pinned header"}
     lp_usdg_raw = memo.get("usdg", {}).get("raw")
     own_net_pol_raw = memo.get("net", {}).get("raw")
     if pol == 0 and held == 0:
@@ -253,13 +345,15 @@ def run(ctx, args):
         compare(report["reconciliation"], getter, tv[getter], expected,
                 "USDG per NET wad" if getter == "backingPerToken" else "USDG wad")
     compare(report["reconciliation"], "backing_from_reported_rfv", tv["backingPerToken"], reported_nav, "USDG per NET wad")
-    pol_supported = policy.get("pol_reconstruction_supported") is True
+    pol_supported = (code_ok
+                     and all(row["status"] == "match" for row in report["relationships"].values())
+                     and all(row["status"] == "match" for row in report["assumptions"].values()))
     report["pol_reconstruction_supported"] = pol_supported
-    if not pol_supported:
-        _problem(ctx, "pol_methodology", policy["pol_reconstruction_limit"])
-    complete = (pol_supported and code_ok and all(row["status"] == "match" for row in report["relationships"].values())
+    report["historical_discrepancy_resolved"] = False
+    complete = (pol_supported
                 and all(row["status"] == "match" for row in report["reconciliation"].values())
                 and all(row["status"] == "observed" for row in report["reads"].values()))
+    report["reconstruction_complete"] = complete
     report["status"] = "reconciled" if complete else "partial"
     coverage["core_rfv"]["collection_complete"] = complete
     coverage["collection_complete"] = complete

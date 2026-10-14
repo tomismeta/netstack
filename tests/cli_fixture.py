@@ -9,6 +9,7 @@ header-unavailable, stop, deadline, and checkpoint-failure. The last requires
 --output; it keeps the last good file as PATH.before-failure and obstructs PATH
 with a directory during the final header response. All values are synthetic.
 """
+import hashlib
 import json
 from pathlib import Path
 import runpy
@@ -54,10 +55,10 @@ import netstack_markets as markets
 def synthetic_reserve_source(path):
     source = core.load_json(path)
     if path == "assets/analytics/reserves-interface.json":
-        # This coherent toy contract implements the documented formula by
-        # construction. It does not certify the real deployment's unresolved POL.
-        source["methodology"]["pol_reconstruction_supported"] = True
-        source["methodology"]["pol_reconstruction_limit"] = "Synthetic fixture only"
+        # Synthetic bytecode is bound only in this isolated test harness; the
+        # installed collector still requires its reviewed exact runtime identities.
+        for model in source["implementations"].values():
+            model.update(runtime_bytes=2, runtime_sha256=hashlib.sha256(bytes.fromhex("6000")).hexdigest())
     return source
 
 
@@ -136,6 +137,9 @@ class Fixture:
         for getter, target in (("net", "net"), ("usdg", "usdg"),
                                ("morphoVault", "vault"), ("canonicalPair", "pair")):
             self.add(a["treasury"], getter + "()", words(a[target]))
+        self.implementation_address = synthetic_reserve_source("assets/analytics/reserves-interface.json")[
+            "implementations"]["usdg_implementation"]["address"]
+        self.code_addresses.add(self.implementation_address)
         self.add(a["usdg"], "decimals()", words(6))
         self.add(a["usdg"], "balanceOf(address)", words(100 * 10**6), (a["treasury"],))
         self.add(a["net"], "decimals()", words(9))
@@ -145,9 +149,9 @@ class Fixture:
         self.add(a["vault"], "balanceOf(address)", words(80 * 10**18), (a["treasury"],))
         self.add(a["vault"], "convertToAssets(uint256)", words(100 * 10**6),
                  (80 * 10**18,), trigger="vault_assets")
-        self.add(a["pair"], "token0()", words(a["net"]))
-        self.add(a["pair"], "token1()", words(a["usdg"]))
-        self.add(a["pair"], "getReserves()", words(100 * 10**9, 100 * 10**6, 9))
+        self.add(a["pair"], "token0()", words(a["usdg"]))
+        self.add(a["pair"], "token1()", words(a["net"]))
+        self.add(a["pair"], "getReserves()", words(100 * 10**6, 100 * 10**9, 9))
         self.add(a["pair"], "totalSupply()", words(1000))
         self.add(a["pair"], "balanceOf(address)", words(500), (a["treasury"],))
         self.add(a["pair"], "decimals()", words(18))
@@ -220,6 +224,11 @@ class Fixture:
             require(len(params) == 2 and params[1] == "0xa"
                     and params[0] in self.code_addresses, "Unexpected code request")
             result = "0x6000"
+        elif method == "eth_getStorageAt":
+            require(params == [core.resolve_routes("reserves")["usdg"]["address"],
+                               "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+                               "0xa"], "Unexpected implementation storage request")
+            result = words(self.implementation_address)
         elif method == "eth_call":
             require(len(params) == 2 and params[1] == "0xa", "Unpinned contract read")
             require(set(params[0]) == {"to", "data"}, "Unexpected contract call fields")

@@ -181,7 +181,7 @@ comprehensive economic result = net_assets_B - net_assets_A
 
 This result can include unrealized marks; isolate them before calling a residual realized profit. Borrowing raises assets and liabilities together; principal repayment reduces both. Primary issuance/own-token repurchases belong in the capital bridge under the declared perimeter, not operating earnings. In-kind capital and inventory consideration need explicit dated values. Insurance shortfalls, bad debt, unpaid prizes/player claims, accrued borrowing costs, donations and unclassified transfers must be resolved rather than plugged into profit. A complete cash ledger alone does not prove complete net assets.
 
-**Core blocker remains unchanged:** the user-validated Morpho order is `M-floor(M*200/10000)`; the unrecovered **18,432.08 USDG POL discrepancy** and `pol_reconstruction_supported=false` still prevent independently complete Core/dependent RFV reconstruction. [Exact missing packet](reserve-analytics.md#evidence-boundaries). Do not use RFV growth or a residual POL value to manufacture period earnings. Independently proven fee receipts remain reportable despite that unrelated aggregate blocker.
+**Core certification is separate from revenue evidence:** apply the [block-specific RFV requirements](reserve-analytics.md#evidence-boundaries), including the validated subtract-floored Morpho order `M-floor(M*200/10000)`. Do not use RFV growth or a residual POL value to manufacture period earnings. Independently proven fee receipts remain reportable even when aggregate reconstruction is unsupported.
 
 ## 6. Report useful partial results honestly
 

@@ -75,8 +75,7 @@
       "Rialto quote/fallback ledger",
       "actual grader submission reconciliation"
     ],
-    "core_pol_reconstruction_supported": false,
-    "core_pol_discrepancy": "Existing18432.08USDG blocker unchanged."
+    "core_certification_scope": "Separate block-specific validation required under references/reserve-analytics.md; historical discrepancy unresolved."
   },
   "dispatchers": {
     "desk": {
@@ -243,7 +242,7 @@
       "treasury": {
         "locator": "0x02e9..0x030f",
         "authority": "Public immutable getter.",
-        "accounting": "rfv() dependency for open/grade numeric checks; Treasury Core POL discrepancy remains unresolved and is not repaired by Predict accounting."
+        "accounting": "rfv() dependency for open/grade numeric checks; Predict accounting does not independently certify Core reconstruction."
       },
       "usdg": {
         "locator": "0x0530..0x0556",

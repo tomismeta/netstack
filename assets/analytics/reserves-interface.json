@@ -1,50 +1,66 @@
 {
   "schema_version": 1,
-  "source_id": "netnet-core-reserves-interface-20260925",
+  "source_id": "netnet-core-reserves-implementation-20261014",
   "reviewed_on": "2026-10-14",
-  "scope": "Read-only Treasury RFV diagnostics. Preserve user-validated subtract-floored Morpho haircut; applicability of documented geometric POL to the unresolved historical discrepancy is unproven. Individual matching blocks do not certify independent Core or downstream totals. No website numeric inputs.",
+  "scope": "Read-only, block-specific canonical Treasury endpoint accounting. Certification requires exact reviewed runtime/implementation identities, dependency and unit assumptions, independently reconstructed arithmetic, exact getter reconciliation and final pinned-header confirmation. The original historical discrepancy remains unresolved; no website numeric inputs or routine financial snapshots.",
   "provenance": [
     {"url":"https://app.netnet.capital/assets/index-BssLYnjl.js","locator":"Treasury getters and live RFV consumer inspected in the recorded ecosystem audit","scope":"Historical interface evidence; URL returned 404 on the later same-day recheck."},
     {"url":"https://app.netnet.capital/assets/index-hABaJsIB.js","locator":"Treasury ABI fr; live consumer rfv/liquidUsdg/morphoAssets/backingPerToken; to=200; ERC-4626 convertToAssets","scope":"Historical app asset statically inspected 2026-09-25, never executed; rediscover current assets from the entry HTML rather than treating this rotating URL as current. Consumer derives POL by subtraction; this collector independently reconstructs POL from RPC reserves and LP ownership."},
     {"url":"https://docs.netnet.capital/treasury","locator":"Sections 1-3 and 5-6","scope":"USDG reserve units, 2% documented Morpho haircut, 2*sqrt(x*y)*LP share convention, total NET supply denominator, exclusion of Sleeve from Core RFV."},
     {"url":"https://eips.ethereum.org/EIPS/eip-4626","locator":"asset, balanceOf, convertToAssets","scope":"Standard read interface. asset identity is checked against canonical USDG at the pinned block; no redemption or liquidity guarantee."},
-    {"url":"https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x04822ea321a0dee6f40656172f29312104855d66","source_id":"netnet-treasury-accounting-conflict-20261007","locator":"Treasury.sol rfv/polRfv; returned runtime6157 bytes sha256d82c547c353a49760e798a14526e42048194538ba7cd7f5802d1f87aaac92af5","scope":"Explorer claims is_verified/is_fully_verified, but source and returned runtime encode multiply9800/divide10000 and documented geometric POL. Conflicts with user validation. Not pinned RPC runtime; do not overrule validated deployed semantics or claim this source repairs POL."}
+    {"url":"https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x04822ea321a0dee6f40656172f29312104855d66","source_id":"netnet-treasury-accounting-conflict-20261007","locator":"Retained Treasury.sol, FixedPointMath.sol and deployed runtime; independent exact-settings compilation on 2026-10-14","scope":"Compiled runtime exactly matches all 6157 retained bytes after compiler-declared immutable substitution. Source uses multiply9800/divide10000; retained subtract-floored order is numerically equivalent under enforced USDG6/factor1e12 assumptions. Neither compilation nor a later pinned match resolves the historical discrepancy."}
   ],
   "methodology": {
     "treasury_value_decimals": 18,
     "morpho_haircut_bps": 200,
     "bps_denominator": 10000,
-    "parameter_status": "User validation establishes deployed M-floor(M*200/10000); original block/raw/runtime packet unrecovered. Current explorer source/runtime conflicts, so its verified label is not applicability proof.",
-    "pol_reconstruction_supported": false,
-    "pol_reconstruction_limit": "Historical reconciliation blocker: documented POL underreproduced user-validated on-chain RFV by18432.08 USDG. Original block/hash/raw inputs and applicable runtime remain unrecovered. October13 feedback reports a fresh-block geometric match and runtime binding; that does not reconcile the original packet or justify a universal no-match claim. No balancing constant, rerun-to-confirm or claimed historical reconciliation.",
-    "pol_integer_order": "HISTORICAL DOCUMENTED CANDIDATE ONLY: x=floor(usdgReserveRaw*10^18/10^usdgDecimals); y=floor(netReserveRaw*10^18/10^netDecimals); root=isqrt(x*y); polWad=floor(2*root*treasuryLpRaw/totalLpRaw)",
-    "rfv_integer_order": "cashWad + grossMorphoWad - floor(grossMorphoWad*200/10000) + polWad; total remains unsupported until exact deployed POL is established",
-    "nav_integer_order": "floor(rfvWad*10^netDecimals/totalNetSupplyRaw)"
+    "parameter_status": "Preserve user-validated M-floor(M*200/10000). Reviewed source uses floor(M*9800/10000); exact equivalence is required at the observed block and follows for USDG6 normalized by the bound cached factor1e12.",
+    "support_policy": "Dynamic per-block implementation, dependency, units and arithmetic checks; no blanket historical false gate. pol_reconstruction_supported describes applicability, not final reconciliation or snapshot confirmation.",
+    "historical_limit": "The original user-reported discrepancy, original block/hash/raw/runtime packet and calculation error remain unresolved. No balancing constant, residual-derived POL, rerun-to-confirm or claimed historical reconciliation.",
+    "pol_integer_order": "x=usdgReserveRaw*10^12; y=netReserveRaw*10^9; root=isqrt(x*y); polWad=floor(2*root*treasuryLpRaw/totalLpRaw), using full-precision allocation. Requires exact runtime, cached orientation and live USDG6/NET9.",
+    "rfv_integer_order": "cashWad + grossMorphoWad - floor(grossMorphoWad*200/10000) + polWad; require equality to source floor(grossMorphoWad*9800/10000) and checked uint256 intermediate bounds",
+    "nav_integer_order": "floor(rfvWad*10^9/totalNetSupplyRaw); collector conservatively leaves zero supply undefined rather than certifying NAV"
   },
-  "validation_recovery": {
-    "local_review_on": "2026-10-12",
-    "status": "original_packet_unrecovered",
-    "scope": "Current repository, project-scoped archived prompts/transcripts and accounting handoffs, retained local evidence, and v0.4.0 release records. No fresh network request or pinned chain observation.",
-    "historical_packet_limit": "Earlier September25 snapshots and zero-delta claims are not identified as the user's September27-reported discrepancy packet and cannot replace it. October7 explorer bytes remain unbound to the original validation block.",
-    "deterministic_haircut_bound": "For nonnegative integer M in USDG wad, (M-floor(M*200/10000))-floor(M*9800/10000) is0 when M%50==0, otherwise1 wad (10^-18 USDG). With six-decimal USDG normalized first, M=assetsRaw*10^12 is divisible by50, so this ordering difference is0. This cannot account for18432.08 USDG and does not replace the user-validated subtract-floored order.",
-    "release_gate_review": {
-      "reviewed_on": "2026-10-14",
-      "evidence_id": "core-pol-release-gate-20261014",
-      "status": "original_packet_and_original_calculation_error_unrecovered",
-      "scope": "Original September27 project feedback and retained project history; local research and NetNet feedback; all303 UTF-8 text members of the October2 investigation ZIP; read-only Hermes/OpenClaw native histories and scoped research directories on both authorized hosts.",
-      "limits": "197 non-text ZIP members not OCR'd; bounded retained stores, not proof an unshared validator packet no longer exists. No new chain collection, arithmetic repair or original-packet smoke. Old and later matching observations do not close the gate.",
-      "rejected_substitutes": "The archive's unrecovered true_rfv.py reference defines POL as a residual. The retained September21 nav-check.py run is unpinned and lacks Morpho assets; it is not identified as the original discrepancy calculation.",
-      "source_generation_analysis": "Full retained October7 Treasury.sol and FixedPointMath.sol: cached USDG factor1e12, actual decimals6/9, matching cached pair orientation and identical external-call values imply the same geometric POL as the collector. Six-decimal normalized Morpho assets also make the two haircut orders numerically equal. These premises remain unbound to the original packet; no original cause identified.",
-      "financial_snapshots_in_runtime": false
-    },
-    "required_packet": [
-      "Original chain ID, block number/hash/timestamp, exact Treasury/dependency addresses and same-block provenance for every read.",
-      "Raw ABI request/response bytes for Treasury value/pointer getters; USDG/NET decimals, cash and NET supply; vault asset/shares/convertToAssets; pair token identities, reserves, LP held and LP supply.",
-      "Treasury runtime at that block and applicable dependency/implementation identity, with source/runtime binding where available; explorer labels or code presence alone are insufficient.",
-      "Original reconstruction script/version, unrounded intermediates and signed raw residual, including the display rounding that produced18432.08 USDG."
+  "arithmetic_assumptions": {
+    "usdg_decimals": 6,
+    "net_decimals": 9,
+    "usdg_wad_factor": "1000000000000",
+    "net_unit": "1000000000",
+    "net_is_token0": false,
+    "scope": "Cached USDG factor and pair orientation are bound by the exact Treasury runtime, not inferred merely from present decimals or pair order. External values are canonical endpoint-returned balances, supply, reserves and vault converted claims; not independently audited dependency internals, redeemability or solvency."
+  },
+  "implementations": {
+    "treasury": {"runtime_bytes":6157,"runtime_sha256":"d82c547c353a49760e798a14526e42048194538ba7cd7f5802d1f87aaac92af5","source_id":"netnet-core-reserves-implementation-20261014","binding":"Exact independently compiled runtime including immutable values and metadata"},
+    "net": {"runtime_bytes":6432,"runtime_sha256":"cdc02859b4648a5c35ed22cfc8c67de29b5646dd65bcb79aee802e3ef7fff23d","source_id":"netnet-inverse-bond-implementation-20261012","binding":"Reviewed NET source-generation runtime; totalSupply getter endpoint"},
+    "usdg": {"runtime_bytes":170,"runtime_sha256":"c85d18dc1e49769e01f9f88981176e213b2bc24d2f14d33a81d54bc06579f6db","source_id":"netnet-premium-seller-implementation-20261010","binding":"Reviewed ERC1967 proxy runtime; implementation slot and target runtime must also match"},
+    "usdg_implementation": {"address":"0x68184c449e1a8f34fa18d289737129fd27b66f8f","runtime_bytes":18644,"runtime_sha256":"0d8203b94e33c2458a137c0c70d2491f3625837405a74fd332f4cba5a979c372","source_id":"netnet-core-endpoint-identity-20261014","binding":"Exact observed implementation identity baseline, not independently compiled or exhaustively source-audited token semantics; returned balance and decimal endpoint scope only"},
+    "vault": {"runtime_bytes":21808,"runtime_sha256":"22d19d582f6a09b86afd87e041301054eb6ceb557f33bb8193b7ae3441bd9372","source_id":"netnet-credit-implementation-20261010-credit-vault","binding":"VaultV2 source-generation runtime; canonical Treasury vault endpoint identity observed separately. Uses returned convertToAssets claim, not full vault/adapter solvency or withdrawal proof"},
+    "pair": {"runtime_bytes":11293,"runtime_sha256":"8b5db55fa9ab3b9527508d4abe0b39eb588bf310270c8e04b3f38214e8ba63b4","source_id":"netnet-core-endpoint-identity-20261014","binding":"Exact canonical pair identity baseline; independently read reserves, LP balances/supply and token order, not an exhaustive factory or swap-security audit"}
+  },
+  "treasury_compilation": {
+    "reviewed_on": "2026-10-14",
+    "compiler": "0.8.30+commit.73712a01.Emscripten.clang",
+    "settings": {"evmVersion":"osaka","optimizer":{"enabled":true,"runs":800},"viaIR":false,"libraries":{},"remappings":["forge-std/=lib/forge-std/src/"],"metadata":{"appendCBOR":true,"bytecodeHash":"ipfs","useLiteralContent":false}},
+    "source_sha256": "cfb600922e870e626001e6138601b30c2470f002be91bb172b5eb8b44144ea5b",
+    "math_source_sha256": "ec9413a896063a73bb56dacbef143610ce5b883b8e13c768263ce975d78214e2",
+    "constants_source_sha256": "1a02fd6a04c98a0119cc38b6d0bf244d2103715733f0d9d0e28ca2227ce02d5d",
+    "immutable_patched_runtime_exact_match": true,
+    "creation_prefix_exact_match": true,
+    "abi_exact_match": true,
+    "immutables": [
+      {"name":"_net","offsets":[665,1363,3774],"value":"0xca9c78dd337a67f6e0077f65f5e9218719d30edf"},
+      {"name":"_usdg","offsets":[703,1556,2254,2758,3242,4007,4419],"value":"0x5fc5360d0400a0fd4f2af552add042d716f1d168"},
+      {"name":"_vault","offsets":[420,1703,2058,2401,2711,2921,4140,4688],"value":"0xbeeff033f34c046626b8d0a041844c5d1a5409dd"},
+      {"name":"_pair","offsets":[505,772,897,1215],"value":"0x59f95461e68e0c77605299791e1449f175165b54"},
+      {"name":"_netIsToken0","offsets":[1032],"value":false},
+      {"name":"_usdgWadFactor","offsets":[1088,3200,4646],"value":"1000000000000"},
+      {"name":"_deployer","offsets":[3374],"value":"0xcfbd7e12a0f154a45576a73c1e409200068507b9"}
     ],
-    "gate": "Keep pol_reconstruction_supported=false until applicable deployed arithmetic explains and reconciles the original packet; a match at another block or a residual-derived POL is not independent proof.",
-    "later_observation_scope": "A complete same-block runtime/dependency/raw-input packet can substantiate that block's candidate match, not close the missing historical discrepancy. Runtime code digest is distinct from block hash. Reports of later matches and residual-derived POL do not replace original evidence."
+    "scope": "All offsets are zero-based 32-byte compiler-declared immutable words. Exact byte match after substitution, not masked runtime acceptance. Compilation inputs/outputs and proof retained outside runtime. No constructor execution, original-packet reconciliation or exhaustive external-dependency compilation."
+  },
+  "historical_discrepancy": {
+    "status": "unresolved",
+    "scope": "The original reported discrepancy remains historical fact. Later independently supported blocks do not identify or reconcile its missing evidence packet. Historical investigation records are retained outside the installed runtime; they are not a universal current certification gate."
   },
   "treasury_abi": [
     {"type":"function","name":"rfv","stateMutability":"view","inputs":[],"outputs":[{"name":"","type":"uint256"}]},

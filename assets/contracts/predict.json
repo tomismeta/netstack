@@ -1382,7 +1382,7 @@
       },
       "economic_meaning": {
         "status": "conditional_runtime",
-        "detail": "rfv() dependency for open/grade numeric checks; Treasury Core POL discrepancy remains unresolved and is not repaired by Predict accounting."
+        "detail": "rfv() dependency for open/grade numeric checks; Predict accounting does not independently certify Core reconstruction."
       },
       "dispatcher_match": {
         "source_id": "netnet-predict-implementation-20261007",

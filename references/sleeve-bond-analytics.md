@@ -57,5 +57,5 @@ Current live results were not obtained during research because canonical RPC was
 
 ## Relationship to Sleeve custody and Credit
 
-Use existing RFV/Sleeve custody reporting for Safe holdings and vault positions, and Credit reporting for pledged collateral, debt, interest and withdrawability. Desk inventory, gross owed NET, managed equities, Credit collateral and vault shares are not interchangeable or additive Core reserves. Avoid counting vault shares and underlying allocation twice. Source evidence does not prove the Manager's market purchases or every NET minter's current permissions. The Core POL discrepancy and unsupported reconstruction marker remain unchanged.
+Use existing RFV/Sleeve custody reporting for Safe holdings and vault positions, and Credit reporting for pledged collateral, debt, interest and withdrawability. Desk inventory, gross owed NET, managed equities, Credit collateral and vault shares are not interchangeable or additive Core reserves. Avoid counting vault shares and underlying allocation twice. Source evidence does not prove the Manager's market purchases or every NET minter's current permissions. Core certification separately requires [block-specific validation](reserve-analytics.md#evidence-boundaries).
 

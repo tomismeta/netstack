@@ -465,7 +465,10 @@ def _settle_coverage(result, reason=None):
 
 def serialize_result(result):
     _settle_coverage(result)
-    if result.get("command") == "advance":
+    if result.get("command") == "rfv":
+        from netstack_reserves import prepare_result
+        result = prepare_result(result)
+    elif result.get("command") == "advance":
         # Lazy import avoids a module cycle; every saved/printed body shares this contract.
         from netstack_advance import prepare_result
         prepare_result(result)
@@ -1010,6 +1013,12 @@ class Context:
             _address(params[0])
             _quantity(params[1])
             return
+        if method == "eth_getStorageAt" and len(params) == 3:
+            _address(params[0])
+            if params[1] != "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc":
+                raise RpcError("Only the EIP1967 implementation slot is approved", kind="permission")
+            _quantity(params[2])
+            return
         if method == "eth_call" and len(params) == 2 and isinstance(params[0], dict) and set(params[0]) == {"to", "data"}:
             _address(params[0]["to"])
             _quantity(params[1])
@@ -1512,6 +1521,19 @@ class Context:
         key = ("code", address, tag)
         if key not in self._cache:
             self._cache[key] = _hex(self._rpc("eth_getCode", [address, tag]))
+        return self._cache[key]
+
+    def implementation(self, address, block=None):
+        """Read the fixed EIP1967 implementation slot at a pinned block."""
+        self.check()
+        address, tag = _address(address), self._block_tag(block)
+        key = ("implementation", address, tag)
+        if key not in self._cache:
+            slot = "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc"
+            word = _hex(self._rpc("eth_getStorageAt", [address, slot, tag]), 32)
+            if word[2:26] != "0" * 24:
+                raise RpcError("Noncanonical EIP1967 implementation address", kind="decode")
+            self._cache[key] = _address("0x" + word[26:])
         return self._cache[key]
 
     def find_block(self, timestamp):

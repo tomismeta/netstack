@@ -90,13 +90,13 @@ Errors: `ZeroAmount` (NET input only), `NotActive` (unfinalized genesis), `Excee
 
 ## Actual dependency paths and trust boundaries
 
-### Treasury payment and the original RFV blocker
+### Treasury payment and independent RFV evidence
 
 The [actual Treasury source](https://robinhoodchain.blockscout.com/api/v2/smart-contracts/0x04822Ea321A0DEE6F40656172F29312104855d66) checks `wired` and `isSpender[InverseBond]`. Its one-time deployer `wire` takes arbitrary nonzero arrays; a comment naming InverseBond does not prove the installed roster. `spendUsdg` reads raw USDG cash; if insufficient, it calls the immutable ERC4626 vault's `withdraw(shortfall,Treasury,Treasury)`, emits `MorphoWithdrawn`, then transfers the requested raw amount to the seller, checks Boolean success and emits `UsdgSpent(InverseBond,seller,raw)`.
 
 This auto-unwind is a **code path, not guaranteed redemption liquidity**. The vault or USDG can reject settlement; a vault `convertToAssets` value is not immediately available cash. Treasury does not measure seller receipt. USDG proxy implementation, upgrade/pause/restriction state and vault behavior need fresh/historical evidence as applicable. Treasury's permissionless rebalancing can change cash without changing a previously fixed InverseBond budget.
 
-Obtained Treasury backing is zero for zero NET supply, otherwise `floor(rfv()*1e9/totalSupply)`. Its current indexed source computes `rfv` with `floor(M*9800/10000)` plus cash and geometric POL; **this differs from the user's validated subtract-floored haircut** `M-floor(M*200/10000)`. Its POL source scales raw NET by `1e9` and raw USDG by its cached factor before integer square root and LP fraction. These observations are not permission to replace known-good arithmetic or to resolve the original **18,432.08 USDG POL discrepancy** with a new block or residual identity. The original validation block/hash/raw/runtime packet remains missing. See [Core evidence boundaries](reserve-analytics.md#evidence-boundaries). A fresh direct `backingPerToken()` observation may be quoted as contract-reported backing, but not independently certified reconstructed RFV/NAV.
+Obtained Treasury backing is zero for zero NET supply, otherwise `floor(rfv()*1e9/totalSupply)`. Its indexed source computes `rfv` with `floor(M*9800/10000)` plus cash and geometric POL; **this differs from the user's validated subtract-floored haircut** `M-floor(M*200/10000)`. Its POL source scales raw NET by `1e9` and raw USDG by its cached factor before integer square root and LP fraction. Preserve the validated order and establish source/runtime applicability, dependencies, units and reconciliation at the requested block under [Core evidence boundaries](reserve-analytics.md#evidence-boundaries). The historical discrepancy remains unresolved; another block's certification does not resolve it. A direct `backingPerToken()` observation is contract-reported backing, not by itself independently reconstructed RFV/NAV.
 
 ### NET gross pull, tax and burn
 

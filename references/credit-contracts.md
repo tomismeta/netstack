@@ -59,7 +59,7 @@ The catalogued Sleeve custody account is an explorer-verified [SafeProxy](https:
 
 `currentLtvWad` uses stored borrow totals and a ceil ratio **without** Morpho virtual offsets. It is not the collector's authoritative fresh health computation. Zero debt returns0; zero collateral value with debt returns uint256.max.
 
-LoopbackOracle reads PairOracle TWAP, Treasury backing floor, canonical pair reserves and sNET dividend index. It first rejects spot below `floor(TWAP*0.85)`, then credits `clamp(floor(TWAP*0.9),floor,5*floor)`, multiplies by index/1e9 with floor, then by1e6 into Morpho units. Invalid TWAP or divergence reverts: both borrowing and liquidation may be blocked. The collector's credit mark is not a liquidation execution quote. Treasury floor reliance does not remove the existing Core **18432.08 USDG POL discrepancy** or change `pol_reconstruction_supported=false`.
+LoopbackOracle reads PairOracle TWAP, Treasury backing floor, canonical pair reserves and sNET dividend index. It first rejects spot below `floor(TWAP*0.85)`, then credits `clamp(floor(TWAP*0.9),floor,5*floor)`, multiplies by index/1e9 with floor, then by1e6 into Morpho units. Invalid TWAP or divergence reverts: both borrowing and liquidation may be blocked. The collector's credit mark is not a liquidation execution quote. Treasury floor reliance is not independent Core certification; apply the [block-specific evidence requirements](reserve-analytics.md#evidence-boundaries).
 
 ## Accounting boundaries
 

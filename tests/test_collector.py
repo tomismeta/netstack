@@ -48,6 +48,25 @@ class CollectorIntegrity(unittest.TestCase):
     def scan(self, key):
         return list(self.ctx.logs(key, ADDRESS, self.abi, ['Transfer'], 10, 10))
 
+    def test_implementation_slot_reads_are_pinned_cached_and_address_decoded(self):
+        slot = '0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc'
+        self.responses.append('0x' + '0' * 24 + ADDRESS[2:])
+        self.assertEqual(self.ctx.implementation(ADDRESS), ADDRESS)
+        self.assertEqual(self.ctx.implementation(ADDRESS), ADDRESS)
+        self.ctx._exchange_once.assert_called_once_with([
+            ('eth_getStorageAt', [ADDRESS, slot, '0x64'])])
+        self.ctx._validate_payload('eth_getStorageAt', [ADDRESS, slot, '0x64'])
+        for params in ([ADDRESS, '0x0', '0x64'], [ADDRESS, slot, 'latest'],
+                       [ADDRESS, slot], [ADDRESS, slot, '0x64', False]):
+            with self.subTest(params=params), self.assertRaises(core.RpcError):
+                self.ctx._validate_payload('eth_getStorageAt', params)
+
+    def test_implementation_slot_rejects_noncanonical_address_word(self):
+        self.responses.append('0x01' + '00' * 31)
+        with self.assertRaises(core.RpcError) as failure:
+            self.ctx.implementation(ADDRESS)
+        self.assertEqual(failure.exception.kind, 'decode')
+
     def test_successful_batch_members_survive_another_members_failure(self):
         specs = [(ADDRESS, self.abi, 'totalSupply', ()),
                  (ADDRESS, self.abi, 'kLast', ()),

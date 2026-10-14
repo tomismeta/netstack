@@ -83,7 +83,7 @@
   "limits": [
     "NET/USDG/LP decimals and canonical pointers checked live; constants are source-generation rules, not historical output.",
     "No independently reproduced Solidity compiler output. No static current financial state; runtime identity alone does not prove complete event history.",
-    "Treasury NAV getter is reported, not used to clear existing independent Core POL/haircut reconstruction blocker.",
+    "Treasury NAV getter is contract-reported; independent Core reconstruction requires separate block-specific validation.",
     "Exact receipt transfers are gross attributed incoming; other receipt cash is excluded, not silently attributed to bonds."
   ]
 }

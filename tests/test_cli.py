@@ -263,9 +263,9 @@ class AnalyticsCLI(unittest.TestCase):
                 self.assertEqual(report["snapshot"]["recheck_status"], recheck)
                 self.assertEqual(report["snapshot"]["confirmation"], confirmation)
                 self.assertTrue(any(error.get("kind") == kind for error in report["errors"]))
-                if scenario == "header-mismatch":
-                    self.assertFalse(report["coverage"]["collection_complete"])
-                    self.assertFalse(report["coverage"]["core_rfv"]["collection_complete"])
+                self.assertFalse(report["coverage"]["collection_complete"])
+                self.assertFalse(report["coverage"]["core_rfv"]["collection_complete"])
+                self.assertEqual(report["metrics"]["core_rfv"]["status"], "partial")
 
     def test_signal_and_real_deadline_stop_after_progress_without_more_retrieval(self):
         for scenario, reason in (("stop", "interrupted_by_SIGTERM"),
