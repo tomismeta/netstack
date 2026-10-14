@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source_id": "netnet-core-reserves-interface-20260925",
-  "reviewed_on": "2026-10-13",
+  "reviewed_on": "2026-10-14",
   "scope": "Read-only Treasury RFV diagnostics. Preserve user-validated subtract-floored Morpho haircut; applicability of documented geometric POL to the unresolved historical discrepancy is unproven. Individual matching blocks do not certify independent Core or downstream totals. No website numeric inputs.",
   "provenance": [
     {"url":"https://app.netnet.capital/assets/index-BssLYnjl.js","locator":"Treasury getters and live RFV consumer inspected in the recorded ecosystem audit","scope":"Historical interface evidence; URL returned 404 on the later same-day recheck."},
@@ -27,6 +27,16 @@
     "scope": "Current repository, project-scoped archived prompts/transcripts and accounting handoffs, retained local evidence, and v0.4.0 release records. No fresh network request or pinned chain observation.",
     "historical_packet_limit": "Earlier September25 snapshots and zero-delta claims are not identified as the user's September27-reported discrepancy packet and cannot replace it. October7 explorer bytes remain unbound to the original validation block.",
     "deterministic_haircut_bound": "For nonnegative integer M in USDG wad, (M-floor(M*200/10000))-floor(M*9800/10000) is0 when M%50==0, otherwise1 wad (10^-18 USDG). With six-decimal USDG normalized first, M=assetsRaw*10^12 is divisible by50, so this ordering difference is0. This cannot account for18432.08 USDG and does not replace the user-validated subtract-floored order.",
+    "release_gate_review": {
+      "reviewed_on": "2026-10-14",
+      "evidence_id": "core-pol-release-gate-20261014",
+      "status": "original_packet_and_original_calculation_error_unrecovered",
+      "scope": "Original September27 project feedback and retained project history; local research and NetNet feedback; all303 UTF-8 text members of the October2 investigation ZIP; read-only Hermes/OpenClaw native histories and scoped research directories on both authorized hosts.",
+      "limits": "197 non-text ZIP members not OCR'd; bounded retained stores, not proof an unshared validator packet no longer exists. No new chain collection, arithmetic repair or original-packet smoke. Old and later matching observations do not close the gate.",
+      "rejected_substitutes": "The archive's unrecovered true_rfv.py reference defines POL as a residual. The retained September21 nav-check.py run is unpinned and lacks Morpho assets; it is not identified as the original discrepancy calculation.",
+      "source_generation_analysis": "Full retained October7 Treasury.sol and FixedPointMath.sol: cached USDG factor1e12, actual decimals6/9, matching cached pair orientation and identical external-call values imply the same geometric POL as the collector. Six-decimal normalized Morpho assets also make the two haircut orders numerically equal. These premises remain unbound to the original packet; no original cause identified.",
+      "financial_snapshots_in_runtime": false
+    },
     "required_packet": [
       "Original chain ID, block number/hash/timestamp, exact Treasury/dependency addresses and same-block provenance for every read.",
       "Raw ABI request/response bytes for Treasury value/pointer getters; USDG/NET decimals, cash and NET supply; vault asset/shares/convertToAssets; pair token identities, reserves, LP held and LP supply.",

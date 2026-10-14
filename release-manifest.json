@@ -158,7 +158,7 @@
     "assets/analytics/premiumseller-interface.json": "044bf9c98ba90eca959c36f6824a80fd3024057f448301ff7e867d0820118a45",
     "assets/analytics/premiumseller-routes.json": "77de1169063bcdb3d3d32d0dad414688e2197c6e1bde5181b3f6a2a579e69dac",
     "assets/analytics/reports-methodology.json": "0cfaa11aa42f42b9bdebdcf2b106039e266af01258691c359ee338ca216b1c34",
-    "assets/analytics/reserves-interface.json": "61ebf280d5aceb7b11c670fc88959667a65b5fccda982efa31c7f88e0b3825fb",
+    "assets/analytics/reserves-interface.json": "f1707cde64636416ba288aaf4ccd3d36332b55a08328f8a15257232fdca7d3f9",
     "assets/analytics/reserves-routes.json": "ead03a4d289b724ac4089cd675284834568428b21d08d3d872f4e285d7cbcb8c",
     "assets/analytics/sleeve-bonds-interface.json": "87a38a7e89a9b2a0b4fd3330fb6670a4c4f7d043036eb3a3b5f9bc05c4373475",
     "assets/analytics/sleeve-bonds-routes.json": "3023941aa72b0972da9cd68d121ddf8a0377a7a98d370d7318b3cd1acd333b67",
@@ -288,7 +288,7 @@
     "references/products.md": "5a6d60317a78f398fc577679de011410e3e9d9a5632d7be689666d7be9662671",
     "references/protocol-revenue-analytics.md": "fc83aeba277c2d1be51bcba2775573d2be348bec7bd1a9e02b1a57ebae04f760",
     "references/protocol.md": "67beeaa88afbc7ce96a41fd8759cfbb1ebdc15f8a2971ac7318c0c3dfa885af2",
-    "references/reserve-analytics.md": "b4e7c0feb211a8307ddbe568f4f2976fcb73f2e3ba2a10680afd0fd7ae7b06d7",
+    "references/reserve-analytics.md": "fc31ac951d094d83778189e9c81e81dade01bb2572729919db26066bc8590ab5",
     "references/rwa-strategy.md": "0503314ae125494b4ce028b6a0f6980ca02f9f412d1c67b35a9525ff390cfd69",
     "references/safety.md": "0a938dc4f492d1b08bebe904eae7bfd736a7bd8c19da4d895cc3b65dcb7a17f1",
     "references/sleeve-bond-analytics.md": "8ae3a9ebd9614b714f634f35c54deca254f63f736d6df96932e2ac3c4df85a55",
@@ -310,7 +310,7 @@
     "scripts/netstack_package.py": "f76b8e0dc5304e1076f0a1a8517568f8f3f496d6a8bd6ea0f49254dce7f1b140",
     "scripts/netstack_premiumseller.py": "28d446bf3d9e9c1857732fbc69adfcef36a7e40d87ac67cff23e6c3ab9c7c697",
     "scripts/netstack_receipts.py": "003a4f04c79d52c437c4cb5fb91e8cabca9b6c346afa59e5a066497ec59e42ef",
-    "scripts/netstack_reserves.py": "229db7470fedaf88e04645f49047b9a778a4415708c138db318de037abad18ed",
+    "scripts/netstack_reserves.py": "d69491c73981282a71f5826e7fa20b7cb97b0d90874eeffcaf88eda51503a597",
     "scripts/netstack_sleeve.py": "89bfc4dec4144a14983f0d63ecad87d1a2f57935e54e51af763a8db264752af5",
     "scripts/netstack_sleeve_bonds.py": "8111b4adaeb4e0d45f74e2bea11a0afde18030fd7b93ec418ea6bc6058302996",
     "scripts/netstack_standard_bonds.py": "da519cf62a255f50a878c8e503ee8ccc4d514812a4affc60931e51a64640225e",
@@ -319,7 +319,7 @@
   },
   "runtime_bundle": {
     "files": 310,
-    "sha256": "2ef73ca572ef990dc9f641c261075d36f71ecfc0aeaa0ea13973e486fb89e37d",
+    "sha256": "e8208db4a0700e8f63be5a2a70040d89fcea42e5066a08331751d7b571989584",
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by NUL and file bytes",
     "scope": "SKILL.md, assets/**, references/** (including references/guardrail.md) and scripts/**; excludes README.md, root LICENSE, release-manifest.json and non-distributable maintenance/tests."
   }

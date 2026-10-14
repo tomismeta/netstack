@@ -2,6 +2,13 @@
 
 Source-only maintenance record relocated from the installed README. The entries below preserve their original chronology, counts and verification limits; they describe work at those dates, not current acceptance or deployed state. For current usage and limitations, read [README](../README.md), the installed references and the exact candidate’s external verification records. Nothing here authorizes publication.
 
+## October 14 release-gate qualification
+
+- Completed a fresh, explicitly historical-pinned ten-epoch standard-bond run using the preconfigured authorized provider, supported indexed discovery and asynchronous execution. Receipts, epoch reconstruction, historical headers and final snapshot were confirmed; an independent raw-evidence audit passed. Financial observations and raw evidence remain outside the runtime.
+- Expanded Core POL recovery did not locate the original discrepancy packet. Removed the stale universal no-match assertion without changing arithmetic or `pol_reconstruction_supported=false`; the real CLI still returns partial unsupported Core reconstruction. The maintainer explicitly chose to continue candidate acceptance with that capability unsupported, not to declare the discrepancy resolved.
+- Hermes supported background execution exceeded the earlier foreground tool timeout. A trial session-wide denial/output guard was rejected as overbroad and disabled; source and failure evidence retained externally. The maintainer chose open research with supervised behavioral acceptance, not a claim of enforced isolation. A gateway restart unloaded hooks; active-user-turn absence had not been established before restart dispatch.
+- Final Muse/Grok acceptance is operator-run; exact-candidate reports are required before claiming that gate complete. No tag, merge or release is authorized by this record.
+
 ## Standard-bond archive degradation
 
 - Historical code reads that are pruned/unavailable now retain snapshot-only identity evidence and allow independent log/receipt collection. Missing historical identity prevents complete totals and sellout reconstruction, even if other archive calls work; runtime mismatch and permission/integrity failures remain terminal.

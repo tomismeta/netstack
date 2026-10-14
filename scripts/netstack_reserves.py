@@ -138,7 +138,7 @@ def run(ctx, args):
     coverage["core_rfv"] = {"collection_complete": False, "scope": "canonical formula endpoints"}
     ctx.result["not_proven"].extend([
         "Core RFV does not enumerate unrecognized Treasury holdings or accidental transfers; outside-formula inventory is separate.",
-        "The user's deployment validation establishes the 200 bps subtract-floored haircut. The documented POL candidate is known not to reproduce deployed RFV; applicable runtime and the original validation packet remain missing.",
+        "The user's deployment validation establishes the 200 bps subtract-floored haircut. Applicability of the documented POL candidate to the historical discrepancy remains unresolved; matching a different block does not recover or reconcile the original validation packet.",
         "Core RFV is USDG-denominated accounting, not a redemption, solvency, USD peg or liquidity guarantee. LP look-through is memo only and must not be added again.",
     ])
     reads = _Reads(ctx, report)
