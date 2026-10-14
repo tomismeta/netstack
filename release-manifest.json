@@ -58,7 +58,7 @@
     "assets/addresses/contracts/morpho-vault-registry-factories-and-msft-token.json": "79213711da29bc9643e623ed0102a8b66c2f705fb3c3436a008e46107d463fbf",
     "assets/addresses/contracts/multicall3.json": "79717a2f5fbe535c5c9c9ef8fbd231887ad14a45f4691202db816d4ef4b7f62a",
     "assets/addresses/contracts/net-assets-pair-and-credit-vault.json": "39ec64f84fe5091c288585d577baddadf347ac19376db2e44c297894bd4ccea3",
-    "assets/addresses/contracts/netlong-futures.json": "9875314bf644b1f81fbec15bac3fc0147072e7dd46ee2c3c550269a07f0d0f6b",
+    "assets/addresses/contracts/netlong-futures.json": "8bf7358de0e3232f3721e3ab0fe7acb485f37a83bcc96d4b761b413de36aaac6",
     "assets/addresses/contracts/netlong-margin-and-lose.json": "75e331b947efdd9d7bc844d5265a2977efeb897c4c133a71df558259c2acce77",
     "assets/addresses/contracts/netnet-gear-nft-descriptors-and-nvda-token.json": "fb8711c84620ea6b9cfe91be63e5ec23c1651a95387421ff93b69cf26d00ee88",
     "assets/addresses/contracts/nvda-usdg-pool.json": "e1eab47f0b50a23c73960b5db0109258e0867a467abcceed43f00f7f44dc6871",
@@ -256,7 +256,7 @@
     "assets/contracts/vault.json": "a470a8f9346d3978730a81966a34a84b11aab0aef4bddb8476747ba4bb08e72a",
     "assets/contracts/wrapped-snet.json": "e6eaacc4fc17a63877a9bb306d51c104334c3253edf18a21e6f04a4961a75d2a",
     "assets/safety-policy.json": "3def2bf53a66550b24dcec7a8d6f5213642ed8e0a890ef69f6d67ea8a830caf6",
-    "assets/sources.json": "81fe8cd7f942171d04dd6882ffe7a0477687d60d752833ce6394840a1a509dff",
+    "assets/sources.json": "64d3d85711fee2e6ba5b3ba163af579632f521f70b78610140b7c1e0a157182e",
     "references/addresses-and-roles.md": "7262d877945c6db5306d42e3b820fe9edb1918379551aa73004d3f3ca5392fd4",
     "references/announcements-and-history.md": "5313d589e8632667d39b23009a5fe8c4753e63a6eab2254e6e122c4070e36637",
     "references/book-analytics.md": "0e797d16211865e7b922b33d2302a5e3947663c394b621678d3113f61e8a5c6b",
@@ -277,7 +277,7 @@
     "references/links.md": "e34277b7ae2c41822ba3493f48ba50b40dd2a8cdfb720d0cc0bc69e82ad32bf1",
     "references/liquidity-analytics.md": "f7259c61ef808fd62840fbed113562a7a3668e4d2504aaa1ca509af8e597b165",
     "references/lp-fee-inspection.md": "8b7996b17e62a0376bc59498ef3a8f4eb3c1d09e7f3a71e562b35ee180d79c7a",
-    "references/netlong-analytics.md": "c0a709e27cd7acd0ff4b5b0f5926a18b8b69b7656da485c4726f500661c652b0",
+    "references/netlong-analytics.md": "06c286045e059bb76655592d17907d990b4d43278377c7fb77c818e23775ee80",
     "references/netlong-futures-contracts.md": "a79773ba66877874bcffb0d3ade1e0afb91e9528e6a6957bde0b46e0bb12d395",
     "references/netlong-margin-and-lose-contracts.md": "c86c2cbcebd00d571bd82e1b23073f00a6f7951a8a3bf69db78352f3c6bb3b06",
     "references/nfts.md": "e432c73ce7e352fbc7c8b4e67f50818647c07f106190604d988dce66261ad8af",
@@ -319,7 +319,7 @@
   },
   "runtime_bundle": {
     "files": 310,
-    "sha256": "c2ce6491a295945e54bcf4bc3428582f423e08e69e1616831db309a4d0562293",
+    "sha256": "6e67c7eb778a6c2f9f49fc3c857390611252b7ddbe7b60a605772425c530b1cb",
     "digest_algorithm": "SHA-256 over lexicographically sorted POSIX relative paths, each followed by NUL and file bytes",
     "scope": "SKILL.md, assets/**, references/** (including references/guardrail.md) and scripts/**; excludes README.md, root LICENSE, release-manifest.json and non-distributable maintenance/tests."
   }

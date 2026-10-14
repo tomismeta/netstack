@@ -104,7 +104,16 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "current_publisher_listed",
       "live_chain_verification_status": "explorer_runtime_observed_not_rpc_pinned",
+      "deployment_transaction_hash": "0x49ab9cc3442dca9767c67014ae4f33739aa5e02b8b05821f7b749409c56cc5ff",
+      "deployment_block_number": 83638654,
+      "deployment_at": "2026-10-08T21:42:17Z",
       "provenance": [
+        {
+          "source_id": "netlong-futures-creation-rpc-20261014",
+          "locator": "eth_getTransactionReceipt(0x49ab9cc3442dca9767c67014ae4f33739aa5e02b8b05821f7b749409c56cc5ff): status=0x1, contractAddress=0xca728e8ee6c8d59c1a3abdf1dea43f2f4a63c575, blockNumber=83638654, blockHash=0xe3fa229a860d91b78fb3640093548a223f6116756ea82f698197eec058ef13ee; transaction included in creation block with to=null; canonical header rechecked",
+          "evidence_kind": "direct_rpc_creation_receipt",
+          "observed_on": "2026-10-14"
+        },
         {
           "source_id": "netnet-trading-entry-20261010",
           "locator": "perpV1DeskBtc registry entry; HUMAN-VERIFIED is a publisher assertion",
@@ -132,7 +141,16 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "current_publisher_listed",
       "live_chain_verification_status": "explorer_runtime_observed_not_rpc_pinned",
+      "deployment_transaction_hash": "0x296b3eae2211e383f41a4c6cad4c2b935676206f8bbd350e89a3514db63c6311",
+      "deployment_block_number": 83638654,
+      "deployment_at": "2026-10-08T21:42:17Z",
       "provenance": [
+        {
+          "source_id": "netlong-futures-creation-rpc-20261014",
+          "locator": "eth_getTransactionReceipt(0x296b3eae2211e383f41a4c6cad4c2b935676206f8bbd350e89a3514db63c6311): status=0x1, contractAddress=0x8784014a4cafec70bbc2ae678c59bbe64dbe7858, blockNumber=83638654, blockHash=0xe3fa229a860d91b78fb3640093548a223f6116756ea82f698197eec058ef13ee; transaction included in creation block with to=null; canonical header rechecked",
+          "evidence_kind": "direct_rpc_creation_receipt",
+          "observed_on": "2026-10-14"
+        },
         {
           "source_id": "netnet-trading-entry-20261010",
           "locator": "perpV1DeskEth registry entry; HUMAN-VERIFIED is a publisher assertion",
@@ -160,7 +178,16 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "current_publisher_listed",
       "live_chain_verification_status": "explorer_runtime_observed_not_rpc_pinned",
+      "deployment_transaction_hash": "0x5515b4c2f3aa184947e9b31a839a38fe1e586f80b8694f16db754b87b17c2ea8",
+      "deployment_block_number": 83638654,
+      "deployment_at": "2026-10-08T21:42:17Z",
       "provenance": [
+        {
+          "source_id": "netlong-futures-creation-rpc-20261014",
+          "locator": "eth_getTransactionReceipt(0x5515b4c2f3aa184947e9b31a839a38fe1e586f80b8694f16db754b87b17c2ea8): status=0x1, contractAddress=0x87b14a8e5304e35b0cbddaba3454587b85ff2470, blockNumber=83638654, blockHash=0xe3fa229a860d91b78fb3640093548a223f6116756ea82f698197eec058ef13ee; transaction included in creation block with to=null; canonical header rechecked",
+          "evidence_kind": "direct_rpc_creation_receipt",
+          "observed_on": "2026-10-14"
+        },
         {
           "source_id": "netnet-trading-entry-20261010",
           "locator": "perpV1DeskSol registry entry; HUMAN-VERIFIED is a publisher assertion",
@@ -188,7 +215,16 @@
       "status": "recorded_from_public_source",
       "lifecycle_status": "current_publisher_listed",
       "live_chain_verification_status": "explorer_runtime_observed_not_rpc_pinned",
+      "deployment_transaction_hash": "0x186f99ad82645badf333ae962be311b7776de3cc7af95133895ad2dc77a00541",
+      "deployment_block_number": 83638655,
+      "deployment_at": "2026-10-08T21:42:17Z",
       "provenance": [
+        {
+          "source_id": "netlong-futures-creation-rpc-20261014",
+          "locator": "eth_getTransactionReceipt(0x186f99ad82645badf333ae962be311b7776de3cc7af95133895ad2dc77a00541): status=0x1, contractAddress=0x77d247ec5e2094e8226bcc1a5b8bfb8a903bb00f, blockNumber=83638655, blockHash=0x9728188a7b5777f4b7bb5d32d82c80b065066aaea1513e3cc6cab59a6b3df31c; transaction included in creation block with to=null; canonical header rechecked",
+          "evidence_kind": "direct_rpc_creation_receipt",
+          "observed_on": "2026-10-14"
+        },
         {
           "source_id": "netnet-trading-entry-20261010",
           "locator": "perpV1DeskNet registry entry; HUMAN-VERIFIED is a publisher assertion",

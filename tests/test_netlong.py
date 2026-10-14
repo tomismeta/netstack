@@ -145,6 +145,8 @@ class TransportFixture(SyntheticContext):
         self.header_reads = 0
         self.documents = []
         self.traders = [self.trader, address(201)]
+        self.pruned_history = False
+        self.receipts = {}
 
     def exchange(self, ctx, requests):
         replies = []
@@ -167,7 +169,12 @@ class TransportFixture(SyntheticContext):
                 value = {"number": hex(number), "hash": "0x" + word(number + 1000 + int(conflict)),
                          "timestamp": hex(number * 5)}
             elif method == "eth_getCode":
+                if self.pruned_history and int(params[1], 16) != 200:
+                    replies.append(RpcError("Historical state pruned", kind="pruned"))
+                    continue
                 value = self.code_values.get(params[0], "0x6000") if int(params[1], 16) >= 100 else "0x"
+            elif method == "eth_getTransactionReceipt":
+                value = deepcopy(self.receipts.get(params[0]))
             elif method == "eth_call":
                 data = params[0]["data"]
                 item = self.selectors[data[:10]]
@@ -434,6 +441,120 @@ class NetLongConfirmationTests(unittest.TestCase):
                     if scenario == "vault_reconciliation":
                         self.assertFalse(document["metrics"]["vault_entry_reconciliation"]["matches"])
                         self.assertIsNone(aggregate["mark_notional"]["total"])
+
+
+class NetLongCreationBoundaryTests(unittest.TestCase):
+    def fixture(self):
+        fixture = TransportFixture()
+        fixture.pruned_history = True
+        tx_hash = "0x" + word(900)
+        fixture.routes["known_future"]["deployment_transaction_hash"] = tx_hash
+        fixture.receipts[tx_hash] = {
+            "transactionHash": tx_hash, "transactionIndex": "0x0",
+            "blockNumber": hex(100), "blockHash": "0x" + word(1100),
+            "status": "0x1", "from": address(300), "to": None,
+            "contractAddress": fixture.future, "logs": []}
+        return fixture, tx_hash
+
+    def assert_incomplete_inventory(self, fixture, full, summary):
+        for document in (full, summary):
+            self.assertEqual(document["snapshot"]["recheck_status"], "confirmed")
+            self.assertTrue(document["coverage"]["futures_discovery"]["collection_complete"])
+            self.assertFalse(document["coverage"]["collection_complete"])
+            self.assertEqual([row["address"] for row in document["metrics"]["discovered_markets"]],
+                             [fixture.future])
+            self.assertEqual(len(document["metrics"]["markets"]), 1)
+            row = document["metrics"]["markets"][0]
+            self.assertEqual(row["status"], "partial")
+            self.assertFalse(row["collection_complete"])
+            self.assertFalse(row.get("positions_complete", False))
+            self.assertEqual(row["entry_notional"]["gross"]["raw"], str(12 * netlong.WAD))
+            aggregate = document["metrics"]["aggregates"]["futures"]
+            self.assertEqual(aggregate["market_count"], 1)
+            self.assertFalse(aggregate["collection_complete"])
+            # Current desk OI remains observed; unavailable position history is
+            # neither a zero marked inventory nor grounds to drop the desk.
+            self.assertEqual(aggregate["entry_notional"]["total"]["gross"]["raw"],
+                             str(12 * netlong.WAD))
+            self.assertIsNone(aggregate["mark_notional"]["total"])
+            self.assertIsNone(aggregate["mark_notional"]["observed_subtotal"])
+            self.assertEqual(document["coverage"]["missing_markets"],
+                             [{"product": "futures", "address": fixture.future, "status": "partial"}])
+        self.assertFalse(any(method == "eth_getLogs" for method, _ in fixture.requests))
+
+    def test_creation_receipt_enumerates_and_reconciles_with_pruned_state(self):
+        fixture, tx_hash = self.fixture()
+        status, full, summary = fixture.run_cli(product="futures")
+        self.assertEqual(status, 0)
+        self.assertIn(("eth_getTransactionReceipt", [tx_hash]), fixture.requests)
+        code_blocks = [params[1] for method, params in fixture.requests if method == "eth_getCode"]
+        self.assertTrue(code_blocks)
+        self.assertEqual(set(code_blocks), {hex(200)})
+        boundary = full["coverage"]["deployment_boundaries"][fixture.future]
+        self.assertEqual(boundary, {"block": 100, "provenance": "canonical_creation_receipt"})
+        coverage = full["coverage"]["futures_positions:" + fixture.future]
+        self.assertEqual(coverage["requested_range"], [100, 200])
+        self.assertEqual(coverage["covered_ranges"], [[100, 200]])
+        self.assertTrue(coverage["event_coverage_complete"])
+        self.assertEqual(coverage["identifiers_discovered"], 2)
+        row = full["metrics"]["markets"][0]
+        self.assertEqual({position["trader"] for position in row["positions"]}, set(fixture.traders))
+        self.assertEqual(row["position_entry_reconciliation"],
+                         {"matches": True, "long_residual_wad": "0", "short_residual_wad": "0"})
+        self.assertEqual(summary["metrics"]["markets"][0]["observed_position_count"], 2)
+        for document in (full, summary):
+            self.assertTrue(document["coverage"]["collection_complete"])
+            self.assertTrue(document["metrics"]["markets"][0]["positions_complete"])
+            aggregate = document["metrics"]["aggregates"]["futures"]
+            self.assertEqual(aggregate["market_count"], 1)
+            self.assertTrue(aggregate["collection_complete"])
+            self.assertEqual(aggregate["entry_notional"]["total"]["gross"]["raw"],
+                             str(12 * netlong.WAD))
+            self.assertEqual(aggregate["mark_notional"]["total"]["long"]["raw"],
+                             str(15 * netlong.WAD))
+            self.assertEqual(aggregate["mark_notional"]["total"]["short"]["raw"],
+                             str(3 * netlong.WAD // 2))
+
+    def test_missing_creation_provenance_keeps_known_and_new_desks_incomplete(self):
+        for known in (True, False):
+            with self.subTest(known=known):
+                fixture, _ = self.fixture()
+                if known:
+                    del fixture.routes["known_future"]["deployment_transaction_hash"]
+                else:
+                    del fixture.routes["known_future"]
+                    fixture.routes["_route"]["futures_labels"] = []
+                status, full, summary = fixture.run_cli(product="futures")
+                self.assertEqual(status, 2)
+                self.assert_incomplete_inventory(fixture, full, summary)
+                if not known:
+                    self.assertIsNone(full["metrics"]["markets"][0]["symbol"])
+                self.assertTrue(any(method == "eth_getCode" and params[1] != hex(200)
+                                    for method, params in fixture.requests))
+                self.assertTrue(any(error["kind"] == "pruned" for error in full["errors"]))
+
+    def test_mismatched_creation_receipt_never_falls_back_to_guessed_boundary(self):
+        for field, value in (("contractAddress", address(999)),
+                             ("transactionHash", "0x" + word(901)), ("status", "0x0")):
+            with self.subTest(field=field):
+                fixture, tx_hash = self.fixture()
+                fixture.receipts[tx_hash][field] = value
+                # A locator must not rescue an invalid canonical receipt either.
+                fixture.routes["known_future"]["provenance"] = [{"locator": "block_number=100"}]
+                status, full, summary = fixture.run_cli(product="futures")
+                self.assertEqual(status, 2)
+                for document in (full, summary):
+                    self.assertNotEqual(document["snapshot"]["recheck_status"], "confirmed")
+                    self.assertFalse(document["coverage"]["collection_complete"])
+                    row = document["metrics"]["markets"][0]
+                    self.assertEqual(row["address"], fixture.future)
+                    self.assertFalse(row.get("positions_complete", False))
+                    self.assertNotIn("futures", document["metrics"]["aggregates"])
+                self.assertFalse(any(method == "eth_getLogs" for method, _ in fixture.requests))
+                self.assertTrue(any(error["kind"] == "integrity" for error in full["errors"]))
+                self.assertNotIn(fixture.future, full["coverage"].get("deployment_boundaries", {}))
+                self.assertFalse(any(method == "eth_getCode" and params[1] != hex(200)
+                                     for method, params in fixture.requests))
 
 
 class NetLongBoundaries(unittest.TestCase):

@@ -2,6 +2,13 @@
 
 Source-only maintenance record relocated from the installed README. The entries below preserve their original chronology, counts and verification limits; they describe work at those dates, not current acceptance or deployed state. For current usage and limitations, read [README](../README.md), the installed references and the exact candidate’s external verification records. Nothing here authorizes publication.
 
+## October 14 futures creation-boundary correction
+
+- Recorded independently corroborated BTC/ETH/SOL/NET desk creation transactions, successful receipts, exact created addresses and canonical creation headers. These are significant deployment identities, not position or financial-history snapshots.
+- Existing receipt-based discovery now avoids historical code binary search for these four desks; no collector behavior or limits changed. Newly discovered desks lacking sufficient deployment evidence remain visible and incomplete when historical code is pruned. Invalid canonical receipts cannot fall back to a guessed boundary.
+- Integrated verification passed 495 tests, including real collector/CLI regressions for pruned-state position enumeration and OI reconciliation, unknown desks, and invalid receipts. The live packaged-context smoke resolved all four creation boundaries and scanned bounded ten-block Filled windows with no historical code requests and a confirmed final pin. This is not a claim of complete live lifetime position enumeration; provider log limits remain independent.
+- Updated the existing discovery reference and source registry. No new analytics commands, host settings, native-agent runs, tag, merge or release.
+
 ## October 14 block-specific certification and runtime evidence curation
 
 - The maintainer approved replacing the historical universal Core POL gate with block-specific certification: applicable implementation/dependency identity, units, exact arithmetic, independent reconciliation and final block confirmation must all pass. A zero residual alone is insufficient; no balancing constant is allowed. This supersedes the earlier capability policy recorded below, not the historical evidence.

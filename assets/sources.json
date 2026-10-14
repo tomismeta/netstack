@@ -14,6 +14,20 @@
   },
   "sources": [
     {
+      "id": "netlong-futures-creation-rpc-20261014",
+      "type": "public_rpc_observation",
+      "label": "NetLong BTC, ETH, SOL and NET desk creation receipts",
+      "url": "https://robin.etherscan.io/tx/0x49ab9cc3442dca9767c67014ae4f33739aa5e02b8b05821f7b749409c56cc5ff",
+      "chain_id": 4663,
+      "observed_on": "2026-10-14",
+      "reviewed_on": "2026-10-14",
+      "content_review_status": "creation_receipts_and_canonical_headers_verified",
+      "summary": "Existing authorized configured RPC on chain4663 independently returned successful direct-creation receipts with contractAddress matching each canonical BTC, ETH, SOL and NET desk. BTC/ETH/SOL were included in block83638654/hash0xe3fa229a860d91b78fb3640093548a223f6116756ea82f698197eec058ef13ee; NET in block83638655/hash0x9728188a7b5777f4b7bb5d32d82c80b065066aaea1513e3cc6cab59a6b3df31c. Both canonical headers were rechecked. Exact transaction hashes and receipt locators are retained in the address records.",
+      "limits": "Creation identity only, not current runtime, authority, balances, positions, financial history or a full-contract audit. Retained historical-code-search output supplied a discovery hint only; creation proof is the independently checked receipt, transaction inclusion and canonical header. Raw requests/responses remain outside the runtime package. No denied origin was retried or bypassed.",
+      "reference": "assets/addresses/contracts/netlong-futures.json",
+      "execution_authority": false
+    },
+    {
       "id": "netnet-core-reserves-implementation-20261014",
       "type": "implementation_review",
       "label": "Treasury independently compiled accounting implementation",
@@ -6787,7 +6801,7 @@
       "Core certification requires block-specific implementation/dependency identity, units/arithmetic, reconciliation and final confirmation under references/reserve-analytics.md. The historical POL discrepancy and missing original packet remain unresolved, not a universal present-block prohibition."
     ],
     "counts": {
-      "source_records": 342,
+      "source_records": 343,
       "contract_records_unique_by_chain_and_address": 232,
       "public_role_address_records": 12,
       "trusted_product_mark_relationships": 6,
@@ -6838,7 +6852,7 @@
         "marketplace_api": 2,
         "official_app_configuration": 1,
         "official_app_api": 2,
-        "public_rpc_observation": 5,
+        "public_rpc_observation": 6,
         "community_social_post": 1,
         "publisher_social_post": 7,
         "official_social_article": 1,
@@ -6846,6 +6860,7 @@
         "documentation_search": 1
       },
       "contract_records_by_provenance_source_overlapping": {
+        "netlong-futures-creation-rpc-20261014": 4,
         "netlong-catalog-rpc-20261012": 2,
         "netstack-inverse-runtime-identity-20261012": 1,
         "netnet-inverse-bond-implementation-20261012": 1,
