@@ -6,7 +6,7 @@ netstack helps agents research NetNet's protocol, products, games, RWA strategy 
 
 It is an independent [Agent Skills](https://agentskills.io/specification) package. It is **not** an official NetNet product, a trading bot or a wallet toolkit.
 
-**Development candidate: `0.5.0-dev`, branch `feat/v0.5.0`, unpublished.** The released baseline is [v0.4.0](https://github.com/tomismeta/netstack/releases). Identify a candidate by its reviewed immutable commit, manifest and runtime hashes, not its version string alone. Dogfooding does not authorize a tag, release or registry submission.
+**Package version: `0.5.0`.** Identify the reviewed package by its immutable commit, manifest and runtime hashes. Consult the [release record and separate audit assets](https://github.com/tomismeta/netstack/releases) for publication status and exact-input review; the version string alone does not establish either.
 
 **Evidence limits:** current questions require fresh authorized evidence; the package contains identities, methods and dated mechanism provenance, not saved financial answers. Interface coverage and source/runtime review are not full contract audits or proof of current permissions. See the [capability ledger and review boundaries](references/contract-capabilities.md).
 
@@ -208,7 +208,7 @@ For reproducible problems, open a [GitHub issue](https://github.com/tomismeta/ne
 
 ## Maintaining the knowledge
 
-**Working package version: 0.5.0-dev; unpublished.** Dogfooding, exact-input security review and integrity checks precede publication. Commits, merges, tags, releases and registry submissions require maintainer approval; never overwrite published tags or assets. A manifest establishes byte integrity, not publisher authenticity or release approval.
+Dogfooding, exact-input security review and integrity checks precede publication. Commits, merges, tags, releases and registry submissions require maintainer approval; never overwrite published tags or assets. A manifest establishes byte integrity, not publisher authenticity or release approval.
 
 **Revision pinning:** retain the explicitly installed immutable revision until the maintainer requests an update. Do not automatically track a moving branch; review replacements and confirm the loaded revision in a fresh session.
 

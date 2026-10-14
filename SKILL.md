@@ -4,8 +4,8 @@ description: "Research NetNet on Robinhood Chain (4663): NET, NAV/RFV, NetLong/L
 license: MIT
 metadata:
   compatibility: "Packaged knowledge needs no network, CLI, credentials, or wallet. Optional live analytics use the bundled Python 3.10+ standard-library runner on Linux/macOS with normal host permission. Supplemental research, analysis code and non-broadcasting simulations use host-authorized tools; no custom broker is required. This package installs no tools and does not enforce a host sandbox."
-  version: "0.5.0-dev"
-  knowledge-reviewed: "2026-10-13"
+  version: "0.5.0"
+  knowledge-reviewed: "2026-10-14"
   access: "read-only"
 ---
 
@@ -84,7 +84,7 @@ Before finalizing, verify the selected method's identities, units, dates, covera
 
 ## Package and maintenance
 
-Packaged knowledge is self-contained and dated; no network, credentials or wallet is needed. The optional Python standard-library runner installs no tools, third-party runtime dependencies, hooks, wallet connectors, MCP configuration, telemetry or automatic updates. **v0.5.0-dev is unpublished**; establish publication/review status from the immutable commit, manifest/runtime hashes and release-specific security evidence, not the version string. Evidence dates and limitations remain claim-specific, not a fresh audit of every source or product.
+Packaged knowledge is self-contained and dated; no network, credentials or wallet is needed. The optional Python standard-library runner installs no tools, third-party runtime dependencies, hooks, wallet connectors, MCP configuration, telemetry or automatic updates. Establish publication/review status from the immutable commit, manifest/runtime hashes and release-specific security evidence, not the version string. Evidence dates and limitations remain claim-specific, not a fresh audit of every source or product.
 
 [Installation](references/installation.md) covers loading and verification. [Curation](references/docs-and-sources.md#repeatable-knowledge-curation) connects maintainer updates and feedback to the source-only [research verification workflow](https://github.com/tomismeta/netstack/blob/feat/v0.5.0/maintenance/research-verification.md). Suggested updates never apply automatically; publication and version changes require maintainer approval.
 
