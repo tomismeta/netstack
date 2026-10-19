@@ -99,7 +99,7 @@ def validate_path(path):
 
 def repository_only(path):
     parts = validate_path(path)
-    return (parts[0] in REPOSITORY_ROOTS or any(part in CACHE_NAMES for part in parts)
+    return (path == "AGENTS.md" or parts[0] in REPOSITORY_ROOTS or any(part in CACHE_NAMES for part in parts)
             or parts[-1].endswith((".pyc", ".pyo")))
 
 
@@ -107,6 +107,8 @@ def runtime_path(path):
     parts = validate_path(path)
     if repository_only(path):
         return False
+    if "AGENTS.md" in parts:
+        raise ValueError(f"instruction file is not a runtime path: {path}")
     if path in ROOT_FILES:
         return True
     if len(parts) > 1 and parts[0] in RUNTIME_DIRS and not any(part.startswith(".") for part in parts):
@@ -292,6 +294,8 @@ def read_package(root, *, checkout=False, include_manifest=True):
                     raise ValueError("package entry count exceeds limit")
                 path = prefix + entry.name
                 if checkout and repository_only(path):
+                    if path == "AGENTS.md" and not stat.S_ISREG(entry.stat(follow_symlinks=False).st_mode):
+                        raise ValueError("root AGENTS.md must be a regular repository-only file")
                     continue
                 if path == MANIFEST and not include_manifest:
                     continue

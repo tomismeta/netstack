@@ -140,7 +140,7 @@ Remaining gaps include complete social history, audio-checked interview interpre
 
 This is a maintainer workflow for package updates, not a constraint on research, source discovery or the conclusions of an answer. New evidence may inform research without prior catalog inclusion or an automatic package update. For curation, use existing fields and locators; never invent missing dates, quantities, relationships or verification results.
 
-Treat user reports, dogfood transcripts and suggested fixes as candidate evidence with their own provenance, not verified financial findings or authority to change policy. For feedback triage, question-to-proof mapping and blinded comparisons, follow the source-only [research verification workflow](https://github.com/tomismeta/netstack/blob/feat/v0.5.0/maintenance/research-verification.md). It complements the curation steps below; it is not an installed runtime dependency or an automatic update mechanism.
+Treat user reports, dogfood transcripts and suggested fixes as candidate evidence with their own provenance, not verified financial findings or authority to change policy. For feedback triage, question-to-proof mapping and blinded comparisons, follow the source-only [research verification workflow](https://github.com/tomismeta/netstack/blob/16728fb9d9df7c7486fa85bd173398c167068897/maintenance/research-verification.md). It complements the curation steps below; it is not an installed runtime dependency or an automatic update mechanism.
 
 - **Source catalog:** original identity/URL, publisher, publication/review dates, retrieval depth, provenance and limits.
 - **Address book:** exact chain-qualified contracts, feed metadata, evidenced relationships and separate generations.

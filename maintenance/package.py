@@ -235,6 +235,12 @@ def export_package(root, commit, output):
                         follow_symlinks=False)
                 receipt_created = True
                 os.unlink(temporary, dir_fd=parent)
+                marker = ".netstack-skill-" + uuid.uuid4().hex
+                _write_file(directory, marker, files[path])
+                os.link(marker, path, src_dir_fd=directory, dst_dir_fd=directory,
+                        follow_symlinks=False)
+                os.unlink(marker, dir_fd=directory)
+                continue
             descriptor = os.dup(directory)
             try:
                 parts = path.split("/")

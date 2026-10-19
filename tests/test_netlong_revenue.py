@@ -398,6 +398,115 @@ class NetLongRevenueTests(unittest.TestCase):
                 self.assertIsNone(row["requested_window_total"])
                 self.assertFalse(row["collection_complete"])
 
+    def assert_unknown_flows(self, document, assets=("wsnet", "usdg", "net")):
+        observations = document["metrics"]["observations"]
+        for row in observations["asset_bridges"]:
+            if row["asset"] in assets:
+                for key in ("observed_incoming", "observed_outgoing", "observed_net_transfers", "residual"):
+                    self.assertIsNone(row[key]["raw"], (row["asset"], row["endpoint"], key))
+                    self.assertIsNone(row[key]["formatted"])
+                self.assertFalse(row["reconciled"])
+        for row in observations["router_receipts"] + observations["treasury_receipts"]:
+            if row["asset"] in assets:
+                self.assertIsNone(row["observed_subtotal"]["raw"], row)
+                self.assertIsNone(row["observed_subtotal"]["formatted"])
+                self.assertIsNone(row["requested_window_total"])
+
+    def test_no_flow_acquisition_remains_unknown_before_and_after_boundary_balances(self):
+        fixture = RevenueFixture()
+        fixture.activity()
+
+        def stop_before_first_scan(method, params):
+            if method == "eth_getLogs":
+                ctx = fixture.contexts[0]
+                ctx._collect_end = 0
+                ctx.check()
+            return False, None
+
+        fixture.override = stop_before_first_scan
+        status, full, summary = fixture.run_cli()
+        self.assertEqual(status, 2, full)
+        self.assertEqual(full["stopping_reason"], "deadline_exhausted")
+        self.assertEqual(full["metrics"]["transfers"], [])
+        self.assertTrue(all(not full["coverage"][key]["covered_ranges"]
+                            for key in full["metrics"]["transfer_scopes"]))
+        initial = next(document for document in fixture.documents
+                       if "acquisition_finished" in document["metrics"]
+                       and not document["metrics"]["balances"])
+        for document in (initial, full, summary):
+            self.assert_unknown_flows(document)
+            self.assert_incomplete(document)
+            before = deepcopy(document)
+            projected = revenue.prepare_result(document)
+            self.assertEqual(document, before)
+            self.assertEqual(projected, revenue.prepare_result(projected))
+        bridge = next(row for row in full["metrics"]["observations"]["asset_bridges"]
+                      if (row["asset"], row["endpoint"]) == ("wsnet", "futures_router"))
+        self.assertEqual(bridge["balance_delta"]["raw"], str(FUTURES_FEE + 11))
+        self.assertIsNone(bridge["residual"]["raw"])
+
+    def test_partial_transfer_ranges_qualify_each_asset_and_direction_separately(self):
+        for direction in ("outgoing", "incoming"):
+            with self.subTest(direction=direction):
+                fixture = RevenueFixture()
+                router, treasury = (fixture.addresses[role] for role in ("futures_router", "treasury"))
+                fixture.add_transfer("wsnet", OTHER_ACCOUNT, router, FUTURES_FEE, block=START)
+                fixture.add_transfer("wsnet", router, treasury, 11, block=START + 1)
+                fixture.set_call(fixture.addresses["wsnet"], "balanceOf", FUTURES_FEE - 11,
+                                 (router,), block=END)
+                fixture.set_call(fixture.addresses["wsnet"], "balanceOf", 11, (treasury,), block=END)
+
+                def stop_second_direction_page(method, params):
+                    if method == "eth_getLogs":
+                        query = params[0]
+                        requested_direction = "incoming" if len(query["topics"]) == 3 else "outgoing"
+                        if (query["address"] == fixture.addresses["wsnet"]
+                                and requested_direction == direction
+                                and int(query["fromBlock"], 16) == END):
+                            fixture.contexts[0]._signal(signal.SIGTERM, None)
+                    return False, None
+
+                fixture.override = stop_second_direction_page
+                status, full, summary = fixture.run_cli()
+                self.assertEqual(status, 2, full)
+                coverage = full["coverage"]["transfers:wsnet:" + direction]
+                self.assertEqual(coverage["covered_ranges"], [[START, END - 1]])
+                self.assertEqual(coverage["missing_ranges"], [[END, END]])
+                for document in (full, summary):
+                    self.assert_incomplete(document)
+                    self.assert_unknown_flows(document, ("usdg", "net"))
+                    observations = document["metrics"]["observations"]
+                    bridges = {row["endpoint"]: row for row in observations["asset_bridges"]
+                               if row["asset"] == "wsnet"}
+                    router_bridge = bridges["futures_router"]
+                    self.assertEqual(router_bridge["observed_outgoing"]["raw"], "11")
+                    self.assertEqual(bridges["vault"]["observed_outgoing"]["raw"], "0")
+                    self.assertEqual(bridges["treasury"]["observed_incoming"]["raw"], "11")
+                    self.assertEqual(bridges["treasury"]["residual"]["raw"], "0")
+                    self.assertFalse(bridges["treasury"]["reconciled"])
+                    receipt = next(row for row in observations["router_receipts"]
+                                   if (row["asset"], row["endpoint"]) == ("wsnet", "futures_router"))
+                    direct = next(row for row in observations["treasury_receipts"] if row["asset"] == "wsnet")
+                    self.assertEqual(direct["observed_subtotal"]["raw"], "11")
+                    if direction == "outgoing":
+                        self.assertIsNone(router_bridge["observed_incoming"]["raw"])
+                        self.assertIsNone(router_bridge["observed_net_transfers"]["raw"])
+                        self.assertIsNone(router_bridge["residual"]["raw"])
+                        self.assertIsNone(bridges["vault"]["observed_incoming"]["raw"])
+                        self.assertIsNone(receipt["observed_subtotal"]["raw"])
+                    else:
+                        self.assertEqual(receipt["observed_subtotal"], {
+                            "raw": str(FUTURES_FEE), "decimals": 18, "unit": "wsNET",
+                            "formatted": "1.000000000000000007"})
+                        self.assertEqual(router_bridge["observed_net_transfers"]["raw"], str(FUTURES_FEE - 11))
+                        self.assertEqual(router_bridge["residual"]["raw"], "0")
+                        self.assertFalse(router_bridge["reconciled"])
+                        self.assertEqual(bridges["vault"]["observed_incoming"]["raw"], "0")
+                before = deepcopy(full)
+                projected = revenue.prepare_result(full)
+                self.assertEqual(full, before)
+                self.assertEqual(projected, revenue.prepare_result(projected))
+
 
     def test_pin_denial_reports_uncollected_events_and_unmeasured_router_disposition(self):
         for detail in ("full", "summary"):
@@ -738,6 +847,25 @@ class NetLongRevenueTests(unittest.TestCase):
                                         for row in document["coverage"].values() if isinstance(row, dict)))
                 self.assertTrue(full["metrics"]["events"])
                 self.assertEqual(fixture.requests[-1][0], "eth_getLogs")
+                # The event receipt supplies one real transfer before any
+                # directional Transfer range has been served.
+                self.assertTrue(all(not full["coverage"][key]["covered_ranges"]
+                                    for key in full["metrics"]["transfer_scopes"]))
+                for document in (full, summary):
+                    self.assert_unknown_flows(document, ("usdg", "net"))
+                    observations = document["metrics"]["observations"]
+                    receipt = next(row for row in observations["router_receipts"]
+                                   if (row["asset"], row["endpoint"]) == ("wsnet", "futures_router"))
+                    self.assertEqual(receipt["observed_subtotal"], {
+                        "raw": str(FUTURES_FEE), "decimals": 18, "unit": "wsNET",
+                        "formatted": "1.000000000000000007"})
+                    bridge = next(row for row in observations["asset_bridges"]
+                                  if (row["asset"], row["endpoint"]) == ("wsnet", "futures_router"))
+                    self.assertEqual(bridge["observed_incoming"]["raw"], str(FUTURES_FEE))
+                    for key in ("observed_outgoing", "observed_net_transfers", "residual"):
+                        self.assertIsNone(bridge[key]["raw"])
+                    treasury = next(row for row in observations["treasury_receipts"] if row["asset"] == "wsnet")
+                    self.assertIsNone(treasury["observed_subtotal"]["raw"])
 
     def test_each_boundary_recheck_can_revoke_completion_independently(self):
         for boundary in (OPENING, END):
@@ -838,6 +966,15 @@ class NetLongRevenueTests(unittest.TestCase):
                 self.assertEqual(fee["requested_window_total"]["raw"], "0")
             self.assertIsNone(document["metrics"]["observations"]["vault_equity_delta"]["economic_result"])
             self.assertIsNone(document["metrics"]["observations"]["pot_state_deltas"]["cash_interest_received"])
+            for row in (document["metrics"]["observations"]["router_receipts"]
+                        + document["metrics"]["observations"]["treasury_receipts"]):
+                self.assertEqual(row["observed_subtotal"]["raw"], "0")
+                self.assertEqual(row["requested_window_total"]["raw"], "0")
+                self.assertTrue(row["collection_complete"])
+        for row in full["metrics"]["observations"]["asset_bridges"]:
+            for key in ("observed_incoming", "observed_outgoing", "observed_net_transfers", "residual"):
+                self.assertEqual(row[key]["raw"], "0")
+            self.assertTrue(row["reconciled"])
 
     def test_native_fee_amounts_and_receipts_remain_separate_by_basis_and_product(self):
         fixture = RevenueFixture()

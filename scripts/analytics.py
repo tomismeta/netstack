@@ -283,9 +283,11 @@ def _not_collected(result, args):
         requested.update(completed_epochs=args.epochs, sellout_threshold_net="1",
                          threshold_comparison="strictly_less_than")
     result["coverage"]["requested_scope"] = requested
-    result["not_proven"].append(
+    message = (
         "Requested live observations were not collected. Event coverage and absence of activity "
         "are not established; no zero balance, fee, revenue or profit follows from empty output.")
+    if message not in result["not_proven"]:
+        result["not_proven"].append(message)
 
 
 def _emit(text, hard_end=None):
@@ -316,6 +318,75 @@ def _emit(text, hard_end=None):
 
 
 
+def _finalize(ctx, result, args, exit_code, collector_started):
+    """Finish once without retrieval, falling back to the last valid aggregate."""
+    checkpoint_status = "not_requested" if args.output is None else "not_confirmed"
+    try:
+        if ctx is not None:
+            ctx.begin_finalization()
+        if not collector_started and not (args.command == "advance" and args.action == "provenance"):
+            # The transition may have stopped midway through this metadata.
+            # Reapplying it is local and idempotent, never another collection.
+            _not_collected(result, args)
+        try:
+            if ctx is not None:
+                if result.get("snapshot") and result["snapshot"].get("recheck_status") != "confirmed":
+                    result["snapshot"].setdefault("recheck_status", "not_performed")
+                    result["snapshot"]["confirmation"] = (
+                        "invalid" if result["snapshot"]["recheck_status"] == "mismatch" else "unconfirmed")
+                ctx.checkpoint()
+                if args.output is not None:
+                    checkpoint_status = "saved"
+                text = ctx._last_json
+            else:
+                text = serialize_result(result)
+        except RpcError as exc:
+            result["errors"].append({"kind": exc.kind, "message": str(exc)})
+            result["status"] = "partial"
+            result["stopping_reason"] = "checkpoint_failure"
+            exit_code = 2
+            text = serialize_result(result)
+        if args.command in ("rfv", "advance", "netlong", "netlong-revenue", "premiumseller", "standard-bonds", "sleeve-bonds", "credit", "book") and args.detail == "summary":
+            try:
+                # Project exactly the finalized document, including cached
+                # evidence or output errors, not the mutable collector result.
+                if args.command == "advance":
+                    text = summarize_advance(text, checkpoint_status, args.output)
+                elif args.command == "netlong":
+                    from netstack_netlong import summarize
+                    text = summarize(text, checkpoint_status)
+                elif args.command == "netlong-revenue":
+                    from netstack_netlong_revenue import summarize
+                    text = summarize(text, checkpoint_status)
+                elif args.command == "premiumseller":
+                    from netstack_premiumseller import summarize
+                    text = summarize(text, checkpoint_status)
+                elif args.command == "standard-bonds":
+                    from netstack_standard_bonds import summarize
+                    text = summarize(text, checkpoint_status)
+                elif args.command == "sleeve-bonds":
+                    from netstack_sleeve_bonds import summarize
+                    text = summarize(text, checkpoint_status)
+                elif args.command == "credit":
+                    from netstack_credit import summarize
+                    text = summarize(text, checkpoint_status)
+                elif args.command == "book":
+                    from netstack_book import summarize
+                    text = summarize(text, checkpoint_status)
+                else:
+                    text = summarize_rfv(text, checkpoint_status)
+            except (StopRun, KeyboardInterrupt) as exc:
+                exit_code = 2
+                reason = exc.reason if isinstance(exc, StopRun) else "interrupted_by_SIGINT"
+                text = full_fallback(text, checkpoint_status, reason)
+    except (StopRun, KeyboardInterrupt) as exc:
+        exit_code = 2
+        reason = exc.reason if isinstance(exc, StopRun) else "interrupted_by_SIGINT"
+        # A hard-end stop must not restart serialization or extend the budget.
+        text = ctx.partial_json(reason) if ctx is not None else serialize_result(result)
+    return text, exit_code
+
+
 def main(argv=None):
     ctx = None
     collector_started = False
@@ -330,247 +401,192 @@ def main(argv=None):
     result = _failure(args.command, "Analytics initialization failed")
     exit_code = 1
     try:
-        remaining = args.deadline - (time.monotonic() - _PROCESS_STARTED)
-        if remaining <= 0:
-            result = {"schema_version": 1, "command": args.command, "snapshot": {}, "metrics": {},
-                      "coverage": {}, "not_proven": [], "errors": [], "status": "partial",
-                      "stopping_reason": "deadline_exhausted",
-                      "elapsed_seconds": time.monotonic() - _PROCESS_STARTED,
-                      "collector_deadline_seconds": args.deadline}
-            exit_code = 2
-        else:
-            offline = args.command == "advance" and args.action == "provenance"
-            ctx = Context(args.command, deadline=remaining, output=args.output, offline=offline)
-            ctx._started = _PROCESS_STARTED
-            ctx._deadline = args.deadline
-            ctx._hard_end = _PROCESS_STARTED + args.deadline
-            ctx._collect_end = ctx._hard_end - SERIALIZATION_RESERVE
-            ctx._arm()
-            result = ctx.result
-            if args.output is not None:
-                ctx._open_output_parent()
-            _provenance(ctx)
-            if offline:
-                from netstack_advance import provenance
-                collector_started = True
-                provenance(ctx)
-            else:
-                if args.command == "receipts":
-                    from netstack_receipts import load_catalog
-                    args._receipt_catalog = load_catalog(args.catalog, args.event, args.address)
-                    if len(args.tx) > 128:
-                        raise RpcError("Witness receipt seeds exceed the supported bound", kind="input")
-                    if args.block != "latest-2" and args.from_block > int(args.block):
-                        raise RpcError("Receipt interval start exceeds closing block", kind="input")
-                ctx.pin(args.block)
-                if args.command == "netlong-revenue" and args.recent_blocks is not None:
-                    if args.recent_blocks > ctx.block:
-                        raise RpcError("Recent interval needs a preceding nonnegative opening block", kind="input")
-                    args.from_block = ctx.block - args.recent_blocks + 1
-                if args.command == "lp":
-                    from netstack_lp import run
-                elif args.command == "predict":
-                    from netstack_markets import run_predict as run
-                elif args.command == "rfv":
-                    from netstack_reserves import run
-                elif args.command == "advance":
-                    from netstack_advance import run
-                elif args.command == "netlong":
-                    from netstack_netlong import run
-                elif args.command == "netlong-revenue":
-                    from netstack_netlong_revenue import run
-                elif args.command == "premiumseller":
-                    from netstack_premiumseller import run
-                elif args.command == "standard-bonds":
-                    from netstack_standard_bonds import run
-                elif args.command == "sleeve-bonds":
-                    from netstack_sleeve_bonds import run
-                elif args.command == "credit":
-                    from netstack_credit import run
-                elif args.command == "book":
-                    from netstack_book import run
-                elif args.command == "receipts":
-                    from netstack_receipts import run
+        try:
+            try:
+                remaining = args.deadline - (time.monotonic() - _PROCESS_STARTED)
+                if remaining <= 0:
+                    result = {"schema_version": 1, "command": args.command, "snapshot": {}, "metrics": {},
+                              "coverage": {}, "not_proven": [], "errors": [], "status": "partial",
+                              "stopping_reason": "deadline_exhausted",
+                              "elapsed_seconds": time.monotonic() - _PROCESS_STARTED,
+                              "collector_deadline_seconds": args.deadline}
+                    exit_code = 2
                 else:
-                    from netstack_markets import run_house as run
-                collector_started = True
-                run(ctx, args)
-                ctx.check()
-                if args.command == "receipts":
-                    from netstack_receipts import recheck
-                    recheck(ctx)
-                elif args.command == "netlong-revenue":
-                    from netstack_netlong_revenue import recheck
-                    recheck(ctx)
-                else:
-                    ctx.recheck()
-                if args.command == "premiumseller":
-                    from netstack_premiumseller import prepare_result
-                    prepare_result(result)
-                elif args.command == "standard-bonds":
-                    from netstack_standard_bonds import prepare_result
-                    prepare_result(result)
-                elif args.command == "sleeve-bonds":
-                    from netstack_sleeve_bonds import prepare_result
-                    prepare_result(result)
-                elif args.command == "credit":
-                    from netstack_credit import prepare_result
-                    prepare_result(result)
-                elif args.command == "book":
-                    from netstack_book import prepare_result
-                    prepare_result(result)
-                elif args.command == "receipts":
-                    from netstack_receipts import prepare_result
-                    prepare_result(result)
-                elif args.command == "netlong-revenue":
-                    from netstack_netlong_revenue import prepare_result
-                    result["coverage"]["requested_scope"] = prepare_result(result)["coverage"]["requested_scope"]
-                elif args.command in ("predict", "house"):
-                    from netstack_markets import prepare_result
-                    prepare_result(result)
-            requested = result["coverage"].get("requested_scope")
-            incomplete = (not requested.get("collection_complete", False) if requested is not None
-                          else bool(result["errors"] or _pending_coverage(result["coverage"])))
-            if incomplete:
+                    offline = args.command == "advance" and args.action == "provenance"
+                    ctx = Context(args.command, deadline=remaining, output=args.output, offline=offline)
+                    result = ctx.result
+                    ctx._started = _PROCESS_STARTED
+                    ctx._deadline = args.deadline
+                    ctx._hard_end = _PROCESS_STARTED + args.deadline
+                    ctx._collect_end = ctx._hard_end - SERIALIZATION_RESERVE
+                    ctx._arm()
+                    if args.output is not None:
+                        ctx._open_output_parent()
+                    _provenance(ctx)
+                    if offline:
+                        from netstack_advance import provenance
+                        collector_started = True
+                        provenance(ctx)
+                    else:
+                        if args.command == "receipts":
+                            from netstack_receipts import load_catalog
+                            args._receipt_catalog = load_catalog(args.catalog, args.event, args.address)
+                            if len(args.tx) > 128:
+                                raise RpcError("Witness receipt seeds exceed the supported bound", kind="input")
+                            if args.block != "latest-2" and args.from_block > int(args.block):
+                                raise RpcError("Receipt interval start exceeds closing block", kind="input")
+                        ctx.pin(args.block)
+                        if args.command == "netlong-revenue" and args.recent_blocks is not None:
+                            if args.recent_blocks > ctx.block:
+                                raise RpcError("Recent interval needs a preceding nonnegative opening block", kind="input")
+                            args.from_block = ctx.block - args.recent_blocks + 1
+                        if args.command == "lp":
+                            from netstack_lp import run
+                        elif args.command == "predict":
+                            from netstack_markets import run_predict as run
+                        elif args.command == "rfv":
+                            from netstack_reserves import run
+                        elif args.command == "advance":
+                            from netstack_advance import run
+                        elif args.command == "netlong":
+                            from netstack_netlong import run
+                        elif args.command == "netlong-revenue":
+                            from netstack_netlong_revenue import run
+                        elif args.command == "premiumseller":
+                            from netstack_premiumseller import run
+                        elif args.command == "standard-bonds":
+                            from netstack_standard_bonds import run
+                        elif args.command == "sleeve-bonds":
+                            from netstack_sleeve_bonds import run
+                        elif args.command == "credit":
+                            from netstack_credit import run
+                        elif args.command == "book":
+                            from netstack_book import run
+                        elif args.command == "receipts":
+                            from netstack_receipts import run
+                        else:
+                            from netstack_markets import run_house as run
+                        collector_started = True
+                        run(ctx, args)
+                        ctx.check()
+                        if args.command == "receipts":
+                            from netstack_receipts import recheck
+                            recheck(ctx)
+                        elif args.command == "netlong-revenue":
+                            from netstack_netlong_revenue import recheck
+                            recheck(ctx)
+                        else:
+                            ctx.recheck()
+                        if args.command == "premiumseller":
+                            from netstack_premiumseller import prepare_result
+                            prepare_result(result)
+                        elif args.command == "standard-bonds":
+                            from netstack_standard_bonds import prepare_result
+                            prepare_result(result)
+                        elif args.command == "sleeve-bonds":
+                            from netstack_sleeve_bonds import prepare_result
+                            prepare_result(result)
+                        elif args.command == "credit":
+                            from netstack_credit import prepare_result
+                            prepare_result(result)
+                        elif args.command == "book":
+                            from netstack_book import prepare_result
+                            prepare_result(result)
+                        elif args.command == "receipts":
+                            from netstack_receipts import prepare_result
+                            prepare_result(result)
+                        elif args.command == "netlong-revenue":
+                            from netstack_netlong_revenue import prepare_result
+                            result["coverage"]["requested_scope"] = prepare_result(result)["coverage"]["requested_scope"]
+                        elif args.command in ("predict", "house"):
+                            from netstack_markets import prepare_result
+                            prepare_result(result)
+                    requested = result["coverage"].get("requested_scope")
+                    incomplete = (not requested.get("collection_complete", False) if requested is not None
+                                  else bool(result["errors"] or _pending_coverage(result["coverage"])))
+                    if incomplete:
+                        result["status"] = "partial"
+                        result["stopping_reason"] = "incomplete_collection"
+                        exit_code = 2
+                    else:
+                        result["status"] = "completed"
+                        result["stopping_reason"] = "completed_requested_collection"
+                        exit_code = 0
+            except StopRun as exc:
                 result["status"] = "partial"
-                result["stopping_reason"] = "incomplete_collection"
+                result["stopping_reason"] = exc.reason
                 exit_code = 2
-            else:
-                result["status"] = "completed"
-                result["stopping_reason"] = "completed_requested_collection"
-                exit_code = 0
-    except StopRun as exc:
-        result["status"] = "partial"
-        result["stopping_reason"] = exc.reason
-        exit_code = 2
-    except RpcError as exc:
-        result["errors"].append({"kind": exc.kind, "message": str(exc)})
-        result["status"] = "partial" if ctx is not None else "failed"
-        result["stopping_reason"] = "rpc_or_evidence_failure"
-        exit_code = 2 if ctx is not None else 1
-    except KeyboardInterrupt:
-        result["status"] = "partial"
-        result["stopping_reason"] = "interrupted_by_SIGINT"
-        exit_code = 2
-    except Exception as exc:
-        # Never expose source/provider text, arbitrary paths, credentials or traceback data.
-        result["errors"].append({"kind": "fatal", "message": "Internal analytics failure (" + type(exc).__name__ + ")"})
-        result["status"] = "failed"
-        result["stopping_reason"] = "fatal_error"
-        exit_code = 1
-    # A bounded collection stop may spend its reserved header read, never resume
-    # collection or override a deadline, cancellation, denial or identity conflict.
-    if ctx is not None and ctx._stopped in ("event_row_limit", "rpc_member_limit"):
-        try:
-            ctx.recheck_after_bounded_stop()
-        except StopRun as exc:
-            result["stopping_reason"] = exc.reason
-            result["status"] = "partial"
-            exit_code = 2
-        except RpcError as exc:
-            result["errors"].append({"kind": exc.kind, "message": str(exc)})
-            result["status"] = "partial"
-            exit_code = 2
-    # A useful partial collection can still confirm B when retrieval failed
-    # without cancellation or a permission/integrity failure.
-    if (ctx is not None and ctx.block is not None and ctx._stopped is None
-            and ctx._terminal_error is None
-            and result["snapshot"].get("recheck_status") == "not_performed"
-            and not any(isinstance(error, dict) and error.get("kind") in ("permission", "integrity")
-                        for error in result["errors"])):
-        try:
-            if args.command == "receipts":
-                from netstack_receipts import recheck
-                recheck(ctx)
-            elif args.command == "netlong-revenue":
-                from netstack_netlong_revenue import recheck
-                recheck(ctx)
-            else:
-                ctx.recheck()
-        except StopRun as exc:
-            result["stopping_reason"] = exc.reason
-            result["status"] = "partial"
-            exit_code = 2
-        except RpcError as exc:
-            result["errors"].append({"kind": exc.kind, "message": str(exc)})
-            result["status"] = "partial"
-            exit_code = 2
-    if not collector_started and not (args.command == "advance" and args.action == "provenance"):
-        _not_collected(result, args)
-    text = None
-    checkpoint_status = "not_requested" if args.output is None else "not_confirmed"
-    try:
-        if ctx is not None:
-            ctx.begin_finalization()
-            if result.get("snapshot") and result["snapshot"].get("recheck_status") != "confirmed":
-                result["snapshot"].setdefault("recheck_status", "not_performed")
-                result["snapshot"]["confirmation"] = (
-                    "invalid" if result["snapshot"]["recheck_status"] == "mismatch" else "unconfirmed")
-            ctx.checkpoint()
-            if args.output is not None:
-                checkpoint_status = "saved"
-            text = ctx._last_json
-        else:
-            text = serialize_result(result)
-    except RpcError as exc:
-        result["errors"].append({"kind": exc.kind, "message": str(exc)})
-        result["status"] = "partial"
-        result["stopping_reason"] = "checkpoint_failure"
-        exit_code = 2
-        try:
-            text = serialize_result(result)
-        except (StopRun, KeyboardInterrupt):
-            text = ctx.partial_json(ctx._stopped or "deadline_exhausted")
-    except (StopRun, KeyboardInterrupt):
-        exit_code = 2
-        # Reuse a valid aggregate body without repeating expensive serialization.
-        text = ctx.partial_json(ctx._stopped or "deadline_exhausted") if ctx is not None else serialize_result(result)
-    if args.command in ("rfv", "advance", "netlong", "netlong-revenue", "premiumseller", "standard-bonds", "sleeve-bonds", "credit", "book") and args.detail == "summary":
-        try:
-            # Finalization can reuse an older valid checkpoint or add an output
-            # error. Project exactly that document, not the mutable ctx.result.
-            if args.command == "advance":
-                text = summarize_advance(text, checkpoint_status, args.output)
-            elif args.command == "netlong":
-                from netstack_netlong import summarize
-                text = summarize(text, checkpoint_status)
-            elif args.command == "netlong-revenue":
-                from netstack_netlong_revenue import summarize
-                text = summarize(text, checkpoint_status)
-            elif args.command == "premiumseller":
-                from netstack_premiumseller import summarize
-                text = summarize(text, checkpoint_status)
-            elif args.command == "standard-bonds":
-                from netstack_standard_bonds import summarize
-                text = summarize(text, checkpoint_status)
-            elif args.command == "sleeve-bonds":
-                from netstack_sleeve_bonds import summarize
-                text = summarize(text, checkpoint_status)
-            elif args.command == "credit":
-                from netstack_credit import summarize
-                text = summarize(text, checkpoint_status)
-            elif args.command == "book":
-                from netstack_book import summarize
-                text = summarize(text, checkpoint_status)
-            else:
-                text = summarize_rfv(text, checkpoint_status)
+            except RpcError as exc:
+                result["errors"].append({"kind": exc.kind, "message": str(exc)})
+                result["status"] = "partial" if ctx is not None else "failed"
+                result["stopping_reason"] = "rpc_or_evidence_failure"
+                exit_code = 2 if ctx is not None else 1
+            except KeyboardInterrupt:
+                result["status"] = "partial"
+                result["stopping_reason"] = "interrupted_by_SIGINT"
+                exit_code = 2
+            except Exception as exc:
+                # Never expose source/provider text, arbitrary paths, credentials or traceback data.
+                result["errors"].append({"kind": "fatal", "message": "Internal analytics failure (" + type(exc).__name__ + ")"})
+                result["status"] = "failed"
+                result["stopping_reason"] = "fatal_error"
+                exit_code = 1
+            # Only these existing bounded rechecks may follow collection; a
+            # stop anywhere in this transition goes directly to finalization.
+            if ctx is not None and ctx._stopped in ("event_row_limit", "rpc_member_limit"):
+                try:
+                    ctx.recheck_after_bounded_stop()
+                except RpcError as exc:
+                    result["errors"].append({"kind": exc.kind, "message": str(exc)})
+                    result["status"] = "partial"
+                    exit_code = 2
+            if (ctx is not None and ctx.block is not None and ctx._stopped is None
+                    and ctx._terminal_error is None
+                    and result["snapshot"].get("recheck_status") == "not_performed"
+                    and not any(isinstance(error, dict) and error.get("kind") in ("permission", "integrity")
+                                for error in result["errors"])):
+                try:
+                    if args.command == "receipts":
+                        from netstack_receipts import recheck
+                        recheck(ctx)
+                    elif args.command == "netlong-revenue":
+                        from netstack_netlong_revenue import recheck
+                        recheck(ctx)
+                    else:
+                        ctx.recheck()
+                except RpcError as exc:
+                    result["errors"].append({"kind": exc.kind, "message": str(exc)})
+                    result["status"] = "partial"
+                    exit_code = 2
+            if not collector_started and not (args.command == "advance" and args.action == "provenance"):
+                _not_collected(result, args)
+            text, exit_code = _finalize(ctx, result, args, exit_code, collector_started)
+            if ctx is not None:
+                ctx._emitting = True
         except (StopRun, KeyboardInterrupt) as exc:
+            result["status"] = "partial"
+            result["stopping_reason"] = exc.reason if isinstance(exc, StopRun) else "interrupted_by_SIGINT"
             exit_code = 2
-            reason = exc.reason if isinstance(exc, StopRun) else "interrupted_by_SIGINT"
-            text = full_fallback(text, checkpoint_status, reason)
-    try:
-        if ctx is not None:
-            ctx._emitting = True
-        if not _emit(text, ctx._hard_end if ctx is not None else None):
+            if ctx is not None and ctx._finalizing:
+                text = ctx.partial_json(result["stopping_reason"])
+            else:
+                text, exit_code = _finalize(ctx, result, args, exit_code, collector_started)
+        try:
+            if ctx is not None:
+                ctx._emitting = True
+            if not _emit(text, ctx._hard_end if ctx is not None else None):
+                return 2
+            if ctx is not None and ctx._stopped:
+                exit_code = 2
+        except (BrokenPipeError, OSError, StopRun, KeyboardInterrupt):
             return 2
-        if ctx is not None and ctx._stopped:
-            exit_code = 2
-    except (BrokenPipeError, OSError, StopRun, KeyboardInterrupt):
+        return exit_code
+    except (StopRun, KeyboardInterrupt):
+        # A further hard-end interruption cannot restart finalization or stdout.
         return 2
     finally:
         if ctx is not None:
             ctx.close()
-    return exit_code
 
 
 if __name__ == "__main__":

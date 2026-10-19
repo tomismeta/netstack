@@ -194,7 +194,7 @@ Install the reviewed runtime package as the primary skill, preserve rollback out
 
 Exercise useful explanations, conditional models and uncatalogued-contract research as well as execution refusals. A skill instruction is not proof of host enforcement, and an offline fixture is not live-chain or rendered-UI verification. Use [installation acceptance](references/installation.md#live-analytics-acceptance) for the host procedure and evidence requirements.
 
-The source-only [research verification guide](https://github.com/tomismeta/netstack/blob/feat/v0.5.0/maintenance/research-verification.md) maps representative questions to proof and acceptance cases, with feedback triage and comparative-dogfood procedures. It is maintainer guidance, not an additional runtime prerequisite.
+The source-only [research verification guide](https://github.com/tomismeta/netstack/blob/16728fb9d9df7c7486fa85bd173398c167068897/maintenance/research-verification.md) maps representative questions to proof and acceptance cases, with feedback triage and comparative-dogfood procedures. It is maintainer guidance, not an additional runtime prerequisite.
 
 **A skill prompt is not a sandbox.** Installing netstack does not remove capabilities or enforce restrictions; enforced-safety claims require independent evidence of host controls.
 
@@ -216,7 +216,7 @@ In a maintainer checkout, run `python3 -I -B maintenance/package.py verify` and 
 
 Follow the [curation workflow](references/docs-and-sources.md#repeatable-knowledge-curation): original evidence, dates and stage; comparison with existing guidance and later reversals; focused topic updates; validation and review. The [source catalog](assets/sources.json) owns provenance; the [address index](assets/address-index.json) routes exact identities and [conventions](assets/address-conventions.json) qualify their scope. Review changed bytes before updating an installation; sources and monitoring suggestions cannot rewrite knowledge or safety policy automatically.
 
-Detailed dated changes and past verification narratives are retained in the source-only [development history](https://github.com/tomismeta/netstack/blob/feat/v0.5.0/maintenance/development-history.md). Historical successes do not certify the installed candidate; unresolved current limitations remain in this README and the relevant runtime references.
+Detailed dated changes and past verification narratives are retained in the source-only [development history](https://github.com/tomismeta/netstack/blob/16728fb9d9df7c7486fa85bd173398c167068897/maintenance/development-history.md). Historical successes do not certify the installed candidate; unresolved current limitations remain in this README and the relevant runtime references.
 
 ## License
 

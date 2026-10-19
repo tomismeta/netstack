@@ -107,7 +107,9 @@ class ManifestBoundaries(unittest.TestCase):
         unsafe = ["../escape", "/absolute", "assets/../escape", "assets//empty", "assets/./same",
                   "assets\\outside", "assets/stream:alias", "assets/trailing.", "assets/CON.txt",
                   "assets/caf\u00e9.json", "assets/line\nbreak", "assets/" + "x" * 256,
-                  "assets/" + "/".join(["nested"] * 8), "tests/test_secret.py", ".omp/config.yml"]
+                  "assets/" + "/".join(["nested"] * 8), "tests/test_secret.py", ".omp/config.yml",
+                  "AGENTS.md", "OTHER.md", "agents.md", "assets/AGENTS.md",
+                  "references/nested/AGENTS.md", "scripts/AGENTS.md", "AGENTS.md/child"]
         for path in unsafe:
             with self.subTest(path=path):
                 files = dict(self.files)
@@ -120,6 +122,14 @@ class ManifestBoundaries(unittest.TestCase):
             with self.subTest(addition=addition):
                 with self.assertRaises(ValueError):
                     integrity.build_manifest({**self.files, **addition}, "0.4.0")
+
+    def test_manifest_cannot_claim_root_or_nested_agent_guidance(self):
+        for path in ("AGENTS.md", "scripts/AGENTS.md", "references/nested/AGENTS.md"):
+            with self.subTest(path=path):
+                manifest = json.loads(self.files[integrity.MANIFEST])
+                manifest["manifest_sha256"][path] = hashlib.sha256(b"guidance").hexdigest()
+                with self.assertRaises(ValueError):
+                    integrity.verify_files(self.replace_manifest(manifest))
 
     def test_per_file_total_member_and_json_limits_fail_closed(self):
         files = dict(self.files, **{"assets/large.txt": b"x" * (integrity.MAX_FILE_BYTES + 1)})
@@ -158,6 +168,28 @@ class FilesystemBoundaries(unittest.TestCase):
         self.assertEqual(integrity.read_package(self.root, checkout=True), self.files)
         with self.assertRaises(ValueError):
             integrity.read_package(self.root)
+
+    def test_only_exact_root_agent_guidance_is_checkout_only(self):
+        guidance = self.root / "AGENTS.md"
+        guidance.write_bytes(b"maintainer guidance\n")
+        self.assertEqual(integrity.read_package(self.root, checkout=True), self.files)
+        integrity.verify_files(integrity.read_package(self.root, checkout=True))
+        with self.assertRaises(ValueError):
+            integrity.read_package(self.root)
+        self.assertEqual(guidance.read_bytes(), b"maintainer guidance\n")
+        guidance.unlink()
+        for name in ("OTHER.md", "agents.md", "assets/AGENTS.md",
+                     "references/nested/AGENTS.md", "scripts/AGENTS.md", "AGENTS.md/child"):
+            with self.subTest(name=name):
+                path = self.root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"must not be ignored")
+                for checkout in (False, True):
+                    with self.subTest(checkout=checkout), self.assertRaises(ValueError):
+                        integrity.read_package(self.root, checkout=checkout)
+                path.unlink()
+                if path.parent not in (self.root, self.root / "assets", self.root / "scripts"):
+                    path.parent.rmdir()
 
     def test_installed_empty_directory_and_unlisted_file_fail(self):
         (self.root / "assets/empty").mkdir()
@@ -238,7 +270,8 @@ class ReviewedCommitExports(unittest.TestCase):
         self.root.mkdir()
         write_files(self.root, self.source)
         write_files(self.root, {".gitattributes": b"README.md export-subst\n", "tests/secret.txt": b"repository only\n",
-                               ".github/workflows/test.yml": b"not runtime\n", "netstack-handoff.md": b"private notes\n"})
+                               ".github/workflows/test.yml": b"not runtime\n", "netstack-handoff.md": b"private notes\n",
+                               "AGENTS.md": b"root maintainer guidance must not ship\n"})
         self.git("init", "-q")
         self.commit = self.commit_files()
 
@@ -266,6 +299,27 @@ class ReviewedCommitExports(unittest.TestCase):
         self.assertEqual(integrity.read_package(output), self.source)
         self.assertEqual(integrity.verify_files(integrity.read_package(output))["manifest_sha256"], report["manifest_sha256"])
         self.assertFalse((output / "tests").exists())
+        self.assertFalse((output / "AGENTS.md").exists())
+
+    def test_committed_unexpected_and_nested_instruction_paths_refuse_export(self):
+        # Remove the canonical spelling before staging a case variant on
+        # case-insensitive filesystems; otherwise Git retains AGENTS.md.
+        (self.root / "AGENTS.md").unlink()
+        self.commit_files()
+        for name in ("OTHER.md", "agents.md", "scripts/AGENTS.md", "assets/AGENTS.md",
+                     "references/nested/AGENTS.md"):
+            with self.subTest(name=name):
+                path = self.root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"must not ship")
+                commit = self.commit_files()
+                for action in (packaging.export_package, packaging.archive_package):
+                    output = self.parent / "absent"
+                    with self.assertRaises(ValueError):
+                        action(self.root, commit, output)
+                    self.assertFalse(output.exists())
+                    self.assertFalse((self.parent / "absent.receipt.json").exists())
+                path.unlink()
 
     def test_exported_runtime_collects_and_delivers_terminal_denial_without_checkout(self):
         output = self.parent / "installed"
@@ -535,19 +589,57 @@ class ReviewedCommitExports(unittest.TestCase):
                 action(self.root, commit, self.parent / "absent")
             self.assertFalse((self.parent / "absent").exists())
 
-    def test_failed_export_write_removes_partial_destination(self):
+    def test_marker_is_complete_when_first_published(self):
+        output = self.parent / "installed"
+        receipt = self.parent / "installed.receipt.json"
+        original_write = packaging._write_file
+        original_link = os.link
+        observations = []
+
+        def observe_write(directory, name, raw):
+            original_write(directory, name, raw)
+            if raw == self.source["SKILL.md"]:
+                self.assertFalse((output / "SKILL.md").exists())
+                self.assertTrue(receipt.is_file())
+                self.assertEqual(json.loads(receipt.read_bytes())["commit"], self.commit)
+                observations.append("staged")
+
+        def observe_publication(source, destination, **kwargs):
+            original_link(source, destination, **kwargs)
+            if destination == "SKILL.md":
+                self.assertEqual((output / "SKILL.md").read_bytes(), self.source["SKILL.md"])
+                self.assertEqual(stat.S_IMODE((output / "SKILL.md").stat().st_mode), 0o644)
+                self.assertTrue(receipt.is_file())
+                observations.append("published")
+
+        with patch.object(packaging, "_write_file", side_effect=observe_write), \
+                patch.object(packaging.os, "link", side_effect=observe_publication):
+            packaging.export_package(self.root, self.commit, output)
+        self.assertEqual(observations, ["staged", "published"])
+        self.assertEqual(integrity.read_package(output), self.source)
+        self.assertEqual(stat.S_IMODE(output.stat().st_mode), 0o755)
+        self.assertEqual(stat.S_IMODE(receipt.stat().st_mode), 0o644)
+        for path in self.source:
+            self.assertEqual(stat.S_IMODE((output / path).stat().st_mode), 0o644)
+
+    def test_partial_marker_write_never_discovers_export_and_cleans_everything(self):
         output = self.parent / "incomplete"
         original = packaging._write_file
+        observations = []
 
         def disk_failure(directory, name, raw):
-            if name == "SKILL.md":
+            if raw == self.source["SKILL.md"]:
+                original(directory, name, raw[:100])
                 self.assertTrue((self.parent / "incomplete.receipt.json").is_file())
-                raise OSError("synthetic disk failure before discovery")
+                self.assertFalse((output / "SKILL.md").exists())
+                observations.append("partial")
+                raise OSError("synthetic partial marker write failure")
             original(directory, name, raw)
 
         with patch.object(packaging, "_write_file", side_effect=disk_failure):
             with self.assertRaises(OSError):
                 packaging.export_package(self.root, self.commit, output)
+        self.assertEqual(observations, ["partial"])
         self.assertFalse(output.exists())
         self.assertEqual(sorted(path.name for path in self.parent.iterdir()), ["reviewed"])
 

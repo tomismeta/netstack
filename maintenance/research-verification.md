@@ -17,6 +17,25 @@ For each finding, retain the exact question, first answer, relevant attempted to
 
 A finding can have multiple causes. Record disposition as accepted, rejected with evidence, or unresolved; state the causal fix and remaining proof limit. Distinguish elapsed collection from approval waits and response delivery. Inspect any proposed repair against the original first answer; repaired follow-ups do not erase first-answer failures. Do not broaden retries, weaken denial handling or invent a financial reconciliation merely to make a review pass.
 
+### Deferred v0.5.0 review backlog — 2026-10-14
+
+Deferred by maintainer request; no fixes or release-blocking designation are implied. The supplied offline review reported 495 passing tests and successful manifest/link verification; those results were not rerun during triage. Published release assets, external link liveness and real-host skill behavior remain unverified by that review.
+
+The supplied review's evidence-packet identifier and reviewed commit/manifest/runtime bindings were not recorded in this handoff. Its date, version and test count do not identify tested bytes. Rebind the original evidence or revalidate an affected finding against the current candidate before treating it as current; do not infer that a later verification run authenticates this historical review.
+
+| Priority / disposition | Follow-up and acceptance |
+|---|---|
+| First — accepted | Validate nonempty string roles before indexing in `maintenance/content.py`; malformed roles must raise the documented `ValueError`. Add a consumer-visible regression test rather than merely widening the exception handler. |
+| First — reported, repair pending | Correct the reported 14 EIP-55 casing occurrences in `assets/contracts/netlong-futures-runtime-surface.json` against canonical records without changing address bytes. The checksum scan was not repeated during triage. |
+| Next — resolved in working tree, October 19 | Pinned the five maintenance-guidance links to reviewed commit `16728fb9d9df7c7486fa85bd173398c167068897`; both target documents exist in that commit. These are source-guidance links, not installation payloads or a claim of external URL liveness. |
+| Next — wording clarification | Distinguish agent-wide wallet policy, runner-enforced restrictions and independent host enforcement. Preserve the agent-wide prohibition; do not narrow it to runner-only. Existing safety guidance already disclaims sandboxing and guaranteed injection resistance. |
+| Next — evidence gap | Run revision-bound real-host acceptance cases for the seven-topic menu, wallet refusal and injection quarantine, using inert mocks and no real wallet credentials. Frontmatter validation already exists; phrase-presence tests cannot prove model behavior. |
+| Later — investigate contracts | Document schema families and consumer compatibility requirements before normalizing versions or analytics-route keys. Manifest-listed JSON counts checked during triage: 120 v1, 128 without `schema_version`, one v2 (`assets/analytics/reports-methodology.json`). Variance alone does not establish a defect. |
+| Later — policy decision | Consider contextual personalized-financial-advice guidance without replacing requested explanations with boilerplate. The guardrail forbids substituting a disclaimer for mechanics, not including one; a missing mandatory disclaimer was not accepted as a demonstrated Medium security defect. |
+| Later — maintenance triage | Assess the reported hardcoded chain ID in `scripts/netstack_credit.py`, long functions and missing `.gitignore` against concrete maintenance risks. Review allegedly stale dates claim-by-claim: preserve historical observation dates and obtain fresh evidence only for current claims. |
+
+Scope of the retained verdict: reported offline checks support a versioned research package, not proof of host isolation, live-chain correctness or published-asset identity. No Critical/High finding within a review scope is not a universal safety guarantee.
+
 ## Small question-to-proof map
 
 Read cases as acceptance specifications, not results. `research_acceptance.json` and `book_acceptance.json` below mean the [research replay cases](../tests/fixtures/research_acceptance.json) and [Book replay cases](../tests/fixtures/book_acceptance.json). Their `input` is evidence to supply, `question` is the prompt, and `required`/`forbidden` are reviewer criteria withheld from the answering agent. Synthetic cases establish neither deployed behavior nor live tool access.

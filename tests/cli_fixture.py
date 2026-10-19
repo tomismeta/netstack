@@ -10,7 +10,9 @@ header-unavailable, stop, deadline, and checkpoint-failure. The last requires
 with a directory during the final header response. All values are synthetic.
 """
 import hashlib
+import errno
 import json
+import os
 from pathlib import Path
 import runpy
 import signal
@@ -72,9 +74,14 @@ def synthetic_market_source(path):
 
 BLOCK_HASH = "0x" + "bb" * 32
 OTHER_HASH = "0x" + "cc" * 32
+LIFECYCLE_SCENARIOS = (
+    "transition-stop", "transition-stop-after", "transition-repeat-stop",
+    "construction-stop", "finalization-stop", "projection-repeat-stop",
+)
 SCENARIOS = (
     "success", "read-failure", "reconciliation-mismatch", "header-mismatch",
     "header-unavailable", "stop", "deadline", "checkpoint-failure", "predict", "offline", "permission",
+    *LIFECYCLE_SCENARIOS,
 )
 
 
@@ -293,6 +300,93 @@ class Connection:
         pass
 
 
+def lifecycle_main(scenario, arguments, fixture):
+    """Exercise real main and POSIX ownership, with deterministic phase stops."""
+    namespace = runpy.run_path(str(ROOT / "scripts" / "analytics.py"))
+    runtime = namespace["main"].__globals__
+    handlers = {sig: signal.getsignal(sig) for sig in (signal.SIGALRM, signal.SIGINT, signal.SIGTERM)}
+    timer = signal.getitimer(signal.ITIMER_REAL)
+    require(timer == (0.0, 0.0), "Lifecycle fixture must start without an active timer")
+    contexts, descriptors, hard_ends = [], [], []
+    interruptions = []
+    qualify = runtime["_not_collected"]
+    fallback = runtime["full_fallback"]
+    serialize = core.serialize_result
+
+    def interrupt(ctx, signum):
+        hard_ends.append((ctx, ctx._hard_end))
+        if ctx._output_fd is not None:
+            descriptors.append(ctx._output_fd)
+        interruptions.append(signum)
+        signal.raise_signal(signum)
+
+    class TrackedContext(core.Context):
+        def __init__(self, *args, **kwargs):
+            contexts.append(self)
+            super().__init__(*args, **kwargs)
+
+        def _arm(self):
+            super()._arm()
+            if scenario == "construction-stop" and not interruptions:
+                interrupt(self, signal.SIGTERM)
+
+        def begin_finalization(self):
+            super().begin_finalization()
+            if scenario == "finalization-stop":
+                fixture.stopped = True
+                interrupt(self, signal.SIGALRM)
+
+    def stopped_qualification(result, args):
+        if scenario == "transition-stop-after":
+            qualify(result, args)
+        if scenario.startswith("transition-") and (
+                not interruptions or scenario == "transition-repeat-stop"):
+            interrupt(contexts[0], signal.SIGTERM)
+        qualify(result, args)
+
+    def stopped_projection(*args):
+        fixture.stopped = True
+        interrupt(contexts[0], signal.SIGTERM)
+        raise FixtureViolation("First projection stop did not interrupt")
+
+    def stopped_fallback(*args):
+        interrupt(contexts[0], signal.SIGINT)
+        return fallback(*args)
+
+    def bounded_serialize(value):
+        if scenario == "finalization-stop" and interruptions:
+            require("metrics" not in value, "Hard-end fallback restarted aggregate serialization")
+        return serialize(value)
+
+    replacements = {"Context": TrackedContext, "_not_collected": stopped_qualification}
+    if scenario == "projection-repeat-stop":
+        replacements.update(summarize_rfv=stopped_projection, full_fallback=stopped_fallback)
+    try:
+        with patch.dict(runtime, replacements), patch.object(core, "serialize_result", bounded_serialize):
+            code = runtime["main"](arguments)
+        require(interruptions, "Lifecycle interruption was not reached")
+        require(len(contexts) == 1, "Lifecycle restarted Context construction")
+        ctx = contexts[0]
+        require(ctx._closed and ctx._output_fd is None, "Context ownership leaked after main")
+        require(signal.getitimer(signal.ITIMER_REAL) == timer, "Context timer was not released")
+        require(all(signal.getsignal(sig) == old for sig, old in handlers.items()),
+                "Context signal handlers were not restored")
+        require(all(owner._hard_end == end for owner, end in hard_ends),
+                "Interruption extended the hard deadline")
+        for descriptor in set(descriptors):
+            try:
+                os.fstat(descriptor)
+            except OSError as exc:
+                require(exc.errno == errno.EBADF, "Unexpected checkpoint descriptor failure")
+            else:
+                raise FixtureViolation("Checkpoint directory descriptor leaked")
+        raise SystemExit(code)
+    finally:
+        # Keep a failing regression from leaving the launcher with active handlers.
+        for ctx in contexts:
+            ctx.close()
+
+
 def main():
     if len(sys.argv) < 2 or sys.argv[1] not in SCENARIOS:
         raise SystemExit("Usage: cli_fixture.py " + "|".join(SCENARIOS) + " [analytics arguments...]")
@@ -307,11 +401,15 @@ def main():
             output = Path(arguments[index + 1])
         elif argument.startswith("--output="):
             output = Path(argument.split("=", 1)[1])
-    fixture = Fixture(scenario, output)
+    transport_scenario = ("permission" if scenario.startswith("transition-")
+                          else "success" if scenario in LIFECYCLE_SCENARIOS else scenario)
+    fixture = Fixture(transport_scenario, output)
     sys.argv = [str(ROOT / "scripts" / "analytics.py"), *arguments]
     with patch.object(core, "_FixedHTTPSConnection", fixture.connection), \
             patch.object(reserves, "load_json", side_effect=synthetic_reserve_source), \
             patch.object(markets, "load_json", side_effect=synthetic_market_source):
+        if scenario in LIFECYCLE_SCENARIOS:
+            lifecycle_main(scenario, arguments, fixture)
         runpy.run_path(sys.argv[0], run_name="__main__")
 
 

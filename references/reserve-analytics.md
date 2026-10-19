@@ -89,6 +89,8 @@ Advance reads the eight required state fields (`capacity`, `unallocated`, `escro
 
 `sleeve_leverage` names two financing ratios: let **G** be selected gross positive assets, **D** positive stored-share borrowing, and **E = G − D**. Report **gross/equity = G/E** and **debt/equity = D/E**, with their actual G/D/E inputs and units, not an unexplained “1.4×.” Ratios are unavailable for incomplete inputs or nonpositive equity; an observed partial subtotal is not a leverage estimate.
 
+An unconfirmed or invalid snapshot withholds complete-only G/D/E and both ratios for both bases, sets `ratio_status` to `incomplete`, and carries `snapshot_confirmation`. Explicit `known_*_subtotal_wad` fields remain diagnostic evidence, not confirmed leverage. This snapshot requirement does not make independently collected Sleeve leverage depend on successful Core valuation.
+
 - **Publisher perimeter:** all selected memo assets, including selected V4 principal and publisher-included Team Safe LP, less selected stored Credit/Loopback debt. Core Treasury is not in this ratio.
 - **External-only sensitivity:** the same selection and Reports marks, removing NET/sNET/wsNET, LOSE, and all Team Safe LP legs while retaining debt. This is explicitly a financing sensitivity, **not adjusted economic net assets**; it still uses publisher marks and conditional Advance principal attribution.
 - Both exclude elapsed Morpho debt accrual, open TURBO CALL/PUT liabilities, uncollected LP fees and unselected assets/obligations. The separate economic ledger replaces stored debt with accrued debt; never sum the two debt alternatives.

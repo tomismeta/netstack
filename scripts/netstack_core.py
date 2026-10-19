@@ -742,13 +742,23 @@ class Context:
             for sig in (signal.SIGALRM, signal.SIGINT, signal.SIGTERM):
                 self._old_handlers[sig] = signal.getsignal(sig)
                 signal.signal(sig, self._signal)
-        except (ValueError, OSError) as exc:
+            self._arm()
+        except BaseException as exc:
+            # The caller cannot own this Context until construction returns.
+            # Roll back even when a signal interrupts installation or arming.
             self.close()
-            raise RpcError("Analytics must run in the main POSIX thread", kind="platform") from exc
-        self._arm()
+            if isinstance(exc, (ValueError, OSError)):
+                raise RpcError("Analytics must run in the main POSIX thread", kind="platform") from exc
+            raise
 
     def _signal(self, signum, frame):
+        if self._closed:
+            return
         if signum in (signal.SIGTERM, signal.SIGINT):
+            if self._stopped in ("interrupted_by_SIGINT", "interrupted_by_SIGTERM"):
+                # One cancellation is enough. Preserve the hard timer while
+                # the interrupted run prepares and emits its partial document.
+                return
             self._stopped = "interrupted_by_" + signal.Signals(signum).name
             self._attempt_end = None
             self._arm()

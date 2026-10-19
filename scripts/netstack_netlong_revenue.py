@@ -180,20 +180,27 @@ def _observations(metrics, coverage, complete, confirmation):
     for asset, _, unit in ASSETS:
         token = assets[asset]["address"]
         relevant = [row for row in transfers if row["address"] == token and row["receipt_verified"]]
+        served = {direction: bool(coverage.get("transfers:" + asset + ":" + direction, {}).get("covered_ranges"))
+                  for direction in ("incoming", "outgoing")}
         for endpoint in ENDPOINTS:
             address = routes[endpoint]
-            incoming = sum(int(row["values"]["value"]) for row in relevant if row["values"]["to"] == address)
-            outgoing = sum(int(row["values"]["value"]) for row in relevant if row["values"]["from"] == address)
+            incoming_rows = [row for row in relevant if row["values"]["to"] == address]
+            outgoing_rows = [row for row in relevant if row["values"]["from"] == address]
+            incoming = (sum(int(row["values"]["value"]) for row in incoming_rows)
+                        if incoming_rows or served["incoming"] else None)
+            outgoing = (sum(int(row["values"]["value"]) for row in outgoing_rows)
+                        if outgoing_rows or served["outgoing"] else None)
+            net = incoming - outgoing if incoming is not None and outgoing is not None else None
             values = {row["side"]: row["value"] for row in metrics["balances"]
                       if row["asset"] == asset and row["endpoint"] == endpoint}
             left, right = values.get("opening"), values.get("closing")
             change = int(right) - int(left) if left is not None and right is not None else None
             acquired = complete and change is not None
-            residual = change - incoming + outgoing if change is not None else None
+            residual = change - net if change is not None and net is not None else None
             bridges.append({"asset": asset, "endpoint": endpoint, "address": address,
                 "opening": q(left, asset), "closing": q(right, asset), "balance_delta": q(change, asset),
                 "observed_incoming": q(incoming, asset), "observed_outgoing": q(outgoing, asset),
-                "observed_net_transfers": q(incoming - outgoing, asset), "residual": q(residual, asset),
+                "observed_net_transfers": q(net, asset), "residual": q(residual, asset),
                 "reconciled": residual == 0 and acquired and valid,
                 "raw_acquisition_complete": acquired, "collection_complete": acquired and valid,
                 "snapshot_confirmation": confirmation,
@@ -203,7 +210,10 @@ def _observations(metrics, coverage, complete, confirmation):
                     meaning="All observed incoming scoped token Transfers, including possible donations/old inventory; not automatically assessed fees."))
         direct = [row for row in relevant if row["values"]["to"] == routes["treasury"]
                   and row["values"]["from"] in {routes[role] for role in ENDPOINTS if role != "treasury"}]
-        treasury.append(qualified(q(sum(int(row["values"]["value"]) for row in direct), asset), complete,
+        # Direct endpoint-to-Treasury legs are selected by either directional scan.
+        subtotal = (sum(int(row["values"]["value"]) for row in direct)
+                    if direct or any(served.values()) else None)
+        treasury.append(qualified(q(subtotal, asset), complete,
             asset=asset, transfer_count=len(direct), meaning="Direct tracked NetLong-endpoint to Treasury receipts only, not global Treasury revenue or indirect routing."))
     return {"assessed_fees": fees, "fee_receipt_reconciliation": reconciliations,
             "router_receipts": router_receipts,

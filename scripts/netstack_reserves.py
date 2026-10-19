@@ -92,7 +92,7 @@ def _problem(ctx, scope, message):
 def prepare_result(result):
     """Qualify emitted evidence without mutating an active Core/Sleeve collector."""
     metrics = result.get("metrics", {})
-    if "core_rfv" not in metrics:
+    if "core_rfv" not in metrics and "sleeve_leverage" not in metrics:
         return result
     snapshot = result.get("snapshot", {})
     invalid = (snapshot.get("recheck_status") == "mismatch"
@@ -111,14 +111,21 @@ def prepare_result(result):
                 for key, child in value.items()}
 
     projected = metrics if confirmed else qualify(metrics)
-    core = dict(projected["core_rfv"], snapshot_confirmation=confirmation)
-    core["status"] = "reconciled" if confirmed and core.get("reconstruction_complete") else "partial"
-    projected = dict(projected, core_rfv=core)
+    if "core_rfv" in projected:
+        core = dict(projected["core_rfv"], snapshot_confirmation=confirmation)
+        core["status"] = "reconciled" if confirmed and core.get("reconstruction_complete") else "partial"
+        projected = dict(projected, core_rfv=core)
     if not confirmed:
         for name in ("reports_true_rfv", "reports_historical_rfv", "adjusted_net_assets"):
             if name in projected:
                 projected[name] = dict(projected[name], value=None, value_wad=None,
                                        snapshot_confirmation=confirmation)
+        leverage = projected.get("sleeve_leverage", {})
+        for basis in ("publisher", "external_only"):
+            if basis in leverage:
+                leverage[basis] = dict(leverage[basis], gross_assets_wad=None, debt_wad=None,
+                                       equity_wad=None, gross_to_equity=None, debt_to_equity=None,
+                                       ratio_status="incomplete", snapshot_confirmation=confirmation)
     return dict(result, metrics=projected, coverage=qualify(result.get("coverage", {})))
 
 

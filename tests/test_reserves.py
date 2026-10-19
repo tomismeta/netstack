@@ -1,4 +1,6 @@
 """Core RFV arithmetic and consumer-visible reconciliation failures; no network."""
+from copy import deepcopy
+from fractions import Fraction
 import hashlib
 import json
 import sys
@@ -13,6 +15,7 @@ import netstack_core as core_module
 import netstack_reserves as reserves_module
 from netstack_core import RpcError, amount, resolve_routes, serialize_result
 from netstack_reserves import _comparison, _morpho_counted, _nav, _pol, _wad, prepare_result, run
+from netstack_sleeve import leverage_ratios
 
 
 def synthetic_source(path):
@@ -67,6 +70,76 @@ class ReserveArithmetic(unittest.TestCase):
             _pol(2**128, 2**128, 18, 18, 1, 1)
         self.assertEqual(_pol(2**127, 2**127, 18, 18, 2**200, 2**201), 2**127)
         self.assertEqual(_nav(2**255, 2**255, 9), 10**9)
+
+
+class ReserveProjection(unittest.TestCase):
+    def setUp(self):
+        self.result = {
+            "command": "rfv", "snapshot": {"recheck_status": "confirmed"}, "errors": [],
+            "coverage": {"collection_complete": False},
+            "metrics": {
+                "core_rfv": {"reconstruction_complete": False, "collection_complete": False},
+                "sleeve_leverage": {
+                    "publisher": leverage_ratios(Fraction(100), Fraction(40), True),
+                    "external_only": leverage_ratios(Fraction(80), Fraction(40), True),
+                },
+            },
+        }
+
+    def test_snapshot_qualification_withholds_both_leverage_bases_without_mutating_evidence(self):
+        for snapshot, errors, confirmation in (
+                ({}, [], "unconfirmed"),
+                ({"recheck_status": "not_performed"}, [], "unconfirmed"),
+                ({"recheck_status": "unconfirmed"}, [], "unconfirmed"),
+                ({"recheck_status": "mismatch"}, [], "invalid"),
+                ({"recheck_status": "confirmed", "confirmation": "invalid"}, [], "invalid"),
+                ({"recheck_status": "confirmed"}, [{"kind": "permission"}], "invalid"),
+                ({"recheck_status": "confirmed"}, [{"kind": "integrity"}], "invalid")):
+            for with_core in (True, False):
+                with self.subTest(snapshot=snapshot, errors=errors, with_core=with_core):
+                    source = deepcopy(self.result)
+                    source.update(snapshot=snapshot, errors=errors)
+                    if not with_core:
+                        del source["metrics"]["core_rfv"]
+                    before = deepcopy(source)
+                    projected = prepare_result(source)
+                    for basis in ("publisher", "external_only"):
+                        row = projected["metrics"]["sleeve_leverage"][basis]
+                        self.assertFalse(row["collection_complete"])
+                        self.assertEqual(row["ratio_status"], "incomplete")
+                        self.assertEqual(row["snapshot_confirmation"], confirmation)
+                        for key in ("gross_assets_wad", "debt_wad", "equity_wad",
+                                    "gross_to_equity", "debt_to_equity"):
+                            self.assertIsNone(row[key])
+                        for key in ("known_gross_assets_subtotal_wad", "known_debt_subtotal_wad"):
+                            self.assertEqual(row[key], before["metrics"]["sleeve_leverage"][basis][key])
+                    self.assertEqual(source, before)
+                    self.assertEqual(projected, prepare_result(source))
+                    self.assertEqual(projected, prepare_result(projected))
+                    source.update(snapshot={"recheck_status": "confirmed"}, errors=[])
+                    self.assertEqual(prepare_result(source)["metrics"]["sleeve_leverage"],
+                                     self.result["metrics"]["sleeve_leverage"])
+
+    def test_confirmed_sleeve_leverage_remains_independent_of_core_valuation(self):
+        for with_core in (True, False):
+            with self.subTest(with_core=with_core):
+                source = deepcopy(self.result)
+                if not with_core:
+                    del source["metrics"]["core_rfv"]
+                before = deepcopy(source)
+                projected = prepare_result(source)
+                leverage = projected["metrics"]["sleeve_leverage"]
+                self.assertEqual(leverage, before["metrics"]["sleeve_leverage"])
+                self.assertFalse(projected["coverage"]["collection_complete"])
+                self.assertEqual(leverage["publisher"]["gross_to_equity"],
+                                 {"numerator": "5", "denominator": "3"})
+                self.assertEqual(leverage["publisher"]["debt_to_equity"],
+                                 {"numerator": "2", "denominator": "3"})
+                for basis in ("publisher", "external_only"):
+                    self.assertTrue(leverage[basis]["collection_complete"])
+                    self.assertEqual(leverage[basis]["ratio_status"], "available")
+                self.assertEqual(source, before)
+                self.assertEqual(projected, prepare_result(projected))
 
 
 class Snapshot:

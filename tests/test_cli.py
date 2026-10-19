@@ -286,6 +286,65 @@ class AnalyticsCLI(unittest.TestCase):
                 self.assertFalse(report["coverage"]["collection_complete"])
                 self.assertEqual(report["errors"], [])
 
+    def test_transition_cancellation_keeps_denial_and_releases_context(self):
+        for scenario in ("transition-stop", "transition-stop-after", "transition-repeat-stop"):
+            with self.subTest(scenario=scenario), tempfile.TemporaryDirectory() as directory:
+                output = Path(directory).resolve() / "partial.json"
+                process, report = self.invoke(scenario, "--output", str(output))
+                self.assertEqual(process.returncode, 2)
+                self.assertEqual(output.read_bytes(), process.stdout)
+                self.assertEqual(report["status"], "partial")
+                self.assertEqual(report["stopping_reason"], "interrupted_by_SIGTERM")
+                self.assertEqual(report["collector_deadline_seconds"], 8)
+                self.assertEqual(report["metrics"], {})
+                self.assertNotIn("block_number", report["snapshot"])
+                scope = report["coverage"]["requested_scope"]
+                self.assertEqual(scope["status"], "not_collected")
+                self.assertFalse(scope["collection_complete"])
+                self.assertFalse(scope["raw_acquisition_complete"])
+                self.assertEqual(report["errors"][0]["kind"], "permission")
+                self.assertEqual(report["resources"]["rpc_members_used"], 1)
+                self.assertEqual(report["resources"]["recovery_attempts"], 0)
+                self.assertEqual(sum("Requested live observations were not collected." in item
+                                     for item in report["not_proven"]), 1)
+                # The isolated fixture also checks the real main() returned
+                # with restored handlers/timer and a closed checkpoint fd.
+
+    def test_interrupted_context_construction_rolls_back_signal_ownership(self):
+        process, report = self.invoke("construction-stop")
+        self.assertEqual(process.returncode, 2)
+        self.assertEqual(report["status"], "partial")
+        self.assertEqual(report["stopping_reason"], "interrupted_by_SIGTERM")
+        self.assertEqual(report["coverage"]["requested_scope"]["status"], "not_collected")
+        self.assertEqual(report["metrics"], {})
+
+    def test_finalization_stop_emits_cached_body_without_reserializing_it(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory).resolve() / "evidence.json"
+            process, report = self.invoke("finalization-stop", "--output", str(output))
+            self.assertEqual(process.returncode, 2)
+            self.assertEqual(report["status"], "partial")
+            self.assertEqual(report["stopping_reason"], "deadline_exhausted")
+            self.assertEqual(report["collector_deadline_seconds"], 8)
+            saved = json.loads(output.read_bytes())
+            self.assertEqual(report["metrics"], saved["metrics"])
+            self.assertEqual(report["coverage"], saved["coverage"])
+            self.assert_independent_core(report)
+
+    def test_second_signal_during_projection_fallback_does_not_duplicate_stdout(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory).resolve() / "evidence.json"
+            process, report = self.invoke("projection-repeat-stop", "--detail", "summary",
+                                          "--output", str(output))
+            self.assertEqual(process.returncode, 2)
+            full = json.loads(output.read_bytes())
+            self.assertEqual(report["metrics"], full["metrics"])
+            self.assertEqual(report["errors"], full["errors"])
+            self.assertEqual(report["output_detail"]["mode"], "full")
+            self.assertEqual(report["output_detail"]["projection_stopping_reason"],
+                             "interrupted_by_SIGTERM")
+            self.assertEqual(report["output_detail"]["full_evidence"]["checkpoint_status"], "saved")
+
     def test_checkpoint_failure_retains_stdout_and_last_successful_file(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory).resolve() / "result.json"

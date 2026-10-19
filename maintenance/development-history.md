@@ -2,6 +2,16 @@
 
 Source-only maintenance record relocated from the installed README. The entries below preserve their original chronology, counts and verification limits; they describe work at those dates, not current acceptance or deployed state. For current usage and limitations, read [README](../README.md), the installed references and the exact candidate’s external verification records. Nothing here authorizes publication.
 
+## October 19 partial-evidence and lifecycle repairs
+
+- Invalid or unconfirmed snapshots now withhold complete-only Sleeve leverage inputs and ratios while retaining explicitly named diagnostic subtotals. Sleeve valuation remains independent of Core success.
+- NetLong receipt observations distinguish unstarted acquisition from served empty ranges per asset/direction. Receipt-local and measured partial quantities survive; net flows and residuals stay unknown without both directional inputs.
+- CLI cancellation now shares an outer Context cleanup boundary and bounded partial finalization, including transitions, interrupted initialization and repeated signals. No retrieval restart, provider fallback or deadline extension was introduced.
+- Exact root maintainer guidance is excluded from checkout verification and committed exports without widening installed membership. Export stages the complete discovery marker before no-replace publication, preserving receipt-first ordering and handled-failure cleanup.
+- Pinned five source-only maintenance links to the reviewed October 14 commit and explicitly recorded the inherited review's missing packet/revision binding; no external link-liveness or retrospective authentication claim.
+- Isolated before/after probes confirmed the leverage, uncollected-flow and cancellation repairs. A temporary synthetic reviewed-candidate export kept the final marker absent until staged bytes were complete; installed verification passed before and after synthetic CLI success, denial and repeated-transition interruption. These are offline fixture observations, not live-chain, host-model or publication acceptance.
+- Package/content verification passed. The 507-test offline run exposed four cascading subcase failures in one new export fixture on a case-insensitive filesystem; removing the fixture's canonical filename before staging the rejected case variant corrected the setup without a product change. All 16 tests in the affected export class then passed, including exported-runtime and reproducible-archive checks; the whole suite was not rerun after that test-only correction. Two independent delta reviews found no supported product defect. Live-chain and real-host acceptance remain separate.
+
 ## October 14 final announcement intake and release preflight
 
 - Indexed the requested official LOSE post published October14 at15:44:47UTC after reading the complete original caption and timestamp in the authorized browser and inspecting its branding image. Preserved publisher claims separately from reviewed preissuance, flat-then-decaying curve, best-effort delivery, pool-scoped tax and Sleeve recipient. No engagement counters or financial observations retained.
