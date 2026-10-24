@@ -6,7 +6,7 @@ netstack helps agents research NetNet's protocol, products, games, RWA strategy 
 
 It is an independent [Agent Skills](https://agentskills.io/specification) package. It is **not** an official NetNet product, a trading bot or a wallet toolkit.
 
-**Package version: `0.5.0`.** Identify the reviewed package by its immutable commit, manifest and runtime hashes. Consult the [release record and separate audit assets](https://github.com/tomismeta/netstack/releases) for publication status and exact-input review; the version string alone does not establish either.
+**Package version: `0.6.0` — candidate / unpublished.** Identify the reviewed package by its immutable commit, manifest and runtime hashes. Consult the [release record and separate audit assets](https://github.com/tomismeta/netstack/releases) for publication status and exact-input review; the version string alone does not establish either.
 
 **Evidence limits:** current questions require fresh authorized evidence; the package contains identities, methods and dated mechanism provenance, not saved financial answers. Interface coverage and source/runtime review are not full contract audits or proof of current permissions. See the [capability ledger and review boundaries](references/contract-capabilities.md).
 
@@ -16,36 +16,55 @@ It is an independent [Agent Skills](https://agentskills.io/specification) packag
 
 ## What you can ask
 
+Ask naturally; these groups are examples for browsing, not categories you must select.
+
+### Understand the protocol and products
+
 | Question | What netstack brings |
 |---|---|
-| “What's new across NetNet products, contracts, docs, announcements and UI?” | Fresh ecosystem discovery with attributable sources, inspected perimeter and explicit gaps; retained history is not current coverage |
-| “How much open interest is there on NET, BTC, SOL or a new market?” | Fresh registry discovery, separate futures and margin measures, implementation checks and explicit partial coverage; no saved OI |
-| “How does LOSE work, and is the displayed reward rate right?” | Fixed issuance, allocation-funded release curve, pool-transfer levy/burn, authority, best-effort award and documented UI/runtime conflicts |
-| “How much has PremiumSeller sold NET for, and how much went to Treasury?” | Fresh gross NET, sale proceeds, realized prices and receipt-confirmed USDG remittances; explicit coverage and no cached sales |
-| “Show the last ten standard-bond epochs: NET sold, USDG received, sellout time, opening NAV and market price, with totals.” | [Epoch analytics](references/standard-bond-analytics.md) reconstruct shared capacity from historical supply and sales; sellout is strictly below one NET remaining, LP consideration stays separate, and unconfirmed or incomplete figures stay qualified |
-| “What is overall protocol revenue, broken down by product and asset?” | Product discovery and beneficiary-aware accounting; separate earned revenue, actual receipts, financing and distributions, with internal transfers eliminated and gaps explicit |
-| “How much revenue or house proceeds has NetLong generated?” | Bounded `netlong-revenue` evidence plus deeper research for uncovered economics; fees, receipt flows, LP/lender results and Treasury inflows remain separate |
-| “How does InverseBond work, what capacity remains, and how much has it burned or paid?” | Source-backed function and dependency review, fresh price/epoch-capacity research and NET-burn/Treasury-payout reconciliation; no execution guarantee or stored totals |
-| “How much capital did Sleeve bonds receive, and how much NET is still owed?” | Fresh inventory/owed NET, scoped subscriber vesting, event/counter reconciliation and receipt routing; no cached subscription totals |
-| “What is my Credit claim or Loopback leverage, including accrued interest?” | Current indexed market discovery, virtual-offset rounding, accrued debt and fee shares, oracle-qualified health and explicit withdrawal constraints |
 | “What backs NET?” | Core RFV, NAV, supply and the distinction between Core reserves and the RWA Sleeve |
-| “What's the current RFV and what makes it up?” | Reconciled Core plus broader custody, off-wallet claims and liabilities; investigated omissions and an explicit searched universe, not wallet balances alone |
 | “What makes up True RFV on the website?” | Website terminology resolved to contract reads; separate Core RFV, Reports composition and adjusted net assets with explicit completeness |
+| “How does LOSE work, and is the displayed reward rate right?” | Fixed issuance, allocation-funded release curve, pool-transfer levy/burn, authority, best-effort award and documented UI/runtime conflicts |
 | “What are hOHM bonds?” | Asset Bond Desk generations, token/oracle identities and Sleeve accounting—not automatic Core reserve inclusion |
 | “How are Credit and Loopback different?” | Borrower collateral, lending-vault shares, interest, liquidation and activation status |
 | “Where does Morpho or Pendle fit?” | Separate Treasury, lending and yield-token claims; units, maturity and risks |
 | “How do Predict and its House Vault differ?” | Binary outcome exposure versus loss-bearing underwriting, fees, weekly timing and settlement-verification limits |
-| “Can I provide NET/USDG liquidity?” | Direct v2 provision versus the app-gated Zap, pool fees versus NET levy, receipt units and divergence risk |
+| “What happens when someone plays this game?” | Stakes, payouts, fees, burns, custody and who receives the proceeds |
+
+### Measure current state and historical proceeds
+
+| Question | What netstack brings |
+|---|---|
+| “What's the current RFV and what makes it up?” | Reconciled Core plus broader custody, off-wallet claims and liabilities; investigated omissions and an explicit searched universe, not wallet balances alone |
+| “How much open interest is there on NET, BTC, SOL or a new market?” | Fresh registry discovery, separate futures and margin measures, implementation checks and explicit partial coverage; no saved OI |
+| “What is overall protocol revenue, broken down by product and asset?” | Product discovery and beneficiary-aware accounting; separate earned revenue, actual receipts, financing and distributions, with internal transfers eliminated and gaps explicit |
+| “How much revenue or house proceeds has NetLong generated?” | Bounded `netlong-revenue` evidence plus deeper research for uncovered economics; fees, receipt flows, LP/lender results and Treasury inflows remain separate |
+| “How much has PremiumSeller sold NET for, and how much went to Treasury?” | Fresh gross NET, sale proceeds, realized prices and receipt-confirmed USDG remittances; explicit coverage and no cached sales |
+| “Show the last ten standard-bond epochs: NET sold, USDG received, sellout time, opening NAV and market price, with totals.” | [Epoch analytics](references/standard-bond-analytics.md) reconstruct shared capacity from historical supply and sales; sellout is strictly below one NET remaining, LP consideration stays separate, and unconfirmed or incomplete figures stay qualified |
+| “How does InverseBond work, what capacity remains, and how much has it burned or paid?” | Source-backed function and dependency review, fresh price/epoch-capacity research and NET-burn/Treasury-payout reconciliation; no execution guarantee or stored totals |
+| “How much capital did Sleeve bonds receive, and how much NET is still owed?” | Fresh inventory/owed NET, scoped subscriber vesting, event/counter reconciliation and receipt routing; no cached subscription totals |
+| “What is my Credit claim or Loopback leverage, including accrued interest?” | Current indexed market discovery, virtual-offset rounding, accrued debt and fee shares, oracle-qualified health and explicit withdrawal constraints |
 | “How much third-party LP is there, and what fees did it earn this week?” | Complete holder discovery, evidence-qualified ownership, reserve-share valuation and historical gross fee attribution; protocol dilution and net-income limits |
 | “Which prediction markets are active, and how much has been bet?” | Dynamic series discovery; distinct gross purchases, sell proceeds, trading fees and outstanding outcomes, reconciled with public events |
 | “How much outside capital is in the House, and what has it earned?” | Fund versus unattributed ownership; active shares, queues and claims; observed returns distinguished from conditional forecasts |
 | “How much has THE BOOK wagered, paid or sent to the Sleeve?” | Bounded selected records and requested-window events/receipts, with house capital, player credit, withdrawals and recipient transfers separated; lifetime totals remain unproven |
-| “What happens when someone plays this game?” | Stakes, payouts, fees, burns, custody and who receives the proceeds |
+
+### Investigate sources and missing coverage
+
+| Question | What netstack brings |
+|---|---|
+| “What's new across NetNet products, contracts, docs, announcements and UI?” | Fresh ecosystem discovery with attributable sources, inspected perimeter and explicit gaps; retained history is not current coverage |
 | “Which contract or dashboard should I inspect?” | Chain-qualified addresses, generation conflicts, source provenance and direct links |
 | “What did this article or interview actually claim?” | Dated strategy summaries and publisher notes, separated from observed results |
+| “This contract or getter is not in your catalog—can you investigate?” | Supplemental source/interface verification and host-authorized research; helper support is not a permission boundary |
+
+### Explore user-operated workflows and scenarios
+
+| Question | What netstack brings |
+|---|---|
+| “Can I provide NET/USDG liquidity?” | Direct v2 provision versus LP Zap, with dated availability and fresh-state checks, pool fees versus NET levy, receipt units and divergence risk |
 | “How mechanically do I bet on the Giants in this game?” | Identify the actual game/market and explain user-operated selection, stake, fees, confirmations and settlement; the agent does not connect a wallet or place the bet |
 | “What would accrue over a week, or how long to reach a target?” | Evidenced calculations and explicitly conditional models, not fabricated current balances or promised returns |
-| “This contract or getter is not in your catalog—can you investigate?” | Supplemental source/interface verification and host-authorized research; helper support is not a permission boundary |
 
 Answers should identify their sources, dates, accounting boundaries and missing evidence. They should not invent live numbers or turn a projection into realized revenue.
 
@@ -71,7 +90,9 @@ Optional `/netstack <topic> [question]` works only when a host registers the ins
 
 Directory requests use packaged links without fetching live data or loading every reference. All routes remain read-only.
 
-Ask `Use netstack to explain Cabinet Kit and what is publicly available` for the [builder reference](references/builders.md). Announced toolkits are not verified public SDKs.
+The October 24, 2026 targeted [builder review](references/builders.md) observes public **Net Forge engine/source/docs/npm tooling**, separately from optional **Cabinet Kit**, whose npm distribution and live rewards remain unestablished. netstack documents these external tools but bundles or installs none.
+
+Also ask naturally: “What is Net Forge and what is public?” or “Which Net Forge MCP can I use, and is Cabinet Kit live?”
 
 ## Quick start
 
@@ -167,16 +188,19 @@ The collector deadline includes network/retry/computation time, not host approva
 
 SKILL.md routes questions to relevant reference sections and selected source/address records. No full documentation mirror, copied article archive, full transcripts, third-party Python dependencies, wallet connectors, telemetry or self-update process are bundled. The optional runner is loaded only for its selected accounting workflow. Selective loading depends on the host; disk size is not per-question context cost.
 
+The [Products map](references/products.md#the-map-purchaser-claim-and-reserve-boundary) relates economic objects; [question-to-evidence planning](references/contract-capabilities.md#plan-the-evidence-for-the-question) selects proof, and the [analytical Knowledge map](SKILL.md#knowledge-map) routes measurement. [Evidence reuse and exact calculation](references/integrations.md#reuse-evidence-and-calculate-exactly) keep supplied observations qualified; an optional [fictional worked example](references/research-example.md) illustrates a partial answer. The guarded runner is an acquisition tool, not the domain model or a research allowlist.
+
 The address catalog keeps identities, statuses and dated evidence per record; shared explanations and default Robinhood Etherscan URL templates are defined once. Read those definitions with selected records. Supplemental evidence may establish uncatalogued identities or changed deployments. Other validated explorers may be inspected and cited; navigation does not replace the original evidence source.
 
 ## What's covered
 
-Baseline documentation dates from **September 10, 2026**, with targeted additions through **October 14**. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
+Baseline documentation dates from **September 10, 2026**, with targeted additions through October 14 and **October 24 Net Forge site/docs/source/npm observations**. This is not a refresh of every older product or the intervening social timeline. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
 
 - **30 indexed official documentation entries**, represented by original summaries and source links; LOSE's standalone page remains sparse. Individual review dates differ.
 - Canonical contracts, feeds, market and pool IDs, plus a separately qualified deployer-discovery inventory. Counts and boundaries live in [address conventions](assets/address-conventions.json), not a competing inventory here.
 - Original announcements, strategy/report articles, documentation, integrations and scoped interface/creation evidence in the [source catalog](assets/sources.json).
 - Five interview originals with complete available transcript/caption-text reviews; no claim of independent complete audio/visual verification.
+- Net Forge local-development and MCP guidance, with optional Cabinet Kit distribution/live-readiness limits; external tools are documented, not bundled or installed.
 
 Use the [SKILL knowledge map](SKILL.md#knowledge-map) to choose a reference and the [link directory](references/links.md) for destinations.
 

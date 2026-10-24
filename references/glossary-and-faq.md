@@ -6,6 +6,8 @@ Later observations retain their dates. The October 7 refresh updates current RWA
 
 **Questions answered:** Is RFV market cap? Can every NET immediately redeem at NAV? Do stock holdings back NET? Is rebase APY income? Is nnUSDG cash? Which “Turbo” is meant? How should missing current status and inconsistent documentation be reported?
 
+The [Products relationship map](products.md#the-map-purchaser-claim-and-reserve-boundary) relates economic objects and claims; this glossary owns term definitions and FAQs.
+
 ## Compact glossary
 
 | Term | Meaning and boundary | Source |
@@ -138,7 +140,7 @@ The launched Predict market is not established as the implementation of the hist
 
 ### Does an LP Zap deployment mean I can use a tax-free one-click deposit?
 
-No. On September 18 the public app's Add liquidity panel still gated the single-transaction desk pending exemption and offered direct two-token Uniswap provision instead, with a levy on the NET leg. Registry promotion, current exemption and user-interface availability are separate observations. Explain the [published design and current limitation](products.md), not executable steps, approvals or transactions.
+Deployment or promotion alone does not establish that. On September 18 the public app's Add liquidity panel gated the single-transaction desk pending exemption and offered direct two-token Uniswap provision instead, with a levy on the NET leg. The October 7 publisher registry promoted LP Zap; a September 19 exemption event corroborates historical exemption. Current exemption, tax-leg treatment and route feasibility need fresh checks. Explain the [dated design and user-operated liquidity procedure](products.md#retail-netusdg-v2-liquidity-and-the-lp-zap) with these limits; the agent does not execute it.
 
 ### Does “fail closed” stop losses or just operations?
 
@@ -146,7 +148,7 @@ It stops each guard's specified operations, not economic risk. Invalid Core TWAP
 
 ### Do futures profits or underwriting balances contribute to Core earnings?
 
-No. The documented mainnet test uses **valueless tNET**, a holding sink for fees and a loss waterfall that never reaches Treasury. Real wsNET margin and Treasury fees are a **future production path**, not live economics; a real transaction alone does not establish monetary value. See [Managed Futures](products.md#managed-futures-real-transactions-test-economics).
+Not automatically. The **legacy test generation** uses valueless tNET, a holding sink for fees and a loss waterfall that never reaches Treasury; its activity is not monetary revenue. Retain that [Managed Futures test explanation](products.md#managed-futures-real-transactions-test-economics) as dated history. [Current wsNET futures and NetLong margin](products.md#netlong-current-futures-and-lose) are separate generations: fees, burns, lender/underwriter P&L and actual Core receipts differ. Follow [revenue and house-proceeds accounting](netlong-analytics.md#revenue-and-house-proceeds), not an assumption that all branded earnings accrue to Core.
 
 ### Which “Turbo” is meant?
 
@@ -154,7 +156,7 @@ Loopback's TurboRouter is leveraged NET accumulation through borrowing, buying, 
 
 ### Is a launchpad still planned, and is the builder SDK publicly available?
 
-The **August 7 launchpad proposal was rejected August 18**; it is historical, not a product promise. Developer Portal onboarding and later Cabinet Kit disclosures do not establish a generally available SDK or deployed roadmap concepts. See [Builders: availability](builders.md#where-is-cabinet-kit) and [concepts and launchpad sources](builders.md#keep-the-announced-concepts-separate).
+The **August 7 launchpad proposal was rejected August 18**; it is historical, not a product promise. The October 24, 2026 targeted review observes public **Net Forge engine/source/docs/npm tooling**. Optional Cabinet Kit has public source, but its exact npm lookup returned404 and its reviewed factory/zap bindings remain placeholders; installability and live rewards are separate from engine publication. See [Builders](builders.md#net-forge-what-is-public), [Kit readiness](builders.md#where-is-cabinet-kit) and [concepts and launchpad sources](builders.md#keep-the-announced-concepts-separate).
 
 ### What should an answer say when today's state is missing or sources disagree?
 

@@ -1,6 +1,6 @@
 # Announcements, strategy history and interviews
 
-Working knowledge through targeted October 14, 2026 observations, **unpublished**. Publication, event, retrieval and chain-observation dates are distinct. This chronology attributes claims, not universally verified current deployments. Product documentation, app registries and creation evidence are not verified implementation audits. The [source catalog](../assets/sources.json) records scope; [interview research](interview-research.md) distinguishes complete available transcript/caption review from audio/visual verification. No complete social-account archive was reviewed.
+Working knowledge includes targeted **October 24, 2026 Net Forge observations**, **unpublished**; older records retain their review dates, and the intervening account timeline was not fully reviewed. Publication, event, retrieval and chain-observation dates are distinct. This chronology attributes claims, not universally verified current deployments. Product documentation, app registries and creation evidence are not verified implementation audits. The [source catalog](../assets/sources.json) records scope; [interview research](interview-research.md) distinguishes complete available transcript/caption review from audio/visual verification. No complete social-account archive was reviewed.
 
 ## Product launches and changes
 
@@ -53,6 +53,12 @@ Also indexed without inferred mechanics: [October 12 video caption](https://x.co
 [Original post](https://x.com/NetNetCap/status/2110396406964097441), published **15:44:47 UTC**, describes rewards for losses on NET LONG and Futures, immediate delivery without lockup/vesting/claim seasons, declining issuance and a 5% transfer charge split into 2% burn and 3% USDG for the Treasury. Complete original caption and timestamp were read in the authorized browser; the attached image is LOSE branding without additional mechanics.
 
 Treat those as publisher claims, not a new implementation audit. The [reviewed token/distributor mechanics](netlong-margin-and-lose-contracts.md#curve-exact-numerator-and-rounding) transfer preissued LOSE, keep the initial qualifying-loss rate flat before decay, and make settlement awards best effort. The [reviewed tax path](netlong-margin-and-lose-contracts.md#lose-transfer-tax-conversion-and-pair-mechanics) applies to flagged-pool transfers with exemptions and routes converted levy USDG to the fixed Sleeve recipient, not Core Treasury. The post alone establishes no changed contract, universal transfer tax, guaranteed award/sale timing or actual Treasury receipt. No engagement counters or financial observations are retained.
+
+### October 23 Net Forge Phase 1
+
+The [Phase 1 announcement](https://x.com/NetNetCap/status/2113723654609752199), published **2026-10-23 at 20:06:05 UTC** in the dated intake, announces public engine/source/npm distribution, claims **16 launch packages** with npm provenance and 530 CC0 models/sounds in six styles plus ten templates. It explicitly defers Kit until game contracts are live. October 24 review is **model-relayed X-search text**, not direct original-browser or self-reply proof; the browser attempt was unavailable.
+
+[Builders](builders.md#net-forge-what-is-public) holds the separately inspected site, pinned source, six 0.2.0 package observations and local workflow. The npm organization's later 17 scoped listings are not the post's launch count. Engine publication/local play proves neither a live token economy nor NET backing or revenue. This targeted addition is not an exhaustive latest-post or intervening timeline census.
 
 ## Developer platform and roadmap
 

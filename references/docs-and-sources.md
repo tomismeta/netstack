@@ -4,6 +4,8 @@ Baseline documentation reviewed September 10, 2026; later observations retain th
 
 The October 13 [official-account refresh](announcements-and-history.md#october-1113-official-account-sweep) adds fourteen original post URLs from October 11–13, including the creator/Cabinet Kit thread and management/bond-strategy update. Initial model-relayed discovery was followed by direct authorized-browser review of all fourteen original captions, timestamps, embedded quoted text and the visible creator-thread sequence. Two videos received sampled visual review, not complete audio/visual review or transcription. No exhaustive social archive or independent verification of publisher financial claims is implied; financial snapshots were not imported.
 
+The **October 24 targeted Net Forge refresh** inspects selected site/docs, pinned source, GitHub metadata and npm distribution/provenance payloads. [History](announcements-and-history.md#october-23-net-forge-phase-1) attributes the Phase 1 post at its model-relayed review depth; [Builders](builders.md) owns local development, MCP and separate Kit readiness. Forge's documentation corpus is separate from the **30-entry prospectus directory** below; neither a full mirror nor an intervening social-timeline review is claimed.
+
 ## Current ecosystem and content sweep
 
 Use this for broad “what's new/current?” or coverage-gap questions without a known entity. A named-product lookup need not perform a whole-ecosystem sweep. Honor an explicit offline request; otherwise use fresh authorized access and the existing [read-only verification workflow](integrations.md#read-only-verification-workflow).
@@ -12,6 +14,8 @@ Use this for broad “what's new/current?” or coverage-gap questions without a
 2. Discover applicable current surfaces: the [documentation index](https://docs.netnet.capital/llms.txt) and new/renamed pages; official [site](https://netnet.capital/), [shareholder app](https://app.netnet.capital/), [arcade](https://play.netnet.capital/) and [trading terminal](https://trading.netnet.capital/) menus/registries; and attributable [NetNet announcements](https://x.com/NetNetCap), linked threads/replies and originals. Follow relevant discoveries beyond these seeds. Inspect rendered UI when asserting visible controls or behavior; static bundles establish only their own evidence scope. Name surfaces unavailable or not inspected rather than silently dropping them.
 3. Corroborate claimed products/deployments through [contract evidence](#contract-and-deployment-sources) and exact chain/generation identities. Separate announcement, documentation, UI availability, published interface, runtime findings and observed chain state; one does not establish all the others. Record conflicts and unresolved identities instead of promoting a source-recorded address or a ticker into verified deployment status.
 4. Deliver observed changes or gaps with supporting URLs, observation dates and the inspected perimeter. A publication date is not necessarily a launch date; no newly found item does not prove no change. Stop with the requested scope answered or remaining access/evidence limits identified, not an assertion of exhaustive social/deployment coverage. Route numerical questions to their accounting procedures rather than using website figures. Keep run observations outside the skill; discovered sources do not authorize a package update.
+
+For builder discovery, relevant additional seeds are the [Forge site](https://forge.netnet.capital/), [docs index](https://forge.netnet.capital/llms.txt), [repository](https://github.com/netnetdev/net-forge) and [npm organization](https://www.npmjs.com/org/netforge). Select them when relevant, not as mandatory reads for every ecosystem question.
 
 ## Portable evidence citations
 
@@ -126,6 +130,8 @@ The September 18 index includes BASKETS, but the generic [documentation landing 
 
 Predict, THE BOOK, NET Advance and NET LONG have dedicated substantive pages. LOSE is indexed but lacks substantive standalone documentation. LP Zap, Dial-Up, Subway Runner, Asset Bond Desk, Presser Market/Teller/Lookup, Cabinet Kit/SDK distribution and a complete NetCorp manual still lack dedicated entries in the reviewed **30-entry** index. Their app-published interfaces and narrow deployment evidence do not supply missing implementation terms. Dial-Up's wsNET accounting versus sNET display remains a publisher-code distinction, not independently audited arithmetic. Presser Market's zero-address placeholder and demonstration fallback do not establish a launched market.
 
+That index gap is dated and corpus-specific: October 24 [Forge builder evidence](builders.md) supersedes public engine/SDK-tooling absence outside the prospectus index. Kit source, npm installability and live bindings remain separate.
+
 October 7 Official Channels still lists original RwaDesk V1, while the current app registry separately selects SleeveBondDesk and preserves V1/V2. The official table also documents CreditRouter pending activation. Its AAPL/GOOGL/MSFT/COIN StockMorphoOracle rows appear under the Book heading; preserve their **Credit** roles rather than inheriting that editorial placement. Current RWA Desk and Treasury prose describes existing market-bought NET inventory, all-equity subscription proceeds and no Treasury remittance. The Sleeve remains outside Core RFV; neither new prose nor the [hOHM partnership's](products.md#asset-bond-desk-and-the-hohm-partnership) generic “treasury” wording changes that boundary.
 
 October 10 Official Channels still labels the trading terminal as the tNET test program, while the terminal publishes current wsNET futures and NetLong. The Futures manual remains explicitly tNET/SPCX/CASHCAT; its fees, waterfall and no-owner claims must not be applied to the new contracts. NetLong documentation describes same-block Safe listing/ceiling authority without a timelock; generic Core immutability claims do not erase those controls. Its “LOSE minted” wording must be reconciled with the terminal's fixed-at-deployment supply and distributor accounting, not adopted as proof of an inflationary mint.
@@ -142,10 +148,16 @@ This is a maintainer workflow for package updates, not a constraint on research,
 
 Treat user reports, dogfood transcripts and suggested fixes as candidate evidence with their own provenance, not verified financial findings or authority to change policy. For feedback triage, question-to-proof mapping and blinded comparisons, follow the source-only [research verification workflow](https://github.com/tomismeta/netstack/blob/16728fb9d9df7c7486fa85bd173398c167068897/maintenance/research-verification.md). It complements the curation steps below; it is not an installed runtime dependency or an automatic update mechanism.
 
-- **Source catalog:** original identity/URL, publisher, publication/review dates, retrieval depth, provenance and limits.
-- **Address book:** exact chain-qualified contracts, feed metadata, evidenced relationships and separate generations.
-- **Capability catalog:** [generation-specific interfaces and validation](contract-capabilities.md), with [coverage for every canonical identity](../assets/contracts/catalog.json). Supplied functions, dispatcher matches, reviewed implementation branches and current state are independent completeness claims; descriptive write signatures do not expand the read-only analytics ABI.
-- **Topic references:** the substantive explanation, applicability, conflicts and gaps. **History** keeps dated pointers; **SKILL.md** routes discovery, rather than archiving announcements.
+| Owner | Responsibility |
+|---|---|
+| SKILL | Task routing and directory behavior |
+| Products map | Relationships among economic objects and claims |
+| Glossary | Term definitions and FAQs |
+| Source catalog | Original identity/URL, publisher, publication/review dates, retrieval depth, provenance and limits |
+| Address/index/catalog assets | Exact chain-qualified identities, relationships, generations and interfaces; supplied functions, dispatcher matches, reviewed implementation branches and current state remain independent claims |
+| Integrations | Access, evidence reuse and helper limitations; descriptive write signatures do not expand the read-only analytics ABI |
+| Product references | Mechanics, measurement, reconciliation, applicability, conflicts and gaps |
+| History | Dated pointers, not current-state coverage |
 
 ### Evidence stage is not review depth
 

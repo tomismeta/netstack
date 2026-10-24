@@ -171,6 +171,18 @@ HTTP 401/403/407 from the requested origin or host are terminal for that path, i
 
 For the **Book quick pass**, spacing, backoff and retries consume the original [Book collection budget](games.md#book-snapshot-first) and quick-pass answer allowance. Retry a transient failure at most **once per logical request**, within **10 total recovery attempts** (including splits/fallback), and count every attempted member/history request/returned row against that pass's cap. On 429, honor a valid `Retry-After` (seconds or HTTP date); wait at least the greater of that delay and the **2.8-second default backoff** before the one retry, rather than immediately resending at ordinary pace. Do not shorten a requested wait to squeeze in a retry: if delay plus a bounded attempt and the reserved final block-header check cannot fit, stop with partial evidence. Do not blindly retry denied access, malformed ABI or pruned state, reset the pass timer or evade permissions. Deliberate interface/archive recovery and deeper requested research can use a separately defined finite host-authorized scope; actual provider waits, host limits and approved costs still govern.
 
+## Reuse evidence and calculate exactly
+
+For “explain/recalculate/summarize this observation”, reuse its qualified pinned evidence and record the unchanged anchor. Changing an assumption does not refresh the source. A new current-state request still needs fresh authorized evidence.
+
+A changed target, required field/period, generation, block/hash, implementation/dependency, source conflict or invalid confirmation requires the applicable new evidence/check. Do not merge different snapshots into a same-block answer or bypass an access denial to fill a gap.
+
+Preserve exact raw integers, asset identity, decimals/unit basis and observation provenance. Use integer/rational arithmetic and applicable contract rounding before display. Identical evidence and assumptions yield identical numerical results; tool choice and wording can differ.
+
+Missing evidence invalidates the dependent total or interpretation, not every supported subtotal. Keep acquisition, snapshot confirmation and economic proof separate. Existing checkpoints can be inspected for interpretation and planning; there is no runner checkpoint-import/resume feature, automatic cache or provider fallback.
+
+The optional [fictional evidence-to-answer example](research-example.md) demonstrates exact calculation and qualified partial output with existing pure helpers, not network verification or a required answer template.
+
 ## Read-only verification workflow
 
 1. For current questions, default to fresh authorized reads unless the user requests offline/package-only work; no separate permission to “go live” is needed beyond existing host authority. Name mutable fields and the date/block needed. Packaged dated answers suffice for historical/mechanism questions within their evidence scope.
@@ -208,7 +220,7 @@ See [Credit's product terms](products.md#netnet-credit-a-curated-lender-not-a-re
 
 ## Pendle: the observed sNET market
 
-The October 7 [Pendle API directory](https://api-v2.pendle.finance/core/v2/markets/all?limit=50&skip=600) scan covered all 812 returned directory records across 17 complete pages and found three NetNet sNET maturities on chain 4663. The [October 15 market](https://api-v2.pendle.finance/core/v1/4663/markets/0xd5d418f95715bc0fadb35923d389fe3f627df80a) is listed **active**; the [October 1 market](https://api-v2.pendle.finance/core/v1/4663/markets/0xab0093949fefa432bfb1a0ba8943ee4aebc898a8) is now **inactive**, superseding its September 18 active observation. These are distinct contracts, not expiry edits to an old market.
+The October 7 [Pendle API directory](https://api-v2.pendle.finance/core/v2/markets/all?limit=50&skip=600) scan covered all 812 returned directory records across 17 complete pages and found three NetNet sNET maturities on chain 4663. The [October 15 market](https://api-v2.pendle.finance/core/v1/4663/markets/0xd5d418f95715bc0fadb35923d389fe3f627df80a) was listed **active in the October 7 scan**; the [October 1 market](https://api-v2.pendle.finance/core/v1/4663/markets/0xab0093949fefa432bfb1a0ba8943ee4aebc898a8) was listed **inactive in that scan**, superseding its September 18 active observation. These are dated API flags, not current trading/redemption availability or a present refreshed list. These are distinct contracts, not expiry edits to an old market; elapsed maturity alone does not establish a current API flag.
 
 | Maturity (UTC) | Exact market/LP identity | Principal token | Yield token | Dated API evidence |
 |---|---|---|---|---|

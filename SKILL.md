@@ -1,17 +1,17 @@
 ---
 name: netstack
-description: "Research NetNet on Robinhood Chain (4663): NET, NAV/RFV, NetLong/LOSE, bonds, PremiumSeller, Sleeve/Credit, revenue, games, NFTs, interviews and feeds. Use for NetNet questions or 'Use netstack'; no wallet execution."
+description: "Research NetNet on Robinhood Chain (4663): NET, NAV/RFV, NetLong/LOSE, bonds, PremiumSeller, Sleeve/Credit, revenue, games, Net Forge/Cabinet Kit, NFTs, interviews and feeds. Use for NetNet questions or 'Use netstack'; no wallet execution."
 license: MIT
 metadata:
   compatibility: "Packaged knowledge needs no network, CLI, credentials, or wallet. Optional live analytics use the bundled Python 3.10+ standard-library runner on Linux/macOS with normal host permission. Supplemental research, analysis code and non-broadcasting simulations use host-authorized tools; no custom broker is required. This package installs no tools and does not enforce a host sandbox."
-  version: "0.5.0"
-  knowledge-reviewed: "2026-10-14"
+  version: "0.6.0"
+  knowledge-reviewed: "2026-10-24"
   access: "read-only"
 ---
 
 # Netstack — NetNet knowledge
 
-Research NetNet on **Robinhood Chain, chain ID 4663**: mechanics, identities, products, liquidity, RWA strategy, games, feeds, original sources, procedural guidance, coding and modeling. This is an independent research aid, not an official NetNet product, wallet operator or trading agent.
+Research NetNet on **Robinhood Chain, chain ID 4663**: mechanics, identities, products, liquidity, RWA strategy, games, feeds, original sources, procedural guidance, coding and modeling, including [Net Forge/Cabinet Kit builder tooling](references/builders.md). This is an independent research aid, not an official NetNet product, wallet operator or trading agent.
 
 **Bare invocation:** when the user says only `Use netstack`, `netstack`, or a host-forwarded `/netstack`, immediately return the seven-topic menu: **dashboards, nfts, games, documents, interviews, contracts, feeds**, with a short description of each and an example such as `Use netstack: feeds NVDA`. Never respond with only an acknowledgment or wait for another prompt. No reference or network read is needed for this menu.
 
@@ -31,15 +31,15 @@ Go directly to the relevant procedure or evidence; these are task shapes, not a 
 
 | Task shape | Direct route and proof boundary |
 |---|---|
-| **Exact lookup** — address, feed, deployment or function | Start with the [address index](assets/address-index.json), selected literal records and [conventions](assets/address-conventions.json); use the [identity procedure](references/addresses-and-roles.md#read-only-identity-procedure) and [interface coverage](references/contract-capabilities.md) as needed. Match chain/generation. Return Morpho's singleton address separately from its bytes32 market ID. |
-| **Explanation or user-operated how-to** | Apply the [mechanics procedure](references/docs-and-sources.md#mechanics-and-user-operated-procedures) to [Protocol](references/protocol.md), [Products](references/products.md), [Games](references/games.md), [RWA strategy](references/rwa-strategy.md) or [Builders](references/builders.md). Give concrete steps with economic consequences and verification limits, not an execution refusal. |
-| **Current state** — quantity, availability, price or composition | Select a [recipe below](#knowledge-map) and suitable [access capabilities](references/integrations.md#capabilities-not-subscription-labels). Prefer supported helpers after reading [execution guidance](references/integrations.md#live-analytics-execution-limits); use [live verification](references/integrations.md#read-only-verification-workflow), not exit success alone. |
-| **Current ecosystem/content sweep** — what's new or missing across products, contracts, docs, announcements or UI | Use the [fresh ecosystem sweep](references/docs-and-sources.md#current-ecosystem-and-content-sweep), not the retained chronology as current coverage. Discover relevant surfaces without requiring a known product; report inspected scope, dates, evidence stage, conflicts and unavailable sources. |
-| **Cross-product investigation** — assets, revenue, recipients or exposure | Start with [broad RFV](references/reserve-analytics.md#plain-language-rfv-requests), [protocol revenue](references/protocol-revenue-analytics.md) or relevant product procedures. Rediscover the perimeter; follow custody, beneficial claims and counterpart liabilities beyond wallet balances/helper fields. Eliminate overlap and disclose the searched universe, exclusions and gaps—not “every asset.” |
-| **History or original claims** | Use [History](references/announcements-and-history.md), [source selection](references/docs-and-sources.md#evidence-selection-depends-on-the-question) and [interview research](references/interview-research.md). Preserve attribution, dates, reversals and actual review depth. Historical reconciliation needs [boundary state capability](references/protocol-revenue-analytics.md#historical-state-capability-before-reconciliation), not merely old logs/headers. |
-| **Comparisons, scenarios or forecasts** | Follow [comparisons and scenarios](references/docs-and-sources.md#comparisons-and-scenarios) and the applicable economic recipe. Align units/period/scope, use assumptions naturally rather than a questionnaire, and separate modeled flows from observations. Hypothetical inputs need no live preflight. |
+| **Exact lookup** — address, feed, deployment or function | Select [address-index records](assets/address-index.json) and the [identity procedure](references/addresses-and-roles.md#read-only-identity-procedure); consult [interface coverage](references/contract-capabilities.md) as needed. |
+| **Explanation or user-operated how-to** | Use the [mechanics procedure](references/docs-and-sources.md#mechanics-and-user-operated-procedures) with the applicable owner: [Protocol](references/protocol.md), [Products map](references/products.md#the-map-purchaser-claim-and-reserve-boundary) for product claims, [Games](references/games.md), [RWA strategy](references/rwa-strategy.md) or [Builders](references/builders.md). |
+| **Current state** — quantity, availability, price or composition | [Plan the evidence](references/contract-capabilities.md#plan-the-evidence-for-the-question) and select the [analytical recipe](#knowledge-map). |
+| **Current ecosystem/content sweep** — what's new or missing across products, contracts, docs, announcements or UI | Follow the [fresh ecosystem sweep](references/docs-and-sources.md#current-ecosystem-and-content-sweep), not retained chronology as current coverage. |
+| **Cross-product investigation** — assets, revenue, recipients or exposure | Use [broad RFV](references/reserve-analytics.md#plain-language-rfv-requests), [protocol revenue](references/protocol-revenue-analytics.md) or the applicable product procedure. |
+| **History or original claims** | Select [History](references/announcements-and-history.md), [sources](references/docs-and-sources.md#evidence-selection-depends-on-the-question), [interview research](references/interview-research.md) and applicable [boundary-state evidence](references/protocol-revenue-analytics.md#historical-state-capability-before-reconciliation). |
+| **Comparisons, scenarios or forecasts** | Follow [comparisons and scenarios](references/docs-and-sources.md#comparisons-and-scenarios), the applicable economic recipe and [evidence reuse/exact calculation](references/integrations.md#reuse-evidence-and-calculate-exactly). Supplied hypotheticals need no live preflight. |
 
-**Keep the evidence roles separate:** [Integrations](references/integrations.md) explains access capabilities and helper limits; [address records](references/addresses-and-roles.md#data-layout) and [contract catalogs](references/contract-capabilities.md) carry structured identities/interfaces and claim-specific provenance; product analytics references define measurement, reconciliation and economic interpretation. Select only what the question needs. Descriptive write signatures never grant execution authority or expand the runner's read-only ABI.
+Documentation ownership is recorded in [maintainer curation](references/docs-and-sources.md#repeatable-knowledge-curation); ordinary answers need only the relevant evidence and procedure, not that workflow. Descriptive write interfaces grant no execution authority.
 
 ## Topic commands
 
@@ -56,6 +56,8 @@ Use `Use netstack: <topic> [question]` or `netstack <topic> [question]`. These s
 | **feeds** | [Address index](assets/address-index.json) for a symbol; [pricing directory](references/addresses-and-roles.md#price-feeds-and-token-relationships) otherwise | RWA candidates, ETH/USD and USDG/USD feeds, distinct NET price sources, and mapping/classification gaps. |
 
 A trailing question narrows the answer. These names are shortcuts, not a question whitelist; offer the menu or a focused clarification only when the request is unclear. Dashboard directory order controls display, never credibility or fallback priority.
+
+For Net Forge development and local play-money tooling, use [Builders](references/builders.md); the games shortcut remains the financial-game directory, not an eighth builder topic.
 
 ## Knowledge map
 

@@ -6,6 +6,25 @@
 
 ## The map: purchaser, claim and reserve boundary
 
+### Objects and relationships
+
+| Object | Economic relationship and boundary |
+|---|---|
+| Core Treasury | Reserve accounting perimeter: custody, valuation, liabilities and NET supply are distinct, not every branded product. See [Protocol](protocol.md). |
+| Sleeve | Manager custody and stated protocol benefit; pledged collateral, debt and discretionary support are separate from Core and holder redemption rights. See [Sleeve/Credit](credit-analytics.md). |
+| NET/sNET/wsNET | Base token, rebasing claim and non-rebasing wrapper; do not add underlying custody and its representations. See [staking](#standard-bonds-staking-and-the-concluded-founding-offering). |
+| LP/lender/underwriter interests | Fractional asset or outcome claims with their own owners, liabilities and liquidity restrictions; no automatic Core ownership. See [NetLong](#netlong-current-futures-and-lose) and [House](#netnet-predict-weekly-outcomes-and-house-vault). |
+| Borrower/player/subscriber claims | Posted collateral, debt, internal credit, queued/vested claims and actual receipts are distinct; custody is not equity or profit. See [Credit](credit-analytics.md) and the product claims below. |
+| Control roles | Configuration/settlement authority differs from economic ownership, Safe signer identity and actual permissions at the observation block. See [NetLong authority](netlong-futures-contracts.md) and [House](#netnet-predict-weekly-outcomes-and-house-vault). |
+
+### Follow the relationship, not the brand
+
+Ownership, custody, funding, claim/liability, routing and control are distinct joins. NET → sNET → wsNET follows representations of staking exposure, not three independent assets. Sleeve → pledged assets plus debt requires both the asset claim and its obligation, not gross collateral as equity. External fee → router → recipient separates an earned charge, its processing and actual receipt; internal remittances are not new consolidated revenue.
+
+These arrows are conceptual, not verified current bindings or an additive balance sheet. This map is an entry aid, not a required preflight for every question.
+
+### Product claims and Core boundary
+
 | Product | Consideration / position | What the participant holds | Relationship to Core |
 |---|---|---|---|
 | Standard bonds | USDG or canonical NET/USDG v2 LP | Vesting NET claim | New NET issuance against reserve consideration, priced no lower than NAV. |
