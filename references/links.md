@@ -93,8 +93,10 @@ Both links were supplied by the user. On 2026-09-10, OpenSea's collection API as
 
 - [Net Forge site](https://forge.netnet.capital/) and [docs](https://forge.netnet.capital/docs), with [selective index](https://forge.netnet.capital/llms.txt).
 - [Quickstart](https://forge.netnet.capital/docs/quickstart), [coding-agent/MCP setup](https://forge.netnet.capital/docs/agents) and [optional economy](https://forge.netnet.capital/docs/guides/in-game-store-and-currency).
-- [netnetdev GitHub account](https://github.com/netnetdev) and [reviewed source pin](https://github.com/netnetdev/net-forge/tree/bc79fbf76a35bc21ed0fb6adb6d84352556e8d38).
+- [netnetdev GitHub account](https://github.com/netnetdev), [0.2.0 source basis](https://github.com/netnetdev/net-forge/tree/bc79fbf76a35bc21ed0fb6adb6d84352556e8d38) and [newer source reviewed October 29](https://github.com/netnetdev/net-forge/tree/243b7cd59852a70725d7393c2864e59e657a927c).
 - [npm organization](https://www.npmjs.com/org/netforge), [engine](https://www.npmjs.com/package/@netforge/engine), [simulation](https://www.npmjs.com/package/@netforge/engine-sim), [local play](https://www.npmjs.com/package/@netforge/kit-play), [MCP](https://www.npmjs.com/package/@netforge/mcp), [scaffolder](https://www.npmjs.com/package/create-netforge) and [agent CLI](https://www.npmjs.com/package/netforge).
+- [Template guides, GitHub starters and browser-demo links](builders.md#templates-and-packages); [Emberwatch solo demo](https://netnetcap.itch.io/survivors-like-demo) is a directly inspected landing page, not a gameplay test.
+- [Source-only solo static export](https://github.com/netnetdev/net-forge/blob/243b7cd59852a70725d7393c2864e59e657a927c/packages/kit-play/README.md#a-solo-demo-for-the-web) and [existing-three.js integration guide](https://forge.netnet.capital/docs/migrate/from-threejs-scene). Builders owns source-versus-package availability and execution qualifications.
 
 These linked relationships do not authenticate a person's identity or endorse the account's DeFiLlama adapter economics. Package metadata/source review is not deployed-contract or reward verification.
 

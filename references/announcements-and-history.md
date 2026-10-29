@@ -1,6 +1,6 @@
 # Announcements, strategy history and interviews
 
-Working knowledge includes targeted **October 24, 2026 Net Forge observations**, **unpublished**; older records retain their review dates, and the intervening account timeline was not fully reviewed. Publication, event, retrieval and chain-observation dates are distinct. This chronology attributes claims, not universally verified current deployments. Product documentation, app registries and creation evidence are not verified implementation audits. The [source catalog](../assets/sources.json) records scope; [interview research](interview-research.md) distinguishes complete available transcript/caption review from audio/visual verification. No complete social-account archive was reviewed.
+Working knowledge includes targeted **October 24 and 29, 2026 Net Forge observations**, **unpublished**; older records retain their review dates, and the intervening account timeline was not fully reviewed. Publication, event, retrieval and chain-observation dates are distinct. This chronology attributes claims, not universally verified current deployments. Product documentation, app registries and creation evidence are not verified implementation audits. The [source catalog](../assets/sources.json) records scope; [interview research](interview-research.md) distinguishes complete available transcript/caption review from audio/visual verification. No complete social-account archive was reviewed.
 
 ## Product launches and changes
 
@@ -59,6 +59,10 @@ Treat those as publisher claims, not a new implementation audit. The [reviewed t
 The [Phase 1 announcement](https://x.com/NetNetCap/status/2113723654609752199), published **2026-10-23 at 20:06:05 UTC** in the dated intake, announces public engine/source/npm distribution, claims **16 launch packages** with npm provenance and 530 CC0 models/sounds in six styles plus ten templates. It explicitly defers Kit until game contracts are live. October 24 review is **model-relayed X-search text**, not direct original-browser or self-reply proof; the browser attempt was unavailable.
 
 [Builders](builders.md#net-forge-what-is-public) holds the separately inspected site, pinned source, six 0.2.0 package observations and local workflow. The npm organization's later 17 scoped listings are not the post's launch count. Engine publication/local play proves neither a live token economy nor NET backing or revenue. This targeted addition is not an exhaustive latest-post or intervening timeline census.
+
+### October 25–27 Net Forge builder additions
+
+The October 29 targeted review finds [two source commits after the October 24 reviewed source basis](https://github.com/netnetdev/net-forge/compare/bc79fbf76a35bc21ed0fb6adb6d84352556e8d38...243b7cd59852a70725d7393c2864e59e657a927c), ten new GitHub starter repositories, linked solo browser demos, static-demo export source and a plain-three.js integration example. [Builders](builders.md) owns the practical routes and evidence limits. The refreshed engine/kit-play npm records still report 0.2.0; newer source is not evidence those features shipped in that package. This was not a new social-post review or a live Kit launch check.
 
 ## Developer platform and roadmap
 

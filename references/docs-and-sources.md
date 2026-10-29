@@ -4,7 +4,7 @@ Baseline documentation reviewed September 10, 2026; later observations retain th
 
 The October 13 [official-account refresh](announcements-and-history.md#october-1113-official-account-sweep) adds fourteen original post URLs from October 11–13, including the creator/Cabinet Kit thread and management/bond-strategy update. Initial model-relayed discovery was followed by direct authorized-browser review of all fourteen original captions, timestamps, embedded quoted text and the visible creator-thread sequence. Two videos received sampled visual review, not complete audio/visual review or transcription. No exhaustive social archive or independent verification of publisher financial claims is implied; financial snapshots were not imported.
 
-The **October 24 targeted Net Forge refresh** inspects selected site/docs, pinned source, GitHub metadata and npm distribution/provenance payloads. [History](announcements-and-history.md#october-23-net-forge-phase-1) attributes the Phase 1 post at its model-relayed review depth; [Builders](builders.md) owns local development, MCP and separate Kit readiness. Forge's documentation corpus is separate from the **30-entry prospectus directory** below; neither a full mirror nor an intervening social-timeline review is claimed.
+The **October 24 targeted Net Forge refresh** inspects selected site/docs, pinned source, GitHub metadata and npm distribution/provenance payloads. An **October 29 follow-up** adds starter repositories, source-linked solo demos and selected source/docs examples, while separating newer source from the two refreshed npm package records. [History](announcements-and-history.md#october-23-net-forge-phase-1) attributes the Phase 1 post at its unchanged model-relayed review depth; [Builders](builders.md) owns development routes, MCP and separate Kit readiness. Forge's documentation corpus is separate from the **30-entry prospectus directory** below; neither a full mirror nor an intervening social-timeline review is claimed.
 
 ## Current ecosystem and content sweep
 
@@ -30,6 +30,8 @@ Packaged knowledge is usable offline, but an answer about public evidence should
 Use a small number of directly relevant citations rather than a dump of links. Synthetic examples remain synthetic; their provenance is the supplied assumptions plus any cited contract rule, not an alleged chain event.
 
 ## Official documentation: complete indexed set
+
+**Packaged index snapshot: October 10, 2026 — 30 entries.** State this index date when listing the directory; the October 24 and 29 Forge reviews did not refresh this separate index. Directory requests use these packaged links without a live fetch.
 
 The [llms.txt index](https://docs.netnet.capital/llms.txt), read October 10, lists **30 entries**, adding NET LONG and LOSE to the 28 bodies reviewed October 7. Both additions were read in full; the other bodies retain their individual review dates, with Futures and Official Channels revisited for generation conflicts. Earlier snapshots remain historical: September 26 had 28 entries, September 25 had 27, and the earlier index had 25. Retrieval dates do not date underlying changes. Documentation describes publisher mechanics, not independent verification of deployment or enforcement.
 

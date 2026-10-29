@@ -215,8 +215,9 @@ def verify_files(files):
             raise ValueError(f"package file hash mismatch: {path}")
     if manifest != expected:
         raise ValueError("manifest count, runtime digest or scope mismatch")
-    return {"status": "verified", "version": manifest["version"], "files": len(files),
-            "bytes": sum(map(len, files.values())),
+    return {"status": "verified", "version": manifest["version"],
+            "total_distributable_files": len(files), "manifest_listed_files": len(hashes),
+            "runtime_bundle_files": runtime["files"], "bytes": sum(map(len, files.values())),
             "manifest_sha256": hashlib.sha256(files[MANIFEST]).hexdigest(),
             "runtime_sha256": runtime["sha256"], "note": NOTE}
 

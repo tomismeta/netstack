@@ -90,9 +90,9 @@ Optional `/netstack <topic> [question]` works only when a host registers the ins
 
 Directory requests use packaged links without fetching live data or loading every reference. All routes remain read-only.
 
-The October 24, 2026 targeted [builder review](references/builders.md) observes public **Net Forge engine/source/docs/npm tooling**, separately from optional **Cabinet Kit**, whose npm distribution and live rewards remain unestablished. netstack documents these external tools but bundles or installs none.
+The targeted [builder review](references/builders.md), extended October 29, 2026, covers public **Net Forge tooling, browser-demo links and starter repositories**, distinguishing newer source examples from published npm packages. Optional **Cabinet Kit** distribution and live rewards remain unestablished. netstack documents these external tools but bundles or installs none.
 
-Also ask naturally: “What is Net Forge and what is public?” or “Which Net Forge MCP can I use, and is Cabinet Kit live?”
+Also ask naturally: “What is Net Forge and what is public?”, “Can I try a Net Forge game before installing anything?”, “Can I export a solo demo or keep my existing three.js scene?”, or “Which Net Forge MCP can I use, and is Cabinet Kit live?”
 
 ## Quick start
 
@@ -194,7 +194,7 @@ The address catalog keeps identities, statuses and dated evidence per record; sh
 
 ## What's covered
 
-Baseline documentation dates from **September 10, 2026**, with targeted additions through October 14 and **October 24 Net Forge site/docs/source/npm observations**. This is not a refresh of every older product or the intervening social timeline. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
+Baseline documentation dates from **September 10, 2026**, with targeted additions through October 14, **October 24 Net Forge site/docs/source/npm observations**, and an **October 29 builder source/docs and selected distribution refresh**. This is not a refresh of every older product or the intervening social timeline. Existing observations retain their own dates; catalog membership does not establish current deployment, permissions or balances.
 
 - **30 indexed official documentation entries**, represented by original summaries and source links; LOSE's standalone page remains sparse. Individual review dates differ.
 - Canonical contracts, feeds, market and pool IDs, plus a separately qualified deployer-discovery inventory. Counts and boundaries live in [address conventions](assets/address-conventions.json), not a competing inventory here.
